@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  
+}
+
+.flex-center{
+  @apply flex justify-center items-center
+}
