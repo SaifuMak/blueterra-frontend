@@ -1,4 +1,5 @@
 import "./globals.css";
+import Navbar from "@/components/Navbar/page";
 
 export const metadata = {
   title: "Blueterra",
@@ -9,6 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className=''>
+        {/* <Navbar/> */}
         {children}
       </body>
     </html>
