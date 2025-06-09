@@ -1,6 +1,6 @@
 'use client'
 import { useRef, useEffect } from 'react';
-import gsap, { Power0 } from 'gsap';
+import gsap from 'gsap';
 import Image from 'next/image';
 
 
@@ -25,7 +25,7 @@ export default function AnimatedCard({ card, onClick, isExpanded }) {
     }, [isExpanded])
 
     return (
-        <div ref={cardRef} onClick={onClick} className={`flex-1  h-[700px]  relative cursor-pointer  overflow-hidden  text-white text-3xl   `} style={{ backgroundColor: card.color }}>{card.title}
+        <div ref={cardRef} onClick={onClick} className={`flex-1 h-screen relative cursor-pointer  overflow-hidden  text-white text-3xl   `} >{card.title}
 
 
             <div className='overflow-hidden'>
@@ -37,18 +37,30 @@ export default function AnimatedCard({ card, onClick, isExpanded }) {
                     style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
 
-                <div className=' absolute inset-0  bg-[#00284680]/50'>
-                    {/* <div className='p-4  w-12 ml-2   h-[500px] flex flex-col  items-center  text-white   '>
-                        <span className='text-3xl text-left '>{card.title}</span>
-                        <div className='w-px flex-1 ml-1 my-4  bg-white'></div>
-                        <p className=' rotate-90  text-nowrap'>Mindful Escapes</p>
-                    </div> */}
+                {!isExpanded ? (
+                    <div className=' absolute inset-0  bg-[#00284680]/50'>
 
-                    <div className='flex ml-3 mt-3   text-white items-center'>
-                        <span className='text-3xl'>{card.title}</span>
-                         
+                        <div className={`flex mt-3 w-8 ml-6 h-[95vh] text-white flex-col items-center `}>
+                            <span className="text-4xl font-normal">{card.number}</span>
+
+                            <div className="bg-white/40 w-0.5 flex-1 my-3"></div>
+
+                            <p className=" rotate-180 text-3xl tracking-wide [writing-mode:vertical-rl]">
+                                {card.tagline}
+                            </p>
+                        </div>
+
                     </div>
-                </div>
+                ) : (
+                    <div className='bg-[#104F82D9]/80 absolute inset-0 px-20 '>
+                        <div className='mt-20 '>
+                            <p className='  text-white text-5xl '>{card.number} <span className='font-medium ml-3'>{card.tagline}</span></p>
+                            <hr className=' opacity-40 mt-5'></hr>
+                        </div>
+                    </div>
+
+                )}
+
 
 
 

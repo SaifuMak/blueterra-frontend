@@ -1,10 +1,16 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  
+
+body {
+  @apply font-sans; /* Tailwind will use what's defined */
 }
+
 
 .flex-center{
   @apply flex justify-center items-center
+}
+
+
+.bor{
+  @apply border border-white 
 }
