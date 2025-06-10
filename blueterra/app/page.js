@@ -1,25 +1,86 @@
-import Cards from "@/components/AnimatedCards/Cards";
+// import Cards from "@/components/AnimatedHorizontalCards/HorizontalCards";
+// import Image from "next/image";
+import BannerAnimation from "@/components/Home/BannerAnimation";
+import DestinationCards from "@/components/DestinationsView/DestinationCards";
+import CardData from "@/components/datas/Destinations";
+import Image from "next/image";
 
 export default function Home() {
 
-  const CardData = [
-    {number:'01', image : '/images/home/girl-in-yellow-dress-jumbing.png',tagline : 'Signature Journeys'},
-    {number:'02',  image : '/images/home/men-climbing-mountain.png',tagline : 'Explore by Landscape'},
-    {number:'03',  image : '/images/home/girl-and-boy-vr.jpg',tagline : 'Adventures in Motion' },
-    {number:'04', image : '/images/home/men-in-yellow-dress.png',tagline : 'Mindful Escapes'},
-    {number:'05', image : '/images/home/old-man.jpeg',tagline : 'Unforgettable Editions'},
-    {number:'06', image : '/images/home/yellow-man-second.png',tagline : 'Tailored for You'},
+  const Destinations = [
+    {
+      image: '/images/places/sea.png',
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscinge lit Pellentesque ut ligula vitae",
+      place: 'United Arab Emirates',
+      category: 'Adventure & Exploration',
+      price: 34,
+      days: 6,
 
+    },
+    {
+      image: '/images/places/sea.png',
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscinge lit Pellentesque ut ligula vitae",
+      place: 'United Arab Emirates',
+      category: 'Adventure & Exploration',
+      price: 34,
+      days: 6,
+
+    },
+    {
+      image: '/images/places/sea.png',
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscinge lit Pellentesque ut ligula vitae",
+      place: 'United Arab Emirates',
+      category: 'Adventure & Exploration',
+      price: 34,
+      days: 6,
+
+    },
+    {
+      image: '/images/places/sea.png',
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscinge lit Pellentesque ut ligula vitae",
+      place: 'United Arab Emirates',
+      category: 'Adventure & Exploration',
+      price: 34,
+      days: 6,
+
+    },
   ]
+
+
   return (
-    <div className=' h-screen '>
-      {/* <h1 className="text-3xl font-bold underline">
-        Home page
-      </h1> */}
-      <div className="w-full h-screen ">
-        <Cards CardDetails={CardData}/>
+    <div className=''>
+
+      <BannerAnimation />
+      {/* <Cards CardDetails={CardData} /> */}
+
+
+      <div className=" w-full relative flex justify-center -mt-10   items-center  ">
+
+      {/* <Image
+        src="/images/home/mountain-banner.png"
+        alt="Background"
+        fill
+        className="object-cover  -z-10" // -z-10 sends it behind other content
+        quality={100}
+        priority
+      />
+        <div className=" absolute inset-0 w-full h-full  bg-white/10 ">
+        </div> */}
+
+      
+        <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 lg:gap-10 gap-5   lg:grid-cols-2   w-10/12  " style={{ width: 'fit-content' }}>
+        
+          <DestinationCards Destinations={Destinations} />
+
+        </div>
       </div>
-  
+
+
+      <div className="h-screen  w-full bg-slate-100  ">
+
+      </div>
+
     </div>
+
   );
 }

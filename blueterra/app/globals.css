@@ -14,3 +14,13 @@ body {
 .bor{
   @apply border border-white 
 }
+
+
+.bor-b{
+  @apply border-b border-white 
+}
+
+
+@theme {
+  --color-brand-blue: #2571B8;
+}
