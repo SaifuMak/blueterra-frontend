@@ -131,7 +131,7 @@ export default function Footer() {
                 </div>
 
                 <div className=" flex max-md:flex-col max-md:space-y-2 items-center max-lg:text-xs justify-between">
-                    <p className="">© 2025 BlueTerra All Rights Reserved. Design by MakTal</p>
+                    <p className="">© 2025 BlueTerra All Rights Reserved.<a href="https://maktalseo.com/" target="_blank" rel="noopener noreferrer" className=" hover:cursor-pointer"> Design by MakTal</a></p>
                     <p className="">Terms & Conditions | Privacy Policy | FAQ's </p>
                 </div>
 
