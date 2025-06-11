@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Filter from "../Filter";
 import CardData from "../datas/Destinations";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function BannerAnimation() {
@@ -72,7 +73,9 @@ export default function BannerAnimation() {
 
 
     return (
-        <div ref={animationBannerRef} className={` z-50 ${isFullCardVisible ? 'relative' : 'fixed top-0'} w-full`}>
+        // <div ref={animationBannerRef} className={` z-30 ${isFullCardVisible ? 'relative' : 'fixed top-0 '} w-full`}>
+        <div ref={animationBannerRef} className={` z-30  w-full`}>
+
 
             {/* <HorizontalCards CardDetails={CardData} expandedIndex={expandedIndex} handleCardClick={handleCardClick} /> */}
             <VerticalCards CardDetails={CardData} expandedIndex={expandedIndex} handleCardClick={handleShowFullCard} isFullCardVisible={isFullCardVisible} handleHideFullCard={handleHideFullCard} setIsLoading={setIsLoading} isLoading={isLoading} setIsFilterVisible={setIsFilterVisible} />

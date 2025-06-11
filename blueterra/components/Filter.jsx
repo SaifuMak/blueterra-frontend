@@ -19,11 +19,25 @@ export default function Filter({ isFilterVisible, setIsFilterVisible }) {
 
     }
 
+    useEffect(() => {
+            gsap.to(filterRef.current, {
+                maxHeight: isFilterVisible ? 580 : 0,
+                opacity: isFilterVisible ? 1 : 0,
+                duration: 1.3,
+                ease: "power2.out",
+                zIndex: isFilterVisible ? 30 : 0,
+            });
+
+    }, [isFilterVisible]);
 
     return (
         // <div ref={filterRef} className="w-full flex justify-center max-lg:hidden   text-base border border-black bg-slate-400">
-        <div ref={filterRef} className={`overflow-hidden pb-10 flex justify-center transition-all duration-900 ease-in-out  bg-white   ${isFilterVisible ? 'max-h-[580px] opacity-100  z-50 ' : 'max-h-0 opacity-0 z-0'}   w-full  `}>
-
+        // <div ref={filterRef} className={`overflow-hidden shadow-lg  pb-10 flex justify-center transition-all duration-1000 ease-in-out  bg-white   ${isFilterVisible ? 'max-h-[580px] opacity-100  z-50 ' : 'max-h-0 opacity-0 z-0'}   w-full  `}>
+        <div
+            ref={filterRef}
+            style={{ maxHeight: 0, opacity: 0, overflow: "hidden" }}
+            className="shadow-lg pb-10 flex justify-center bg-white w-full transition-none"
+        >
             <div className="w-11/12  relative 2xl:space-x-42 xl:space-x-32 lg:space-x-10  flex 2xl:px-20 lg:px-10 pt-10">
 
                 <div className=" space-y-3">

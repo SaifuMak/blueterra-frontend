@@ -29,7 +29,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
     }, [isExpanded, isFullCardVisible])
 
     return (
-        <div ref={cardRef} onClick={onClick} className={`flex-1 h-[100vh] ${!isFullCardVisible ? 'cursor-pointer' : 'cursor-default'}  relative   overflow-hidden  text-white text-3xl   `} >{card.title}
+        <div ref={cardRef} onClick={onClick} className={`flex-1 h-[100vh] ${!isExpanded ? 'cursor-pointer' : 'cursor-default'}  relative   overflow-hidden  text-white text-3xl   `} >{card.title}
 
 
             <div className='overflow-hidden relative w-full h-full  '>

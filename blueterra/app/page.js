@@ -2,10 +2,10 @@
 // import Image from "next/image";
 import BannerAnimation from "@/components/Home/BannerAnimation";
 import DestinationCards from "@/components/DestinationsView/DestinationCards";
-import CardData from "@/components/datas/Destinations";
 import Image from "next/image";
 
 export default function Home() {
+
 
   const Destinations = [
     {
@@ -51,34 +51,30 @@ export default function Home() {
     <div className=''>
 
       <BannerAnimation />
-      {/* <Cards CardDetails={CardData} /> */}
+
+      <div className=" w-full relative flex justify-center -mt-10  items-center  ">
+
+        <Image
+          src="/images/home/greyscale-mountain.png"
+          alt="Background"
+          fill
+          className="object-cover  -z-10" // -z-10 sends it behind other content
+          quality={100}
+          priority
+        />
+        <div className=" absolute inset-0 w-full h-full  bg-white/50 ">
+        </div>
 
 
-      <div className=" w-full relative flex justify-center -mt-10   items-center  ">
-
-      {/* <Image
-        src="/images/home/mountain-banner.png"
-        alt="Background"
-        fill
-        className="object-cover  -z-10" // -z-10 sends it behind other content
-        quality={100}
-        priority
-      />
-        <div className=" absolute inset-0 w-full h-full  bg-white/10 ">
-        </div> */}
-
-      
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 lg:gap-10 gap-5   lg:grid-cols-2   w-10/12  " style={{ width: 'fit-content' }}>
-        
+
           <DestinationCards Destinations={Destinations} />
 
         </div>
-      </div>
-
-
-      <div className="h-screen  w-full bg-slate-100  ">
 
       </div>
+
+
 
     </div>
 
