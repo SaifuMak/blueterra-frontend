@@ -16,7 +16,7 @@ export default function Navbar() {
 
 
   return (
-    <div className="w-full  bg-white max-xl:text-sm  h-[50px]  lg:h-[70px] flex justify-center ">
+    <div className="w-full z-50 fixed top-0 bg-white max-xl:text-sm  h-[50px]  lg:h-[70px] flex justify-center ">
 
       <div className="xl:w-11/12 w-full max-xl:pr-4 max-lg:hidden  flex  overflow-hidden  items-center justify-between">
         {/* <div className="xl:w-[200px] relative xl:h-[200px] h-[160px]  w-[160px] "> */}

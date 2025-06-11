@@ -36,9 +36,9 @@ export default function Filter({ isFilterVisible, setIsFilterVisible }) {
         <div
             ref={filterRef}
             style={{ maxHeight: 0, opacity: 0, overflow: "hidden" }}
-            className="shadow-lg pb-10 flex justify-center bg-white w-full transition-none"
+            className="shadow-lg pb-10 mt-[120px] flex justify-center max-xl:text-sm bg-white w-full transition-none"
         >
-            <div className="w-11/12  relative 2xl:space-x-42 xl:space-x-32 lg:space-x-10  flex 2xl:px-20 lg:px-10 pt-10">
+            <div className=" relative 2xl:space-x-42 xl:space-x-32 lg:space-x-10  flex 2xl:px-20 lg:px-10 pt-10">
 
                 <div className=" space-y-3">
                     <h6 className=" text-xl font-medium">Continents</h6>
