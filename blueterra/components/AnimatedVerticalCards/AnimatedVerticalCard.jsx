@@ -50,7 +50,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
                         {isFullCardVisible ? (
 
-                            <div className={`flex mt-3 w-8 ml-6 h-[95vh] text-white flex-col items-center `}>
+                            <div className={`flex mt-3 w-8 ml-6 h-[85vh] text-white flex-col items-center `}>
                                 <span className="text-4xl font-normal">{card.number}</span>
 
                                 <div className="bg-white/40 w-0.5 flex-1 my-3"></div>
