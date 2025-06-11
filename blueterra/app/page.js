@@ -66,7 +66,7 @@ export default function Home() {
         </div>
 
 
-        <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 lg:gap-10 gap-5   lg:grid-cols-2   w-10/12  " style={{ width: 'fit-content' }}>
+        <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 md:gap-12 gap-5   md:grid-cols-2   w-10/12  " style={{ width: 'fit-content' }}>
 
           <DestinationCards Destinations={Destinations} />
 
