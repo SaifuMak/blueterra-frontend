@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { CiClock1 } from "react-icons/ci";
+import { IoIosStarOutline, IoIosStar,IoIosStarHalf  } from "react-icons/io";
 
 
 export default function DestinationCards({ Destinations }) {
@@ -40,10 +41,29 @@ export default function DestinationCards({ Destinations }) {
 
 
                     <div className="p-5 space-y-3 2xl:space-y-5">
-                        <div className=" flex justify-between">
-                            <p className="text-sm font-medium">{destination.place}</p>
-                            <p className="text-sm"> Rating 4.5</p>
-                            <div className=" rounded-full border flex justify-center max-lg:hidden items-center lg:px-2 xl:py-1.5   border-[#E4E4E4] text-xs text-[#828282]">{destination.category}</div>
+                        <div className=" flex justify-between items-center">
+                            <p className="text-base font-medium">{destination.place}</p>
+                            <div className=" flex items-center ">
+                                <div className=" flex space-x-0.5">
+                                   
+                                    {[...Array(5)].map((_, index) => {
+                                        const roundedRating = Math.round(destination.rating * 2) / 2;
+                                        const filled = index + 1 <= roundedRating;
+                                        const half = index + 0.5 === roundedRating;
+
+                                        return filled ? (
+                                            <IoIosStar key={index} className="text-[#FFCB1F] fill-[#FFCB1F]" />
+                                        ) : half ? (
+                                            <IoIosStarHalf key={index} className="text-[#FFCB1F]" />
+                                        ) : (
+                                            <IoIosStarOutline key={index} className="text-[#FFCB1F]" />
+                                        );
+                                    })}
+                                </div>
+                                <p className="text-sm ml-1 font-medium">{destination.rating}</p>
+                                <div className=" rounded-full border flex justify-center ml-3 max-lg:hidden items-center lg:px-2 xl:py-1.5   border-[#E4E4E4] text-xs text-[#828282]">{destination.category}</div>
+
+                            </div>
                         </div>
                         <h3 className=" xl:text-xl lg:text-lg  font-medium text-black/90">{destination.description}</h3>
                         <div className=" flex justify-between text-sm">

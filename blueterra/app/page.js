@@ -56,6 +56,7 @@ export default function Home() {
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
+      rating : 3.5,
 
     },
     {
@@ -65,6 +66,7 @@ export default function Home() {
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
+      rating : 5,
 
     },
     {
@@ -74,6 +76,8 @@ export default function Home() {
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
+      rating : 3.7,
+
 
     },
     {
@@ -83,6 +87,8 @@ export default function Home() {
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
+      rating : 1.5,
+
 
     },
   ]
