@@ -88,8 +88,6 @@ export default function Home() {
       price: 34,
       days: 6,
       rating : 1.5,
-
-
     },
   ]
 
