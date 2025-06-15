@@ -10,11 +10,12 @@ export default function Carousal() {
     const scrollRef = useRef(null);
     const [current, setCurrent] = useState(0);
     const total = carousalData.length;
-
+    const [isScrolling, setIsScrolling] = useState(false);
 
     const scroll = (direction) => {
         const { current: container } = scrollRef;
-        if (!container) return;
+        if (!container || isScrolling) return;
+        setIsScrolling(true); // lock scroll
 
         const scrollAmount = container.clientWidth;
 
@@ -37,6 +38,9 @@ export default function Carousal() {
                 setCurrent((prev) => prev - 1);
             }
         }
+
+         setTimeout(() => setIsScrolling(false), 500);
+
     };
 
 

@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from "react"
 import accordionData from "@/components/datas/DailyActivitiesData"
+import {MdOutlineKeyboardArrowRight} from '../../reactIcons'
 
 export default function DailyActivities({ expandCards, index, selectedTab }) {
 
@@ -52,7 +53,10 @@ export default function DailyActivities({ expandCards, index, selectedTab }) {
                         </div>
                         <div className=" flex flex-col pl-5 mb-4">
                             <div className=" border border-[#DCDCE3]">
-                                <div onClick={() => handleAccordion(index)} className={` py-1.5 ${OpenedAccordian.includes(index) ? ' bg-[#3A938C] text-white' : ''}  px-2 cursor-pointer`}>{data.title}</div>
+                                <div onClick={() => handleAccordion(index)} className={` flex justify-between items-center py-1.5 ${OpenedAccordian.includes(index) ? ' bg-[#3A938C] text-white' : ''}  px-2 cursor-pointer`}>
+                                    {data.title}
+                                    <span className={`transition-all duration-300  ${OpenedAccordian.includes(index) ? 'rotate-90' : 'rotate-0'}`}><MdOutlineKeyboardArrowRight/></span>
+                                    </div>
                                 <div className={` overflow-hidden  transition-all duration-700 text-[#363636] ease-in-out px-4 ${OpenedAccordian.includes(index) ? 'max-h-[200px]    opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`}>
                                     <div className="py-5 px-3">
                                         {data.content}
