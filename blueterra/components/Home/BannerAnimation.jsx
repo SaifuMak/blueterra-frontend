@@ -2,7 +2,6 @@
 // import HorizontalCards from "../AnimatedHorizontalCards/HorizontalCards"
 import VerticalCards from "../AnimatedVerticalCards/VerticalCards"
 import gsap from 'gsap';
-
 import { useState, useRef } from "react"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CardData from "../datas/Destinations";
@@ -12,17 +11,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function BannerAnimation({expandedIndex, setExpandedIndex, isFullCardVisible, setIsFullCardVisible,handleShowFullCard,setIsFilterVisible}) {
 
-    // const [expandedIndex, setExpandedIndex] = useState(null)
-
-    // const [isFullCardVisible, setIsFullCardVisible] = useState(true)
-
     const [isLoading, setIsLoading] = useState(true)
 
-
     const animationBannerRef = useRef()
-
-    
-
 
     // const handleShowFullCard =(index)=>{
     //     console.log('  open full card animation called on this index card --------------------', index);

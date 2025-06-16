@@ -10,7 +10,7 @@ export const metadata = {
 
 const jost = Jost({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  weight: ['200', '300', '400', '500', '700'],
 })
 
 export default function RootLayout({ children }) {

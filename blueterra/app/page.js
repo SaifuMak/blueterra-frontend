@@ -6,12 +6,14 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Filter from "@/components/Filter";
 
+
 export default function Home() {
 
   const [expandedIndex, setExpandedIndex] = useState(null)
 
   const [isFullCardVisible, setIsFullCardVisible] = useState(true)
   const [isFilterVisible, setIsFilterVisible] = useState(false)
+
 
   const handleScrollTop = () => {
     setTimeout(() => {
@@ -25,15 +27,13 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if(isFilterVisible){
+    if (isFilterVisible) {
       handleScrollTop()
     }
-   
   }, [isFilterVisible])
 
 
   const handleShowFullCard = (index) => {
-
     setIsFullCardVisible(true)
     handleScrollTop()
     setExpandedIndex(index)
@@ -45,7 +45,7 @@ export default function Home() {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isFullCardVisible,isFilterVisible]);
+  }, [isFullCardVisible, isFilterVisible]);
 
 
   const Destinations = [
@@ -56,7 +56,7 @@ export default function Home() {
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
-      rating : 3.5,
+      rating: 3.5,
 
     },
     {
@@ -66,7 +66,7 @@ export default function Home() {
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
-      rating : 5,
+      rating: 5,
 
     },
     {
@@ -76,7 +76,7 @@ export default function Home() {
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
-      rating : 3.7,
+      rating: 3.7,
 
 
     },
@@ -87,12 +87,13 @@ export default function Home() {
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
-      rating : 1.5,
+      rating: 1.5,
     },
   ]
 
 
   return (
+
     <div className=''>
 
       <BannerAnimation
