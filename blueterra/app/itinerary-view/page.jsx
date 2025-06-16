@@ -14,19 +14,12 @@ export default function ItineraryView() {
     const [selectedTab, setselectedTab] = useState('Overview')
 
 
-
     return (
         <div className=" min-h-screen bg-slate-300 flex flex-col  items-center justify-center     ">
             {/* <ImageCarousal carousalData={carousalData}/> */}
             <PlannedActivities/>
 
             {/* <ThreeItemsCarousel/> */}
-
-          
-
-
-
-
 
 
         </div>
