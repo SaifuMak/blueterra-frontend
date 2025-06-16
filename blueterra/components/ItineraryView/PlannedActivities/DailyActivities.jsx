@@ -59,7 +59,7 @@ export default function DailyActivities({ expandCards, index, selectedTab }) {
                                 </div>
                                 <div className={` overflow-hidden   transition-all duration-700 text-[#363636] ease-in-out px-4 ${OpenedAccordian.includes(index) ? 'max-h-[200px]    opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`}>
                                     <div className="py-5 px-5 ml-1  mt-8 border-dashed border-slate-500 border-l relative ">
-                                        <img src="/Icons/bigDot.svg" alt="dot" className=" w-5 h-5 absolute -top-0.5 -left-2.5" />
+                                        <img src="/Icons/big-dot.svg" alt="dot" className=" w-5 h-5 absolute -top-0.5 -left-2.5" />
                                         <p className="absolute -top-1 left-4 font-medium">Destination</p>
                                         <p className=" mt-2">{data.content}</p>
                                     </div>
