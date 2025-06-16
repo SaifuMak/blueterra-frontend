@@ -23,7 +23,7 @@ export default function Details({ }) {
                 <div className="flex flex-col flex-wrap h-full mt-2 pb-3 space-y-1">
                     {uaePlaces?.map((places, index) => (
                         <div key={index} className="flex items-center">
-                            <span className=""><img src="/icons/location.svg" alt="location-icon" className=" w-3 h-3" /></span>
+                            <span className=""><img src="/Icons/location.svg" alt="location-icon" className=" w-3 h-3" /></span>
                             <p className="ml-1">{places}</p>
                         </div>
                     ))}

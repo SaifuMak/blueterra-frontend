@@ -7,7 +7,7 @@ export default function Map({expandCards,index}) {
     return (
         <div onClick={()=>expandCards(index)} className=" relative cursor-pointer w-full h-full">
             <Image
-            src='/Images/static/map.png'
+            src='/images/static/map.png'
             fill
             alt="google map"
             className="object-cover"
