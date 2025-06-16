@@ -8,6 +8,7 @@ import Image from "next/image";
 import carousalData from "@/components/datas/DestinationsDetails";
 import ImageCarousal from "@/components/ItineraryView/PlannedActivities/ImageCarousal";
 import ThreeItemsCarousel from "@/components/ItineraryView/ThreeItemCarousel";
+import backgroundImage from '../../public/images/itinerary/nature-background.png'
 
 export default function ItineraryView() {
 
@@ -15,9 +16,20 @@ export default function ItineraryView() {
 
 
     return (
-        <div className=" min-h-screen bg-slate-300 flex flex-col  items-center justify-center     ">
+        <div className=" h-full w-full bg-slate-300 flex flex-col  items-center justify-center  relative ">
+
+            <Image
+                src={backgroundImage}
+                alt='nuture'
+                className="object-cover z-0"
+                fill
+                placeholder="blur"
+                priority
+
+            />
+
             {/* <ImageCarousal carousalData={carousalData}/> */}
-            <PlannedActivities/>
+            <PlannedActivities />
 
             {/* <ThreeItemsCarousel/> */}
 

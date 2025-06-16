@@ -17,9 +17,9 @@ export default function Details({ }) {
     ];
 
     return (
-        <div className=" w-full p-2 h-full space-x-5 text-base flex overflow-x-auto ">
-            <div className="w-6/12 space-x-3 flex flex-col h-full">
-                <p className="text-lg font-medium">Places to explore</p>
+        <div className=" w-full justify-between xl:p-2 h-full max-xl:text-sm space-x-3  text-base flex overflow-x-auto ">
+            <div className="w-full space-x-3  flex flex-col h-full">
+                <p className="text-lg  font-medium">Places to explore</p>
                 <div className="flex flex-col flex-wrap h-full mt-2 pb-3 space-y-1">
                     {uaePlaces?.map((places, index) => (
                         <div key={index} className="flex items-center">
@@ -29,7 +29,7 @@ export default function Details({ }) {
                     ))}
                 </div>
             </div>
-            <div className="w-6/12 space-x-3 flex flex-col h-full">
+            <div className="w-full  space-x-3 flex flex-col h-full">
                 <p className="text-lg font-medium">Experiences to be unlocked</p>
                 <div className="flex flex-col flex-wrap mt-2 h-full space-y-1 pb-3">
                     {experiences?.map((places, index) => (

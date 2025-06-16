@@ -1,10 +1,16 @@
+'use client'
 import Link from "next/link"
 import Image from "next/image"
 import { HiMenuAlt3 } from '../reactIcons'
 import { IoSearchOutline } from "react-icons/io5";
 import MobileNavbar from "../generalComponents/mobileNavbar";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+
+  const pathname = usePathname()
+
+  const isHome = pathname === '/'
 
   const MenuItems = [
     { nav: 'Our Story', link: '#' },
@@ -16,7 +22,7 @@ export default function Navbar() {
 
 
   return (
-    <div className="w-full z-50 fixed top-0 border bg-white max-xl:text-sm  h-[50px]  lg:h-[70px] flex justify-center ">
+    <div className={`w-full ${isHome ? ' z-50 fixed top-0' : ''}  bg-white max-xl:text-sm  h-[50px]  lg:h-[70px] flex justify-center `}>
 
       <div className="xl:w-11/12 w-full max-xl:pr-4 max-lg:hidden  flex  overflow-hidden  items-center justify-between">
         {/* <div className="xl:w-[200px] relative xl:h-[200px] h-[160px]  w-[160px] "> */}

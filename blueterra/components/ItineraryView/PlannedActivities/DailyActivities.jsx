@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from "react"
 import accordionData from "@/components/datas/DailyActivitiesData"
-import {MdOutlineKeyboardArrowRight} from '../../reactIcons'
+import { MdOutlineKeyboardArrowRight } from '../../reactIcons'
 
 export default function DailyActivities({ expandCards, index, selectedTab }) {
 
@@ -38,7 +38,7 @@ export default function DailyActivities({ expandCards, index, selectedTab }) {
 
 
     return (
-        <div className=" w-full overflow-y-auto h-full flex  px-1  pl-[56px]  space-y-2 content-between text-base ">
+        <div className=" w-full overflow-y-auto h-full flex  px-1 lg:pl-[44px]  max-xl:text-sm  xl:pl-[56px]  space-y-2 content-between text-base ">
             {/* <div className=" w-6 shrink-0 bg-sky-500">
                 {[ ...Array(accordionData.length)].map((_ind)=>{
                     <div className="w-5 h-5 bg-amber-400">ind</div>
@@ -55,11 +55,13 @@ export default function DailyActivities({ expandCards, index, selectedTab }) {
                             <div className=" border border-[#DCDCE3]">
                                 <div onClick={() => handleAccordion(index)} className={` flex justify-between items-center py-1.5 ${OpenedAccordian.includes(index) ? ' bg-[#3A938C] text-white' : ''}  px-2 cursor-pointer`}>
                                     {data.title}
-                                    <span className={`transition-all duration-300  ${OpenedAccordian.includes(index) ? 'rotate-90' : 'rotate-0'}`}><MdOutlineKeyboardArrowRight/></span>
-                                    </div>
-                                <div className={` overflow-hidden  transition-all duration-700 text-[#363636] ease-in-out px-4 ${OpenedAccordian.includes(index) ? 'max-h-[200px]    opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`}>
-                                    <div className="py-5 px-3">
-                                        {data.content}
+                                    <span className={`transition-all duration-300  ${OpenedAccordian.includes(index) ? 'rotate-90' : 'rotate-0'}`}><MdOutlineKeyboardArrowRight /></span>
+                                </div>
+                                <div className={` overflow-hidden   transition-all duration-700 text-[#363636] ease-in-out px-4 ${OpenedAccordian.includes(index) ? 'max-h-[200px]    opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`}>
+                                    <div className="py-5 px-5 ml-1  mt-8 border-dashed border-slate-500 border-l relative ">
+                                        <img src="/Icons/bigDot.svg" alt="dot" className=" w-5 h-5 absolute -top-0.5 -left-2.5" />
+                                        <p className="absolute -top-1 left-4 font-medium">Destination</p>
+                                        <p className=" mt-2">{data.content}</p>
                                     </div>
                                 </div>
                             </div>
