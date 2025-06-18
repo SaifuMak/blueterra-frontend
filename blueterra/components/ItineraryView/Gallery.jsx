@@ -22,7 +22,7 @@ export default function Gallery({ }) {
                 <div className="mb-9">
                     <p className=" text-center text-4xl xl:text-5xl text-[#18283F] font-medium ">Gallery</p>
                 </div>
-                <div className="  2xl:h-[87%] h-[87%] my-2  relative flex rounded-xl  overflow-hidden gap-4   ">
+                <div className="  2xl:h-[77%] h-[87%] my-2  relative flex rounded-xl  overflow-hidden gap-4   ">
 
 
                     {galleryData?.map((item, index) => (
