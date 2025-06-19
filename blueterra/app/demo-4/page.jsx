@@ -39,7 +39,7 @@ export default function demo4() {
     const firstSectionRef = useRef()
     const secondSectionRef = useRef()
 
-    
+
 
     useGSAP(() => {
 

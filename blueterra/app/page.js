@@ -5,6 +5,7 @@ import DestinationCards from "@/components/DestinationsView/DestinationCards";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Filter from "@/components/Filter";
+import SmoothScroll from "@/components/SmoothScroll";
 
 
 export default function Home() {
@@ -93,43 +94,47 @@ export default function Home() {
 
 
   return (
+    <SmoothScroll>
 
-    <div className=''>
 
-      <BannerAnimation
-        expandedIndex={expandedIndex}
-        setExpandedIndex={setExpandedIndex}
-        isFullCardVisible={isFullCardVisible}
-        setIsFullCardVisible={setIsFullCardVisible}
-        handleShowFullCard={handleShowFullCard}
-        setIsFilterVisible={setIsFilterVisible}
-      />
+      <div className=''>
 
-      <Filter setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} />
-
-      <div className=" w-full relative flex justify-center -mt-10  items-center  ">
-
-        <Image
-          src="/images/home/greyscale-mountain.png"
-          alt="Background"
-          fill
-          className="object-cover  -z-10" // -z-10 sends it behind other content
-          quality={100}
-          priority
+        <BannerAnimation
+          expandedIndex={expandedIndex}
+          setExpandedIndex={setExpandedIndex}
+          isFullCardVisible={isFullCardVisible}
+          setIsFullCardVisible={setIsFullCardVisible}
+          handleShowFullCard={handleShowFullCard}
+          setIsFilterVisible={setIsFilterVisible}
         />
-        <div className=" absolute inset-0 w-full h-full  bg-white/50 ">
+
+        <Filter setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} />
+
+        <div className=" w-full relative flex justify-center -mt-10  items-center  ">
+
+          <Image
+            src="/images/home/greyscale-mountain.png"
+            alt="Background"
+            fill
+            className="object-cover  -z-10" // -z-10 sends it behind other content
+            quality={100}
+            priority
+          />
+          <div className=" absolute inset-0 w-full h-full  bg-white/50 ">
+          </div>
+
+
+
+          <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 md:gap-12 gap-5   md:grid-cols-2   w-10/12  " style={{ width: 'fit-content' }}>
+
+            <DestinationCards Destinations={Destinations} />
+
+          </div>
         </div>
 
-
-
-        <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 md:gap-12 gap-5   md:grid-cols-2   w-10/12  " style={{ width: 'fit-content' }}>
-
-          <DestinationCards Destinations={Destinations} />
-
-        </div>
       </div>
+    </SmoothScroll>
 
-    </div>
 
   );
 }
