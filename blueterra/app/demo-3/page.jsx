@@ -215,7 +215,7 @@ export default function demo3() {
         };
     }, []);
 
-    
+
 
     const handleTabSelection = (tab) => {
         setselectedTab(tab)
@@ -304,7 +304,7 @@ export default function demo3() {
                             </div>
 
                             <div ref={hotelGalleryRef} className=" absolute  mb-28  space-y-20 flex flex-col items-center w-full  inset-0">
-                                <HotelsView  />
+                                <HotelsView />
                                 <Gallery />
                             </div>
                         </div>
@@ -320,10 +320,10 @@ export default function demo3() {
                     </div>
 
 
-                    <div  className="w-full h-[220px] lg:h-[280px] xl:h-[320px] 2xl:h-[380px] overflow-hidden relative">
+                    <div className="w-full h-[220px] lg:h-[280px] xl:h-[320px] 2xl:h-[380px] overflow-hidden relative">
                         <div className="   absolute w-full h-[280px] lg:h-[360px] xl:h-[510px] 2xl:h-[590px] overflow-hidden inset-0 planner-image-wrapper">
                             <Image
-                                src='/images/Itinerary/tree-in-river.png'
+                                src='/images/itinerary/tree-in-river.png'
                                 alt="tree-in-river"
                                 fill
                                 className=" object-cover "

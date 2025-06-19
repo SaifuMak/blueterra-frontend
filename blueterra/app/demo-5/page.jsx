@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-import forest from "@/public/images/itinerary/forest.png"; // adjust the path
+import forest from "../../public/images/itinerary/forest.png"; 
 import worldMap from '../../public/images/itinerary/world-map.png'
 import HotelsView from "@/components/ItineraryView/HotelsView";
 import Gallery from "@/components/ItineraryView/Gallery";
