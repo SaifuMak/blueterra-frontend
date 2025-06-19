@@ -31,7 +31,7 @@ export default function Details({ }) {
             </div>
             <div className="w-full  space-x-3 flex flex-col h-full">
                 <p className="text-lg font-medium">Experiences to be unlocked</p>
-                <div className="flex flex-col flex-wrap mt-2 h-full space-y-1 pb-3">
+                <div className="flex flex-col  mt-2 h-full space-y-1 pb-3">
                     {experiences?.map((places, index) => (
                         <div key={index} className="flex items-center">
                             <span className="w-2 h-2 bg-[#3A938C] rounded-full "></span>

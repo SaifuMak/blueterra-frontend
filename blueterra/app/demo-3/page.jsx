@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -12,6 +12,8 @@ import PlannedActivities from "@/components/ItineraryView/PlannedActivities/Plan
 import HotelsView from "@/components/ItineraryView/HotelsView";
 import Gallery from "@/components/ItineraryView/Gallery";
 import forest from '../../public/images/itinerary/forest.png'
+import worldMap from '../../public/images/itinerary/world-map.png'
+
 import forestParallax from '../../public/images/itinerary/forest-parallax.png'
 import Footer from "@/components/Footer/page";
 import Navbar from "@/components/Navbar/page";
@@ -25,13 +27,16 @@ const sectionsData = [
     { id: 2, image: "https://images.pexels.com/photos/2104152/pexels-photo-2104152.jpeg?_gl=1*6gckvs*_ga*MjA2NjUyODYxMC4xNzUwMTYyOTA4*_ga_8JE65Q40S6*czE3NTAyNDQyNzMkbzIkZzEkdDE3NTAyNDQyODckajQ2JGwwJGgw", bg: "#efffef", component: PlannedActivities },
     // { id: 3, image: forest, bg: "#efefff", component: HotelsView },
     // { id: 4, image: forest, bg: "#efefff", component: Gallery },
-
 ];
 
 export default function demo2() {
     const sectionsRef = useRef([]);
 
     const planningRef = useRef()
+
+    const hotelGalleryRef = useRef()
+
+
 
     useGSAP(() => {
         sectionsRef.current.forEach((section, index) => {
@@ -47,7 +52,6 @@ export default function demo2() {
                     start: index === 0 ? "top 0%" : "top 90%",
                     end: "top -200%",
                     scrub: true,
-                    // markers: true
                 },
             })
 
@@ -87,7 +91,7 @@ export default function demo2() {
                         start: "top 70%",
                         end: "top -10%",
                         scrub: true,
-                        markers: true
+                        // markers: true
                     },
                 }
             );
@@ -108,16 +112,59 @@ export default function demo2() {
                 }
             );
 
-            gsap.from(section.querySelector(".hotels-container"), {
-                y: 300,
+
+            gsap.fromTo(".hotels-container",
+                {
+                    y: "-50%",
+                    opacity: 0,
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scrollTrigger: {
+                        trigger: ".hotels-container",
+                        start: "top 30%",
+                        end: "top -20%",
+                        scrub: true,
+                        // markers: true
+                    },
+                })
+
+            const gallerySectionTimeline = gsap.timeline({
                 scrollTrigger: {
-                    trigger: section,
-                    start: "top 60%",
-                    end: "top 0%",
+                    trigger: ".gallery-container",
+                    start: "top 70%",
+                    end: "top 50%",
                     scrub: true,
                     // markers: true
                 },
             })
+
+
+            gallerySectionTimeline.fromTo(".gallery-title",
+                {
+                    y: -100,
+                    opacity: 0,
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                })
+
+            gallerySectionTimeline.fromTo(".gallery-tile",
+                {
+                    y: "30%",
+                    opacity: 0,
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    stagger: {
+                        each: 0.3,
+                        from: "center"
+                    },
+
+                })
 
             const childElementsTimeline = gsap.timeline({
                 ease: "power2.inOut",
@@ -130,23 +177,7 @@ export default function demo2() {
                 },
             })
 
-            // childElementsTimeline.from(
-            //     section.querySelectorAll(".animate-heading-y"),
-            //     {
-            //         y: -400,
-            //         stagger: 0.2,
-            //         opacity: 0,
-            //         scale: 0.9,
-            //     }
-            // );
-            // childElementsTimeline.from(
-            //     section.querySelectorAll(".info-card"),
-            //     {
-            //         opacity: 0,
-            //         scale: 0.9,
-            //     },
-            //     "+=1"
-            // );
+
 
             gsap.from(
                 section.querySelector(".planned-activities"),
@@ -211,22 +242,48 @@ export default function demo2() {
                         ))}
                     </div>
 
-                    <div className="h-[200vh]  bg-white w-full hotels-section  relative overflow-hidden">
+                    <div className="h-[200vh] bg-white w-full hotels-section  relative overflow-hidden">
                         <div className="absolute w-full   h-full overflow-hidden inset-0 image-wrapper">
                             <Image
                                 src={forest}
                                 alt="forest"
                                 fill
-                                className=" object-cover"
+                                className="object-cover"
                                 priority
                             />
+                            <div className=" w-full flex justify-between  h-[300px]">
+                                <Image
+                                    src={worldMap}
+                                    alt="world-map"
+                                    width={500}
+                                    height={200}
+                                    className="object-cover opacity-25"
+                                    priority
+                                />
+                                <Image
+                                    src={worldMap}
+                                    alt="world-map"
+                                    width={500}
+                                    height={200}
+                                    className="object-cover opacity-25"
+                                    priority
+                                />
+                            </div>
 
-                            <div className=" absolute  mb-28  space-y-20 flex flex-col items-center w-full  inset-0">
+                            <div ref={hotelGalleryRef} className=" absolute  mb-28  space-y-20 flex flex-col items-center w-full  inset-0">
                                 <HotelsView />
                                 <Gallery />
-
                             </div>
                         </div>
+                        {/* <div className=" absolute top-10 w-full h-[300px] z-20 ">
+                            <Image
+                                src={worldMap}
+                                alt="world-map"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </div> */}
                     </div>
 
 

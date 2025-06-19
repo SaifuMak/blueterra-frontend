@@ -300,7 +300,7 @@ export default function PlannedActivities({ }) {
         <>
             {/* <div className="relative flex flex-wrap bg-red-50 border   w-[800px] min-h-[400px] overflow-hidden"> */}
 
-            <div className={` planned-activities w-fit my-16 bg-white z-30 2xl:py-10 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12  space-y-5 flex flex-col items-center `}>
+            <div className={` planned-activities xl:h-[90vh] h-[80vh] w-fit my-16 bg-white z-30 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12  space-y-5 flex flex-col items-center `}>
                 <h3 className="text-3xl font-medium">Planned Activities</h3>
 
 
@@ -310,7 +310,7 @@ export default function PlannedActivities({ }) {
                     ))}
                 </div>
 
-                <div className="relative flex flex-wrap justify-center gap-3  xl:gap-6  w-[950px] xl:w-[1130px]  2xl:w-[1200px]  h-[600px] overflow-hidden">
+                <div className="relative flex flex-wrap justify-center gap-3  2xl:gap-6  w-[950px] xl:w-[1120px]  2xl:w-[1200px]  h-[600px] overflow-hidden">
                     {Components?.map((item, index) => {
                         const DynamicComponent = item.component;
                         return (<div

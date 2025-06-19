@@ -9,6 +9,7 @@ export default function Map({expandCards,index}) {
             <Image
             src='/images/static/map.png'
             fill
+            priority
             alt="google map"
             className="object-cover"
             />

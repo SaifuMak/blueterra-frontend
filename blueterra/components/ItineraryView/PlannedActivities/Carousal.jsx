@@ -46,7 +46,7 @@ export default function Carousal() {
 
     return (
 
-        <div className="">
+        <div className=" overflow-y-auto ">
 
             <div className="relative w-full mx-auto">
                 {/* Scrollable Container */}
