@@ -1,16 +1,16 @@
 'use client'
 import { useState, useRef } from "react"
 
-export default function TabCards() {
+export default function TabCards({ selectedTab, tabViews, handleTabSelection }) {
 
-    const [selectedTab, setselectedTab] = useState('Overview')
+    // const [selectedTab, setselectedTab] = useState('Overview')
 
-    const tabViews = [{ tab: "Overview" }, { tab: "Planned Activities" }, { tab: "Hotel Rooms" },]
+    // const tabViews = [{ tab: "Overview" }, { tab: "Planned Activities" }, { tab: "Hotel Rooms" },]
 
 
-    const handleTabSelection = (tab) => {
-        setselectedTab(tab)
-    }
+    // const handleTabSelection = (tab) => {
+    //     setselectedTab(tab)
+    // }
 
 
     return (

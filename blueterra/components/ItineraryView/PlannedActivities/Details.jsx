@@ -17,31 +17,36 @@ export default function Details({ }) {
     ];
 
     return (
-        <div className=" w-full justify-between xl:p-2 h-full max-xl:text-sm space-x-3  text-base flex overflow-x-auto ">
-            <div className="w-full space-x-3  flex flex-col h-full">
-                <p className="text-lg  font-medium">Places to explore</p>
-                <div className="flex flex-col flex-wrap h-full mt-2 pb-3 space-y-1">
-                    {uaePlaces?.map((places, index) => (
-                        <div key={index} className="flex items-center">
-                            <span className=""><img src="/Icons/location.svg" alt="location-icon" className=" w-3 h-3" /></span>
+        <div className="w-full xl:p-2 h-full max-xl:text-sm  text-base flex flex-col overflow-y-auto lg:flex-row lg:space-x-3">
+            {/* First column */}
+            <div className="w-full flex flex-col ">
+                <p className="text-lg font-medium">Places to explore</p>
+                <div className="flex flex-wrap mt-2 pb-3 gap-x-5 gap-y-1 overflow-y-auto">
+                    {uaePlaces?.map((places, index) => ( 
+                        <div key={index} className="flex items-center  w-full ">
+                            <span>
+                                <img src="/Icons/location.svg" alt="location-icon" className="w-3 h-3" />
+                            </span>
                             <p className="ml-1">{places}</p>
                         </div>
                     ))}
                 </div>
             </div>
-            <div className="w-full  space-x-3 flex flex-col h-full">
-                <p className="text-lg font-medium">Experiences to be unlocked</p>
-                <div className="flex flex-col  mt-2 h-full space-y-1 pb-3">
-                    {experiences?.map((places, index) => (
-                        <div key={index} className="flex items-center">
-                            <span className="w-2 h-2 bg-[#3A938C] rounded-full "></span>
-                            <p className="ml-1">{places}</p>
 
+            {/* Second column */}
+            <div className="w-full flex flex-col mt-4 lg:mt-0 ">
+                <p className="text-lg font-medium">Experiences to be unlocked</p>
+                <div className="flex flex-wrap mt-2 pb-3 gap-x-2 gap-y-1 overflow-y-auto">
+                    {experiences?.map((places, index) => (
+                        <div key={index} className="flex w-full items-center">
+                            <span className="w-2 h-2 bg-[#3A938C] rounded-full"></span>
+                            <p className="ml-1">{places}</p>
                         </div>
                     ))}
                 </div>
             </div>
         </div>
+
 
     )
 }

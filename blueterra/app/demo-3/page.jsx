@@ -22,19 +22,23 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 gsap.registerPlugin(ScrollTrigger);
 
-const sectionsData = [
-    { id: 1, image: "https://images.pexels.com/photos/2577274/pexels-photo-2577274.jpeg?_gl=1*u4a494*_ga*MjA2NjUyODYxMC4xNzUwMTYyOTA4*_ga_8JE65Q40S6*czE3NTAyNDQyNzMkbzIkZzEkdDE3NTAyNDQ1MzckajE4JGwwJGgw", bg: "#ffefef", component: TabCards },
-    { id: 2, image: "https://images.pexels.com/photos/2104152/pexels-photo-2104152.jpeg?_gl=1*6gckvs*_ga*MjA2NjUyODYxMC4xNzUwMTYyOTA4*_ga_8JE65Q40S6*czE3NTAyNDQyNzMkbzIkZzEkdDE3NTAyNDQyODckajQ2JGwwJGgw", bg: "#efffef", component: PlannedActivities },
-    // { id: 3, image: forest, bg: "#efefff", component: HotelsView },
-    // { id: 4, image: forest, bg: "#efefff", component: Gallery },
-];
 
-export default function demo2() {
+export default function demo3() {
     const sectionsRef = useRef([]);
 
     const planningRef = useRef()
 
     const hotelGalleryRef = useRef()
+    const hotelContainerRef = useRef()
+
+
+
+    const [selectedTab, setselectedTab] = useState('Overview')
+
+    const tabViews = [{ tab: "Overview" }, { tab: "Planned Activities" }, { tab: "Hotel Rooms" },]
+
+
+
 
 
 
@@ -211,6 +215,35 @@ export default function demo2() {
         };
     }, []);
 
+    
+
+    const handleTabSelection = (tab) => {
+        setselectedTab(tab)
+        if (tab === 'Planned Activities') {
+            window.scrollTo({
+                top: sectionsRef.current[1].offsetTop,
+                behavior: 'smooth', // enables smooth animation
+            });
+
+        }
+        if (tab === 'Hotel Rooms') {
+            window.scrollTo({
+                top: hotelContainerRef.current.offsetTop,
+                behavior: 'smooth', // enables smooth animation
+            });
+
+        }
+    }
+
+
+    const sectionsData = [
+        { id: 1, image: "https://images.pexels.com/photos/2577274/pexels-photo-2577274.jpeg?_gl=1*u4a494*_ga*MjA2NjUyODYxMC4xNzUwMTYyOTA4*_ga_8JE65Q40S6*czE3NTAyNDQyNzMkbzIkZzEkdDE3NTAyNDQ1MzckajE4JGwwJGgw", bg: "#ffefef", component: <TabCards selectedTab={selectedTab} tabViews={tabViews} handleTabSelection={handleTabSelection} /> },
+        { id: 2, image: "https://images.pexels.com/photos/2104152/pexels-photo-2104152.jpeg?_gl=1*6gckvs*_ga*MjA2NjUyODYxMC4xNzUwMTYyOTA4*_ga_8JE65Q40S6*czE3NTAyNDQyNzMkbzIkZzEkdDE3NTAyNDQyODckajQ2JGwwJGgw", bg: "#efffef", component: <PlannedActivities /> },
+        // { id: 3, image: forest, bg: "#efefff", component: HotelsView },
+        // { id: 4, image: forest, bg: "#efefff", component: Gallery },
+    ];
+
+
 
 
     return (
@@ -236,13 +269,13 @@ export default function demo2() {
                                 </div>
                                 <div className=" absolute flex-center w-full   inset-0 h-[100vh]">
                                     {/* <div className="w-[300px]  info-card h-[200px] bg-white"></div> */}
-                                    <section.component />
+                                    {section.component}
                                 </div>
                             </section>
                         ))}
                     </div>
 
-                    <div className="h-[200vh] bg-white w-full hotels-section  relative overflow-hidden">
+                    <div ref={hotelContainerRef} className="h-[200vh] bg-white w-full hotels-section  relative overflow-hidden">
                         <div className="absolute w-full   h-full overflow-hidden inset-0 image-wrapper">
                             <Image
                                 src={forest}
@@ -271,7 +304,7 @@ export default function demo2() {
                             </div>
 
                             <div ref={hotelGalleryRef} className=" absolute  mb-28  space-y-20 flex flex-col items-center w-full  inset-0">
-                                <HotelsView />
+                                <HotelsView  />
                                 <Gallery />
                             </div>
                         </div>
@@ -287,7 +320,7 @@ export default function demo2() {
                     </div>
 
 
-                    <div ref={planningRef} className="w-full h-[220px] lg:h-[280px] xl:h-[320px] 2xl:h-[380px] overflow-hidden relative">
+                    <div  className="w-full h-[220px] lg:h-[280px] xl:h-[320px] 2xl:h-[380px] overflow-hidden relative">
                         <div className="   absolute w-full h-[280px] lg:h-[360px] xl:h-[510px] 2xl:h-[590px] overflow-hidden inset-0 planner-image-wrapper">
                             <Image
                                 src='/images/Itinerary/tree-in-river.png'

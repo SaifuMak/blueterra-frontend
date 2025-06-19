@@ -13,6 +13,14 @@ const uaePlaces = [
   "Sharjah Museum",
   "Ajman Beach",
   "Jebel Jais",
+  "Al Ain Oasis",
+  "Marina",
+  "Al Fahidi",
+  "Global Village",
+  "Hatta Dam",
+  "Sharjah Museum",
+  "Ajman Beach",
+  "Jebel Jais",
   "Al Ain Oasis"
 ];
  export default uaePlaces

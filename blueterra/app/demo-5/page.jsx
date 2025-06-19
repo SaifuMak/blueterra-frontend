@@ -1,9 +1,10 @@
 'use client'
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 import forest from "@/public/images/itinerary/forest.png"; // adjust the path
 import worldMap from '../../public/images/itinerary/world-map.png'
@@ -11,105 +12,219 @@ import HotelsView from "@/components/ItineraryView/HotelsView";
 import Gallery from "@/components/ItineraryView/Gallery";
 import Footer from "@/components/Footer/page";
 import PlannedActivities from "@/components/ItineraryView/PlannedActivities/PlannedActivities";
+import TabCards from '@/components/ItineraryView/TabsCards';
+import backgroundImage from '../../public/images/itinerary/nature-background.png'
+import ScrollSmoother from 'gsap/ScrollSmoother';
 
-gsap.registerPlugin(ScrollTrigger);
+
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function Page5() {
     const box1Ref = useRef(null);
     const box2Ref = useRef(null);
     const containerRef = useRef(null);
     const planningRef = useRef()
+    const galleryRef = useRef()
 
-    const firstSectionRef = useRef()
-    const secondSectionRef = useRef()
+    const hotelContainerRef = useRef()
 
 
     const hotelGalleryRef = useRef()
 
+    useGSAP(() => {
+        // let ctx = gsap.context(() => {
+        // Fade out box 1
+
+        const plansTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: box2Ref.current,
+                start: "top 70%",
+                end: "top 20%",
+                scrub: true,
+                // markers: true
+            },
+        })
+
+
+        plansTimeline.from(
+            (".planned-activities"),
+            {
+                opacity: 0,
+                scale: 0.77,
+            }, 0
+        );
+        plansTimeline.to(
+            ".tab-card", {
+            y: -200,
+            opacity: 0,
+        }, 0
+        )
+        plansTimeline.to(
+            ".animate-heading-y", {
+            y: -200,
+            opacity: 0,
+            stagger: 0.1,
+        }, 0
+        )
+
+        gsap.fromTo(".tab-card", {
+            y: 200,
+            opacity: 0,
+        },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.1,
+                ease: "power2.inOut",
+                duration: 1.2
+            })
+
+        gsap.fromTo(".animate-heading-y", {
+            y: -200,
+            opacity: 0,
+        },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.1,
+                ease: "power2.inOut",
+                duration: 1.2
+            })
+
+        gsap.fromTo(
+            hotelGalleryRef.current.querySelector(".hotels-container"),
+            {
+                y: "50%",
+                opacity: 0,
+            },
+            {
+                y: 0,
+                opacity: 1,
+                scrollTrigger: {
+                    trigger: hotelGalleryRef.current,
+                    start: "top 70%",
+                    end: "top 10%",
+                    scrub: true,
+                    // markers: true,
+                    // onEnter: () => console.log("Hotels container entered"),
+                    // onLeave: () => console.log("Hotels container left"),
+                    // onEnterBack: () => console.log("Hotels container entered back"),
+                    // onLeaveBack: () => console.log("Hotels container left back"),
+                },
+            })
+
+
+
+        const gallerySectionTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: galleryRef.current.querySelector(".gallery-container"),
+                start: "top 70%",
+                end: "top 30%",
+                scrub: true,
+                // markers: true
+            },
+        })
+
+
+        gallerySectionTimeline.fromTo(
+            // ".gallery-title",
+            galleryRef.current.querySelector(".gallery-title"),
+            {
+                y: -100,
+                opacity: 0,
+            },
+            {
+                y: 0,
+                opacity: 1,
+            }, 0)
+
+        gallerySectionTimeline.fromTo(
+            // ".gallery-tile",
+            galleryRef.current.querySelectorAll(".gallery-tile"),
+
+            {
+                y: "30%",
+                opacity: 0,
+            },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: {
+                    each: 0.3,
+                    from: "center"
+                },
+
+            }, 0)
+
+
+        // }, containerRef);
+
+        // return () => ctx.revert();
+    }, []);
+
     // useEffect(() => {
-    //     let ctx = gsap.context(() => {
-    //         // Fade out box 1
-    //         gsap.to(box1Ref.current, {
-    //             opacity: 0,
-    //             y: -100,
-    //             scrollTrigger: {
-    //                 trigger: containerRef.current,
-    //                 start: "top top",
-    //                 end: "center top",
-    //                 scrub: true,
-    //                 markers: true,
-    //             },
-    //         });
+    //     const smoother = ScrollSmoother.create({
+    //         wrapper: '#smooth-wrapper',
+    //         content: '#smooth-content',
+    //         smooth: 1, // amount of smoothing
+    //         effects: true, // enable data-speed, data-lag, etc
+    //     });
 
-    //         // Fade in box 2
-    //         gsap.fromTo(
-    //             box2Ref.current,
-    //             { opacity: 0, y: 100 },
-    //             {
-    //                 opacity: 1,
-    //                 y: 0,
-    //                 scrollTrigger: {
-    //                     trigger: containerRef.current,
-    //                     start: "center center",
-    //                     end: "bottom top",
-    //                     scrub: true,
-    //                     markers: true,
-    //                 },
-    //             }
-    //         );
-    //     }, containerRef);
-
-    //     return () => ctx.revert();
+    //     return () => {
+    //         smoother.kill();
+    //     };
     // }, []);
 
 
-    useEffect(() => {
-        let ctx = gsap.context(() => {
-            // Fade out box 1
+    const [selectedTab, setselectedTab] = useState('Overview')
 
-            gsap.from(
-                (".planned-activities"),
-                {
-                    opacity: 0,
-                    scale: 0.77,
-                    scrollTrigger: {
-                        trigger: box2Ref.current,
-                        start: "top 50%",
-                        end: "top 0%",
-                        scrub: true,
-                        // markers: true
-                    },
-                }
-            );
+    const tabViews = [{ tab: "Overview" }, { tab: "Planned Activities" }, { tab: "Hotel Rooms" },]
 
-        }, containerRef);
 
-        return () => ctx.revert();
-    }, []);
 
+    const handleTabSelection = (tab) => {
+        setselectedTab(tab)
+        if (tab === 'Planned Activities') {
+            window.scrollTo({
+                top: box2Ref.current.offsetTop,
+                behavior: 'smooth', // enables smooth animation
+            });
+
+        }
+        if (tab === 'Hotel Rooms') {
+            window.scrollTo({
+                top: hotelContainerRef.current.offsetTop,
+                behavior: 'smooth', // enables smooth animation
+            });
+
+        }
+    }
 
 
 
     return (
+        // <div id="smooth-wrapper" >
+        //     <div id="smooth-content" >
 
         <div className="">
             <div ref={containerRef} className="relative w-full h-[200vh]">
                 {/* Fixed Background */}
                 <div className="fixed inset-0 -z-10">
-                    <Image src={forest} alt="forest" fill className="object-cover" priority />
+                    <Image src={backgroundImage} alt="forest" fill className="object-cover" priority />
                 </div>
 
                 {/* Section 1 */}
                 <div className="h-screen  flex items-center justify-center">
 
-                    <div ref={box1Ref} className=" w-full h-full ">
+                    <div ref={box1Ref} className=" w-full h-full flex-center ">
                         {/* <PlannedActivities /> */}
-                        <div className="w-96 h-96 bg-violet-400"></div>
+                        <TabCards selectedTab={selectedTab} tabViews={tabViews} handleTabSelection={handleTabSelection} />
                     </div>
                 </div>
 
                 {/* Section 2 */}
-                <div className="h-screen border flex items-center justify-center">
+                <div className="h-screen  flex items-center justify-center">
 
                     <div ref={box2Ref} className=" w-full h-full flex-center ">
                         <PlannedActivities />
@@ -117,7 +232,7 @@ export default function Page5() {
                 </div>
             </div>
 
-            <div className="h-[200vh] bg-white w-full hotels-section  relative overflow-hidden">
+            <div ref={hotelContainerRef} className="h-[200vh] bg-white w-full hotels-section  relative overflow-hidden">
                 <div className="absolute w-full   h-full overflow-hidden inset-0 image-wrapper">
                     <Image
                         src={forest}
@@ -147,10 +262,11 @@ export default function Page5() {
 
                     <div ref={hotelGalleryRef} className=" absolute  mb-28  space-y-20 flex flex-col items-center w-full  inset-0">
                         <HotelsView />
-                        <Gallery />
+                        <div ref={galleryRef} className="w-full h-full">
+                            <Gallery />
+                        </div>
                     </div>
                 </div>
-
             </div>
 
             <div ref={planningRef} className="w-full h-[220px] lg:h-[280px] xl:h-[320px] 2xl:h-[380px] overflow-hidden relative">
@@ -177,7 +293,9 @@ export default function Page5() {
             </div>
 
             <Footer />
-
         </div>
+        //     </div>
+        // </div>
+
     );
 }
