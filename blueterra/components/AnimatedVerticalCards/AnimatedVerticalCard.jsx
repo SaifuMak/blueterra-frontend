@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { GoDot } from '../reactIcons'
 
 
-export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading,setIsFilterVisible }) {
+export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading, setIsFilterVisible }) {
 
     const cardRef = useRef(null)
 
@@ -44,10 +44,10 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                     style={{ objectFit: 'cover', objectPosition: 'center' }}
                     onLoad={() => setIsLoading(false)}
                 />
-
+                {/* expanded horizontally */}
                 {!isExpanded ? (
-                    <div className=' absolute inset-0  bg-[#00284680]/50'>
-
+                    <div className='absolute inset-0  bg-[#00284680]/50'>
+                        {/* vertical full card */}
                         {isFullCardVisible ? (
 
                             <div className={`flex mt-3 w-8 ml-6 h-[85vh] text-white flex-col items-center `}>
@@ -75,12 +75,12 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
                         <div className="2xl:w-[700px] xl:w-[700px] lg:w-[500px]  h-full  w-[400px] 2xl:text-lg text-base font-light">
 
-                            <div className='2xl:mt-12 mt-4'>
-                                <p className='  text-white text-4xl lg:text-5xl '>{card.number} <span className='font-medium ml-3'>{card.tagline}</span></p>
+                            {isFullCardVisible && <div className='2xl:mt-12 mt-4'>
+                                <p className='  text-white text-4xl xl:text-5xl '>{card.number} <span className='font-medium ml-3'>{card.tagline}</span></p>
                                 <hr className=' opacity-40 mt-5'></hr>
-                            </div>
+                            </div>}
 
-                            <div className="w-full 2xl:mt-10 mt-5 space-y-6 xl:space-y-10 ">
+                            {isFullCardVisible && <div className="w-full 2xl:mt-10 mt-5 space-y-6 xl:space-y-10 ">
                                 <h3 className=" text-3xl font-medium">Popular Journeys</h3>
 
                                 <div className="flex  space-x-6">
@@ -92,13 +92,13 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                                 <p className="  w-9/12 leading-relaxed ">Our Signature Journeys are the essence of what we do—thoughtfully curated travel experiences that reflect our passion for conscious exploration, cultural connection, and sustainable luxury.</p>
 
                                 <div className="space-y-3 h-[190px] w-9/12 p-0 flex flex-col flex-wrap ">
-                                    {["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys",].map((feature,index) => (
+                                    {["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys",].map((feature, index) => (
                                         <div key={index} className=" text-white flex items-center">  <img src="/Icons/dot.svg" alt="dot" className="w-2.5 h-2.5" /> <p className=" ml-3">{feature}</p></div>
                                     ))}
                                 </div>
 
                                 <button onClick={(e) => { e.stopPropagation(); handleHideFullCard(); }} className=" w-[250px] cursor-pointer    py-2 font-medium  rounded-full bg-white/90  text-brand-blue">VIEW ALL</button>
-                            </div>
+                            </div>}
 
                             {!isFullCardVisible && (<div className=" absolute  bottom-2 w-10/12 flex items-center justify-between ">
                                 <p className='  text-white text-2xl lg:text-2xl font-extralight '>{card.number} <span className='font-medium ml-3'>{card.tagline}</span></p>
