@@ -43,9 +43,16 @@ export default function Page5() {
                 start: "top 80%",
                 end: "top 20%",
                 scrub: true,
-                markers: true,
+                // markers: true,
             },
         })
+        plansTimeline.to(
+            ".animate-heading-y", {
+            y: -200,
+            opacity: 0,
+            stagger: 0.1,
+        }
+        )
 
 
         plansTimeline.from(
@@ -57,18 +64,12 @@ export default function Page5() {
         );
         plansTimeline.to(
             ".tab-card", {
-            y: -200,
+            y: -100,
             opacity: 0,
             delay: 1.2,
         }
         )
-        plansTimeline.to(
-            ".animate-heading-y", {
-            y: -200,
-            opacity: 0,
-            stagger: 0.1,
-        }
-        )
+
 
 
         gsap.fromTo(".tab-card", {
@@ -205,7 +206,7 @@ export default function Page5() {
                     </div>
 
                     {/* Section 1 */}
-                    <div ref={box1ContainerRef} className="h-screen border  flex items-center justify-center">
+                    <div ref={box1ContainerRef} className="h-screen   flex items-center justify-center">
 
                         <div ref={box1Ref} className=" w-full h-full flex-center ">
                             {/* <PlannedActivities /> */}
@@ -214,7 +215,7 @@ export default function Page5() {
                     </div>
 
                     {/* Section 2 */}
-                    <div ref={box2ContainerRef} className="h-screen border flex items-center justify-center">
+                    <div ref={box2ContainerRef} className="h-screen  flex items-center justify-center">
 
                         <div ref={box2Ref} className=" w-full h-full flex-center ">
                             <PlannedActivities />
@@ -222,7 +223,7 @@ export default function Page5() {
                     </div>
                 </div>
 
-                <div ref={hotelContainerRef} className="h-[200vh] border bg-white w-full hotels-section  relative overflow-hidden">
+                <div ref={hotelContainerRef} className="h-[200vh]  bg-white w-full hotels-section  relative overflow-hidden">
                     <div className="absolute w-full   h-full overflow-hidden inset-0 image-wrapper">
                         <Image
                             src={forest}
