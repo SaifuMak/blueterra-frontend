@@ -120,7 +120,7 @@ export default function demo3() {
 
             gsap.fromTo(".hotels-container",
                 {
-                    y: "-50%",
+                    y: "50%",
                     opacity: 0,
                 },
                 {
@@ -128,10 +128,10 @@ export default function demo3() {
                     opacity: 1,
                     scrollTrigger: {
                         trigger: ".hotels-container",
-                        start: "top 30%",
-                        end: "top -20%",
+                        start: "top 100%",
+                        end: "top 50%",
                         scrub: true,
-                        // markers: true
+                        markers: true
                     },
                 })
 

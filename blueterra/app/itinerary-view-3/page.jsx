@@ -14,35 +14,36 @@ import Footer from "@/components/Footer/page";
 import PlannedActivities from "@/components/ItineraryView/PlannedActivities/PlannedActivities";
 import TabCards from '@/components/ItineraryView/TabsCards';
 import backgroundImage from '../../public/images/itinerary/nature-background.png'
-import ScrollSmoother from 'gsap/ScrollSmoother';
 import SmoothScroll from "@/components/SmoothScroll";
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
-
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function Page5() {
     const box1Ref = useRef(null);
     const box2Ref = useRef(null);
+
+    const box1ContainerRef = useRef(null);
+    const box2ContainerRef = useRef(null);
     const containerRef = useRef(null);
+
     const planningRef = useRef()
     const galleryRef = useRef()
 
     const hotelContainerRef = useRef()
-
-
     const hotelGalleryRef = useRef()
 
+
+
     useGSAP(() => {
-        // let ctx = gsap.context(() => {
-        // Fade out box 1
 
         const plansTimeline = gsap.timeline({
             scrollTrigger: {
                 trigger: box2Ref.current,
                 start: "top 80%",
-                end: "top 10%",
+                end: "top 20%",
                 scrub: true,
-                // markers: true
+                markers: true,
             },
         })
 
@@ -68,6 +69,7 @@ export default function Page5() {
             stagger: 0.1,
         }
         )
+
 
         gsap.fromTo(".tab-card", {
             y: 200,
@@ -158,24 +160,9 @@ export default function Page5() {
 
             }, 0)
 
-
-        // }, containerRef);
-
-        // return () => ctx.revert();
     }, []);
 
-    // useEffect(() => {
-    //     const smoother = ScrollSmoother.create({
-    //         wrapper: '#smooth-wrapper',
-    //         content: '#smooth-content',
-    //         smooth: 1, // amount of smoothing
-    //         effects: true, // enable data-speed, data-lag, etc
-    //     });
 
-    //     return () => {
-    //         smoother.kill();
-    //     };
-    // }, []);
 
 
     const [selectedTab, setselectedTab] = useState('Overview')
@@ -210,14 +197,15 @@ export default function Page5() {
         <SmoothScroll>
 
             <div className="">
-                <div ref={containerRef} className="relative w-full h-[200vh]">
+
+                <div ref={containerRef} className="relative  w-full h-[200vh]">
                     {/* Fixed Background */}
                     <div className="fixed inset-0 -z-10">
                         <Image src={backgroundImage} alt="forest" fill className="object-cover" priority />
                     </div>
 
                     {/* Section 1 */}
-                    <div className="h-screen  flex items-center justify-center">
+                    <div ref={box1ContainerRef} className="h-screen border  flex items-center justify-center">
 
                         <div ref={box1Ref} className=" w-full h-full flex-center ">
                             {/* <PlannedActivities /> */}
@@ -226,7 +214,7 @@ export default function Page5() {
                     </div>
 
                     {/* Section 2 */}
-                    <div className="h-screen  flex items-center justify-center">
+                    <div ref={box2ContainerRef} className="h-screen border flex items-center justify-center">
 
                         <div ref={box2Ref} className=" w-full h-full flex-center ">
                             <PlannedActivities />
@@ -234,7 +222,7 @@ export default function Page5() {
                     </div>
                 </div>
 
-                <div ref={hotelContainerRef} className="h-[200vh] bg-white w-full hotels-section  relative overflow-hidden">
+                <div ref={hotelContainerRef} className="h-[200vh] border bg-white w-full hotels-section  relative overflow-hidden">
                     <div className="absolute w-full   h-full overflow-hidden inset-0 image-wrapper">
                         <Image
                             src={forest}
