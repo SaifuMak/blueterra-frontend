@@ -58,7 +58,7 @@ export default function Page5() {
             ".tab-card", {
             y: -200,
             opacity: 0,
-            delay :1.2,
+            delay: 1.2,
         }
         )
         plansTimeline.to(
@@ -271,8 +271,8 @@ export default function Page5() {
                     </div>
                 </div>
 
-                <div ref={planningRef} className="w-full h-[220px] lg:h-[280px] xl:h-[320px] 2xl:h-[380px] overflow-hidden relative">
-                    <div className="   absolute w-full h-[280px] lg:h-[360px] xl:h-[510px] 2xl:h-[590px] overflow-hidden inset-0 planner-image-wrapper">
+                <div ref={planningRef} className="w-full h-[200px] md:h-[240px] lg:h-[250px] xl:h-[310px] 2xl:h-[340px]  overflow-hidden relative">
+                    <div className="   absolute w-full  overflow-hidden inset-0 planner-image-wrapper">
                         <Image
                             src='/images/itinerary/tree-in-river.png'
                             alt="tree-in-river"
@@ -282,14 +282,14 @@ export default function Page5() {
                         />
                     </div>
 
-                    <div className="  absolute bg-white/10 w-full h-full flex-center max-sm:px-4 ">
+                    <div className="  absolute bg-white/5 w-full h-full flex-center max-sm:px-4 ">
                         <div className="lg:w-8/12 md:w-10/12  text-center h-auto flex-col  text-white  flex-center">
                             <h3 className="xl:text-5xl text-2xl  font-medium  antialiased text-center">Design Your Perfect Itinerary</h3>
-                            <p className=" 2xl:text-2xl text-sm lg:text-base xl:text-xl mt-3 xl:mt-8 2xl:mt-12 w-5/6 ">
+                            <p className=" lg:text-lg  text-xs  mt-3 xl:mt-8 2xl:mt-12 w-10/12 lg:w-4/6 ">
                                 Create a journey that reflects your interests, pace, and
                                 travel style — from handpicked experiences to seamless logistics, every detail is yours to shape.
                             </p>
-                            <button className="px-10 py-2 rounded-full lg:mt-8 mt-3 bg-white/15">START PLANNING</button>
+                            <button className="lg:px-10 px-6 py-2 rounded-full lg:mt-8 mt-3 max-lg:text-sm text-white bg-white/15">START PLANNING</button>
                         </div>
                     </div>
                 </div>
