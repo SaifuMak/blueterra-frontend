@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Filter from "@/components/Filter";
 import SmoothScroll from "@/components/SmoothScroll";
+import Navbar from "@/components/Navbar/page";
 
 
 export default function Home() {
@@ -94,10 +95,12 @@ export default function Home() {
 
 
   return (
-    <SmoothScroll>
+    // <SmoothScroll>
 
 
       <div className=''>
+    <Navbar/>
+
 
         <BannerAnimation
           expandedIndex={expandedIndex}
@@ -133,7 +136,7 @@ export default function Home() {
         </div>
 
       </div>
-    </SmoothScroll>
+    // </SmoothScroll>
 
 
   );
