@@ -40,9 +40,6 @@ export default function demo3() {
 
 
 
-
-
-
     useGSAP(() => {
         sectionsRef.current.forEach((section, index) => {
             const image = section.querySelector(".image-wrapper img");
@@ -70,7 +67,8 @@ export default function demo3() {
                     opacity: 1,
                     stagger: 0.1,
                     ease: "power2.inOut",
-                    duration: 1.2
+                    duration: 1.2,
+                    delay: 1
                 })
 
             gsap.fromTo(firstSection.querySelectorAll(".animate-heading-y"), {
@@ -82,7 +80,8 @@ export default function demo3() {
                     opacity: 1,
                     stagger: 0.1,
                     ease: "power2.inOut",
-                    duration: 1.2
+                    duration: 1.2,
+                    delay: 1
                 })
 
 
@@ -131,7 +130,7 @@ export default function demo3() {
                         start: "top 100%",
                         end: "top 50%",
                         scrub: true,
-                        markers: true
+                        // markers: true
                     },
                 })
 
