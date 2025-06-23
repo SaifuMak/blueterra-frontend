@@ -17,8 +17,8 @@ export default function ScrollFadeBoxes() {
         const box2 = box2Ref.current;
 
         // Set initial states
-        gsap.set(box1, {  y: 0 });
-        gsap.set(box2, {  y: 300 });
+        gsap.set(box1, { y: 0 });
+        gsap.set(box2, { y: 300 });
 
         ScrollTrigger.create({
             trigger: containerRef.current,
@@ -30,12 +30,12 @@ export default function ScrollFadeBoxes() {
 
                 if (progress > 0.05) {
                     // Animate Box1 out (up), Box2 in (up)
-                    gsap.to(box1, {  y: -300, duration: 0.5 });
-                    gsap.to(box2, {  y: 0, duration: 0.5 });
+                    gsap.to(box1, { y: -300, duration: 0.5 });
+                    gsap.to(box2, { y: 0, duration: 0.5 });
                 } else {
                     // Animate Box2 out (down), Box1 in (down)
-                    gsap.to(box1, {  y: 0, duration: 0.5 });
-                    gsap.to(box2, {  y: 300, duration: 0.5 });
+                    gsap.to(box1, { y: 0, duration: 0.5 });
+                    gsap.to(box2, { y: 300, duration: 0.5 });
                 }
             },
         });
