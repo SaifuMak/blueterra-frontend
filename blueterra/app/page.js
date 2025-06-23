@@ -13,9 +13,10 @@ import Footer from "@/components/Footer/page";
 export default function Home() {
 
   const [expandedIndex, setExpandedIndex] = useState(null)
-
   const [isFullCardVisible, setIsFullCardVisible] = useState(true)
   const [isFilterVisible, setIsFilterVisible] = useState(false)
+
+  const homeRef = useRef()
 
 
   const handleScrollTop = () => {
@@ -29,11 +30,13 @@ export default function Home() {
     }, 300);
   }
 
+
   useEffect(() => {
     if (isFilterVisible) {
       handleScrollTop()
     }
   }, [isFilterVisible])
+
 
 
   const handleShowFullCard = (index) => {
@@ -49,6 +52,25 @@ export default function Home() {
       document.body.style.overflow = 'auto';
     };
   }, [isFullCardVisible, isFilterVisible]);
+
+
+
+  // this handles the closing of the filter while clicking outside
+  useEffect(() => {
+    const handleClick = (event) => {
+      if (homeRef.current && homeRef.current.contains(event.target)) {
+        setIsFilterVisible(false)
+      }
+    };
+
+    // Listen for all clicks
+    document.addEventListener('click', handleClick);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, []);
 
 
   const Destinations = [
@@ -112,9 +134,9 @@ export default function Home() {
         setIsFilterVisible={setIsFilterVisible}
       />
 
-      <Filter setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} />
+      <Filter setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} expandedIndex={expandedIndex} />
 
-      <div className=" w-full relative flex justify-center -mt-10  items-center  ">
+      <div ref={homeRef} className=" w-full relative flex justify-center -mt-10  items-center  ">
 
         <Image
           src="/images/home/greyscale-mountain.png"
@@ -129,14 +151,14 @@ export default function Home() {
 
 
 
-        <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 md:gap-12 gap-5   md:grid-cols-2   w-10/12  " style={{ width: 'fit-content' }}>
+        <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 md:gap-12 gap-5   md:grid-cols-2    w-10/12  " style={{ width: 'fit-content' }}>
 
           <DestinationCards Destinations={Destinations} />
 
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
 
     </div>
     // </SmoothScroll>

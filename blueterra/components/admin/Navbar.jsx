@@ -14,8 +14,10 @@ const Navbar = () => {
 
 
     useEffect(() => {
+
         const item = SIDEBAR_ITEMS.find(item => item.path === pathname)
         if (item) setItemName(item.name)
+
     }, [pathname])
 
 

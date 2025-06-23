@@ -14,7 +14,6 @@ export default function AdminItinerary() {
 
     const rowStyle = 'px-4 py-6  border-t order-gray-100/10'
 
-
     return (
         <div className=" h-screen w-full ">
 
@@ -61,7 +60,6 @@ export default function AdminItinerary() {
 
                                     </tr>
                                 ))}
-
 
                             </tbody>
                         </table>
