@@ -138,7 +138,7 @@ export default function Home() {
       /> */}
 
 
-      <div className="w-full h-screen flex flex-col ">
+      <div className="w-full h-screen  flex flex-col ">
         {CardData?.map((card, index) => (
           <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
             <Image
@@ -149,16 +149,17 @@ export default function Home() {
               style={{ objectFit: 'cover', objectPosition: 'center' }}
             />
 
+
             <div className={`absolute ${selectedVerticalTileMobile === index ? "opacity-0" : " opacity-100"} text-white transition-all duration-500 ease-in-out inset-0   bg-[#00284680]/50`}>
-              <div className="flex justify-center w-full h-full px-3 items-center space-x-2">
-                <span className="text-2xl font-normal">{card.number}</span>
+              <div className="flex  w-full h-full px-3 mt-2 space-x-2">
+                <span className="text-xl font-normal">{card.number}</span>
                 <div className="bg-white/40 h-0.5 flex-1 my-3"></div>
-                <p className="text-xl"> {card.tagline}</p>
+                <p className="text-lg"> {card.tagline}</p>
               </div>
             </div>
 
             <div className={`bg-[#104F82D9]/80 text-white transition-all duration-500 ease-in-out absolute inset-0 ${selectedVerticalTileMobile === index ? "opacity-100" : " opacity-0"}`}>
-              <div className=" w-full h-full p-3 ">
+              <div className=" w-full h-full p-6 ">
                 <p className='  text-white text-xl  '>{card.number} <span className='font-medium ml-3'>{card.tagline}</span></p>
                 <hr className=' opacity-40 mt-1'></hr>
                 <h3 className=" text-lg font-medium mt-3">Popular Journeys</h3>
@@ -168,17 +169,17 @@ export default function Home() {
                       <span className="">{destination}</span></div>
                   ))}
                 </div>
-                <p className=" text-sm mt-2 ">Our Signature Journeys are the essence of what we do—thoughtfully curated travel experiences that reflect our passion for conscious exploration, cultural connection, and sustainable luxury.</p>
+                <p className=" text-sm mt-4 ">Our Signature Journeys are the essence of what we do—thoughtfully curated travel experiences that reflect our passion for conscious exploration, cultural connection, and sustainable luxury.</p>
                 <div className="space-y-1 text-sm mt-3 h-[20vh]  gap-x-3 overflow-y-auto  flex flex-col  ">
                   {["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys",].map((feature, index) => (
-                    <div key={index} className=" text-white flex items-center">  <img src="/Icons/dot.svg" alt="dot" className="w-2.5 h-2.5" /> <p className=" ml-1">{feature}</p></div>
+                    <div key={index} className=" text-white flex items-center">  <img src="/Icons/dot.svg" alt="dot" className="w-2 h-2" /> <p className=" ml-1">{feature}</p></div>
                   ))}
                 </div>
 
 
-                <div className=" w-full flex mt-5 text-[14px] items-center justify-between">
+                <div className=" w-full flex mt-5 text-[12px] items-center justify-between">
                   <button className=" w-fit px-4   py-1   bg-white/90  text-brand-blue">VIEW ALL</button>
-                  <button className=" px-2   h-fit py-1   border-2 border-white/60 flex justify-between items-center"><span className="mr-1"><img src='/Icons/filter.svg' className='w-3.5 h-3.5 '></img></span>Show Filters</button>
+                  <button className=" px-2   h-fit py-1   border-1 border-white/60 flex justify-between items-center"><span className="mr-1"><img src='/Icons/filter.svg' className='w-3 h-3 '></img></span>Show Filters</button>
                 </div>
 
               </div>
