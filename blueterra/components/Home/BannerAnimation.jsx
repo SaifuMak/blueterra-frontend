@@ -9,7 +9,7 @@ import CardData from "../datas/Destinations";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function BannerAnimation({expandedIndex, setExpandedIndex, isFullCardVisible, setIsFullCardVisible,handleShowFullCard,setIsFilterVisible}) {
+export default function BannerAnimation({ expandedIndex, setExpandedIndex, isFullCardVisible, setIsFullCardVisible, handleShowFullCard, setIsFilterVisible }) {
 
     const [isLoading, setIsLoading] = useState(true)
 

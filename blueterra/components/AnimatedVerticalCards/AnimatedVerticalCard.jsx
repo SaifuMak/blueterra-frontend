@@ -12,7 +12,6 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
     useEffect(() => {
         console.log(isFullCardVisible, 'status of full card ')
 
-
         if (cardRef.current) {
             // ease: 'elastic.out(1, 0.5)'
             gsap.to(cardRef.current, {
@@ -28,9 +27,11 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
     }, [isExpanded, isFullCardVisible])
 
-    return (
-        <div ref={cardRef} onClick={onClick} className={`flex-1 h-[100vh] ${!isExpanded ? 'cursor-pointer' : 'cursor-default'}  relative   overflow-hidden bg-stone-50  text-white text-3xl   `} >{card.title}
 
+
+    return (
+        <div ref={cardRef} onClick={onClick} className={`flex-1 h-[100vh] ${!isExpanded ? 'cursor-pointer' : 'cursor-default'}  relative   overflow-hidden bg-stone-50  text-white text-3xl   `} >
+            {card.title}
 
             <div className='overflow-hidden relative w-full h-full  '>
 
@@ -44,6 +45,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                     style={{ objectFit: 'cover', objectPosition: 'center' }}
                     onLoad={() => setIsLoading(false)}
                 />
+
                 {/* expanded horizontally */}
                 {!isExpanded ? (
                     <div className='absolute inset-0  bg-[#00284680]/50'>
@@ -51,6 +53,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                         {isFullCardVisible ? (
 
                             <div className={`flex mt-3 w-8 ml-6 h-[85vh] text-white flex-col items-center `}>
+
                                 <span className="text-4xl font-normal">{card.number}</span>
 
                                 <div className="bg-white/40 w-0.5 flex-1 my-3"></div>
@@ -65,7 +68,6 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                             <div className=" flex-center h-full ">
                                 <span className="text-2xl font-normal">{card.number}</span>
                             </div>
-
                         )}
 
                     </div>
@@ -89,6 +91,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                                             <span className="">{destination}</span></div>
                                     ))}
                                 </div>
+                                
                                 <p className="  w-9/12 leading-relaxed ">Our Signature Journeys are the essence of what we do—thoughtfully curated travel experiences that reflect our passion for conscious exploration, cultural connection, and sustainable luxury.</p>
 
                                 <div className="space-y-3 h-[190px] w-9/12 p-0 flex flex-col flex-wrap ">
