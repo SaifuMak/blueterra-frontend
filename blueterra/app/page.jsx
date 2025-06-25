@@ -126,19 +126,19 @@ export default function Home() {
 
 
     <div className=''>
-      {/* <Navbar /> */}
+      <Navbar />
 
-      {/* <BannerAnimation
+      <BannerAnimation
         expandedIndex={expandedIndex}
         setExpandedIndex={setExpandedIndex}
         isFullCardVisible={isFullCardVisible}
         setIsFullCardVisible={setIsFullCardVisible}
         handleShowFullCard={handleShowFullCard}
         setIsFilterVisible={setIsFilterVisible}
-      /> */}
+      />
 
 
-      <div className="w-full h-screen  flex flex-col ">
+      {/* <div className="w-full h-screen  flex flex-col ">
         {CardData?.map((card, index) => (
           <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
             <Image
@@ -187,12 +187,12 @@ export default function Home() {
 
           </div>
         ))}
-      </div>
+      </div> */}
 
 
 
 
-      {/* <Filter setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} expandedIndex={expandedIndex} />
+       <Filter setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} expandedIndex={expandedIndex} />
 
       <div ref={homeRef} className=" w-full relative flex justify-center -mt-10  items-center  ">
 
@@ -214,9 +214,9 @@ export default function Home() {
           <DestinationCards Destinations={Destinations} />
 
         </div>
-      </div> */}
+      </div> 
 
-      {/* <Footer /> */}
+      <Footer />
 
     </div>
     // </SmoothScroll>
