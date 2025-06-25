@@ -78,12 +78,12 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                         <div className="2xl:w-[700px] xl:w-[700px] lg:w-[500px]  h-full  w-[400px] 2xl:text-lg text-base font-light">
 
                             {isFullCardVisible && <div className='2xl:mt-12 mt-4'>
-                                <p className='  text-white text-4xl xl:text-5xl '>{card.number} <span className='font-medium ml-3'>{card.tagline}</span></p>
+                                <p className='  text-white text-4xl 2xl:text-5xl '>{card.number} <span className='font-medium ml-3'>{card.tagline}</span></p>
                                 <hr className=' opacity-40 mt-5'></hr>
                             </div>}
 
                             {isFullCardVisible && <div className="w-full 2xl:mt-10 mt-5 space-y-6 xl:space-y-10 ">
-                                <h3 className=" text-3xl font-medium">Popular Journeys</h3>
+                                <h3 className=" text-2xl 2xl:text-3xl font-medium">Popular Journeys</h3>
 
                                 <div className="flex  space-x-6">
                                     {["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"].map((destination, index) => (
