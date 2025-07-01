@@ -38,6 +38,10 @@ body {
 @theme {
   --color-brand-blue: #2571B8;
   --color-custom-sky-blue: #00A0DE;
+  --color-sky-blue-1: #58C2DF;
+  --color-dark-4B: #243F4B;
+  --color-dark-28: #2A2828;
+  --color-light-yellow : #EEEFE0;
 }
 
 @theme inline {
