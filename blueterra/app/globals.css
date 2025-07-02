@@ -42,6 +42,7 @@ body {
   --color-dark-4B: #243F4B;
   --color-dark-28: #2A2828;
   --color-light-yellow : #EEEFE0;
+  --color-admin-light-dark-background : #F9F9F9;
 }
 
 @theme inline {

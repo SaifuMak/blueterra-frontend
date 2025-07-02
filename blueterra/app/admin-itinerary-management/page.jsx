@@ -1,6 +1,8 @@
-
+'use client'
 import Sidebar from "@/components/admin/Sidebar";
 import Navbar from "@/components/admin/Navbar";
+import Link from "next/link";
+import { useRouter } from 'next/navigation';
 
 export default function AdminItinerary() {
 
@@ -13,6 +15,11 @@ export default function AdminItinerary() {
     ]
 
     const rowStyle = 'px-4 py-6  border-t order-gray-100/10'
+    const router = useRouter()
+
+    const handleAddItineraray = () => {
+        router.push('/admin-add-itinerary')
+    }
 
     return (
         <div className=" h-screen w-full ">
@@ -34,7 +41,7 @@ export default function AdminItinerary() {
                                     <th className="px-4 py-5 font-normal ">Days</th>
                                     <th className="px-4 py-5 font-normal">Collections name</th>
                                     <th className="px-4 py-5 text-center font-normal">Actions</th>
-                                    <th className="px-4 py-5 text-center font-normal"><button className=" bg-custom-sky-blue text-white rounded-sm px-6 py-1">Add</button></th>
+                                    <th onClick={handleAddItineraray} className="px-4 py-5 text-center font-normal"><button className=" bg-custom-sky-blue cursor-pointer text-white rounded-sm px-6 py-1">Add</button></th>
                                 </tr>
                             </thead>
                             <tbody className=" bg-white ">
