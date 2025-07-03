@@ -15,13 +15,11 @@ import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay"
 
 import { IoIosStar } from '../../components/reactIcons'
-
+import { playfair, rubik, mrsSaint } from '@/app/fonts'
 
 export default function CollectionsList({ Data, setCurrent, setCount }) {
 
     const [api, setApi] = useState()
-
-
 
     useEffect(() => {
 
@@ -39,11 +37,10 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
     }, [api])
 
 
-
     return (
-        <div className=" flex-center ">
+        <div className=" flex justify-center items-center flex-col  ">
 
-            <div className="  w-full px-10  flex-center ">
+            <div className="  w-full px-10   flex-center ">
                 <Carousel
                     setApi={setApi}
                     opts={{
@@ -73,7 +70,6 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
                                         className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"
                                     />
 
-
                                     {/* <div className=" transition-all flex items-end duration-1000 z-0 ease-in-out absolute opacity-0 group-hover:opacity-100  bg-gradient-to-t  from-black/70 to-transparent inset-0  ">
                                         <div className=" py-6 z-10 transform transition-transform duration-1000 group-hover:translate-y-0 translate-y-[160px] border text-white border-white px-6">
                                             <h6 className=" text-3xl ">{item.title}</h6>
@@ -84,18 +80,21 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
 
                                     <div className="absolute inset-0 group">
                                         {/* Gradient overlay shown only on hover */}
-                                        <div className="transition-all delay-75 duration-700 ease-in-out opacity-0 group-hover:opacity-100 bg-gradient-to-t from-black/70 to-transparent absolute inset-0 z-0" />
+                                        <div className="transition-all delay-75 duration-700 ease-in-out opacity-30 group-hover:opacity-100 bg-gradient-to-t from-black/70 to-transparent absolute inset-0 z-0" />
+                                        {/* <div className=" w-full z-30 flex text-white flex-col h-full justify-end ">
+                                            <h6 className="text-3xl">{item.title}</h6>
+                                            <p className="text-xl  mt-5  ">{item.description}</p>
+                                        </div> */}
 
                                         {/* Text content always visible, moves up on hover */}
-                                        <div className="flex items-end absolute inset-0 z-10">
-                                            <div className="py-6 px-6 transform transition-transform duration-1000 group-hover:translate-y-0 translate-y-[160px] border border-white text-white">
-                                                <h6 className="text-3xl">{item.title}</h6>
-                                                <p className="text-xl mt-5">{item.description}</p>
+                                        <div className="flex items-end absolute inset-0  z-10">
+                                            <div className="py-6 px-6 transform transition-transform duration-1000 group-hover:translate-y-0 translate-y-[160px] text-white">
+                                                <h6 className={` ${playfair.className} text-3xl`}>{item.title}</h6>
+                                                <p className={` ${rubik.className}  font-extralight mt-5 group-hover:opacity-100 leading-7 duration-700 text-xl opacity-0`}>{item.description}</p>
+                                                <p className={`text-xl my-3 font-extralight ${rubik.className} `}>Read More</p>
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
 
                             </CarouselItem>
@@ -106,6 +105,8 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
                     <CarouselNext /> */}
                 </Carousel>
             </div>
+
+
 
         </div>
     )

@@ -14,6 +14,8 @@ import { HOME_COLLECTIONS } from "@/constants/home-collections";
 
 import CollectionsList from "@/components/Home/Collections";
 
+
+
 export default function Home() {
 
   const [currentCollection, setCurrentCollection] = useState(0)
@@ -86,13 +88,47 @@ export default function Home() {
 
 
         <div className="w-full h-full px-10 bg-white">
-          <div className=" bg-light-yellow flex flex-col items-center rounded-4xl  px-10 py-32 ">
-            <h3 className=" text-5xl ">Our Featured Collections</h3>
-            <p className="">Discover a handpicked selection of our most iconic journeys—each crafted with care, intention, and an eye for timeless experiences.</p>
+          <div className=" bg-light-yellow flex flex-col items-center rounded-4xl space-y-10  px-10 py-32 ">
+            <h3 className={`${playfair.className} text-dark-4B  text-5xl`} >Our Featured Collections</h3>
+            <p className={`text-xl font-light ${rubik.className} text-dark-28  w-6/12 text-center`}>Discover a handpicked selection of our most iconic journeys—each crafted with care, intention, and an eye for timeless experiences.</p>
 
-            <div className=" w-11/12   ">
+            <div className=" w-11/12   mt-4 ">
               <CollectionsList Data={HOME_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} />
             </div>
+
+            <div className=" flex-center w-full h-full">
+              {HOME_COLLECTIONS?.map((_, index) => (
+                <span key={index} className={` h-2 rounded-full translate-all duration-500 ease-in-out  mx-1 ${currentCollection === index + 1 ? '  bg-sky-blue-1 w-10' : 'bg-sky-blue-1/30 w-2'}`}  ></span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+
+        <div className=" w-full mt-20 h-screen relative">
+          <Image
+            src='/images/static/air-ballon-in-sky.png'
+            alt='air balloon'
+            fill
+            priority
+            className=" object-fill -scale-x-100"
+          />
+          <div className=" w-full h-full text-white absolute flex flex-col justify-center items-end inset-0 bg-[#0E518199]/60 ">
+
+            <div className={`w-11/12 h-[80vh] border  border-white ${playfair.className} `}>
+
+
+              <h2 className=" text-[50px]  ">Our Destination Highlights</h2>
+              <p className={`${rubik.className}  mt-4 leading-8 font-light w-5/12 border  text-2xl`}>Discover the Unique Charm and Unforgettable Experiences Each Destination Has to Offer</p>
+
+              <div className=" border border-white mt-20  w-full ">
+                <h3 className=" text-[70px] font-semibold ">DUBAI</h3>
+                <p className={`w-3/12 ${rubik.className} leading-8 font-extralight text-xl`} >The Burj Khalifa is the tallest building in the world, standing at an incredible height of 828 meters. Located in the heart of Downtown Dubai, this architectural marvel is not only a symbol of Dubai’s rapid development and ambition but also a global icon of innovation and modern design.</p>
+              </div>
+
+
+            </div>
+
           </div>
         </div>
 
