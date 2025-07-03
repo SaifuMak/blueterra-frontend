@@ -282,6 +282,7 @@ export default function AdminAddItinerary() {
                                 </div>))}
                         </div>
 
+
                         {/* Experiences  of itinerary */}
                         <div className="flex flex-col w-9/12 xl:w-6/12   transition-all duration-300 ease-in-out">
 
