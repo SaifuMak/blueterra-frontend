@@ -1,7 +1,7 @@
 'use client'
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import {SIDEBAR_ITEMS} from '../../constants/admin'
+import { SIDEBAR_ITEMS } from '../../constants/admin'
 
 const Sidebar = () => {
 
