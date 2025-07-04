@@ -11,15 +11,65 @@ import Footer from "@/components/Footer/page";
 import CardData from "@/components/datas/Destinations";
 import { playfair, rubik, mrsSaint } from "@/app/fonts"
 import { HOME_COLLECTIONS } from "@/constants/home-collections";
-
+import { DESTINATIONS_COLLECTIONS } from '@/constants/home-destinations'
 import CollectionsList from "@/components/Home/Collections";
+import { testimonials } from "@/constants/testimonials";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
+
+gsap.registerPlugin(useGSAP)
 
 
 export default function Home() {
 
   const [currentCollection, setCurrentCollection] = useState(0)
   const [CollectionCount, setCollectionCount] = useState(0)
+
+  const [selectedDestination, setSelectedDestination] = useState(DESTINATIONS_COLLECTIONS[0])
+
+  const testimonialContainer = useRef(null)
+
+  useGSAP(() => {
+    const content = testimonialContainer.current;
+    const cards = content.querySelectorAll('.testimonial-card');
+
+    const animation = gsap.to(content, {
+      x: () => `-=${content.scrollWidth / 4}`,
+      duration: 50,
+      ease: 'none',
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize(x => parseFloat(x) % (content.scrollWidth / 2)),
+      },
+    });
+
+    const containerCenter = window.innerWidth / 2;
+
+    const updateScale = () => {
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(containerCenter - cardCenter);
+
+        // Scale based on distance from center (tweak threshold and scale as needed)
+        const maxDistance = 150; // only scale if within this px from center
+
+        gsap.to(card, {
+          scale: distance < maxDistance ? 1.09 : 1,
+          duration: 0.15,
+          ease: "power3.inOut"
+
+          // overwrite: 'auto',
+        });
+      });
+
+      requestAnimationFrame(updateScale);
+    };
+
+    requestAnimationFrame(updateScale);
+  });
+
 
   return (
 
@@ -86,53 +136,156 @@ export default function Home() {
 
         </div>
 
+        <div className="pb-10 border">
+          <div className="w-full h-full px-10 bg-white">
+            <div className=" bg-light-yellow flex flex-col items-center rounded-4xl space-y-10  px-10 py-32 ">
+              <h3 className={`${playfair.className} text-dark-4B  text-5xl`} >Our Featured Collections</h3>
+              <p className={`text-xl font-light ${rubik.className} text-dark-28  w-6/12 text-center`}>Discover a handpicked selection of our most iconic journeys—each crafted with care, intention, and an eye for timeless experiences.</p>
 
-        <div className="w-full h-full px-10 bg-white">
-          <div className=" bg-light-yellow flex flex-col items-center rounded-4xl space-y-10  px-10 py-32 ">
-            <h3 className={`${playfair.className} text-dark-4B  text-5xl`} >Our Featured Collections</h3>
-            <p className={`text-xl font-light ${rubik.className} text-dark-28  w-6/12 text-center`}>Discover a handpicked selection of our most iconic journeys—each crafted with care, intention, and an eye for timeless experiences.</p>
+              <div className=" w-11/12   mt-4 ">
+                <CollectionsList Data={HOME_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} />
+              </div>
 
-            <div className=" w-11/12   mt-4 ">
-              <CollectionsList Data={HOME_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} />
-            </div>
-
-            <div className=" flex-center w-full h-full">
-              {HOME_COLLECTIONS?.map((_, index) => (
-                <span key={index} className={` h-2 rounded-full translate-all duration-500 ease-in-out  mx-1 ${currentCollection === index + 1 ? '  bg-sky-blue-1 w-10' : 'bg-sky-blue-1/30 w-2'}`}  ></span>
-              ))}
+              <div className=" flex-center w-full h-full">
+                {HOME_COLLECTIONS?.map((_, index) => (
+                  <span key={index} className={` h-2 rounded-full translate-all duration-500 ease-in-out  mx-1 ${currentCollection === index + 1 ? '  bg-sky-blue-1 w-10' : 'bg-sky-blue-1/30 w-2'}`}  ></span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
 
-        <div className=" w-full mt-20 h-screen relative">
+        <div className=" w-full mt-20 h-[130vh] relative ">
           <Image
-            src='/images/static/air-ballon-in-sky.png'
+            src={selectedDestination.bannerImage}
             alt='air balloon'
             fill
             priority
-            className=" object-fill -scale-x-100"
+            className=" object-fill -scale-x-100  "
           />
           <div className=" w-full h-full text-white absolute flex flex-col justify-center items-end inset-0 bg-[#0E518199]/60 ">
 
             <div className={`w-11/12 h-[80vh] border  border-white ${playfair.className} `}>
 
-
               <h2 className=" text-[50px]  ">Our Destination Highlights</h2>
               <p className={`${rubik.className}  mt-4 leading-8 font-light w-5/12 border  text-2xl`}>Discover the Unique Charm and Unforgettable Experiences Each Destination Has to Offer</p>
 
-              <div className=" border border-white mt-20  w-full ">
-                <h3 className=" text-[70px] font-semibold ">DUBAI</h3>
-                <p className={`w-3/12 ${rubik.className} leading-8 font-extralight text-xl`} >The Burj Khalifa is the tallest building in the world, standing at an incredible height of 828 meters. Located in the heart of Downtown Dubai, this architectural marvel is not only a symbol of Dubai’s rapid development and ambition but also a global icon of innovation and modern design.</p>
+              <div className=" border flex  h-full border-white   w-full ">
+
+                <div className="w-4/12 flex flex-col justify-center">
+                  <h3 className=" text-[70px] font-semibold ">DUBAI</h3>
+                  <p className={`w-full ${rubik.className} leading-8 pr-10 font-extralight text-lg`} >The Burj Khalifa is the tallest building in the world, standing at an incredible height of 828 meters. Located in the heart of Downtown Dubai, this architectural marvel is not only a symbol of Dubai’s rapid development and ambition but also a global icon of innovation and modern design.</p>
+                </div>
+
+                <div className=" flex items-center  w-10/12 overflow-hidden justify-center border space-x-8 ">
+                  <div className="relative h-[500px] w-[400px] transition-all duration-500 ease-in-out">
+                    <Image
+                      src={selectedDestination.image}
+                      alt={selectedDestination.alt}
+                      fill
+                      className=" object-center rounded-2xl"
+                    />
+                    <div className=" absolute cursor-pointer inset-0  bg-gradient-to-t from-black/10  to-transparent flex justify-center items-end w-full h-full ">
+                      <p className={` ${rubik.className} pb-3 font-light `}>{selectedDestination.subTitle}</p>
+                    </div>
+                  </div>
+                  {DESTINATIONS_COLLECTIONS?.map((destination, index) => (
+                    <div key={index} onClick={() => setSelectedDestination(destination)} className={`relative  transition-all duration-500 ease-in-out  rounded-2xl w-[300px] h-[400px]  `}>
+                      <Image
+                        src={destination.image}
+                        alt={destination.alt}
+                        fill
+                        className=" object-center rounded-2xl"
+                      />
+                      <div className=" absolute cursor-pointer inset-0  bg-gradient-to-t from-black/10  to-transparent flex justify-center items-end w-full h-full ">
+                        <p className={` ${rubik.className} pb-3 font-light `}>{destination.subTitle}{destination.index}</p>
+                      </div>
+                    </div>
+                  ))}
+
+
+                </div>
+
               </div>
 
 
             </div>
-
           </div>
         </div>
 
-        <div className=" w-full h-screen"></div>
+
+        <div className=" w-full flex-center relative h-[90vh] bg-sky-blue-light">
+
+          <div className=" w-[30%]  absolute left-0 top-0    ">
+            <Image
+              src='/images/home/testimonial-left-pattern.png'
+              alt="pattern"
+              width={400}
+              height={500}
+              className=" object-cover"
+            />
+          </div>
+          <div className=" w-[20%] absolute right-0 bottom-0    ">
+            <Image
+              src='/images/home/testimonial-right-pattern.png'
+              alt="pattern"
+              width={400}
+              height={500}
+              className=" object-cover "
+            />
+          </div>
+
+          <div className={`h-[70vh] p-5 relative flex flex-col justify-between z-10 w-9/12 text-dark-28 rounded-3xl bg-white ${rubik.className}`}>
+
+            <div className="flex flex-col mt-10">
+              <h2 className={`${playfair.className} text-center text-4xl`}>Trusted By Customers</h2>
+              <p className=" text-center mt-5 text-2xl font-light">Genuine Experiences Shared by Our Happy Travelers Worldwide</p>
+            </div>
+
+            <div className="w-full border  pt-20  pb-20  overflow-x-hidden">
+              <div ref={testimonialContainer} className="  border w-full flex space-x-28 ">
+                {testimonials?.map((testimonial, index) => (
+                  <div key={index} className=" min-w-[320px] overflow-hidden testimonial-card z-20 bg-white  min-h-[400px] h-fit px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
+                    <p className=" font-light leading-9 ">{testimonial.message}</p>
+                    <p className=" text-sky-blue-dark mt-5">{testimonial.name}</p>
+                    <p className=" font-light mt-2">{testimonial.country}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div className=" relative w-full h-[130vh] bg-white border ">
+          <div className=" w-[30%]   absolute left-0 top-0    ">
+            <Image
+              src='/images/home/journal-left-path.png'
+              alt="pattern"
+              width={300}
+              height={400}
+              className=" object-cover"
+            />
+          </div>
+
+          <div className=" w-fit absolute  right-0 border bottom-0">
+            <Image
+              src='/images/home/journal-right-path.png'
+              alt="pattern"
+              width={500}
+              height={500}
+              className=" object-cover"
+            />
+          </div>
+
+        </div>
+        journal-right-path
+        <div className=" w-full h-screen">
+
+        </div>
 
 
       </div>

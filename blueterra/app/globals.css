@@ -41,8 +41,10 @@ body {
   --color-sky-blue-1: #58C2DF;
   --color-dark-4B: #243F4B;
   --color-dark-28: #2A2828;
-  --color-light-yellow : #EEEFE0;
-  --color-admin-light-dark-background : #F9F9F9;
+  --color-light-yellow: #EEEFE0;
+  --color-admin-light-dark-background: #F9F9F9;
+  --color-sky-blue-light: #F4FBFF;
+  --color-sky-blue-dark: #026E9E;
 }
 
 @theme inline {

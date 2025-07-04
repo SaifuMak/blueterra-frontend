@@ -1,58 +1,54 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP)
 
-const HorizontalScroll = () => {
-    const containerRef = useRef();
-    const horizontalRef = useRef();
+const TestimonialSlider = () => {
+    const outerContainer = useRef();
+    const scrollContent = useRef();
 
-    useEffect(() => {
-        const totalPanels = 3;
+    useGSAP(() => {
+        const content = scrollContent.current;
 
-        gsap.to(horizontalRef.current, {
-            xPercent: -500,
-            ease: "none",
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top top",
-                // end: `+=${totalPanels * 1000}`, 
-                end: 1000,
-
-                scrub: true,
-                pin: true,
-                markers: true,
-            }
+        const animation = gsap.to(content, {
+            x: () => `-=${content.scrollWidth / 2}`, // scroll half of total content
+            duration: 10, // smaller = faster
+            ease: 'none',
+            repeat: -1,
+            modifiers: {
+                x: gsap.utils.unitize(x => parseFloat(x) % (content.scrollWidth / 2)),
+            },
         });
 
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
-    }, []);
-
-
+    });
 
     return (
-        <div className="w-full  h-full">
-            <section ref={containerRef} className="relative w-full h-screen overflow-hidden">
-                <div className="absolute inset-0 -z-10 bg-slate-200" />
-                <div ref={horizontalRef} className="flex w-[300vw] h-full">
-                    {['One', 'Two', 'Three'].map((text, index) => (
+        <div
+            ref={outerContainer}
+            className="w-8/12 mx-auto overflow-hidden"
+        >
+            <div
+                ref={scrollContent}
+                className="flex whitespace-nowrap gap-4"
+            >
+
+                <div className="flex gap-10">
+                    {[...Array(10)].map((_, j) => (
                         <div
-                            key={index}
-                            className="w-screen h-full flex items-center justify-center text-white text-4xl bg-opacity-50 bg-gray-800"
+                            key={j}
+                            className="min-w-[200px] h-40 bg-blue-500 text-white flex items-center justify-center rounded"
                         >
-                            {text}
+                            Item {j + 1}
                         </div>
                     ))}
                 </div>
-            </section>
-            <div className="w-full h-screen bg-blue-100" />
+
+            </div>
         </div>
     );
 };
 
-export default HorizontalScroll;
+export default TestimonialSlider;
