@@ -16,8 +16,8 @@ import CollectionsList from "@/components/Home/Collections";
 import { testimonials } from "@/constants/testimonials";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-
-
+import JournalsCardOverlay from "@/components/HomePage/JournalsCardOverlay";
+import Button from "@/components/GeneralComponents/Button";
 gsap.registerPlugin(useGSAP)
 
 
@@ -74,7 +74,7 @@ export default function Home() {
   return (
 
     <SmoothScroll>
-      <div className={`w-full h-full `}>
+      <div className={`w-full h-full  `}>
 
         <div className="w-full relative h-screen">
           <video src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4"
@@ -88,7 +88,9 @@ export default function Home() {
             <div className="flex-center flex-col space-y-8">
               <h1 className={` ${playfair.className} text-[80px] font-semibold `}>Curated Travel. Crafted for You.</h1>
               <p className={` ${rubik.className} text-[30px] `}>Bespoke journeys. No compromises.</p>
-              <button className=" bg-sky-blue-1 font-medium px-10 py-2.5 rounded-sm ">PLAN YOUR TRIP</button>
+              {/* <button className=" bg-sky-blue-1 font-medium px-10 py-2.5 rounded-sm ">PLAN YOUR TRIP</button> */}
+              <Button text='PLAN YOUR TRIP' buttonStyle='px-10 py-2.5' />
+
             </div>
           </div>
 
@@ -260,7 +262,7 @@ export default function Home() {
         </div>
 
 
-        <div className=" relative w-full h-[130vh] bg-white border ">
+        <div className=" relative w-full flex  flex-col  items-center h-[130vh]  bg-white border ">
           <div className=" w-[30%]   absolute left-0 top-0    ">
             <Image
               src='/images/home/journal-left-path.png'
@@ -281,8 +283,120 @@ export default function Home() {
             />
           </div>
 
+          <div className=" w-full flex justify-center text-dark-4B mt-20 mb-16">
+            <h3 className={`${playfair.className} text-5xl`}>BlueTerra Journal</h3>
+          </div>
+
+          <div className=" flex  space-x-10 w-11/12">
+            <div className=" w-1/3 group overflow-hidden h-[90vh] cursor-pointer rounded-xl  relative">
+              <Image
+                src='/images/home/zebras-in-grasslands.jpg'
+                alt="zebra"
+                fill
+                className=" object-cover group-hover:scale-110 delay-100 rounded-xl transition-all duration-1000 ease-in-out"
+              />
+              <JournalsCardOverlay text='Best Destinations for Wellness and Mindfulness' />
+            </div>
+
+            <div className=" flex flex-col h-[90vh] w-1/3 space-y-10 ">
+              <div className=" w-full group overflow-hidden cursor-pointer h-[45vh]  rounded-xl relative">
+                <Image
+                  src='/images/home/rock-in-river.jpg'
+                  alt="rock in river "
+                  fill
+                  className="object-cover group-hover:scale-110 delay-100 rounded-xl transition-all duration-1000 ease-in-out"
+                />
+                <JournalsCardOverlay text='Why Boutique Travel is Shapingthe Future of Personalized' />
+
+              </div>
+              <div className=" w-full group overflow-hidden cursor-pointer h-[45vh]  rounded-xl relative">
+                <Image
+                  src='/images/home/zebras-in-grasslands.jpg'
+                  alt="zebra"
+                  fill
+                  className="object-cover group-hover:scale-110 delay-100 rounded-xl transition-all duration-1000 ease-in-out"
+                />
+                <JournalsCardOverlay text='Most Instagrammable Villages Around the Globe' />
+
+              </div>
+
+            </div>
+
+            <div className=" w-1/3 h-[90vh] group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative">
+              <Image
+                src='/images/home/girrafe-in-grassland.jpg'
+                alt="zebra"
+                fill
+                className="object-cover group-hover:scale-110 delay-100 rounded-xl transition-all duration-1000 ease-in-out"
+              />
+              <JournalsCardOverlay text='Top Stargazing Spots Around the World for Unforgettable' />
+            </div>
+
+          </div>
+
+          <div className=" mt-20">
+            <Button text='VIEW ALL' buttonStyle='px-16 py-2 ' isHoverWhiteApplied={false} />
+          </div>
+
         </div>
-        journal-right-path
+
+        <div className="  h-[70vh] border w-full flex flex-col items-center relative ">
+
+          <div className=" w-[70%]  absolute left-0  bottom-0    ">
+            <Image
+              src='/images/home/newsletter-left-path.png'
+              alt="pattern"
+              width={600}
+              height={500}
+              className=" object-cover"
+            />
+          </div>
+
+          <div className=" w-fit  absolute  right-0  bottom-0    ">
+            <Image
+              src='/images/home/newsletter-right-path.png'
+              alt="pattern"
+              width={600}
+              height={500}
+              className=" object-cover"
+            />
+          </div>
+
+          <div className={`flex w-11/12   space-x-16 ${rubik.className}`}>
+            <div className=" w-1/2 h-[55vh] relative group overflow-hidden rounded-4xl">
+              <Image
+                src='/images/home/three-friends.jpg'
+                alt="three-friends"
+                fill
+                className="object-cover scalling-group-110 rounded-4xl "
+              />
+              <div className=" absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black/20 cursor-pointer rounded-4xl">
+                <h3 className={`text-[50px] ${playfair.className} font-medium text-white`}>Book Your Next Trip</h3>
+                <Button text='PLAN YOUR TRIP' buttonStyle='px-12 py-2.5 mt-8 ' />
+
+              </div>
+            </div>
+            <div className=" w-1/2 group overflow-hidden h-[55vh] relative rounded-4xl">
+              <Image
+                src='/images/home/beautiful-sea.jpeg'
+                alt="beautiful-sea"
+                fill
+                className={`object-cover scalling-group-110 rounded-4xl`}
+              />
+              <div className=" absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black/20 cursor-pointer rounded-4xl">
+                <h3 className={`text-[50px] ${playfair.className} font-medium text-white`}>Join Our Community</h3>
+                <p className="  text-[25px] text-white font-light mt-7 tracking-wide ">Get expert travel tips straight to your inbox.</p>
+
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+
         <div className=" w-full h-screen">
 
         </div>

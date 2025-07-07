@@ -34,6 +34,9 @@ body {
 .bor-b {
   @apply border-b border-white
 }
+.scalling-group-110 {
+  @apply group-hover:scale-110 delay-100  transition-all duration-1000 ease-in-out
+}
 
 @theme {
   --color-brand-blue: #2571B8;
@@ -45,6 +48,7 @@ body {
   --color-admin-light-dark-background: #F9F9F9;
   --color-sky-blue-light: #F4FBFF;
   --color-sky-blue-dark: #026E9E;
+  --color-dark-blue: #026E9E;
 }
 
 @theme inline {

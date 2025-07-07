@@ -3,7 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { HiMenuAlt3 } from '../reactIcons'
 import { IoSearchOutline } from "react-icons/io5";
-import MobileNavbar from "../generalComponents/mobileNavbar";
+import MobileNavbar from "../GeneralComponents/mobileNavbar";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {

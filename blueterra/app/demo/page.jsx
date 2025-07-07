@@ -1,54 +1,43 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Autoplay } from 'swiper/modules';
 
-gsap.registerPlugin(useGSAP)
+// Sample array of box items
+const boxData = [
+    { id: 1, title: 'Box 1', color: 'bg-red-400' },
+    { id: 2, title: 'Box 2', color: 'bg-green-400' },
+    { id: 3, title: 'Box 3', color: 'bg-blue-400' },
+    { id: 4, title: 'Box 4', color: 'bg-yellow-400' },
+    { id: 5, title: 'Box 5', color: 'bg-purple-400' },
+];
 
-const TestimonialSlider = () => {
-    const outerContainer = useRef();
-    const scrollContent = useRef();
 
-    useGSAP(() => {
-        const content = scrollContent.current;
-
-        const animation = gsap.to(content, {
-            x: () => `-=${content.scrollWidth / 2}`, // scroll half of total content
-            duration: 10, // smaller = faster
-            ease: 'none',
-            repeat: -1,
-            modifiers: {
-                x: gsap.utils.unitize(x => parseFloat(x) % (content.scrollWidth / 2)),
-            },
-        });
-
-    });
-
+export default function Swipper() {
     return (
-        <div
-            ref={outerContainer}
-            className="w-8/12 mx-auto overflow-hidden"
+        <Swiper
+            modules={[Autoplay]}
+            spaceBetween={20}
+            // slidesPerView={3}
+            slidesPerView='auto'
+
+            loop={true}
+            speed={3000} // smoothness of the transition (higher = smoother)
+            autoplay={{
+                delay: 0, // no delay between transitions
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            }}
+            allowTouchMove={false} // optional: disable dragging if you want pure auto-scroll
         >
-            <div
-                ref={scrollContent}
-                className="flex whitespace-nowrap gap-4"
-            >
-
-                <div className="flex gap-10">
-                    {[...Array(10)].map((_, j) => (
-                        <div
-                            key={j}
-                            className="min-w-[200px] h-40 bg-blue-500 text-white flex items-center justify-center rounded"
-                        >
-                            Item {j + 1}
-                        </div>
-                    ))}
-                </div>
-
-            </div>
-        </div>
+            {boxData.map((box) => (
+                <SwiperSlide key={box.id}>
+                    <div className={`h-40 flex items-center justify-center text-white text-lg font-semibold rounded-lg ${box.color}`}>
+                        {box.title}
+                    </div>
+                </SwiperSlide>
+            ))}
+        </Swiper>
     );
-};
-
-export default TestimonialSlider;
+}
