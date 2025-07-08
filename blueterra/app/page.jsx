@@ -19,6 +19,7 @@ import { useGSAP } from "@gsap/react";
 import JournalsCardOverlay from "@/components/HomePage/JournalsCardOverlay";
 import Button from "@/components/GeneralComponents/Button";
 import Marquee from "react-fast-marquee";
+import DestinationCarousal from "@/components/Home/DestinationCarousal";
 
 gsap.registerPlugin(useGSAP)
 
@@ -27,6 +28,9 @@ export default function Home() {
 
   const [currentCollection, setCurrentCollection] = useState(0)
   const [CollectionCount, setCollectionCount] = useState(0)
+
+  const [currentDestination, setCurrentDestination] = useState(0)
+  const [DestinationCount, setDestinationCount] = useState(0)
 
   const [selectedDestination, setSelectedDestination] = useState(DESTINATIONS_COLLECTIONS[0])
 
@@ -43,49 +47,81 @@ export default function Home() {
     { id: 9, title: 'Box 4', color: 'bg-yellow-400' },
     { id: 10, title: 'Box 5', color: 'bg-purple-400' },
   ];
+  const cardRefs = useRef([]);
 
+  const testimonialContainer = useRef(null);
+  const scaleTrackerContainer = useRef(null);
 
-  const testimonialContainer = useRef(null)
+  const scrollSpeed = 1; // pixels per frame
 
-  useGSAP(() => {
-    const content = testimonialContainer.current;
-    const cards = content.querySelectorAll('.testimonial-card');
+  // Duplicate the testimonials for seamless looping
+  const extendedTestimonials = [...testimonials, ...testimonials];
 
-    const animation = gsap.to(content, {
-      x: () => `-=${content.scrollWidth / 4}`,
-      duration: 50,
-      ease: 'none',
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize(x => parseFloat(x) % (content.scrollWidth / 2)),
-      },
-    });
+  useEffect(() => {
+    const container = testimonialContainer.current;
+    if (!container) return;
 
-    const containerCenter = window.innerWidth / 2;
+    let animationFrameId;
 
-    const updateScale = () => {
-      cards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        const cardCenter = rect.left + rect.width / 2;
-        const distance = Math.abs(containerCenter - cardCenter);
+    const scroll = () => {
+      if (!container) return;
 
-        // Scale based on distance from center (tweak threshold and scale as needed)
-        const maxDistance = 150; // only scale if within this px from center
+      container.scrollLeft += scrollSpeed;
 
-        gsap.to(card, {
-          scale: distance < maxDistance ? 1.09 : 1,
-          duration: 0.15,
-          ease: "power3.inOut"
+      // Reset when reaching half the scroll width (since it's duplicated)
+      if (container.scrollLeft >= container.scrollWidth / 2) {
+        container.scrollLeft = 0;
+      }
 
-          // overwrite: 'auto',
-        });
-      });
-
-      requestAnimationFrame(updateScale);
+      animationFrameId = requestAnimationFrame(scroll);
     };
 
-    requestAnimationFrame(updateScale);
-  });
+    animationFrameId = requestAnimationFrame(scroll);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
+
+
+  useEffect(() => {
+    let animationFrameId;
+
+    const checkCards = () => {
+      const triggerRect = scaleTrackerContainer.current.getBoundingClientRect();
+
+      cardRefs.current.forEach((card) => {
+        if (!card) return;
+
+        const cardRect = card.getBoundingClientRect();
+
+        const isInside =
+          cardRect.left < triggerRect.right &&
+          cardRect.right > triggerRect.left;
+
+        // if (isInside) {
+        //   card.classList.add("scale-in");
+        // } else {
+        //   card.classList.add("scale-reset");
+        // }
+
+        if (isInside) {
+          card.classList.add("scale-in");
+          card.classList.remove("scale-reset");
+        } else {
+          card.classList.add("scale-reset");
+          card.classList.remove("scale-in");
+        }
+
+      });
+
+      animationFrameId = requestAnimationFrame(checkCards);
+    };
+
+    animationFrameId = requestAnimationFrame(checkCards);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
 
 
   return (
@@ -177,17 +213,17 @@ export default function Home() {
 
         <div className=" w-full mt-20 h-[130vh] relative ">
           <Image
-            src={selectedDestination.bannerImage}
+            src={DESTINATIONS_COLLECTIONS[currentDestination].bannerImage}
             alt='air balloon'
             fill
             priority
-            className=" object-fill -scale-x-100  "
+            className=" object-fill transition-all duration-700 ease-in-out -scale-x-100  "
           />
           <div className=" w-full h-full text-white absolute flex flex-col justify-center items-end inset-0 bg-[#0E518199]/60 ">
 
             <div className={`w-11/12 h-[80vh] border  border-white ${playfair.className} `}>
 
-              <h2 className=" text-[50px]  ">Our Destination Highlights</h2>
+              <h2 className=" text-[50px]  ">Our Destination Highlights{currentDestination}</h2>
               <p className={`${rubik.className}  mt-4 leading-8 font-light w-5/12 border  text-2xl`}>Discover the Unique Charm and Unforgettable Experiences Each Destination Has to Offer</p>
 
               <div className=" border flex  h-full border-white   w-full ">
@@ -198,7 +234,11 @@ export default function Home() {
                 </div>
 
                 <div className=" flex items-center  w-10/12 overflow-hidden justify-center border space-x-8 ">
-                  <div className="relative h-[500px] w-[400px] transition-all duration-500 ease-in-out">
+
+                  <div className=" w-11/12  mt-4 ">
+                    <DestinationCarousal Data={DESTINATIONS_COLLECTIONS} setCurrent={setCurrentDestination} setCount={setDestinationCount} currentDestination={currentDestination} />
+                  </div>
+                  {/* <div className="relative h-[500px] w-[400px] transition-all duration-500 ease-in-out">
                     <Image
                       src={selectedDestination.image}
                       alt={selectedDestination.alt}
@@ -208,8 +248,9 @@ export default function Home() {
                     <div className=" absolute cursor-pointer inset-0  bg-gradient-to-t from-black/10  to-transparent flex justify-center items-end w-full h-full ">
                       <p className={` ${rubik.className} pb-3 font-light `}>{selectedDestination.subTitle}</p>
                     </div>
-                  </div>
-                  {DESTINATIONS_COLLECTIONS?.map((destination, index) => (
+                  </div> */}
+
+                  {/* {DESTINATIONS_COLLECTIONS?.map((destination, index) => (
                     <div key={index} onClick={() => setSelectedDestination(destination)} className={`relative  transition-all duration-500 ease-in-out  rounded-2xl w-[300px] h-[400px]  `}>
                       <Image
                         src={destination.image}
@@ -221,7 +262,7 @@ export default function Home() {
                         <p className={` ${rubik.className} pb-3 font-light `}>{destination.subTitle}{destination.index}</p>
                       </div>
                     </div>
-                  ))}
+                  ))} */}
 
                 </div>
               </div>
@@ -260,12 +301,17 @@ export default function Home() {
             </div>
 
 
+            <div className=" border absolute z-30 -bottom-8 w-full  overflow-x-auto ">
+              <div ref={scaleTrackerContainer} className=" absolute  border z-0  w-[8vh] h-[100px] left-1/2 top-0 -translate-x-1/2 "></div>
 
-            <div className=" border absolute z-30 -bottom-12 w-full  overflow-x-hidden  ">
-              <div ref={testimonialContainer} className="  border  flex py-10  ">
-                {testimonials?.map((testimonial, index) => (
-                  <div key={index} className=" min-w-[320px] overflow-hidden testimonial-card mx-20 z-20 bg-white  min-h-[400px] h-fit px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
-                    <p className=" font-light leading-9 ">{testimonial.message}</p>
+              <div ref={testimonialContainer} style={{
+                willChange: 'transform',
+                transform: 'translateZ(0)',
+                scrollBehavior: 'auto',
+              }} className="  border  flex py-10  overflow-x-scroll ">
+                {extendedTestimonials?.map((testimonial, index) => (
+                  <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" min-w-[320px] overflow-hidden testimonial-card mx-10 z-20 bg-white  min-h-[20vh] h-fit px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
+                    <p className=" font-light leading-8 ">{testimonial.message}</p>
                     <p className=" text-sky-blue-dark mt-5">{testimonial.name}</p>
                     <p className=" font-light mt-2">{testimonial.country}</p>
                   </div>
