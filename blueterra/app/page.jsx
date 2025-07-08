@@ -18,6 +18,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import JournalsCardOverlay from "@/components/HomePage/JournalsCardOverlay";
 import Button from "@/components/GeneralComponents/Button";
+import Marquee from "react-fast-marquee";
+
 gsap.registerPlugin(useGSAP)
 
 
@@ -27,6 +29,21 @@ export default function Home() {
   const [CollectionCount, setCollectionCount] = useState(0)
 
   const [selectedDestination, setSelectedDestination] = useState(DESTINATIONS_COLLECTIONS[0])
+
+
+  const boxData = [
+    { id: 1, title: 'Box 1', color: 'bg-red-400' },
+    { id: 2, title: 'Box 2', color: 'bg-green-400' },
+    { id: 3, title: 'Box 3', color: 'bg-blue-400' },
+    { id: 4, title: 'Box 4', color: 'bg-yellow-400' },
+    { id: 5, title: 'Box 5', color: 'bg-purple-400' },
+    { id: 6, title: 'Box 1', color: 'bg-red-400' },
+    { id: 7, title: 'Box 2', color: 'bg-green-400' },
+    { id: 8, title: 'Box 3', color: 'bg-blue-400' },
+    { id: 9, title: 'Box 4', color: 'bg-yellow-400' },
+    { id: 10, title: 'Box 5', color: 'bg-purple-400' },
+  ];
+
 
   const testimonialContainer = useRef(null)
 
@@ -206,11 +223,8 @@ export default function Home() {
                     </div>
                   ))}
 
-
                 </div>
-
               </div>
-
 
             </div>
           </div>
@@ -238,17 +252,19 @@ export default function Home() {
             />
           </div>
 
-          <div className={`h-[70vh] p-5 relative flex flex-col justify-between z-10 w-9/12 text-dark-28 rounded-3xl bg-white ${rubik.className}`}>
+          <div className={`h-[70vh] p-5   flex flex-col relative items-center justify-between z-10 w-9/12 text-dark-28 rounded-3xl bg-white ${rubik.className}`}>
 
             <div className="flex flex-col mt-10">
               <h2 className={`${playfair.className} text-center text-4xl`}>Trusted By Customers</h2>
               <p className=" text-center mt-5 text-2xl font-light">Genuine Experiences Shared by Our Happy Travelers Worldwide</p>
             </div>
 
-            <div className="w-full border  pt-20  pb-20  overflow-x-hidden">
-              <div ref={testimonialContainer} className="  border w-full flex space-x-28 ">
+
+
+            <div className=" border absolute z-30 -bottom-12 w-full  overflow-x-hidden  ">
+              <div ref={testimonialContainer} className="  border  flex py-10  ">
                 {testimonials?.map((testimonial, index) => (
-                  <div key={index} className=" min-w-[320px] overflow-hidden testimonial-card z-20 bg-white  min-h-[400px] h-fit px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
+                  <div key={index} className=" min-w-[320px] overflow-hidden testimonial-card mx-20 z-20 bg-white  min-h-[400px] h-fit px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
                     <p className=" font-light leading-9 ">{testimonial.message}</p>
                     <p className=" text-sky-blue-dark mt-5">{testimonial.name}</p>
                     <p className=" font-light mt-2">{testimonial.country}</p>
@@ -340,7 +356,26 @@ export default function Home() {
 
         </div>
 
-        <div className="  h-[70vh] border w-full flex flex-col items-center relative ">
+
+        <div className=" w-full flex-center pb-10 mt-16 ">
+          <div className=" w-10/12 flex px-10   space-x-20">
+            <Marquee pauseOnHover>
+              {boxData?.map((data, index) => (
+                <div key={index} className=" w-[150px] h-[60px]  group cursor-pointer relative mx-10">
+                  <Image
+                    src='/images/partner-company/logo-1.png'
+                    alt="pattern"
+                    width={600}
+                    height={500}
+                    className=" object-cover grayscale group-hover:grayscale-0 transition duration-500"
+                  />
+                </div>
+              ))}
+            </Marquee>
+          </div>
+        </div>
+
+        <div className="  h-[70vh] border w-full flex flex-col items-center relative mt-16 ">
 
           <div className=" w-[70%]  absolute left-0  bottom-0    ">
             <Image
@@ -391,10 +426,9 @@ export default function Home() {
             </div>
           </div>
 
-
-
-
         </div>
+
+
 
 
         <div className=" w-full h-screen">
