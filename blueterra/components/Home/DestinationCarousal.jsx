@@ -26,7 +26,6 @@ export default function DestinationCarousal({ Data, setCurrent = null, setCount 
         if (!api) {
             return
         }
-
         setCount(api.scrollSnapList().length)
         setCurrent(api.selectedScrollSnap())
 
@@ -40,12 +39,14 @@ export default function DestinationCarousal({ Data, setCurrent = null, setCount 
     return (
         <div className=" flex justify-center items-center flex-col  ">
 
-            <div className="  w-full px-10   flex-center ">
+            <div className="  w-full 2xl:px-10   flex-center ">
                 <Carousel
                     setApi={setApi}
                     opts={{
                         align: "start",
                         loop: true,
+                        draggable: false,
+
                     }}
                     plugins={[
                         Autoplay({
@@ -56,7 +57,7 @@ export default function DestinationCarousal({ Data, setCurrent = null, setCount 
                     ]}
                     className="w-full"
                 >
-                    <CarouselContent>
+                    <CarouselContent >
 
                         {Data?.map((destination, index) => (
                             <CarouselItem key={index} className="md:basis-1/2 2xl:p-3 pb-2 xl:basis-1/3 overflow-hidden  mx-0  flex-center">
@@ -70,8 +71,8 @@ export default function DestinationCarousal({ Data, setCurrent = null, setCount 
                                             className={`object-center  rounded-2xl `}
                                         />
                                     </div>
-                                    <div className=" absolute cursor-pointer inset-0  bg-gradient-to-t from-black/10  to-transparent flex justify-center items-end w-full h-full ">
-                                        <p className={` ${rubik.className} pb-3 font-light `}>{index}{destination.subTitle}{destination.index}{currentDestination}</p>
+                                    <div className=" absolute cursor-pointer  h-[20vh]   bg-gradient-to-t from-black/40 bottom-0  to-transparent flex justify-center items-end w-full  ">
+                                        <p className={` ${rubik.className} pb-3 font-light `}>{destination.subTitle}{destination.index}</p>
                                     </div>
                                 </div>
 

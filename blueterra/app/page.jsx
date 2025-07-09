@@ -9,7 +9,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar/page";
 import Footer from "@/components/Footer/page";
 import CardData from "@/components/datas/Destinations";
-import { playfair, rubik, mrsSaint } from "@/app/fonts"
+import { playfair, rubik, mrsSaint, jost } from "@/app/fonts"
 import { HOME_COLLECTIONS } from "@/constants/home-collections";
 import { DESTINATIONS_COLLECTIONS } from '@/constants/home-destinations'
 import CollectionsList from "@/components/Home/Collections";
@@ -35,6 +35,16 @@ export default function Home() {
   const [selectedDestination, setSelectedDestination] = useState(DESTINATIONS_COLLECTIONS[0])
 
 
+  const titleRef = useRef()
+  const descRef = useRef()
+
+  const currentDestinationTitleRef = useRef()
+  const prevDestinationTitleRef = useRef()
+
+  const currentDestinationDescriptionRef = useRef()
+  const prevDestinationDescriptionRef = useRef()
+
+
   const boxData = [
     { id: 1, title: 'Box 1', color: 'bg-red-400' },
     { id: 2, title: 'Box 2', color: 'bg-green-400' },
@@ -51,6 +61,8 @@ export default function Home() {
 
   const testimonialContainer = useRef(null);
   const scaleTrackerContainer = useRef(null);
+  const destinationBannerRef = useRef(null);
+
 
   const scrollSpeed = 1; // pixels per frame
 
@@ -123,13 +135,56 @@ export default function Home() {
   }, []);
 
 
+  const prevDestination =
+    (currentDestination - 1 + DESTINATIONS_COLLECTIONS.length) % DESTINATIONS_COLLECTIONS.length
+
+  useEffect(() => {
+    const tl = gsap.timeline()
+    const t2 = gsap.timeline()
+
+
+    tl.fromTo(prevDestinationTitleRef.current, { yPercent: 0 }, { yPercent: -100, duration: 0.8 })
+    t2.fromTo(prevDestinationDescriptionRef.current, { yPercent: 0 }, { yPercent: -100, duration: 1.3 })
+
+
+    // Animate current title to center
+    tl.from(currentDestinationTitleRef.current, {
+      yPercent: 90,
+      opacity: 1,
+      duration: 0.9,
+      ease: 'power2.out',
+    }, '-=0.7') // slight overlap
+    t2.from(currentDestinationDescriptionRef.current, {
+      yPercent: 170,
+      opacity: 1,
+      duration: 1.2,
+      ease: 'power2.out',
+    }, '-=1') // slight overlap
+
+  }, [currentDestination])
+
+
+
+  useEffect(() => {
+    gsap.fromTo(
+      destinationBannerRef.current,
+      { opacity: 1, scale: 1 },
+      { opacity: 1, duration: 3, scale: 1.15, ease: "power1.out" }
+    );
+  }, [currentDestination]);
+
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
 
   return (
 
     <SmoothScroll>
       <div className={`w-full h-full  `}>
 
-        <div className="w-full relative h-screen">
+        <div className="w-full relative h-[50vh] md:h-screen">
           <video src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4"
             className=" w-full h-full object-cover"
             autoPlay
@@ -138,11 +193,11 @@ export default function Home() {
           ></video>
 
           <div className=" w-full h-full absolute  inset-0 flex-center flex-col text-white ">
-            <div className="flex-center flex-col space-y-8">
-              <h1 className={` ${playfair.className} text-[80px] font-semibold `}>Curated Travel. Crafted for You.</h1>
-              <p className={` ${rubik.className} text-[30px] `}>Bespoke journeys. No compromises.</p>
+            <div className="flex-center flex-col space-y-5 lg:space-y-8">
+              <h1 className={` ${playfair.className} text-3xl max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Curated Travel. Crafted for You.</h1>
+              <p className={` ${rubik.className} lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Bespoke journeys. No compromises.</p>
               {/* <button className=" bg-sky-blue-1 font-medium px-10 py-2.5 rounded-sm ">PLAN YOUR TRIP</button> */}
-              <Button text='PLAN YOUR TRIP' buttonStyle='px-10 py-2.5' />
+              <Button text='PLAN YOUR TRIP' buttonStyle=' max-md:text-sm px-4 lg:px-8 xl:px-10 py-1.5 lg:py-2.5' />
 
             </div>
           </div>
@@ -150,7 +205,7 @@ export default function Home() {
         </div>
 
 
-        <div className=" w-full h-[80vh] flex flex-col bg-white  relative overflow-hidden ">
+        <div className=" w-full h-full max-md:py-8 lg:h-[90vh] flex flex-col justify-center  relative overflow-hidden ">
 
           <div className="absolute w-[25%] left-0 border bottom-0 h-fit">
 
@@ -178,14 +233,14 @@ export default function Home() {
           </div>
 
 
-          <div className={`absolute inset-0  w-full mt-32  flex justify-center  text-center`}>
-            <div className={`${rubik.className} border px-10 text-dark-28  w-8/12 space-y-8`}>
-              <h2 className={`${playfair.className} text-[48px] text-dark-4B`}>Welcome To BlueTerra</h2>
-              <p className=" text-2xl font-light leading-10 ">We are a boutique, founder-led travel brand based in the UAE, dedicated to crafting thoughtful and personalized journeys. </p>
-              <p className=" text-xl font-light leading-10 px-6  ">With a strong commitment to sustainability, we design travel experiences that honor local cultures and reduce environmental impact. Each itinerary reflects a deep understanding of conscious travel, offering unique adventures tailored for the modern explorer. Our mission is to redefine luxury through purpose-driven travel.</p>
-              <p className=" text-xl -mt-3  font-light leading-10 ">Every journey we curate is rooted in authenticity, blending meaningful experiences with comfort and style. We partner with local communities, artisans, and guides to ensure that our travelers connect deeply with the places they visit, beyond the surface. </p>
+          <div className={` w-full  flex justify-center  text-center`}>
+            <div className={`${rubik.className} border md:px-10 px-5 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
+              <h2 className={`${playfair.className} text-4xl xl:text-[48px] text-dark-4B`}>Welcome To BlueTerra</h2>
+              <p className=" 2xl:text-2xl text-lg lg:text-xl font-light leading-8 xl:leading-10 ">We are a boutique, founder-led travel brand based in the UAE, dedicated to crafting thoughtful and personalized journeys. </p>
+              <p className=" 2xl:text-xl lg:text-lg font-light leading-8 xl:leading-10 px-6  ">With a strong commitment to sustainability, we design travel experiences that honor local cultures and reduce environmental impact. Each itinerary reflects a deep understanding of conscious travel, offering unique adventures tailored for the modern explorer. Our mission is to redefine luxury through purpose-driven travel.</p>
+              <p className=" 2xl:text-xl lg:text-lg -mt-3  font-light leading-8 xl:leading-10 ">Every journey we curate is rooted in authenticity, blending meaningful experiences with comfort and style. We partner with local communities, artisans, and guides to ensure that our travelers connect deeply with the places they visit, beyond the surface. </p>
 
-              <p className={` text-4xl ${mrsSaint.className}`}> <span className={` ${rubik.className} font-extralight opacity-55 mr-2 `}>-</span>Jerald Jacob</p>
+              <p className={` text-3xl 2xl:text-4xl ${mrsSaint.className}`}> <span className={` ${rubik.className} font-extralight opacity-55 mr-2 `}>-</span>Jerald Jacob</p>
             </div>
           </div>
 
@@ -211,58 +266,45 @@ export default function Home() {
         </div>
 
 
-        <div className=" w-full mt-20 h-[130vh] relative ">
+        <div className=" w-full mt-12 2xl:mt-20 z-0 h-[110vh] overflow-hidden relative ">
+
           <Image
+            ref={destinationBannerRef}
             src={DESTINATIONS_COLLECTIONS[currentDestination].bannerImage}
-            alt='air balloon'
+            alt="air balloon"
             fill
             priority
-            className=" object-fill transition-all duration-700 ease-in-out -scale-x-100  "
+            className="object-fill"
           />
-          <div className=" w-full h-full text-white absolute flex flex-col justify-center items-end inset-0 bg-[#0E518199]/60 ">
+          <div className=" w-full h-full text-white absolute flex flex-col translate-all duration-1000 ease-in-out  items-end inset-0 bg-[#0E518199]/80 ">
 
-            <div className={`w-11/12 h-[80vh] border  border-white ${playfair.className} `}>
+            <div className={`2xl:w-11/12 w-full max-2xl:pl-10 h-[70vh] xl:h-[80vh]  mt-[10vh] ${playfair.className} `}>
 
-              <h2 className=" text-[50px]  ">Our Destination Highlights{currentDestination}</h2>
-              <p className={`${rubik.className}  mt-4 leading-8 font-light w-5/12 border  text-2xl`}>Discover the Unique Charm and Unforgettable Experiences Each Destination Has to Offer</p>
+              <h2 className="  text-[45px] xl:text-[50px]  ">Our Destination Highlights</h2>
+              <p className={`${rubik.className}  mt-4 leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>Discover the Unique Charm and Unforgettable Experiences Each Destination Has to Offer</p>
 
-              <div className=" border flex  h-full border-white   w-full ">
+              <div className="  flex  h-full    w-full ">
 
-                <div className="w-4/12 flex flex-col justify-center">
-                  <h3 className=" text-[70px] font-semibold ">DUBAI</h3>
-                  <p className={`w-full ${rubik.className} leading-8 pr-10 font-extralight text-lg`} >The Burj Khalifa is the tallest building in the world, standing at an incredible height of 828 meters. Located in the heart of Downtown Dubai, this architectural marvel is not only a symbol of Dubai’s rapid development and ambition but also a global icon of innovation and modern design.</p>
+                <div className="w-4/12 max-2xl:w-5/12 flex flex-col justify-center">
+                  <div className=" h-[50px] xl:h-[80px] flex items-center  relative  overflow-hidden">
+                    <h3 ref={currentDestinationTitleRef} className=" text-5xl xl:text-[70px] absolute text-nowrap  font-semibold ">{DESTINATIONS_COLLECTIONS[currentDestination].titile}</h3>
+                    <h3 ref={prevDestinationTitleRef} className={` ${currentDestination === 0 ? ' opacity-50' : 'opacity-100'} text-5xl  xl:text-[70px] absolute  text-nowrap  font-semibold `} >{DESTINATIONS_COLLECTIONS[prevDestination].titile}</h3>
+                  </div>
+
+                  <div className=" md:h-[120px] xl:h-[140px] 2xl:h-[150px] relative   overflow-hidden mt-5">
+                    <p ref={currentDestinationDescriptionRef} className={`w-full ${rubik.className} 2xl:leading-8 2xl:pr-10 absolute  font-extralight xl:text-lg`} >{DESTINATIONS_COLLECTIONS[currentDestination].description}</p>
+                    <p ref={prevDestinationDescriptionRef} className={`w-full ${rubik.className} 2xl:leading-8 2xl:pr-10  absolute font-extralight xl:text-lg`} >{DESTINATIONS_COLLECTIONS[prevDestination].description}</p>
+                  </div>
+
+                  <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${jost.className} py-2`} />
+
                 </div>
 
-                <div className=" flex items-center  w-10/12 overflow-hidden justify-center border space-x-8 ">
+                <div className=" flex items-center w-10/12 overflow-hidden justify-center  space-x-8 ">
 
-                  <div className=" w-11/12  mt-4 ">
+                  <div className=" w-11/12   mt-4 ">
                     <DestinationCarousal Data={DESTINATIONS_COLLECTIONS} setCurrent={setCurrentDestination} setCount={setDestinationCount} currentDestination={currentDestination} />
                   </div>
-                  {/* <div className="relative h-[500px] w-[400px] transition-all duration-500 ease-in-out">
-                    <Image
-                      src={selectedDestination.image}
-                      alt={selectedDestination.alt}
-                      fill
-                      className=" object-center rounded-2xl"
-                    />
-                    <div className=" absolute cursor-pointer inset-0  bg-gradient-to-t from-black/10  to-transparent flex justify-center items-end w-full h-full ">
-                      <p className={` ${rubik.className} pb-3 font-light `}>{selectedDestination.subTitle}</p>
-                    </div>
-                  </div> */}
-
-                  {/* {DESTINATIONS_COLLECTIONS?.map((destination, index) => (
-                    <div key={index} onClick={() => setSelectedDestination(destination)} className={`relative  transition-all duration-500 ease-in-out  rounded-2xl w-[300px] h-[400px]  `}>
-                      <Image
-                        src={destination.image}
-                        alt={destination.alt}
-                        fill
-                        className=" object-center rounded-2xl"
-                      />
-                      <div className=" absolute cursor-pointer inset-0  bg-gradient-to-t from-black/10  to-transparent flex justify-center items-end w-full h-full ">
-                        <p className={` ${rubik.className} pb-3 font-light `}>{destination.subTitle}{destination.index}</p>
-                      </div>
-                    </div>
-                  ))} */}
 
                 </div>
               </div>
