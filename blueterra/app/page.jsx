@@ -66,7 +66,7 @@ export default function Home() {
   const destinationBannerRef = useRef(null);
 
 
-  const scrollSpeed = 2; // pixels per frame
+  const scrollSpeed = 1.5; // pixels per frame
 
   // Duplicate the testimonials for seamless looping
   const extendedTestimonials = [...testimonials, ...testimonials];
@@ -107,16 +107,16 @@ export default function Home() {
         if (!card) return;
 
         const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
+
+        // const isInside =
+        //   cardRect.left < triggerRect.right &&
+        //   cardRect.right > triggerRect.left;
 
         const isInside =
-          cardRect.left < triggerRect.right &&
+          cardCenter < triggerRect.right &&
           cardRect.right > triggerRect.left;
 
-        // if (isInside) {
-        //   card.classList.add("scale-in");
-        // } else {
-        //   card.classList.add("scale-reset");
-        // }
 
         if (isInside) {
           card.classList.add("scale-in");
@@ -135,6 +135,9 @@ export default function Home() {
 
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
+
+
+
 
 
   const prevDestination =
@@ -458,7 +461,7 @@ export default function Home() {
             />
           </div>
 
-          <div className={`xl:h-[80%] 2xl:h-[80%] md:h-[83%] h-[80%]   flex flex-col relative items-center justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl bg-white ${rubik.className}`}>
+          <div className={` h-fit   flex flex-col  items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
 
             <div className="flex flex-col mt-10 lg:mt-16 2xl:mt-20">
               <h2 className={`${playfair.className} vertically-animated-element text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
@@ -466,8 +469,8 @@ export default function Home() {
             </div>
 
 
-            <div className="  absolute z-30 -bottom-10 w-full h-fit   overflow-x-auto scrollbar-hide">
-              <div ref={scaleTrackerContainer} className=" absolute      z-0 w-[1vh] lg:w-[3vh] h-[100px] left-[50%] lg:left-[47%] top-0 -translate-x-1/2 "></div>
+            <div className="   z-30  w-full h-fit  mt-10  overflow-x-auto scrollbar-hide">
+              <div ref={scaleTrackerContainer} className=" absolute   border   z-0 w-[1vh] lg:w-[1vh] h-[100px] left-[60%] lg:left-[62%] top-0 -translate-x-1/2 "></div>
 
               <div ref={testimonialContainer} style={{
                 willChange: 'transform',
