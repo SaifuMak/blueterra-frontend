@@ -1,9 +1,7 @@
 'use client'
 
-import BannerAnimation from "@/components/Home/BannerAnimation";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import Filter from "@/components/Filter";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar/page";
 import Footer from "@/components/Footer/page";
