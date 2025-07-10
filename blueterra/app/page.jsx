@@ -28,6 +28,7 @@ export default function Home() {
 
   const [currentCollection, setCurrentCollection] = useState(0)
   const [CollectionCount, setCollectionCount] = useState(0)
+  const [isBannerVideoLoaded, setIsBannerVideoLoaded] = useState(false)
 
   const [currentDestination, setCurrentDestination] = useState(0)
   const [DestinationCount, setDestinationCount] = useState(0)
@@ -37,6 +38,8 @@ export default function Home() {
 
   const welcomeContainerRef = useRef()
   const featuredCollectionsContainerRef = useRef()
+
+  const messageContainerRef = useRef()
 
   const titleRef = useRef()
   const descRef = useRef()
@@ -214,7 +217,7 @@ export default function Home() {
         { opacity: 0, scale: 0.9 },
         {
           opacity: 1,
-          scale : 1,
+          scale: 1,
           duration: 0.7,
           ease: "power3.out",
           scrollTrigger: {
@@ -228,28 +231,95 @@ export default function Home() {
   }, { scope: welcomeContainerRef });
 
 
+  const videoRef = useRef(null);
+
+
+  useEffect(() => {
+    if (videoRef.current?.readyState >= 3) { // 3 = HAVE_FUTURE_DATA
+      console.log("Video already loaded (readyState:", videoRef.current.readyState, ")");
+      setIsBannerVideoLoaded(true);
+    }
+  }, []);
+
+
+  useEffect(() => {
+    if (!messageContainerRef.current) return
+
+    gsap.fromTo(
+      videoRef.current,
+      { scale: 1 }, // Starting value
+      {
+        scale: 1.09, // Ending value
+        duration: 2,
+        ease: "power3.out", // 👈 Easing added
+        scrollTrigger: {
+          trigger: messageContainerRef.current,
+          start: "top 90%",
+          toggleActions: "play reverse play reverse",
+          // markers: true,
+        },
+      }
+    );
+
+  }, [])
+
+
+
+  // useGSAP(() => {
+  //   if (!isBannerVideoLoaded) return;
+
+  //   const elements = gsap.utils.toArray(".video-animated-element");
+
+  //   elements.forEach((box) => {
+  //     gsap.fromTo(
+  //       box,
+  //       { opacity: 0, y: 100 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 0.7,
+  //         ease: "power3.out",
+  //       }
+  //     );
+  //   });
+  // }, {
+  //   scope: welcomeContainerRef,
+  //   dependencies: [isBannerVideoLoaded] // Add dependency here
+  // });
+
 
 
   return (
 
     <SmoothScroll>
-      <Navbar/>
+      <Navbar />
       <div ref={welcomeContainerRef} className={`w-full h-full  `}>
 
         <div className="w-full relative h-[50vh] md:h-screen">
-          <video src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4"
+          <video ref={videoRef} src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4"
             className=" w-full h-full object-cover"
             autoPlay
             muted
             loop
+            preload="auto"
+            // onLoadStart={() => console.log("Loading started")}
+            // onLoadedData={() => {
+            //   console.log("First frame loaded");
+            //   setIsBannerVideoLoaded(true);
+            // }}
+            onCanPlay={() => {
+              console.log("Can play");
+              setIsBannerVideoLoaded(true);
+            }}
+            onError={(e) => console.error("Video error", e)}
           ></video>
 
           <div className=" w-full h-full absolute  inset-0 flex-center flex-col text-white ">
-            <div className="flex-center flex-col space-y-5 lg:space-y-8">
-              <h1 className={` ${playfair.className} text-3xl max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Curated Travel. Crafted for You.</h1>
-              <p className={` ${rubik.className} lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Bespoke journeys. No compromises.</p>
+            <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
+              <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Curated Travel. Crafted for You.</h1>
+              <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Bespoke journeys. No compromises.</p>
               {/* <button className=" bg-sky-blue-1 font-medium px-10 py-2.5 rounded-sm ">PLAN YOUR TRIP</button> */}
-              <Button text='PLAN YOUR TRIP' buttonStyle=' max-md:text-sm px-4 lg:px-8 xl:px-10 py-1.5 lg:py-2.5' />
+              <Button text='PLAN YOUR TRIP' buttonStyle={`  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'}  translate-all duration-1000 ease-in-out max-md:text-sm px-4 lg:px-8 xl:px-10 py-1.5 lg:py-2.5 `} />
 
             </div>
           </div>
@@ -257,7 +327,7 @@ export default function Home() {
         </div>
 
 
-        <div className=" w-full h-full max-md:py-8 lg:h-[90vh] flex flex-col justify-center  relative overflow-hidden ">
+        <div ref={messageContainerRef} className=" w-full h-full max-md:py-8 lg:h-[90vh] flex flex-col justify-center  relative overflow-hidden ">
 
           <div className="absolute w-[25%] left-0  bottom-0 h-fit">
 
