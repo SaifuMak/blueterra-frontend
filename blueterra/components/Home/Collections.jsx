@@ -70,13 +70,7 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
                                         className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"
                                     />
 
-                                    {/* <div className=" transition-all flex items-end duration-1000 z-0 ease-in-out absolute opacity-0 group-hover:opacity-100  bg-gradient-to-t  from-black/70 to-transparent inset-0  ">
-                                        <div className=" py-6 z-10 transform transition-transform duration-1000 group-hover:translate-y-0 translate-y-[160px] border text-white border-white px-6">
-                                            <h6 className=" text-3xl ">{item.title}</h6>
-                                            <p className=" text-xl mt-5 ">{item.description}</p>
-                                        </div>
-                                    </div> */}
-
+                                   
 
                                     <div className="absolute inset-0 group">
                                         {/* Gradient overlay shown only on hover */}
@@ -90,8 +84,8 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
                                         <div className="flex items-end absolute inset-0  z-10">
                                             <div className="py-6 px-6 transform transition-transform duration-1000 group-hover:translate-y-0 2xl:translate-y-[160px] xl:translate-y-[220px] lg:translate-y-[270px] md:translate-y-[220px] translate-y-[260px] text-white">
                                                 <h6 className={` ${playfair.className} text-xl xl:text-2xl 2xl:text-3xl`}>{item.title}</h6>
-                                                <p className={` ${rubik.className}  font-extralight mt-3 xl:mt-5 group-hover:opacity-100 xl:leading-7 duration-700 md:text-lg xl:text-xl opacity-0`}>{item.description}</p>
-                                                <p className={`xl:text-xl md:text-lg my-3 font-extralight ${rubik.className} `}>Read More</p>
+                                                <p className={` ${rubik.className}  font-extralight mt-3 xl:mt-5 group-hover:opacity-100 xl:leading-7 duration-700 md:text-base 2xl:text-lg opacity-0`}>{item.description}</p>
+                                                <p className={` md:text-lg my-3 font-extralight ${rubik.className} `}>Read More</p>
                                             </div>
                                         </div>
                                     </div>

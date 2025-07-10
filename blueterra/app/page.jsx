@@ -17,7 +17,7 @@ import Button from "@/components/generalComponents/Button";
 import Marquee from "react-fast-marquee";
 import DestinationCarousal from "@/components/Home/DestinationCarousal";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(useGSAP,ScrollTrigger)
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 
 export default function Home() {
@@ -66,7 +66,7 @@ export default function Home() {
   const destinationBannerRef = useRef(null);
 
 
-  const scrollSpeed = 1; // pixels per frame
+  const scrollSpeed = 2; // pixels per frame
 
   // Duplicate the testimonials for seamless looping
   const extendedTestimonials = [...testimonials, ...testimonials];
@@ -313,7 +313,7 @@ export default function Home() {
           <div className=" w-full h-full absolute  inset-0 flex-center flex-col text-white ">
             <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
               <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Curated Travel. Crafted for You.</h1>
-              <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Bespoke journeys. No compromises.</p>
+              <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all font-light duration-700 ease-in-out lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Bespoke journeys. No compromises.</p>
               {/* <button className=" bg-sky-blue-1 font-medium px-10 py-2.5 rounded-sm ">PLAN YOUR TRIP</button> */}
               <Button text='PLAN YOUR TRIP' buttonStyle={`  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'}  translate-all duration-1000 ease-in-out max-md:text-sm px-4 lg:px-8 xl:px-10 py-1.5 lg:py-2.5 `} />
 
@@ -323,7 +323,7 @@ export default function Home() {
         </div>
 
 
-        <div ref={messageContainerRef} className=" w-full h-full max-md:py-8 lg:h-[90vh] flex flex-col justify-center  relative overflow-hidden ">
+        <div ref={messageContainerRef} className=" w-full h-full max-md:py-8 lg:h-[90vh]   flex flex-col justify-center  relative overflow-hidden ">
 
           <div className="absolute w-[25%] left-0  bottom-0 h-fit">
 
@@ -364,10 +364,13 @@ export default function Home() {
 
         </div>
 
+
+
+        {/* our featured collections  */}
         <div className="pb-10 ">
           <div className="w-full h-full px-4 md:px-10 bg-white">
             <div className=" bg-light-yellow flex flex-col items-center rounded-4xl space-y-6 xl:space-y-10  px-4 xl:py-24 py-10  2xl:px-10 2xl:py-32 ">
-              <h3 className={`${playfair.className} vertically-animated-element text-dark-4B text-3xl lg:text-4xl  text-center  xl:text-5xl`} >Our Featured Collections</h3>
+              <h3 className={`${playfair.className} vertically-animated-element text-dark-4B heading-text`} >Our Featured Collections</h3>
               <p className={`xl:text-xl lg:text-lg font-light vertically-animated-element ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>Discover a handpicked selection of our most iconic journeys—each crafted with care, intention, and an eye for timeless experiences.</p>
 
               <div className=" 2xl:w-11/12 w-full max-2xl:px-5   mt-4 ">
@@ -384,6 +387,8 @@ export default function Home() {
         </div>
 
 
+
+        {/* destinations section  */}
         <div className=" w-full mt-12 2xl:mt-20 z-0 h-[110vh] overflow-hidden relative max-lg:hidden ">
 
           <Image
@@ -453,24 +458,24 @@ export default function Home() {
             />
           </div>
 
-          <div className={`xl:h-[80vh] md:h-[73vh] h-[85vh]   flex flex-col relative items-center justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl bg-white ${rubik.className}`}>
+          <div className={`xl:h-[80%] 2xl:h-[80%] md:h-[83%] h-[80%]   flex flex-col relative items-center justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl bg-white ${rubik.className}`}>
 
             <div className="flex flex-col mt-10 lg:mt-16 2xl:mt-20">
-              <h2 className={`${playfair.className} vertically-animated-element text-center text-3xl lg:text-4xl max-sm:px-2`}>Trusted By Customers</h2>
-              <p className=" text-center vertically-animated-element mt-5 lg:text-lg xl:text-2xl font-light max-sm:px-5">Genuine Experiences Shared by Our Happy Travelers Worldwide</p>
+              <h2 className={`${playfair.className} vertically-animated-element text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
+              <p className=" text-center vertically-animated-element mt-7 lg:text-lg xl:text-2xl font-light max-sm:px-5">Genuine Experiences Shared by Our Happy Travelers Worldwide</p>
             </div>
 
 
-            <div className="  absolute z-30 -bottom-10 w-full h-fit   overflow-x-auto ">
-              <div ref={scaleTrackerContainer} className=" absolute     z-0 w-[1vh] lg:w-[3vh] h-[100px] left-[50%] lg:left-[47%] top-0 -translate-x-1/2 "></div>
+            <div className="  absolute z-30 -bottom-10 w-full h-fit   overflow-x-auto scrollbar-hide">
+              <div ref={scaleTrackerContainer} className=" absolute      z-0 w-[1vh] lg:w-[3vh] h-[100px] left-[50%] lg:left-[47%] top-0 -translate-x-1/2 "></div>
 
               <div ref={testimonialContainer} style={{
                 willChange: 'transform',
                 transform: 'translateZ(0)',
                 scrollBehavior: 'auto',
-              }} className="    flex py-10 vertically-animated-element  overflow-x-scroll ">
+              }} className="    flex py-10 vertically-animated-element  overflow-x-scroll scrollbar-hide ">
                 {extendedTestimonials?.map((testimonial, index) => (
-                  <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" lg:min-w-[320px] min-w-[280px] overflow-hidden testimonial-card mx-10 z-20 bg-white  min-h-[20vh] h-fit px-5 lg:px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
+                  <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" lg:min-w-[320px] min-w-[280px] overflow-hidden testimonial-card mx-10 z-20 bg-white  min-h-[50%] h-fit px-5 lg:px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
                     <p className=" font-light md:leading-8 leading-7 ">{testimonial.message}</p>
                     <p className=" text-sky-blue-dark mt-5">{testimonial.name}</p>
                     <p className=" font-light mt-2">{testimonial.country}</p>
@@ -506,7 +511,7 @@ export default function Home() {
           </div>
 
           <div className=" w-full flex justify-center text-dark-4B mt-20 mb-16">
-            <h3 className={`${playfair.className} vertically-animated-element text-4xl xl:text-5xl`}>BlueTerra Journal</h3>
+            <h3 className={`${playfair.className} vertically-animated-element heading-text`}>BlueTerra Journal</h3>
           </div>
 
           <div className=" flex  space-x-7  2xl:space-x-10 w-11/12">
@@ -612,7 +617,7 @@ export default function Home() {
                 className="object-cover scalling-group-110 rounded-4xl "
               />
               <div className=" absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black/20 cursor-pointer rounded-4xl">
-                <h3 className={`xl:text-[50px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element text-center  font-medium text-white`}>Book Your Next Trip</h3>
+                <h3 className={`xl:text-[50px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element text-center  font-normal text-white`}>Book Your Next Trip</h3>
                 <Button text='PLAN YOUR TRIP' buttonStyle='xl:px-12 px-6 py-2 xl:py-2.5 mt-8 max-md:text-sm  vertically-animated-element' />
 
               </div>
@@ -625,8 +630,8 @@ export default function Home() {
                 className={`object-cover scalling-group-110 rounded-4xl`}
               />
               <div className=" absolute inset-0 w-full h-full flex flex-col justify-center text-center items-center bg-black/20 cursor-pointer rounded-4xl">
-                <h3 className={`xl:text-[50px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element  font-medium text-white`}>Join Our Community</h3>
-                <p className=" xl:text-[23px] lg:text-xl max-md:px-4  2xl:text-[25px] text-white font-light mt-7 vertically-animated-element tracking-wide ">Get expert travel tips straight to your inbox.</p>
+                <h3 className={`xl:text-[50px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element  font-normal text-white`}>Join Our Community</h3>
+                <p className=" xl:text-[23px] lg:text-xl max-md:px-4  2xl:text-[23px] text-white font-light mt-7 vertically-animated-element tracking-wide ">Get expert travel tips straight to your inbox.</p>
 
               </div>
             </div>

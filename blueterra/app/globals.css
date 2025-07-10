@@ -17,6 +17,23 @@ body {
   /* Firefox */
 }
 
+
+/* Hide scrollbar for all browsers */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+
+.vertically-animated-element::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
 body {
   @apply font-sans;
   /* Tailwind will use what's defined */
@@ -45,6 +62,9 @@ body {
 
 .scale-reset {
   @apply transition-all duration-1000 ease-in-out scale-100
+}
+.heading-text{
+  @apply text-3xl lg:text-4xl  text-center  xl:text-5xl
 }
 
 @theme {
