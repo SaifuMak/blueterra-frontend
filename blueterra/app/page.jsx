@@ -470,7 +470,7 @@ export default function Home() {
 
 
             <div className="   z-30  w-full h-fit  mt-10  overflow-x-auto scrollbar-hide">
-              <div ref={scaleTrackerContainer} className=" absolute   border   z-0 w-[1vh] lg:w-[1vh] h-[100px] left-[60%] lg:left-[62%] top-0 -translate-x-1/2 "></div>
+              <div ref={scaleTrackerContainer} className=" absolute    z-0 w-[1vh] lg:w-[1vh] h-[100px] left-[73%] lg:left-[62%] top-0 -translate-x-1/2 "></div>
 
               <div ref={testimonialContainer} style={{
                 willChange: 'transform',
@@ -478,7 +478,7 @@ export default function Home() {
                 scrollBehavior: 'auto',
               }} className="    flex py-10 vertically-animated-element  overflow-x-scroll scrollbar-hide ">
                 {extendedTestimonials?.map((testimonial, index) => (
-                  <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" lg:min-w-[320px] min-w-[280px] overflow-hidden testimonial-card mx-10 z-20 bg-white  min-h-[50%] h-fit px-5 lg:px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
+                  <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" lg:min-w-[320px] min-w-[280px] overflow-hidden testimonial-card mx-5 lg:mx-10 z-20 bg-white  min-h-[50%] h-fit px-5 lg:px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
                     <p className=" font-light md:leading-8 leading-7 ">{testimonial.message}</p>
                     <p className=" text-sky-blue-dark mt-5">{testimonial.name}</p>
                     <p className=" font-light mt-2">{testimonial.country}</p>
