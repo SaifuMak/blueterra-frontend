@@ -16,8 +16,8 @@ import JournalsCardOverlay from "@/components/HomePage/JournalsCardOverlay";
 import Button from "@/components/generalComponents/Button";
 import Marquee from "react-fast-marquee";
 import DestinationCarousal from "@/components/Home/DestinationCarousal";
-
-gsap.registerPlugin(useGSAP)
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(useGSAP,ScrollTrigger)
 
 
 export default function Home() {
