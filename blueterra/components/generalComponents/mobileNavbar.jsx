@@ -5,6 +5,7 @@ import Image from "next/image"
 import { HiMenuAlt3 } from '../reactIcons'
 import { IoSearchOutline } from "react-icons/io5";
 import { useState } from "react";
+import {rubik} from '@/app/fonts'
 
 
 export default function mobileNavbar({ MenuItems }) {
@@ -14,7 +15,7 @@ export default function mobileNavbar({ MenuItems }) {
     return (
         <>
 
-            <div className="w-full flex flex-col  z-50 justify-center   ">
+            <div className={ ` ${rubik.className} w-full flex flex-col  z-50 justify-center`}>
 
                 <div className="flex justify-between w-full  h-[50px] items-center pr-5 ">
 
@@ -36,12 +37,12 @@ export default function mobileNavbar({ MenuItems }) {
                 </div>
 
                 <div className={` shadow-lg bg-white  overflow-hidden  pb-10 flex px-4 py-4  flex-col transition-all duration-1000 ease-in-out     ${isMenuOpened ? 'max-h-[580px] opacity-100  z-50 ' : 'max-h-0 opacity-0 z-0'}`}>
-                    <div className=" flex flex-col space-y-6 font-medium">
+                    <div className=" flex flex-col space-y-6 font-extralight ">
                         {MenuItems.map((items, index) => (
-                            <Link key={index} href={items.link} className={`${index === 1 ? ' text-brand-blue' : 'text-black'}`}>{items.nav}</Link>
+                            <Link key={index} href={items.link} className={`${index === 1 ? ' text-brand-blue' : ' text-dark-28'}`}>{items.nav}</Link>
                         ))}
                     </div>
-                    <Link href="/" className=" mt-6 font-medium  px-4 rounded-sm  bg-brand-blue  text-white w-fit py-1">Contact us</Link>
+                    <Link href="/" className=" mt-6  px-4 rounded-sm  bg-brand-blue  text-white w-fit py-1">Contact us</Link>
                 </div>
 
             </div>

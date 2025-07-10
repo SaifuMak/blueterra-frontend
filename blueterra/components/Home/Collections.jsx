@@ -40,7 +40,7 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
     return (
         <div className=" flex justify-center items-center flex-col  ">
 
-            <div className="  w-full px-10   flex-center ">
+            <div className="  w-full md:px-10   flex-center ">
                 <Carousel
                     setApi={setApi}
                     opts={{
@@ -59,9 +59,9 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
                     <CarouselContent>
 
                         {Data?.map((item, index) => (
-                            <CarouselItem key={index} className="md:basis-1/2 2xl:p-3 pb-2 xl:basis-1/3  mx-0  flex-center">
+                            <CarouselItem key={index} className="md:basis-1/2 2xl:p-3 pb-2 lg:basis-1/3  mx-0  flex-center ">
 
-                                <div className=" relative group cursor-pointer w-[470px] h-[700px] rounded-2xl overflow-hidden">
+                                <div className=" relative group cursor-pointer w-[370px]  xl:w-[470px] 2xl:h-[700px] xl:h-[600px] md:h-[480px] h-[410px] rounded-2xl overflow-hidden">
 
                                     <Image
                                         src={item.image}
@@ -88,10 +88,10 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
 
                                         {/* Text content always visible, moves up on hover */}
                                         <div className="flex items-end absolute inset-0  z-10">
-                                            <div className="py-6 px-6 transform transition-transform duration-1000 group-hover:translate-y-0 translate-y-[160px] text-white">
-                                                <h6 className={` ${playfair.className} text-3xl`}>{item.title}</h6>
-                                                <p className={` ${rubik.className}  font-extralight mt-5 group-hover:opacity-100 leading-7 duration-700 text-xl opacity-0`}>{item.description}</p>
-                                                <p className={`text-xl my-3 font-extralight ${rubik.className} `}>Read More</p>
+                                            <div className="py-6 px-6 transform transition-transform duration-1000 group-hover:translate-y-0 2xl:translate-y-[160px] xl:translate-y-[220px] lg:translate-y-[270px] md:translate-y-[220px] translate-y-[260px] text-white">
+                                                <h6 className={` ${playfair.className} text-xl xl:text-2xl 2xl:text-3xl`}>{item.title}</h6>
+                                                <p className={` ${rubik.className}  font-extralight mt-3 xl:mt-5 group-hover:opacity-100 xl:leading-7 duration-700 md:text-lg xl:text-xl opacity-0`}>{item.description}</p>
+                                                <p className={`xl:text-xl md:text-lg my-3 font-extralight ${rubik.className} `}>Read More</p>
                                             </div>
                                         </div>
                                     </div>

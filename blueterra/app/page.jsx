@@ -35,6 +35,9 @@ export default function Home() {
   const [selectedDestination, setSelectedDestination] = useState(DESTINATIONS_COLLECTIONS[0])
 
 
+  const welcomeContainerRef = useRef()
+  const featuredCollectionsContainerRef = useRef()
+
   const titleRef = useRef()
   const descRef = useRef()
 
@@ -168,7 +171,7 @@ export default function Home() {
   useEffect(() => {
     gsap.fromTo(
       destinationBannerRef.current,
-      { opacity: 1, scale: 1 },
+      { opacity: 0.5, scale: 1 },
       { opacity: 1, duration: 3, scale: 1.15, ease: "power1.out" }
     );
   }, [currentDestination]);
@@ -179,10 +182,59 @@ export default function Home() {
   }, []);
 
 
+  useGSAP(() => {
+    const elements = gsap.utils.toArray(".vertically-animated-element");
+
+    elements.forEach((box) => {
+      gsap.fromTo(
+        box,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: box,
+            start: "top 90%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    });
+  }, { scope: welcomeContainerRef });
+
+
+  useGSAP(() => {
+    const elements = gsap.utils.toArray(".scale-opacity-animate");
+
+    elements.forEach((box) => {
+      gsap.fromTo(
+        box,
+        { opacity: 0, scale: 0.9 },
+        {
+          opacity: 1,
+          scale : 1,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: box,
+            start: "top 90%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    });
+  }, { scope: welcomeContainerRef });
+
+
+
+
   return (
 
     <SmoothScroll>
-      <div className={`w-full h-full  `}>
+      <Navbar/>
+      <div ref={welcomeContainerRef} className={`w-full h-full  `}>
 
         <div className="w-full relative h-[50vh] md:h-screen">
           <video src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4"
@@ -207,7 +259,7 @@ export default function Home() {
 
         <div className=" w-full h-full max-md:py-8 lg:h-[90vh] flex flex-col justify-center  relative overflow-hidden ">
 
-          <div className="absolute w-[25%] left-0 border bottom-0 h-fit">
+          <div className="absolute w-[25%] left-0  bottom-0 h-fit">
 
             <Image
               src='/images/general/clip-path-one.png'
@@ -227,32 +279,32 @@ export default function Home() {
               alt='clip path'
               fill
               priority
-              className=" border"
+              className=" "
               style={{ objectFit: 'cover' }}
             />
           </div>
 
 
-          <div className={` w-full  flex justify-center  text-center`}>
-            <div className={`${rubik.className} border md:px-10 px-5 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
-              <h2 className={`${playfair.className} text-4xl xl:text-[48px] text-dark-4B`}>Welcome To BlueTerra</h2>
-              <p className=" 2xl:text-2xl text-lg lg:text-xl font-light leading-8 xl:leading-10 ">We are a boutique, founder-led travel brand based in the UAE, dedicated to crafting thoughtful and personalized journeys. </p>
-              <p className=" 2xl:text-xl lg:text-lg font-light leading-8 xl:leading-10 px-6  ">With a strong commitment to sustainability, we design travel experiences that honor local cultures and reduce environmental impact. Each itinerary reflects a deep understanding of conscious travel, offering unique adventures tailored for the modern explorer. Our mission is to redefine luxury through purpose-driven travel.</p>
-              <p className=" 2xl:text-xl lg:text-lg -mt-3  font-light leading-8 xl:leading-10 ">Every journey we curate is rooted in authenticity, blending meaningful experiences with comfort and style. We partner with local communities, artisans, and guides to ensure that our travelers connect deeply with the places they visit, beyond the surface. </p>
+          <div className={` w-full  flex justify-center bg-white  text-center`}>
+            <div className={`${rubik.className}  md:px-10 px-5 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
+              <h2 className={`${playfair.className} text-3xl vertically-animated-element  lg:text-4xl xl:text-[48px] text-dark-4B`}>Welcome To BlueTerra</h2>
+              <p className=" vertically-animated-element 2xl:text-2xl max-sm:text-base text-lg lg:text-xl font-light leading-8 xl:leading-10 ">We are a boutique, founder-led travel brand based in the UAE, dedicated to crafting thoughtful and personalized journeys. </p>
+              <p className=" vertically-animated-element 2xl:text-xl text-sm lg:text-lg font-light leading-8 xl:leading-10 lg:px-6  ">With a strong commitment to sustainability, we design travel experiences that honor local cultures and reduce environmental impact. Each itinerary reflects a deep understanding of conscious travel, offering unique adventures tailored for the modern explorer. Our mission is to redefine luxury through purpose-driven travel.</p>
+              <p className=" vertically-animated-element 2xl:text-xl lg:text-lg text-sm -mt-3  font-light leading-8 xl:leading-10 ">Every journey we curate is rooted in authenticity, blending meaningful experiences with comfort and style. We partner with local communities, artisans, and guides to ensure that our travelers connect deeply with the places they visit, beyond the surface. </p>
 
-              <p className={` text-3xl 2xl:text-4xl ${mrsSaint.className}`}> <span className={` ${rubik.className} font-extralight opacity-55 mr-2 `}>-</span>Jerald Jacob</p>
+              <p className={`vertically-animated-element text-lg lg:text-3xl 2xl:text-4xl ${mrsSaint.className}`}> <span className={` ${rubik.className} font-extralight opacity-55 mr-2 `}>-</span>Jerald Jacob</p>
             </div>
           </div>
 
         </div>
 
-        <div className="pb-10 border">
-          <div className="w-full h-full px-10 bg-white">
-            <div className=" bg-light-yellow flex flex-col items-center rounded-4xl space-y-10  px-10 py-32 ">
-              <h3 className={`${playfair.className} text-dark-4B  text-5xl`} >Our Featured Collections</h3>
-              <p className={`text-xl font-light ${rubik.className} text-dark-28  w-6/12 text-center`}>Discover a handpicked selection of our most iconic journeys—each crafted with care, intention, and an eye for timeless experiences.</p>
+        <div className="pb-10 ">
+          <div className="w-full h-full px-4 md:px-10 bg-white">
+            <div className=" bg-light-yellow flex flex-col items-center rounded-4xl space-y-6 xl:space-y-10  px-4 xl:py-24 py-10  2xl:px-10 2xl:py-32 ">
+              <h3 className={`${playfair.className} vertically-animated-element text-dark-4B text-3xl lg:text-4xl  text-center  xl:text-5xl`} >Our Featured Collections</h3>
+              <p className={`xl:text-xl lg:text-lg font-light vertically-animated-element ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>Discover a handpicked selection of our most iconic journeys—each crafted with care, intention, and an eye for timeless experiences.</p>
 
-              <div className=" w-11/12   mt-4 ">
+              <div className=" 2xl:w-11/12 w-full max-2xl:px-5   mt-4 ">
                 <CollectionsList Data={HOME_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} />
               </div>
 
@@ -266,7 +318,7 @@ export default function Home() {
         </div>
 
 
-        <div className=" w-full mt-12 2xl:mt-20 z-0 h-[110vh] overflow-hidden relative ">
+        <div className=" w-full mt-12 2xl:mt-20 z-0 h-[110vh] overflow-hidden relative max-lg:hidden ">
 
           <Image
             ref={destinationBannerRef}
@@ -280,8 +332,8 @@ export default function Home() {
 
             <div className={`2xl:w-11/12 w-full max-2xl:pl-10 h-[70vh] xl:h-[80vh]  mt-[10vh] ${playfair.className} `}>
 
-              <h2 className="  text-[45px] xl:text-[50px]  ">Our Destination Highlights</h2>
-              <p className={`${rubik.className}  mt-4 leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>Discover the Unique Charm and Unforgettable Experiences Each Destination Has to Offer</p>
+              <h2 className=" vertically-animated-element text-[45px] xl:text-[50px]  ">Our Destination Highlights</h2>
+              <p className={`${rubik.className} vertically-animated-element  mt-4 leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>Discover the Unique Charm and Unforgettable Experiences Each Destination Has to Offer</p>
 
               <div className="  flex  h-full    w-full ">
 
@@ -314,7 +366,7 @@ export default function Home() {
         </div>
 
 
-        <div className=" w-full flex-center relative h-[90vh] bg-sky-blue-light">
+        <div className=" w-full flex-center relative h-[100vh] bg-sky-blue-light ">
 
           <div className=" w-[30%]  absolute left-0 top-0    ">
             <Image
@@ -335,25 +387,25 @@ export default function Home() {
             />
           </div>
 
-          <div className={`h-[70vh] p-5   flex flex-col relative items-center justify-between z-10 w-9/12 text-dark-28 rounded-3xl bg-white ${rubik.className}`}>
+          <div className={`xl:h-[80vh] md:h-[73vh] h-[85vh]   flex flex-col relative items-center justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl bg-white ${rubik.className}`}>
 
-            <div className="flex flex-col mt-10">
-              <h2 className={`${playfair.className} text-center text-4xl`}>Trusted By Customers</h2>
-              <p className=" text-center mt-5 text-2xl font-light">Genuine Experiences Shared by Our Happy Travelers Worldwide</p>
+            <div className="flex flex-col mt-10 lg:mt-16 2xl:mt-20">
+              <h2 className={`${playfair.className} vertically-animated-element text-center text-3xl lg:text-4xl max-sm:px-2`}>Trusted By Customers</h2>
+              <p className=" text-center vertically-animated-element mt-5 lg:text-lg xl:text-2xl font-light max-sm:px-5">Genuine Experiences Shared by Our Happy Travelers Worldwide</p>
             </div>
 
 
-            <div className=" border absolute z-30 -bottom-8 w-full  overflow-x-auto ">
-              <div ref={scaleTrackerContainer} className=" absolute  border z-0  w-[8vh] h-[100px] left-1/2 top-0 -translate-x-1/2 "></div>
+            <div className="  absolute z-30 -bottom-10 w-full h-fit   overflow-x-auto ">
+              <div ref={scaleTrackerContainer} className=" absolute     z-0 w-[1vh] lg:w-[3vh] h-[100px] left-[50%] lg:left-[47%] top-0 -translate-x-1/2 "></div>
 
               <div ref={testimonialContainer} style={{
                 willChange: 'transform',
                 transform: 'translateZ(0)',
                 scrollBehavior: 'auto',
-              }} className="  border  flex py-10  overflow-x-scroll ">
+              }} className="    flex py-10 vertically-animated-element  overflow-x-scroll ">
                 {extendedTestimonials?.map((testimonial, index) => (
-                  <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" min-w-[320px] overflow-hidden testimonial-card mx-10 z-20 bg-white  min-h-[20vh] h-fit px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
-                    <p className=" font-light leading-8 ">{testimonial.message}</p>
+                  <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" lg:min-w-[320px] min-w-[280px] overflow-hidden testimonial-card mx-10 z-20 bg-white  min-h-[20vh] h-fit px-5 lg:px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
+                    <p className=" font-light md:leading-8 leading-7 ">{testimonial.message}</p>
                     <p className=" text-sky-blue-dark mt-5">{testimonial.name}</p>
                     <p className=" font-light mt-2">{testimonial.country}</p>
                   </div>
@@ -366,7 +418,7 @@ export default function Home() {
         </div>
 
 
-        <div className=" relative w-full flex  flex-col  items-center h-[130vh]  bg-white border ">
+        <div className=" relative w-full flex  flex-col  items-center h-[130vh]  bg-white   max-lg:hidden ">
           <div className=" w-[30%]   absolute left-0 top-0    ">
             <Image
               src='/images/home/journal-left-path.png'
@@ -377,7 +429,7 @@ export default function Home() {
             />
           </div>
 
-          <div className=" w-fit absolute  right-0 border bottom-0">
+          <div className=" w-fit absolute  right-0  bottom-0">
             <Image
               src='/images/home/journal-right-path.png'
               alt="pattern"
@@ -388,11 +440,11 @@ export default function Home() {
           </div>
 
           <div className=" w-full flex justify-center text-dark-4B mt-20 mb-16">
-            <h3 className={`${playfair.className} text-5xl`}>BlueTerra Journal</h3>
+            <h3 className={`${playfair.className} vertically-animated-element text-4xl xl:text-5xl`}>BlueTerra Journal</h3>
           </div>
 
-          <div className=" flex  space-x-10 w-11/12">
-            <div className=" w-1/3 group overflow-hidden h-[90vh] cursor-pointer rounded-xl  relative">
+          <div className=" flex  space-x-7  2xl:space-x-10 w-11/12">
+            <div className=" w-1/3 group overflow-hidden h-[90vh] cursor-pointer rounded-xl  relative scale-opacity-animate">
               <Image
                 src='/images/home/zebras-in-grasslands.jpg'
                 alt="zebra"
@@ -402,8 +454,8 @@ export default function Home() {
               <JournalsCardOverlay text='Best Destinations for Wellness and Mindfulness' />
             </div>
 
-            <div className=" flex flex-col h-[90vh] w-1/3 space-y-10 ">
-              <div className=" w-full group overflow-hidden cursor-pointer h-[45vh]  rounded-xl relative">
+            <div className=" flex flex-col h-[90vh] w-1/3 space-y-7  2xl:space-y-10 ">
+              <div className=" w-full group overflow-hidden cursor-pointer h-[45vh]  rounded-xl relative scale-opacity-animate">
                 <Image
                   src='/images/home/rock-in-river.jpg'
                   alt="rock in river "
@@ -413,7 +465,7 @@ export default function Home() {
                 <JournalsCardOverlay text='Why Boutique Travel is Shapingthe Future of Personalized' />
 
               </div>
-              <div className=" w-full group overflow-hidden cursor-pointer h-[45vh]  rounded-xl relative">
+              <div className=" w-full group overflow-hidden cursor-pointer h-[45vh]  rounded-xl relative scale-opacity-animate">
                 <Image
                   src='/images/home/zebras-in-grasslands.jpg'
                   alt="zebra"
@@ -426,7 +478,7 @@ export default function Home() {
 
             </div>
 
-            <div className=" w-1/3 h-[90vh] group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative">
+            <div className=" w-1/3 h-[90vh] group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative scale-opacity-animate">
               <Image
                 src='/images/home/girrafe-in-grassland.jpg'
                 alt="zebra"
@@ -439,17 +491,17 @@ export default function Home() {
           </div>
 
           <div className=" mt-20">
-            <Button text='VIEW ALL' buttonStyle='px-16 py-2 ' isHoverWhiteApplied={false} />
+            <Button text='VIEW ALL' buttonStyle='px-16 py-2 vertically-animated-element  ' isHoverWhiteApplied={false} />
           </div>
 
         </div>
 
 
         <div className=" w-full flex-center pb-10 mt-16 ">
-          <div className=" w-10/12 flex px-10   space-x-20">
+          <div className=" 2xl:w-10/12 w-full lg:w-11/12 flex px-10    lg:space-x-20">
             <Marquee pauseOnHover>
               {boxData?.map((data, index) => (
-                <div key={index} className=" w-[150px] h-[60px]  group cursor-pointer relative mx-10">
+                <div key={index} className=" lg:w-[150px] w-[120px] h-[60px]  group cursor-pointer relative mx-5 lg:mx-10">
                   <Image
                     src='/images/partner-company/logo-1.png'
                     alt="pattern"
@@ -463,13 +515,13 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="  h-[70vh] border w-full flex flex-col items-center relative mt-16 ">
+        <div className="  lg:h-[70vh] max-lg:mb-10  w-full flex flex-col items-center relative mt-5 xl:mt-10 2xl:mt-16 ">
 
-          <div className=" w-[70%]  absolute left-0  bottom-0    ">
+          <div className=" w-[30%]  absolute left-0  bottom-0    ">
             <Image
               src='/images/home/newsletter-left-path.png'
               alt="pattern"
-              width={600}
+              width={500}
               height={500}
               className=" object-cover"
             />
@@ -479,14 +531,14 @@ export default function Home() {
             <Image
               src='/images/home/newsletter-right-path.png'
               alt="pattern"
-              width={600}
+              width={500}
               height={500}
               className=" object-cover"
             />
           </div>
 
-          <div className={`flex w-11/12   space-x-16 ${rubik.className}`}>
-            <div className=" w-1/2 h-[55vh] relative group overflow-hidden rounded-4xl">
+          <div className={`flex max-lg:flex-col w-10/12 lg:w-11/12  max-lg:space-y-10 lg:space-x-10  xl:space-x-16 ${rubik.className}`}>
+            <div className=" w-full lg:w-1/2 h-[45vh] lg:h-[55vh] relative group overflow-hidden rounded-4xl scale-opacity-animate">
               <Image
                 src='/images/home/three-friends.jpg'
                 alt="three-friends"
@@ -494,21 +546,21 @@ export default function Home() {
                 className="object-cover scalling-group-110 rounded-4xl "
               />
               <div className=" absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black/20 cursor-pointer rounded-4xl">
-                <h3 className={`text-[50px] ${playfair.className} font-medium text-white`}>Book Your Next Trip</h3>
-                <Button text='PLAN YOUR TRIP' buttonStyle='px-12 py-2.5 mt-8 ' />
+                <h3 className={`xl:text-[50px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element text-center  font-medium text-white`}>Book Your Next Trip</h3>
+                <Button text='PLAN YOUR TRIP' buttonStyle='xl:px-12 px-6 py-2 xl:py-2.5 mt-8 max-md:text-sm  vertically-animated-element' />
 
               </div>
             </div>
-            <div className=" w-1/2 group overflow-hidden h-[55vh] relative rounded-4xl">
+            <div className=" w-full lg:w-1/2 group overflow-hidden h-[45vh] lg:h-[55vh] relative rounded-4xl scale-opacity-animate">
               <Image
                 src='/images/home/beautiful-sea.jpeg'
                 alt="beautiful-sea"
                 fill
                 className={`object-cover scalling-group-110 rounded-4xl`}
               />
-              <div className=" absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black/20 cursor-pointer rounded-4xl">
-                <h3 className={`text-[50px] ${playfair.className} font-medium text-white`}>Join Our Community</h3>
-                <p className="  text-[25px] text-white font-light mt-7 tracking-wide ">Get expert travel tips straight to your inbox.</p>
+              <div className=" absolute inset-0 w-full h-full flex flex-col justify-center text-center items-center bg-black/20 cursor-pointer rounded-4xl">
+                <h3 className={`xl:text-[50px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element  font-medium text-white`}>Join Our Community</h3>
+                <p className=" xl:text-[23px] lg:text-xl max-md:px-4  2xl:text-[25px] text-white font-light mt-7 vertically-animated-element tracking-wide ">Get expert travel tips straight to your inbox.</p>
 
               </div>
             </div>
@@ -517,11 +569,9 @@ export default function Home() {
         </div>
 
 
+        <Footer />
 
 
-        <div className=" w-full h-screen">
-
-        </div>
 
 
       </div>
