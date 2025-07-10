@@ -1,6 +1,6 @@
 import React from 'react'
 import { rubik } from '@/app/fonts'
-import Button from '../GeneralComponents/Button'
+import Button from '../generalComponents/Button'
 
 const JournalsCardOverlay = ({ text }) => {
 

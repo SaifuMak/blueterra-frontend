@@ -3,9 +3,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { HiMenuAlt3 } from '../reactIcons'
 import { IoSearchOutline } from "react-icons/io5";
-import MobileNavbar from "../GeneralComponents/mobileNavbar";
+import MobileNavbar from "../generalComponents/mobileNavbar";
 import { usePathname } from "next/navigation";
-import Button from "../GeneralComponents/Button";
+import Button from "../generalComponents/Button";
 import { rubik } from "@/app/fonts"
 
 export default function Navbar() {

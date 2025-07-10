@@ -13,7 +13,7 @@ import { testimonials } from "@/constants/testimonials";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import JournalsCardOverlay from "@/components/HomePage/JournalsCardOverlay";
-import Button from "@/components/GeneralComponents/Button";
+import Button from "@/components/generalComponents/Button";
 import Marquee from "react-fast-marquee";
 import DestinationCarousal from "@/components/Home/DestinationCarousal";
 
