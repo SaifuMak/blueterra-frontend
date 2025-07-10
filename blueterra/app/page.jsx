@@ -1,14 +1,12 @@
 'use client'
 
 import BannerAnimation from "@/components/Home/BannerAnimation";
-import DestinationCards from "@/components/DestinationsView/DestinationCards";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Filter from "@/components/Filter";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar/page";
 import Footer from "@/components/Footer/page";
-import CardData from "@/components/datas/Destinations";
 import { playfair, rubik, mrsSaint, jost } from "@/app/fonts"
 import { HOME_COLLECTIONS } from "@/constants/home-collections";
 import { DESTINATIONS_COLLECTIONS } from '@/constants/home-destinations'
