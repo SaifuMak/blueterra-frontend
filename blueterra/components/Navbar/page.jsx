@@ -5,7 +5,7 @@ import { HiMenuAlt3 } from '../reactIcons'
 import { IoSearchOutline } from "react-icons/io5";
 import MobileNavbar from "../GeneralComponents/mobileNavbar";
 import { usePathname } from "next/navigation";
-import Button from "../generalComponents/Button";
+import Button from "../GeneralComponents/Button";
 import { rubik } from "@/app/fonts"
 
 export default function Navbar() {
