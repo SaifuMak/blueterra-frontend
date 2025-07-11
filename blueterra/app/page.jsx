@@ -96,7 +96,6 @@ export default function Home() {
   }, []);
 
 
-
   useEffect(() => {
     let animationFrameId;
 
@@ -135,9 +134,6 @@ export default function Home() {
 
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
-
-
-
 
 
   const prevDestination =
@@ -250,7 +246,7 @@ export default function Home() {
       {
         scale: 1.09, // Ending value
         duration: 2,
-        ease: "power3.out", // 👈 Easing added
+        ease: "power3.out", // 
         scrollTrigger: {
           trigger: messageContainerRef.current,
           start: "top 90%",
