@@ -322,7 +322,7 @@ export default function Home() {
         </div>
 
 
-        <div ref={messageContainerRef} className=" w-full h-full max-md:py-8 lg:h-[90vh]   flex flex-col justify-center  relative overflow-hidden ">
+        <div ref={messageContainerRef} className=" w-full h-auto    flex flex-col justify-center  relative overflow-hidden ">
 
           <div className="absolute w-[25%] left-0  bottom-0 h-fit">
 
@@ -350,7 +350,7 @@ export default function Home() {
           </div>
 
 
-          <div className={` w-full  flex justify-center bg-white  text-center`}>
+          <div className={` w-full py-10 md:py-16 xl:py-24  2xl:py-28 flex justify-center bg-white  text-center`}>
             <div className={`${rubik.className}  md:px-10 px-5 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
               <h2 className={`${playfair.className} text-3xl vertically-animated-element  lg:text-4xl xl:text-[48px] text-dark-4B`}>Welcome To BlueTerra</h2>
               <p className=" vertically-animated-element 2xl:text-2xl max-sm:text-base text-lg lg:text-xl font-light leading-8 xl:leading-10 ">We are a boutique, founder-led travel brand based in the UAE, dedicated to crafting thoughtful and personalized journeys. </p>
@@ -388,7 +388,7 @@ export default function Home() {
 
 
         {/* destinations section  */}
-        <div className=" w-full mt-12 2xl:mt-20 z-0 h-[110vh] overflow-hidden relative max-lg:hidden ">
+        <div className=" w-full mt-12 2xl:mt-20 z-0 h-[100dvh] overflow-hidden relative max-lg:hidden ">
 
           <Image
             ref={destinationBannerRef}
@@ -568,7 +568,7 @@ export default function Home() {
 
 
         <div className=" w-full flex-center pb-10 mt-16 ">
-          <div className=" 2xl:w-10/12 w-full lg:w-11/12 flex px-10    lg:space-x-20">
+          <div className=" 2xl:w-10/12 w-full lg:w-11/12 flex px-10  lg:space-x-20">
             <Marquee pauseOnHover>
               {boxData?.map((data, index) => (
                 <div key={index} className=" lg:w-[150px] w-[120px] h-[60px]  group cursor-pointer relative mx-5 lg:mx-10">
@@ -584,6 +584,7 @@ export default function Home() {
             </Marquee>
           </div>
         </div>
+
 
         <div className="  lg:h-[70vh] max-lg:mb-10  w-full flex flex-col items-center relative mt-5 xl:mt-10 2xl:mt-16 ">
 
@@ -638,11 +639,7 @@ export default function Home() {
 
         </div>
 
-
         <Footer />
-
-
-
 
       </div>
     </SmoothScroll>

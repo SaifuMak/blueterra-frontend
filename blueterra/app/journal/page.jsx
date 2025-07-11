@@ -67,13 +67,12 @@ export default function Journal() {
                                     />
                                 </div>
                             </div>
-                        </div>
-
-                        <div className=" w-11/12 mt-10   rounded-2xl ">
-                            <Journals Data={JOURNAL_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} />
 
                         </div>
 
+                        <div className=" w-10/12 mt-10   rounded-2xl ">
+                            <Journals Data={JOURNAL_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} currentCollection={currentCollection} CollectionCount={CollectionCount} />
+                        </div>
 
                     </div>
                 </div>
