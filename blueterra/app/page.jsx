@@ -386,7 +386,6 @@ export default function Home() {
         </div>
 
 
-
         {/* destinations section  */}
         <div className=" w-full mt-12 2xl:mt-20 z-0 h-[100dvh] overflow-hidden relative max-lg:hidden ">
 
@@ -398,9 +397,9 @@ export default function Home() {
             priority
             className="object-fill"
           />
-          <div className=" w-full h-full text-white absolute flex flex-col translate-all duration-1000 ease-in-out  items-end inset-0 bg-[#0E518199]/80 ">
+          <div className=" w-full h-full text-white absolute flex flex-col translate-all duration-1000 ease-in-out  items-end inset-0 bg-[#0E5181]/60 ">
 
-            <div className={`2xl:w-11/12 w-full max-2xl:pl-10 h-[70vh] xl:h-[80vh]  mt-[10vh] ${playfair.className} `}>
+            <div className={`2xl:w-11/12 w-full max-2xl:pl-10 h-[60vh] xl:h-[60vh]   mt-[10vh] ${playfair.className} `}>
 
               <h2 className=" vertically-animated-element text-[45px] xl:text-[50px]  ">Our Destination Highlights</h2>
               <p className={`${rubik.className} vertically-animated-element  mt-4 leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>Discover the Unique Charm and Unforgettable Experiences Each Destination Has to Offer</p>
@@ -419,12 +418,12 @@ export default function Home() {
                   </div>
 
                   <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${jost.className} py-2`} />
-
                 </div>
 
-                <div className=" flex items-center w-10/12 overflow-hidden justify-center  space-x-8 ">
 
-                  <div className=" w-11/12   mt-4 ">
+                <div className=" flex items-center  w-10/12 justify-end overflow-hidden     space-x-8 ">
+
+                  <div className=" w-full   pl-5   ">
                     <DestinationCarousal Data={DESTINATIONS_COLLECTIONS} setCurrent={setCurrentDestination} setCount={setDestinationCount} currentDestination={currentDestination} />
                   </div>
 
@@ -488,7 +487,7 @@ export default function Home() {
         </div>
 
 
-        <div className=" relative w-full flex  flex-col  items-center h-[130vh]  bg-white   max-lg:hidden ">
+        <div className=" relative w-full flex  flex-col  items-center h-[120vh]   py-10 xl:py-16 2xl:py-20 space-y-12 xl:space-y-20   max-lg:hidden ">
           <div className=" w-[30%]   absolute left-0 top-0    ">
             <Image
               src='/images/home/journal-left-path.png'
@@ -509,12 +508,12 @@ export default function Home() {
             />
           </div>
 
-          <div className=" w-full flex justify-center text-dark-4B mt-20 mb-16">
+          <div className=" w-full flex justify-center text-dark-4B">
             <h3 className={`${playfair.className} vertically-animated-element heading-text`}>BlueTerra Journal</h3>
           </div>
 
-          <div className=" flex  space-x-7  2xl:space-x-10 w-11/12">
-            <div className=" w-1/3 group overflow-hidden h-[90vh] cursor-pointer rounded-xl  relative scale-opacity-animate">
+          <div className=" flex h-[100%]   space-x-7  2xl:space-x-10 w-11/12">
+            <div className=" w-1/3 group overflow-hidden h-full cursor-pointer rounded-xl  relative scale-opacity-animate">
               <Image
                 src='/images/home/zebras-in-grasslands.jpg'
                 alt="zebra"
@@ -524,8 +523,8 @@ export default function Home() {
               <JournalsCardOverlay text='Best Destinations for Wellness and Mindfulness' />
             </div>
 
-            <div className=" flex flex-col h-[90vh] w-1/3 space-y-7  2xl:space-y-10 ">
-              <div className=" w-full group overflow-hidden cursor-pointer h-[45vh]  rounded-xl relative scale-opacity-animate">
+            <div className=" flex flex-col h-full w-1/3 space-y-7  2xl:space-y-10 ">
+              <div className=" w-full group overflow-hidden cursor-pointer h-[50%]  rounded-xl relative scale-opacity-animate">
                 <Image
                   src='/images/home/rock-in-river.jpg'
                   alt="rock in river "
@@ -535,7 +534,7 @@ export default function Home() {
                 <JournalsCardOverlay text='Why Boutique Travel is Shapingthe Future of Personalized' />
 
               </div>
-              <div className=" w-full group overflow-hidden cursor-pointer h-[45vh]  rounded-xl relative scale-opacity-animate">
+              <div className=" w-full group overflow-hidden cursor-pointer h-[50%]  rounded-xl relative scale-opacity-animate">
                 <Image
                   src='/images/home/zebras-in-grasslands.jpg'
                   alt="zebra"
@@ -548,7 +547,7 @@ export default function Home() {
 
             </div>
 
-            <div className=" w-1/3 h-[90vh] group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative scale-opacity-animate">
+            <div className=" w-1/3 h-full group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative scale-opacity-animate">
               <Image
                 src='/images/home/girrafe-in-grassland.jpg'
                 alt="zebra"
@@ -560,23 +559,22 @@ export default function Home() {
 
           </div>
 
-          <div className=" mt-20">
-            <Button text='VIEW ALL' buttonStyle='px-16 py-2 vertically-animated-element  ' isHoverWhiteApplied={false} />
+          <div className="">
+            <Button text='VIEW ALL' buttonStyle='px-16 py-2  ' isHoverWhiteApplied={false} />
           </div>
 
         </div>
 
 
-        <div className=" w-full flex-center pb-10 mt-16 ">
-          <div className=" 2xl:w-10/12 w-full lg:w-11/12 flex px-10  lg:space-x-20">
+        <div className=" w-full flex-center pb-10 mt-10  ">
+          <div className=" 2xl:w-10/12 w-full lg:w-11/12 flex lg:px-10   py-3  lg:space-x-20   ">
             <Marquee pauseOnHover>
               {boxData?.map((data, index) => (
-                <div key={index} className=" lg:w-[150px] w-[120px] h-[60px]  group cursor-pointer relative mx-5 lg:mx-10">
+                <div key={index} className="   group cursor-pointer h-[40px] w-[150px] relative mx-5 lg:mx-10">
                   <Image
                     src='/images/partner-company/logo-1.png'
                     alt="pattern"
-                    width={600}
-                    height={500}
+                    fill
                     className=" object-cover grayscale group-hover:grayscale-0 transition duration-500"
                   />
                 </div>
@@ -586,7 +584,7 @@ export default function Home() {
         </div>
 
 
-        <div className="  lg:h-[70vh] max-lg:mb-10  w-full flex flex-col items-center relative mt-5 xl:mt-10 2xl:mt-16 ">
+        <div className=" lg:h-[50vh] xl:h-[60vh]  2xl:h-[70vh]  max-lg:mb-10  w-full flex flex-col items-center relative py-5 md:py-12  2xl:py-20 ">
 
           <div className=" w-[30%]  absolute left-0  bottom-0    ">
             <Image
@@ -608,8 +606,8 @@ export default function Home() {
             />
           </div>
 
-          <div className={`flex max-lg:flex-col w-10/12 lg:w-11/12  max-lg:space-y-10 lg:space-x-10  xl:space-x-16 ${rubik.className}`}>
-            <div className=" w-full lg:w-1/2 h-[45vh] lg:h-[55vh] relative group overflow-hidden rounded-4xl scale-opacity-animate">
+          <div className={`flex max-lg:flex-col w-10/12 lg:w-11/12  lg:h-screen  max-lg:space-y-10 lg:space-x-10  xl:space-x-16 ${rubik.className}`}>
+            <div className=" w-full lg:w-1/2 max-lg:h-[40vh]  relative group overflow-hidden rounded-4xl scale-opacity-animate">
               <Image
                 src='/images/home/three-friends.jpg'
                 alt="three-friends"
@@ -617,12 +615,12 @@ export default function Home() {
                 className="object-cover scalling-group-110 rounded-4xl "
               />
               <div className=" absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black/20 cursor-pointer rounded-4xl">
-                <h3 className={`xl:text-[50px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element text-center  font-normal text-white`}>Book Your Next Trip</h3>
-                <Button text='PLAN YOUR TRIP' buttonStyle='xl:px-12 px-6 py-2 xl:py-2.5 mt-8 max-md:text-sm  vertically-animated-element' />
+                <h3 className={`2xl:text-[50px] text-3xl xl:text-[45px]  lg:text-4xl ${playfair.className} vertically-animated-element text-center  font-normal text-white`}>Book Your Next Trip</h3>
+                <Button text='PLAN YOUR TRIP' buttonStyle='xl:px-12 px-6 py-2 xl:py-2.5 mt-8 max-md:text-xs  vertically-animated-element' />
 
               </div>
             </div>
-            <div className=" w-full lg:w-1/2 group overflow-hidden h-[45vh] lg:h-[55vh] relative rounded-4xl scale-opacity-animate">
+            <div className=" w-full lg:w-1/2 max-lg:h-[40vh] group overflow-hidden  relative rounded-4xl scale-opacity-animate">
               <Image
                 src='/images/home/beautiful-sea.jpeg'
                 alt="beautiful-sea"
@@ -630,7 +628,7 @@ export default function Home() {
                 className={`object-cover scalling-group-110 rounded-4xl`}
               />
               <div className=" absolute inset-0 w-full h-full flex flex-col justify-center text-center items-center bg-black/20 cursor-pointer rounded-4xl">
-                <h3 className={`xl:text-[50px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element  font-normal text-white`}>Join Our Community</h3>
+                <h3 className={`2xl:text-[50px] xl:text-[45px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element  font-normal text-white`}>Join Our Community</h3>
                 <p className=" xl:text-[23px] lg:text-xl max-md:px-4  2xl:text-[23px] text-white font-light mt-7 vertically-animated-element tracking-wide ">Get expert travel tips straight to your inbox.</p>
 
               </div>
