@@ -64,9 +64,9 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
 
     return (
 
-        <div className=" flex justify-center items-center flex-col   ">
+        <div className=" flex justify-center items-center flex-col rounded-2xl   ">
 
-            <div ref={containerRef} className="  w-full   relative  flex-center ">
+            <div ref={containerRef} className="  w-full   relative  flex-center rounded-2xl  ">
                 <Carousel
                     setApi={setApi}
                     opts={{
@@ -85,9 +85,9 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
                     <CarouselContent>
 
                         {Data?.map((item, index) => (
-                            <CarouselItem key={index} className="md:basis-1/1 lg:basis-1/1  flex-center ">
+                            <CarouselItem key={index} className="md:basis-1/1 lg:basis-1/1  flex-center rounded-2xl  ">
 
-                                <div className=" relative group cursor-pointer w-[100%] h-[65vh] rounded-2xl overflow-hidden">
+                                <div className=" relative group cursor-pointer w-[100%] h-[30vh] md:h-[35vh] lg:h-[45vh] xl:h-[55vh] 2xl:h-[65vh] rounded-2xl overflow-hidden">
 
                                     <Image
                                         src={item.image}
@@ -104,20 +104,20 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
                     {/* <CarouselPrevious />
                     <CarouselNext /> */}
 
-                    <div className="  text-white absolute rounded-2xl pointer-events-none   flex flex-col justify-between inset-0 bg-gradient-to-t  from-black/80 via-transparent to-transparent">
+                    <div className="  text-white absolute rounded-3xl pointer-events-none   flex flex-col justify-between inset-0 bg-gradient-to-t  from-black/80 via-transparent to-transparent">
 
-                        <div className=" flex  space-x-3  p-10">
+                        <div className=" flex  space-x-3 p-4  md:p-10">
                             {Data?.map((_, index) => (
-                                <div key={index} className={`${currentCollection === index ? 'bg-white' : ' bg-white/30'} translate-all duration-700 ease-in-out h-[3px] rounded-2xl w-16 bg-white`}></div>
+                                <div key={index} className={`${currentCollection === index ? 'bg-white' : ' bg-white/30'} translate-all duration-700 ease-in-out h-[3px] rounded-3xl w-16 bg-white`}></div>
                             ))}
                         </div>
 
-                        <div className="  px-10 py-5 space-y-5 ">
+                        <div className="  px-4 md:px-10 md:py-5 lg:space-y-5 space-y-3  vertical-fade-in">
                             <div className=" space-y-3 overflow-hidden vertical-fade-in">
-                                <h2 className=" text-[30px]   font-medium">{Data[currentCollection]?.title}</h2>
-                                <p className=" text-xl  font-light w-10/12">{Data[currentCollection]?.description}</p>
+                                <h2 className=" 2xl:text-[30px] xl:text-[24px] md:text-xl   font-medium">{Data[currentCollection]?.title}</h2>
+                                <p className=" 2xl:text-xl xl:text-lg text-sm max-sm:text-xs  font-light md:w-10/12">{Data[currentCollection]?.description}</p>
                             </div>
-                            <div className=" flex items-center font-light justify-between">
+                            <div className=" flex items-center  max-2xl:text-sm font-light justify-between  ">
                                 <div className="">
                                     <p className=" flex  items-center "> <span className=""><img src="/Icons/calender.svg" alt="" className=" size-4 object-cover mr-2 " /></span>{Data[currentCollection]?.date}</p>
                                 </div>
