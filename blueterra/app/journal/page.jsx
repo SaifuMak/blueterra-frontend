@@ -2,10 +2,10 @@
 import { playfair, rubik, mrsSaint, jost } from "@/app/fonts"
 import BackgroundClipPath from "@/components/generalComponents/BackgroundClipPath"
 import Image from "next/image"
-import { HiOutlineArrowNarrowRight, RxCross2, CiSearch } from '@/components/reactIcons'
+import { HiOutlineArrowNarrowRight, RxCross2, CiSearch,HiArrowLongRight } from '@/components/reactIcons'
 import { useRef, useEffect, useState } from "react"
 import carousalData from "@/components/datas/DestinationsDetails"
-import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from '@/components/reactIcons';
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight,RiArrowRightSLine } from '@/components/reactIcons';
 import Journals from "@/components/Journey/Journals"
 import { HOME_COLLECTIONS } from "@/constants/home-collections"
 import SmoothScroll from "@/components/SmoothScroll"
@@ -13,6 +13,7 @@ import { JOURNAL_COLLECTIONS } from "@/constants/blog-collections"
 import Button from "@/components/generalComponents/Button"
 import Navbar from "@/components/Navbar/page"
 import Footer from "@/components/Footer/page"
+
 
 export default function Journal() {
 
@@ -27,11 +28,11 @@ export default function Journal() {
 
     const journalsData = [
         { title: 'Best Destinations for Wellness and Mindfulness', image: '/images/static/snowfall.png', alt: 'snow ' },
-        { title: 'Best Destinations for Wellness and Mindfulness', image: '/images/static/snowfall.png', alt: 'snow ' },
-        { title: 'Best Destinations for Wellness and Mindfulness', image: '/images/static/snowfall.png', alt: 'snow ' },
-        { title: 'Best Destinations for Wellness and Mindfulness', image: '/images/static/snowfall.png', alt: 'snow ' },
-        { title: 'Best Destinations for Wellness and Mindfulness', image: '/images/static/snowfall.png', alt: 'snow ' },
-        { title: 'Best Destinations for Wellness and Mindfulness', image: '/images/static/snowfall.png', alt: 'snow ' },
+        { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/1707310/pexels-photo-1707310.jpeg', alt: 'snow ' },
+        { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/70441/pexels-photo-70441.jpeg', alt: 'snow ' },
+        { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/2610309/pexels-photo-2610309.jpeg', alt: 'snow ' },
+        { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/2265876/pexels-photo-2265876.jpeg', alt: 'snow ' },
+        { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/1122408/pexels-photo-1122408.jpeg', alt: 'snow ' },
 
     ]
 
@@ -70,7 +71,8 @@ export default function Journal() {
                                 <p className={`xl:text-3xl text-2xl font-medium ${playfair.className}`}>Get Inspired</p>
                                 <div className="md:w-[80%] w-[90%] h-9 md:h-10 xl:h-12 xl:mt-4 mt-3 rounded-sm border border-[#2A282880]/50 px-3 flex  justify-between items-center ">
                                     <input type="text" className="w-[120px] outline-none placeholder:text-sm md:placeholder:text-base" placeholder="Search journal..." />
-                                    <span className="ml-1 text-slate-900  font-bold"><CiSearch /></span>
+                                    {/* <span className="ml-1 text-slate-900  font-bold"><CiSearch /></span> */}
+                                    <img src="/Icons/search.svg" alt="search icon " className=" size-5" />
                                 </div>
                             </div>
 
@@ -138,8 +140,11 @@ export default function Journal() {
 
                         <div className=" w-full  my-16 flex justify-center space-x-4  z-20 items-center">
                             {pages?.map((page, index) => (
-                                <div key={index} className={`${index === 0 ? 'bg-sky-blue-1 text-white' : 'bg-white text-sky-blue-1'} rounded-sm px-3 py-1`}>{page}</div>
+                                <div key={index} className={`${index === 0 ? 'bg-sky-blue-1 text-white' : 'bg-white text-sky-blue-1'} rounded-sm px-3 py-1.5 border border-slate-100`}>{page}</div>
                             ))}
+                                    <img src="/Icons/arrow-blue.svg" alt="search icon " className=" size-4" />
+
+                           
                         </div>
                         <BackgroundClipPath outerClass='absolute    bottom-0   ' ImagePath='/images/journal/journal-card-bottom.png' width='500' height='1000' />
                         <BackgroundClipPath outerClass='absolute top-[20%] right-0   ' ImagePath='/images/journal/journal-card-left-clippath.png' width='500' height='1000' />

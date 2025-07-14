@@ -446,6 +446,7 @@ export default function Home() {
               className=" object-cover"
             />
           </div>
+          
           <div className=" w-[20%] absolute right-0 bottom-0    ">
             <Image
               src='/images/home/testimonial-right-pattern.png'

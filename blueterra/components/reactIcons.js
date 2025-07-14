@@ -10,6 +10,8 @@ import { IoIosStarOutline, IoIosStar, IoIosStarHalf } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { HiArrowLongRight } from "react-icons/hi2";
+import { RiArrowRightSLine } from "react-icons/ri";
 export {
     GoDot,
     HiOutlineArrowNarrowRight,
@@ -23,4 +25,6 @@ export {
     IoEyeOutline,
     IoEyeOffOutline,
     MdOutlineKeyboardArrowDown,
+    HiArrowLongRight,
+    RiArrowRightSLine,
 };

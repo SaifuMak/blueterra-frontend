@@ -81,6 +81,7 @@ body {
   @apply text-3xl lg:text-4xl text-center xl:text-5xl
 }
 
+
 @theme {
   --color-brand-blue: #2571B8;
   --color-custom-sky-blue: #00A0DE;
@@ -92,6 +93,8 @@ body {
   --color-sky-blue-light: #F4FBFF;
   --color-sky-blue-dark: #026E9E;
   --color-dark-blue: #026E9E;
+  --color-light-beige: #F9F5EC;
+  --color-dark-beige: #F0DBCE;
 }
 
 @theme{
