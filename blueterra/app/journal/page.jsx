@@ -2,10 +2,10 @@
 import { playfair, rubik, mrsSaint, jost } from "@/app/fonts"
 import BackgroundClipPath from "@/components/generalComponents/BackgroundClipPath"
 import Image from "next/image"
-import { HiOutlineArrowNarrowRight, RxCross2, CiSearch,HiArrowLongRight } from '@/components/reactIcons'
+import { HiOutlineArrowNarrowRight, RxCross2, CiSearch, HiArrowLongRight } from '@/components/reactIcons'
 import { useRef, useEffect, useState } from "react"
 import carousalData from "@/components/datas/DestinationsDetails"
-import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight,RiArrowRightSLine } from '@/components/reactIcons';
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight, RiArrowRightSLine } from '@/components/reactIcons';
 import Journals from "@/components/Journey/Journals"
 import { HOME_COLLECTIONS } from "@/constants/home-collections"
 import SmoothScroll from "@/components/SmoothScroll"
@@ -56,7 +56,6 @@ export default function Journal() {
                             <h1 className={` ${playfair.className}  translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-medium `}>Voyage Journal</h1>
                         </div>
                     </div>
-
                 </div>
 
                 <div className=" w-full 2xl:h-[120vh] xl:h-[110vh] h-full  flex-center relative ">
@@ -142,9 +141,9 @@ export default function Journal() {
                             {pages?.map((page, index) => (
                                 <div key={index} className={`${index === 0 ? 'bg-sky-blue-1 text-white' : 'bg-white text-sky-blue-1'} rounded-sm px-3 py-1.5 border border-slate-100`}>{page}</div>
                             ))}
-                                    <img src="/Icons/arrow-blue.svg" alt="search icon " className=" size-4" />
+                            <img src="/Icons/arrow-blue.svg" alt="search icon " className=" size-4" />
 
-                           
+
                         </div>
                         <BackgroundClipPath outerClass='absolute    bottom-0   ' ImagePath='/images/journal/journal-card-bottom.png' width='500' height='1000' />
                         <BackgroundClipPath outerClass='absolute top-[20%] right-0   ' ImagePath='/images/journal/journal-card-left-clippath.png' width='500' height='1000' />
@@ -155,7 +154,7 @@ export default function Journal() {
                 </div>
 
             </div>
-            <Footer/>
+            <Footer />
         </SmoothScroll>
 
     )
