@@ -88,8 +88,6 @@ export default function Corporate() {
     const bannerRef = useRef()
 
 
-
-
     useGSAP(() => {
         const elements = gsap.utils.toArray(".vertically-animated-element");
 
@@ -111,7 +109,6 @@ export default function Corporate() {
             );
         });
     }, { scope: containerRef });
-
 
 
     useGSAP(() => {
@@ -156,7 +153,6 @@ export default function Corporate() {
     }, { scope: bannerRef });
 
 
-
     return (
         <>
             <SmoothScroll>
@@ -177,7 +173,9 @@ export default function Corporate() {
                         </div>
                     </div>
 
-                    <div className=" w-full 2xl:h-[90vh] xl:h-[80vh] md:h-[70vh] h-full max-sm:py-7 flex-center  bg-light-beige relative">
+                    {/* <div className=" w-full 2xl:min-h-[90vh] xl:min-h-[80vh] md:min-h-[70vh] h-full max-sm:py-7 flex-center  bg-light-beige relative"> */}
+                    <div className=" w-full py-12 lg:py-20  h-full max-sm:py-7 flex-center  bg-light-beige relative">
+
                         <ResponsiveClipPath outerClass='absolute md:w-7/12 w-full right-0 top-0 h-full  ' ImagePath='/images/corporate/intro-right-clip-path.png' />
                         <ResponsiveClipPath outerClass='absolute w-full md:w-1/4 left-0 bottom-0 h-10/12  ' ImagePath='/images/corporate/intro-left-clip-path.png' />
 
@@ -196,7 +194,9 @@ export default function Corporate() {
                     </div>
 
 
-                    <div className=" w-full  text-dark-28 flex-center  h-full md:h-[70vh] xl:h-[80vh] relative">
+                    {/* <div className=" w-full  text-dark-28 flex-center  h-full md:min-h-[70vh] xl:min-h-[100vh] relative "> */}
+                    <div className=" w-full  text-dark-28 flex-center  h-full py-12 lg:py-20  relative ">
+
                         <ResponsiveClipPath outerClass='absolute w-full md:w-1/4 left-0 top-0 h-10/12' ImagePath='/images/corporate/experiences-left-clip-path.png' />
 
                         <Events firstTitle='Corporate'
@@ -223,7 +223,9 @@ export default function Corporate() {
                         <ResponsiveClipPath outerClass='absolute  md:w-1/4 right-0  bottom-0 h-3/12  ' ImagePath='/images/corporate/events-bottom-clip-path.png' />
                     </div>
 
-                    <div className=" xl:h-[45vh] md:h-[35vh] h-[30vh] w-full   relative ">
+                    {/* <div className=" xl:min-h-[45vh] md:min-h-[35vh] h-min-[30vh] w-full h-full   relative "> */}
+                    <div className=" xl:min-h-[45vh] md:min-h-[40vh] h-[35vh] w-full   relative ">
+
                         <Image
                             src='/images/corporate/paper-background.png'
                             alt='quote'
@@ -232,7 +234,7 @@ export default function Corporate() {
                             style={{ objectFit: 'cover' }}
                         />
 
-                        <div className=" w-full absolute inset-0 text-center space-y-2 lg:space-y-4 2xl:space-y-7  h-full text-dark-28  flex flex-col justify-center items-center">
+                        <div className=" w-full max-sm:px-2  absolute inset-0 text-center space-y-2 lg:space-y-4 2xl:space-y-7   h-full text-dark-28  flex flex-col justify-center items-center">
                             <p className=" vertically-animated-element md:text-2xl xl:text-3xl font-light  md:leading-10 w-11/12  md:w-9/12 xl:w-8/12 2xl:w-6/12 md:px-10  ">If you’re ready to bring beautiful, unforgettable events to life, contact us today</p>
                             <h3 className={`${playfair.className} font-medium vertically-animated-element max-sm:px-2  text-dark-4B text-xl md:text-4xl  xl:text-[50px]`}>Let’s start planning your perfect experience.</h3>
                             <Button text='CONTACT US' buttonStyle={` transition-all vertically-animated-element duration-500 mt-3 md:mt-5 xl:mt-2  ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-16 py-1.5 xl:py-2.5 `} />
@@ -278,7 +280,7 @@ export default function Corporate() {
                         <ResponsiveClipPath outerClass='absolute w-full md:w-3/12 top-0 z-10 left-0 h-11/12' ImagePath='/images/corporate/why-us-clip-path.png' />
                     </div>
 
-                    <div className=" w-full h-full md:h-[85vh]   text-dark-28 flex-center relative">
+                    <div className=" w-full h-full py-12 md:py-20  text-dark-28 flex-center relative">
                         <ResponsiveClipPath outerClass='absolute w-full md:w-3/12 bottom-0 z-10 right-0 h-full' ImagePath='/images/corporate/contact-clip-path.png' />
 
                         <div className=" w-11/12  max-sm:my-10   space-x-10 flex max-md:flex-col justify-center">

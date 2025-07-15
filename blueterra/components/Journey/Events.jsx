@@ -36,12 +36,12 @@ const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, i
 
             <div className={`${outerClass} md:hidden text-center w-11/12 flex flex-col`}   >
 
-                <div className="  flex flex-col  text-2xl font-medium  ">
+                <div className="  flex flex-col px-2  text-2xl font-medium  ">
                     <h3 className={`${playfair.className} `}>{firstTitle} {secondTitle}</h3>
                     <p className=" font-light mt-3 text-lg">{description}</p>
                 </div>
 
-                <div className=" space-y-2 text-sm font-light mt-5">
+                <div className=" space-y-2 text-sm font-light px-2 mt-5">
                     <p className="">{firstPara}</p>
                     <p className="">{secondPara}</p>
                 </div>
