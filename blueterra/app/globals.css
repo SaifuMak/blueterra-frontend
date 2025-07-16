@@ -217,3 +217,70 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+
+/* styles/editor-content.css */
+.blog-content {
+  line-height: 1.6;
+  color: #333;
+  margin: 0 auto;
+}
+
+.blog-content h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin: 2rem 0 1rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.blog-content h2 {
+  font-size: 2rem;
+  color: #3498db;
+  margin: 1.5rem 0 1rem;
+}
+
+.blog-content p {
+  margin-bottom: 1.5rem;
+}
+
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.blog-content table, 
+.blog-content th, 
+.blog-content td {
+  border: 1px solid #ddd;
+}
+
+.blog-content th, 
+.blog-content td {
+  padding: 12px;
+  text-align: left;
+}
+
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.blog-content ol, 
+.blog-content ul {
+  margin: 1rem 0 1rem 2rem;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-content ul ul,
+.blog-content ol ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}

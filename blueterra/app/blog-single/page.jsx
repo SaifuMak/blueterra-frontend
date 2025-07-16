@@ -11,7 +11,7 @@ import { useGSAP } from "@gsap/react"
 import { useRef } from "react"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BlogCards from "@/components/GeneralComponents/BlogCards"
-
+import { Dummy_Blog } from "@/constants/dummy-blog"
 
 export default function BlogSingle() {
 
@@ -40,7 +40,10 @@ export default function BlogSingle() {
 
 
                 <div className=" w-11/12 2xl:w-10/12 mt-20  flex max-lg:flex-col  border ">
-                    <div className=" w-full border  h-[190vh]">
+                    <div className="  w-full border   h-full" >
+                    <div className=" w-full h-full blog-content"  dangerouslySetInnerHTML={{ __html: Dummy_Blog }}>
+
+                    </div>
 
                     </div>
 

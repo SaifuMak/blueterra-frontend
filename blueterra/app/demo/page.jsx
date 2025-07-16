@@ -20,7 +20,6 @@ export default function Demo() {
         }
     };
 
-
     if (!isClient) {
         return null; // or a loading placeholder
     }
