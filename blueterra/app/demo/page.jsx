@@ -1,43 +1,59 @@
-'use client';
+'use client'
+import { Editor } from '@tinymce/tinymce-react';
+import { useRef, useState, useEffect } from 'react';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import { Autoplay } from 'swiper/modules';
+export default function Demo() {
 
-// Sample array of box items
-const boxData = [
-    { id: 1, title: 'Box 1', color: 'bg-red-400' },
-    { id: 2, title: 'Box 2', color: 'bg-green-400' },
-    { id: 3, title: 'Box 3', color: 'bg-blue-400' },
-    { id: 4, title: 'Box 4', color: 'bg-yellow-400' },
-    { id: 5, title: 'Box 5', color: 'bg-purple-400' },
-];
+    const editorRef = useRef(null);
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    const handleGetContent = () => {
+        if (editorRef.current) {
+            const content = editorRef.current.getContent();
+            console.log(content); // This will log the HTML content
+            // You can now use this content as needed
+            alert('Content logged to console!');
+        }
+    };
 
 
-export default function Swipper() {
+    if (!isClient) {
+        return null; // or a loading placeholder
+    }
+
+
     return (
-        <Swiper
-            modules={[Autoplay]}
-            spaceBetween={20}
-            // slidesPerView={3}
-            slidesPerView='auto'
 
-            loop={true}
-            speed={3000} // smoothness of the transition (higher = smoother)
-            autoplay={{
-                delay: 0, // no delay between transitions
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            }}
-            allowTouchMove={false} // optional: disable dragging if you want pure auto-scroll
-        >
-            {boxData.map((box) => (
-                <SwiperSlide key={box.id}>
-                    <div className={`h-40 flex items-center justify-center text-white text-lg font-semibold rounded-lg ${box.color}`}>
-                        {box.title}
-                    </div>
-                </SwiperSlide>
-            ))}
-        </Swiper>
+        <>
+            <Editor
+                onInit={(evt, editor) => editorRef.current = editor}
+                apiKey='5x0d43so5yodigr6a7p6b1a09jh9n0ugfks5wljq1r0lm2wm'
+                init={{
+                    plugins: [
+                        // Core editing features
+                        'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+                        // Your account includes a free trial of TinyMCE premium features
+                        // Try the most popular premium features until Jul 30, 2025:
+                        'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
+                    ],
+                    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                    tinycomments_mode: 'embedded',
+                    tinycomments_author: 'Author name',
+                    mergetags_list: [
+                        { value: 'First.Name', title: 'First Name' },
+                        { value: 'Email', title: 'Email' },
+                    ],
+                    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+                }}
+                initialValue="Welcome to TinyMCE!"
+            />
+            <div className=" w-full justify-center flex">
+                <button onClick={handleGetContent} className=' mt-10 px-6 py-2 text-white bg-sky-blue-1'>Generate</button>
+            </div>
+        </>
     );
 }
