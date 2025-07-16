@@ -13,7 +13,7 @@ import { JOURNAL_COLLECTIONS } from "@/constants/blog-collections"
 import Button from "@/components/generalComponents/Button"
 import Navbar from "@/components/Navbar/page"
 import Footer from "@/components/Footer/page"
-
+import Link from "next/link"
 
 export default function Journal() {
 
@@ -89,14 +89,13 @@ export default function Journal() {
                             </div>
 
                         </div>
-
-                        <div className=" max-sm:mt-8 w-full xl:mt-10 overflow-hidden   rounded-3xl ">
-                            <Journals Data={JOURNAL_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} currentCollection={currentCollection} CollectionCount={CollectionCount} />
-                        </div>
-
+                            <div className=" max-sm:mt-8 w-full xl:mt-10 overflow-hidden   rounded-3xl ">
+                                <Journals Data={JOURNAL_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} currentCollection={currentCollection} CollectionCount={CollectionCount} />
+                            </div>
+                     
                         <div className=" w-full space-x-5 flex-wrap gap-y-6 text-dark-28 max-xl:text-sm mb-10 xl:mt-10 max-sm:mt-10 max-sm:text-xs flex items-center ">
                             {filters?.map((filter, index) => (
-                                <div key={index} className={` text-nowrap ${index === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>{filter}</div>
+                                <div key={index} className={` cursor-pointer text-nowrap ${index === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>{filter}</div>
                             ))}
                         </div>
                     </div>
@@ -155,7 +154,7 @@ export default function Journal() {
 
             </div>
             <Footer />
-        </SmoothScroll>
+        </SmoothScroll >
 
     )
 }

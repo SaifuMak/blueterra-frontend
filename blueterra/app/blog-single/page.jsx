@@ -12,6 +12,8 @@ import { useRef } from "react"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BlogCards from "@/components/generalComponents/BlogCards"
 import { Dummy_Blog } from "@/constants/dummy-blog"
+import { useEffect, useState } from "react"
+
 
 export default function BlogSingle() {
 
@@ -20,6 +22,16 @@ export default function BlogSingle() {
         { "image": "https://images.pexels.com/photos/247376/pexels-photo-247376.jpeg", "date": "10 May 2025", "description": "Hidden Villages That Are Truly Worth Discovering and Exploring" },
         { "image": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg", "date": "10 May 2025", "description": "Best Destinations for Wellness and Mindfulness" },
     ]
+
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null; // or a loading placeholder
+    }
 
 
     return (
@@ -39,11 +51,11 @@ export default function BlogSingle() {
                 </div>
 
 
-                <div className=" w-11/12 2xl:w-10/12 mt-20  flex max-lg:flex-col  border ">
-                    <div className="  w-full border   h-full" >
-                    <div className=" w-full h-full blog-content"  dangerouslySetInnerHTML={{ __html: Dummy_Blog }}>
+                <div className=" w-11/12 2xl:w-10/12 mt-10 md:mt-20  flex max-lg:flex-col   ">
+                    <div className="  w-full  pr-10   h-full" >
+                        <div className=" w-full h-full blog-content" dangerouslySetInnerHTML={{ __html: Dummy_Blog }}>
 
-                    </div>
+                        </div>
 
                     </div>
 

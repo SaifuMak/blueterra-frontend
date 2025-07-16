@@ -15,11 +15,11 @@ export default function Navbar() {
   const isHome = pathname === '/'
 
   const MenuItems = [
-    { nav: 'Our Story', link: '#' },
-    { nav: 'The Blueterra Collection', link: '#' },
-    { nav: 'Destinations', link: '#' },
-    { nav: 'Corporate & MICE', link: '#' },
-    { nav: 'BlueTerra Journal', link: '#' },
+    { nav: 'Our Story', link: '#', url: '' },
+    { nav: 'The Blueterra Collection', link: '#', url: '' },
+    { nav: 'Destinations', link: '#', url: '' },
+    { nav: 'Corporate & MICE', link: '/corporate-mice', url: '/corporate-mice' },
+    { nav: 'BlueTerra Journal', link: '/journal', url: '/journal' },
   ]
 
 
@@ -44,14 +44,14 @@ export default function Navbar() {
 
         <div className=" 2xl:space-x-10 xl:space-x-6 space-x-4 text-nowrap">
           {MenuItems.map((items, index) => (
-            <Link key={index} href={items.link} className={`${index === 1 ? ' text-brand-blue' : ' text-dark-28'}`}>{items.nav}</Link>
+            <Link key={index} href={items.link} className={`${items.url === pathname ? ' text-brand-blue' : ' text-dark-28'}`}>{items.nav}</Link>
           ))}
         </div>
 
         <div className=" flex xl:space-x-5  space-x-3 items-center   ">
           <p className=" text-dark-28 text-nowrap">+ 123 456 7890</p>
 
-              <Button text='PLAN YOUR EXPERIENCE' buttonStyle='text-nowrap max-md:text-sm px-4 lg:px-2 xl:px-6 py-1.5 lg:py-2 text-xs 2xl:text-sm' isHoverWhiteApplied={false} />
+          <Button text='PLAN YOUR EXPERIENCE' buttonStyle='text-nowrap max-md:text-sm px-4 lg:px-2 xl:px-6 py-1.5 lg:py-2 text-xs 2xl:text-sm' isHoverWhiteApplied={false} />
 
           {/* <button className="xl:px-8 px-4 text-xs  xl:text-sm py-[6px] cursor-pointer  rounded-full bg-brand-blue text-white  ">CONTACT US</button>
           <img src="/Icons/search.svg" alt="search" className="cursor-pointer" />
