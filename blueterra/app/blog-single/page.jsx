@@ -10,7 +10,7 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { useRef } from "react"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import BlogCards from "@/components/GeneralComponents/BlogCards"
+import BlogCards from "@/components/generalComponents/BlogCards"
 import { Dummy_Blog } from "@/constants/dummy-blog"
 
 export default function BlogSingle() {
