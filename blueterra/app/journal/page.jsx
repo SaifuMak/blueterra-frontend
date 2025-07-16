@@ -3,7 +3,6 @@ import { playfair, rubik, mrsSaint, jost } from "@/app/fonts"
 import BackgroundClipPath from "@/components/generalComponents/BackgroundClipPath"
 import Image from "next/image"
 import { HiOutlineArrowNarrowRight, RxCross2, CiSearch, HiArrowLongRight } from '@/components/reactIcons'
-import { useRef, useEffect, useState } from "react"
 import carousalData from "@/components/datas/DestinationsDetails"
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight, RiArrowRightSLine } from '@/components/reactIcons';
 import Journals from "@/components/Journey/Journals"
@@ -14,8 +13,25 @@ import Button from "@/components/generalComponents/Button"
 import Navbar from "@/components/Navbar/page"
 import Footer from "@/components/Footer/page"
 import Link from "next/link"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState, useRef } from "react"
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
+
 
 export default function Journal() {
+
+    // const [isClient, setIsClient] = useState(false);
+
+    // useEffect(() => {
+    //     setIsClient(true);
+    // }, []);
+
+    // if (!isClient) {
+    //     return null; // or a loading placeholder
+    // }
 
     const [currentCollection, setCurrentCollection] = useState(0)
     const [CollectionCount, setCollectionCount] = useState(0)
@@ -24,6 +40,9 @@ export default function Journal() {
 
     const filters = ['View All', 'Country Highlights', 'City Breaks', 'Hidden Gems', 'Adventure Travel', 'Local Experiences',]
     const pages = ['1', '2', '3']
+
+    const containerRef = useRef()
+    const bannerText = useRef()
 
 
     const journalsData = [
@@ -37,11 +56,51 @@ export default function Journal() {
     ]
 
 
+
+    useGSAP(() => {
+        const elements = gsap.utils.toArray(".scale-opacity-animate");
+
+        elements.forEach((box) => {
+            gsap.fromTo(
+                box,
+                { opacity: 0, scale: 0.9 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.7,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: box,
+                        start: "top 90%",
+                        toggleActions: "play reverse play reverse",
+                    },
+                }
+            );
+        });
+    }, { scope: containerRef });
+
+
+    useGSAP(() => {
+        gsap.fromTo(
+            bannerText.current,
+            { opacity: 0, y: 60 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 0.3,
+
+            }
+        );
+    },);
+
+
     return (
         <SmoothScroll>
             <Navbar />
 
-            <div className={`w-full h-full flex flex-col justify-center  mb-20 text-dark-28 ${rubik.className}`}>
+            <div ref={containerRef} className={`w-full h-full flex flex-col justify-center  mb-20 text-dark-28 ${rubik.className}`}>
 
                 <div className="w-full relative h-[30vh] md:h-[400px] lg:h-[500px] xl:h-[500px] 2xl:h-[600px]">
                     <Image
@@ -53,12 +112,12 @@ export default function Journal() {
                     />
                     <div className=" w-full h-full absolute  inset-0 flex-center flex-col text-white ">
                         <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
-                            <h1 className={` ${playfair.className}  translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-medium `}>Voyage Journal</h1>
+                            <h1 ref={bannerText} className={` ${playfair.className}  translate-all opacity-0 duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-medium `}>Voyage Journal</h1>
                         </div>
                     </div>
                 </div>
 
-                <div className=" w-full 2xl:h-[120vh] xl:h-[110vh] h-full  flex-center relative ">
+                <div className=" w-full  h-full  flex-center relative ">
                     <BackgroundClipPath outerClass='absolute w-[16%] left-0 top-0 h-fit ' ImagePath='/images/journal/journal-left-clip.png' width='500' height='1000' />
                     <BackgroundClipPath outerClass='absolute w-fit right-0 top-0 h-fit ' ImagePath='/images/journal/journal-right-clip.png' width='500' height='1000' />
                     <BackgroundClipPath outerClass='absolute w-fit right-0 bottom-0 h-fit  ' ImagePath='/images/journal/journal-bottom-right.png' width='500' height='1000' />
@@ -89,10 +148,10 @@ export default function Journal() {
                             </div>
 
                         </div>
-                            <div className=" max-sm:mt-8 w-full xl:mt-10 overflow-hidden   rounded-3xl ">
-                                <Journals Data={JOURNAL_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} currentCollection={currentCollection} CollectionCount={CollectionCount} />
-                            </div>
-                     
+                        <div className=" max-sm:mt-8 w-full xl:mt-10 overflow-hidden   rounded-3xl ">
+                            <Journals Data={JOURNAL_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} currentCollection={currentCollection} CollectionCount={CollectionCount} />
+                        </div>
+
                         <div className=" w-full space-x-5 flex-wrap gap-y-6 text-dark-28 max-xl:text-sm mb-10 xl:mt-10 max-sm:mt-10 max-sm:text-xs flex items-center ">
                             {filters?.map((filter, index) => (
                                 <div key={index} className={` cursor-pointer text-nowrap ${index === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>{filter}</div>
@@ -107,7 +166,7 @@ export default function Journal() {
                         <div className=" w-11/12 2xl:w-10/12 mt-20 z-20   grid md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-12   ">
                             {journalsData.map((journal, index) => (
 
-                                <div key={index} className=" relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
+                                <div key={index} className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
 
                                     <Image
                                         src={journal.image}
