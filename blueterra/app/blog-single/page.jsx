@@ -17,21 +17,39 @@ import { useEffect, useState } from "react"
 
 export default function BlogSingle() {
 
+
+    const [isClient, setIsClient] = useState(false);
+    const [blogTitle, setBlogTitle] = useState('')
+
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+
+    useEffect(() => {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = Dummy_Blog;
+
+        const h1 = tempDiv.querySelector('h1');
+        setBlogTitle(h1?.textContent)
+    }, [])
+
+    if (!isClient) {
+        return null; // or a loading placeholder
+    }
+
+
     const BlogList = [
         { "image": "https://images.pexels.com/photos/34098/south-africa-hluhluwe-giraffes-pattern.jpg", "date": "10 May 2025", "description": "Top Stargazing Spots around the World for Unforgettable Views" },
         { "image": "https://images.pexels.com/photos/247376/pexels-photo-247376.jpeg", "date": "10 May 2025", "description": "Hidden Villages That Are Truly Worth Discovering and Exploring" },
         { "image": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg", "date": "10 May 2025", "description": "Best Destinations for Wellness and Mindfulness" },
     ]
 
-    const [isClient, setIsClient] = useState(false);
 
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
 
-    if (!isClient) {
-        return null; // or a loading placeholder
-    }
+
+    const socialIconsStyle = 'cursor-pointer object-cover size-6 xl:size-7 2xl:size-8'
 
 
     return (
@@ -52,7 +70,25 @@ export default function BlogSingle() {
 
 
                 <div className=" w-11/12 2xl:w-10/12 mt-10 md:mt-20  flex max-lg:flex-col   ">
-                    <div className="  w-full  pr-10   h-full" >
+                    <div className="  w-full pr-3  xl:pr-10 mt-4   h-full" >
+                        <div className=" min-h-10 ">
+                            <h1 className={`2xl:text-[50px] text-4xl max-xl:leading-12 text-dark-4B  ${playfair.className}`}>{blogTitle}</h1>
+                        </div>
+
+                        <div className=" w-full flex max-xl:space-y-2  max-xl:flex-col  min-h-10  2xl:text-lg justify-between  my-5 xl:my-8">
+                            <div className=" flex max-lg:flex-wrap space-x-3 xl:space-x-5 items-center text-sky-blue-dark  ">
+                                <div className=" flex "> <p className=" ">Posted on: <span className=" text-dark-46"> 22 May 2025</span></p></div>
+                                <div className=" flex "> <p className="">In: <span className="text-dark-46"> Travel Tips</span></p></div>
+                                <div className=" flex "> <p className="">Read Time: <span className="text-dark-46">5 Minutes</span></p></div>
+                            </div>
+                            <div className=" flex space-x-1.5 xl:space-x-3 items-center  ">
+                                <img src="/Icons/single-blog/insta.svg" alt="instagram" className={`${socialIconsStyle}`} />
+                                <img src="/Icons/single-blog/fb.svg" alt="facebook" className={`${socialIconsStyle}`} />
+                                <img src="/Icons/single-blog/x.svg" alt="x" className={`${socialIconsStyle}`} />
+                                <img src="/Icons/single-blog/whatsapp.svg" alt="whatsapp" className={`${socialIconsStyle}`} />
+                                <img src="/Icons/single-blog/linkdn.svg" alt="linkedin" className={`${socialIconsStyle}`} />
+                            </div>
+                        </div>
                         <div className=" w-full h-full blog-content" dangerouslySetInnerHTML={{ __html: Dummy_Blog }}>
 
                         </div>

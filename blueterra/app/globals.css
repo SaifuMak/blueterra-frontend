@@ -91,6 +91,7 @@ body {
   --color-sky-blue-1: #58C2DF;
   --color-dark-4B: #243F4B;
   --color-dark-28: #2A2828;
+  --color-dark-46: #464646;
   --color-light-yellow: #EEEFE0;
   --color-admin-light-dark-background: #F9F9F9;
   --color-sky-blue-light: #F4FBFF;
@@ -239,7 +240,7 @@ body {
  {
  font-family: 'Rubik', sans-serif;
 }
-
+/* 
 .blog-content h1 {
    font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
@@ -247,6 +248,9 @@ body {
   margin: 2rem 0 1rem;
   font-weight: 500;
   padding-bottom: 0.5rem;
+} */
+.blog-content h1 {
+  display: none;
 }
 
 .blog-content h2 {
@@ -376,10 +380,14 @@ body {
 
 /* Add this at the end of your CSS file */
 @media (max-width: 768px) {
-  .blog-content h1 {
+  /* .blog-content h1 {
     font-size: 24px;
     line-height: 1.3;
     margin: 1.5rem 0 0.8rem;
+  } */
+
+  .blog-content h1 {
+    display: none;
   }
   
   .blog-content h2 {
