@@ -96,7 +96,7 @@ export default function DestinationsCarousal() {
                                         src={item.image}
                                         alt={item.alt}
                                         fill
-                                        className=" object-cover group-hover:scale-105 transition-all duration-1000 ease-in-out"
+                                        className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"
                                     />
                                 </div>
 
@@ -108,30 +108,36 @@ export default function DestinationsCarousal() {
                     <CarouselNext /> */}
 
 
-                    <div className="w-11/12 ml-5 space-x-1 top-5 flex absolute ">
+                    <div className=" absolute inset-0 w-full h-full pointer-events-none  ">
+                        <div className="  w-full h-full flex flex-col justify-between bg-gradient-to-t from-black/50 via-transparent to-transparent py-2 px-4  ">
+                            <div className=" flex items-center space-x-2 mt-3">
 
-                        {[...Array(carousalData.length)].map((_, ind) => (
-                            <div key={ind} className={`h-[3px] flex flex-1 ${ind <= currentCollection ? 'bg-white' : 'bg-white/30'} `} />
-                        ))}
+                                {[...Array(carousalData.length)].map((_, ind) => (
+                                    <div key={ind} className={`h-[3px] flex flex-1 ${ind <= currentCollection ? 'bg-white' : 'bg-white/30'} `} />
+                                ))}
+                            </div>
+
+                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-4 left-3 text-2xl font-medium">
+                                <p>Day {currentCollection + 1}:</p>
+                                <p className="capitalize ">{carousalData[currentCollection].name}</p>
+                            </div>
+                        </div>
 
                     </div>
 
-                    <div className="text-white flex  space-x-1 absolute bottom-4 left-3 text-lg font-medium">
-                        <p>Day {currentCollection + 1}:</p>
-                        <p className="capitalize">{carousalData[currentCollection].name}</p>
-                    </div>
+
 
                     {/* Arrow buttons */}
                     <div className="flex space-x-2 absolute bottom-4 right-3 ">
                         <button
                             onClick={swipePrevious}
-                            className="w-7 h-7 cursor-pointer bg-white text-black rounded-full flex items-center justify-center shadow"
+                            className="size-7 cursor-pointer bg-white text-black rounded-full flex items-center justify-center shadow"
                         >
                             <MdOutlineKeyboardArrowLeft size={20} />
                         </button>
                         <button
                             onClick={swipeNext}
-                            className="w-7 h-7 bg-white cursor-pointer text-black rounded-full flex items-center justify-center shadow"
+                            className="size-7 bg-white cursor-pointer  text-black rounded-full flex items-center justify-center shadow"
                         >
                             <MdOutlineKeyboardArrowRight size={20} />
                         </button>

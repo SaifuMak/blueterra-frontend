@@ -20,7 +20,7 @@ export default function Gallery({ }) {
     return (
 
 
-        <div className=" w-full  h-full  gallery-container  z-10  p-10  flex justify-center items-center ">
+        <div className=" w-full  h-full  gallery-container   z-10  p-10  flex justify-center items-center ">
 
             <div className=" w-11/12 h-full  relative rounded-4xl   ">
 

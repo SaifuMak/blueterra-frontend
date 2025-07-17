@@ -18,7 +18,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import Navbar from "@/components/Navbar/page";
 import { playfair, rubik } from "@/app/fonts"
-
+import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
 import Button from "@/components/generalComponents/Button";
 
 
@@ -39,134 +39,145 @@ export default function Page4() {
     const hotelGalleryRef = useRef()
 
 
-
-    useGSAP(() => {
-
-        const plansTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: box2Ref.current,
-                start: "top 80%",
-                end: "top 20%",
-                scrub: true,
-                // markers: true,
-            },
-        })
-        plansTimeline.to(
-            ".animate-heading-y", {
-            y: -200,
-            opacity: 0,
-            stagger: 0.1,
-        }
-        )
-
-
-        plansTimeline.from(
-            (".planned-activities"),
-            {
-                opacity: 0,
-                scale: 0.77,
-            }
-        );
-        plansTimeline.to(
-            ".tab-card", {
-            y: -100,
-            opacity: 0,
-            delay: 1.2,
-        }
-        )
+      const galleryData = [
+        { name: "Safari Adventure", image: "/images/gallery/giraffe.png" },
+        { name: "Cultural Celebration", image: "/images/gallery/girl-dancing.png" },
+        { name: "Island Escape", image: "/images/gallery/island.png" },
+        { name: "Burj Khalifa", image: "/images/gallery/burj-kalifa.png" },
+        { name: "Majestic Waterfalls", image: "/images/gallery/waterfall-mountain.png" },
+        { name: "Tropical Forest Retreat", image: "/images/gallery/forest-in-beach.png" },
+    ];
 
 
 
-        gsap.fromTo(".tab-card", {
-            y: 200,
-            opacity: 0,
-        },
-            {
-                y: 0,
-                opacity: 1,
-                stagger: 0.1,
-                ease: "power2.inOut",
-                duration: 1.2
-            })
 
-        gsap.fromTo(".animate-heading-y", {
-            y: -200,
-            opacity: 0,
-        },
-            {
-                y: 0,
-                opacity: 1,
-                stagger: 0.1,
-                ease: "power2.inOut",
-                duration: 1.2
-            })
+    // useGSAP(() => {
 
-        gsap.fromTo(
-            hotelGalleryRef.current.querySelector(".hotels-container"),
-            {
-                y: "50%",
-                opacity: 0,
-            },
-            {
-                y: 0,
-                opacity: 1,
-                scrollTrigger: {
-                    trigger: hotelGalleryRef.current,
-                    start: "top 70%",
-                    end: "top 10%",
-                    scrub: true,
-                    // markers: true,
-                    // onEnter: () => console.log("Hotels container entered"),
-                    // onLeave: () => console.log("Hotels container left"),
-                    // onEnterBack: () => console.log("Hotels container entered back"),
-                    // onLeaveBack: () => console.log("Hotels container left back"),
-                },
-            })
+    //     const plansTimeline = gsap.timeline({
+    //         scrollTrigger: {
+    //             trigger: box2Ref.current,
+    //             start: "top 80%",
+    //             end: "top 20%",
+    //             scrub: true,
+    //             // markers: true,
+    //         },
+    //     })
+    //     plansTimeline.to(
+    //         ".animate-heading-y", {
+    //         y: -200,
+    //         opacity: 0,
+    //         stagger: 0.1,
+    //     }
+    //     )
+
+
+    //     plansTimeline.from(
+    //         (".planned-activities"),
+    //         {
+    //             opacity: 0,
+    //             scale: 0.77,
+    //         }
+    //     );
+    //     plansTimeline.to(
+    //         ".tab-card", {
+    //         y: -100,
+    //         opacity: 0,
+    //         delay: 1.2,
+    //     }
+    //     )
 
 
 
-        const gallerySectionTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: galleryRef.current.querySelector(".gallery-container"),
-                start: "top 70%",
-                end: "top 30%",
-                scrub: true,
-                // markers: true
-            },
-        })
+    //     gsap.fromTo(".tab-card", {
+    //         y: 200,
+    //         opacity: 0,
+    //     },
+    //         {
+    //             y: 0,
+    //             opacity: 1,
+    //             stagger: 0.1,
+    //             ease: "power2.inOut",
+    //             duration: 1.2
+    //         })
+
+    //     gsap.fromTo(".animate-heading-y", {
+    //         y: -200,
+    //         opacity: 0,
+    //     },
+    //         {
+    //             y: 0,
+    //             opacity: 1,
+    //             stagger: 0.1,
+    //             ease: "power2.inOut",
+    //             duration: 1.2
+    //         })
+
+    //     gsap.fromTo(
+    //         hotelGalleryRef.current.querySelector(".hotels-container"),
+    //         {
+    //             y: "50%",
+    //             opacity: 0,
+    //         },
+    //         {
+    //             y: 0,
+    //             opacity: 1,
+    //             scrollTrigger: {
+    //                 trigger: hotelGalleryRef.current,
+    //                 start: "top 70%",
+    //                 end: "top 10%",
+    //                 scrub: true,
+    //                 // markers: true,
+    //                 // onEnter: () => console.log("Hotels container entered"),
+    //                 // onLeave: () => console.log("Hotels container left"),
+    //                 // onEnterBack: () => console.log("Hotels container entered back"),
+    //                 // onLeaveBack: () => console.log("Hotels container left back"),
+    //             },
+    //         })
 
 
-        gallerySectionTimeline.fromTo(
-            // ".gallery-title",
-            galleryRef.current.querySelector(".gallery-title"),
-            {
-                y: -100,
-                opacity: 0,
-            },
-            {
-                y: 0,
-                opacity: 1,
-            }, 0)
 
-        gallerySectionTimeline.fromTo(
-            // ".gallery-tile",
-            galleryRef.current.querySelectorAll(".gallery-tile"),
+    //     const gallerySectionTimeline = gsap.timeline({
+    //         scrollTrigger: {
+    //             trigger: galleryRef.current.querySelector(".gallery-container"),
+    //             start: "top 70%",
+    //             end: "top 30%",
+    //             scrub: true,
+    //             // markers: true
+    //         },
+    //     })
 
-            {
-                y: "30%",
-                opacity: 0,
-            },
-            {
-                y: 0,
-                opacity: 1,
-                stagger: {
-                    each: 0.3,
-                    from: "center"
-                },
 
-            }, 0)
+    //     gallerySectionTimeline.fromTo(
+    //         // ".gallery-title",
+    //         galleryRef.current.querySelector(".gallery-title"),
+    //         {
+    //             y: -100,
+    //             opacity: 0,
+    //         },
+    //         {
+    //             y: 0,
+    //             opacity: 1,
+    //         }, 0)
 
-    }, []);
+    //     gallerySectionTimeline.fromTo(
+    //         // ".gallery-tile",
+    //         galleryRef.current.querySelectorAll(".gallery-tile"),
+
+    //         {
+    //             y: "30%",
+    //             opacity: 0,
+    //         },
+    //         {
+    //             y: 0,
+    //             opacity: 1,
+    //             stagger: {
+    //                 each: 0.3,
+    //                 from: "center"
+    //             },
+
+    //         }, 0)
+
+    // }, []);
 
 
 
@@ -207,14 +218,55 @@ export default function Page4() {
                         </div>
                     </div>
 
-
                 </div>
 
-                <div className=" w-full bg-white  border min-h-screen flex-center">
+                <div className=" w-full bg-white relative  border min-h-screen flex-center">
+                    <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' />
+
                     <PlannedActivities />
                 </div>
 
-                <div ref={hotelContainerRef} className="h-[200vh]  bg-white w-full hotels-section  relative overflow-hidden">
+
+                <div className=" w-full min-h-[100vh] bg-white flex justify-center">
+                    <div className=" w-10/12 flex-center rounded-4xl relative h-full bg-light-beige">
+                        <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 bottom-0 h-full' ImagePath='/images/itinerary/hotels-clip-path.png' />
+                        <HotelsView />
+                    </div>
+                </div>
+
+
+                <div className="w-full h-full bg-white flex-center relative">
+                    <Image
+                        src='/images/itinerary/gallery-banner.png'
+                        alt="forest"
+                        fill
+                        className=" object-cover  "
+                        priority
+                    />
+                    <div className=" w-11/12 mt-20 space-y-10 mb-10 py-10  h-full flex flex-col justify-center items-center rounded-3xl bg-white/10 backdrop-blur-md border border-white/40 ">
+                        <h6 className=" gallery-title  my-10 text-center text-4xl xl:text-5xl text-[#18283F] font-medium ">Gallery</h6>
+                        <div className="  w-10/12  z-50   flex rounded-xl  gap-4   ">
+
+
+                            {galleryData?.map((item, index) => (
+                                <div key={index} className={`relative  group h-[70vh]  hover:flex-3 gallery-tile  overflow-hidden delay-75 hover:cursor-pointer w-full  flex-1 transition-all ease-in-out duration-700 rounded-xl`}>
+                                    <Image
+                                        src={item.image}
+                                        alt='image'
+                                        fill
+                                        className='object-cover rounded-xl'
+                                        priority
+
+                                    />
+                                    <p className=" text-nowrap opacity-0 font-medium absolute delay-100 bottom-20 group-hover:opacity-100 group-hover:translate-x-12 -left-5 translate-all duration-500   2xl:text-2xl text-white">{item.name}</p>
+                                </div>
+                            ))}
+
+                        </div>
+                    </div>
+                </div>
+
+                {/* <div ref={hotelContainerRef} className="min-h-[200vh]  bg-white w-full hotels-section  relative overflow-hidden">
                     <div className="absolute w-full   h-full overflow-hidden inset-0 image-wrapper">
                         <Image
                             src={forest}
@@ -249,7 +301,7 @@ export default function Page4() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 <div ref={planningRef} className="w-full h-[200px] md:h-[240px] lg:h-[250px] xl:h-[310px] 2xl:h-[340px]  overflow-hidden relative">
                     <div className="   absolute w-full  overflow-hidden inset-0 planner-image-wrapper">
