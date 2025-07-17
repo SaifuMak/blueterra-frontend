@@ -148,6 +148,8 @@ export default function Journal() {
                             </div>
 
                         </div>
+
+                        
                         <div className=" max-sm:mt-8 w-full xl:mt-10 overflow-hidden   rounded-3xl ">
                             <Journals Data={JOURNAL_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} currentCollection={currentCollection} CollectionCount={CollectionCount} />
                         </div>

@@ -9,14 +9,23 @@ import SmoothScroll from "@/components/SmoothScroll"
 import Footer from "@/components/Footer/page"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 export default function Corporate() {
+
+    const [isClient, setIsClient] = useState(false);
+    const containerRef = useRef()
+    const bannerRef = useRef()
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+
 
     const events = [
         {
@@ -84,8 +93,10 @@ export default function Corporate() {
 
     ]
 
-    const containerRef = useRef()
-    const bannerRef = useRef()
+    // if (!isClient) {
+    //     return null; // or a loading placeholder
+    // }
+
 
 
     useGSAP(() => {
@@ -112,6 +123,7 @@ export default function Corporate() {
 
 
     useGSAP(() => {
+
         const elements = gsap.utils.toArray(".banner-elements");
 
         elements.forEach((box) => {
@@ -168,7 +180,7 @@ export default function Corporate() {
                             style={{ objectFit: 'cover' }}
                         />
                         <div className=" w-full opacity-0  banner-elements absolute inset-0 text-white  h-full  flex flex-col justify-center items-center">
-                            <h1 className={` ${playfair.className}  font-medium text-2xl text-center md:text-[65px] xl:text-[75px] 2xl:text-[80px]`}>MICE & Signature Events</h1>
+                            <h1 className={` ${playfair.className}   font-medium text-2xl text-center md:text-[65px] xl:text-[75px] 2xl:text-[80px]`}>MICE & Signature Events</h1>
                             <Button text='GET IN TOUCH' buttonStyle={` transition-all duration-500 mb-10 mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} />
                         </div>
                     </div>
@@ -180,12 +192,12 @@ export default function Corporate() {
                         <ResponsiveClipPath outerClass='absolute w-full md:w-1/4 left-0 bottom-0 h-10/12  ' ImagePath='/images/corporate/intro-left-clip-path.png' />
 
                         <div className="  space-y-5 xl:space-y-4 2xl:space-y-8 max-sm:text-sm text-xl font-light text-dark-28  h-full flex-col 2xl:w-8/12 xl:w-11/12  flex justify-center items-center ">
-                            <h2 className={`${playfair.className} vertically-animated-element text-3xl  md:text-5xl xl:text-6xl 2xl:text-7xl font-semibold text-dark-4B`}> <span className=" text-xl font-light  mr-1">At</span>
+                            <h2 className={`${playfair.className} opacity-0  vertically-animated-element text-3xl  md:text-5xl xl:text-6xl 2xl:text-7xl font-semibold text-dark-4B`}> <span className=" text-xl font-light  mr-1">At</span>
                                 BlueTerra</h2>
-                            <p className="xl:w-7/12 w-10/12 vertically-animated-element text-center leading-6 md:leading-8 xl:leading-9">we craft more than events — we create intentional moments that inspire, connect, and endure.</p>
+                            <p className="xl:w-7/12 opacity-0 w-10/12 vertically-animated-element text-center leading-6 md:leading-8 xl:leading-9">we craft more than events — we create intentional moments that inspire, connect, and endure.</p>
 
-                            <p className="  xl:w-9/12 w-10/12 vertically-animated-element text-center leading-6 md:leading-8 xl:leading-10">Whether you're gathering a global team to shape the future of your organization or celebrating a milestone that deserves the extraordinary or an offbeat strategy session, every experience is curated with precision, personality and purpose.</p>
-                            <p className=" xl:w-9/12 w-10/12 vertically-animated-element text-center leading-6 md:leading-8 xl:leading-10">Let’s be honest - delivering a flawless event takes a dedicated team, and we guarantee you’ll have every expert and resource you could imagine working seamlessly behind the scenes</p>
+                            <p className="  xl:w-9/12 opacity-0 w-10/12 vertically-animated-element text-center leading-6 md:leading-8 xl:leading-10">Whether you're gathering a global team to shape the future of your organization or celebrating a milestone that deserves the extraordinary or an offbeat strategy session, every experience is curated with precision, personality and purpose.</p>
+                            <p className=" xl:w-9/12 opacity-0 w-10/12 vertically-animated-element text-center leading-6 md:leading-8 xl:leading-10">Let’s be honest - delivering a flawless event takes a dedicated team, and we guarantee you’ll have every expert and resource you could imagine working seamlessly behind the scenes</p>
 
                             <p className=" xl:w-9/12 w-10/12 vertically-animated-element  xl:text-2xl text-center font-normal md:leading-10">We don’t just execute. We own it. Every moment. Every milestone.</p>
 

@@ -61,7 +61,7 @@ export default function Navbar() {
 
       </div>
 
-      <div className="w-full lg:hidden">
+      <div className="w-full  lg:hidden">
         <MobileNavbar MenuItems={MenuItems} />
       </div>
 

@@ -46,7 +46,7 @@ export default function Carousal() {
 
     return (
 
-        <div className=" overflow-y-auto   xl:pl-2 2xl:pl-3  ">
+        <div className=" overflow-y-auto  w-full bg-red-100 h-full  xl:pl-2 2xl:pl-3  ">
 
             <div className="relative w-full mx-auto">
                 {/* Scrollable Container */}
@@ -57,7 +57,7 @@ export default function Carousal() {
                     {carousalData?.map((item, ind) => (
                         <div
                             key={ind}
-                            className="w-full flex-shrink-0 h-[20vh] relative  rounded-2xl"
+                            className="w-full flex-shrink-0 min-h-[30vh]  relative  rounded-2xl"
                             style={{ minWidth: '100%' }} // one full width image
                         >
                             <Image
@@ -100,6 +100,7 @@ export default function Carousal() {
                 </div>
 
             </div>
+
 
             <div className="w-full  text-[#3C3C3C] pl-2 mt-2 ">
                 <div className=" flex ">

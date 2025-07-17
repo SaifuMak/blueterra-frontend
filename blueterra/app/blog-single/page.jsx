@@ -13,6 +13,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BlogCards from "@/components/generalComponents/BlogCards"
 import { Dummy_Blog } from "@/constants/dummy-blog"
 import { useEffect, useState } from "react"
+import Loader from "@/components/generalComponents/Loader"
+
 
 
 export default function BlogSingle() {
@@ -20,6 +22,8 @@ export default function BlogSingle() {
 
     const [isClient, setIsClient] = useState(false);
     const [blogTitle, setBlogTitle] = useState('')
+
+    const [isLoading, setIsLoading] = useState(true)
 
 
     useEffect(() => {
@@ -53,10 +57,13 @@ export default function BlogSingle() {
 
 
     return (
+
+
         <SmoothScroll>
             <Navbar />
 
-            <div className={` ${rubik.className} w-full text-dark-28 h-full flex flex-col justify-center items-center`} >
+            <div className={` ${rubik.className} w-full text-dark-28 h-full flex flex-col justify-center items-center relative`} >
+                {isLoading && <Loader />}
 
                 <div className="w-full h-[600px] relative">
                     <Image
@@ -65,6 +72,7 @@ export default function BlogSingle() {
                         fill
                         priority
                         className=" object-cover "
+                        onLoad={() => setIsLoading(false)}
                     />
                 </div>
 
@@ -138,6 +146,7 @@ export default function BlogSingle() {
                                 priority
                                 className=" object-cover "
                             />
+
                             <div className=" w-full h-full flex items-end  bg-gradient-to-t from-black via-black/30 to-transparent  absolute inset-0">
                                 <div className=" flex flex-col p-5  space-y-3">
                                     <h3 className={`md:text-[30px] text-2xl xl:pr-7 leading-11  text-white ${playfair.className}`}>Turning your travel dreams into real Adventures.</h3>
