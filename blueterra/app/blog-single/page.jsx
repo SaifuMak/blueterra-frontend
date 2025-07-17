@@ -72,7 +72,7 @@ export default function BlogSingle() {
                 <div className=" w-11/12 2xl:w-10/12 mt-10 md:mt-20  flex max-lg:flex-col   ">
                     <div className="  w-full pr-3  xl:pr-10 mt-4   h-full" >
                         <div className=" min-h-10 ">
-                            <h1 className={`2xl:text-[50px] text-4xl max-xl:leading-12 text-dark-4B  ${playfair.className}`}>{blogTitle}</h1>
+                            <h1 className={`2xl:text-[50px] text-4xl leading-12 xl:leading-16  text-dark-4B  ${playfair.className}`}>{blogTitle}</h1>
                         </div>
 
                         <div className=" w-full flex max-xl:space-y-2  max-xl:flex-col  min-h-10  2xl:text-lg justify-between  my-5 xl:my-8">
