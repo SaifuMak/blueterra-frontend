@@ -115,6 +115,10 @@ export default function Page4() {
         );
     }, { scope: bannerContainer });
 
+     useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [])
+
 
     //  useGSAP(() => {
     //     const elements = gsap.utils.toArray(".vertically-animate-element");

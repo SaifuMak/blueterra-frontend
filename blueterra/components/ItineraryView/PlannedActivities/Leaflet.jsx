@@ -1,7 +1,7 @@
 'use client';
 
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap, Polyline } from 'react-leaflet';
 import L from 'leaflet';
 import { useEffect } from 'react';
 
@@ -14,35 +14,18 @@ L.Icon.Default.mergeOptions({
 });
 
 // Trip points in Kerala
+
+
+
 const locations = [
-    { coords: [10.5276, 76.2144], title: 'Start Point - Thrissur' },
-    { coords: [10.8505, 76.2711], title: 'Midway - Palakkad' },
-    { coords: [11.2588, 75.7804], title: 'End Point - Kozhikode' },
+    { coords: [-2.7330, 37.3751], title: 'Kibo Safari Camp' },
+    { coords: [-0.8025, 36.3988], title: 'Sawela Lodge' },
+    { coords: [-1.4149, 35.2216], title: 'Mara Maisha Camp' },
+    { coords: [-1.4149, 35.2218], title: 'Ashnil Mara Camp' },
+    { coords: [-1.2571, 36.8006], title: 'Novotel Nairobi Westlands' }
 ];
 
-// Custom component to fetch & render route
-const RouteLine = () => {
-    const map = useMap();
 
-    useEffect(() => {
-        const coordinates = locations.map((l) => `${l.coords[1]},${l.coords[0]}`); // lng,lat
-        const url = `https://router.project-osrm.org/route/v1/driving/${coordinates.join(
-            ';'
-        )}?overview=full&geometries=geojson`;
-
-        fetch(url)
-            .then((res) => res.json())
-            .then((data) => {
-                const geoJson = L.geoJSON(data.routes[0].geometry, {
-                    style: { color: 'blue', weight: 4 },
-                }).addTo(map);
-                map.fitBounds(geoJson.getBounds());
-            })
-            .catch((err) => console.error('Route fetch error:', err));
-    }, [map]);
-
-    return null; // This component only side-effects
-};
 
 function ResizeHandler({ expandCards }) {
     const map = useMap();
@@ -53,11 +36,6 @@ function ResizeHandler({ expandCards }) {
             console.log('map  resize is calling ---------------');
             const timeout = setTimeout(() => {
                 map.invalidateSize();
-                // const firstMarker = [10.5276, 76.2144];
-                // map.flyTo(firstMarker, 10, {
-                //     duration: 0.5,
-                //     easeLinearity: 0.25,
-                // });
                 const bounds = L.latLngBounds(locations.map((l) => l.coords));
                 map.flyToBounds(bounds, {
                     padding: [50, 50],   // space around bounds
@@ -76,7 +54,6 @@ function ResizeHandler({ expandCards }) {
 export default function LeafletMap({ expandCards }) {
 
 
-
     return (
         <div className="w-full h-full ">
             <MapContainer
@@ -91,12 +68,27 @@ export default function LeafletMap({ expandCards }) {
                 />
 
                 {locations.map((loc, idx) => (
-                    <Marker key={idx} position={loc.coords}>
+                    <Marker key={idx}
+                        position={loc.coords}
+                        eventHandlers={{
+                            mouseover: (e) => {
+                                e.target.openPopup();
+                            },
+                            mouseout: (e) => {
+                                e.target.closePopup();
+                            },
+                        }}
+                    >
                         <Popup>
                             <strong>{loc.title}</strong>
                         </Popup>
                     </Marker>
                 ))}
+                <Polyline
+                    positions={locations.map(loc => loc.coords)}
+                    pathOptions={{ color: '#026E9E', weight: 3, dashArray: '10,10' }}
+                />
+
                 <ResizeHandler expandCards={expandCards} />
 
                 {/* <RouteLine /> */}
