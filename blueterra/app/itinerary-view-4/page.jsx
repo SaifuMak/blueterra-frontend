@@ -41,11 +41,11 @@ export default function Page4() {
 
     const galleryData = [
         { name: "Safari Adventure", image: "https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg" },
-        { name: "Cultural Celebration", image: "/images/gallery/girl-dancing.png" },
-        { name: "Island Escape", image: "/images/gallery/island.png" },
-        { name: "Burj Khalifa", image: "/images/gallery/burj-kalifa.png" },
-        { name: "Majestic Waterfalls", image: "/images/gallery/waterfall-mountain.png" },
-        { name: "Tropical Forest Retreat", image: "/images/gallery/forest-in-beach.png" },
+        { name: "Safari Adventure", image: "https://images.pexels.com/photos/59989/elephant-herd-of-elephants-african-bush-elephant-africa-59989.jpeg" },
+        { name: "Island Escape", image: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg" },
+        { name: "Cultural Celebration", image: "https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg" },
+        { name: "Majestic Waterfalls", image: "https://images.pexels.com/photos/1266831/pexels-photo-1266831.jpeg" },
+        { name: "Tropical Forest Retreat", image: "https://images.pexels.com/photos/382167/pexels-photo-382167.jpeg" },
     ];
 
 
@@ -224,7 +224,7 @@ export default function Page4() {
                 </div>
 
 
-                <div className=" w-full  min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">
+                <div className=" w-full  min-h-[120vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">
                     <div className=" w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige">
                         <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 top-0 h-10/12' ImagePath='/images/itinerary/hotels-clip-path.png' />
                         <HotelsView />
@@ -246,7 +246,8 @@ export default function Page4() {
                             <div className="  w-10/12  mt-5 z-50    flex rounded-xl overflow-hidden  gap-4   ">
 
                                 {galleryData?.map((item, index) => (
-                                    <div key={index} className={`relative  group min-h-[70vh]  hover:flex-4 gallery-tile  overflow-hidden delay-75 hover:cursor-pointer w-full  flex-1 transition-all ease-in-out duration-700 rounded-xl`}>
+                                    // <div key={index} className={`relative group min-h-[70vh] delay-75 hover:flex-4 flex-1 transition-[flex] duration-700 ease-[cubic-bezier(0.25, 1, 0.5, 1)] gallery-tile overflow-hidden hover:cursor-pointer rounded-xl`}>
+                                    <div key={index} className={`relative  group min-h-[70vh]  hover:flex-4 gallery-tile  overflow-hidden delay-200 hover:cursor-pointer w-full  flex-1 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transition-all  duration-700 rounded-xl`}>
                                         <Image
                                             src={item.image}
                                             alt='image'
@@ -255,7 +256,7 @@ export default function Page4() {
                                             priority
 
                                         />
-                                        <p className=" text-nowrap opacity-0 font-medium absolute delay-100 bottom-10 group-hover:opacity-100 group-hover:translate-x-12 -left-5 translate-all duration-500   2xl:text-2xl text-white">{item.name}</p>
+                                        <p className=" text-nowrap opacity-0 font-medium absolute delay-200 bottom-10 group-hover:opacity-100 group-hover:translate-x-12 -left-5 translate-all duration-500   2xl:text-2xl text-white">{item.name}</p>
                                     </div>
                                 ))}
 
