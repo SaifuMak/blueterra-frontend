@@ -117,7 +117,7 @@ export default function DestinationsCarousal() {
                                 ))}
                             </div>
 
-                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-4 left-3 text-2xl font-medium">
+                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-5 left-3 text-2xl font-normal">
                                 <p>Day {currentCollection + 1}:</p>
                                 <p className="capitalize ">{carousalData[currentCollection].name}</p>
                             </div>
@@ -128,7 +128,7 @@ export default function DestinationsCarousal() {
 
 
                     {/* Arrow buttons */}
-                    <div className="flex space-x-2 absolute bottom-4 right-3 ">
+                    <div className="flex space-x-2 absolute bottom-5 right-3 ">
                         <button
                             onClick={swipePrevious}
                             className="size-7 cursor-pointer bg-white text-black rounded-full flex items-center justify-center shadow"
@@ -143,11 +143,11 @@ export default function DestinationsCarousal() {
                         </button>
                     </div>
                 </Carousel>
-
-
             </div>
 
-            <div className="w-full  text-[#3C3C3C] pl-2 mt-2 ">
+
+
+            <div className="w-full   text-dark-28 pl-2 mt-2 ">
                 <div className=" flex ">
                     <p className="text-2xl ">
                         {carousalData[currentCollection].temp}
@@ -158,13 +158,13 @@ export default function DestinationsCarousal() {
 
                     </div>
                 </div>
-                <div className=" flex space-x-6 text-sm font-normal">
+
+                <div className=" flex space-x-6 text-sm items-center font-normal">
                     <p className="">Feels like Cloudy</p>
                     <p className="">Low: <span className=" text-base">12°C</span></p>
                     <p className="">High: <span className=" text-base">35°C</span></p>
 
                 </div>
-
 
             </div>
 

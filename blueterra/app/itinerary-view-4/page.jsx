@@ -39,8 +39,8 @@ export default function Page4() {
     const hotelGalleryRef = useRef()
 
 
-      const galleryData = [
-        { name: "Safari Adventure", image: "/images/gallery/giraffe.png" },
+    const galleryData = [
+        { name: "Safari Adventure", image: "https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg" },
         { name: "Cultural Celebration", image: "/images/gallery/girl-dancing.png" },
         { name: "Island Escape", image: "/images/gallery/island.png" },
         { name: "Burj Khalifa", image: "/images/gallery/burj-kalifa.png" },
@@ -181,15 +181,12 @@ export default function Page4() {
 
 
 
-
-
-
     return (
 
         <SmoothScroll>
             <Navbar />
 
-            <div className="">
+            <div className={`${rubik.className}`}>
 
                 <div ref={containerRef} className="relative  w-full min-h-[90vh] ">
                     {/* Fixed Background */}
@@ -227,104 +224,63 @@ export default function Page4() {
                 </div>
 
 
-                <div className=" w-full min-h-[100vh] bg-white flex justify-center">
-                    <div className=" w-10/12 flex-center rounded-4xl relative h-full bg-light-beige">
-                        <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 bottom-0 h-full' ImagePath='/images/itinerary/hotels-clip-path.png' />
+                <div className=" w-full  min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">
+                    <div className=" w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige">
+                        <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 top-0 h-10/12' ImagePath='/images/itinerary/hotels-clip-path.png' />
                         <HotelsView />
                     </div>
                 </div>
 
+                <div className=" bg-dark-beige  w-full h-full">
 
-                <div className="w-full h-full bg-white flex-center relative">
-                    <Image
-                        src='/images/itinerary/gallery-banner.png'
-                        alt="forest"
-                        fill
-                        className=" object-cover  "
-                        priority
-                    />
-                    <div className=" w-11/12 mt-20 space-y-10 mb-10 py-10  h-full flex flex-col justify-center items-center rounded-3xl bg-white/10 backdrop-blur-md border border-white/40 ">
-                        <h6 className=" gallery-title  my-10 text-center text-4xl xl:text-5xl text-[#18283F] font-medium ">Gallery</h6>
-                        <div className="  w-10/12  z-50   flex rounded-xl  gap-4   ">
-
-
-                            {galleryData?.map((item, index) => (
-                                <div key={index} className={`relative  group h-[70vh]  hover:flex-3 gallery-tile  overflow-hidden delay-75 hover:cursor-pointer w-full  flex-1 transition-all ease-in-out duration-700 rounded-xl`}>
-                                    <Image
-                                        src={item.image}
-                                        alt='image'
-                                        fill
-                                        className='object-cover rounded-xl'
-                                        priority
-
-                                    />
-                                    <p className=" text-nowrap opacity-0 font-medium absolute delay-100 bottom-20 group-hover:opacity-100 group-hover:translate-x-12 -left-5 translate-all duration-500   2xl:text-2xl text-white">{item.name}</p>
-                                </div>
-                            ))}
-
-                        </div>
-                    </div>
-                </div>
-
-                {/* <div ref={hotelContainerRef} className="min-h-[200vh]  bg-white w-full hotels-section  relative overflow-hidden">
-                    <div className="absolute w-full   h-full overflow-hidden inset-0 image-wrapper">
+                    <div className="w-full h-full bg-white/30   flex-center relative">
                         <Image
-                            src={forest}
+                            src='/images/itinerary/gallery-banner.png'
                             alt="forest"
                             fill
-                            className="object-cover"
+                            className=" object-cover  "
                             priority
                         />
-                        <div className=" w-full flex justify-between  h-[300px]">
-                            <Image
-                                src={worldMap}
-                                alt="world-map"
-                                width={500}
-                                height={200}
-                                className="object-cover opacity-25"
-                                priority
-                            />
-                            <Image
-                                src={worldMap}
-                                alt="world-map"
-                                width={500}
-                                height={200}
-                                className="object-cover opacity-25"
-                                priority
-                            />
-                        </div>
+                        <div className=" w-11/12 my-20  space-y-10 mb-24  py-16  h-full flex flex-col  items-center rounded-3xl bg-white/10 backdrop-blur-xl border border-white/40 ">
+                            <h6 className={`${playfair.className} gallery-title  text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
+                            <div className="  w-10/12  mt-5 z-50    flex rounded-xl overflow-hidden  gap-4   ">
 
-                        <div ref={hotelGalleryRef} className=" absolute  mb-28  space-y-20 flex flex-col items-center w-full  inset-0">
-                            <HotelsView />
-                            <div ref={galleryRef} className="w-full h-full">
-                                <Gallery />
+                                {galleryData?.map((item, index) => (
+                                    <div key={index} className={`relative  group min-h-[70vh]  hover:flex-4 gallery-tile  overflow-hidden delay-75 hover:cursor-pointer w-full  flex-1 transition-all ease-in-out duration-700 rounded-xl`}>
+                                        <Image
+                                            src={item.image}
+                                            alt='image'
+                                            fill
+                                            className='object-cover rounded-xl'
+                                            priority
+
+                                        />
+                                        <p className=" text-nowrap opacity-0 font-medium absolute delay-100 bottom-10 group-hover:opacity-100 group-hover:translate-x-12 -left-5 translate-all duration-500   2xl:text-2xl text-white">{item.name}</p>
+                                    </div>
+                                ))}
+
                             </div>
                         </div>
                     </div>
-                </div> */}
+                </div>
 
-                <div ref={planningRef} className="w-full h-[200px] md:h-[240px] lg:h-[250px] xl:h-[310px] 2xl:h-[340px]  overflow-hidden relative">
-                    <div className="   absolute w-full  overflow-hidden inset-0 planner-image-wrapper">
-                        <Image
-                            src='/images/itinerary/tree-in-river.png'
-                            alt="tree-in-river"
-                            fill
-                            className=" object-cover "
-                            priority
-                        />
-                    </div>
 
-                    <div className="  absolute bg-white/5 w-full h-full flex-center max-sm:px-4 ">
-                        <div className="lg:w-8/12 md:w-10/12  text-center h-auto flex-col  text-white  flex-center">
-                            <h3 className="xl:text-5xl text-2xl  font-medium  antialiased text-center">Design Your Perfect Itinerary</h3>
-                            <p className=" lg:text-lg  text-xs  mt-3 xl:mt-8 2xl:mt-12 w-10/12 lg:w-4/6 ">
-                                Create a journey that reflects your interests, pace, and
-                                travel style — from handpicked experiences to seamless logistics, every detail is yours to shape.
-                            </p>
-                            <button className="lg:px-10 px-6 py-2 rounded-full lg:mt-8 mt-3 max-lg:text-sm text-white bg-white/15">START PLANNING</button>
-                        </div>
+
+                <div ref={planningRef} className="w-full    min-h-[50vh] bg-dark-beige flex flex-col justify-center items-center  overflow-hidden relative">
+                    <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 bottom-0 h-full' ImagePath='/images/itinerary/planning-left-clip-path.png' />
+                    <ResponsiveClipPath outerClass='absolute  w-1/12  right-0 bottom-0 h-10/12' ImagePath='/images/itinerary/planning-right-clip-path.png' />
+
+                    <div className="lg:w-8/12 md:w-10/12  space-y-10   text-center h-auto flex-col text-dark-28  flex-center">
+                        <h3 className={`xl:text-[50px] text-2xl  font-medium  antialiased  text-dark-4B text-center ${playfair.className}`}>Design Your Perfect Itinerary</h3>
+                        <p className=" lg:text-2xl font-light  leading-9 text-xs  lg:w-5/6 ">
+                            Create a journey that reflects your interests, pace, and
+                            travel style — from handpicked experiences to seamless logistics, every detail is yours to shape.
+                        </p>
+                        <Button text='START PLANNING' buttonStyle={`  transition-all duration-500  ease-in-out font-light  max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} isHoverWhiteApplied={false} />
+
                     </div>
                 </div>
+
 
                 <Footer />
             </div>
