@@ -4,9 +4,14 @@ import Details from "./Details"
 import Carousal from "./Carousal"
 import DailyActivities from "./DailyActivities"
 import Map from "./Map"
-import gsap from "gsap"
 import { playfair, rubik } from "@/app/fonts"
 import DestinationsCarousal from "./DestinationsCarousal"
+
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(ScrollTrigger);
+
 
 export default function PlannedActivities({ }) {
 
@@ -18,6 +23,10 @@ export default function PlannedActivities({ }) {
 
     const mapCardOriginalStyles = useRef({});
     const activitiesCardOriginalStyles = useRef({});
+
+    const plannerRef = useRef()
+    const plannerCardsRef = useRef()
+
 
 
     const [selectedTab, setselectedTab] = useState('Overview')
@@ -296,33 +305,82 @@ export default function PlannedActivities({ }) {
     ]
 
 
+    useGSAP(() => {
+        const elements = gsap.utils.toArray(".vertically-animated-element");
+
+        elements.forEach((box) => {
+            gsap.fromTo(
+                box,
+                { opacity: 0, y: 60 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: box,
+                        start: "top 80%",
+                        toggleActions: "play none play reverse ",
+                        // markers: true
+                    },
+                }
+            );
+        });
+    }, { scope: plannerRef });
+
+
+    
+  useGSAP(() => {
+    const elements = gsap.utils.toArray(".scale-opacity-animate");
+
+    elements.forEach((box) => {
+      gsap.fromTo(
+        box,
+        { opacity: 0, scale: 0.9 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: box,
+            start: "top 80%",
+            toggleActions: "play none play reverse ",
+          },
+        }
+      );
+    });
+  }, { scope: plannerCardsRef });
+
+
+  
+
 
     return (
         <>
             {/* <div className="relative flex flex-wrap bg-red-50 border   w-[800px] min-h-[400px] overflow-hidden"> */}
 
-            <div id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[100vh] w-10/12 my-16 border-black border  z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12  space-y-10 flex flex-col items-center `}>
-                <h3 className={`text-5xl font-medium ${playfair.className}`}>Planned Activities</h3>
+            <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[100vh] w-10/12 my-16   z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12  space-y-10 flex flex-col items-center `}>
+                <h3 className={`text-5xl vertically-animated-element font-medium ${playfair.className}`}>Planned Activities</h3>
 
 
-                <div className=" flex text-xl  space-x-8  font-normal">
+                <div className=" flex text-xl vertically-animated-element space-x-8  font-normal">
                     {["Map", "Overview", "Daily Schedule",].map((tab, index) => (
                         <p onClick={() => handleTabSelection(tab)} key={index} className={` cursor-pointer transform transition-all duration-300  ${selectedTab === tab ? ' text-sky-blue-dark' : 'text-black'} `}>{tab}</p>
                     ))}
                 </div>
 
-                <div className="relative flex flex-wrap justify-center gap-3 mt-5  2xl:gap-6  z-50  overflow-hidden">
+                <div ref={plannerCardsRef} className="relative flex flex-wrap justify-center gap-3 mt-5  2xl:gap-6  z-50  overflow-hidden">
                     {Components?.map((item, index) => {
                         const DynamicComponent = item.component;
                         return (<div
                             ref={item.Ref}
                             key={index}
-                            className="w-[48%] h-[48%]"
+                            className="w-[48%] scale-opacity-animate h-[48%]"
                         >
                             <DynamicComponent expandCards={expandCards} index={index} selectedTab={selectedTab} />
 
                         </div>)
-
                     })}
                 </div>
             </div>

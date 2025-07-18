@@ -1,18 +1,17 @@
 'use client'
-import { useState, useEffect, useRef } from "react"
-import Image from "next/image"
+import dynamic from 'next/dynamic';
+
+const MapClient = dynamic(() => import('./Leaflet'), {
+    ssr: false,
+});
 
 export default function Map({expandCards,index}) {
+    
 
     return (
-        <div onClick={()=>expandCards(index)} className=" relative cursor-pointer w-full h-full">
-            <Image
-            src='/images/static/map.png'
-            fill
-            priority
-            alt="google map"
-            className="object-cover"
-            />
+        <div onClick={()=>expandCards(index)} className=" relative  overflow-hidden cursor-pointer w-full h-full">
+           
+            <MapClient expandCards={expandCards}/>
         </div>
        
     )

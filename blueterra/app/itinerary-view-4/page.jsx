@@ -37,6 +37,7 @@ export default function Page4() {
 
     const hotelContainerRef = useRef()
     const hotelGalleryRef = useRef()
+    const bannerContainer = useRef()
 
 
     const galleryData = [
@@ -48,6 +49,95 @@ export default function Page4() {
         { name: "Tropical Forest Retreat", image: "https://images.pexels.com/photos/382167/pexels-photo-382167.jpeg" },
     ];
 
+
+
+
+    useGSAP(() => {
+        const elements = gsap.utils.toArray(".vertically-animated-element");
+
+        elements.forEach((box) => {
+            gsap.fromTo(
+                box,
+                { opacity: 0, y: 60 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: box,
+                        start: "top 90%",
+                        toggleActions: "play none play reverse",
+                    },
+                }
+            );
+        });
+    }, { scope: galleryRef });
+
+
+     useGSAP(() => {
+        const elements = gsap.utils.toArray(".vertically-animated-element");
+
+        elements.forEach((box) => {
+            gsap.fromTo(
+                box,
+                { opacity: 0, y: 60 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: box,
+                        start: "top 90%",
+                        toggleActions: "play none play reverse",
+                    },
+                }
+            );
+        });
+    }, { scope: planningRef });
+
+    
+
+
+    useGSAP(() => {
+        gsap.fromTo(
+            ".vertically-animate-element",
+            { opacity: 0, y: 60 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.9,
+                ease: "power3.out",
+                delay: 0.5,
+                // stagger: 0.4, // now this will work
+            }
+        );
+    }, { scope: bannerContainer });
+
+
+    //  useGSAP(() => {
+    //     const elements = gsap.utils.toArray(".vertically-animate-element");
+
+    //     elements.forEach((box) => {
+    //         gsap.fromTo(
+    //             box,
+    //             { opacity: 1, y: 0 },
+    //             {
+    //                 opacity: 0,
+    //                 y: 60,
+    //                 duration: 0.7,
+    //                 ease: "power3.out",
+    //                 scrollTrigger: {
+    //                     trigger: bannerContainer.current,
+    //                     start: "bottom 70%",
+    //                     toggleActions: "play none play reverse",
+    //                     markers: true
+    //                 },
+    //             }
+    //         );
+    //     });
+    // }, { scope: bannerContainer });
 
 
 
@@ -186,9 +276,9 @@ export default function Page4() {
         <SmoothScroll>
             <Navbar />
 
-            <div className={`${rubik.className}`}>
+            <div  className={`${rubik.className}`}>
 
-                <div ref={containerRef} className="relative  w-full min-h-[90vh] ">
+                <div className="relative  w-full min-h-[90vh] ">
                     {/* Fixed Background */}
                     <div className="fixed inset-0 -z-10">
                         <Image src='/images/itinerary/banner.png' alt="forest" fill className="" priority />
@@ -197,27 +287,28 @@ export default function Page4() {
                     </div>
 
 
-                    <div ref={box1ContainerRef} className="  h-full flex border ">
+                    <div ref={bannerContainer} className="   h-full flex  ">
 
-                        <div ref={box1Ref} className=" text-white z-30 mt-10  flex flex-col border justify-between  text-center w-full h-full   ">
+                        <div className=" text-white z-30 mt-10  flex flex-col  justify-between  text-center w-full h-full   ">
 
                             <div className={`${playfair.className}`}>
-                                <p className=" text-[100px] font-medium">8 Days Kenya Safari</p>
-                                <p className=" text-white/30 font-medium h-fit -mt-28 text-[250px]">Kenya</p>
+                                <p className=" text-[100px] opacity-0 vertically-animate-element font-medium">8 Days Kenya Safari</p>
+                                <p className=" text-white/30 opacity-0 vertically-animate-element font-medium h-fit -mt-28 text-[250px]">Kenya</p>
                             </div>
 
                             <div className=" space-y-5  text-center flex font-light flex-col items-center">
-                                <p className=" text-[25px] leading-9 w-5/12">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities, carefully selected destinations, accommodations, transportation details, and unique experiences.</p>
-                                <p className=" w-4/12 text-xl leading-9">A comprehensive and meticulously curated document that presents a day-by-day breakdown of your travel journey, featuring thoughtfully.</p>
-                                <Button text='START PLANNING' buttonStyle={` font-semibold transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `} />
+                                <p className=" text-[25px] opacity-0 vertically-animate-element leading-9 w-5/12">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities, carefully selected destinations, accommodations, transportation details, and unique experiences.</p>
+                                <p className=" w-4/12 text-xl opacity-0 vertically-animate-element leading-9">A comprehensive and meticulously curated document that presents a day-by-day breakdown of your travel journey, featuring thoughtfully.</p>
+                                <Button text='START PLANNING' buttonStyle={` opacity-0 vertically-animate-element font-normal transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `} />
                             </div>
 
                         </div>
                     </div>
-
                 </div>
 
-                <div className=" w-full bg-white relative  border min-h-screen flex-center">
+
+
+                <div className=" w-full bg-white relative   min-h-screen flex-center">
                     <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' />
 
                     <PlannedActivities />
@@ -231,7 +322,7 @@ export default function Page4() {
                     </div>
                 </div>
 
-                <div className=" bg-dark-beige  w-full h-full">
+                <div ref={galleryRef} className=" bg-dark-beige  w-full h-full">
 
                     <div className="w-full h-full bg-white/30   flex-center relative">
                         <Image
@@ -241,9 +332,9 @@ export default function Page4() {
                             className=" object-cover  "
                             priority
                         />
-                        <div className=" w-11/12 my-20  space-y-10 mb-24  py-16  h-full flex flex-col  items-center rounded-3xl bg-white/10 backdrop-blur-xl border border-white/40 ">
-                            <h6 className={`${playfair.className} gallery-title  text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
-                            <div className="  w-10/12  mt-5 z-50    flex rounded-xl overflow-hidden  gap-4   ">
+                        <div  className=" w-11/12 my-20  space-y-10 mb-24  py-16  h-full flex flex-col  items-center rounded-3xl vertically-animated-element bg-white/10 backdrop-blur-xl border border-white/40 ">
+                            <h6 className={`${playfair.className} gallery-title  vertically-animated-element text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
+                            <div className="  w-10/12  mt-5 z-50  vertically-animated-element  flex rounded-xl overflow-hidden  gap-4   ">
 
                                 {galleryData?.map((item, index) => (
                                     // <div key={index} className={`relative group min-h-[70vh] delay-75 hover:flex-4 flex-1 transition-[flex] duration-700 ease-[cubic-bezier(0.25, 1, 0.5, 1)] gallery-tile overflow-hidden hover:cursor-pointer rounded-xl`}>
@@ -272,12 +363,12 @@ export default function Page4() {
                     <ResponsiveClipPath outerClass='absolute  w-1/12  right-0 bottom-0 h-10/12' ImagePath='/images/itinerary/planning-right-clip-path.png' />
 
                     <div className="lg:w-8/12 md:w-10/12  space-y-10   text-center h-auto flex-col text-dark-28  flex-center">
-                        <h3 className={`xl:text-[50px] text-2xl  font-medium  antialiased  text-dark-4B text-center ${playfair.className}`}>Design Your Perfect Itinerary</h3>
-                        <p className=" lg:text-2xl font-light  leading-9 text-xs  lg:w-5/6 ">
+                        <h3 className={`xl:text-[50px] text-2xl  font-medium  antialiased  text-dark-4B text-center vertically-animated-element ${playfair.className}`}>Design Your Perfect Itinerary</h3>
+                        <p className=" lg:text-2xl font-light  leading-9 text-xs vertically-animated-element lg:w-5/6 ">
                             Create a journey that reflects your interests, pace, and
                             travel style — from handpicked experiences to seamless logistics, every detail is yours to shape.
                         </p>
-                        <Button text='START PLANNING' buttonStyle={`  transition-all duration-500  ease-in-out font-light  max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} isHoverWhiteApplied={false} />
+                        <Button text='START PLANNING' buttonStyle={`  transition-all duration-500 vertically-animated-element ease-in-out font-light  max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} isHoverWhiteApplied={false} />
 
                     </div>
                 </div>
