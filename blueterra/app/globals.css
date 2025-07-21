@@ -432,3 +432,9 @@ body {
     padding: 8px; /* Reduced padding */
   }
 }
+
+
+.tox-tinymce {
+  outline: none !important;
+  box-shadow: none !important;
+}
