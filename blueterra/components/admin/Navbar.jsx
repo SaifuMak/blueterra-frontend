@@ -34,7 +34,7 @@ const Navbar = () => {
                     />
                 </div>
                 <div className=" w-10/12 flex items-center justify-between ">
-                    <p className=" text-lg lg:text-xl font-medium">{itemName}</p>
+                    <p className=" text-lg lg:text-xl font-normal">{itemName}</p>
 
                     <div className=" flex space-x-4  items-center">
                         <div className=" p-3 rounded-md bg-[#F3F3F3] flex-center">

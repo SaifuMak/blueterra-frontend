@@ -18,7 +18,7 @@ export default function AdminItinerary() {
     const router = useRouter()
 
     const handleAddItineraray = () => {
-        router.push('/admin-add-itinerary')
+        router.push('/admin-create-itinerary')
     }
 
     return (

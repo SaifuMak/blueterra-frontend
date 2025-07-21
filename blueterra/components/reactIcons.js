@@ -12,6 +12,9 @@ import { IoEyeOffOutline } from "react-icons/io5";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { RiArrowRightSLine } from "react-icons/ri";
+import { RiImageAddLine } from "react-icons/ri";
+import { AiOutlineCheck } from "react-icons/ai";
+import { RiAddCircleLine } from "react-icons/ri";
 export {
     GoDot,
     HiOutlineArrowNarrowRight,
@@ -27,4 +30,7 @@ export {
     MdOutlineKeyboardArrowDown,
     HiArrowLongRight,
     RiArrowRightSLine,
+    RiImageAddLine,
+    AiOutlineCheck,
+    RiAddCircleLine,
 };
