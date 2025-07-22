@@ -32,8 +32,23 @@ export default function AdminJournals() {
         blog_content: "",
         meta_title: "",
         meta_description: "",
-        category_name: ""
+        category_name: "",
+        is_published: true,
     });
+
+
+    const handleClearFormDataState = () => {
+
+        setFormDataState({
+            title: "",
+            slug: "",
+            blog_content: "",
+            meta_title: "",
+            meta_description: "",
+            category_name: "",
+            is_published: true,
+        })
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -75,41 +90,12 @@ export default function AdminJournals() {
         }, 500);
     }
 
-
-    useEffect(() => {
-        const fetchMessage = async () => {
-            try {
-                const res = await AXIOS_INSTANCE.get('journals/hello/');
-            } catch (err) {
-                console.error('Fetch error:', err);
-            }
-        };
-
-        fetchMessage();
-    }, []);
-
-
-
     useEffect(() => {
         setIsClient(true);
     }, []);
 
 
-    // const handleGetContent = () => {
-    //     if (editorRef.current) {
-    //         const content = editorRef.current.getContent();
-    //         setFormDataState((prev) => ({
-    //             ...prev,
-    //             blog_content: content
-    //         }));
-    //         console.log(content); // This will log the HTML content
-    //         // You can now use this content as needed
-    //         // alert('Content logged to console!');
-    //     }
-    // };
-
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e, publish = true) => {
         toast.dismiss()
         e.preventDefault(); // prevent page reload
 
@@ -118,27 +104,35 @@ export default function AdminJournals() {
             return
         }
 
-
         if (editorRef.current) {
             const content = editorRef.current.getContent();
             if (!content) {
                 toast.error("Journal content can't be empty.");
                 return
             }
-
             // Directly include the content in the formData
             const updatedFormData = {
                 ...formDataState,
                 blog_content: content,
+                is_published: publish,
             };
 
             console.log(updatedFormData);
             setFormDataState(updatedFormData)
-            toast.success('Your action was successful!');
 
+            try {
+                const response = await AXIOS_INSTANCE.post('journals/', updatedFormData)
+                toast.success(publish ? "Blog post published successfully!" : "Draft saved successfully.");
+                handleClearFormDataState()
+            }
+            catch (e) {
+                const firstError = Object.values(e?.response?.data)?.[0]?.[0];
+                toast.error(firstError || "Something went wrong.");
+
+            }
         }
         else {
-            toast.error('something went wrong');
+            toast.error('Editor not initialized.');
         }
 
     };
@@ -213,14 +207,14 @@ export default function AdminJournals() {
                                     <div className=" flex items-center justify-between ">
                                         <h2 className=" text-lg 2xl:text-xl font-medium ">Post Journal </h2>
 
-                                        <button type="submit" className=" max-xl:hidden rounded-sm cursor-pointer text-sm font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">Publish</button>
+                                        <button onClick={(e) => handleSubmit(e, true)} className=" max-xl:hidden rounded-sm cursor-pointer text-sm font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">Publish</button>
 
                                     </div>
-                                    <button className=" xl:hidden mt-4 rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">Publish</button>
+                                    <button onClick={(e) => handleSubmit(e, true)} className=" xl:hidden mt-4 rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">Publish</button>
 
                                     <div className=" my-8 flex flex-col  ">
                                         <p className=" max-xl:text-sm"> Save & Publish Later</p>
-                                        <button className=" mt-2  cursor-pointer  rounded-sm font-medium  border bg- px-4 py-2 text-sm bg-[#F7FBFD] text-dark-28">Save Draft</button>
+                                        <button onClick={(e) => handleSubmit(e, false)} className=" mt-2  cursor-pointer  rounded-sm font-medium  border bg- px-4 py-2 text-sm bg-[#F7FBFD] text-dark-28">Save Draft</button>
                                         {/* <p className=" ">save for later</p> */}
 
                                     </div>
