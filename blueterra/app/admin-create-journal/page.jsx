@@ -7,7 +7,8 @@ import { Editor } from '@tinymce/tinymce-react';
 import { useRef, useState, useEffect } from 'react';
 import { RiImageAddLine, AiOutlineCheck, RiAddCircleLine, RxCross2 } from '@/components/reactIcons'
 import { rubik } from '@/app/fonts'
-
+import AXIOS_INSTANCE from "@/lib/axios";
+import { toast } from 'sonner';
 
 export default function AdminJournals() {
 
@@ -28,9 +29,10 @@ export default function AdminJournals() {
     const [formDataState, setFormDataState] = useState({
         title: "",
         slug: "",
+        blog_content: "",
         meta_title: "",
         meta_description: "",
-        selectedCategory: ""
+        category_name: ""
     });
 
     const handleChange = (e) => {
@@ -44,7 +46,7 @@ export default function AdminJournals() {
     const handleCategorySelection = (category) => {
         setFormDataState((prev) => ({
             ...prev,
-            selectedCategory: category
+            category_name: category
         }));
     }
 
@@ -73,16 +75,18 @@ export default function AdminJournals() {
         }, 500);
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault(); // prevent page reload
-        alert('Form submitted:');
-        // Example: send data to backend
-        // fetch('/api/submit', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify(formData),
-        // });
-    };
+
+    useEffect(() => {
+        const fetchMessage = async () => {
+            try {
+                const res = await AXIOS_INSTANCE.get('journals/hello/');
+            } catch (err) {
+                console.error('Fetch error:', err);
+            }
+        };
+
+        fetchMessage();
+    }, []);
 
 
 
@@ -91,14 +95,55 @@ export default function AdminJournals() {
     }, []);
 
 
-    const handleGetContent = () => {
+    // const handleGetContent = () => {
+    //     if (editorRef.current) {
+    //         const content = editorRef.current.getContent();
+    //         setFormDataState((prev) => ({
+    //             ...prev,
+    //             blog_content: content
+    //         }));
+    //         console.log(content); // This will log the HTML content
+    //         // You can now use this content as needed
+    //         // alert('Content logged to console!');
+    //     }
+    // };
+
+
+    const handleSubmit = (e) => {
+        toast.dismiss()
+        e.preventDefault(); // prevent page reload
+
+        if (!formDataState.category_name) {
+            toast.error('Please select a category');
+            return
+        }
+
+
         if (editorRef.current) {
             const content = editorRef.current.getContent();
-            console.log(content); // This will log the HTML content
-            // You can now use this content as needed
-            alert('Content logged to console!');
+            if (!content) {
+                toast.error("Journal content can't be empty.");
+                return
+            }
+
+            // Directly include the content in the formData
+            const updatedFormData = {
+                ...formDataState,
+                blog_content: content,
+            };
+
+            console.log(updatedFormData);
+            setFormDataState(updatedFormData)
+            toast.success('Your action was successful!');
+
         }
+        else {
+            toast.error('something went wrong');
+        }
+
     };
+
+
 
     if (!isClient) {
         return null; // or a loading placeholder
@@ -228,7 +273,7 @@ export default function AdminJournals() {
                                     </div>
                                     <div className=" flex flex-col mt-3 space-y-3 max-h-96 overflow-y-auto ">
                                         {sampleCategories?.map((category, index) => (
-                                            <div key={index} onClick={() => handleCategorySelection(category)} className=" flex items-center  text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-block border-dark-28/30 2xl:size-4 size-3    shrink-0 border  mr-2 "> {formDataState.selectedCategory === category && <AiOutlineCheck className="text-sm text-black" />}</span>{category}</div>
+                                            <div key={index} onClick={() => handleCategorySelection(category)} className=" flex items-center  text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category_name === category && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{category}</div>
                                         ))}
                                     </div>
 
