@@ -110,6 +110,7 @@ export default function AdminJournals() {
                 toast.error("Journal content can't be empty.");
                 return
             }
+
             // Directly include the content in the formData
             const updatedFormData = {
                 ...formDataState,
@@ -123,6 +124,7 @@ export default function AdminJournals() {
             try {
                 const response = await AXIOS_INSTANCE.post('journals/', updatedFormData)
                 toast.success(publish ? "Blog post published successfully!" : "Draft saved successfully.");
+                editorRef.current.setContent('')
                 handleClearFormDataState()
             }
             catch (e) {
