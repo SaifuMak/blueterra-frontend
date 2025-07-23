@@ -8,7 +8,8 @@ import AXIOS_INSTANCE from "@/lib/axios";
 import { useEffect, useState } from "react";
 import Pagination from "@/components/generalComponents/Pagination";
 import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers";
-import { IoEyeOutline, IoEyeOffOutline } from '@/components/reactIcons'
+import { IoEyeOutline, IoEyeOffOutline, RxCross2 } from '@/components/reactIcons'
+import { toast } from 'sonner';
 
 export default function AdminBlogs() {
 
@@ -30,6 +31,10 @@ export default function AdminBlogs() {
     }
     const [selectedJournalStatus, setSelectedJournalStatus] = useState('Published')
 
+    const [requestedStatusChange, setRequestedStatusChange] = useState('draft')
+    const [requestedJournalForStatusChange, setRequestedJournalForStatusChange] = useState(null)
+    const [isStatusChangeModel, setIsStatusChangeModel] = useState(false)
+
 
 
     const fetchJournals = async (page = 1, status = 'Published') => {
@@ -48,14 +53,61 @@ export default function AdminBlogs() {
         }
         catch (e) {
             console.log(e);
-
         }
     }
+
 
     const toggleJournalCategory = (status) => {
         setSelectedJournalStatus(status)
         fetchJournals(1, status)
     }
+
+
+    const handleChangeStatus = (status, id) => {
+        // the status is a bolean value if true that journal is currently published 
+        setRequestedJournalForStatusChange(id)
+        if (status === true) {
+            //    unpublish the journal 
+            setRequestedStatusChange('draft')
+        }
+        else {
+            // publish the journal
+            setRequestedStatusChange('publish')
+        }
+        // open the modal for changing the status 
+        setIsStatusChangeModel(true)
+
+    }
+
+
+
+    const confirmJournalStatus = async () => {
+        const data = {
+            id: requestedJournalForStatusChange,
+            status: requestedStatusChange
+        }
+
+        try {
+            const response = await AXIOS_INSTANCE.patch(`journals/`, data)
+            setIsStatusChangeModel(false)
+            toast.success(requestedStatusChange === 'draft' ? " Blog post unpublished successfully!" : "Blog post published successfully!");
+            requestedStatusChange === 'draft' ? fetchJournals(currentPage, 'Published') : fetchJournals(currentPage, 'Drafted')
+
+            // setJournals(response.data?.results)
+            // setCurrentPage(page)
+            // const nextpage = getPageNumber(response.data.next)
+            // const previous = getPageNumber(response.data.previous)
+            // setNextPage(nextpage)
+            // setPrevPage(previous)
+
+            // const totalPages = getTotalPagesCount(response.data.count, 5)
+            // setTotalPages(totalPages)
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
 
 
     useEffect(() => {
@@ -71,7 +123,7 @@ export default function AdminBlogs() {
 
             <Navbar />
 
-            <div className=" w-full h-full  flex">
+            <div className=" w-full h-full relative  flex">
 
                 {/* sidebar */}
                 <Sidebar />
@@ -115,7 +167,7 @@ export default function AdminBlogs() {
                                         <td className={rowStyle}>
                                             <div className=" flex justify-center space-x-10">
                                                 <img src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
-                                                <div className="">
+                                                <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="">
                                                     {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
                                                 </div>
                                             </div>
@@ -143,6 +195,17 @@ export default function AdminBlogs() {
                         queryParameter={selectedJournalStatus}
                     />
                 </div>
+
+
+                {isStatusChangeModel && <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
+                    <div className="bg-white relative rounded-lg flex flex-col  justify-center  shadow-xl p-6 w-100">
+                        <h2 className="text-lg mt-5 font-medium mb-4 text-dark-4B text-center ">Are you sure to {requestedStatusChange === 'draft' ? 'unpublish' : 'publish'} this journal ?</h2>
+                        <div className=" flex justify-center mt-4">
+                            <button onClick={confirmJournalStatus} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Okay</button>
+                        </div>
+                        <RxCross2 onClick={() => setIsStatusChangeModel(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
+                    </div>
+                </div>}
 
             </div>
         </div>
