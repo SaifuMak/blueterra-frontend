@@ -10,6 +10,7 @@ import Pagination from "@/components/generalComponents/Pagination";
 import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers";
 import { IoEyeOutline, IoEyeOffOutline, RxCross2 } from '@/components/reactIcons'
 import { toast } from 'sonner';
+import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
 
 export default function AdminBlogs() {
 
@@ -196,11 +197,19 @@ export default function AdminBlogs() {
                                         <td className={rowStyle}>{item.created_at}</td>
                                         <td className={rowStyle}>
                                             <div className=" flex justify-center space-x-10">
-                                                <img onClick={() => handleEditClick(item.id)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
-                                                <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
-                                                <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
-                                                    {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
-                                                </div>
+                                                <TooltipWrapper message="Edit">
+                                                    <img onClick={() => handleEditClick(item.id)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
+                                                </TooltipWrapper>
+
+                                                <TooltipWrapper message="Delete">
+                                                    <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
+                                                </TooltipWrapper>
+
+                                                <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
+                                                    <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
+                                                        {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                                                    </div>
+                                                </TooltipWrapper>
                                             </div>
                                         </td>
 
