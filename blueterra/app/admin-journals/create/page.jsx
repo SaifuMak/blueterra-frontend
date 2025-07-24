@@ -24,8 +24,6 @@ export default function AdminJournals() {
 
     const [newCategory, setNewCategory] = useState('')
 
-    const [sampleCategories, setSampleCategories] = useState(['Adventure', 'Beach', 'Cultural', ' Nature & Wildlife', 'Family Travel', 'Food & Culinary'])
-
     const [categories, setCategories] = useState([])
 
 
@@ -53,6 +51,7 @@ export default function AdminJournals() {
 
 
     const confirmAddCategory = async (category) => {
+
         const data = {
             category: category
         }
@@ -61,6 +60,7 @@ export default function AdminJournals() {
             fetchCategories()
             setCreateCategoryPopupOpened(false)
             setNewCategory('')
+            toast.success(response?.data?.message)
 
         }
         catch (e) {
@@ -136,6 +136,10 @@ export default function AdminJournals() {
             toast.error('Please select a category');
             return
         }
+        // if (!journalCoverImage) {
+        //     toast.error('Please select a preview image');
+        //     return
+        // }
 
         if (editorRef.current) {
             const content = editorRef.current.getContent();
@@ -149,13 +153,18 @@ export default function AdminJournals() {
                 ...formDataState,
                 blog_content: content,
                 is_published: publish,
+                // preview_image: journalCoverImage,
             };
 
             console.log(updatedFormData);
             setFormDataState(updatedFormData)
 
             try {
-                const response = await AXIOS_INSTANCE.post('journals/', updatedFormData)
+                const response = await AXIOS_INSTANCE.post('journals/', updatedFormData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
                 toast.success(publish ? "Blog post published successfully!" : "Draft saved successfully.");
                 editorRef.current.setContent('')
                 handleClearFormDataState()
@@ -226,17 +235,17 @@ export default function AdminJournals() {
                                         }}
                                     // initialValue="Welcome to TinyMCE!"
                                     />
-
                                 </div>
 
                                 <div className=" w-full  space-y-5 ">
                                     <input type="text" value={formDataState.meta_title} name="meta_title" onChange={handleChange} placeholder="Enter Meta Title" className="bg-white rounded-sm outline-none py-2 border w-full px-4  " required />
                                     <input type="text" value={formDataState.meta_description} name="meta_description" onChange={handleChange} placeholder="Enter Meta Description" className="bg-white rounded-sm outline-none py-2 border w-full px-4  " required />
                                 </div>
+
                             </div>
 
-                            <div className=" p-4 2xl:p-6 py-8  w-3/12 mt-10  h-full bg-white  border rounded-lg ">
 
+                            <div className=" p-4 2xl:p-6 py-8  w-3/12 mt-10  h-full bg-white  border rounded-lg ">
 
                                 <div className=" ">
                                     <div className=" flex items-center justify-between ">
@@ -293,6 +302,8 @@ export default function AdminJournals() {
                                     </p>
 
                                 </div>
+
+
 
                                 <div className=" w-full  2xl:mt-10 ">
                                     <div className=" flex max-xl:flex-col xl:items-center justify-between">

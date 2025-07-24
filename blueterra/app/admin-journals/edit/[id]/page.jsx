@@ -11,6 +11,7 @@ import AXIOS_INSTANCE from "@/lib/axios";
 import { toast } from 'sonner';
 import { useParams } from 'next/navigation';
 
+
 export default function EditJournal() {
 
     const editorRef = useRef(null);
@@ -29,7 +30,12 @@ export default function EditJournal() {
 
     const router = useRouter()
 
-    const [sampleCategories, setSampleCategories] = useState(['Adventure', 'Beach', 'Cultural', ' Nature & Wildlife', 'Family Travel', 'Food & Culinary'])
+
+
+    const [newCategory, setNewCategory] = useState('')
+
+
+    const [categories, setCategories] = useState([])
 
 
 
@@ -98,7 +104,41 @@ export default function EditJournal() {
         }, 500);
     }
 
+
+    const fetchCategories = async () => {
+        try {
+            const response = await AXIOS_INSTANCE.get(`journal-categories/`)
+            setCategories(response?.data)
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+
+    const confirmAddCategory = async (category) => {
+         console.log(category);
+
+        const data = {
+            category: category
+        }
+        try {
+            const response = await AXIOS_INSTANCE.post(`journal-categories/`, data)
+            fetchCategories()
+            setCreateCategoryPopupOpened(false)
+            setNewCategory('')
+            toast.success(response?.data?.message)
+
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
     useEffect(() => {
+        fetchCategories()
         setIsClient(true);
     }, []);
 
@@ -205,6 +245,7 @@ export default function EditJournal() {
 
                             <div className=" flex-1 flex-col space-y-5    ">
                                 <h1 className=" text-2xl 2xl:text-3xl font-normal text-dark-28 ">Edit Journal</h1>
+
                                 <div className=" w-full mt-10 space-y-5 ">
                                     <input type="text" value={formDataState.title} name="title" onChange={handleChange} placeholder="Enter title" className="bg-white rounded-sm outline-none py-2 border w-full px-4  " required />
                                     <input type="text" value={formDataState.slug} name="slug" onChange={handleChange} placeholder="Enter slug" className="bg-white rounded-sm outline-none py-2 border w-full px-4  " required />
@@ -312,8 +353,8 @@ export default function EditJournal() {
 
                                     </div>
                                     <div className=" flex flex-col mt-3 space-y-3 max-h-96 overflow-y-auto ">
-                                        {sampleCategories?.map((category, index) => (
-                                            <div key={index} onClick={() => handleCategorySelection(category)} className=" flex items-center  text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category_name.trim() === category.trim() && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{category}</div>
+                                        {categories?.map((data, index) => (
+                                            <div key={index} onClick={() => handleCategorySelection(data.category)} className=" flex items-center  capitalize text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category_name === data.category && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{data.category}</div>
                                         ))}
                                     </div>
 
@@ -333,9 +374,9 @@ export default function EditJournal() {
             {createCategoryPopupOpened && <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
                 <div className="bg-white relative rounded-lg  shadow-xl p-6 w-100">
                     <h2 className="text-lg font-medium mb-4 text-dark-4B ">Add New Category</h2>
-                    <input ref={createCategoryInputRef} type="text" placeholder="" className=" px-2 py-1 w-full  outline-none border rounded-sm" />
+                    <input ref={createCategoryInputRef} type="text" onChange={(e) => setNewCategory(e.target.value)} placeholder="" className=" px-2 py-1 w-full  outline-none border rounded-sm" />
                     <div className=" flex justify-center mt-4">
-                        <button className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Save </button>
+                        <button onClick={() => confirmAddCategory(newCategory)}  className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Save </button>
                     </div>
                     <RxCross2 onClick={() => setCreateCategoryPopupOpened(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
                 </div>
