@@ -36,6 +36,11 @@ export default function AdminBlogs() {
     const [requestedJournalForStatusChange, setRequestedJournalForStatusChange] = useState(null)
     const [isStatusChangeModel, setIsStatusChangeModel] = useState(false)
 
+    const [isDeleteJournalModel, setIsDeleteJournalModel] = useState(false)
+    const [requestedJournalForDeletion, setRequestedJournalForDeletion] = useState(null)
+
+
+
 
 
     const fetchJournals = async (page = 1, status = 'Published') => {
@@ -114,9 +119,29 @@ export default function AdminBlogs() {
     };
 
 
+    const handleDeleteJournal = (id) => {
+        setRequestedJournalForDeletion(id)
+        setIsDeleteJournalModel(true)
+    }
+
+
+    const confirmDeleteJournal = async () => {
+        const id = requestedJournalForDeletion
+        try {
+            const response = await AXIOS_INSTANCE.delete(`journals/${id}/`)
+            selectedJournalStatus === 'Published' ? fetchJournals(currentPage, 'Published') : fetchJournals(currentPage, 'Drafted')
+            toast.success(response.data.message)
+            setIsDeleteJournalModel(false)
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+
 
     useEffect(() => {
-
 
         fetchJournals()
 
@@ -172,7 +197,8 @@ export default function AdminBlogs() {
                                         <td className={rowStyle}>
                                             <div className=" flex justify-center space-x-10">
                                                 <img onClick={() => handleEditClick(item.id)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
-                                                <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="">
+                                                <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
+                                                <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
                                                     {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
                                                 </div>
                                             </div>
@@ -209,6 +235,17 @@ export default function AdminBlogs() {
                             <button onClick={confirmJournalStatus} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Okay</button>
                         </div>
                         <RxCross2 onClick={() => setIsStatusChangeModel(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
+                    </div>
+                </div>}
+
+
+                {isDeleteJournalModel && <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
+                    <div className="bg-white relative rounded-lg flex flex-col  justify-center  shadow-xl p-6 w-100">
+                        <h2 className="text-lg mt-5 font-medium mb-4 text-dark-4B text-center ">Are you sure to delete this journal ?</h2>
+                        <div className=" flex justify-center mt-4">
+                            <button onClick={confirmDeleteJournal} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Okay</button>
+                        </div>
+                        <RxCross2 onClick={() => setIsDeleteJournalModel(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
                     </div>
                 </div>}
 
