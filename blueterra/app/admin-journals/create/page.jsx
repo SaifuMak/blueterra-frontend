@@ -22,8 +22,11 @@ export default function AdminJournals() {
     const fileInputRef = useRef();
     const createCategoryInputRef = useRef()
 
+    const [newCategory, setNewCategory] = useState('')
+
     const [sampleCategories, setSampleCategories] = useState(['Adventure', 'Beach', 'Cultural', ' Nature & Wildlife', 'Family Travel', 'Food & Culinary'])
 
+    const [categories, setCategories] = useState([])
 
 
     const [formDataState, setFormDataState] = useState({
@@ -35,6 +38,35 @@ export default function AdminJournals() {
         category_name: "",
         is_published: true,
     });
+
+
+    const fetchCategories = async () => {
+        try {
+            const response = await AXIOS_INSTANCE.get(`journal-categories/`)
+            setCategories(response?.data)
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+
+    const confirmAddCategory = async (category) => {
+        const data = {
+            category: category
+        }
+        try {
+            const response = await AXIOS_INSTANCE.post(`journal-categories/`, data)
+            fetchCategories()
+            setCreateCategoryPopupOpened(false)
+            setNewCategory('')
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
 
 
     const handleClearFormDataState = () => {
@@ -92,6 +124,7 @@ export default function AdminJournals() {
 
     useEffect(() => {
         setIsClient(true);
+        fetchCategories()
     }, []);
 
 
@@ -268,8 +301,8 @@ export default function AdminJournals() {
 
                                     </div>
                                     <div className=" flex flex-col mt-3 space-y-3 max-h-96 overflow-y-auto ">
-                                        {sampleCategories?.map((category, index) => (
-                                            <div key={index} onClick={() => handleCategorySelection(category)} className=" flex items-center  text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category_name === category && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{category}</div>
+                                        {categories?.map((data, index) => (
+                                            <div key={index} onClick={() => handleCategorySelection(data.category)} className=" flex items-center  capitalize text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category_name === data.category && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{data.category}</div>
                                         ))}
                                     </div>
 
@@ -289,9 +322,9 @@ export default function AdminJournals() {
             {createCategoryPopupOpened && <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
                 <div className="bg-white relative rounded-lg  shadow-xl p-6 w-100">
                     <h2 className="text-lg font-medium mb-4 text-dark-4B ">Add New Category</h2>
-                    <input ref={createCategoryInputRef} type="text" placeholder="" className=" px-2 py-1 w-full  outline-none border rounded-sm" />
+                    <input ref={createCategoryInputRef} type="text" onChange={(e) => setNewCategory(e.target.value)} value={newCategory} placeholder="" className=" px-2 py-1 w-full  outline-none border rounded-sm" />
                     <div className=" flex justify-center mt-4">
-                        <button className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Save </button>
+                        <button onClick={() => confirmAddCategory(newCategory)} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Save </button>
                     </div>
                     <RxCross2 onClick={() => setCreateCategoryPopupOpened(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
                 </div>

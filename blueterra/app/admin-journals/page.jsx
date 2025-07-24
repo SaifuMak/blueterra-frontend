@@ -40,10 +40,7 @@ export default function AdminBlogs() {
     const [isDeleteJournalModel, setIsDeleteJournalModel] = useState(false)
     const [requestedJournalForDeletion, setRequestedJournalForDeletion] = useState(null)
 
-
-
-
-
+    
     const fetchJournals = async (page = 1, status = 'Published') => {
 
         try {
