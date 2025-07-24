@@ -27,8 +27,9 @@ export default function AdminBlogs() {
 
 
     const handleAddJournal = () => {
-        router.push('/admin-create-journal')
+        router.push('admin-journals/create')
     }
+
     const [selectedJournalStatus, setSelectedJournalStatus] = useState('Published')
 
     const [requestedStatusChange, setRequestedStatusChange] = useState('draft')
@@ -108,6 +109,10 @@ export default function AdminBlogs() {
         }
     }
 
+    const handleEditClick = (id) => {
+        router.push(`/admin-journals/edit/${id}`);
+    };
+
 
 
     useEffect(() => {
@@ -166,7 +171,7 @@ export default function AdminBlogs() {
                                         <td className={rowStyle}>{item.created_at}</td>
                                         <td className={rowStyle}>
                                             <div className=" flex justify-center space-x-10">
-                                                <img src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
+                                                <img onClick={() => handleEditClick(item.id)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
                                                 <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="">
                                                     {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
                                                 </div>
