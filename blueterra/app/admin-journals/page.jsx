@@ -8,7 +8,7 @@ import AXIOS_INSTANCE from "@/lib/axios";
 import { useEffect, useState } from "react";
 import Pagination from "@/components/generalComponents/Pagination";
 import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers";
-import { IoEyeOutline, IoEyeOffOutline, RxCross2 } from '@/components/reactIcons'
+import { IoEyeOutline, IoEyeOffOutline, RxCross2, AiOutlineCheck } from '@/components/reactIcons'
 import { toast } from 'sonner';
 import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
 
@@ -40,7 +40,7 @@ export default function AdminBlogs() {
     const [isDeleteJournalModel, setIsDeleteJournalModel] = useState(false)
     const [requestedJournalForDeletion, setRequestedJournalForDeletion] = useState(null)
 
-    
+
     const fetchJournals = async (page = 1, status = 'Published') => {
 
         try {
@@ -112,6 +112,26 @@ export default function AdminBlogs() {
         }
     }
 
+
+    const confirmFeaturedStatus = async (blogId, status) => {
+        toast.dismiss()
+
+        const data = {
+            id: blogId,
+            featured_status: status
+        }
+
+        try {
+            const response = await AXIOS_INSTANCE.patch(`journals/`, data)
+            toast.success(status === true ? "Added to featured" : "Removed from featured");
+            fetchJournals(currentPage, 'Published')
+        }
+        catch (e) {
+            console.log(e);
+        }
+
+    }
+
     const handleEditClick = (id) => {
         router.push(`/admin-journals/edit/${id}`);
     };
@@ -180,6 +200,8 @@ export default function AdminBlogs() {
                                     <th className="px-4 py-5 font-normal ">Title</th>
                                     <th className="px-4 py-5 font-normal ">Category</th>
                                     <th className="px-4 py-5 font-normal">Published on</th>
+                                    <th className="px-4 py-5 font-normal">Featured</th>
+
                                     <th className="px-4 py-5 text-center font-normal">Actions</th>
                                     <th onClick={handleAddJournal} className="px-4 py-5 text-center font-normal"><button className=" bg-custom-sky-blue cursor-pointer text-white rounded-sm px-6 py-1">Add</button></th>
                                 </tr>
@@ -192,6 +214,16 @@ export default function AdminBlogs() {
                                         <td className={rowStyle}>{trimWords(item.title, 8)}</td>
                                         <td className={rowStyle}>{item.category_name}</td>
                                         <td className={rowStyle}>{item.created_at}</td>
+                                        <td className={rowStyle}>
+
+                                            <TooltipWrapper message={item.is_featured ? "Remove form Featured" : "Add to Featured"}>
+                                                <div onClick={()=>confirmFeaturedStatus(item.id, !item.is_featured )} className=" border size-5 2xl:size-5 cursor-pointer transition-all duration-500 ease-in-out  border-sky-blue-1 ml-4 flex-center inline-flex rounded-full  ">
+                                                    {item.is_featured && <AiOutlineCheck className=" text-sm 2xl:text-base text-sky-blue-dark " />}
+                                                </div>
+                                            </TooltipWrapper>
+
+                                        </td>
+
                                         <td className={rowStyle}>
                                             <div className=" flex justify-center space-x-10">
                                                 <TooltipWrapper message="Edit">

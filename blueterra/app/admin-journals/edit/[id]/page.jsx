@@ -118,7 +118,7 @@ export default function EditJournal() {
 
 
     const confirmAddCategory = async (category) => {
-         console.log(category);
+        console.log(category);
 
         const data = {
             category: category
@@ -376,7 +376,7 @@ export default function EditJournal() {
                     <h2 className="text-lg font-medium mb-4 text-dark-4B ">Add New Category</h2>
                     <input ref={createCategoryInputRef} type="text" onChange={(e) => setNewCategory(e.target.value)} placeholder="" className=" px-2 py-1 w-full  outline-none border rounded-sm" />
                     <div className=" flex justify-center mt-4">
-                        <button onClick={() => confirmAddCategory(newCategory)}  className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Save </button>
+                        <button onClick={() => confirmAddCategory(newCategory)} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Save </button>
                     </div>
                     <RxCross2 onClick={() => setCreateCategoryPopupOpened(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
                 </div>

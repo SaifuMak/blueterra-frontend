@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/tooltip";
 
 
-export default function TooltipWrapper({ message, children, className = " rounded-sm font-medium" }) {
+export default function TooltipWrapper({ message, children, className = " rounded-sm text-sm font-medium" }) {
     return (
         <Tooltip>
             <TooltipTrigger asChild>
