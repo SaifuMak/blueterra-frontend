@@ -11,6 +11,7 @@ import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers";
 import { IoEyeOutline, IoEyeOffOutline, RxCross2, AiOutlineCheck } from '@/components/reactIcons'
 import { toast } from 'sonner';
 import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
+import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 
 export default function AdminBlogs() {
 
@@ -25,6 +26,8 @@ export default function AdminBlogs() {
     const [prevPage, setPrevPage] = useState(null); // Previous page URL
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(null)
+
+    const [isLoading, setIsLoading] = useState(true)
 
 
     const handleAddJournal = () => {
@@ -41,7 +44,9 @@ export default function AdminBlogs() {
     const [requestedJournalForDeletion, setRequestedJournalForDeletion] = useState(null)
 
 
-    const fetchJournals = async (page = 1, status = 'Published') => {
+    const fetchJournals = async (page = 1, status = 'Published', loading = false) => {
+        // setIsLoading(true)
+        loading === true ? setIsLoading(true) : ''
 
         try {
             const response = await AXIOS_INSTANCE.get(`journals/?page=${page}&status=${status}`)
@@ -58,12 +63,15 @@ export default function AdminBlogs() {
         catch (e) {
             console.log(e);
         }
+        finally {
+            setIsLoading(false)
+        }
     }
 
 
     const toggleJournalCategory = (status) => {
         setSelectedJournalStatus(status)
-        fetchJournals(1, status)
+        fetchJournals(1, status, true)
     }
 
 
@@ -80,12 +88,13 @@ export default function AdminBlogs() {
         }
         // open the modal for changing the status 
         setIsStatusChangeModel(true)
-
     }
 
 
 
     const confirmJournalStatus = async () => {
+        setIsLoading(true)
+
         const data = {
             id: requestedJournalForStatusChange,
             status: requestedStatusChange
@@ -110,6 +119,9 @@ export default function AdminBlogs() {
         catch (e) {
             console.log(e);
         }
+        finally {
+            setIsLoading(false)
+        }
     }
 
 
@@ -130,6 +142,7 @@ export default function AdminBlogs() {
             console.log(e);
         }
 
+
     }
 
     const handleEditClick = (id) => {
@@ -144,6 +157,8 @@ export default function AdminBlogs() {
 
 
     const confirmDeleteJournal = async () => {
+        setIsLoading(true)
+
         const id = requestedJournalForDeletion
         try {
             const response = await AXIOS_INSTANCE.delete(`journals/${id}/`)
@@ -154,6 +169,9 @@ export default function AdminBlogs() {
         }
         catch (e) {
             console.log(e)
+        }
+        finally {
+            setIsLoading(false)
         }
     }
 
@@ -193,76 +211,85 @@ export default function AdminBlogs() {
                         </div>
                     </div>
 
-                    <div className=" w-full overflow-hidden rounded-lg  border mt-5  h-fit">
-                        <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
-                            <thead className="bg-[#394C5D] rounded-3xl text-white  ">
-                                <tr>
-                                    <th className="px-4 py-5 font-normal ">Title</th>
-                                    <th className="px-4 py-5 font-normal ">Category</th>
-                                    <th className="px-4 py-5 font-normal">Published on</th>
-                                    <th className="px-4 py-5 font-normal">Featured</th>
 
-                                    <th className="px-4 py-5 text-center font-normal">Actions</th>
-                                    <th onClick={handleAddJournal} className="px-4 py-5 text-center font-normal"><button className=" bg-custom-sky-blue cursor-pointer text-white rounded-sm px-6 py-1">Add</button></th>
-                                </tr>
-                            </thead>
 
-                            <tbody className=" bg-white  border">
-                                {journals?.map((item, index) => (
-                                    <tr key={index} className=" rounded-3xl">
+                    {isLoading ? (
+                        <div className=" min-h-[500px] flex-center mt-5">
+                            <LoaderIcon />
+                        </div>
+                    ) : (
 
-                                        <td className={rowStyle}>{trimWords(item.title, 8)}</td>
-                                        <td className={rowStyle}>{item.category_name}</td>
-                                        <td className={rowStyle}>{item.created_at}</td>
-                                        <td className={rowStyle}>
+                        <div className=" w-full overflow-hidden  transition-all duration-700 ease-in-out rounded-lg  border mt-5   ">
+                            <table className="w-full text-lg   rounded-3xl text-left text-gray-700">
+                                <thead className={`bg-[#394C5D] rounded-3xl text-white  `}>
+                                    <tr>
+                                        <th className="px-4 py-5 font-normal ">Title</th>
+                                        <th className="px-4 py-5 font-normal ">Category</th>
+                                        <th className="px-4 py-5 font-normal">Published on</th>
+                                        {selectedJournalStatus === 'Published' && <th className="px-4 py-5 font-normal">Featured</th>}
 
-                                            <TooltipWrapper message={item.is_featured ? "Remove form Featured" : "Add to Featured"}>
-                                                <div onClick={()=>confirmFeaturedStatus(item.id, !item.is_featured )} className=" border size-5 2xl:size-5 cursor-pointer transition-all duration-500 ease-in-out  border-sky-blue-1 ml-4 flex-center inline-flex rounded-full  ">
-                                                    {item.is_featured && <AiOutlineCheck className=" text-sm 2xl:text-base text-sky-blue-dark " />}
-                                                </div>
-                                            </TooltipWrapper>
+                                        <th className="px-4 py-5 text-center font-normal">Actions</th>
+                                        <th onClick={handleAddJournal} className="px-4 py-5 text-center font-normal"><button className=" bg-custom-sky-blue cursor-pointer text-white rounded-sm px-6 py-1">Add</button></th>
+                                    </tr>
+                                </thead>
 
-                                        </td>
+                                <tbody className=" bg-white  border">
+                                    {journals?.map((item, index) => (
+                                        <tr key={index} className=" rounded-3xl">
 
-                                        <td className={rowStyle}>
-                                            <div className=" flex justify-center space-x-10">
-                                                <TooltipWrapper message="Edit">
-                                                    <img onClick={() => handleEditClick(item.id)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
-                                                </TooltipWrapper>
+                                            <td className={rowStyle}>{trimWords(item.title, 8)}</td>
+                                            <td className={rowStyle}>{item.category_name}</td>
+                                            <td className={rowStyle}>{item.created_at}</td>
+                                            {selectedJournalStatus === 'Published' && (<td className={rowStyle}>
 
-                                                <TooltipWrapper message="Delete">
-                                                    <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
-                                                </TooltipWrapper>
-
-                                                <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
-                                                    <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
-                                                        {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                                                <TooltipWrapper message={item.is_featured ? "Remove form Featured" : "Add to Featured"}>
+                                                    <div onClick={() => confirmFeaturedStatus(item.id, !item.is_featured)} className=" border size-5 2xl:size-5 cursor-pointer transition-all duration-500 ease-in-out  border-sky-blue-1 ml-4 flex-center inline-flex rounded-full  ">
+                                                        {item.is_featured && <AiOutlineCheck className=" text-sm 2xl:text-base text-sky-blue-dark " />}
                                                     </div>
                                                 </TooltipWrapper>
-                                            </div>
-                                        </td>
 
-                                        <td className={rowStyle}>
-                                            <div className=" flex justify-center ">
-                                                {item.is_published ? "published" : "drafted"}
-                                            </div>
-                                        </td>
+                                            </td>)}
 
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                            <td className={rowStyle}>
+                                                <div className=" flex justify-center space-x-10">
+                                                    <TooltipWrapper message="Edit">
+                                                        <img onClick={() => handleEditClick(item.id)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
+                                                    </TooltipWrapper>
 
-                    </div>
+                                                    <TooltipWrapper message="Delete">
+                                                        <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
+                                                    </TooltipWrapper>
 
-                    <Pagination
+                                                    <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
+                                                        <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
+                                                            {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                                                        </div>
+                                                    </TooltipWrapper>
+                                                </div>
+                                            </td>
+
+                                            <td className={rowStyle}>
+                                                <div className=" flex justify-center ">
+                                                    {item.is_published ? "published" : "drafted"}
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+
+                        </div>)}
+
+                    {journals?.length > 1 && (<Pagination
                         prevPage={prevPage}
                         nextPage={nextPage}
                         function_to_call={fetchJournals}
                         currentPage={currentPage}
                         TotalPages={totalPages}
                         queryParameter={selectedJournalStatus}
-                    />
+                        buttonColor='bg-[#394C5D]'
+                    />)}
                 </div>
 
 
