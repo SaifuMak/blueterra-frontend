@@ -15,8 +15,6 @@ import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 
 export default function AdminBlogs() {
 
-
-
     const rowStyle = 'px-4 py-6  border-t order-gray-100/10'
     const router = useRouter()
 
@@ -89,7 +87,6 @@ export default function AdminBlogs() {
         // open the modal for changing the status 
         setIsStatusChangeModel(true)
     }
-
 
 
     const confirmJournalStatus = async () => {
@@ -278,8 +275,8 @@ export default function AdminBlogs() {
                                     ))}
                                 </tbody>
                             </table>
-
                         </div>)}
+
 
                     {journals?.length > 1 && (<Pagination
                         prevPage={prevPage}

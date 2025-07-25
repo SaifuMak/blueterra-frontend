@@ -17,6 +17,7 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState, useRef } from "react"
+import AXIOS_INSTANCE from "@/lib/axios"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -35,14 +36,19 @@ export default function Journal() {
 
     const [currentCollection, setCurrentCollection] = useState(0)
     const [CollectionCount, setCollectionCount] = useState(0)
-    const [selectedFilter, setSelectedFilter] = useState(0)
+    const [selectedFilter, setSelectedFilter] = useState('View All')
     const [selectedPage, setSelectedPage] = useState(1)
 
-    const filters = ['View All', 'Country Highlights', 'City Breaks', 'Hidden Gems', 'Adventure Travel', 'Local Experiences',]
+    const [categories, setCategories] = useState([])
+
     const pages = ['1', '2', '3']
 
     const containerRef = useRef()
     const bannerText = useRef()
+
+    const handleFiterChange = (filter) => {
+        setSelectedFilter(filter)
+    }
 
 
     const journalsData = [
@@ -54,6 +60,29 @@ export default function Journal() {
         { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/1122408/pexels-photo-1122408.jpeg', alt: 'snow ' },
 
     ]
+
+
+    const fetchCategories = async () => {
+        try {
+            const response = await AXIOS_INSTANCE.get(`get-journal-categories/`)
+            setCategories(response?.data)
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    const fetchJournals = async () => {
+        try {
+            const response = await AXIOS_INSTANCE.get(`get-journals/`)
+            // setCategories(response?.data)
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+
 
 
 
@@ -72,7 +101,7 @@ export default function Journal() {
                     scrollTrigger: {
                         trigger: box,
                         start: "top 90%",
-                        toggleActions: "play reverse play reverse",
+                        toggleActions: "play none play reverse",
                     },
                 }
             );
@@ -94,6 +123,12 @@ export default function Journal() {
             }
         );
     },);
+
+    useEffect(() => {
+        fetchJournals()
+        fetchCategories()
+    }, [])
+
 
 
     return (
@@ -149,14 +184,15 @@ export default function Journal() {
 
                         </div>
 
-                        
                         <div className=" max-sm:mt-8 w-full xl:mt-10 overflow-hidden   rounded-3xl ">
                             <Journals Data={JOURNAL_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} currentCollection={currentCollection} CollectionCount={CollectionCount} />
                         </div>
 
                         <div className=" w-full space-x-5 flex-wrap gap-y-6 text-dark-28 max-xl:text-sm mb-10 xl:mt-10 max-sm:mt-10 max-sm:text-xs flex items-center ">
-                            {filters?.map((filter, index) => (
-                                <div key={index} className={` cursor-pointer text-nowrap ${index === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>{filter}</div>
+                            <div onClick={() => handleFiterChange('View All')} className={` cursor-pointer text-nowrap ${'View All' === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>View All</div>
+
+                            {categories?.map((data, index) => (
+                                <div key={index} onClick={() => handleFiterChange(data.category)} className={` cursor-pointer text-nowrap ${data.category === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>{data.category}</div>
                             ))}
                         </div>
                     </div>
