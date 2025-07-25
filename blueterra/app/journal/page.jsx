@@ -18,6 +18,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState, useRef } from "react"
 import AXIOS_INSTANCE from "@/lib/axios"
+import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -40,26 +41,33 @@ export default function Journal() {
     const [selectedPage, setSelectedPage] = useState(1)
 
     const [categories, setCategories] = useState([])
+    const [journals, setJournals] = useState([])
+    const [featuredJournals, setFeaturedJournals] = useState([])
 
     const pages = ['1', '2', '3']
 
     const containerRef = useRef()
     const bannerText = useRef()
 
-    const handleFiterChange = (filter) => {
-        setSelectedFilter(filter)
-    }
 
 
-    const journalsData = [
-        { title: 'Best Destinations for Wellness and Mindfulness', image: '/images/static/snowfall.png', alt: 'snow ' },
-        { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/1707310/pexels-photo-1707310.jpeg', alt: 'snow ' },
-        { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/70441/pexels-photo-70441.jpeg', alt: 'snow ' },
-        { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/2610309/pexels-photo-2610309.jpeg', alt: 'snow ' },
-        { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/2265876/pexels-photo-2265876.jpeg', alt: 'snow ' },
-        { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/1122408/pexels-photo-1122408.jpeg', alt: 'snow ' },
+    const [nextPage, setNextPage] = useState(null); // Next page URL
+    const [prevPage, setPrevPage] = useState(null); // Previous page URL
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(null)
 
-    ]
+
+
+
+    // const journalsData = [
+    //     { title: 'Best Destinations for Wellness and Mindfulness', image: '/images/static/snowfall.png', alt: 'snow ' },
+    //     { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/1707310/pexels-photo-1707310.jpeg', alt: 'snow ' },
+    //     { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/70441/pexels-photo-70441.jpeg', alt: 'snow ' },
+    //     { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/2610309/pexels-photo-2610309.jpeg', alt: 'snow ' },
+    //     { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/2265876/pexels-photo-2265876.jpeg', alt: 'snow ' },
+    //     { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/1122408/pexels-photo-1122408.jpeg', alt: 'snow ' },
+
+    // ]
 
 
     const fetchCategories = async () => {
@@ -72,10 +80,11 @@ export default function Journal() {
         }
     }
 
-    const fetchJournals = async () => {
+
+    const fetchFeaturedJournals = async () => {
         try {
-            const response = await AXIOS_INSTANCE.get(`get-journals/`)
-            // setCategories(response?.data)
+            const response = await AXIOS_INSTANCE.get(`get-featured-journals/`)
+            setFeaturedJournals(response?.data)
         }
         catch (e) {
             console.log(e)
@@ -83,6 +92,30 @@ export default function Journal() {
     }
 
 
+    const fetchJournals = async (category = 'View All', page = 1) => {
+        const encodedCategory = encodeURIComponent(category);
+        try {
+            const response = await AXIOS_INSTANCE.get(`get-journals/?page=${page}&category=${encodedCategory}`)
+            setJournals(response.data.results)
+            const nextpage = getPageNumber(response.data.next)
+            const previous = getPageNumber(response.data.previous)
+            setNextPage(nextpage)
+            setPrevPage(previous)
+            setCurrentPage(page)
+
+            const totalPages = getTotalPagesCount(response.data.count, 2)
+            setTotalPages(totalPages)
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    const handleFilterChange = (filter) => {
+        setSelectedFilter(filter)
+        fetchJournals(filter, 1)
+    }
 
 
 
@@ -125,6 +158,7 @@ export default function Journal() {
     },);
 
     useEffect(() => {
+        fetchFeaturedJournals()
         fetchJournals()
         fetchCategories()
     }, [])
@@ -184,36 +218,35 @@ export default function Journal() {
 
                         </div>
 
-                        <div className=" max-sm:mt-8 w-full xl:mt-10 overflow-hidden   rounded-3xl ">
-                            <Journals Data={JOURNAL_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} currentCollection={currentCollection} CollectionCount={CollectionCount} />
+                        <div className=" max-sm:mt-8 w-full xl:mt-10 overflow-hidden    rounded-3xl ">
+                            <Journals Data={featuredJournals} setCurrent={setCurrentCollection} setCount={setCollectionCount} currentCollection={currentCollection} CollectionCount={CollectionCount} />
                         </div>
 
-                        <div className=" w-full space-x-5 flex-wrap gap-y-6 text-dark-28 max-xl:text-sm mb-10 xl:mt-10 max-sm:mt-10 max-sm:text-xs flex items-center ">
-                            <div onClick={() => handleFiterChange('View All')} className={` cursor-pointer text-nowrap ${'View All' === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>View All</div>
+                        <div className=" w-full z-50 space-x-5 flex-wrap gap-y-6 text-dark-28 max-xl:text-sm mb-10 xl:mt-10 max-sm:mt-10 max-sm:text-xs flex items-center ">
+                            <div onClick={() => handleFilterChange('View All')} className={` cursor-pointer text-nowrap ${'View All' === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>View All</div>
 
                             {categories?.map((data, index) => (
-                                <div key={index} onClick={() => handleFiterChange(data.category)} className={` cursor-pointer text-nowrap ${data.category === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>{data.category}</div>
+                                <div key={index} onClick={() => handleFilterChange(data.category)} className={`transition-all duration-300 ease-in-out cursor-pointer text-nowrap ${data.category === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>{data.category}</div>
                             ))}
                         </div>
                     </div>
                 </div>
 
-                <div className=" w-full h-full  flex-center">
-                    <div className=" w-11/12 relative h-auto  flex flex-col justify-center items-center bg-sky-blue-light rounded-3xl">
+
+                <div className=" w-full  h-full  flex-center ">
+                    <div className=" w-11/12 relative min-h-[140vh]  flex flex-col  items-center bg-sky-blue-light rounded-3xl">
 
                         <div className=" w-11/12 2xl:w-10/12 mt-20 z-20   grid md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-12   ">
-                            {journalsData.map((journal, index) => (
+                            {journals?.map((journal, index) => (
 
                                 <div key={index} className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
 
                                     <Image
-                                        src={journal.image}
+                                        src='https://images.pexels.com/photos/1707310/pexels-photo-1707310.jpeg'
                                         alt={journal.title}
                                         fill
                                         className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"
                                     />
-
-
 
                                     <div className="absolute inset-0 group">
                                         {/* Gradient overlay shown only on hover */}
@@ -233,18 +266,25 @@ export default function Journal() {
                         </div>
 
 
-                        <div className=" w-full  my-16 flex justify-center space-x-4  z-20 items-center">
-                            {pages?.map((page, index) => (
-                                <div key={index} className={`${index === 0 ? 'bg-sky-blue-1 text-white' : 'bg-white text-sky-blue-1'} rounded-sm px-3 py-1.5 border border-slate-100`}>{page}</div>
+                        {journals?.length > 0 && <div className=" w-full  my-16 flex justify-center space-x-4  z-20 items-center">
+
+                            <div onClick={() => fetchJournals(selectedFilter, currentPage - 1)} className={`${currentPage > 1 ? ' opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                                <img src="/Icons/arrow-blue.svg" alt="search icon " className={` rotate-180 size-4 `} />
+                            </div>
+
+                            {[...Array(totalPages)].map((_, index) => (
+                                <div key={index} onClick={() => fetchJournals(selectedFilter, index + 1)} className={`${index + 1 === currentPage ? 'bg-sky-blue-1 text-white pointer-events-none' : 'bg-white text-sky-blue-1'} transition-all duration-300 ease-in-out  rounded-sm px-3 py-1.5 border border-slate-100`}>{index + 1}</div>
                             ))}
-                            <img src="/Icons/arrow-blue.svg" alt="search icon " className=" size-4" />
+
+                            <div onClick={() => fetchJournals(selectedFilter, currentPage + 1)} className={`${currentPage === totalPages ? ' opacity-0 pointer-events-none' : ' opacity-100'}`}>
+                                <img src="/Icons/arrow-blue.svg" alt="search icon " className=" size-4" />
+                            </div>
+                        </div>}
 
 
-                        </div>
                         <BackgroundClipPath outerClass='absolute    bottom-0   ' ImagePath='/images/journal/journal-card-bottom.png' width='500' height='1000' />
                         <BackgroundClipPath outerClass='absolute top-[20%] right-0   ' ImagePath='/images/journal/journal-card-left-clippath.png' width='500' height='1000' />
                         <BackgroundClipPath outerClass='absolute top-[60%] w-fit right-0   ' ImagePath='/images/journal/journal-card-linear-clippath.png' width='500' height='1000' />
-
 
                     </div>
                 </div>

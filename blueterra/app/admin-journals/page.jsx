@@ -15,7 +15,7 @@ import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 
 export default function AdminBlogs() {
 
-    const rowStyle = 'px-4 py-6  border-t order-gray-100/10'
+    const rowStyle = 'px-4 py-6 text-base 2xl:text-lg border-t border-gray-100/10'
     const router = useRouter()
 
     const [journals, setJournals] = useState([])
@@ -220,13 +220,13 @@ export default function AdminBlogs() {
                             <table className="w-full text-lg   rounded-3xl text-left text-gray-700">
                                 <thead className={`bg-[#394C5D] rounded-3xl text-white  `}>
                                     <tr>
-                                        <th className="px-4 py-5 font-normal ">Title</th>
-                                        <th className="px-4 py-5 font-normal ">Category</th>
-                                        <th className="px-4 py-5 font-normal">Published on</th>
-                                        {selectedJournalStatus === 'Published' && <th className="px-4 py-5 font-normal">Featured</th>}
+                                        <th className="px-4 2xl:text-lg text-base py-5 font-normal ">Title</th>
+                                        <th className="px-4 py-5 2xl:text-lg text-base font-normal ">Category</th>
+                                        <th className="px-4 py-5 2xl:text-lg text-base font-normal">Published on</th>
+                                        {selectedJournalStatus === 'Published' && <th className="px-4 py-5 2xl:text-lg text-base font-normal">Featured</th>}
 
-                                        <th className="px-4 py-5 text-center font-normal">Actions</th>
-                                        <th onClick={handleAddJournal} className="px-4 py-5 text-center font-normal"><button className=" bg-custom-sky-blue cursor-pointer text-white rounded-sm px-6 py-1">Add</button></th>
+                                        <th className="px-4 py-5 2xl:text-lg text-base text-center font-normal">Actions</th>
+                                        <th onClick={handleAddJournal} className="px-4 py-5 text-center font-normal"><button className=" bg-custom-sky-blue 2xl:text-lg text-base cursor-pointer text-white rounded-sm px-6 py-1">Add</button></th>
                                     </tr>
                                 </thead>
 

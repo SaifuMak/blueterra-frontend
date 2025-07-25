@@ -20,6 +20,7 @@ import { playfair, rubik, mrsSaint } from '@/app/fonts'
 import SmoothScroll from "../SmoothScroll";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
+import { trimWords } from "@/app/utils/textHelpers";
 
 gsap.registerPlugin(useGSAP)
 
@@ -91,8 +92,8 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
                                 <div className=" relative group cursor-pointer w-[100%] h-[30vh] md:h-[35vh] lg:h-[45vh] xl:h-[55vh] 2xl:h-[65vh] rounded-2xl overflow-hidden">
 
                                     <Image
-                                        src={item.image}
-                                        alt={item.alt}
+                                        src="https://images.pexels.com/photos/3073666/pexels-photo-3073666.jpeg"
+                                        alt={item.meta_title}
                                         fill
                                         className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"
                                     />
@@ -116,11 +117,16 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
                         <div className=" pointer-events-auto  px-4 md:px-10 md:py-5 lg:space-y-5 space-y-3  vertical-fade-in">
                             <div className=" space-y-3 overflow-hidden vertical-fade-in">
                                 <h2 className=" 2xl:text-[30px] xl:text-[24px] md:text-xl   font-medium">{Data[currentCollection]?.title}</h2>
-                                <p className=" 2xl:text-xl xl:text-lg text-sm max-sm:text-xs leading-9  font-light md:w-10/12">{Data[currentCollection]?.description}</p>
+                                {/* <p className=" 2xl:text-xl xl:text-lg text-sm max-sm:text-xs xl:leading-8 2xl:leading-9  font-light md:w-10/12"> dangerouslySetInnerHTML={{ __html: Data[currentCollection]?.blog_content }}</p> */}
+                                <p
+                                    className="2xl:text-xl xl:text-lg text-sm max-sm:text-xs xl:leading-8 2xl:leading-9 font-light md:w-10/12"
+                                    dangerouslySetInnerHTML={{ __html: trimWords(Data[currentCollection]?.blog_content, 50) }}
+                                ></p>
+
                             </div>
                             <div className=" flex items-center  max-2xl:text-sm font-light justify-between  ">
                                 <div className="">
-                                    <p className=" flex  items-center "> <span className=""><img src="/Icons/calender.svg" alt="" className=" size-4 object-cover mr-2 " /></span>{Data[currentCollection]?.date}</p>
+                                    <p className=" flex  items-center "> <span className=""><img src="/Icons/calender.svg" alt="" className=" size-4 object-cover mr-2 " /></span>{Data[currentCollection]?.created_at}</p>
                                 </div>
 
                                 <Link href='/blog-single'>
