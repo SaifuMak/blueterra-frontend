@@ -17,6 +17,7 @@ import Button from "@/components/generalComponents/Button";
 import Marquee from "react-fast-marquee";
 import DestinationCarousal from "@/components/Home/DestinationCarousal";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 
@@ -446,7 +447,7 @@ export default function Home() {
               className=" object-cover"
             />
           </div>
-          
+
           <div className=" w-[20%] absolute right-0 bottom-0    ">
             <Image
               src='/images/home/testimonial-right-pattern.png'

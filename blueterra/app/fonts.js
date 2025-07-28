@@ -9,7 +9,7 @@ export const playfair = Playfair_Display({
 
 export const rubik = Rubik({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '700'], // choose weights you need
+  weight: [ '300', '400', '500', '700'], // choose weights you need
   display: 'swap',
 });
 
