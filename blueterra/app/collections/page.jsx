@@ -190,9 +190,7 @@ export default function Collection() {
       </div> */}
 
 
-
-
-       <Filter setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} expandedIndex={expandedIndex} />
+      <Filter setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} expandedIndex={expandedIndex} />
 
       <div ref={homeRef} className=" w-full relative flex justify-center -mt-10  items-center  ">
 
@@ -208,13 +206,12 @@ export default function Collection() {
         </div>
 
 
-
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 md:gap-12 gap-5   md:grid-cols-2    w-10/12  " style={{ width: 'fit-content' }}>
 
           <DestinationCards Destinations={Destinations} />
 
         </div>
-      </div> 
+      </div>
 
       <Footer />
 
