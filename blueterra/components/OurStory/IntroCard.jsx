@@ -5,10 +5,10 @@ export default function IntroCard() {
 
     return (
         <div className={`${rubik.className} text-center text-white `} >
-            <h1 className={`text-[80px] ${playfair.className}  `}>Curated Journeys.</h1>
-            <h1 className={`text-[80px] -mt-5 ${playfair.className}  `}>Timeless Memories.</h1>
-            <p className=" text-3xl font-light mt-6">At BlueTerra, we craft travel that resonates</p>
-            <Button text='EXPLORE MORE' buttonStyle='translate-all mt-12 duration-1000 ease-in-out max-md:text-sm px-4 lg:px-8 xl:px-12 py-1.5 lg:py-2.5' />
+            <h1 className={` text-4xl xl:text-[80px] lg:text-7xl ${playfair.className}  `}>Curated Journeys.</h1>
+            <h1 className={` text-4xl xl:text-[80px] lg:text-7xl xl-mt-5  max-sm:mt-3 lg:mt-5 ${playfair.className}  `}>Timeless Memories.</h1>
+            <p className=" lg:text-2xl xl:text-3xl font-light mt-6">At BlueTerra, we craft travel that resonates</p>
+            <Button text='EXPLORE MORE' buttonStyle='translate-all mt-4 md:mt-7 xl:mt-12 duration-1000 ease-in-out  px-4 lg:px-8 xl:px-12 py-1.5 lg:py-2.5' />
 
         </div>
     )

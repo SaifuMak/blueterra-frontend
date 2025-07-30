@@ -1,4 +1,4 @@
-const PartnerCompanies = [
+const PartnerCompaniesData = [
     { icon: '' },
     { icon: '' },
     { icon: '' },
@@ -11,5 +11,5 @@ const PartnerCompanies = [
     { icon: '' },
 ];
 
-export default PartnerCompanies
+export default PartnerCompaniesData
 
