@@ -83,38 +83,50 @@ export default function Collection() {
 
   const Destinations = [
     {
-      image: '/images/places/sea.png',
+      images: [
+        'https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg',
+        'https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg',
+        'https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg',
+      ],
       description: "Lorem ipsum dolor sit amet, consectetur adipiscinge lit Pellentesque ut ligula vitae",
       place: 'United Arab Emirates',
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
       rating: 3.5,
-
     },
     {
-      image: '/images/places/sea.png',
+      images: [
+        'https://images.pexels.com/photos/131723/pexels-photo-131723.jpeg',
+        'https://images.pexels.com/photos/1423600/pexels-photo-1423600.jpeg',
+        'https://images.pexels.com/photos/1571117/pexels-photo-1571117.jpeg',
+      ],
       description: "Lorem ipsum dolor sit amet, consectetur adipiscinge lit Pellentesque ut ligula vitae",
       place: 'United Arab Emirates',
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
       rating: 5,
-
     },
     {
-      image: '/images/places/sea.png',
+      images: [
+        'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg',
+        'https://images.pexels.com/photos/618079/pexels-photo-618079.jpeg',
+        'https://images.pexels.com/photos/442579/pexels-photo-442579.jpeg',
+      ],
       description: "Lorem ipsum dolor sit amet, consectetur adipiscinge lit Pellentesque ut ligula vitae",
       place: 'United Arab Emirates',
       category: 'Adventure & Exploration',
       price: 34,
       days: 6,
       rating: 3.7,
-
-
     },
     {
-      image: '/images/places/sea.png',
+      images: [
+        'https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg',
+        'https://images.pexels.com/photos/2087391/pexels-photo-2087391.jpeg',
+        'https://images.pexels.com/photos/307008/pexels-photo-307008.jpeg',
+      ],
       description: "Lorem ipsum dolor sit amet, consectetur adipiscinge lit Pellentesque ut ligula vitae",
       place: 'United Arab Emirates',
       category: 'Adventure & Exploration',
@@ -149,11 +161,11 @@ export default function Collection() {
       )}
 
       {/* <Filter setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} expandedIndex={expandedIndex} /> */}
-      <FilterLayout/>
+      <FilterLayout />
 
       <div ref={homeRef} className=" w-full relative flex justify-center -mt-10  items-center  ">
 
-        <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 md:gap-12 gap-5   md:grid-cols-2    w-10/12  " style={{ width: 'fit-content' }}>
+        <div className="grid 2xl:gap-28 z-0 xl:gap-16 my-36 md:gap-12 gap-5   md:grid-cols-2 w-10/12 xl:w-9/12      " >
 
           <DestinationCards Destinations={Destinations} />
 

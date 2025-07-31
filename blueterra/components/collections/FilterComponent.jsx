@@ -3,6 +3,8 @@ import { IoMdArrowDropdown, CgCheck, BsCheck2 } from '@/components/reactIcons'
 
 export default function FilterComponent({ name, options, handleFilters, isOpened, handleItemSelection, selectedFilters }) {
 
+    
+
     return (
         <div className={`${isOpened ? 'bg-sky-blue-1 text-white border ' : ' text-dark-28 border border-[#BEBEBE]'} z-20  transition-all duration-500 ease-in-out    rounded-sm  cursor-pointer relative inline-block`}  >
 
