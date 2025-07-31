@@ -11,7 +11,7 @@ export default function HorizontalCards({ CardDetails,expandedIndex,handleCardCl
     // }
 
     return (
-        <div className=" flex w-full overflow-hidden">
+        <div className=" flex  w-full overflow-hidden">
             {
                 CardDetails?.map((data, index) => (
                     <AnimatedHorizontalCard key={index} card={data} onClick={()=>handleCardClick(index)} isExpanded={expandedIndex === index}/>

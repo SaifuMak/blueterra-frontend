@@ -3,7 +3,6 @@ import AnimatedVerticalCard from "./AnimatedVerticalCard"
 import { useRef, useState } from 'react';
 import MobileAnimatedVerticalCard from "./MobileAnimatedVerticalCard";
 
-
 export default function VerticalCards({ CardDetails, expandedIndex, handleCardClick, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading, setIsFilterVisible }) {
     // const [expandedIndex, setExpandedIndex] = useState(null)
 

@@ -10,6 +10,8 @@ import Navbar from "@/components/Navbar/page";
 import Footer from "@/components/Footer/page";
 import CardData from "@/components/datas/Destinations";
 
+import { rubik} from '@/app/fonts'
+
 
 export default function Collection() {
 
@@ -125,20 +127,20 @@ export default function Collection() {
     // <SmoothScroll>
 
 
-    <div className=''>
+    <div className={`${rubik.className}`}>
       <Navbar />
 
-      <BannerAnimation
+      {/* <BannerAnimation
         expandedIndex={expandedIndex}
         setExpandedIndex={setExpandedIndex}
         isFullCardVisible={isFullCardVisible}
         setIsFullCardVisible={setIsFullCardVisible}
         handleShowFullCard={handleShowFullCard}
         setIsFilterVisible={setIsFilterVisible}
-      />
+      /> */}
 
 
-      {/* <div className="w-full h-screen  flex flex-col ">
+      <div className="w-full h-screen  flex flex-col ">
         {CardData?.map((card, index) => (
           <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
             <Image
@@ -187,7 +189,7 @@ export default function Collection() {
 
           </div>
         ))}
-      </div> */}
+      </div>
 
 
       <Filter setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} expandedIndex={expandedIndex} />

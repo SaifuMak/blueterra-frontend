@@ -1,5 +1,5 @@
 'use client'
-// import HorizontalCards from "../AnimatedHorizontalCards/HorizontalCards"
+import HorizontalCards from "../AnimatedHorizontalCards/HorizontalCards"
 import VerticalCards from "../AnimatedVerticalCards/VerticalCards"
 import gsap from 'gsap';
 import { useState, useRef } from "react"
@@ -29,14 +29,14 @@ export default function BannerAnimation({ expandedIndex, setExpandedIndex, isFul
         // setExpandedIndex(expandedIndex=== index? null : index)
     }
 
+
     return (
         // <div ref={animationBannerRef} className={` z-30 ${isFullCardVisible ? 'relative' : 'fixed top-0 '} w-full`}>
         <div ref={animationBannerRef} className={` z-30  w-full fixed top-[70px]`}>
 
-            {/* <HorizontalCards CardDetails={CardData} expandedIndex={expandedIndex} handleCardClick={handleCardClick} /> */}
+            {/* <HorizontalCards CardDetails={CardData} expandedIndex={expandedIndex} handleCardClick={handleShowFullCard} /> */}
             <VerticalCards CardDetails={CardData} expandedIndex={expandedIndex} handleCardClick={handleShowFullCard} isFullCardVisible={isFullCardVisible} handleHideFullCard={handleHideFullCard} setIsLoading={setIsLoading} isLoading={isLoading} setIsFilterVisible={setIsFilterVisible} />
 
         </div>
     )
-
 }
