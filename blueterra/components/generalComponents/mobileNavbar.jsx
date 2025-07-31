@@ -51,7 +51,7 @@ export default function mobileNavbar({ MenuItems }) {
                 </div> */}
 
 
-                <div className={`w-full h-screen bg-red-50 inset-0 absolute transform duration-1000 ease-in-out  transition-transform ${isMenuOpened ? 'translate-x-0' : '-translate-x-[600px]'}  `}>
+                <div className={`w-full h-screen bg-red-50 inset-0 absolute transform duration-1000 ease-in-out  transition-transform ${isMenuOpened ? 'translate-x-0' : '-translate-x-[900px]'}  `}>
                     <div className={` shadow-lg bg-white  overflow-hidden  px-5 py-3  flex  flex-col  h-screen`}>
 
                         <div className="  min-h-[50px] flex justify-end ">

@@ -15,6 +15,10 @@ import { RiArrowRightSLine } from "react-icons/ri";
 import { RiImageAddLine } from "react-icons/ri";
 import { AiOutlineCheck } from "react-icons/ai";
 import { RiAddCircleLine } from "react-icons/ri";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { CgCheck } from "react-icons/cg";
+import { BsCheck2 } from "react-icons/bs";
+
 export {
     GoDot,
     HiOutlineArrowNarrowRight,
@@ -33,4 +37,7 @@ export {
     RiImageAddLine,
     AiOutlineCheck,
     RiAddCircleLine,
+    IoMdArrowDropdown,
+    CgCheck,
+    BsCheck2,
 };

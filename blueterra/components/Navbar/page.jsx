@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import Button from "../generalComponents/Button";
 import { rubik } from "@/app/fonts"
 
-export default function Navbar() {
+export default function Navbar({isfixed = false}) {
 
   const pathname = usePathname()
 
@@ -24,7 +24,7 @@ export default function Navbar() {
 
 
   return (
-    <div className={` ${rubik.className} w-full ${isHome ? ' z-50 fixed top-0' : ''}  bg-white max-xl:text-sm  h-[50px]  lg:h-[70px] flex justify-center `}>
+    <div className={` ${rubik.className} w-full ${isfixed ? ' z-50 fixed top-0' : ''}  bg-white max-xl:text-sm  h-[50px]  lg:h-[70px] flex justify-center `}>
 
       <div className="xl:w-11/12 w-full max-xl:pr-4 max-lg:hidden  flex  overflow-hidden max-2xl:text-sm  items-center justify-between">
         {/* <div className="xl:w-[200px] relative xl:h-[200px] h-[160px]  w-[160px] "> */}

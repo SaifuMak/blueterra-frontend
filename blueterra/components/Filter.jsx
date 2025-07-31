@@ -47,7 +47,6 @@ export default function Filter({ isFilterVisible, setIsFilterVisible, expandedIn
     }, [isFilterVisible]);
 
 
-
     return (
         // <div ref={filterRef} className="w-full flex justify-center max-lg:hidden   text-base border border-black bg-slate-400">
         // <div ref={filterRef} className={`overflow-hidden shadow-lg  pb-10 flex justify-center transition-all duration-1000 ease-in-out  bg-white   ${isFilterVisible ? 'max-h-[580px] opacity-100  z-50 ' : 'max-h-0 opacity-0 z-0'}   w-full  `}>
