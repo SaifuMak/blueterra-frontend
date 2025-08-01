@@ -6,17 +6,17 @@ import { useState } from "react";
 
 export default function DestinationCards({ Destinations }) {
 
-   
+
     return (
         <>
 
             {Destinations.map((destination, index) => (
                 // <div key={index} className=" xl:w-[600px] lg:w-[400px] lg:h-[320px] w-[300px] h-auto shadow-xl shadow-stone-400  xl:h-[500px] rounded-lg bg-white  text-black">
-                <div key={index} className="shadow-xl w-full xl:min-h-[480px]   lg:min-h-[480px]  h-[130px] shadow-stone-400  rounded-lg bg-white text-dark-28">
+                <div key={index} className=" shadow-[0_4px_20px_rgba(0,0,0,0.09)] w-full xl:min-h-[480px]   lg:min-h-[480px] h-full   rounded-lg bg-white text-dark-28">
 
-                    <div className="relative h-7/12 overflow-hidden rounded-t-lg "> {/* Set your dimensions here */}
+                    <div className="relative lg:h-7/12 overflow-hidden rounded-t-lg "> {/* Set your dimensions here */}
 
-                        <DestinationCardCarousal  Data={destination.images} />
+                        <DestinationCardCarousal Data={destination.images} />
 
                         <div className=" absolute top-6 -left-1">
                             <div className="relative ">
@@ -36,11 +36,11 @@ export default function DestinationCards({ Destinations }) {
                     </div>
 
 
-                    <div className="p-5 h-5/12  space-y-3 2xl:space-y-5">
-                        <div className=" flex justify-between items-center">
+                    <div className="p-5 lg:h-5/12  space-y-3 2xl:space-y-5">
+                        <div className=" flex max-md:flex-col justify-between md:items-center">
                             <p className="text-base font-normal">{destination.place}</p>
-                            <div className=" flex items-center ">
-                                <div className=" flex space-x-0.5">
+                            <div className=" flex max-md:flex-col   md:items-center ">
+                                <div className=" flex space-x-0.5 ">
 
                                     {[...Array(5)].map((_, index) => {
                                         const roundedRating = Math.round(destination.rating * 2) / 2;
@@ -55,9 +55,11 @@ export default function DestinationCards({ Destinations }) {
                                             <IoIosStarOutline key={index} className="text-[#FFCB1F]" />
                                         );
                                     })}
+                                    <p className="text-sm ml-1 md:hidden font-normal">{destination.rating}</p>
+
                                 </div>
-                                <p className="text-sm ml-1 font-normal">{destination.rating}</p>
-                                <div className=" rounded-full border flex justify-center ml-3 max-lg:hidden items-center lg:px-2 xl:py-1.5   border-[#E4E4E4] text-xs text-[#828282]">{destination.category}</div>
+                                <p className="text-sm ml-1 max-md:hidden font-normal">{destination.rating}</p>
+                                <div className=" max-md:mt-2 rounded-full border flex justify-center md:ml-3  items-center px-2 py-1.5 lg:px-2 xl:py-1.5 max-md:w-fit   border-[#E4E4E4] text-xs text-[#828282]">{destination.category}</div>
 
                             </div>
                         </div>
@@ -67,9 +69,9 @@ export default function DestinationCards({ Destinations }) {
                                 From <span className="font-medium">${destination.price}/ person</span>
                             </div>
                             <div className="flex items-center font-medium cursor-pointer">
-                                <p className="">Explore</p>
+                                <p className="  font-medium text-base">Explore</p>
 
-                                <img src='/Icons/Arrow.svg' className="ml-2 w-4 mt-1"></img>
+                                <img src='/Icons/Arrow.svg' className="ml-2 w-5 mt-1"></img>
 
                             </div>
                         </div>

@@ -71,7 +71,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                         ) : (
 
                             <div className=" flex-center h-full text-white ">
-                                <img src={card.icon} alt={card.tagline} className=" object-cover size-[40px]" />
+                                <img src={card.icon} alt={card.tagline} className=" object-cover size-[30px] lg:size-[40px]" />
                             </div>
                         )}
 
@@ -117,12 +117,12 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
                             </div>}
 
-                            {!isFullCardVisible && (<div className=" absolute  bottom-2 w-10/12 flex items-center justify-between ">
-                                <p className=' flex  items-center  text-white text-2xl lg:text-2xl font-extralight '>
-                                    <img src={card.icon} alt={card.tagline} className=" object-cover size-[38px]" />
-                                    <span className='font-normal ml-3'>{card.tagline}</span>
+                            {!isFullCardVisible && (<div className=" absolute bottom-3  lg:bottom-2 w-10/12 flex items-center justify-between ">
+                                <p className=' flex  items-center  text-white text-lg lg:text-2xl font-extralight '>
+                                    <img src={card.icon} alt={card.tagline} className=" object-cover size-[28px] lg:size-[38px]" />
+                                    <span className='font-normal ml-2 lg:ml-3'>{card.tagline}</span>
                                 </p>
-                                <button onClick={(e) => { e.stopPropagation(); setIsFilterVisible(true); }} className="hover:bg-white/15 hover:ring-2 ring-white/80 flex items-center  bg-sky-blue-1 px-4 py-1.5 transition-all duration-700 ease-in-out  cursor-pointer  text-[15px] font-normal rounded-sm  text-white"><span className="mr-3"><img src='/Icons/filter.svg' className='size-4 '></img></span>Show Filters</button>
+                                <button onClick={(e) => { e.stopPropagation(); setIsFilterVisible(true); }} className="hover:bg-white/15 hover:ring-2 ring-white/80 flex items-center  bg-sky-blue-1 px-2 lg:px-4 py-1 lg:py-1.5 transition-all duration-700 ease-in-out  cursor-pointer  text-[15px] font-normal rounded-sm max-lg:text-sm  text-white"><span className="mr-3"><img src='/Icons/filter.svg' className='lg:size-4 size-3 '></img></span>Show Filters</button>
 
                                 {/* <button onClick={(e) => { e.stopPropagation(); setIsFilterVisible(true); }} className=" px-2 cursor-pointer flex-end text-sm py-1 border-2 border-white/60 rounded-full flex justify-between items-center  "> <span className="mr-3"><img src='/Icons/filter.svg' className='w-3.5 h-3.5 '></img></span>Show Filters</button> */}
                             </div>)}

@@ -1,13 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import FilterComponent from './FilterComponent'
 import useClickOutside from '@/app/hooks/useClickOutside'
 
-export default function FilterLayout() {
+export default function FilterLayout({ setIsAnyFilterOpened }) {
 
     const [openedFilters, setOpenedFilters] = useState([])
 
-const filterContaineRef = useClickOutside(()=>setOpenedFilters([]))
-
+    const filterContaineRef = useClickOutside(() => setOpenedFilters([]))
 
     const continents = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia",]
     const countries = ["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"]
@@ -42,6 +41,11 @@ const filterContaineRef = useClickOutside(()=>setOpenedFilters([]))
             };
         });
     }
+
+    useEffect(() => {
+        openedFilters.length > 0 ? setIsAnyFilterOpened(true) : setIsAnyFilterOpened(false)
+    }, [openedFilters])
+
 
 
     return (

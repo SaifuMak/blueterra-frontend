@@ -7,7 +7,7 @@ export default function MobileAnimatedVerticalCard({CardData,selectedVerticalTil
   const mobileVerticalTilesRef = useRef([])
 
    return (
-     <div className="w-full min-h-[92vh]  flex flex-col ">
+     <div className="w-full min-h-[92vh] mt-[50px]  flex flex-col ">
         {CardData?.map((card, index) => (
           <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
             <Image
