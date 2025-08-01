@@ -48,8 +48,8 @@ export default function FilterLayout({ setIsAnyFilterOpened }) {
 
 
     return (
-        <div className=" w-full min-h-[80px] shadow-[0_4px_20px_rgba(0,0,0,0.05)] mt-32 flex-center  ">
-            <div ref={filterContaineRef} className=" w-9/12 h-auto grid grid-cols-4 py-7   gap-7  ">
+        <div className=" w-full min-h-[80px] bg-white  fixed top-0 z-10 shadow-[0_4px_20px_rgba(0,0,0,0.05)] mt-32 flex-center  ">
+            <div ref={filterContaineRef} className="xl:w-9/12 w-10/12 h-auto grid grid-cols-4 py-2   gap-7  ">
 
                 <FilterComponent
                     name='continents'

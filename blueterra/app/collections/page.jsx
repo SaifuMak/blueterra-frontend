@@ -20,11 +20,13 @@ import Button from "@/components/generalComponents/Button";
 import AdventureSection from "@/components/collections/AdventureSection";
 
 import CardData from "@/components/datas/Destinations";
-
+import { usePathname } from "next/navigation";
 
 export default function Collection() {
 
   const isMobile = useIsMobile()
+
+  // const pathname = usePathname();
 
   const [isfullCardEnabledForFirstTime, setIsfullCardEnabledForFirstTime] = useState(false)
 
@@ -77,6 +79,11 @@ export default function Collection() {
   }, [isMobile, isFullCardVisible, isFilterVisible, isAnyFilterOpened]);
 
 
+//   useEffect(() => {
+//   setIsfullCardEnabledForFirstTime(false);
+// }, [pathname]);
+
+
   // this handles the closing of the filter while clicking outside
   // useEffect(() => {
   //   const handleClick = (event) => {
@@ -121,7 +128,7 @@ export default function Collection() {
 
       {!isMobile && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} />}
 
-      <div ref={homeRef} className=" w-full relative flex justify-center max-sm:mt-20  lg:-mt-10  items-center  ">
+      <div ref={homeRef} className=" w-full relative flex justify-center max-sm:mt-20  lg:mt-32  items-center  ">
 
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10   md:grid-cols-2 w-10/12 xl:w-9/12      " >
 
