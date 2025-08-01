@@ -4,15 +4,27 @@ import { useIsMobile } from '@/app/hooks/useIsMobile';
 import { useRef } from "react";
 import useGsapFadeIn from "@/app/hooks/Gsap/useGsapFadeIn";
 import EmployDetails from "./CompanyTeam/EmployDetails";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import useGsapStaggerDesktop from "@/app/hooks/Gsap/useGsapStaggerDesktop";
 
-
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 export default function TeamSection() {
 
     const isMobile = useIsMobile()
 
+    const imageContainerRef = useRef(null)
+
+    useGsapStaggerDesktop({
+        scopeRef: imageContainerRef,
+        selector: '.employee-card'
+    });
 
     const founderTextRef = useGsapFadeIn()
+    const founderTextMobileRef = useGsapFadeIn()
+
     const founderDescriptionRef = useGsapFadeIn(0, { start: "top 60%" })
 
     const TeamTitleRef = useGsapFadeIn()
@@ -43,6 +55,28 @@ export default function TeamSection() {
     ]
 
 
+    // useGSAP(() => {
+    //     gsap.fromTo(
+    //         '.employee-card',
+    //         { opacity: 0, scale: 0.99 },
+    //         {
+    //             opacity: 1,
+    //             scale: 1,
+    //             duration: 0.3,
+    //             stagger: 0.2,
+    //             ease: 'power1.out',
+
+    //             scrollTrigger: {
+    //                 trigger: imageContainerRef.current,
+    //                 start: 'top 60%',
+    //                 end: 'top 10%',
+    //                 toggleActions: 'play none none reverse',
+    //                 markers: true,
+    //             },
+    //         }
+    //     )
+    // }, { scope: imageContainerRef })
+
 
     return (
         <div className="w-full flex-center flex-col  bg-cover bg-center bg-no-repeat  relative" style={{ backgroundImage: "url('/images/our-story/hills.png')" }}>
@@ -54,9 +88,9 @@ export default function TeamSection() {
             {/* founder details */}
             <div className=" w-11/12 xl:w-10/12 items-center  2xl:my-32 xl:my-16 md:my-12 my-10 space-x-6 z-30  md:flex    "  >
 
-                {isMobile && <div ref={founderTextRef} className=" w-full text-center mb-5">
+                <div ref={founderTextMobileRef} className={` ${isMobile ? 'opacity-100' : 'opacity-0 hidden'}  w-full text-center mb-5`}>
                     <TitleText text='Meet the Founder' />
-                </div>}
+                </div>
 
                 <div ref={founderTextRef} className=" flex  max-sm:flex-col max-sm:items-center  md:items-end w-full md:w-7/12 shrink-0    ">
                     <Image
@@ -107,23 +141,50 @@ export default function TeamSection() {
             </div>
 
 
-
             {/* section showing the employees data */}
             <div className="xl:w-10/12 px-6 py-3 md:py-10 xl:py-16 z-30 ">
                 {/* Heading */}
                 <div ref={TeamTitleRef} className="text-center mb-16 ">
                     <TitleText text='Meet the Team' />
-                </div>  
-
-                {/* Team Grid */}
-                {/* <div ref={isMobile ? null : TeamImageRef} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 w-full mx-auto"> */}
-                <div  className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 w-full mx-auto">
-
-                    {/* Team Member */}
-                    {Employees.map((member, index) => (
-                        <EmployDetails key={index} member={member} index={index} isMobile={isMobile} />
-                    ))}
                 </div>
+
+                {isMobile ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 w-full mx-auto">
+
+                        {Employees.map((member, index) => (
+                            <EmployDetails key={index} member={member} index={index} isMobile={isMobile} />
+                        ))}
+                    </div>
+                ) : (
+
+                    <div ref={imageContainerRef} className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-4 gap-8 w-full mx-auto">
+
+                        {Employees.map((member, index) => (
+                            <div
+                                key={index}
+
+                                className="employee-card  flex flex-col rounded-2xl items-center w-full text-center   transition"
+                            >
+                                <div className=" overflow-hidden rounded-2xl ">
+
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        width={380}
+                                        height={100}
+                                        priority
+                                        className=' rounded-2xl hover:scale-110  delay-100  transition-all duration-1000 ease-in-out'
+                                    />
+                                </div>
+
+                                <h3 className="2xl:text-2xl text-xl text-dark-28 mt-4 font-medium">{member.name}</h3>
+                                <p className=" text-dark-28 text-lg 2xl:text-xl 2xl:mt-1">{member.role}</p>
+                            </div>
+
+                        ))}
+                    </div>
+                )}
+
             </div>
 
         </div>

@@ -43,7 +43,7 @@ export default function Collection() {
 
       window.scrollTo({
         top: 0,
-        behavior: "smooth", // Optional: Adds smooth scrolling
+        behavior: "smooth",
       });
 
     }, 300);
@@ -51,9 +51,10 @@ export default function Collection() {
 
   const handleShowFullCard = (index) => {
 
-    console.log(' ful card is requested -------------------')
+    // when a card is clicked for its full size intially record it 
     setIsfullCardEnabledForFirstTime(true)
 
+    // if any card once viewed in full size, limit the full size view  until the page is refreshed 
     if (!isfullCardEnabledForFirstTime) {
       setIsFullCardVisible(true)
     }
@@ -134,7 +135,6 @@ export default function Collection() {
       <Footer />
 
     </div>
-
 
     // </SmoothScroll>
 

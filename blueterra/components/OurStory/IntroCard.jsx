@@ -4,7 +4,7 @@ import Button from '../generalComponents/Button'
 export default function IntroCard() {
 
     return (
-        <div className={`${rubik.className} text-center text-white `} >
+        <div className={`${rubik.className} text-center   lg:mt-20 text-white `} >
             <h1 className={` text-4xl xl:text-[80px] lg:text-7xl ${playfair.className}  `}>Curated Journeys.</h1>
             <h1 className={` text-4xl xl:text-[80px] lg:text-7xl xl-mt-5  max-sm:mt-3 lg:mt-5 ${playfair.className}  `}>Timeless Memories.</h1>
             <p className=" lg:text-2xl xl:text-3xl font-light mt-6">At BlueTerra, we craft travel that resonates</p>

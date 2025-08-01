@@ -6,20 +6,31 @@ import WhyTravelWithUsCard from "./WhyTravelWithUsCard";
 import { useRef } from 'react';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import useGsapStaggerDesktop from "@/app/hooks/Gsap/useGsapStaggerDesktop";
 
 
 export default function WhyTravelWithUsSection() {
     const isMobile = useIsMobile()
 
     const containerRef = useRef(null);
+    const gridContainerRef = useRef(null)
 
+
+    useGsapStaggerDesktop({
+        scopeRef: gridContainerRef,
+        selector: '.grid-card'
+    });
+
+
+
+    const backgroundImageContainer = useGsapFadeIn()
     const titleRef = useGsapFadeIn()
     const descriptionRef = useGsapFadeIn()
 
-  
+
     return (
         <div className=" w-full h-full px-3 md:px-10  flex-center bg-white overflow-hidden  relative" >
-            <div className=" w-full rounded-4xl flex-center my-12 md:my-20 md:py-16 py-10 xl:py-28 relative  overflow-hidden bg-cover bg-center bg-no-repeat  border " style={{
+            <div ref={backgroundImageContainer} className=" w-full rounded-4xl flex-center my-12 md:my-20 md:py-16 py-10 xl:py-28 relative  overflow-hidden bg-cover bg-center bg-no-repeat  border " style={{
                 backgroundImage: "url('/images/our-story/mountain.png')",
             }}>
                 <div className="absolute inset-0 rounded-4xl bg-[#0E518199]" />
@@ -34,21 +45,29 @@ export default function WhyTravelWithUsSection() {
                     </div>
 
 
-                    <div  className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-3 gap-6 2xl:gap-10  mx-auto">
-
-                        {WhyTravelWithUs?.map((card, index) => (
+                    {isMobile ? (
+                        <div className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-3 gap-6 2xl:gap-10  mx-auto">
+                            {WhyTravelWithUs?.map((card, index) => (
                                 <WhyTravelWithUsCard key={index} card={card} index={index} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div ref={gridContainerRef} className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-3 gap-6 2xl:gap-10  mx-auto">
+                            {WhyTravelWithUs?.map((card, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-[#F4FBFFE5] grid-card z-50 travel-card  text-dark-28 font-light lg:p-6 p-5 xl:p-7  2xl:p-10  space-y-2 xl:space-y-3 rounded-2xl shadow-md hover:shadow-lg transition"
+                                >
+                                    <img src={card.icon} alt="" className=" size-9 object-cover" />
+                                    <h3 className="2xl:text-[22px] text-lg lg:text-xl font-medium ">{card.title}</h3>
+                                    <p className=" xl:pr-3 2xl:pr-10   xl:text-lg 2xl:text-xl  md:leading-7 lg:leading-8 2xl:leading-9  ">{card.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
 
-                            // isMobile ? (
-                            //     <WhyTravelWithUsCard key={index} card={card} index={index} />
-                            // ) : (
-                            //     <div key={index} className="travel-card w-fit h-fit  " >
-                            //         <WhyTravelWithUsCard card={card} />
-                            //     </div>
-                            // )
 
-                        ))}
-                    </div>
+
                 </div>
 
             </div>

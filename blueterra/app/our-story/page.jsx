@@ -16,14 +16,18 @@ import PartnerCompanies from '@/components/OurStory/PartnerCompanies';
 import Footer from "@/components/Footer/page";
 gsap.registerPlugin(ScrollTrigger)
 
+import Navbar from "@/components/Navbar/page";
+
 export default function OurStory() {
 
-    
 
     return (
 
         <SmoothScroll>
+                <Navbar isfixed={true}/>
+
             <div className={`${rubik.className}  w-full h-full `}>
+
 
                 {/* Section containing  3 cards  height for 3 cards*/}
                 <ThreeCardSection />

@@ -22,6 +22,24 @@ export default function ThreeCardSection() {
     const cardComponents = [IntroCard, WhereItAllBegan, MissionVisionValues];
 
 
+     //  Animate IntroCard on initial load
+    useGSAP(() => {
+        if (cardsRef.current[0]) {
+            gsap.fromTo(cardsRef.current[0],
+                {
+                    opacity: 0,
+                    y: isMobile ? 100 : 200
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: 'power2.out'
+                }
+            );
+        }
+    }, []);
+
     useGSAP(() => {
 
         if (backgroundImageRef.current && threeCardsContainerRef.current) {
@@ -40,8 +58,8 @@ export default function ThreeCardSection() {
                 ease: 'none',
                 scrollTrigger: {
                     trigger: threeCardsContainerRef.current, // outer scrollable container
-                    start: 'bottom 50%',
-                    end: 'bottom 10%',
+                    start: isMobile ?  'bottom 50%' : 'bottom 50%' ,
+                    end: 'bottom 20%',
                     scrub: true,
                 },
             });
