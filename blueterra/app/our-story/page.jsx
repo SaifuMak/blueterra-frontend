@@ -45,6 +45,8 @@ export default function OurStory() {
 
                 {/* partner companies section */}
                 <PartnerCompanies />
+
+                
                 <Footer/>
 
             </div>

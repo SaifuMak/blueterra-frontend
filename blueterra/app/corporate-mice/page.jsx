@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image"
-import { playfair, rubik, mrsSaint, jost } from "@/app/fonts"
+import { playfair, rubik } from "@/app/fonts"
 import Button from "@/components/generalComponents/Button"
 import Navbar from "@/components/Navbar/page"
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath"
@@ -234,7 +234,7 @@ export default function Corporate() {
                         <ResponsiveClipPath outerClass='absolute  md:w-1/4 right-0  bottom-0 h-3/12  ' ImagePath='/images/corporate/events-bottom-clip-path.png' />
                     </div>
 
-                    {/* <div className=" xl:min-h-[45vh] md:min-h-[35vh] h-min-[30vh] w-full h-full   relative "> */}
+
                     <div className=" xl:min-h-[45vh] md:min-h-[40vh] h-[35vh] w-full   relative ">
 
                         <Image
@@ -321,6 +321,7 @@ export default function Corporate() {
 
                         </div>
                     </div>
+
                 </div>
 
                 <Footer />
