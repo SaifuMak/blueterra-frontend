@@ -4,7 +4,6 @@ import useGsapFadeIn from "@/app/hooks/Gsap/useGsapFadeIn"
 import { useIsMobile } from "@/app/hooks/useIsMobile"
 
 export default function EmployDetails({ member, index, isMobile }) {
-    // const isMobile = useIsMobile()
 
     const employRef = useGsapFadeIn(index, { initialPosition: 50 })
 

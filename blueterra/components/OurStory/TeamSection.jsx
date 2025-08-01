@@ -92,6 +92,7 @@ export default function TeamSection() {
                     <TitleText text='Meet the Founder' />
                 </div>
 
+
                 <div ref={founderTextRef} className=" flex  max-sm:flex-col max-sm:items-center  md:items-end w-full md:w-7/12 shrink-0    ">
                     <Image
                         src='/images/company/ceo.png'
@@ -128,6 +129,7 @@ export default function TeamSection() {
 
                     </div>
                 </div>
+                
                 <div ref={founderDescriptionRef} className=" md:w-5/12 max-sm:mt-7  max-sm:px-3 text-dark-28 lg:text-lg 2xl:text-xl max-sm:text-center space-y-4 2xl:space-y-6 font-light leading-7 lg:leading-8 xl:leading-9 2xl:leading-10 flex flex-col justify-center">
                     <p className="">With over 15 years of life and work in the UAE, Jerald Jacob has developed a deep connection
                         to the region’s landscapes, cultures, and stories. His love for travel began with a simple curiosity

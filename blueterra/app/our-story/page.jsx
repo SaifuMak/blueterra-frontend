@@ -1,5 +1,4 @@
 
-
 'use client'
 import SmoothScroll from "@/components/SmoothScroll";
 
@@ -14,9 +13,11 @@ import PlanWithblueterra from '@/components/OurStory/PlanWithblueterra';
 import JourneryIntro from '@/components/OurStory/JourneryIntro';
 import PartnerCompanies from '@/components/OurStory/PartnerCompanies';
 import Footer from "@/components/Footer/page";
-gsap.registerPlugin(ScrollTrigger)
 
 import Navbar from "@/components/Navbar/page";
+
+gsap.registerPlugin(ScrollTrigger)
+
 
 export default function OurStory() {
 
@@ -46,7 +47,7 @@ export default function OurStory() {
                 {/* partner companies section */}
                 <PartnerCompanies />
 
-                
+
                 <Footer/>
 
             </div>

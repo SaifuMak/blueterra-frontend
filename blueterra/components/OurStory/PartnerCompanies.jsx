@@ -12,6 +12,7 @@ export default function PartnerCompanies() {
 
     const partnerCompaniesimageRef = useGsapFadeIn()
     
+    
     return (
 
         <div className=" mb-28 w-full flex-center flex-col  bg-white relative ">
