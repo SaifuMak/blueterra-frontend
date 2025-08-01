@@ -2,7 +2,12 @@ import React from 'react'
 import Image from 'next/image'
 
 import { playfair, rubik, } from '@/app/fonts'
+import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn'
+
+
 const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, imageUrl, outerClass = '' }) => {
+
+    
 
     return (
 

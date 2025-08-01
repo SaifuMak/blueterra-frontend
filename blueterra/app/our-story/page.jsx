@@ -28,7 +28,6 @@ export default function OurStory() {
 
             <div className={`${rubik.className}  w-full h-full `}>
 
-
                 {/* Section containing  3 cards  height for 3 cards*/}
                 <ThreeCardSection />
 

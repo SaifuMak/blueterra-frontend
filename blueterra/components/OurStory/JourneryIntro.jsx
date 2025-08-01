@@ -38,15 +38,15 @@ export default function JourneryIntro() {
                 </div>
 
                 <div ref={imageRef} className=" md:w-6/12  flex md:justify-end md:pr-4 ">
-                <div className=" overflow-hidden rounded-2xl">
-                    <Image
-                        src="/images/our-story/girl-holding-globe.png"
-                        alt="Woman holding a globe at desk"
-                        width={810}
-                        height={100}
-                        priority
-                        className=' rounded-2xl hover:scale-110 transition-all duration-1000 ease-in-out'
-                    />
+                    <div className=" overflow-hidden rounded-2xl">
+                        <Image
+                            src="/images/our-story/girl-holding-globe.png"
+                            alt="Woman holding a globe at desk"
+                            width={810}
+                            height={100}
+                            priority
+                            className=' rounded-2xl hover:scale-110 transition-all duration-1000 ease-in-out'
+                        />
                     </div>
                 </div>
 

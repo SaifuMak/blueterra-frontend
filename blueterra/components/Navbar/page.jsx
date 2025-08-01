@@ -15,9 +15,9 @@ export default function Navbar({isfixed = false}) {
   const isHome = pathname === '/'
 
   const MenuItems = [
-    { nav: 'Our Story', link: '#', url: '' },
-    { nav: 'The Blueterra Collection', link: '#', url: '' },
-    { nav: 'Destinations', link: '#', url: '' },
+    { nav: 'Our Story', link: '/our-story', url: '/our-story' },
+    { nav: 'The Blueterra Collection', link: '/collections', url: '/collections' },
+    { nav: 'Destinations', link: '/collections', url: '' },
     { nav: 'Corporate & MICE', link: '/corporate-mice', url: '/corporate-mice' },
     { nav: 'BlueTerra Journal', link: '/journal', url: '/journal' },
   ]
@@ -44,7 +44,7 @@ export default function Navbar({isfixed = false}) {
 
         <div className=" 2xl:space-x-10 xl:space-x-6 space-x-4 text-nowrap">
           {MenuItems.map((items, index) => (
-            <Link key={index} href={items.link} className={`${items.url === pathname ? ' text-brand-blue' : ' text-dark-28'}`}>{items.nav}</Link>
+            <Link key={index} href={items.link} className={`${items.url === pathname ? ' text-sky-blue-dark' : ' text-dark-28'}`}>{items.nav}</Link>
           ))}
         </div>
 
