@@ -19,10 +19,14 @@ import TitleText from "@/components/generalComponents/TitleText";
 import Button from "@/components/generalComponents/Button";
 import AdventureSection from "@/components/collections/AdventureSection";
 
+import CardData from "@/components/datas/Destinations";
+
 
 export default function Collection() {
 
   const isMobile = useIsMobile()
+
+  const [isfullCardEnabledForFirstTime, setIsfullCardEnabledForFirstTime] = useState(false)
 
   const [expandedIndex, setExpandedIndex] = useState(null)
   const [isFullCardVisible, setIsFullCardVisible] = useState(true)
@@ -46,7 +50,13 @@ export default function Collection() {
   }
 
   const handleShowFullCard = (index) => {
-    setIsFullCardVisible(true)
+
+    console.log(' ful card is requested -------------------')
+    setIsfullCardEnabledForFirstTime(true)
+
+    if (!isfullCardEnabledForFirstTime) {
+      setIsFullCardVisible(true)
+    }
     handleScrollTop()
     setExpandedIndex(index)
   }
@@ -93,7 +103,7 @@ export default function Collection() {
 
       {isMobile ? (
         <MobileAnimatedVerticalCard
-          CardData={Destinations}
+          CardData={CardData}
           selectedVerticalTileMobile={selectedVerticalTileMobile}
           setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
         />

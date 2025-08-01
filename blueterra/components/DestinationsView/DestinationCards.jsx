@@ -69,9 +69,9 @@ export default function DestinationCards({ Destinations }) {
                                 From <span className="font-medium">${destination.price}/ person</span>
                             </div>
                             <div className="flex items-center font-medium cursor-pointer">
-                                <p className="  font-medium text-base">Explore</p>
+                                <p className=" font-medium text-base">Explore</p>
 
-                                <img src='/Icons/Arrow.svg' className="ml-2 w-5 mt-1"></img>
+                                <img src='/Icons/Arrow.svg' className="ml-2 w-4 lg:w-5 mt-1"></img>
 
                             </div>
                         </div>

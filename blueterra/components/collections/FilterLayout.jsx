@@ -18,7 +18,6 @@ export default function FilterLayout({ setIsAnyFilterOpened }) {
         continents: [],
         countries: [],
         collections: []
-
     })
 
     const handleFilters = (filter) => {
@@ -71,19 +70,19 @@ export default function FilterLayout({ setIsAnyFilterOpened }) {
                 />
 
                 <FilterComponent
-                    name='categories'
-                    options={categories}
+                    name='collections'
+                    options={collections}
                     handleFilters={handleFilters}
-                    isOpened={openedFilters.includes("categories")}
+                    isOpened={openedFilters.includes("collections")}
                     handleItemSelection={handleItemSelection}
                     selectedFilters={selectedFilters}
                 />
 
                 <FilterComponent
-                    name='collections'
-                    options={collections}
+                    name='categories'
+                    options={categories}
                     handleFilters={handleFilters}
-                    isOpened={openedFilters.includes("collections")}
+                    isOpened={openedFilters.includes("categories")}
                     handleItemSelection={handleItemSelection}
                     selectedFilters={selectedFilters}
                 />
