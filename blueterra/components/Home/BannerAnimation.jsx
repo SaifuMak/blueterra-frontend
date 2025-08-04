@@ -9,7 +9,7 @@ import CardData from "../datas/Destinations";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function BannerAnimation({ expandedIndex, setExpandedIndex, isFullCardVisible, setIsFullCardVisible, handleShowFullCard, setIsFilterVisible }) {
+export default function BannerAnimation({ expandedIndex, setExpandedIndex, isFullCardVisible, setIsFullCardVisible, handleShowFullCard, setIsFilterVisible, isFilterVisible }) {
 
     const [isLoading, setIsLoading] = useState(true)
 
@@ -35,7 +35,7 @@ export default function BannerAnimation({ expandedIndex, setExpandedIndex, isFul
         <div ref={animationBannerRef} className={` z-30  w-full fixed top-[70px]`}>
 
             {/* <HorizontalCards CardDetails={CardData} expandedIndex={expandedIndex} handleCardClick={handleShowFullCard} /> */}
-            <VerticalCards CardDetails={CardData} expandedIndex={expandedIndex} handleCardClick={handleShowFullCard} isFullCardVisible={isFullCardVisible} handleHideFullCard={handleHideFullCard} setIsLoading={setIsLoading} isLoading={isLoading} setIsFilterVisible={setIsFilterVisible} />
+            <VerticalCards CardDetails={CardData} expandedIndex={expandedIndex} handleCardClick={handleShowFullCard} isFullCardVisible={isFullCardVisible} handleHideFullCard={handleHideFullCard} setIsLoading={setIsLoading} isLoading={isLoading} setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} />
 
         </div>
     )

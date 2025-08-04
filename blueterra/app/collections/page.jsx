@@ -71,12 +71,12 @@ export default function Collection() {
       return;
     }
 
-    document.body.style.overflow = isFullCardVisible || isFilterVisible || isAnyFilterOpened ? 'hidden' : 'auto';
+    document.body.style.overflow = isFullCardVisible  || isAnyFilterOpened ? 'hidden' : 'auto';
 
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isMobile, isFullCardVisible, isFilterVisible, isAnyFilterOpened]);
+  }, [isMobile, isFullCardVisible, isAnyFilterOpened]);
 
 
 //   useEffect(() => {
@@ -102,7 +102,6 @@ export default function Collection() {
   // }, []);
 
 
-
   return (
 
 
@@ -123,12 +122,13 @@ export default function Collection() {
           setIsFullCardVisible={setIsFullCardVisible}
           handleShowFullCard={handleShowFullCard}
           setIsFilterVisible={setIsFilterVisible}
+          isFilterVisible={isFilterVisible}
         />
       )}
 
-      {!isMobile && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} />}
+      {!isMobile  && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} />}
 
-      <div ref={homeRef} className=" w-full relative flex justify-center max-sm:mt-20  lg:mt-32  items-center  ">
+      <div ref={homeRef} className=" w-full relative flex justify-center max-sm:mt-20  xl:mt-36 lg:mt-48  items-center  ">
 
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10   md:grid-cols-2 w-10/12 xl:w-9/12      " >
 

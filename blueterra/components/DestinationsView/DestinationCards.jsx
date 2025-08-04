@@ -19,14 +19,14 @@ export default function DestinationCards({ Destinations }) {
                         <DestinationCardCarousal Data={destination.images} />
 
                         <div className=" absolute top-6 -left-1">
-                            <div className="relative ">
+                            <div className="relative  ">
 
-                                <img src='/Icons/PriceTag.svg' className=" w-20 object-cover">
+                                <img src='/Icons/PriceTag.svg' className=" object-cover">
                                 </img>
 
-                                <div className=" absolute flex m-1 items-center  inset-0">
-                                    <CiClock1 className="text-xs" />
-                                    <span className="text-sm max-sm:text-xs ml-1 "> 6 days</span>
+                                <div className=" absolute flex m-1 items-center  ml-3 inset-0">
+                                    <CiClock1 className="text-sm" />
+                                    <span className="text-sm max-sm:text-xs ml-1 "> 6 nights</span>
                                 </div>
 
                             </div>

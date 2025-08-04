@@ -18,8 +18,10 @@ export default function Navbar({isfixed = false}) {
     { nav: 'Our Story', link: '/our-story', url: '/our-story' },
     { nav: 'The Blueterra Collection', link: '/collections', url: '/collections' },
     { nav: 'Destinations', link: '/collections', url: '' },
-    { nav: 'Corporate & MICE', link: '/corporate-mice', url: '/corporate-mice' },
-    { nav: 'BlueTerra Journal', link: '/journal', url: '/journal' },
+    { nav: 'MICE', link: '/corporate-mice', url: '/corporate-mice' },
+    { nav: 'Journal', link: '/journal', url: '/journal' },
+    { nav: 'Cruise', link: '#', url: '#' },
+
   ]
 
 

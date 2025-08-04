@@ -3,7 +3,7 @@ import { useIsMobile } from '@/app/hooks/useIsMobile';
 import WhyTravelWithUs from "../datas/WhyTravelWithUs";
 import useGsapFadeIn from "@/app/hooks/Gsap/useGsapFadeIn";
 import WhyTravelWithUsCard from "./WhyTravelWithUsCard";
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import useGsapStaggerDesktop from "@/app/hooks/Gsap/useGsapStaggerDesktop";
@@ -20,8 +20,6 @@ export default function WhyTravelWithUsSection() {
         scopeRef: gridContainerRef,
         selector: '.grid-card'
     });
-
-
 
     const backgroundImageContainer = useGsapFadeIn()
     const titleRef = useGsapFadeIn()
@@ -56,7 +54,9 @@ export default function WhyTravelWithUsSection() {
                             {WhyTravelWithUs?.map((card, index) => (
                                 <div
                                     key={index}
-                                    className="bg-[#F4FBFFE5] grid-card z-50 travel-card  text-dark-28 font-light lg:p-6 p-5 xl:p-7  2xl:p-10  space-y-2 xl:space-y-3 rounded-2xl shadow-md hover:shadow-lg transition"
+                                    className="bg-[#F4FBFFE5]/75 grid-card hover:scale-95 hover:bg-[#F4FBFFE5] cursor-default transition-all duration-700 
+                                    ease-in-out grid-card z-50 travel-card 
+                                     text-dark-28 font-light lg:p-6 p-5 xl:p-7  2xl:p-10  space-y-2 xl:space-y-3 rounded-2xl shadow-md hover:shadow-lg "
                                 >
                                     <img src={card.icon} alt="" className=" size-9 object-cover" />
                                     <h3 className="2xl:text-[22px] text-lg lg:text-xl font-medium ">{card.title}</h3>
@@ -65,8 +65,6 @@ export default function WhyTravelWithUsSection() {
                             ))}
                         </div>
                     )}
-
-
 
                 </div>
 
