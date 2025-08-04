@@ -19,14 +19,14 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible }) 
 
     const filterScrollRef = useRef();
 
-    const continents = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia",]
+    const destinations = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia",]
     const countries = ["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"]
     const collections = ["Signature Journeys", "Explore by Landscape", "Adventures in Motion", "Mindful Escapes", "Unforgettable Editions", "Tailored for You"]
     const categories = ["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys"]
 
     const [selectedFilters, setSelectedFilters] = useState({
         categories: [],
-        continents: [],
+        destinations: [],
         countries: [],
         collections: []
     })
@@ -87,7 +87,7 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible }) 
     const handleClearAllSelectedFilters = () => {
         setSelectedFilters({
             categories: [],
-            continents: [],
+            destinations: [],
             countries: [],
             collections: []
         })
@@ -114,25 +114,6 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible }) 
         <div className={` ${isFilterVisible && flatSelectedFilters.length > 0 ? 'min-h-[30px]' : 'min-h-[0px]'}  w-full   pt-3 bg-white  fixed top-0 z-10 shadow-[0_4px_20px_rgba(0,0,0,0.05)] mt-32  flex flex-col items-center justify-center`} >
             <div ref={filterContaineRef} className={`${isFilterVisible ? 'hidden' : 'visible'} xl:w-9/12  w-10/12 h-auto grid grid-cols-4 py-2   gap-7`} >
 
-                <FilterComponent
-                    name='continents'
-                    options={continents}
-                    handleFilters={handleFilters}
-                    // isOpened={openedFilters.includes("continents")}
-                    isOpened={openedFilter === "continents"}
-                    handleItemSelection={handleItemSelection}
-                    selectedFilters={selectedFilters}
-                />
-
-                <FilterComponent
-                    name='countries'
-                    options={countries}
-                    handleFilters={handleFilters}
-                    // isOpened={openedFilters.includes("countries")}
-                    isOpened={openedFilter === "countries"}
-                    handleItemSelection={handleItemSelection}
-                    selectedFilters={selectedFilters}
-                />
 
                 <FilterComponent
                     name='collections'
@@ -150,6 +131,25 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible }) 
                     handleFilters={handleFilters}
                     // isOpened={openedFilters.includes("categories")}
                     isOpened={openedFilter === "categories"}
+                    handleItemSelection={handleItemSelection}
+                    selectedFilters={selectedFilters}
+                />
+
+                <FilterComponent
+                    name='destinations'
+                    options={destinations}
+                    handleFilters={handleFilters}
+                    isOpened={openedFilter === "destinations"}
+                    handleItemSelection={handleItemSelection}
+                    selectedFilters={selectedFilters}
+                />
+
+                <FilterComponent
+                    name='countries'
+                    options={countries}
+                    handleFilters={handleFilters}
+                    // isOpened={openedFilters.includes("countries")}
+                    isOpened={openedFilter === "countries"}
                     handleItemSelection={handleItemSelection}
                     selectedFilters={selectedFilters}
                 />

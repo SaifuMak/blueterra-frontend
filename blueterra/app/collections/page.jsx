@@ -21,6 +21,7 @@ import AdventureSection from "@/components/collections/AdventureSection";
 
 import CardData from "@/components/datas/Destinations";
 import { usePathname } from "next/navigation";
+import MobileFilter from "@/components/collections/MobileFilter";
 
 export default function Collection() {
 
@@ -37,6 +38,9 @@ export default function Collection() {
   const [isAnyFilterOpened, setIsAnyFilterOpened] = useState(false)
 
   const [selectedVerticalTileMobile, setSelectedVerticalTileMobile] = useState(null)
+
+  const [showMobileFilter, setShowMobileFilter] = useState(false)
+
 
   const homeRef = useRef()
 
@@ -67,21 +71,20 @@ export default function Collection() {
   useEffect(() => {
 
     if (isMobile) {
-      document.body.style.overflow = 'auto'
-      return;
+      document.body.style.overflow = showMobileFilter || isAnyFilterOpened ? 'hidden' : 'auto';
+    } else {
+      document.body.style.overflow = isFullCardVisible || showMobileFilter || isAnyFilterOpened ? 'hidden' : 'auto';
     }
-
-    document.body.style.overflow = isFullCardVisible  || isAnyFilterOpened ? 'hidden' : 'auto';
 
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isMobile, isFullCardVisible, isAnyFilterOpened]);
+  }, [isMobile, showMobileFilter, isFullCardVisible, isAnyFilterOpened]);
 
 
-//   useEffect(() => {
-//   setIsfullCardEnabledForFirstTime(false);
-// }, [pathname]);
+  //   useEffect(() => {
+  //   setIsfullCardEnabledForFirstTime(false);
+  // }, [pathname]);
 
 
   // this handles the closing of the filter while clicking outside
@@ -126,11 +129,15 @@ export default function Collection() {
         />
       )}
 
-      {!isMobile  && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} />}
+      {!isMobile && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} />}
 
-      <div ref={homeRef} className=" w-full relative flex justify-center max-sm:mt-20  xl:mt-36 lg:mt-48  items-center  ">
+      
 
-        <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10   md:grid-cols-2 w-10/12 xl:w-9/12      " >
+      {isMobile && <MobileFilter setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} showMobileFilter={showMobileFilter} setShowMobileFilter={setShowMobileFilter} />}
+
+      <div ref={homeRef} className=" w-full relative flex justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
+
+        <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10   md:grid-cols-2 w-10/12 xl:w-9/12" >
 
           <DestinationCards Destinations={Destinations} />
 
