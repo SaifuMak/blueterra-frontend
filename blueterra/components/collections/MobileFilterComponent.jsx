@@ -36,9 +36,9 @@ export default function MobileFilterComponent({
                         <div
                             key={index}
                             onClick={() => handleItemSelection(name, option)}
-                            className={`w-fit flex items-center transition-all duration-500  border py-1 ${selectedFilters[name].includes(option) ? ' bg-sky-blue-1 text-white' : ' bg-white text-dark-28'}   px-2 cursor-pointer  rounded-md`}
+                            className={`w-fit flex items-center transition-all duration-500  px-2 border py-2 ${selectedFilters[name].includes(option) ? ' bg-sky-blue-1 text-white' : ' bg-white text-dark-28'}   px-2 cursor-pointer  rounded-md`}
                         >
-                            <p className=" text-[13px] whitespace-nowrap">{option}</p>
+                            <p className=" text-[14px] whitespace-nowrap">{option}</p>
                         </div>
                     ))}
                 </AccordionContent>

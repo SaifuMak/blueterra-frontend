@@ -103,7 +103,7 @@ export default function MobileFilter({ setIsAnyFilterOpened, isFilterVisible, sh
     return (
         <>
 
-            <div className=" w-full px-2  my-5 flex  flex-col   ">
+            <div className=" w-full px-8  my-5 flex  flex-col   ">
                 <div className=" w-full flex justify-between mb-5 items-center ">
                     <p className={`${flatSelectedFilters?.length > 0 ? 'opacity-100' : '  opacity-0'} ml-2`}>showing 12 results for:</p>
                     <button onClick={() => setShowMobileFilter(true)} className="   flex items-center  bg-sky-blue-1 px-3  py-2  w-fit h-fit  text-nowrap  text-[15px] font-normal rounded-sm max-lg:text-sm  text-white"><span className="mr-1"><img src='/Icons/filter.svg' className=' size-3.5 shrink-0 '></img></span>Filters</button>
