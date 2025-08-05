@@ -27,7 +27,7 @@ const useGsapOpacity = (index = 0, options = {}) => {
         ease: options.ease || "linear",
         scrollTrigger: {
           trigger: elementRef.current,
-          start: options.start || "top 70%",
+          start: options.start || "top 80%",
           toggleActions: options.toggleActions || "play none none reverse",
         //   onEnter: () => {
         //     elementRef.current?.classList?.remove("hidden-text");

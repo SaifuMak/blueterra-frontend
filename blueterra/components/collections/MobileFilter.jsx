@@ -175,7 +175,7 @@ export default function MobileFilter({ setIsAnyFilterOpened, isFilterVisible, sh
                             <p className=" text-sm">{flatSelectedFilters?.length > 0 ? `${flatSelectedFilters.length} filters applied` : ''}</p>
                             {flatSelectedFilters?.length > 0 && <p onClick={handleClearAllSelectedFilters} className=" underline text-sky-blue-dark ">Clear filters</p>}
                         </div>
-                        <button onClick={()=>setShowMobileFilter(false)} className=" bg-sky-blue-dark py-2.5 text-sm font-medium rounded-sm text-white">Explore Journeys</button>
+                        <button onClick={() => setShowMobileFilter(false)} className=" bg-sky-blue-dark py-2.5 text-sm font-medium rounded-sm text-white">Explore Journeys</button>
                     </div>
 
                     {/* {flatSelectedFilters?.length > 0 && <div className=" flex  xl:w-9/12  w-9/12    ">

@@ -1,14 +1,20 @@
 'use client'
-import { useState } from 'react';
+import { useState, forwardRef, useImperativeHandle } from 'react';
 
 import { playfair, rubik } from '@/app/fonts'
 import { useIsMobile } from '@/app/hooks/useIsMobile';
 
-export default function MissionVisionValues() {
+const MissionVisionValues = forwardRef((props, ref) => {
     const isMobile = useIsMobile();
 
 
-    const [activeTab, setActiveTab] = useState(1);
+    const [activeTab, setActiveTab] = useState(0);
+
+    // 👇 expose to parent
+    useImperativeHandle(ref, () => ({
+        setTab: (i) => setActiveTab(i)
+    }));
+
 
     const tabs = [
         {
@@ -37,11 +43,11 @@ export default function MissionVisionValues() {
 
     return (
         <div className={`${rubik.className}  w-full  flex-center`}>
-            
-            <div className=" w-full font-light text-xl flex justify-center md:items-center max-sm:min-h-[50vh] text-white px-1 md:px-10 2xl:py-20 md:py-10 py-8  backdrop-blur-2xl border rounded-2xl  border-white/30 shadow-lg bg-black/0  ">
-               
+
+            <div className=" w-full font-light text-xl flex justify-center md:items-center max-sm:min-h-[60vh] text-white px-1 md:px-10 2xl:py-20 md:py-10 py-8  backdrop-blur-2xl border rounded-2xl  border-white/30 shadow-lg bg-black/0  ">
+
                 <div className=" flex max-sm:flex-col  md:justify-between items-center  2xl:w-9/12  lg:min-h-[50vh]">
-                   
+
                     <div className={`md:w-1/3 ${playfair.className} max-sm:flex max-sm:space-x-6 md:space-y-10 text-white text-2xl font-light `}>
 
                         {tabs.map((tab, i) => (
@@ -71,4 +77,6 @@ export default function MissionVisionValues() {
         </div>
 
     )
-}
+})
+
+export default MissionVisionValues
