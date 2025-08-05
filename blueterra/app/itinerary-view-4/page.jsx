@@ -41,12 +41,11 @@ export default function Page4() {
 
 
     const galleryData = [
-        { name: "Safari Adventure", image: "https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg" },
         { name: "Safari Adventure", image: "https://images.pexels.com/photos/59989/elephant-herd-of-elephants-african-bush-elephant-africa-59989.jpeg" },
+        { name: "Safari Adventure", image: "https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg" },
         { name: "Island Escape", image: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg" },
         { name: "Cultural Celebration", image: "https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg" },
         { name: "Majestic Waterfalls", image: "https://images.pexels.com/photos/1266831/pexels-photo-1266831.jpeg" },
-        { name: "Tropical Forest Retreat", image: "https://images.pexels.com/photos/382167/pexels-photo-382167.jpeg" },
     ];
 
 
@@ -75,7 +74,7 @@ export default function Page4() {
     }, { scope: galleryRef });
 
 
-     useGSAP(() => {
+    useGSAP(() => {
         const elements = gsap.utils.toArray(".vertically-animated-element");
 
         elements.forEach((box) => {
@@ -97,7 +96,7 @@ export default function Page4() {
         });
     }, { scope: planningRef });
 
-    
+
 
 
     useGSAP(() => {
@@ -115,9 +114,9 @@ export default function Page4() {
         );
     }, { scope: bannerContainer });
 
-     useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [])
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [])
 
 
     //  useGSAP(() => {
@@ -280,7 +279,7 @@ export default function Page4() {
         <SmoothScroll>
             <Navbar />
 
-            <div  className={`${rubik.className}`}>
+            <div className={`${rubik.className}`}>
 
                 <div className="relative  w-full min-h-[90vh] ">
                     {/* Fixed Background */}
@@ -326,23 +325,27 @@ export default function Page4() {
                     </div>
                 </div>
 
-                <div ref={galleryRef} className=" bg-dark-beige  w-full h-full">
+
+
+                <div ref={galleryRef} className="  bg-white  w-full h-full">
 
                     <div className="w-full h-full bg-white/30   flex-center relative">
-                        <Image
+                        {/* <Image
                             src='/images/itinerary/gallery-banner.png'
                             alt="forest"
                             fill
                             className=" object-cover  "
                             priority
-                        />
-                        <div  className=" w-11/12 my-20  space-y-10 mb-24  py-16  h-full flex flex-col  items-center rounded-3xl vertically-animated-element bg-white/10 backdrop-blur-xl border border-white/40 ">
+                        /> */}
+                        {/* <div className=" w-11/12  space-y-10 mb-24  py-16  h-full flex flex-col  items-center rounded-3xl vertically-animated-element bg-white/10 backdrop-blur-xl border border-white/40 "> */}
+                        <div className=" w-11/12 overflow-hidden   space-y-10 mb-24   h-full flex flex-col  items-center rounded-3xl vertically-animated-element ">
+                          
                             <h6 className={`${playfair.className} gallery-title  vertically-animated-element text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
-                            <div className="  w-10/12  mt-5 z-50  vertically-animated-element  flex rounded-xl overflow-hidden  gap-4   ">
+                            <div className="  w-full px-3  mt-5 z-50  vertically-animated-element  flex rounded-xl overflow-hidden  gap-4   ">
 
                                 {galleryData?.map((item, index) => (
                                     // <div key={index} className={`relative group min-h-[70vh] delay-75 hover:flex-4 flex-1 transition-[flex] duration-700 ease-[cubic-bezier(0.25, 1, 0.5, 1)] gallery-tile overflow-hidden hover:cursor-pointer rounded-xl`}>
-                                    <div key={index} className={`relative  group min-h-[70vh]  hover:flex-4 gallery-tile  overflow-hidden delay-200 hover:cursor-pointer w-full  flex-1 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transition-all  duration-700 rounded-xl`}>
+                                    <div key={index} className={`relative  group min-h-[80vh]  hover:flex-5 gallery-tile  overflow-hidden delay-200 hover:cursor-pointer w-full  flex-1 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transition-all  duration-700 rounded-xl`}>
                                         <Image
                                             src={item.image}
                                             alt='image'
