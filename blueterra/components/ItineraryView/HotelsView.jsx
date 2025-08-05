@@ -73,10 +73,10 @@ export default function HotelsView() {
                 <p className=" text-center font-light text-2xl w-10/12 xl:w-7/12 vertically-animated-element">Discover a thoughtfully curated range of accommodation options designed
                     to suit every traveler's preferences, comfort level, and lifestyle.</p>
             </div>
+           
             <div className="w-full vertically-animated-element h-full ">
                 <HotelsList HotelsData={HotelsData} setCurrent={setCurrentHotel} setCount={setHotelsCount} />
             </div>
-
 
             <div className="flex-center space-x-2 overflow-hidden">
                 {[...Array(hotelsCount)].map((_, index) => (

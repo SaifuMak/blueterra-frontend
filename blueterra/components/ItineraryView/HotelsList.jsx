@@ -14,7 +14,7 @@ import {
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay"
 
-import { IoIosStar } from '../../components/reactIcons'
+import { IoIosStar, FaMapLocationDot,GrMap,FaMapMarkerAlt } from '../../components/reactIcons'
 import Button from "../generalComponents/Button";
 
 export default function HotelsList({ HotelsData, setCurrent, setCount }) {
@@ -37,8 +37,6 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
         })
 
     }, [api])
-
-
 
 
 
@@ -66,14 +64,21 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                         {HotelsData?.map((item, index) => (
                             <CarouselItem key={index} className="md:basis-1/2 2xl:p-3 pb-2 xl:basis-1/3 flex-center over">
 
-                                <div className="  mx-4 lg:mx-2 overflow-hidden  group">
+                                <div className="  mx-4 lg:mx-2 group">
+
                                     <div className=" relative  overflow-hidden  transition-all duration-700 ease-in-out h-[200px] md:h-[250px] 2xl:h-[300px] w-full">
                                         <Image
                                             src={item.image}
                                             alt={item.title}
                                             fill
-                                             className="object-cover delay-100 transition-transform duration-700 ease-in-out group-hover:scale-110"
+                                            className="object-cover delay-300 transition-all duration-700 ease-in-out group-hover:scale-110"
                                         />
+                                        <div className=" absolute flex-center inset-0 w-full h-full delay-200 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100 group-hover:bg-black/40 ">
+                                           <a href="#">
+  <FaMapMarkerAlt className="text-5xl text-white" />
+</a>
+
+                                        </div>
                                     </div>
 
                                     <div className="  space-y-1">
@@ -82,7 +87,7 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                                             <h3 className="font-medium text-xl text-dark-4B xl:text-3xl">{item.title}</h3>
                                             <div className="flex space-x-1">
                                                 {[...Array(5)].map((_, ind) => (
-                                                    <IoIosStar key={ind} className="fill-[#FFCB1F]" />
+                                                    <IoIosStar key={ind} className="fill-[#FFCB1F] text-xl" />
                                                 ))}
                                             </div>
                                         </div>
@@ -92,16 +97,16 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
 
                                         <div className="mt-2">
                                             <p className=" font-light my-6">
-
                                                 Donec malesuada, sapien nec interdum facilisis, tortor leo volutpat neque,
                                                 in ultrices eros arcu at purus. Curabitur at augue sed met commodo gravida. Donec malesu Read more...
                                             </p>
                                         </div>
 
                                         {/* <button className=" bg-[#2670B8] cursor-pointer rounded-sm w-full py-2 mt-2 text-white">VIEW ON MAP</button> */}
-                                        <Button text='VIEW ON MAP' buttonStyle={` font-normal transition-all duration-500 mb-10 w-full   ease-in-out font-medium max-md:text-sm  py-2.5 `} isHoverWhiteApplied={false} />
+                                        {/* <Button text='VIEW ON MAP' buttonStyle={` font-normal transition-all duration-500 mb-10 w-full   ease-in-out font-medium max-md:text-sm  py-2.5 `} isHoverWhiteApplied={false} /> */}
 
                                     </div>
+
                                 </div>
                             </CarouselItem>
                         ))}

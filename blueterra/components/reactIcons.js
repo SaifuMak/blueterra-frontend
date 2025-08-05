@@ -18,6 +18,10 @@ import { RiAddCircleLine } from "react-icons/ri";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { CgCheck } from "react-icons/cg";
 import { BsCheck2 } from "react-icons/bs";
+import { FaMapLocationDot } from "react-icons/fa6";
+import { GrMap } from "react-icons/gr";
+import { FaMapMarkerAlt } from "react-icons/fa";
+
 
 export {
     GoDot,
@@ -40,4 +44,7 @@ export {
     IoMdArrowDropdown,
     CgCheck,
     BsCheck2,
+    FaMapLocationDot,
+    GrMap,
+    FaMapMarkerAlt,
 };
