@@ -7,13 +7,13 @@ import {
 } from "@/components/ui/tooltip";
 
 
-export default function TooltipWrapper({ message, children, className = " rounded-sm text-sm font-medium" }) {
+export default function TooltipWrapper({ message, children, className = " bg-white text-dark-4B rounded-sm text-sm font-medium" }) {
     return (
         <Tooltip>
             <TooltipTrigger asChild>
                 {children}
             </TooltipTrigger>
-            <TooltipContent className={className}>
+            <TooltipContent className={`custom-tooltip ${className}`} >
                 <p>{message}</p>
             </TooltipContent>
         </Tooltip>

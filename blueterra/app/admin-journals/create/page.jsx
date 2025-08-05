@@ -10,6 +10,8 @@ import { rubik } from '@/app/fonts'
 import AXIOS_INSTANCE from "@/lib/axios";
 import { toast } from 'sonner';
 
+
+
 export default function AdminJournals() {
 
     const editorRef = useRef(null);

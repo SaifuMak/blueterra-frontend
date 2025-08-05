@@ -10,6 +10,9 @@ import DestinationsCarousal from "./DestinationsCarousal"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import ReactTooltip from "@/components/generalComponents/ReactTooltip"
+import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
+import { MdInfoOutline } from "@/components/reactIcons"
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -329,43 +332,48 @@ export default function PlannedActivities({ }) {
     }, { scope: plannerRef });
 
 
-    
-  useGSAP(() => {
-    const elements = gsap.utils.toArray(".scale-opacity-animate");
 
-    elements.forEach((box) => {
-      gsap.fromTo(
-        box,
-        { opacity: 0, scale: 0.9 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: box,
-            start: "top 80%",
-            toggleActions: "play none play reverse ",
-          },
-        }
-      );
-    });
-  }, { scope: plannerCardsRef });
+    useGSAP(() => {
+        const elements = gsap.utils.toArray(".scale-opacity-animate");
 
-
-  
+        elements.forEach((box) => {
+            gsap.fromTo(
+                box,
+                { opacity: 0, scale: 0.9 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.7,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: box,
+                        start: "top 80%",
+                        toggleActions: "play none play reverse ",
+                    },
+                }
+            );
+        });
+    }, { scope: plannerCardsRef });
 
 
-  
 
 
     return (
         <>
             {/* <div className="relative flex flex-wrap bg-red-50 border   w-[800px] min-h-[400px] overflow-hidden"> */}
 
-            <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[100vh] w-10/12 my-16   z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12  space-y-10 flex flex-col items-center `}>
-                <h3 className={`text-5xl vertically-animated-element font-medium ${playfair.className}`}>Planned Activities</h3>
+            <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[100vh] w-11/12 my-16   z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12  space-y-10 flex flex-col items-center `}>
 
+                <div className=" flex items-center ">
+                    <h3 className={`text-5xl vertically-animated-element font-medium ${playfair.className}`}>Planned Activities</h3>
+
+                    <ReactTooltip
+                        id="info"
+                        render={() => <div className=" opacity-100"><PriceInclusionsDummy /></div>}>
+                        <MdInfoOutline className="" />
+                    </ReactTooltip>
+
+                </div>
 
                 <div className=" flex text-xl vertically-animated-element space-x-8  font-normal">
                     {["Map", "Overview", "Daily Schedule",].map((tab, index) => (

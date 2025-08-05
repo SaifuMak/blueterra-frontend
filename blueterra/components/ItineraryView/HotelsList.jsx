@@ -14,7 +14,7 @@ import {
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay"
 
-import { IoIosStar, FaMapLocationDot,GrMap,FaMapMarkerAlt } from '../../components/reactIcons'
+import { IoIosStar, FaMapLocationDot, GrMap, FaMapMarkerAlt } from '../../components/reactIcons'
 import Button from "../generalComponents/Button";
 
 export default function HotelsList({ HotelsData, setCurrent, setCount }) {
@@ -74,9 +74,9 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                                             className="object-cover delay-300 transition-all duration-700 ease-in-out group-hover:scale-110"
                                         />
                                         <div className=" absolute flex-center inset-0 w-full h-full delay-200 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100 group-hover:bg-black/40 ">
-                                           <a href="#">
-  <FaMapMarkerAlt className="text-5xl text-white" />
-</a>
+                                            <a href="#">
+                                                <FaMapMarkerAlt className="text-5xl text-white" />
+                                            </a>
 
                                         </div>
                                     </div>

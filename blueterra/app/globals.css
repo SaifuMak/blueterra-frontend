@@ -457,3 +457,14 @@ body {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+
+
+
+/* Adjust the tooltip arrow color */
+.custom-tooltip[data-side="top"]::before,
+.custom-tooltip[data-side="bottom"]::before,
+.custom-tooltip[data-side="left"]::before,
+.custom-tooltip[data-side="right"]::before {
+    background-color: white !important; /* match your tooltip background */
+}
