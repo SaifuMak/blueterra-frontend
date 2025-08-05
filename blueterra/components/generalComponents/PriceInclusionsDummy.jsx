@@ -17,9 +17,9 @@ const priceExcludes = [
 
 export default function PriceInclusionsDummy() {
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8 ">
+        <div className="w-full mx-auto px-4 py-8 ">
             <p className="mb-4 text-gray-800">As detailed in the itinerary:</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
 
                 <div>
                     <h3 className=" font-medium text-lg mb-4">PRICE INCLUDES</h3>
@@ -35,7 +35,7 @@ export default function PriceInclusionsDummy() {
                                     <span>{item.text}</span>
                                 </div>
                                 {item.note && (
-                                    <span className="text-gray-500">{item.note}</span>
+                                    <span className="text-gray-500 ml-3">{item.note}</span>
                                 )}
                             </li>
                         ))}

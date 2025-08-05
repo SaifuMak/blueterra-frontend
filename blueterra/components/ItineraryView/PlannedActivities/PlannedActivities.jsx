@@ -370,7 +370,7 @@ export default function PlannedActivities({ }) {
                     <ReactTooltip
                         id="info"
                         render={() => <div className=" opacity-100"><PriceInclusionsDummy /></div>}>
-                        <MdInfoOutline className="" />
+                        <MdInfoOutline className=" cursor-pointer" />
                     </ReactTooltip>
 
                 </div>

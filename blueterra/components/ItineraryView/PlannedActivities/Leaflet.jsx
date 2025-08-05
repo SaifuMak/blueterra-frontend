@@ -14,15 +14,31 @@ L.Icon.Default.mergeOptions({
 });
 
 
-
+const redHotelIcon = new L.Icon({
+    iconUrl: 'https://images.pexels.com/photos/261395/pexels-photo-261395.jpeg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+    shadowSize: [41, 41]
+});
 
 const locations = [
-    { coords: [-2.7330, 37.3751], title: 'Kibo Safari Camp' },
-    { coords: [-0.8025, 36.3988], title: 'Sawela Lodge' },
-    { coords: [-1.4149, 35.2216], title: 'Mara Maisha Camp' },
-    { coords: [-1.4149, 35.2218], title: 'Ashnil Mara Camp' },
-    { coords: [-1.2571, 36.8006], title: 'Novotel Nairobi Westlands' }
+    { coords: [-1.2717, 36.8089], title: 'Nairobi City', routeType: 'land' }, // To airport
+    { coords: [-1.3308, 36.9253], title: 'Jomo Kenyatta International Airport', routeType: 'flight' }, // To Amboseli
+    { coords: [-2.6829, 37.1825], title: 'Amboseli National Park', routeType: 'flight' }, // To Lewa
+    { coords: [0.2528, 37.3889], title: 'Lewa Conservancy', routeType: 'flight' }, // To Masai Mara
+    { coords: [-1.2484, 35.0119], title: 'Masai Mara Reserve', routeType: 'land' }
 ];
+
+
+const hotels = [
+    { coords: [-1.2717, 36.8089], title: 'Villa Rosa Kempinski' },
+    { coords: [-2.6829, 37.1825], title: 'Elewana Tortilis Camp' },
+    { coords: [0.2528, 37.3889], title: 'Lewa Safari Camp by Elewana' },
+    { coords: [-1.2484, 35.0119], title: 'andBeyond Bateleur Camp' }
+];
+
 
 
 
@@ -83,10 +99,48 @@ export default function LeafletMap({ expandCards }) {
                         </Popup>
                     </Marker>
                 ))}
-                <Polyline
+
+
+                {/* Hotel markers */}
+                {hotels.map((hotel, idx) => (
+                    <Marker
+                        key={`hotel-${idx}`}
+                        position={hotel.coords}
+                        icon={redHotelIcon}
+                        eventHandlers={{
+                            mouseover: (e) => e.target.openPopup(),
+                            mouseout: (e) => e.target.closePopup()
+                        }}
+                    >
+                        <Popup>
+                            🏨 <strong>{hotel.title}</strong>
+                        </Popup>
+                    </Marker>
+                ))}
+
+                {/* <Polyline
                     positions={locations.map(loc => loc.coords)}
                     pathOptions={{ color: '#026E9E', weight: 3, dashArray: '10,10' }}
-                />
+                /> */}
+
+                {locations.slice(1).map((loc, idx) => {
+                    const from = locations[idx].coords;
+                    const to = loc.coords;
+                    const isFlight = loc.routeType === 'flight';
+
+                    return (
+                        <Polyline
+                            key={`route-${idx}`}
+                            positions={[from, to]}
+                            pathOptions={{
+                                color: isFlight ? '#026E9E' : '#026E9E',
+                                weight: 3,
+                                dashArray: isFlight ? '10,10' : null
+                            }}
+                        />
+                    );
+                })}
+
 
                 <ResizeHandler expandCards={expandCards} />
 
