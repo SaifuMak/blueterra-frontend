@@ -15,7 +15,7 @@ import Autoplay from "embla-carousel-autoplay"
 import gsap from "gsap";
 
 import { IoIosStar, HiArrowLongRight } from '../../components/reactIcons'
-import { playfair, rubik, mrsSaint } from '@/app/fonts'
+import { playfair, rubik } from '@/app/fonts'
 
 import SmoothScroll from "../SmoothScroll";
 import { useGSAP } from "@gsap/react";

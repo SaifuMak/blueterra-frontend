@@ -55,28 +55,6 @@ export default function TeamSection() {
     ]
 
 
-    // useGSAP(() => {
-    //     gsap.fromTo(
-    //         '.employee-card',
-    //         { opacity: 0, scale: 0.99 },
-    //         {
-    //             opacity: 1,
-    //             scale: 1,
-    //             duration: 0.3,
-    //             stagger: 0.2,
-    //             ease: 'power1.out',
-
-    //             scrollTrigger: {
-    //                 trigger: imageContainerRef.current,
-    //                 start: 'top 60%',
-    //                 end: 'top 10%',
-    //                 toggleActions: 'play none none reverse',
-    //                 markers: true,
-    //             },
-    //         }
-    //     )
-    // }, { scope: imageContainerRef })
-
 
     return (
         <div className="w-full flex-center flex-col  bg-cover bg-center bg-no-repeat  relative" style={{ backgroundImage: "url('/images/our-story/hills.png')" }}>
@@ -101,7 +79,6 @@ export default function TeamSection() {
                         height={100}
                         priority
                     />
-
 
                     {!isMobile && <div className="2xl:-mx-6 xl:-mx-5 lg:-mx-5 md:-mx-4 -mx-2 mb-5 md:mb-10">
                         <Image
@@ -129,7 +106,8 @@ export default function TeamSection() {
 
                     </div>
                 </div>
-                
+
+
                 <div ref={founderDescriptionRef} className=" md:w-5/12 max-sm:mt-7  max-sm:px-3 text-dark-28 lg:text-lg 2xl:text-xl max-sm:text-center space-y-4 2xl:space-y-6 font-light leading-7 lg:leading-8 xl:leading-9 2xl:leading-10 flex flex-col justify-center">
                     <p className="">With over 15 years of life and work in the UAE, Jerald Jacob has developed a deep connection
                         to the region’s landscapes, cultures, and stories. His love for travel began with a simple curiosity
@@ -141,7 +119,6 @@ export default function TeamSection() {
                         sustainable journeys that inspire and connect.</p>
                 </div>
             </div>
-
 
             {/* section showing the employees data */}
             <div className="xl:w-10/12 px-6 py-3 md:py-10 xl:py-16 z-30 ">

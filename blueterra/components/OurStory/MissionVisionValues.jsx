@@ -10,7 +10,6 @@ const MissionVisionValues = forwardRef((props, ref) => {
 
     const [activeTab, setActiveTab] = useState(0);
 
-    // 👇 expose to parent
     useImperativeHandle(ref, () => ({
         setTab: (i) => setActiveTab(i)
     }));
@@ -63,7 +62,6 @@ const MissionVisionValues = forwardRef((props, ref) => {
                             </button>
                         ))}
                     </div>
-
 
                     {/* Right Content */}
                     <div className="md:w-2/3  md:max-w-xl  text-white space-y-6 max-sm:mt-6 font-light text-[15px] px-3 md:text-base lg:text-lg xl:text-xl 2xl:text-2xl  border-white/30 md:pl-8">
