@@ -92,29 +92,6 @@ export default function Collection() {
   }, [isMobile, showMobileFilter, isFullCardVisible, isAnyFilterOpened]);
 
 
-  //   useEffect(() => {
-  //   setIsfullCardEnabledForFirstTime(false);
-  // }, [pathname]);
-
-
-  // this handles the closing of the filter while clicking outside
-  // useEffect(() => {
-  //   const handleClick = (event) => {
-  //     if (homeRef.current && homeRef.current.contains(event.target)) {
-  //       setIsFilterVisible(false)
-  //     }
-  //   };
-
-  //   // Listen for all clicks
-  //   document.addEventListener('click', handleClick);
-
-  //   // Cleanup
-  //   return () => {
-  //     document.removeEventListener('click', handleClick);
-  //   };
-  // }, []);
-
-
   return (
 
     <div className={`${rubik.className} text-dark-28`}>

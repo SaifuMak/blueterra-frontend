@@ -1,6 +1,4 @@
 import useGsapFadeIn from "@/app/hooks/Gsap/useGsapFadeIn"
-import { useIsMobile } from "@/app/hooks/useIsMobile"
-import useGsapOpacity from "@/app/hooks/Gsap/useGsapOpacity"
 
 export default function WhyTravelWithUsCard({ card, index = 0 }) {
 

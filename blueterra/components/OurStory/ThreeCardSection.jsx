@@ -82,7 +82,7 @@ export default function ThreeCardSection() {
 
         sectionsRef.current.forEach((section, index) => {
             const card = cardsRef.current[index];
-           
+
             if (!section || !card) return;
 
             const tl = gsap.timeline({

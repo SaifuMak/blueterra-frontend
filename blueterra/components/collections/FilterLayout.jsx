@@ -11,7 +11,6 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible }) 
 
     // const filterContaineRef = useClickOutside(() => setOpenedFilters([]))
 
-
     const [openedFilter, setOpenedFilter] = useState(null)
     const [flatSelectedFilters, setFlatSelectedFilters] = useState([])
 

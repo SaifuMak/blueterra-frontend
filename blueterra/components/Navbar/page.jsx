@@ -1,8 +1,8 @@
 'use client'
 import Link from "next/link"
 import Image from "next/image"
-import { HiMenuAlt3 } from '../reactIcons'
-import { IoSearchOutline } from "react-icons/io5";
+// import { HiMenuAlt3 } from '../reactIcons'
+// import { IoSearchOutline } from "react-icons/io5";
 import MobileNavbar from "../generalComponents/mobileNavbar";
 import { usePathname } from "next/navigation";
 import Button from "../generalComponents/Button";
@@ -12,7 +12,6 @@ export default function Navbar({ isfixed = false, onNavClick }) {
 
   const pathname = usePathname()
 
-  const isHome = pathname === '/'
 
   const MenuItems = [
     { nav: 'Our Story', link: '/our-story', url: '/our-story' },
