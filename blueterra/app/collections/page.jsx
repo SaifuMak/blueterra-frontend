@@ -44,6 +44,16 @@ export default function Collection() {
 
   const homeRef = useRef()
 
+
+  const handleNavClick = (link) => {
+
+    if (link === '/collections') {
+      setIsfullCardEnabledForFirstTime(false)
+    }
+
+  };
+
+
   const handleScrollTop = () => {
     setTimeout(() => {
 
@@ -107,9 +117,8 @@ export default function Collection() {
 
   return (
 
-
     <div className={`${rubik.className} text-dark-28`}>
-      <Navbar isfixed={true} />
+      <Navbar isfixed={true} onNavClick={handleNavClick} />
 
       {isMobile ? (
         <MobileAnimatedVerticalCard
@@ -130,8 +139,6 @@ export default function Collection() {
       )}
 
       {!isMobile && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} />}
-
-      
 
       {isMobile && <MobileFilter setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} showMobileFilter={showMobileFilter} setShowMobileFilter={setShowMobileFilter} />}
 

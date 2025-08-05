@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import Button from "../generalComponents/Button";
 import { rubik } from "@/app/fonts"
 
-export default function Navbar({isfixed = false}) {
+export default function Navbar({ isfixed = false, onNavClick }) {
 
   const pathname = usePathname()
 
@@ -44,9 +44,17 @@ export default function Navbar({isfixed = false}) {
           </div>
         </Link>
 
+
         <div className=" 2xl:space-x-10 xl:space-x-6 space-x-4 text-nowrap">
           {MenuItems.map((items, index) => (
-            <Link key={index} href={items.link} className={`${items.url === pathname ? ' text-sky-blue-dark' : ' text-dark-28'}`}>{items.nav}</Link>
+
+            <Link key={index}
+              href={items.link}
+              onClick={() => {
+                if (onNavClick) onNavClick(items.link);
+              }}
+              className={`${items.url === pathname ? ' text-sky-blue-dark' : ' text-dark-28'}`}>{items.nav}</Link>
+
           ))}
         </div>
 

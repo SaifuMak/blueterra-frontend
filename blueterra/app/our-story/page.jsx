@@ -25,7 +25,7 @@ export default function OurStory() {
     return (
 
         <SmoothScroll>
-                <Navbar isfixed={true}/>
+            <Navbar isfixed={true} />
 
             <div className={`${rubik.className}  w-full h-full `}>
 
@@ -48,7 +48,7 @@ export default function OurStory() {
                 <PartnerCompanies />
 
 
-                <Footer/>
+                <Footer />
 
             </div>
         </SmoothScroll>

@@ -9,6 +9,7 @@ export default function EmployDetails({ member, index, isMobile }) {
 
 
     return (
+
         <div
             //    ref={isMobile ? employRef  : null }
             ref={employRef}
@@ -25,7 +26,6 @@ export default function EmployDetails({ member, index, isMobile }) {
                     className=' rounded-2xl hover:scale-110  delay-100  transition-all duration-1000 ease-in-out'
                 />
             </div>
-
 
             <h3 className="2xl:text-2xl text-xl text-dark-28 mt-4 font-medium">{member.name}</h3>
             <p className=" text-dark-28 text-lg 2xl:text-xl 2xl:mt-1">{member.role}</p>

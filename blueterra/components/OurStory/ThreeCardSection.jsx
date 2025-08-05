@@ -118,7 +118,7 @@ export default function ThreeCardSection() {
                     duration: 20,
                     onUpdate: function () {
                         const prog = this.progress();
-                        const tabIndex = prog < 0.20 ? 0 : prog < 0.40 ? 1 : 2;
+                        const tabIndex = prog < 0.20 ? 0 : prog < 0.50 ? 1 : 2;
                         missionRef.current.setTab(tabIndex); // This works because of forwardRef + useImperativeHandle
                     }
                 });
