@@ -9,7 +9,6 @@ export default function MobileFilterPopup({ selectedFilters, setSelectedFilters,
 
     const [openedFilter, setOpenedFilter] = useState(null);
 
-
     const destinations = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"];
     const countries = ["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"];
     const collections = ["Signature Journeys", "Explore by Landscape", "Adventures in Motion", "Mindful Escapes", "Unforgettable Editions", "Tailored for You"];

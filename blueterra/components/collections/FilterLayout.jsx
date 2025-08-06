@@ -5,7 +5,7 @@ import useClickOutside from '@/app/hooks/useClickOutside'
 import { RxCross2 } from '@/components/reactIcons'
 import ScrollContainer from 'react-indiana-drag-scroll';
 
-export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible }) {
+export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex,handleChangeCollection }) {
 
     // const [openedFilters, setOpenedFilters] = useState([])
 
@@ -56,6 +56,7 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible }) 
     const handleItemSelection = (filter, value) => {
         if (filter === 'collections') {
             handleClearAllSelectedFilters()
+            handleChangeCollection(collections.indexOf(value))
         }
 
         // deals with actual data 
@@ -95,6 +96,15 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible }) 
             return updated;
         });
     };
+
+
+    useEffect(() => {
+
+        handleClearAllSelectedFilters()
+        handleItemSelection('collections', collections[expandedBannerCollectionIndex])
+
+    }, [expandedBannerCollectionIndex])
+
 
 
 

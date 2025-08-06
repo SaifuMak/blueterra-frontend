@@ -54,6 +54,10 @@ export default function Collection() {
   const [flatSelectedFilters, setFlatSelectedFilters] = useState([]);
 
 
+  // handle clear filter control needed  in home page
+   const handleChangeCollection = (indexOfCollection) => {
+       setExpandedIndex(indexOfCollection)
+    }
 
 
   const homeRef = useRef()
@@ -63,6 +67,7 @@ export default function Collection() {
 
     if (link === '/collections') {
       setIsfullCardEnabledForFirstTime(false)
+      setIsFullCardVisible(true)
     }
 
   };
@@ -81,6 +86,7 @@ export default function Collection() {
 
   const handleShowFullCard = (index) => {
 
+
     // when a card is clicked for its full size intially record it 
     setIsfullCardEnabledForFirstTime(true)
 
@@ -91,6 +97,7 @@ export default function Collection() {
     handleScrollTop()
     setExpandedIndex(index)
   }
+
 
   useEffect(() => {
 
@@ -129,7 +136,7 @@ export default function Collection() {
         />
       )}
 
-      {!isMobile && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} />}
+      {!isMobile && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} />}
 
 
       <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
