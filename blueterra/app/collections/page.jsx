@@ -59,6 +59,10 @@ export default function Collection() {
        setExpandedIndex(indexOfCollection)
     }
 
+    const handleChangeCollectionForMobile = (indexOfCollection) => {
+       setSelectedVerticalTileMobile(indexOfCollection)
+    }
+
 
   const homeRef = useRef()
 
@@ -154,8 +158,6 @@ export default function Collection() {
 
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10   md:grid-cols-2 w-10/12 xl:w-9/12" >
 
-
-
           <DestinationCards Destinations={Destinations} />
 
         </div>
@@ -163,14 +165,16 @@ export default function Collection() {
 
       <AdventureSection />
 
-      {showMobileFilter && <MobileFilterPopup
+      <MobileFilterPopup
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
         showMobileFilter={showMobileFilter}
         setShowMobileFilter={setShowMobileFilter}
         flatSelectedFilters={flatSelectedFilters}
         setFlatSelectedFilters={setFlatSelectedFilters}
-      />}
+        expandedBannerCollectionIndex={selectedVerticalTileMobile}
+        handleChangeCollection={handleChangeCollectionForMobile}
+      />
 
 
 

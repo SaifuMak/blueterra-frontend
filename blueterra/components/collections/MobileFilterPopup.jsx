@@ -1,11 +1,11 @@
 // components/MobileFilterPopup.jsx
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RxCross2 } from '@/components/reactIcons';
 import MobileFilterComponent from './MobileFilterComponent';
 import { playfair } from '@/app/fonts';
 
-export default function MobileFilterPopup({ selectedFilters, setSelectedFilters, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters }) {
+export default function MobileFilterPopup({ selectedFilters, setSelectedFilters, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters, expandedBannerCollectionIndex , handleChangeCollection}) {
 
     const [openedFilter, setOpenedFilter] = useState(null);
 
@@ -28,10 +28,13 @@ export default function MobileFilterPopup({ selectedFilters, setSelectedFilters,
         setFlatSelectedFilters([]);
     };
 
+
+
     const handleItemSelection = (filter, value) => {
 
         if (filter === 'collections') {
             handleClearAllSelectedFilters()
+            handleChangeCollection(collections.indexOf(value))
         }
 
         setSelectedFilters((prev) => {
@@ -47,9 +50,17 @@ export default function MobileFilterPopup({ selectedFilters, setSelectedFilters,
         );
     };
 
+    useEffect(() => {
+
+        if (expandedBannerCollectionIndex == null) return
+
+        handleClearAllSelectedFilters()
+        handleItemSelection('collections', collections[expandedBannerCollectionIndex])
+
+    }, [expandedBannerCollectionIndex])
 
 
-    // if (!showMobileFilter) return null;
+    if (!showMobileFilter) return null;
 
     return (
         <>
