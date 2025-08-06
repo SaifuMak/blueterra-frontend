@@ -225,12 +225,46 @@ export default function Corporate() {
                     <div className=" w-full h-full pb-10 xl:pb-20 2xl:pb-32 md:mt-5 relative flex justify-center  ">
                         <div className=" w-11/12 xl:w-10/12 max-sm:px-4  z-20  text-dark-28 h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-6 2xl:gap-10">
                             {events?.map((data, index) => (
-                                <div key={index} className=" vertically-animated-element text-lg 2xl:text-xl font-light max-xl:px-5 max-xl:py-9 2xl:h-[280px] xl:h-[250px] bg-light-beige px-4 2xl:px-10 rounded-2xl w-full text-center  flex flex-col items-center">
+
+                                <div key={index} className=" group vertically-animated-element relative text-lg 2xl:text-xl font-light max-xl:px-5 max-xl:py-9 2xl:h-[280px] xl:h-[250px] bg-light-beige px-4 2xl:px-10 rounded-2xl w-full text-center  flex flex-col items-center">
                                     <h5 className=" xl:mt-10 2xl:mt-16 font-medium">{data.title}</h5>
                                     <p className=" mt-3 2xl:leading-8">{data.description}</p>
+                                    <div className=" absolute rounded-2xl flex-center overflow-hidden inset-0 w-full h-full delay-200 transition-all duration-1000 ease-in-out opacity-0 group-hover:opacity-100 group-hover:bg-black/40 ">
+
+                                        <Image
+                                            src='/images/corporate/banner.png'
+                                            alt='quote'
+                                            fill
+                                            priority
+                                            style={{ objectFit: 'cover' }}
+                                            className=" hover:scale-110 transition-all duration-1000 rounded-2xl ease-in-out"
+                                        />
+                                    </div>
                                 </div>
                             ))}
                         </div>
+
+
+
+                        {/* <div className="w-11/12  h-full  xl:w-10/12 max-sm:px-4 z-20 text-dark-28  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 xl:gap-6 2xl:gap-10">
+                            {events?.map((data, index) => (
+                                <div key={index} className="perspective w-full group min-h-[250px]  md:min-h-[260px]  lg:min-h-[220px] xl:min-h-[200px] xl:my-6 2xl:my-10 cursor-pointer ">
+                                    <div className="relative w-full h-full duration-700  preserve-3d group-hover:rotate-y-180">
+                                        
+                                        <div className="absolute w-full h-full backface-hidden bg-light-beige rounded-2xl px-4 2xl:px-10 text-center flex flex-col  max-sm:justify-center   max-xl:px-5 max-xl:py-9 2xl:h-[280px] xl:h-[250px] text-lg 2xl:text-xl font-light">
+                                            <h5 className="xl:mt-10 2xl:mt-16 font-medium">{data.title}</h5>
+                                            <p className="mt-3 max-xl:px-3 2xl:leading-8">{data.description}</p>
+                                        </div>
+
+                                        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-dark-28/40 text-white rounded-2xl px-4 2xl:px-10 text-center flex flex-col items-center justify-center max-xl:px-5 max-xl:py-9 2xl:h-[280px] xl:h-[250px] text-lg 2xl:text-xl font-light">
+                                            <h5 className="font-medium">More Info</h5>
+                                            <p className="mt-3 2xl:leading-8">Additional details or actions here</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+
+                        </div> */}
                         <ResponsiveClipPath outerClass='absolute  md:w-1/4 right-0  bottom-0 h-3/12  ' ImagePath='/images/corporate/events-bottom-clip-path.png' />
                     </div>
 
