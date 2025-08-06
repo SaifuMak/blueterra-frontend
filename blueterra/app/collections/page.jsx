@@ -22,6 +22,7 @@ import AdventureSection from "@/components/collections/AdventureSection";
 import CardData from "@/components/datas/Destinations";
 import { usePathname } from "next/navigation";
 import MobileFilter from "@/components/collections/MobileFilter";
+import MobileFilterPopup from "@/components/collections/MobileFilterPopup";
 
 export default function Collection() {
 
@@ -40,6 +41,19 @@ export default function Collection() {
   const [selectedVerticalTileMobile, setSelectedVerticalTileMobile] = useState(null)
 
   const [showMobileFilter, setShowMobileFilter] = useState(false)
+
+
+  // for mobile devices
+  const [selectedFilters, setSelectedFilters] = useState({
+    categories: [],
+    destinations: [],
+    countries: [],
+    collections: []
+  })
+
+  const [flatSelectedFilters, setFlatSelectedFilters] = useState([]);
+
+
 
 
   const homeRef = useRef()
@@ -117,11 +131,23 @@ export default function Collection() {
 
       {!isMobile && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} />}
 
-      {isMobile && <MobileFilter setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} showMobileFilter={showMobileFilter} setShowMobileFilter={setShowMobileFilter} />}
 
-      <div ref={homeRef} className=" w-full relative flex justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
+      <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
+
+
+        {isMobile && <MobileFilter
+          setIsAnyFilterOpened={setIsAnyFilterOpened}
+          isFilterVisible={isFilterVisible}
+          showMobileFilter={showMobileFilter}
+          setShowMobileFilter={setShowMobileFilter}
+          flatSelectedFilters={flatSelectedFilters}
+          setFlatSelectedFilters={setFlatSelectedFilters}
+            setSelectedFilters={setSelectedFilters}
+        />}
 
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10   md:grid-cols-2 w-10/12 xl:w-9/12" >
+
+
 
           <DestinationCards Destinations={Destinations} />
 
@@ -129,6 +155,17 @@ export default function Collection() {
       </div>
 
       <AdventureSection />
+
+      {showMobileFilter && <MobileFilterPopup
+        selectedFilters={selectedFilters}
+        setSelectedFilters={setSelectedFilters}
+        showMobileFilter={showMobileFilter}
+        setShowMobileFilter={setShowMobileFilter}
+        flatSelectedFilters={flatSelectedFilters}
+        setFlatSelectedFilters={setFlatSelectedFilters}
+      />}
+
+
 
       <Footer />
 

@@ -9,7 +9,7 @@ export default function AdventureSection() {
         <div className="w-full mb-10 lg:mb-20 lg:min-h-[20vh] max-lg:py-10  min-h-[50vh] flex-center">
             <div className="w-11/12 h-[500px] border rounded-3xl overflow-hidden max-lg:flex-col flex">
 
-                <div className="relative w-full lg:w-1/2 h-1/2 lg:h-full">
+                <div className="relative w-full z-0 lg:w-1/2 h-1/2 lg:h-full">
                     <Image
                         src="/images/collections/boy-on-mountain.png"
                         alt="travel"

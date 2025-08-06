@@ -1,0 +1,128 @@
+// components/MobileFilterPopup.jsx
+
+import { useState } from 'react';
+import { RxCross2 } from '@/components/reactIcons';
+import MobileFilterComponent from './MobileFilterComponent';
+import { playfair } from '@/app/fonts';
+
+export default function MobileFilterPopup({ selectedFilters, setSelectedFilters, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters }) {
+
+    const [openedFilter, setOpenedFilter] = useState(null);
+
+
+    const destinations = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"];
+    const countries = ["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"];
+    const collections = ["Signature Journeys", "Explore by Landscape", "Adventures in Motion", "Mindful Escapes", "Unforgettable Editions", "Tailored for You"];
+    const categories = ["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys"];
+
+    const handleFilters = (filter) => {
+        setOpenedFilter(openedFilter === filter ? null : filter);
+    };
+
+    const handleItemSelection = (filter, value) => {
+        setSelectedFilters((prev) => {
+            const current = prev[filter];
+            const updated = current.includes(value)
+                ? current.filter((item) => item !== value)
+                : [...current, value];
+            return { ...prev, [filter]: updated };
+        });
+
+        setFlatSelectedFilters((prev) =>
+            prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
+        );
+    };
+
+    const handleClearAllSelectedFilters = () => {
+        setSelectedFilters({
+            categories: [],
+            destinations: [],
+            countries: [],
+            collections: [],
+        });
+        setFlatSelectedFilters([]);
+    };
+
+    // if (!showMobileFilter) return null;
+
+    return (
+        <>
+            {showMobileFilter && (
+                <div className="fixed inset-0 z-50 bg-black/40 flex md:hidden">
+                    <div className="relative z-10  flex flex-col border  max-w-sm  h-full bg-white">
+
+                        {/* Header */}
+                        <div className="absolute top-7 right-7 z-20">
+                            <RxCross2
+                                onClick={() => setShowMobileFilter(false)}
+                                className="text-slate-500 text-2xl cursor-pointer"
+                            />
+                        </div>
+
+                        {/* Scrollable content */}
+                        <div className=" overflow-y-auto pt-10 pb-32 flex flex-col items-center">
+                            <h2 className={`${playfair.className} tracking-wide text-xl font-medium`}>Refine Your Search</h2>
+
+                            <div className="w-11/12 grid grid-cols-1  py-2 mt-5 gap-4">
+                                <MobileFilterComponent
+                                    name="collections"
+                                    options={collections}
+                                    handleFilters={handleFilters}
+                                    isOpened={openedFilter === "collections"}
+                                    handleItemSelection={handleItemSelection}
+                                    selectedFilters={selectedFilters}
+                                />
+                                <MobileFilterComponent
+                                    name="categories"
+                                    options={categories}
+                                    handleFilters={handleFilters}
+                                    isOpened={openedFilter === "categories"}
+                                    handleItemSelection={handleItemSelection}
+                                    selectedFilters={selectedFilters}
+                                />
+                                <MobileFilterComponent
+                                    name="destinations"
+                                    options={destinations}
+                                    handleFilters={handleFilters}
+                                    isOpened={openedFilter === "destinations"}
+                                    handleItemSelection={handleItemSelection}
+                                    selectedFilters={selectedFilters}
+                                />
+                                <MobileFilterComponent
+                                    name="countries"
+                                    options={countries}
+                                    handleFilters={handleFilters}
+                                    isOpened={openedFilter === "countries"}
+                                    handleItemSelection={handleItemSelection}
+                                    selectedFilters={selectedFilters}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Bottom fixed action bar */}
+                        <div className="fixed bottom-0 w-full p-5 bg-slate-100 min-h-20 flex flex-col justify-end space-y-3 text-dark-28">
+                            <div className="flex justify-between items-center">
+                                <p className="text-sm">
+                                    {flatSelectedFilters.length > 0 ? `${flatSelectedFilters.length} filters applied` : ''}
+                                </p>
+                                {flatSelectedFilters.length > 0 && (
+                                    <p onClick={handleClearAllSelectedFilters} className="underline text-sky-blue-dark cursor-pointer">
+                                        Clear filters
+                                    </p>
+                                )}
+                            </div>
+                            <button
+                                onClick={() => setShowMobileFilter(false)}
+                                className="bg-sky-blue-dark py-2.5 text-sm font-medium rounded-sm text-white"
+                            >
+                                Explore Journeys
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            )}
+        </>
+    );
+
+}
