@@ -43,7 +43,20 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible }) 
 
     }
 
+    const handleClearAllSelectedFilters = () => {
+        setSelectedFilters({
+            categories: [],
+            destinations: [],
+            countries: [],
+            collections: []
+        })
+        setFlatSelectedFilters([])
+    }
+
     const handleItemSelection = (filter, value) => {
+        if (filter === 'collections') {
+            handleClearAllSelectedFilters()
+        }
 
         // deals with actual data 
         setSelectedFilters(prev => {
@@ -83,15 +96,7 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible }) 
         });
     };
 
-    const handleClearAllSelectedFilters = () => {
-        setSelectedFilters({
-            categories: [],
-            destinations: [],
-            countries: [],
-            collections: []
-        })
-        setFlatSelectedFilters([])
-    }
+
 
 
     useEffect(() => {

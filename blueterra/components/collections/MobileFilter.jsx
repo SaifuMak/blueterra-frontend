@@ -7,7 +7,6 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { playfair } from '@/app/fonts'
 
 
-
 export default function MobileFilter({ setIsAnyFilterOpened, isFilterVisible, showMobileFilter, setShowMobileFilter,flatSelectedFilters, setFlatSelectedFilters,setSelectedFilters }) {
 
     const [openedFilters, setOpenedFilters] = useState([])

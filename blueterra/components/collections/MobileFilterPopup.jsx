@@ -19,7 +19,22 @@ export default function MobileFilterPopup({ selectedFilters, setSelectedFilters,
         setOpenedFilter(openedFilter === filter ? null : filter);
     };
 
+    const handleClearAllSelectedFilters = () => {
+        setSelectedFilters({
+            categories: [],
+            destinations: [],
+            countries: [],
+            collections: [],
+        });
+        setFlatSelectedFilters([]);
+    };
+
     const handleItemSelection = (filter, value) => {
+
+        if (filter === 'collections') {
+            handleClearAllSelectedFilters()
+        }
+
         setSelectedFilters((prev) => {
             const current = prev[filter];
             const updated = current.includes(value)
@@ -33,15 +48,7 @@ export default function MobileFilterPopup({ selectedFilters, setSelectedFilters,
         );
     };
 
-    const handleClearAllSelectedFilters = () => {
-        setSelectedFilters({
-            categories: [],
-            destinations: [],
-            countries: [],
-            collections: [],
-        });
-        setFlatSelectedFilters([]);
-    };
+
 
     // if (!showMobileFilter) return null;
 
