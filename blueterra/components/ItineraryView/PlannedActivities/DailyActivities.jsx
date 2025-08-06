@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from "react"
 import accordionData from "@/components/datas/DailyActivitiesData"
-import { MdOutlineKeyboardArrowRight, MdInfoOutline } from '../../reactIcons'
+import { MdOutlineKeyboardArrowRight, MdInfoOutline, IoMdArrowDropup } from '../../reactIcons'
 
 import ReactTooltip from "@/components/generalComponents/ReactTooltip"
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
@@ -44,21 +44,7 @@ export default function DailyActivities({ expandCards, index, selectedTab }) {
 
         <>
 
-            {/* 
-            <ReactTooltip
-                id="info"
-                render={() => <div className=" opacity-100"><PriceInclusionsDummy /></div>}>
-                <p className="cursor-pointer">Hover</p>
-            </ReactTooltip> */}
-
-
-
-
-            <div className="   w-full overflow-y-auto h-full flex   flex-col px-1 lg:pl-[44px]  max-xl:text-sm  xl:pl-[56px]  space-y-2 content-between text-base ">
-
-                {/* <TooltipWrapper message='hello'>
-                <MdInfoOutline className=" bottom-0 text-xl shrink-0  -ml-10 left-0 " />
-            </TooltipWrapper> */}
+            <div className="  w-full overflow-y-auto h-full flex flex-col px-1 lg:pl-[44px]  max-xl:text-sm  xl:pl-[56px]  space-y-2 content-between text-base ">
 
 
 
@@ -66,7 +52,7 @@ export default function DailyActivities({ expandCards, index, selectedTab }) {
 
                     {accordionData?.map((data, index) => (
                         <div key={index} className=" flex border-l  relative  ">
-                            <div className={`shrink-0 absolute flex  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === accordionData.length - 1 ? 'pb-48' : ''}  bg-white `}>
+                            <div className={`shrink-0 absolute flex  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === accordionData.length - 1 ? 'pb-32' : ''}  bg-white `}>
                                 <p className=" font-normal text-sm  ">Day</p>
                                 <span className="size-5 ml-2   text-white text-xs  bg-[#026E9E] flex justify-center items-center  rounded-full">{index + 1}</span>
                             </div>
@@ -90,14 +76,31 @@ export default function DailyActivities({ expandCards, index, selectedTab }) {
                         </div>
                     ))}
 
+
+
                 </div>
 
 
 
 
-
-
             </div>
+
+            {/* <div className="relative mt-3 flex justify-center items-center   group ">
+                        <div className="flex items-center peer cursor-pointer">
+                            <p>Inclusions and Exclusions</p>
+                            <MdInfoOutline className="ml-2" />
+                        </div>
+
+                        <div className="absolute top-full     min-h-[300px] min-w-[900px]  z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
+
+                            <div className=" relative mt-4  px-6 !z-[1999] rounded-xl shadow-2xl bg-white  ">
+                                <IoMdArrowDropup className=" text-4xl   text-white absolute left-1/2 -top-[22px]" />
+                                <PriceInclusionsDummy />
+                            </div>
+                        </div>
+
+                    </div>
+ */}
 
         </>
 

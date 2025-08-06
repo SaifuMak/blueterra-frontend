@@ -12,7 +12,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import ReactTooltip from "@/components/generalComponents/ReactTooltip"
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
-import { MdInfoOutline } from "@/components/reactIcons"
+import { MdInfoOutline,IoMdArrowDropup } from "@/components/reactIcons"
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -364,14 +364,33 @@ export default function PlannedActivities({ }) {
 
             <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[100vh] w-11/12 my-16   z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12  space-y-10 flex flex-col items-center `}>
 
-                <div className=" flex items-center ">
-                    <h3 className={`text-5xl vertically-animated-element font-medium ${playfair.className}`}>Planned Activities</h3>
+                <div className=" flex  flex-col items-center ">
+                    <h3 className={`text-5xl font-medium ${playfair.className}`}>Planned Activities</h3>
 
-                    <ReactTooltip
+                    {/* <ReactTooltip
                         id="info"
-                        render={() => <div className=" opacity-100"><PriceInclusionsDummy /></div>}>
-                        <MdInfoOutline className=" cursor-pointer" />
-                    </ReactTooltip>
+                        render={() => <div className=" "><PriceInclusionsDummy /></div>}>
+                        <div className=" vertically-animated-element flex justify-center  mt-3 items-center">
+                            <p className="cursor-pointer">Inclusions and Exclusions</p>
+                            <MdInfoOutline className=" ml-2" />
+                        </div>
+                    </ReactTooltip> */}
+
+                    <div className="relative mt-3 flex justify-center items-center   group ">
+                        <div className="flex items-center peer cursor-pointer">
+                            <p>Inclusions and Exclusions</p>
+                            <MdInfoOutline className="ml-2" />
+                        </div>
+
+                        <div className="absolute top-full     min-h-[300px] min-w-[900px]  z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
+
+                            <div className=" relative mt-4  px-6 !z-[1999] rounded-xl shadow-2xl bg-white  ">
+                                <IoMdArrowDropup className=" text-4xl   text-white absolute left-1/2 -top-[22px]" />
+                                <PriceInclusionsDummy />
+                            </div>
+                        </div>
+                       
+                    </div>
 
                 </div>
 
@@ -381,13 +400,13 @@ export default function PlannedActivities({ }) {
                     ))}
                 </div>
 
-                <div ref={plannerCardsRef} className="relative flex flex-wrap justify-center gap-3 mt-5  2xl:gap-6  z-50  overflow-hidden">
+                <div ref={plannerCardsRef} className="relative vertically-animated-element flex flex-wrap justify-center gap-3 mt-5  2xl:gap-6  z-50  overflow-hidden">
                     {Components?.map((item, index) => {
                         const DynamicComponent = item.component;
                         return (<div
                             ref={item.Ref}
                             key={index}
-                            className="w-[48%] scale-opacity-animate h-[48%]"
+                            className="w-[48%]  h-[48%]"
                         >
                             <DynamicComponent expandCards={expandCards} index={index} selectedTab={selectedTab} />
 

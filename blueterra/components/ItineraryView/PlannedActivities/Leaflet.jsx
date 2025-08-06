@@ -14,10 +14,12 @@ L.Icon.Default.mergeOptions({
 });
 
 
-const redHotelIcon = new L.Icon({
-    iconUrl: 'https://images.pexels.com/photos/261395/pexels-photo-261395.jpeg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
+const HotelIcon = new L.Icon({
+    iconUrl: '/Icons/bed.svg',
+    // iconUrl: '/Icons/hotel.svg',
+    // iconUrl: '/Icons/bed-red.svg',
+    iconSize: [35, 51],
+    iconAnchor: [12, 21],
     popupAnchor: [1, -34],
     shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
     shadowSize: [41, 41]
@@ -36,7 +38,7 @@ const hotels = [
     { coords: [-1.2717, 36.8089], title: 'Villa Rosa Kempinski' },
     { coords: [-2.6829, 37.1825], title: 'Elewana Tortilis Camp' },
     { coords: [0.2528, 37.3889], title: 'Lewa Safari Camp by Elewana' },
-    { coords: [-1.2484, 35.0119], title: 'andBeyond Bateleur Camp' }
+    { coords: [-1.2484, 35.0119], title: 'Beyond Bateleur Camp' }
 ];
 
 
@@ -106,7 +108,7 @@ export default function LeafletMap({ expandCards }) {
                     <Marker
                         key={`hotel-${idx}`}
                         position={hotel.coords}
-                        icon={redHotelIcon}
+                        icon={HotelIcon}
                         eventHandlers={{
                             mouseover: (e) => e.target.openPopup(),
                             mouseout: (e) => e.target.closePopup()
