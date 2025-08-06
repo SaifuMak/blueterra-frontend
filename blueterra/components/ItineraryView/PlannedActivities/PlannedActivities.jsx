@@ -12,7 +12,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import ReactTooltip from "@/components/generalComponents/ReactTooltip"
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
-import { MdInfoOutline,IoMdArrowDropup } from "@/components/reactIcons"
+import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -364,7 +364,7 @@ export default function PlannedActivities({ }) {
 
             <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[100vh] w-11/12 my-16   z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12  space-y-10 flex flex-col items-center `}>
 
-                <div className=" flex  flex-col items-center ">
+                <div className=" flex  flex-col vertically-animated-element z-[999] items-center transform-gpu ">
                     <h3 className={`text-5xl font-medium ${playfair.className}`}>Planned Activities</h3>
 
                     {/* <ReactTooltip
@@ -389,7 +389,7 @@ export default function PlannedActivities({ }) {
                                 <PriceInclusionsDummy />
                             </div>
                         </div>
-                       
+
                     </div>
 
                 </div>

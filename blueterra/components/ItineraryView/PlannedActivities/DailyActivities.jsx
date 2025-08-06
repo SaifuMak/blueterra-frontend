@@ -46,8 +46,6 @@ export default function DailyActivities({ expandCards, index, selectedTab }) {
 
             <div className="  w-full overflow-y-auto h-full flex flex-col px-1 lg:pl-[44px]  max-xl:text-sm  xl:pl-[56px]  space-y-2 content-between text-base ">
 
-
-
                 <div className="  ">
 
                     {accordionData?.map((data, index) => (

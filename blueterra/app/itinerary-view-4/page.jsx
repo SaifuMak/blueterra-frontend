@@ -66,7 +66,8 @@ export default function Page4() {
                     scrollTrigger: {
                         trigger: box,
                         start: "top 90%",
-                        toggleActions: "play none play reverse",
+                        toggleActions: "play none none reverse",
+                        // markers: true
                     },
                 }
             );
@@ -89,7 +90,7 @@ export default function Page4() {
                     scrollTrigger: {
                         trigger: box,
                         start: "top 90%",
-                        toggleActions: "play none play reverse",
+                        toggleActions: "play none none reverse",
                     },
                 }
             );
@@ -311,15 +312,35 @@ export default function Page4() {
                     </div>
 
 
+                    {/* <div className="grid grid-cols-1 pt-20 w-full sm:grid-cols-3 gap-6 py-8 bg-white text-center">
+                        <div>
+                            <h3 className="text-lg font-bold uppercase text-orange-600 tracking-widest">When</h3>
+                            <p className="italic text-gray-600 mt-2">Jun–Oct / Dec–Jan</p>
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold uppercase text-teal-600 tracking-widest">Price</h3>
+                            <p className="mt-2 text-gray-600 italic">
+                                From £8,000pp excl. flights
+                                <span className="inline-block ml-1 align-middle cursor-pointer">
+                                </span>
+                            </p>
+                            <p className="text-sm text-gray-400 mt-1 italic">(based on 2 ppl sharing)</p>
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold uppercase text-blue-600 tracking-widest">How Long</h3>
+                            <p className="italic text-gray-600 mt-2">8 nights ideal length</p>
+                        </div>
+                    </div> */}
+
 
                     <div className=" w-full bg-white relative   min-h-screen flex-center">
-                        <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' />
+                        {/* <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' /> */}
 
                         <PlannedActivities />
                     </div>
 
 
-                    <div className=" w-full  min-h-[120vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">
+                    <div className=" w-full   min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">
                         <div className=" w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige">
                             <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 top-0 h-10/12' ImagePath='/images/itinerary/hotels-clip-path.png' />
                             <HotelsView />
@@ -365,10 +386,14 @@ export default function Page4() {
                     </div>
 
 
-
-                    <div ref={planningRef} className="w-full    min-h-[50vh] bg-dark-beige flex flex-col justify-center items-center  overflow-hidden relative">
-                        <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 bottom-0 h-full' ImagePath='/images/itinerary/planning-left-clip-path.png' />
-                        <ResponsiveClipPath outerClass='absolute  w-1/12  right-0 bottom-0 h-10/12' ImagePath='/images/itinerary/planning-right-clip-path.png' />
+                    <div ref={planningRef}
+                        className="w-full  min-h-[50vh]  bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center  overflow-hidden relative"
+                        style={{
+                            backgroundImage: "url('/images/our-story/yellow-banner.png')",
+                        }}
+                    >
+                        {/* <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 bottom-0 h-full' ImagePath='/images/itinerary/planning-left-clip-path.png' />
+                        <ResponsiveClipPath outerClass='absolute  w-1/12  right-0 bottom-0 h-10/12' ImagePath='/images/itinerary/planning-right-clip-path.png' /> */}
 
                         <div className="lg:w-8/12 md:w-10/12  space-y-10   text-center h-auto flex-col text-dark-28  flex-center">
                             <h3 className={`xl:text-[50px] text-2xl  font-medium  antialiased  text-dark-4B text-center vertically-animated-element ${playfair.className}`}>Design Your Perfect Itinerary</h3>
