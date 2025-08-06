@@ -311,8 +311,8 @@ export default function Page4() {
                         </div>
                     </div>
 
-
-                    {/* <div className="grid grid-cols-1 pt-20 w-full sm:grid-cols-3 gap-6 py-8 bg-white text-center">
+{/* 
+                    <div className="grid grid-cols-1 pt-20 w-full sm:grid-cols-3 gap-6 py-8 bg-white text-center">
                         <div>
                             <h3 className="text-lg font-bold uppercase text-orange-600 tracking-widest">When</h3>
                             <p className="italic text-gray-600 mt-2">Jun–Oct / Dec–Jan</p>
@@ -346,7 +346,6 @@ export default function Page4() {
                             <HotelsView />
                         </div>
                     </div>
-
 
 
                     <div ref={galleryRef} className="  bg-white  w-full h-full">

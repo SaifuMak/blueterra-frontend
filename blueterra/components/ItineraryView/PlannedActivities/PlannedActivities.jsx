@@ -322,7 +322,7 @@ export default function PlannedActivities({ }) {
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: box,
-                        start: "top 80%",
+                        start: "top 90%",
                         toggleActions: "play none play reverse ",
                         // markers: true
                     },
@@ -347,7 +347,7 @@ export default function PlannedActivities({ }) {
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: box,
-                        start: "top 80%",
+                        start: "top 90%",
                         toggleActions: "play none play reverse ",
                     },
                 }
