@@ -305,7 +305,7 @@ export default function Corporate() {
                                     </div>
                                 </div>
 
-                              
+
                             ))}
                         </div>
                         <ResponsiveClipPath outerClass='absolute w-full md:w-4/12 left-0  -bottom-7 h-6/12  ' ImagePath='/images/corporate/private-events-clip-path.png' />
@@ -328,20 +328,20 @@ export default function Corporate() {
                         <ResponsiveClipPath outerClass='absolute w-full md:w-3/12 top-0 z-10 left-0 h-11/12' ImagePath='/images/corporate/why-us-clip-path.png' />
                     </div>
 
-                    <div className=" w-full h-full py-12 md:py-20  text-dark-28 flex-center relative">
-                        <ResponsiveClipPath outerClass='absolute w-full md:w-3/12 bottom-0 z-10 right-0 h-full' ImagePath='/images/corporate/contact-clip-path.png' />
+                    <div className=" w-full h-full py-7 md:py-20   text-dark-28 flex-center relative">
+                        <ResponsiveClipPath outerClass='absolute max-sm:hidden  w-full lg:w-3/12 bottom-0 z-10 right-0 h-full' ImagePath='/images/corporate/contact-clip-path.png' />
 
-                        <div className=" w-11/12  max-sm:my-10   space-x-10 flex max-md:flex-col justify-center">
+                        <div className="w-11/12 border max-sm:my-10  max-lg:space-y-10  lg:space-x-10 flex max-lg:flex-col items-center justify-center">
 
-                            <div className="md:w-4/12 w-full flex flex-col  xl:space-y-6 2xl:space-y-8 ">
+                            <div className="lg:w-4/12  w-full flex flex-col max-sm:pl-3  xl:space-y-6 2xl:space-y-8 ">
                                 <h4 className={`${playfair.className} vertically-animated-element font-medium max-md:text-3xl text-[42px] xl:text-[50px]`} >Get in Touch</h4>
                                 <p className=" text-xl xl:text-2xl vertically-animated-element max-sm:mt-2 font-light">Have questions or need assistance?</p>
 
-                                <div className=" vertically-animated-element md:space-y-4 max-sm:space-y-3 xl:space-y-6 mt-5">
+                                <div className=" vertically-animated-element  lg:space-y-4 max-sm:space-y-3 space-y-5 xl:space-y-6 mt-5">
                                     {CONTACT_DETAILS?.map((data, index) => (
                                         <div key={index} className=" flex items-center font-light space-x-3 xl:space-x-5">
-                                            <img src={data.icon} alt="search icon " className=" object-cover shrink-0 size-7 md:size-8 xl:size-9" />
-                                            <div className=" xl:space-y-2 md:space-y-1 text-lg xl:text-xl max-sm:text-base ">
+                                            <img src={data.icon} alt="search icon " className=" object-cover shrink-0 size-7 lg:size-8 xl:size-9" />
+                                            <div className=" xl:space-y-2 lg:space-y-1 text-lg xl:text-xl max-sm:text-base ">
                                                 <p className=" font-normal">{data.title}</p>
                                                 <p className=" opacity-90   ">{data.details}</p>
                                                 {data.subDetails && <p className="opacity-90  ">{data.subDetails}</p>}
@@ -353,7 +353,16 @@ export default function Corporate() {
 
                             </div>
 
-                            <div className="md:w-6/12 w-full h-full flex flex-col  ">
+                            <div className="lg:w-6/12 w-full h-full overflow-hidden  ">
+                                <div className="w-full h-[700px] lg:h-[600px] 2xl:h-[700px] ">
+                                    <iframe
+                                        title="Zoho Form"
+                                        src="https://forms.zohopublic.com/blueterra1/form/Sendusadirectmessage/formperma/LH1SC9iQKsMbkmNpCxnvw8TsFKPf79BaLG-GgDCVlFw"
+                                        frameBorder="0"
+                                        style={{ width: '100%', height: '100%', border: 'none' }}
+                                        allowFullScreen
+                                    />
+                                </div>
 
                             </div>
 
