@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, Polyline } from 'react-
 import L from 'leaflet';
 import { useEffect } from 'react';
 
+
 // Fix Leaflet marker icon in Next.js with Webpack
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -16,8 +17,6 @@ L.Icon.Default.mergeOptions({
 
 const HotelIcon = new L.Icon({
     iconUrl: '/Icons/bed.svg',
-    // iconUrl: '/Icons/hotel.svg',
-    // iconUrl: '/Icons/bed-red.svg',
     iconSize: [35, 51],
     iconAnchor: [12, 21],
     popupAnchor: [1, -34],
@@ -43,9 +42,9 @@ const hotels = [
 
 
 
-
 function ResizeHandler({ expandCards }) {
     const map = useMap();
+
 
     useEffect(() => {
 
@@ -67,6 +66,9 @@ function ResizeHandler({ expandCards }) {
 
     return null;
 }
+
+
+
 
 export default function LeafletMap({ expandCards }) {
 
@@ -142,7 +144,6 @@ export default function LeafletMap({ expandCards }) {
                         />
                     );
                 })}
-
 
                 <ResizeHandler expandCards={expandCards} />
 
