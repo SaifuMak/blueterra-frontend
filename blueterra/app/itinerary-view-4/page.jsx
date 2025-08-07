@@ -20,11 +20,15 @@ import Navbar from "@/components/Navbar/page";
 import { playfair, rubik } from "@/app/fonts"
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
 import Button from "@/components/generalComponents/Button";
-
+import ZohoFormModal from "@/components/Forms/ZohoFormModal";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function Page4() {
+
+    // zoho form 
+    const [formOpen, setFormOpen] = useState(false);
+
     const box1Ref = useRef(null);
     const box2Ref = useRef(null);
 
@@ -304,7 +308,7 @@ export default function Page4() {
                                 <div className=" space-y-5  text-center flex font-light flex-col items-center">
                                     <p className=" text-[25px] opacity-0 vertically-animate-element leading-9 w-5/12">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities, carefully selected destinations, accommodations, transportation details, and unique experiences.</p>
                                     <p className=" w-4/12 text-xl opacity-0 vertically-animate-element leading-9">A comprehensive and meticulously curated document that presents a day-by-day breakdown of your travel journey, featuring thoughtfully.</p>
-                                    <Button text='START PLANNING' buttonStyle={` opacity-0 vertically-animate-element font-normal transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `} />
+                                    <Button text='START PLANNING' buttonStyle={` opacity-0 vertically-animate-element font-normal transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `}  onClickFunction={()=>setFormOpen(true)}  />
                                 </div>
 
                             </div>
@@ -400,13 +404,15 @@ export default function Page4() {
                                 Create a journey that reflects your interests, pace, and
                                 travel style — from handpicked experiences to seamless logistics, every detail is yours to shape.
                             </p>
-                            <Button text='START PLANNING' buttonStyle={`  transition-all duration-500 vertically-animated-element ease-in-out font-light  max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} isHoverWhiteApplied={false} />
+                            <Button text='START PLANNING' buttonStyle={`  transition-all duration-500 vertically-animated-element ease-in-out font-light  max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} isHoverWhiteApplied={false} onClickFunction={() => setFormOpen(true)} />
 
                         </div>
                     </div>
 
 
                     <Footer />
+                    <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
+
                 </div>
             </SmoothScroll>
 

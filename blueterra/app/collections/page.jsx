@@ -23,12 +23,20 @@ import CardData from "@/components/datas/Destinations";
 import { usePathname } from "next/navigation";
 import MobileFilter from "@/components/collections/MobileFilter";
 import MobileFilterPopup from "@/components/collections/MobileFilterPopup";
+import ZohoFormModal from "@/components/Forms/ZohoFormModal";
+
+
 
 export default function Collection() {
 
   const isMobile = useIsMobile()
 
   // const pathname = usePathname();
+
+
+  // zoho form 
+  const [formOpen, setFormOpen] = useState(false);
+
 
   const [isfullCardEnabledForFirstTime, setIsfullCardEnabledForFirstTime] = useState(false)
 
@@ -55,13 +63,13 @@ export default function Collection() {
 
 
   // handle clear filter control needed  in home page
-   const handleChangeCollection = (indexOfCollection) => {
-       setExpandedIndex(indexOfCollection)
-    }
+  const handleChangeCollection = (indexOfCollection) => {
+    setExpandedIndex(indexOfCollection)
+  }
 
-    const handleChangeCollectionForMobile = (indexOfCollection) => {
-       setSelectedVerticalTileMobile(indexOfCollection)
-    }
+  const handleChangeCollectionForMobile = (indexOfCollection) => {
+    setSelectedVerticalTileMobile(indexOfCollection)
+  }
 
 
   const homeRef = useRef()
@@ -153,7 +161,7 @@ export default function Collection() {
           setShowMobileFilter={setShowMobileFilter}
           flatSelectedFilters={flatSelectedFilters}
           setFlatSelectedFilters={setFlatSelectedFilters}
-            setSelectedFilters={setSelectedFilters}
+          setSelectedFilters={setSelectedFilters}
         />}
 
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10   md:grid-cols-2 w-10/12 xl:w-9/12" >
@@ -163,7 +171,7 @@ export default function Collection() {
         </div>
       </div>
 
-      <AdventureSection />
+      <AdventureSection setFormOpen={setFormOpen} />
 
       <MobileFilterPopup
         selectedFilters={selectedFilters}
@@ -176,9 +184,9 @@ export default function Collection() {
         handleChangeCollection={handleChangeCollectionForMobile}
       />
 
-
-
       <Footer />
+      <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
+
 
     </div>
 

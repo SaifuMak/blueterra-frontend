@@ -11,6 +11,7 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { useRef, useState, useEffect } from "react"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ZohoFormModal from "@/components/Forms/ZohoFormModal"
 
 import useGsapFadeIn from "../hooks/Gsap/useGsapFadeIn"
 
@@ -22,6 +23,9 @@ export default function Corporate() {
     const [isClient, setIsClient] = useState(false);
     const containerRef = useRef()
     const bannerRef = useRef()
+
+    const [formOpen, setFormOpen] = useState(false);
+
 
     const aboutTitle = useGsapFadeIn()
 
@@ -181,7 +185,7 @@ export default function Corporate() {
                         />
                         <div className=" w-full opacity-0  banner-elements absolute inset-0 text-white  h-full  flex flex-col justify-center items-center">
                             <h1 className={` ${playfair.className}   font-medium text-2xl text-center md:text-[65px] xl:text-[75px] 2xl:text-[80px]`}>MICE & Signature Events</h1>
-                            <Button text='GET IN TOUCH' buttonStyle={` transition-all duration-500 mb-10 mt-5 ease-in-out font-medium max-md:text-sm  px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} />
+                            <Button text='GET IN TOUCH' buttonStyle={` transition-all duration-500 mb-10 mt-5 ease-in-out font-medium max-md:text-sm  px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} onClickFunction={()=>setFormOpen(true)} />
                         </div>
                     </div>
 
@@ -372,6 +376,7 @@ export default function Corporate() {
                 </div>
 
                 <Footer />
+                <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
 
             </SmoothScroll>
         </>

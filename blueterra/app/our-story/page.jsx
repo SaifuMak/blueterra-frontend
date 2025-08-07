@@ -1,6 +1,7 @@
 
 'use client'
 import SmoothScroll from "@/components/SmoothScroll";
+import { useState } from "react";
 
 import { rubik, } from "@/app/fonts"
 import gsap from 'gsap';
@@ -15,43 +16,51 @@ import PartnerCompanies from '@/components/OurStory/PartnerCompanies';
 import Footer from "@/components/Footer/page";
 
 import Navbar from "@/components/Navbar/page";
+import ZohoFormModal from "@/components/Forms/ZohoFormModal";
 
 gsap.registerPlugin(ScrollTrigger)
 
 
 export default function OurStory() {
 
+    const [formOpen, setFormOpen] = useState(false);
+
 
     return (
+        <>
 
-        <SmoothScroll>
-            <Navbar isfixed={true} />
+            <SmoothScroll>
+                <Navbar isfixed={true} />
 
-            <div className={`${rubik.className}  w-full h-full `}>
+                <div className={`${rubik.className}  w-full h-full `}>
 
-                {/* Section containing  3 cards  height for 3 cards*/}
-                <ThreeCardSection />
-
-                {/*   founder and company employees section */}
-                <TeamSection />
-
-                {/*  why travel with us section */}
-                <WhyTravelWithUsSection />
-
-                {/*  plan with blueterra  banner */}
-                <PlanWithblueterra />
-
-                {/* Journey intro */}
-                <JourneryIntro />
-
-                {/* partner companies section */}
-                <PartnerCompanies />
+                    {/* Section containing  3 cards  height for 3 cards*/}
+                    <ThreeCardSection />
 
 
-                <Footer />
+                    {/* Journey intro */}
+                    <JourneryIntro />
 
-            </div>
-        </SmoothScroll>
+                    {/*   founder and company employees section */}
+                    <TeamSection />
+
+                    {/*  why travel with us section */}
+                    <WhyTravelWithUsSection />
+
+                    {/*  plan with blueterra  banner */}
+                    <PlanWithblueterra setFormOpen={setFormOpen} />
+
+
+                    {/* partner companies section */}
+                    <PartnerCompanies />
+
+                    <Footer />
+
+                    <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
+
+                </div>
+            </SmoothScroll>
+        </>
 
     );
 }
