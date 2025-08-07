@@ -637,11 +637,10 @@ export default function Home() {
               <div className=" absolute inset-0 w-full h-full flex flex-col justify-center text-center items-center bg-black/20 cursor-pointer rounded-4xl">
                 <h3 className={`2xl:text-[50px] xl:text-[45px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element  font-normal text-white`}>Join Our Community</h3>
                 <p className=" xl:text-[23px] lg:text-xl max-md:px-4  2xl:text-[23px] text-white font-light mt-7 vertically-animated-element tracking-wide ">Get expert travel tips straight to your inbox.</p>
-                <div className="w-full h-[200px] bg-red-200 ">
+                <div className="w-11/12 mt-4 h-[150px]  ">
                   <iframe
                     title="Zoho Form"
                     src="https://forms.zohopublic.com/blueterra1/form/JoinOurCommunity1/formperma/tq1z2CAalSFUwdWkL0eLA_mkzm2nXum54WsJjuA1SzA"
-                    frameBorder="0"
                     style={{ width: '100%', height: '100%', border: 'none', objectFit: 'cover' }}
                     allowFullScreen
                   />
