@@ -311,7 +311,7 @@ export default function Page4() {
                         </div>
                     </div>
 
-{/* 
+                    {/* 
                     <div className="grid grid-cols-1 pt-20 w-full sm:grid-cols-3 gap-6 py-8 bg-white text-center">
                         <div>
                             <h3 className="text-lg font-bold uppercase text-orange-600 tracking-widest">When</h3>
