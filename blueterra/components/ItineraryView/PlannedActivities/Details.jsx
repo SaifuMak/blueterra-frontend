@@ -26,7 +26,7 @@ export default function Details() {
                     {uaePlaces?.map((places, index) => (
                         <div key={index} className="flex items-center  w-full ">
                             <span>
-                                <img src="/Icons/blue-location.svg" alt="location" className="size-3.5" />
+                                <img src="/Icons/blue-location.svg" alt="location" className=" size-3" />
                             </span>
                             <p className="ml-2">{places}</p>
                         </div>
@@ -41,7 +41,7 @@ export default function Details() {
                 <div className="flex flex-wrap mt-2 pb-3 gap-x-2 gap-y-2 font-light overflow-y-auto">
                     {experiences?.map((places, index) => (
                         <div key={index} className="flex w-full items-center">
-                            <span className="w-2 h-2 bg-[#026E9E] rounded-full"></span>
+                            <span className=" size-1.5 bg-[#026E9E] rounded-full"></span>
                             <p className="ml-2">{places}</p>
                         </div>
                     ))}

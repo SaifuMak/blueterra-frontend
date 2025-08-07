@@ -53,6 +53,9 @@ export default function Page4() {
     ];
 
 
+    const [focusedIndex, setFocusedIndex] = useState(Math.floor(galleryData.length / 2));
+
+
 
 
     useGSAP(() => {
@@ -306,9 +309,13 @@ export default function Page4() {
                                 </div>
 
                                 <div className=" space-y-5  text-center flex font-light flex-col items-center">
-                                    <p className=" text-[25px] opacity-0 vertically-animate-element leading-9 w-5/12">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities, carefully selected destinations, accommodations, transportation details, and unique experiences.</p>
-                                    <p className=" w-4/12 text-xl opacity-0 vertically-animate-element leading-9">A comprehensive and meticulously curated document that presents a day-by-day breakdown of your travel journey, featuring thoughtfully.</p>
-                                    <Button text='START PLANNING' buttonStyle={` opacity-0 vertically-animate-element font-normal transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `}  onClickFunction={()=>setFormOpen(true)}  />
+                                    {/* <p className=" text-[25px] opacity-0 vertically-animate-element leading-9 w-5/12">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities, carefully selected destinations, accommodations, transportation details, and unique experiences.</p>
+                                    <p className=" w-4/12 text-xl opacity-0 vertically-animate-element leading-9">A comprehensive and meticulously curated document that presents a day-by-day breakdown of your travel journey, featuring thoughtfully.</p> */}
+                                    <p className=" w-8/12 text-[22px] opacity-0 vertically-animate-element my-10 font-light leading-10">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities,
+                                        carefully selected destinations, accommodations, transportation details, and unique experiences.
+                                        An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities,
+                                        carefully selected destinations, accommodations.</p>
+                                    <Button text='START PLANNING' buttonStyle={` opacity-0 vertically-animate-element font-normal transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `} onClickFunction={() => setFormOpen(true)} />
                                 </div>
 
                             </div>
@@ -337,9 +344,8 @@ export default function Page4() {
                     </div> */}
 
 
-                    <div className=" w-full bg-white relative   min-h-screen flex-center">
+                    <div className=" w-full bg-white relative   min-h-screen flex flex-col items-center ">
                         {/* <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' /> */}
-
                         <PlannedActivities />
                     </div>
 
@@ -366,7 +372,8 @@ export default function Page4() {
                             <div className=" w-11/12 overflow-hidden   space-y-10 mb-24   h-full flex flex-col  items-center rounded-3xl vertically-animated-element ">
 
                                 <h6 className={`${playfair.className} gallery-title  vertically-animated-element text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
-                                <div className="  w-full px-3  mt-5 z-50  vertically-animated-element  flex rounded-xl overflow-hidden  gap-4   ">
+
+                                {/* <div className="  w-full px-3  mt-5 z-50  vertically-animated-element  flex rounded-xl overflow-hidden  gap-4   ">
 
                                     {galleryData?.map((item, index) => (
                                         // <div key={index} className={`relative group min-h-[70vh] delay-75 hover:flex-4 flex-1 transition-[flex] duration-700 ease-[cubic-bezier(0.25, 1, 0.5, 1)] gallery-tile overflow-hidden hover:cursor-pointer rounded-xl`}>
@@ -383,7 +390,34 @@ export default function Page4() {
                                         </div>
                                     ))}
 
+                                </div> */}
+
+                                <div onMouseLeave={() => setFocusedIndex(null)} className="w-full px-3 mt-5 z-50 vertically-animated-element flex rounded-xl overflow-hidden gap-4">
+                                    {galleryData?.map((item, index) => (
+                                        <div
+                                            key={index}
+                                            onMouseEnter={() => setFocusedIndex(index)}
+                                            className={`
+                                                relative group min-h-[80vh] gallery-tile overflow-hidden delay-200 hover:cursor-pointer
+                                                ${focusedIndex === index ? 'flex-[5]' : 'flex-1'}
+                                                 transition-all duration-1000 rounded-xl 
+                                            `}
+
+                                        >
+                                            <Image
+                                                src={item.image}
+                                                alt="image"
+                                                fill
+                                                className="object-cover rounded-xl"
+                                                priority
+                                            />
+                                            <p className={`text-nowrap  font-medium absolute delay-200 bottom-10 ${focusedIndex === index ? 'opacity-100   translate-x-12  ' : 'opacity-0'}  -left-5 translate-all duration-500 2xl:text-2xl text-white`}>
+                                                {item.name}
+                                            </p>
+                                        </div>
+                                    ))}
                                 </div>
+
                             </div>
                         </div>
                     </div>

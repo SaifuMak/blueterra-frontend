@@ -37,7 +37,6 @@ export default function OurStory() {
                     {/* Section containing  3 cards  height for 3 cards*/}
                     <ThreeCardSection />
 
-
                     {/* Journey intro */}
                     <JourneryIntro />
 

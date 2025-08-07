@@ -185,7 +185,7 @@ export default function Corporate() {
                         />
                         <div className=" w-full opacity-0  banner-elements absolute inset-0 text-white  h-full  flex flex-col justify-center items-center">
                             <h1 className={` ${playfair.className}   font-medium text-2xl text-center md:text-[65px] xl:text-[75px] 2xl:text-[80px]`}>MICE & Signature Events</h1>
-                            <Button text='GET IN TOUCH' buttonStyle={` transition-all duration-500 mb-10 mt-5 ease-in-out font-medium max-md:text-sm  px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} onClickFunction={()=>setFormOpen(true)} />
+                            <Button text='GET IN TOUCH' buttonStyle={` transition-all duration-500 mb-10 mt-5 ease-in-out font-medium max-md:text-sm  px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} onClickFunction={() => setFormOpen(true)} />
                         </div>
                     </div>
 
@@ -335,7 +335,7 @@ export default function Corporate() {
                     <div className=" w-full h-full py-7 md:py-20   text-dark-28 flex-center relative">
                         <ResponsiveClipPath outerClass='absolute max-sm:hidden  w-full lg:w-3/12 bottom-0 z-10 right-0 h-full' ImagePath='/images/corporate/contact-clip-path.png' />
 
-                        <div className="w-11/12 border max-sm:my-10  max-lg:space-y-10  lg:space-x-10 flex max-lg:flex-col items-center justify-center">
+                        <div className="2xl:w-11/12 lg:w-full w-11/12 max-sm:my-10  max-lg:space-y-10  lg:space-x-10 flex max-lg:flex-col items-center justify-center">
 
                             <div className="lg:w-4/12  w-full flex flex-col max-sm:pl-3  xl:space-y-6 2xl:space-y-8 ">
                                 <h4 className={`${playfair.className} vertically-animated-element font-medium max-md:text-3xl text-[42px] xl:text-[50px]`} >Get in Touch</h4>
@@ -357,8 +357,8 @@ export default function Corporate() {
 
                             </div>
 
-                            <div className="lg:w-6/12 w-full h-full overflow-hidden  ">
-                                <div className="w-full h-[700px] lg:h-[600px] 2xl:h-[700px] ">
+                            <div className="lg:w-6/12 w-full  h-full overflow-hidden  ">
+                                <div className="w-full max-sm:h-[900px] md:h-[700px] lg:h-[700px] 2xl:h-[700px] ">
                                     <iframe
                                         title="Zoho Form"
                                         src="https://forms.zohopublic.com/blueterra1/form/Sendusadirectmessage/formperma/LH1SC9iQKsMbkmNpCxnvw8TsFKPf79BaLG-GgDCVlFw"

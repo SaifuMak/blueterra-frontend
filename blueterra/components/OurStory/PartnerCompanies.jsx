@@ -18,7 +18,7 @@ export default function PartnerCompanies() {
         <div className=" my-16 w-full flex-center flex-col  bg-white relative ">
 
             <div ref={partnerCompaniesTitleRef} className="">
-                <TitleText text='Trusted Brands' />
+                <TitleText text='Trusted Partners' />
             </div>
 
             <div ref={partnerCompaniesimageRef} className=" 2xl:w-10/12 w-full lg:w-11/12 flex lg:px-10 lg:mt-12 mt-5 md:mt-7  2xl:mt-16 py-3   lg:space-x-20   ">

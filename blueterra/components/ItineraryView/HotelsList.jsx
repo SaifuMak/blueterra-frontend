@@ -75,7 +75,7 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                                         />
                                         <div className=" absolute flex-center inset-0 w-full h-full delay-200 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100 group-hover:bg-black/40 ">
                                             <a href="#">
-                                                <FaMapMarkerAlt className="text-5xl text-white" />
+                                                <FaMapMarkerAlt className="text-3xl text-white" />
                                             </a>
 
                                         </div>

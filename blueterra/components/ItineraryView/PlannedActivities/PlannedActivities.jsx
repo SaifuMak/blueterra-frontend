@@ -362,45 +362,23 @@ export default function PlannedActivities({ }) {
         <>
             {/* <div className="relative flex flex-wrap bg-red-50 border   w-[800px] min-h-[400px] overflow-hidden"> */}
 
-            <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[100vh] w-11/12 my-16   z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12  space-y-10 flex flex-col items-center `}>
+            <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[105vh] w-11/12 my-16   z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12   flex flex-col items-center `}>
 
                 <div className=" flex  flex-col vertically-animated-element z-[999] items-center transform-gpu ">
                     <h3 className={`text-5xl font-medium ${playfair.className}`}>Planned Activities</h3>
 
-                    {/* <ReactTooltip
-                        id="info"
-                        render={() => <div className=" "><PriceInclusionsDummy /></div>}>
-                        <div className=" vertically-animated-element flex justify-center  mt-3 items-center">
-                            <p className="cursor-pointer">Inclusions and Exclusions</p>
-                            <MdInfoOutline className=" ml-2" />
-                        </div>
-                    </ReactTooltip> */}
 
-                    <div className="relative mt-3 flex justify-center items-center   group ">
-                        <div className="flex items-center peer cursor-pointer">
-                            <p>Inclusions and Exclusions</p>
-                            <MdInfoOutline className="ml-2" />
-                        </div>
 
-                        <div className="absolute top-full     min-h-[300px] min-w-[900px]  z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
-
-                            <div className=" relative mt-4  px-6 !z-[1999] rounded-xl shadow-2xl bg-white  ">
-                                <IoMdArrowDropup className=" text-4xl   text-white absolute left-1/2 -top-[22px]" />
-                                <PriceInclusionsDummy />
-                            </div>
-                        </div>
-
-                    </div>
 
                 </div>
 
-                <div className=" flex text-xl vertically-animated-element space-x-8  font-normal">
+                <div className=" flex text-xl vertically-animated-element space-x-8 mt-10  font-normal">
                     {["Map", "Overview", "Daily Schedule",].map((tab, index) => (
                         <p onClick={() => handleTabSelection(tab)} key={index} className={` cursor-pointer transform transition-all duration-300  ${selectedTab === tab ? ' text-sky-blue-dark' : 'text-black'} `}>{tab}</p>
                     ))}
                 </div>
 
-                <div ref={plannerCardsRef} className="relative vertically-animated-element flex flex-wrap justify-center gap-3 mt-5  2xl:gap-6  z-50  overflow-hidden">
+                <div ref={plannerCardsRef} className="relative vertically-animated-element flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  overflow-hidden">
                     {Components?.map((item, index) => {
                         const DynamicComponent = item.component;
                         return (<div
@@ -412,6 +390,23 @@ export default function PlannedActivities({ }) {
 
                         </div>)
                     })}
+                </div>
+
+
+                <div className="relative mt-5 flex  items-center w-full ml-12   group ">
+                    <div className="flex items-center peer cursor-pointer">
+                        <p>Inclusions and Exclusions</p>
+                        <MdInfoOutline className="ml-2" />
+                    </div>
+
+                    <div className="absolute bottom-6 min-h-[300px] min-w-[900px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
+
+                        <div className=" relative mb-4   border px-6 !z-[1999] rounded-xl shadow-2xl bg-white  ">
+                            <IoMdArrowDropup className=" text-4xl  text-white absolute left-1/2 -translate-x-1/2  rotate-180  -bottom-5   " />
+                            <PriceInclusionsDummy />
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

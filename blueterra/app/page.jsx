@@ -18,7 +18,7 @@ import Marquee from "react-fast-marquee";
 import DestinationCarousal from "@/components/Home/DestinationCarousal";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
-
+import { useIsMobile } from "./hooks/useIsMobile";
 
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
@@ -28,6 +28,8 @@ export default function Home() {
 
   // zoho form 
   const [formOpen, setFormOpen] = useState(false);
+
+  const isMobile = useIsMobile()
 
   const [currentCollection, setCurrentCollection] = useState(0)
   const [CollectionCount, setCollectionCount] = useState(0)
@@ -244,26 +246,30 @@ export default function Home() {
   }, []);
 
 
-  useEffect(() => {
-    if (!messageContainerRef.current) return
+  // video  player 
 
-    gsap.fromTo(
-      videoRef.current,
-      { scale: 1 }, // Starting value
-      {
-        scale: 1.09, // Ending value
-        duration: 2,
-        ease: "power3.out", // 
-        scrollTrigger: {
-          trigger: messageContainerRef.current,
-          start: "top 90%",
-          toggleActions: "play reverse play reverse",
-          // markers: true,
-        },
-      }
-    );
+  // useEffect(() => {
 
-  }, [])
+
+  //   if (!messageContainerRef.current) return
+
+  //   gsap.fromTo(
+  //     videoRef.current,
+  //     { scale: 1 }, // Starting value
+  //     {
+  //       scale: 1.09, // Ending value
+  //       duration: 2,
+  //       ease: "power3.out", // 
+  //       scrollTrigger: {
+  //         trigger: messageContainerRef.current,
+  //         start: "top 90%",
+  //         toggleActions: "play reverse play reverse",
+  //         // markers: true,
+  //       },
+  //     }
+  //   );
+
+  // }, [])
 
 
 
@@ -304,11 +310,6 @@ export default function Home() {
             muted
             loop
             preload="auto"
-            // onLoadStart={() => console.log("Loading started")}
-            // onLoadedData={() => {
-            //   console.log("First frame loaded");
-            //   setIsBannerVideoLoaded(true);
-            // }}
             onCanPlay={() => {
               console.log("Can play");
               setIsBannerVideoLoaded(true);
@@ -638,8 +639,18 @@ export default function Home() {
               <div className=" absolute inset-0 w-full h-full flex flex-col justify-center text-center items-center bg-black/20 cursor-pointer rounded-4xl">
                 <h3 className={`2xl:text-[50px] xl:text-[45px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element  font-normal text-white`}>Join Our Community</h3>
                 <p className=" xl:text-[23px] lg:text-xl max-md:px-4  2xl:text-[23px] text-white font-light mt-7 vertically-animated-element tracking-wide ">Get expert travel tips straight to your inbox.</p>
-
+                <div className="w-full h-[200px] bg-red-200 ">
+                  <iframe
+                    title="Zoho Form"
+                    src="https://forms.zohopublic.com/blueterra1/form/JoinOurCommunity1/formperma/tq1z2CAalSFUwdWkL0eLA_mkzm2nXum54WsJjuA1SzA"
+                    frameBorder="0"
+                    style={{ width: '100%', height: '100%', border: 'none', objectFit: 'cover' }}
+                    allowFullScreen
+                  />
+                </div>
               </div>
+
+
             </div>
           </div>
 
@@ -647,7 +658,6 @@ export default function Home() {
 
         <Footer />
         <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
-
 
       </div>
     </SmoothScroll>
