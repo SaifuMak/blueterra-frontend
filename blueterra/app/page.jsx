@@ -18,7 +18,6 @@ import Marquee from "react-fast-marquee";
 import DestinationCarousal from "@/components/Home/DestinationCarousal";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
-import { useIsMobile } from "./hooks/useIsMobile";
 
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
@@ -28,8 +27,6 @@ export default function Home() {
 
   // zoho form 
   const [formOpen, setFormOpen] = useState(false);
-
-  const isMobile = useIsMobile()
 
   const [currentCollection, setCurrentCollection] = useState(0)
   const [CollectionCount, setCollectionCount] = useState(0)
@@ -309,6 +306,7 @@ export default function Home() {
             autoPlay
             muted
             loop
+            playsInline
             preload="auto"
             onCanPlay={() => {
               console.log("Can play");
