@@ -3,16 +3,22 @@ import { CiClock1 } from "react-icons/ci";
 import { IoIosStarOutline, IoIosStar, IoIosStarHalf } from "react-icons/io";
 import DestinationCardCarousal from "../collections/DestinationCardCarousal";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
+
 
 export default function DestinationCards({ Destinations }) {
 
+    const router = useRouter();
 
     return (
         <>
 
             {Destinations.map((destination, index) => (
                 // <div key={index} className=" xl:w-[600px] lg:w-[400px] lg:h-[320px] w-[300px] h-auto shadow-xl shadow-stone-400  xl:h-[500px] rounded-lg bg-white  text-black">
-                <div key={index} className=" shadow-[0_4px_20px_rgba(0,0,0,0.09)] w-full xl:min-h-[480px]   lg:min-h-[480px] h-full   rounded-lg bg-white text-dark-28">
+                <Link key={index} href="/itinerary-view">
+                <div  className=" cursor-pointer group shadow-[0_4px_20px_rgba(0,0,0,0.09)] w-full xl:min-h-[480px]   lg:min-h-[480px] h-full   rounded-lg bg-white text-dark-28">
 
                     <div className="relative lg:h-7/12 overflow-hidden rounded-t-lg "> {/* Set your dimensions here */}
 
@@ -71,12 +77,13 @@ export default function DestinationCards({ Destinations }) {
                             <div className="flex items-center font-medium cursor-pointer">
                                 <p className=" font-medium text-base">Explore</p>
 
-                                <img src='/Icons/Arrow.svg' className="ml-2 w-4 lg:w-5 mt-1"></img>
+                                <img src='/Icons/Arrow.svg' className="ml-1 group-hover:translate-x-2 transition-all duration-700 w-4 lg:w-5 mt-1"></img>
 
                             </div>
                         </div>
                     </div>
                 </div>
+                </Link>
             ))}
         </>
 

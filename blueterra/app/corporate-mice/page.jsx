@@ -258,7 +258,7 @@ export default function Corporate() {
                                     {/* Text Layer (stays clearly visible) */}
                                     <div className="relative z-20 h-full w-full flex flex-col items-center rounded-2xl justify-center transition-all duration-1000 ease-in-out group-hover:bg-black/40 group-hover:text-white text-center text-lg 2xl:text-xl font-light px-4 2xl:px-10">
                                         <h5 className="font-medium xl:mt-6 2xl:mt-10">{data.title}</h5>
-                                        <p className="mt-3 2xl:leading-8">{data.description}</p>
+                                        <p className="mt-3 group-hover:opacity-0 transition-all duration-700 ease-in-out 2xl:leading-8">{data.description}</p>
                                     </div>
                                 </div>
                             ))}
@@ -316,11 +316,9 @@ export default function Corporate() {
 
                                     <div className="relative z-20 h-full w-full flex flex-col items-center rounded-2xl justify-center transition-all duration-1000 ease-in-out group-hover:bg-black/40 group-hover:text-white text-center text-lg 2xl:text-xl font-light px-4 2xl:px-10">
                                         <h5 className="font-medium xl:mt-6 2xl:mt-6">{data.title}</h5>
-                                        <p className="mt-3 2xl:leading-8">{data.description}</p>
+                                        <p className="mt-3 group-hover:opacity-0 transition-all duration-700 ease-in-out  2xl:leading-8">{data.description}</p>
                                     </div>
                                 </div>
-
-
                             ))}
                         </div>
                         <ResponsiveClipPath outerClass='absolute w-full md:w-4/12 left-0  -bottom-7 h-6/12  ' ImagePath='/images/corporate/private-events-clip-path.png' />
@@ -334,7 +332,7 @@ export default function Corporate() {
                                 <div key={index} className=" z-30 vertically-animated-element bg-dark-beige  max-sm:p-4  md:py-5 xl:py-10 text-lg xl:text-xl  2xl:text-[22px] font-light md:px-5  xl:px-10 rounded-2xl w-full text-center  flex flex-col items-center" style={{ boxShadow: '0 0 25px 1px rgba(50, 70, 70, 0.1)' }}
                                 >
                                     <h5 className="  text-dark-4B font-normal ">{data.title}</h5>
-                                    <p className=" mt-3 text-base xl:text-lg 2xl:text-xl leading-8">{data.description}</p>
+                                    <p className=" mt-3  text-base xl:text-lg 2xl:text-xl leading-8">{data.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -343,10 +341,10 @@ export default function Corporate() {
                         <ResponsiveClipPath outerClass='absolute w-full md:w-3/12 top-0 z-10 left-0 h-11/12' ImagePath='/images/corporate/why-us-clip-path.png' />
                     </div>
 
-                    <div ref={contactSectionRef} className=" w-full h-full py-7 md:py-20   text-dark-28 flex-center relative">
+                    <div ref={contactSectionRef} className=" w-full h-full py-7 md:py-20   text-dark-28  flex-center relative">
                         <ResponsiveClipPath outerClass='absolute max-sm:hidden  w-full lg:w-3/12 bottom-0 z-10 right-0 h-full' ImagePath='/images/corporate/contact-clip-path.png' />
 
-                        <div className="2xl:w-11/12 lg:w-full w-11/12 max-sm:my-10  max-lg:space-y-10  lg:space-x-10 flex max-lg:flex-col items-center justify-center">
+                        <div className="2xl:w-11/12 lg:w-full w-11/12 max-sm:my-10  max-lg:space-y-10  lg:space-x-10 flex max-lg:flex-col items-center  justify-center">
 
                             <div className="lg:w-4/12  w-full flex flex-col max-sm:pl-3  xl:space-y-6 2xl:space-y-8 ">
                                 <h4 className={`${playfair.className} vertically-animated-element font-medium max-md:text-3xl text-[42px] xl:text-[50px]`} >Get in Touch</h4>
@@ -368,8 +366,8 @@ export default function Corporate() {
 
                             </div>
 
-                            <div className="lg:w-6/12 w-full  h-full overflow-hidden  ">
-                                <div className="w-full max-sm:h-[900px] md:h-[700px] lg:h-[700px] 2xl:h-[700px] ">
+                            <div className="lg:w-6/12  w-full  h-full overflow-hidden  ">
+                                <div className="w-full max-sm:h-[640px] md:h-[500px] lg:h-[460px] 2xl:h-[460px] ">
                                     <iframe
                                         title="Zoho Form"
                                         src="https://forms.zohopublic.com/blueterra1/form/Sendusadirectmessage/formperma/LH1SC9iQKsMbkmNpCxnvw8TsFKPf79BaLG-GgDCVlFw"
