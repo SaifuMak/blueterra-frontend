@@ -139,7 +139,7 @@ export default function ThreeCardSection() {
             if (index === 2 && missionRef.current) {
                 tl.to({}, {
                     duration: 10,
-                    delay : 1,
+                    // delay : 1,
                     onUpdate: function () {
                         const prog = this.progress();
                         const tabIndex = prog < 0.30 ? 0 : prog < 0.70 ? 1 : 2;
