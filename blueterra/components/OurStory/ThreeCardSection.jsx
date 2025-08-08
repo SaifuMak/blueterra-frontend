@@ -44,6 +44,8 @@ export default function ThreeCardSection() {
         }
     }, []);
 
+
+
     useGSAP(() => {
 
         if (backgroundImageRef.current && threeCardsContainerRef.current) {
@@ -64,8 +66,8 @@ export default function ThreeCardSection() {
                 ease: 'none',
                 scrollTrigger: {
                     trigger: threeCardsContainerRef.current, // outer scrollable container
-                    start: isMobile ? 'bottom 50%' : 'bottom -50%',
-                    end: isMobile ? 'bottom -50%' : 'bottom -120%',
+                    start: isMobile ? 'bottom 50%' : 'bottom -70%',
+                    end: isMobile ? 'bottom -50%' : 'bottom -130%',
                     scrub: true,
                     // markers: true
                 },
@@ -99,14 +101,14 @@ export default function ThreeCardSection() {
                 scrollTrigger: {
                     trigger: section,
                     scrub: true,
-                    // markers: true,
-                    ...(index === 2
+                    markers: true,
+                    ...(index === 2 
                         ? {
                             pin: true,
                             pinSpacing: true,
                             start: isMobile ? 'top 75%' : 'top 17%',
                             // end: '+=1250'
-                            end: "bottom -80%",
+                            end: "bottom -95%",
                         }
                         : {
                             start: isMobile ? 'top 40%' : 'top 50%',
@@ -137,7 +139,7 @@ export default function ThreeCardSection() {
             if (index === 2 && missionRef.current) {
                 tl.to({}, {
                     duration: 10,
-                    delay : 1.5,
+                    delay : 1,
                     onUpdate: function () {
                         const prog = this.progress();
                         const tabIndex = prog < 0.30 ? 0 : prog < 0.70 ? 1 : 2;
