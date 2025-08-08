@@ -2,7 +2,7 @@ import Image from "next/image"
 import { playfair } from '@/app/fonts'
 import { useRef } from "react"
 
-export default function MobileAnimatedVerticalCard({ CardData, selectedVerticalTileMobile, setSelectedVerticalTileMobile }) {
+export default function MobileAnimatedVerticalCard({ CardData, selectedVerticalTileMobile, setSelectedVerticalTileMobile, handleSetCollectionRequestedToShowInMobile }) {
 
   const mobileVerticalTilesRef = useRef([])
 
@@ -24,6 +24,7 @@ export default function MobileAnimatedVerticalCard({ CardData, selectedVerticalT
               <img src={card.icon} alt={card.tagline} className=" object-cover size-[27px]" />
               <div className="bg-white/40 h-0.5 flex-1 my-3"></div>
               <p className=''> {card.tagline}</p>
+
             </div>
           </div>
 
@@ -52,7 +53,7 @@ export default function MobileAnimatedVerticalCard({ CardData, selectedVerticalT
               </div>
 
               <div className=" w-full flex mt-3 text-[12px] items-center justify-between">
-                <button className="hover:bg-white/15 hover:ring-2 ring-white/80  bg-sky-blue-1 px-6 py-1.5 transition-all duration-700 ease-in-out  cursor-pointer  text-[12px]  rounded-sm  text-white w-fit h-fit">VIEW ALL</button>
+                <button onClick={()=>handleSetCollectionRequestedToShowInMobile(index)} className="hover:bg-white/15 hover:ring-2 ring-white/80  bg-sky-blue-1 px-6 py-1.5 transition-all duration-700 ease-in-out  cursor-pointer  text-[12px]  rounded-sm  text-white w-fit h-fit">VIEW ALL</button>
                 {/* <button className="hover:bg-white/15 hover:ring-2 ring-white/80 flex items-center  bg-sky-blue-1 px-4 py-1.5 transition-all duration-700 ease-in-out  cursor-pointer  text-[12px] font-normal rounded-sm  text-white"><span className="mr-1"><img src='/Icons/filter.svg' className='size-4 '></img></span>Show Filters</button> */}
               </div>
 

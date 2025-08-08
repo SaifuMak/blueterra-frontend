@@ -34,8 +34,13 @@ export default function Collection() {
   // const pathname = usePathname();
 
 
+
   // zoho form 
   const [formOpen, setFormOpen] = useState(false);
+
+  const [isCardRequestedToShowInMobile, setisCardRequestedToShowInMobile] = useState(false)
+
+  const [collectionRequestedToShowInMobile, setCollectionRequestedToShowInMobile] = useState(null)
 
 
   const [isfullCardEnabledForFirstTime, setIsfullCardEnabledForFirstTime] = useState(false)
@@ -84,7 +89,6 @@ export default function Collection() {
 
   };
 
-
   const handleScrollTop = () => {
     setTimeout(() => {
 
@@ -111,6 +115,13 @@ export default function Collection() {
   }
 
 
+  const handleSetCollectionRequestedToShowInMobile = (index) => {
+    document.body.style.overflow = 'auto'
+    setCollectionRequestedToShowInMobile(index)
+    homeRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+
   useEffect(() => {
 
     if (isMobile) {
@@ -125,6 +136,16 @@ export default function Collection() {
   }, [isMobile, showMobileFilter, isFullCardVisible, isAnyFilterOpened]);
 
 
+  //  this is made to prevent scrolling 
+  useEffect(() => {
+    if (isMobile) {
+      document.body.style.overflow = 'hidden'
+    }
+    handleScrollTop()
+  }, [isMobile])
+
+
+
   return (
 
     <div className={`${rubik.className} text-dark-28`}>
@@ -135,6 +156,7 @@ export default function Collection() {
           CardData={CardData}
           selectedVerticalTileMobile={selectedVerticalTileMobile}
           setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
+          handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
         />
       ) : (
         <BannerAnimation
