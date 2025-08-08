@@ -56,8 +56,6 @@ export default function ItineraryView() {
     const [focusedIndex, setFocusedIndex] = useState(Math.floor(galleryData.length / 2));
 
 
-
-
     useGSAP(() => {
         const elements = gsap.utils.toArray(".vertically-animated-element");
 
@@ -398,7 +396,7 @@ export default function ItineraryView() {
                                             key={index}
                                             onMouseEnter={() => setFocusedIndex(index)}
                                             className={`
-                                                relative group min-h-[80vh] gallery-tile overflow-hidden delay-200 hover:cursor-pointer
+                                                relative group min-h-[80vh] gallery-tile overflow-hidden  hover:cursor-pointer
                                                 ${focusedIndex === index ? 'flex-[5]' : 'flex-1'}
                                                  transition-all duration-1000 rounded-xl 
                                             `}

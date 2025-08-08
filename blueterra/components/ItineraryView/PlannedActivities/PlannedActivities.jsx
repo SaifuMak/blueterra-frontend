@@ -366,10 +366,6 @@ export default function PlannedActivities({ }) {
 
                 <div className=" flex  flex-col vertically-animated-element z-[999] items-center transform-gpu ">
                     <h3 className={`text-5xl font-medium ${playfair.className}`}>Planned Activities</h3>
-
-
-
-
                 </div>
 
                 <div className=" flex text-xl vertically-animated-element space-x-8 mt-10  font-normal">
@@ -402,7 +398,7 @@ export default function PlannedActivities({ }) {
                     <div className="absolute bottom-6 min-h-[300px] min-w-[900px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
 
                         <div className=" relative mb-4   border px-6 !z-[1999] rounded-xl shadow-2xl bg-white  ">
-                            <IoMdArrowDropup className=" text-4xl  text-white absolute left-1/2 -translate-x-1/2  rotate-180  -bottom-5   " />
+                            <IoMdArrowDropup className=" text-4xl  text-white absolute left-1/4 -translate-x-1/4 rotate-180  -bottom-5   " />
                             <PriceInclusionsDummy />
                         </div>
                     </div>

@@ -17,6 +17,7 @@ const priceExcludes = [
     "International flights",
 ];
 
+
 export default function PriceInclusionsDummy() {
     return (
         <div className={`w-full mx-auto px-4 py-8 ${rubik.className} `}>
@@ -24,7 +25,7 @@ export default function PriceInclusionsDummy() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-20 ">
 
                 <div className=' mx-auto'>
-                    <h3 className=" font-medium text-lg mb-4">PRICE INCLUDES</h3>
+                    <h3 className=" font-medium text-lg mb-4">INCLUDES</h3>
                     <ul className="space-y-3">
                         {priceIncludes.map((item, idx) => (
                             <li
@@ -45,7 +46,7 @@ export default function PriceInclusionsDummy() {
                 </div>
 
                 <div className=' mx-auto'>
-                    <h3 className="font-medium text-lg mb-4">PRICE EXCLUDES</h3>
+                    <h3 className="font-medium text-lg mb-4">EXCLUDES</h3>
                     <ul className="space-y-3">
                         {priceExcludes.map((item, idx) => (
                             <li key={idx} className="flex items-start gap-2">
