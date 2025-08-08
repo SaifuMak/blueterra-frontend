@@ -102,7 +102,7 @@ export default function ThreeCardSection() {
                     trigger: section,
                     scrub: true,
                     // markers: true,
-                    ...(index === 2 
+                    ...(index === 2
                         ? {
                             pin: true,
                             pinSpacing: true,
@@ -139,10 +139,10 @@ export default function ThreeCardSection() {
             if (index === 2 && missionRef.current) {
                 tl.to({}, {
                     duration: 10,
-                    // delay : 1,
+                    delay : 1.5,
                     onUpdate: function () {
                         const prog = this.progress();
-                        const tabIndex = prog < 0.30 ? 0 : prog < 0.70 ? 1 : 2;
+                        const tabIndex = prog < 0.33 ? 0 : prog < 0.66 ? 1 : 2;
                         missionRef.current.setTab(tabIndex); // This works because of forwardRef + useImperativeHandle
                     }
                 });
@@ -156,7 +156,8 @@ export default function ThreeCardSection() {
                     backdropFilter: 'blur(0px)',
                     WebkitBackdropFilter: 'blur(0px)',
                     duration: 1,
-                    ease: 'power2.in'
+                    ease: 'power2.in',
+                    delay: index === 2 ? 6 : 0
                 }
             );
         });
