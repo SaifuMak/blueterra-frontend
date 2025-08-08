@@ -101,7 +101,7 @@ export default function ThreeCardSection() {
                 scrollTrigger: {
                     trigger: section,
                     scrub: true,
-                    markers: true,
+                    // markers: true,
                     ...(index === 2 
                         ? {
                             pin: true,

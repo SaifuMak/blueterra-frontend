@@ -1,7 +1,12 @@
 'use client'
 import dynamic from 'next/dynamic';
 
-const MapClient = dynamic(() => import('./Leaflet'), {
+// const MapClient = dynamic(() => import('./Leaflet'), {
+//     ssr: false,
+// });
+
+
+const MapClient = dynamic(() => import('./MapDemo'), {
     ssr: false,
 });
 

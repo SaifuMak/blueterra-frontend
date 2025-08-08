@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Polyline, Marker,useMap, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Polyline, Marker, useMap, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -12,15 +12,15 @@ import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
 
 L.Marker.prototype.options.icon = L.icon({
     iconUrl: markerIconPng,
-    shadowUrl: markerShadowPng,
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+    shadowSize: [41, 41]
 });
 
 
 const HotelIcon = new L.Icon({
     iconUrl: '/Icons/bed.svg',
     iconSize: [35, 51],
-    iconAnchor: [42, 21],
-    popupAnchor: [1, -34],
+    iconAnchor: [32, 21],
     shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
     shadowSize: [41, 41]
 });
@@ -43,6 +43,32 @@ const hotels = [
 ];
 
 
+function FitBoundsOnLoad({ routes }) {
+    const map = useMap();
+
+    useEffect(() => {
+        // Use all location coords + all route coords for bounds
+        let allCoords = locations.map(l => l.coords);
+        routes.forEach(r => {
+            allCoords = allCoords.concat(r.coords);
+        });
+
+        const bounds = L.latLngBounds(allCoords);
+
+        // Delay to ensure the map has calculated its size
+        const timeout = setTimeout(() => {
+            map.fitBounds(bounds, { padding: [50, 50] });
+        }, 200);
+
+        return () => clearTimeout(timeout);
+    }, [map, routes]);
+
+    return null;
+}
+
+
+
+
 function ResizeHandler({ expandCards }) {
     const map = useMap();
 
@@ -56,8 +82,8 @@ function ResizeHandler({ expandCards }) {
                 const bounds = L.latLngBounds(locations.map((l) => l.coords));
                 map.flyToBounds(bounds, {
                     padding: [50, 50],   // space around bounds
-                    maxZoom: 9,         // optional: don't zoom in too far
-                    duration: 0.4        // in seconds (default is around 1.0)
+                    maxZoom: 10,         // optional: don't zoom in too far
+                    duration: 0.6        // in seconds (default is around 1.0)
                 });
             }, 800); // Delay ensures DOM transition is complete
             return () => clearTimeout(timeout);
@@ -70,7 +96,7 @@ function ResizeHandler({ expandCards }) {
 
 
 
-export default function OSRMRouteMap({ expandCards }) {
+export default function MapDemo({ expandCards }) {
     const [routes, setRoutes] = useState([]);
 
     useEffect(() => {
@@ -114,16 +140,19 @@ export default function OSRMRouteMap({ expandCards }) {
         fetchRoutes();
     }, []);
 
+    const bounds = L.latLngBounds(locations.map(l => l.coords));
+
 
 
     return (
-         <div style={{ height: "100vh", width: "100%" }}>
+        <div style={{ height: "100%", width: "100%" }}>
 
-         {/* <div style='w-full h-full'>  */}
+            {/* <div style='w-full h-full'>  */}
 
             <MapContainer
-                center={locations[0].coords}
-                zoom={6}
+                center={[0, 0]}
+                zoom={8}
+                // scrollWheelZoom={true}
                 style={{ height: "100%", width: "100%" }}
             >
                 <TileLayer
@@ -138,19 +167,26 @@ export default function OSRMRouteMap({ expandCards }) {
                         positions={r.coords}
                         pathOptions={
                             r.type === "flight"
-                                ? { color: "red", dashArray: "6, 6", weight: 2 }
-                                : { color: "blue", weight: 4 }
+                                ? { color: "#026E9E", dashArray: "6, 6", weight: 3 }
+                                : { color: "#026E9E", weight: 3 }
                         }
                     />
                 ))}
 
                 {/* Markers */}
                 {locations.map((loc, idx) => (
-                    <Marker key={idx} position={loc.coords}>
+                    <Marker key={idx}
+                        position={loc.coords}
+
+                        eventHandlers={{
+                            mouseover: (e) => e.target.openPopup(),
+                            mouseout: (e) => e.target.closePopup()
+                        }}
+                    >
                         <Popup>
                             <strong>{loc.title}</strong>
                             <br />
-                            Route Type: {loc.routeType}
+                            {/* Route Type: {loc.routeType} */}
                         </Popup>
                     </Marker>
                 ))}
