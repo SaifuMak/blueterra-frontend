@@ -10,17 +10,24 @@ import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
 
 
-L.Marker.prototype.options.icon = L.icon({
-    iconUrl: markerIconPng,
-    shadowUrl: markerShadowPng,
-    shadowSize: [41, 41]
+// L.Marker.prototype.options.icon = L.icon({
+//     iconUrl: markerIconPng,
+//     shadowUrl: markerShadowPng,
+//     shadowSize: [41, 41]
+// });
+
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png',
+    iconUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
 });
 
 
 const HotelIcon = new L.Icon({
     iconUrl: '/Icons/bed.svg',
     iconSize: [35, 51],
-    iconAnchor: [32, 21],
+    iconAnchor: [22, 21],
     shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
     shadowSize: [41, 41]
 });
