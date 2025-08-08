@@ -12,7 +12,7 @@ import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
 
 L.Marker.prototype.options.icon = L.icon({
     iconUrl: markerIconPng,
-    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+    shadowUrl: markerShadowPng,
     shadowSize: [41, 41]
 });
 
