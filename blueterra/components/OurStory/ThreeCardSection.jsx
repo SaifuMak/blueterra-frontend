@@ -57,27 +57,20 @@ export default function ThreeCardSection() {
                     scrub: true,
                 },
             });
+
+
             gsap.to(threeCardsContainerRef.current, {
                 opacity: 0, // adjust to control scroll speed
                 ease: 'none',
                 scrollTrigger: {
                     trigger: threeCardsContainerRef.current, // outer scrollable container
-                    start: isMobile ? 'bottom 50%' : 'bottom 50%',
-                    end: 'bottom 20%',
+                    start: isMobile ? 'bottom 50%' : 'bottom -50%',
+                    end: isMobile ? 'bottom -50%' : 'bottom -120%',
                     scrub: true,
+                    // markers: true
                 },
             });
         }
-        //  const missionCard = cardsRef.current[2];
-
-        // ScrollTrigger.create({
-        //     trigger: missionCard,
-        //     start: 'top 20%', // pin when section hits top of viewport
-        //     end: '+=1000', // how long to keep it pinned (adjust as needed)
-        //     pin: true,
-        //     scrub: true,
-        //     markers: true, // remove in production
-        // });
 
 
         sectionsRef.current.forEach((section, index) => {
@@ -85,15 +78,43 @@ export default function ThreeCardSection() {
 
             if (!section || !card) return;
 
+            // const tl = gsap.timeline({
+            //     scrollTrigger: {
+            //         trigger: section,
+            //         start: isMobile ? 'top 60%' : 'top 50%',
+            //         end: isMobile ? 'top -30%' : 'top -35%',
+            //         scrub: true,
+            //         markers : true,
+            //         ...(index === 2 && {
+            //             pin: true,
+            //             pinSpacing: true,
+            //             start: isMobile ? 'top 75%' :  'top 15%', // pin starting point
+            //             end: '+=800',    // adjust this for how long it stays pinned
+            //         })
+
+            //     }
+            // });
+
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: section,
-                    start: isMobile ? 'top 60%' : 'top 50%',
-                    end: isMobile ? 'top -30%' : 'top -35%',
                     scrub: true,
                     // markers: true,
+                    ...(index === 2
+                        ? {
+                            pin: true,
+                            pinSpacing: true,
+                            start: isMobile ? 'top 75%' : 'top 17%',
+                            // end: '+=1250'
+                            end: "bottom -80%",
+                        }
+                        : {
+                            start: isMobile ? 'top 40%' : 'top 50%',
+                            end: isMobile ? 'top -30%' : 'top -40%',
+                        })
                 }
             });
+
 
 
             tl.fromTo(card,
@@ -108,17 +129,18 @@ export default function ThreeCardSection() {
                     y: 0,
                     backdropFilter: index !== 0 && 'blur(16px)',
                     WebkitBackdropFilter: index !== 0 && 'blur(16px)',
-                    duration: 2,
+                    duration: 3,
                     ease: 'power2.out'
                 }
             )
 
             if (index === 2 && missionRef.current) {
                 tl.to({}, {
-                    duration: 20,
+                    duration: 10,
+                    delay : 1.5,
                     onUpdate: function () {
                         const prog = this.progress();
-                        const tabIndex = prog < 0.20 ? 0 : prog < 0.50 ? 1 : 2;
+                        const tabIndex = prog < 0.30 ? 0 : prog < 0.70 ? 1 : 2;
                         missionRef.current.setTab(tabIndex); // This works because of forwardRef + useImperativeHandle
                     }
                 });
@@ -158,11 +180,11 @@ export default function ThreeCardSection() {
                     <section
                         key={i}
                         ref={(el) => (sectionsRef.current[i] = el)}
-                        className="md:min-h-[80vh] min-h-[60vh] flex  items-center justify-center"
+                        className="md:min-h-[80vh] min-h-[60vh]   flex  items-center justify-center"
                     >
                         <div
                             ref={(el) => (cardsRef.current[i] = el)}
-                            className="md:w-9/12 w-11/12 flex justify-center  opacity-0"
+                            className={`md:w-9/12 w-11/12 flex justify-center ${i !== 0 ? 'opacity-0' : 'opacity-100'}`}
                         >
                             {/* <CardComponent />
                              */}
