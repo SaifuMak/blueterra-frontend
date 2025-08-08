@@ -5,7 +5,7 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
+/* 
 ::-webkit-scrollbar {
   display: none;
 }
@@ -24,7 +24,7 @@ body {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
-}
+} */
 
 
 .vertically-animated-element::-webkit-scrollbar {

@@ -21,6 +21,7 @@ import { playfair, rubik } from "@/app/fonts"
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
 import Button from "@/components/generalComponents/Button";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
+import TravelInfo from "@/components/ItineraryView/TravelInfo";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -346,6 +347,8 @@ export default function ItineraryView() {
                         {/* <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' /> */}
                         <PlannedActivities />
                     </div>
+                    
+                    <TravelInfo/>
 
 
                     <div className=" w-full   min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">

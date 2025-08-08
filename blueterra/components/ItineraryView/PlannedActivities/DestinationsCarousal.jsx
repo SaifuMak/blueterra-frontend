@@ -67,7 +67,7 @@ export default function DestinationsCarousal() {
     return (
 
 
-        <div className=" flex justify-center items-center  flex-col  h-full overflow-y-scroll     ">
+        <div className=" flex justify-center items-center  flex-col  h-full overflow-y-auto     ">
 
             <div ref={containerRef} className="  w-full  border   relative rounded-2xl flex-center overflow-hidden  ">
                 <Carousel

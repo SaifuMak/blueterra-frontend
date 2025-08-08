@@ -69,7 +69,7 @@ export default function HotelsView() {
     return (
         <div ref={hotelRef} className="lg:w-full cursor-pointer  text-dark-28   hotels-container md:w-11/12 w-full my-10 md:space-y-6  space-y-4 2xl:px-20 xl:px-10 lg:px-20  md:py-10 py-5 z-10 ">
             <div className=" flex-center flex-col space-y-10">
-                <h5 className={`text-5xl font-medium ${playfair.className} vertically-animated-element`}>Hotel Rooms</h5>
+                <h5 className={`text-5xl font-medium ${playfair.className} vertically-animated-element`}>Signature Stays</h5>
                 <p className=" text-center font-light text-2xl w-10/12 xl:w-7/12 vertically-animated-element">Discover a thoughtfully curated range of accommodation options designed
                     to suit every traveler's preferences, comfort level, and lifestyle.</p>
             </div>
