@@ -23,6 +23,8 @@ import Button from "@/components/generalComponents/Button";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
 import TravelInfo from "@/components/ItineraryView/TravelInfo";
 
+import GalleryList from "@/components/ItineraryView/PlannedActivities/GalleryList";
+
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function ItineraryView() {
@@ -45,8 +47,25 @@ export default function ItineraryView() {
     const bannerContainer = useRef()
 
 
+    const [currentGallery, setCurrentGallery] = useState(0)
+    const [GalleryCount, setGalleryCount] = useState(0)
+
+
     const galleryData = [
         { name: "Safari Adventure", image: "https://images.pexels.com/photos/59989/elephant-herd-of-elephants-african-bush-elephant-africa-59989.jpeg" },
+        { name: "Safari Adventure", image: "https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg" },
+        { name: "Island Escape", image: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg" },
+        { name: "Cultural Celebration", image: "https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg" },
+        { name: "Majestic Waterfalls", image: "https://images.pexels.com/photos/1266831/pexels-photo-1266831.jpeg" },
+        { name: "Safari Adventure", image: "https://images.pexels.com/photos/59989/elephant-herd-of-elephants-african-bush-elephant-africa-59989.jpeg" },
+        { name: "Safari Adventure", image: "https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg" },
+        { name: "Island Escape", image: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg" },
+        { name: "Cultural Celebration", image: "https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg" },
+        { name: "Majestic Waterfalls", image: "https://images.pexels.com/photos/1266831/pexels-photo-1266831.jpeg" }, { name: "Safari Adventure", image: "https://images.pexels.com/photos/59989/elephant-herd-of-elephants-african-bush-elephant-africa-59989.jpeg" },
+        { name: "Safari Adventure", image: "https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg" },
+        { name: "Island Escape", image: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg" },
+        { name: "Cultural Celebration", image: "https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg" },
+        { name: "Majestic Waterfalls", image: "https://images.pexels.com/photos/1266831/pexels-photo-1266831.jpeg" }, { name: "Safari Adventure", image: "https://images.pexels.com/photos/59989/elephant-herd-of-elephants-african-bush-elephant-africa-59989.jpeg" },
         { name: "Safari Adventure", image: "https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg" },
         { name: "Island Escape", image: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg" },
         { name: "Cultural Celebration", image: "https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg" },
@@ -347,8 +366,8 @@ export default function ItineraryView() {
                         {/* <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' /> */}
                         <PlannedActivities />
                     </div>
-                    
-                    <TravelInfo/>
+
+                    <TravelInfo />
 
 
                     <div className=" w-full   min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">
@@ -369,10 +388,11 @@ export default function ItineraryView() {
                             className=" object-cover  "
                             priority
                         /> */}
-                            {/* <div className=" w-11/12  space-y-10 mb-24  py-16  h-full flex flex-col  items-center rounded-3xl vertically-animated-element bg-white/10 backdrop-blur-xl border border-white/40 "> */}
-                            <div className=" w-11/12 overflow-hidden   space-y-10 mb-24   h-full flex flex-col  items-center rounded-3xl vertically-animated-element ">
 
-                                <h6 className={`${playfair.className} gallery-title  vertically-animated-element text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
+                            {/* <div className=" w-11/12  space-y-10 mb-24  py-16  h-full flex flex-col  items-center rounded-3xl vertically-animated-element bg-white/10 backdrop-blur-xl border border-white/40 "> */}
+                            <div className=" w-11/12 overflow-hidden   space-y-10 mb-24   h-full flex flex-col  items-center rounded-3xl  ">
+
+                                <h6 className={`${playfair.className} gallery-title   text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
 
                                 {/* <div className="  w-full px-3  mt-5 z-50  vertically-animated-element  flex rounded-xl overflow-hidden  gap-4   ">
 
@@ -393,31 +413,7 @@ export default function ItineraryView() {
 
                                 </div> */}
 
-                                <div onMouseLeave={() => setFocusedIndex(null)} className="w-full px-3 mt-5 z-50 vertically-animated-element flex rounded-xl overflow-hidden gap-4">
-                                    {galleryData?.map((item, index) => (
-                                        <div
-                                            key={index}
-                                            onMouseEnter={() => setFocusedIndex(index)}
-                                            className={`
-                                                relative group min-h-[80vh] gallery-tile overflow-hidden  hover:cursor-pointer
-                                                ${focusedIndex === index ? 'flex-[5]' : 'flex-1'}
-                                                 transition-all duration-1000 rounded-xl 
-                                            `}
-
-                                        >
-                                            <Image
-                                                src={item.image}
-                                                alt="image"
-                                                fill
-                                                className="object-cover rounded-xl"
-                                                priority
-                                            />
-                                            <p className={`text-nowrap  font-medium absolute delay-200 bottom-10 ${focusedIndex === index ? 'opacity-100   translate-x-12  ' : 'opacity-0'}  -left-5 translate-all duration-500 2xl:text-2xl text-white`}>
-                                                {item.name}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
+                                <GalleryList />
 
                             </div>
                         </div>

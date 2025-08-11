@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { Editor } from '@tinymce/tinymce-react';
 import { useRef, useState, useEffect } from 'react';
-import { RiImageAddLine, AiOutlineCheck, RiAddCircleLine, RxCross2 } from '@/components/reactIcons'
+import { RiImageAddLine, AiOutlineCheck, RiAddCircleLine, RxCross2, RiLoader4Line } from '@/components/reactIcons'
 import { rubik } from '@/app/fonts'
 import AXIOS_INSTANCE from "@/lib/axios";
 import { toast } from 'sonner';
@@ -27,6 +27,9 @@ export default function AdminJournals() {
     const [newCategory, setNewCategory] = useState('')
 
     const [categories, setCategories] = useState([])
+
+    const [isLoading, setIsLoading] = useState(false)
+    const [isDraftSaving, setIsDraftSaving] = useState(false)
 
 
     const [formDataState, setFormDataState] = useState({
@@ -84,6 +87,7 @@ export default function AdminJournals() {
         })
     }
 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormDataState((prev) => ({
@@ -106,6 +110,7 @@ export default function AdminJournals() {
             setPreviewImage(URL.createObjectURL(file));
         }
     };
+
 
     const handleDivClick = () => {
         fileInputRef.current.click(); // open file picker
@@ -130,18 +135,33 @@ export default function AdminJournals() {
     }, []);
 
 
+
     const handleSubmit = async (e, publish = true) => {
+
+        if (isDraftSaving || isLoading) return
+
         toast.dismiss()
-        e.preventDefault(); // prevent page reload
+        e.preventDefault();
+
+        if (!formDataState.title) {
+            toast.error('Please select a title');
+            return
+        } if (!formDataState.slug) {
+            toast.error('Please select a slug');
+            return
+        }
 
         if (!formDataState.category_name) {
             toast.error('Please select a category');
             return
         }
-        // if (!journalCoverImage) {
-        //     toast.error('Please select a preview image');
-        //     return
-        // }
+
+        if (!journalCoverImage) {
+            toast.error('Please select a preview image');
+            return
+        }
+
+        publish ? setIsLoading(true) : setIsDraftSaving(true)
 
         if (editorRef.current) {
             const content = editorRef.current.getContent();
@@ -155,10 +175,10 @@ export default function AdminJournals() {
                 ...formDataState,
                 blog_content: content,
                 is_published: publish,
-                // preview_image: journalCoverImage,
+                preview_image: journalCoverImage,
             };
 
-            console.log(updatedFormData);
+            // console.log(updatedFormData);
             setFormDataState(updatedFormData)
 
             try {
@@ -170,11 +190,16 @@ export default function AdminJournals() {
                 toast.success(publish ? "Blog post published successfully!" : "Draft saved successfully.");
                 editorRef.current.setContent('')
                 handleClearFormDataState()
+                handleRemoveImage()
             }
             catch (e) {
                 const firstError = Object.values(e?.response?.data)?.[0]?.[0];
                 toast.error(firstError || "Something went wrong.");
 
+            }
+            finally {
+                setIsLoading(false)
+                setIsDraftSaving(false)
             }
         }
         else {
@@ -182,7 +207,6 @@ export default function AdminJournals() {
         }
 
     };
-
 
 
     if (!isClient) {
@@ -216,27 +240,56 @@ export default function AdminJournals() {
                                 <div className=" min-h-[400px]   xl:min-h-[300px] outline-none">
                                     <Editor
                                         onInit={(evt, editor) => editorRef.current = editor}
-                                        apiKey='5x0d43so5yodigr6a7p6b1a09jh9n0ugfks5wljq1r0lm2wm'
+                                        apiKey="5x0d43so5yodigr6a7p6b1a09jh9n0ugfks5wljq1r0lm2wm"
                                         init={{
                                             plugins: [
-                                                // Core editing features
-                                                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-                                                // Your account includes a free trial of TinyMCE premium features
-                                                // Try the most popular premium features until Jul 30, 2025:
-                                                // 'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
+                                                'image', 'link', 'lists', 'table', 'code'
                                             ],
+                                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | image link | removeImage',
 
-                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                            tinycomments_mode: 'embedded',
-                                            tinycomments_author: 'Author name',
-                                            mergetags_list: [
-                                                { value: 'First.Name', title: 'First Name' },
-                                                { value: 'Email', title: 'Email' },
-                                            ],
-                                            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+                                            /* Handle file upload */
+                                            images_upload_handler: async (blobInfo) => {
+                                                const formData = new FormData();
+                                                formData.append("file", blobInfo.blob(), blobInfo.filename());
+
+                                                const res = await fetch("http://localhost:8000/upload-blog-image/", {
+                                                    method: "POST",
+                                                    body: formData
+                                                });
+
+                                                const data = await res.json();
+                                                return data.url; // TinyMCE will insert this into the editor
+                                            },
+
+                                            /* Optional: Open file picker for images */
+                                            file_picker_callback: (callback, value, meta) => {
+                                                if (meta.filetype === 'image') {
+                                                    const input = document.createElement('input');
+                                                    input.setAttribute('type', 'file');
+                                                    input.setAttribute('accept', 'image/*');
+
+                                                    input.onchange = async function () {
+                                                        const file = this.files[0];
+
+                                                        const formData = new FormData();
+                                                        formData.append('file', file);
+
+                                                        const res = await fetch("http://localhost:8000/upload-blog-image/", {
+                                                            method: "POST",
+                                                            body: formData,
+                                                        });
+
+                                                        const data = await res.json();
+
+                                                        callback(data.url, { alt: file.name });
+                                                    };
+
+                                                    input.click();
+                                                }
+                                            }
                                         }}
-                                    // initialValue="Welcome to TinyMCE!"
                                     />
+
                                 </div>
 
                                 <div className=" w-full  space-y-5 ">
@@ -253,14 +306,14 @@ export default function AdminJournals() {
                                     <div className=" flex items-center justify-between ">
                                         <h2 className=" text-lg 2xl:text-xl font-medium ">Post Journal </h2>
 
-                                        <button onClick={(e) => handleSubmit(e, true)} className=" max-xl:hidden rounded-sm cursor-pointer text-sm font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">Publish</button>
+                                        <button onClick={(e) => handleSubmit(e, true)} className=" max-xl:hidden rounded-sm cursor-pointer text-sm font-medium tracking-wide bg-sky-blue-dark w-22 h-7.5 flex-center  text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
 
                                     </div>
-                                    <button onClick={(e) => handleSubmit(e, true)} className=" xl:hidden mt-4 rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">Publish</button>
+                                    <button onClick={(e) => handleSubmit(e, true)} className=" xl:hidden mt-4 rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
 
                                     <div className=" my-8 flex flex-col  ">
                                         <p className=" max-xl:text-sm"> Save & Publish Later</p>
-                                        <button onClick={(e) => handleSubmit(e, false)} className=" mt-2  cursor-pointer  rounded-sm font-medium  border bg- px-4 py-2 text-sm bg-[#F7FBFD] text-dark-28">Save Draft</button>
+                                        <button onClick={(e) => handleSubmit(e, false)} className=" mt-2  cursor-pointer  rounded-sm font-medium  border flex-center  px-4 py-2 text-sm bg-[#F7FBFD] text-dark-28"> {isDraftSaving ? <RiLoader4Line className=" animate-spin  text-xl" /> : 'Save Draft'}</button>
                                         {/* <p className=" ">save for later</p> */}
 
                                     </div>
@@ -295,6 +348,7 @@ export default function AdminJournals() {
                                             <RiImageAddLine className="text-2xl text-slate-400" />
                                         )}
                                     </div>
+
 
                                     <p
                                         onClick={handleRemoveImage}

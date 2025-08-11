@@ -98,7 +98,11 @@ export default function AdminBlogs() {
         }
 
         try {
-            const response = await AXIOS_INSTANCE.patch(`journals/`, data)
+            const response = await AXIOS_INSTANCE.patch(`journals/`, data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
             setIsStatusChangeModel(false)
             toast.success(requestedStatusChange === 'draft' ? " Blog post unpublished successfully!" : "Blog post published successfully!");
             requestedStatusChange === 'draft' ? fetchJournals(currentPage, 'Published') : fetchJournals(currentPage, 'Drafted')
@@ -131,7 +135,11 @@ export default function AdminBlogs() {
         }
 
         try {
-            const response = await AXIOS_INSTANCE.patch(`journals/`, data)
+            const response = await AXIOS_INSTANCE.patch(`journals/`, data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
             toast.success(status === true ? "Added to featured" : "Removed from featured");
             fetchJournals(currentPage, 'Published')
         }
@@ -240,7 +248,7 @@ export default function AdminBlogs() {
                                             {selectedJournalStatus === 'Published' && (<td className={rowStyle}>
 
                                                 <TooltipWrapper message={item.is_featured ? "Remove form Featured" : "Add to Featured"}>
-                                                    <div onClick={() => confirmFeaturedStatus(item.id, !item.is_featured)} className=" border size-5 2xl:size-5 cursor-pointer transition-all duration-500 ease-in-out  border-sky-blue-1 ml-4 flex-center inline-flex rounded-full  ">
+                                                    <div onClick={() => confirmFeaturedStatus(item.id, !item.is_featured)} className=" border size-4 2xl:size-4 cursor-pointer transition-all duration-500 ease-in-out  border-sky-blue-1 ml-4 flex-center inline-flex rounded-full  ">
                                                         {item.is_featured && <AiOutlineCheck className=" text-sm 2xl:text-base text-sky-blue-dark " />}
                                                     </div>
                                                 </TooltipWrapper>
@@ -278,7 +286,7 @@ export default function AdminBlogs() {
                         </div>)}
 
 
-                    {journals?.length > 1 && (<Pagination
+                    {journals?.length > 0 && (<Pagination
                         prevPage={prevPage}
                         nextPage={nextPage}
                         function_to_call={fetchJournals}

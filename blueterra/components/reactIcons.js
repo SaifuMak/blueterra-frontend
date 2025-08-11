@@ -23,6 +23,8 @@ import { GrMap } from "react-icons/gr";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { MdInfoOutline } from "react-icons/md";
 import { IoMdArrowDropup } from "react-icons/io";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { RiLoader4Line } from "react-icons/ri";
 
 export {
     GoDot,
@@ -50,4 +52,6 @@ export {
     FaMapMarkerAlt,
     MdInfoOutline,
     IoMdArrowDropup,
+    MdOutlineArrowForwardIos,
+    RiLoader4Line,
 };

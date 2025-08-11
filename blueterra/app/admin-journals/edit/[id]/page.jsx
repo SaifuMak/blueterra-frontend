@@ -104,7 +104,6 @@ export default function EditJournal() {
         }, 500);
     }
 
-
     const fetchCategories = async () => {
         try {
             const response = await AXIOS_INSTANCE.get(`journal-categories/`)
@@ -147,6 +146,14 @@ export default function EditJournal() {
         toast.dismiss()
         e.preventDefault(); // prevent page reload
 
+        if (!formDataState.title) {
+            toast.error('Please select a title');
+            return
+        } if (!formDataState.slug) {
+            toast.error('Please select a slug');
+            return
+        }
+
         if (!formDataState.category_name) {
             toast.error('Please select a category');
             return
@@ -166,13 +173,18 @@ export default function EditJournal() {
                 id: id,
                 blog_content: content,
                 is_published: publish,
+                ...(journalCoverImage && { preview_image: journalCoverImage }),
             };
 
             console.log(updatedFormData);
             setFormDataState(updatedFormData)
 
             try {
-                const response = await AXIOS_INSTANCE.patch('journals/', updatedFormData)
+                const response = await AXIOS_INSTANCE.patch('journals/', updatedFormData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                })
                 toast.success(publish ? "Blog post published successfully!" : "Draft saved successfully.");
                 editorRef.current.setContent('')
                 handleClearFormDataState()
@@ -208,6 +220,7 @@ export default function EditJournal() {
                     category_name: data.category_name || "",
                     is_published: data.is_published ?? true, // default to true
                 });
+                setPreviewImage(data?.image_public_url)
                 setBlogContent(data.blog_content)
             } catch (error) {
                 console.error('Failed to load journal:', error);
@@ -215,6 +228,7 @@ export default function EditJournal() {
                 // setLoading(false);
             }
         };
+
 
         fetchJournal();
     }, [id]);
@@ -255,30 +269,57 @@ export default function EditJournal() {
                                 <div className=" min-h-[400px]   xl:min-h-[300px] outline-none">
                                     <Editor
                                         onInit={(evt, editor) => editorRef.current = editor}
-                                        apiKey='5x0d43so5yodigr6a7p6b1a09jh9n0ugfks5wljq1r0lm2wm'
+                                        apiKey="5x0d43so5yodigr6a7p6b1a09jh9n0ugfks5wljq1r0lm2wm"
                                         value={blogContent}
                                         onEditorChange={(newValue) => setBlogContent(newValue)}
                                         init={{
                                             plugins: [
-                                                // Core editing features
-                                                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-                                                // Your account includes a free trial of TinyMCE premium features
-                                                // Try the most popular premium features until Jul 30, 2025:
-                                                // 'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
+                                                'image', 'link', 'lists', 'table', 'code'
                                             ],
+                                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | image link | removeImage',
 
-                                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                            tinycomments_mode: 'embedded',
-                                            tinycomments_author: 'Author name',
-                                            mergetags_list: [
-                                                { value: 'First.Name', title: 'First Name' },
-                                                { value: 'Email', title: 'Email' },
-                                            ],
-                                            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+                                            /* Handle file upload */
+                                            images_upload_handler: async (blobInfo) => {
+                                                const formData = new FormData();
+                                                formData.append("file", blobInfo.blob(), blobInfo.filename());
+
+                                                const res = await fetch("http://localhost:8000/upload-blog-image/", {
+                                                    method: "POST",
+                                                    body: formData
+                                                });
+
+                                                const data = await res.json();
+                                                return data.url; // TinyMCE will insert this into the editor
+                                            },
+
+                                            /* Optional: Open file picker for images */
+                                            file_picker_callback: (callback, value, meta) => {
+                                                if (meta.filetype === 'image') {
+                                                    const input = document.createElement('input');
+                                                    input.setAttribute('type', 'file');
+                                                    input.setAttribute('accept', 'image/*');
+
+                                                    input.onchange = async function () {
+                                                        const file = this.files[0];
+
+                                                        const formData = new FormData();
+                                                        formData.append('file', file);
+
+                                                        const res = await fetch("http://localhost:8000/upload-blog-image/", {
+                                                            method: "POST",
+                                                            body: formData,
+                                                        });
+
+                                                        const data = await res.json();
+
+                                                        callback(data.url, { alt: file.name });
+                                                    };
+
+                                                    input.click();
+                                                }
+                                            }
                                         }}
-                                    // initialValue="Welcome to TinyMCE!"
                                     />
-
                                 </div>
 
                                 <div className=" w-full  space-y-5 ">

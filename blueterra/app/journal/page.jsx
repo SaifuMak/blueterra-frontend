@@ -186,6 +186,8 @@ export default function Journal() {
                     </div>
                 </div>
 
+
+
                 <div className=" w-full  h-full  flex-center relative ">
                     <BackgroundClipPath outerClass='absolute w-[16%] left-0 top-0 h-fit ' ImagePath='/images/journal/journal-left-clip.png' width='500' height='1000' />
                     <BackgroundClipPath outerClass='absolute w-fit right-0 top-0 h-fit ' ImagePath='/images/journal/journal-right-clip.png' width='500' height='1000' />
@@ -242,7 +244,7 @@ export default function Journal() {
                                 <div key={index} className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
 
                                     <Image
-                                        src='https://images.pexels.com/photos/1707310/pexels-photo-1707310.jpeg'
+                                        src={journal.image_public_url}
                                         alt={journal.title}
                                         fill
                                         className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"

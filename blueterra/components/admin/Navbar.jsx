@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { MdOutlineKeyboardArrowDown } from '../reactIcons'
 import { SIDEBAR_ITEMS } from '../../constants/admin'
 import { useState, useEffect } from "react";
-
+import Link from "next/link";
 
 const Navbar = () => {
 
@@ -25,6 +25,7 @@ const Navbar = () => {
         <div className=" w-full flex  h-[70px] lg:h-[75px] justify-end pl-10 bg-brand-blue">
 
             <div className=" w-full flex   px-6 items-center justify-between bg-white  rounded-bl-4xl">
+                <Link href='/'>
                 <div className=" relative w-[120px] h-[30px] lg:w-[160px] lg:h-[40px] shrink-0 ">
                     <Image
                         src="/images/login/logo-2.png"
@@ -33,6 +34,7 @@ const Navbar = () => {
                         className=" object-contain z-0"
                     />
                 </div>
+                </Link>
                 <div className=" w-10/12 flex items-center justify-between ">
                     <p className=" text-lg lg:text-xl font-normal">{itemName}</p>
 
