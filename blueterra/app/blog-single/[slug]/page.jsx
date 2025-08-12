@@ -14,43 +14,75 @@ import BlogCards from "@/components/generalComponents/BlogCards"
 import { Dummy_Blog } from "@/constants/dummy-blog"
 import { useEffect, useState } from "react"
 import Loader from "@/components/generalComponents/Loader"
+import { useParams, useRouter } from 'next/navigation';
+import AXIOS_INSTANCE from "@/lib/axios"
+import { getReadingTime, journalPreview } from "@/app/utils/helperFunctions"
 
 
 
 export default function BlogSingle() {
 
+    const { slug } = useParams(); // slug from URL
+    const router = useRouter();
 
-    const [isClient, setIsClient] = useState(false);
-    const [blogTitle, setBlogTitle] = useState('')
+    const [blog, setBlog] = useState(null);
+    const [moreBlogs, setMoreBlogs] = useState([])
+    const [relatedBlogs, setRelatedBlogs] = useState([])
 
     const [isLoading, setIsLoading] = useState(true)
 
+    const fetchFiveJournals = async () => {
+        try {
+            const response = await AXIOS_INSTANCE.get(`get-five-journals/`);
+            setMoreBlogs(response?.data)
+        } catch (error) {
+            console.error('Failed to load journal:', error);
+        } finally {
+            // setLoading(false);
+        }
+    };
+
 
     useEffect(() => {
-        setIsClient(true);
-    }, []);
+        if (!slug) return;
+
+        const fetchJournal = async () => {
+            try {
+                const response = await AXIOS_INSTANCE.get(`blog/${slug}`);
+                const data = response?.data
+                setBlog(data)
+            } catch (error) {
+                console.error('Failed to load journal:', error);
+            } finally {
+                // setLoading(false);
+            }
+        };
+
+        fetchJournal();
+        fetchFiveJournals()
+
+    }, [slug]);
 
 
     useEffect(() => {
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = Dummy_Blog;
+        if (!blog) return;
 
-        const h1 = tempDiv.querySelector('h1');
-        setBlogTitle(h1?.textContent)
-    }, [])
+        const fetchRelatedJournals = async () => {
+            try {
+                const response = await AXIOS_INSTANCE.get(`get-related-journals/?category=${blog.category_name}`);
+                const blogs = response?.data
+                const filteredBlogs = blogs.filter(blog => blog.slug !== slug);
+                setRelatedBlogs(filteredBlogs)
+            } catch (error) {
+                console.error('Failed to load journal:', error);
+            } finally {
+                // setLoading(false);
+            }
+        };
 
-    if (!isClient) {
-        return null; // or a loading placeholder
-    }
+        fetchRelatedJournals()
 
-
-    const BlogList = [
-        { "image": "https://images.pexels.com/photos/34098/south-africa-hluhluwe-giraffes-pattern.jpg", "date": "10 May 2025", "description": "Top Stargazing Spots around the World for Unforgettable Views" },
-        { "image": "https://images.pexels.com/photos/247376/pexels-photo-247376.jpeg", "date": "10 May 2025", "description": "Hidden Villages That Are Truly Worth Discovering and Exploring" },
-        { "image": "https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg", "date": "10 May 2025", "description": "Best Destinations for Wellness and Mindfulness" },
-    ]
-
-
+    }, [blog]);
 
 
     const socialIconsStyle = 'cursor-pointer object-cover size-6 xl:size-7 2xl:size-8'
@@ -65,29 +97,29 @@ export default function BlogSingle() {
             <div className={` ${rubik.className} w-full text-dark-28 h-full flex flex-col justify-center items-center relative`} >
                 {isLoading && <Loader />}
 
-                <div className="w-full h-[600px] relative">
+                {blog && <div className="w-full h-[600px] relative">
                     <Image
-                        src='/images/blog-single/banner.jpg'
+                        src={blog.image_public_url}
                         alt='quote'
                         fill
                         priority
                         className=" object-cover "
                         onLoad={() => setIsLoading(false)}
                     />
-                </div>
+                </div>}
 
 
-                <div className=" w-11/12 2xl:w-10/12 mt-10 md:mt-20  flex max-lg:flex-col   ">
+                <div className=" w-11/12 2xl:w-10/12 mt-10 md:mt-20  mb-10 flex max-lg:flex-col   ">
                     <div className="  w-full pr-3  xl:pr-10 mt-4   h-full" >
                         <div className=" min-h-10 ">
-                            <h1 className={`2xl:text-[50px] text-4xl leading-12 xl:leading-16  text-dark-4B  ${playfair.className}`}>{blogTitle}</h1>
+                            <h1 className={`2xl:text-[50px] text-4xl leading-12 xl:leading-16  text-dark-4B  ${playfair.className}`}>{blog?.title}</h1>
                         </div>
 
                         <div className=" w-full flex max-xl:space-y-2  max-xl:flex-col  min-h-10  2xl:text-lg justify-between  my-5 xl:my-8">
                             <div className=" flex max-lg:flex-wrap space-x-3 xl:space-x-5 items-center text-sky-blue-dark  ">
-                                <div className=" flex "> <p className=" ">Posted on: <span className=" text-dark-46"> 22 May 2025</span></p></div>
-                                <div className=" flex "> <p className="">In: <span className="text-dark-46"> Travel Tips</span></p></div>
-                                <div className=" flex "> <p className="">Read Time: <span className="text-dark-46">5 Minutes</span></p></div>
+                                <div className=" flex "> <p className=" ">Posted on: <span className=" text-dark-46">{blog?.created_at}</span></p></div>
+                                <div className=" flex "> <p className="">In: <span className="text-dark-46 capitalize">{blog?.category_name}</span></p></div>
+                                {blog?.blog_content && <div className=" flex "> <p className="">Read Time: <span className="text-dark-46">{getReadingTime(blog.blog_content)} Minutes</span></p></div>}
                             </div>
                             <div className=" flex space-x-1.5 xl:space-x-3 items-center  ">
                                 <img src="/Icons/single-blog/insta.svg" alt="instagram" className={`${socialIconsStyle}`} />
@@ -97,9 +129,9 @@ export default function BlogSingle() {
                                 <img src="/Icons/single-blog/linkdn.svg" alt="linkedin" className={`${socialIconsStyle}`} />
                             </div>
                         </div>
-                        <div className=" w-full h-full blog-content" dangerouslySetInnerHTML={{ __html: Dummy_Blog }}>
+                        {blog?.blog_content && <div className=" w-full h-full blog-content" dangerouslySetInnerHTML={{ __html: blog.blog_content }}>
 
-                        </div>
+                        </div>}
 
                     </div>
 
@@ -117,11 +149,11 @@ export default function BlogSingle() {
                             <h3 className=" text-[24px] mb-5 ">More Blogs</h3>
 
                             <div className=" max-lg:flex max-lg:flex-wrap">
-                                {BlogList?.map((blog, index) => (
-                                    <div key={index} className=" flex my-3 lg:my-6 space-x-3">
+                                {moreBlogs?.filter(blog => blog.slug !== slug).slice(0, 3).map((blog, index) => (
+                                    <div key={index} onClick={() => router.push(`/blog-single/${blog.slug}`)} className=" cursor-pointer flex my-3 lg:my-6 space-x-3">
                                         <div className=" w-[130px] shrink-0 rounded-lg overflow-hidden h-[120px] 2xl:h-[130px] relative">
                                             <Image
-                                                src={blog.image}
+                                                src={blog.image_public_url}
                                                 alt='blog'
                                                 fill
                                                 priority
@@ -129,8 +161,8 @@ export default function BlogSingle() {
                                             />
                                         </div>
                                         <div className="font-light mt-1 max-xl:text-sm ">
-                                            <p className=" flex items-center "><img src="/Icons/calender-dark.svg" alt="" className=" size-4 mr-2" /> 10 May 2025</p>
-                                            <p className=" xl:leading-7 mt-1">{blog.description}</p>
+                                            <p className=" flex items-center "><img src="/Icons/calender-dark.svg" alt="" className=" size-4 mr-2" />{blog.created_at}</p>
+                                            <p className=" xl:leading-7 mt-1">{blog.title}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -168,7 +200,7 @@ export default function BlogSingle() {
                     </div>
                 </div>
 
-                <div className=" w-11/12  my-10 lg:my-20 rounded-3xl py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden flex justify-center  bg-sky-blue-light  md:min-h-[85vh] h-full   relative  ">
+               {relatedBlogs.length > 0 &&  <div className=" w-11/12  my-10 lg:my-20 rounded-3xl py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden flex justify-center  bg-sky-blue-light  md:min-h-[85vh] h-full   relative  ">
                     <ResponsiveClipPath outerClass='absolute z-30 w-full  h-4/12   lg:w-7/12 md:w-9/12 md:h-7/12 lg:h-6/12 xl:w-9/12  2xl:w-8/12 left-0 top-0 xl:h-8/12' ImagePath='/images/blog-single/related-blogs-clip-path.png' />
                     <ResponsiveClipPath outerClass='absolute z-30 md:w-2/12 w-9/12 h-3/12 right-0 bottom-0 md:h-4/12' ImagePath='/images/blog-single/related-blogs-clip-bottom.png' />
 
@@ -176,22 +208,28 @@ export default function BlogSingle() {
                     <div className=" xl:w-10/12  w-11/12  h-full">
                         <h2 className={`${playfair.className}  text-3xl md:text-4xl xl:text-[50px] font-semibold text-dark-4B`}>Related Posts</h2>
 
+
                         <div className=" w-full flex max-sm:flex-col  mt-5 lg:mt-10 space-y-6 md:space-x-10 h-[400px] md:h-[300px] lg:h-[400px] xl:h-[400px] 2xl:h-[480px]">
 
                             <BlogCards
                                 outerConatainerClass="relative group cursor-pointer  z-30 h-full  w-full md:w-5/12  rounded-2xl overflow-hidden"
-                                imageUrl="/images/home/girrafe-in-grassland.jpg"
-                                title="Top Stargazing Spots Around the World for Unforgettable" />
+                                // imageUrl="/images/home/girrafe-in-grassland.jpg"
+                                // title="Top Stargazing Spots Around the World for Unforgettable" 
+                                blog={relatedBlogs[0]}
+                            />
                             <BlogCards
                                 outerConatainerClass="relative group cursor-pointer  z-30 w-full h-full  md:w-7/12  rounded-2xl overflow-hidden"
                                 imageUrl="/images/home/zebras-in-grasslands.jpg"
-                                title="Best Destinations for Wellness and Mindfulness" />
+                                title="Best Destinations for Wellness and Mindfulness"
+                                blog={relatedBlogs[1]}
+                            />
                         </div>
+
 
                     </div>
 
 
-                </div>
+                </div>}
 
             </div>
             <Footer />

@@ -20,6 +20,8 @@ import { useEffect, useState, useRef } from "react"
 import AXIOS_INSTANCE from "@/lib/axios"
 import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers"
 
+import { useRouter } from 'next/navigation';
+
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 
@@ -49,6 +51,7 @@ export default function Journal() {
     const containerRef = useRef()
     const bannerText = useRef()
 
+    const router = useRouter();
 
 
     const [nextPage, setNextPage] = useState(null); // Next page URL
@@ -116,6 +119,11 @@ export default function Journal() {
         setSelectedFilter(filter)
         fetchJournals(filter, 1)
     }
+
+    const handleGetBlog = (slug) => {
+        router.push(`/blog-single/${slug}`);
+    };
+
 
 
 
@@ -258,7 +266,7 @@ export default function Journal() {
                                         <div className="flex items-end absolute inset-0  z-10">
                                             <div className="xl:py-6 py-4 px-5 xl:px-8 transform transition-transform duration-1000 group-hover:translate-y-0 2xl:translate-y-[80px] xl:translate-y-[90px] lg:translate-y-[90px] md:translate-y-[80px] translate-y-[80px] text-white">
                                                 <h6 className={` text-lg lg:text-xl  xl:leading-9 2xl:leading-10 font-normal 2xl:text-2xl`}>{journal.title}</h6>
-                                                <Button text='LEARN MORE' buttonStyle={`opacity-0 group-hover:opacity-100 transition-all duration-500 mb-10 mt-5 ease-in-out  max-md:text-sm px-4 lg:px-6 xl:px-8 py-1.5 xl:py-2 `} />
+                                                <Button text='LEARN MORE' buttonStyle={`opacity-0 group-hover:opacity-100 transition-all duration-500 mb-10 mt-5 ease-in-out  max-md:text-sm px-4 lg:px-6 xl:px-8 py-1.5 xl:py-2 `} onClickFunction={() => handleGetBlog(journal.slug)} />
 
                                             </div>
                                         </div>
@@ -270,15 +278,15 @@ export default function Journal() {
 
                         {journals?.length > 0 && <div className=" w-full  my-16 flex justify-center space-x-4  z-20 items-center">
 
-                            <div onClick={() => fetchJournals(selectedFilter, currentPage - 1)} className={`${currentPage > 1 ? ' opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                            <div onClick={() => fetchJournals(selectedFilter, currentPage - 1)} className={`${currentPage > 1 ? ' opacity-100 cursor-pointer' : 'opacity-0 pointer-events-none'}`}>
                                 <img src="/Icons/arrow-blue.svg" alt="search icon " className={` rotate-180 size-4 `} />
                             </div>
 
                             {[...Array(totalPages)].map((_, index) => (
-                                <div key={index} onClick={() => fetchJournals(selectedFilter, index + 1)} className={`${index + 1 === currentPage ? 'bg-sky-blue-1 text-white pointer-events-none' : 'bg-white text-sky-blue-1'} transition-all duration-300 ease-in-out  rounded-sm px-3 py-1.5 border border-slate-100`}>{index + 1}</div>
+                                <div key={index} onClick={() => fetchJournals(selectedFilter, index + 1)} className={`${index + 1 === currentPage ? 'bg-sky-blue-1 text-white pointer-events-none' : 'bg-white text-sky-blue-1'} transition-all cursor-pointer duration-300 ease-in-out  rounded-sm px-3 py-1.5 border border-slate-100`}>{index + 1}</div>
                             ))}
 
-                            <div onClick={() => fetchJournals(selectedFilter, currentPage + 1)} className={`${currentPage === totalPages ? ' opacity-0 pointer-events-none' : ' opacity-100'}`}>
+                            <div onClick={() => fetchJournals(selectedFilter, currentPage + 1)} className={`${currentPage === totalPages ? ' opacity-0 pointer-events-none' : ' opacity-100 cursor-pointer'}`}>
                                 <img src="/Icons/arrow-blue.svg" alt="search icon " className=" size-4" />
                             </div>
                         </div>}

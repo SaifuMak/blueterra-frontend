@@ -243,7 +243,7 @@ export default function AdminBlogs() {
                                         <tr key={index} className=" rounded-3xl">
 
                                             <td className={rowStyle}>{trimWords(item.title, 8)}</td>
-                                            <td className={rowStyle}>{item.category_name}</td>
+                                            <td className={`${rowStyle} capitalize`}>{item.category_name}</td>
                                             <td className={rowStyle}>{item.created_at}</td>
                                             {selectedJournalStatus === 'Published' && (<td className={rowStyle}>
 

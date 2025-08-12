@@ -246,7 +246,8 @@ export default function AdminJournals() {
                                                 'image', 'link', 'lists', 'table', 'code'
                                             ],
                                             toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | image link | removeImage',
-
+                                            resize: true, // enables resizing
+                                            statusbar: true,
                                             /* Handle file upload */
                                             images_upload_handler: async (blobInfo) => {
                                                 const formData = new FormData();
@@ -303,13 +304,13 @@ export default function AdminJournals() {
                             <div className=" p-4 2xl:p-6 py-8  w-3/12 mt-10  h-full bg-white  border rounded-lg ">
 
                                 <div className=" ">
-                                    <div className=" flex items-center justify-between ">
+                                    <div className=" flex max-xl:flex-col xl:items-center justify-between ">
                                         <h2 className=" text-lg 2xl:text-xl font-medium ">Post Journal </h2>
 
-                                        <button onClick={(e) => handleSubmit(e, true)} className=" max-xl:hidden rounded-sm cursor-pointer text-sm font-medium tracking-wide bg-sky-blue-dark w-22 h-7.5 flex-center  text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
+                                        <button onClick={(e) => handleSubmit(e, true)} className=" max-xl:hidden rounded-sm cursor-pointer text-sm font-medium max-xl:mt-2 tracking-wide bg-sky-blue-dark w-full xl:w-20 2xl:w-22 h-7.5 flex-center  text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
 
                                     </div>
-                                    <button onClick={(e) => handleSubmit(e, true)} className=" xl:hidden mt-4 rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
+                                    {/* <button onClick={(e) => handleSubmit(e, true)} className=" xl:hidden mt-4 rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button> */}
 
                                     <div className=" my-8 flex flex-col  ">
                                         <p className=" max-xl:text-sm"> Save & Publish Later</p>
