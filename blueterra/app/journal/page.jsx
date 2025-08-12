@@ -45,13 +45,15 @@ export default function Journal() {
     const [categories, setCategories] = useState([])
     const [journals, setJournals] = useState([])
     const [featuredJournals, setFeaturedJournals] = useState([])
+    const JournalListRef = useRef(null);
 
-    const pages = ['1', '2', '3']
 
     const containerRef = useRef()
     const bannerText = useRef()
 
     const router = useRouter();
+
+
 
 
     const [nextPage, setNextPage] = useState(null); // Next page URL
@@ -60,18 +62,9 @@ export default function Journal() {
     const [totalPages, setTotalPages] = useState(null)
 
 
-
-
-    // const journalsData = [
-    //     { title: 'Best Destinations for Wellness and Mindfulness', image: '/images/static/snowfall.png', alt: 'snow ' },
-    //     { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/1707310/pexels-photo-1707310.jpeg', alt: 'snow ' },
-    //     { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/70441/pexels-photo-70441.jpeg', alt: 'snow ' },
-    //     { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/2610309/pexels-photo-2610309.jpeg', alt: 'snow ' },
-    //     { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/2265876/pexels-photo-2265876.jpeg', alt: 'snow ' },
-    //     { title: 'Best Destinations for Wellness and Mindfulness', image: 'https://images.pexels.com/photos/1122408/pexels-photo-1122408.jpeg', alt: 'snow ' },
-
-    // ]
-
+    const scrollToJournals = () => {
+        JournalListRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
 
     const fetchCategories = async () => {
         try {
@@ -106,8 +99,9 @@ export default function Journal() {
             setPrevPage(previous)
             setCurrentPage(page)
 
-            const totalPages = getTotalPagesCount(response.data.count, 2)
+            const totalPages = getTotalPagesCount(response.data.count, 6)
             setTotalPages(totalPages)
+
 
         }
         catch (e) {
@@ -123,7 +117,6 @@ export default function Journal() {
     const handleGetBlog = (slug) => {
         router.push(`/blog-single/${slug}`);
     };
-
 
 
 
@@ -170,6 +163,19 @@ export default function Journal() {
         fetchJournals()
         fetchCategories()
     }, [])
+
+    useEffect(() => {
+      scrollToJournals()
+    }, [currentPage])
+    
+
+
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+
+
 
 
 
@@ -236,15 +242,18 @@ export default function Journal() {
                             <div onClick={() => handleFilterChange('View All')} className={` cursor-pointer text-nowrap ${'View All' === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>View All</div>
 
                             {categories?.map((data, index) => (
-                                <div key={index} onClick={() => handleFilterChange(data.category)} className={`transition-all duration-300 ease-in-out cursor-pointer text-nowrap ${data.category === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>{data.category}</div>
+                                <div key={index} onClick={() => handleFilterChange(data.category)} className={`transition-all duration-300 ease-in-out cursor-pointer capitalize text-nowrap ${data.category === selectedFilter ? 'text-white bg-sky-blue-1' : 'border'}  rounded-sm px-6 py-1.5 border-[#E3E3E3]`}>{data.category}</div>
                             ))}
                         </div>
                     </div>
                 </div>
 
 
-                <div className=" w-full  h-full  flex-center ">
-                    <div className=" w-11/12 relative min-h-[140vh]  flex flex-col  items-center bg-sky-blue-light rounded-3xl">
+                <div ref={JournalListRef} className=" w-full  h-full  flex-center ">
+                    
+                  {journals.length > 0 ? (
+
+                  <div className=" w-11/12 relative min-h-[140vh]  flex flex-col  items-center bg-sky-blue-light rounded-3xl">
 
                         <div className=" w-11/12 2xl:w-10/12 mt-20 z-20   grid md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-12   ">
                             {journals?.map((journal, index) => (
@@ -297,6 +306,12 @@ export default function Journal() {
                         <BackgroundClipPath outerClass='absolute top-[60%] w-fit right-0   ' ImagePath='/images/journal/journal-card-linear-clippath.png' width='500' height='1000' />
 
                     </div>
+
+                      ) : (
+                    <div className="w-11/12 relative min-h-[140vh]  flex flex-col  items-center bg-sky-blue-light rounded-3xl">
+                        <p className=" mt-20 text-2xl">No results</p>
+                    </div>
+                  )}
                 </div>
 
             </div>

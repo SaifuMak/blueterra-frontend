@@ -10,6 +10,7 @@ export function getReadingTime(htmlString) {
 
 
 export function journalPreview(htmlString, wordLimit = 10) {
+    if(!htmlString) return
     const text = htmlString.replace(/<[^>]+>/g, " ");
 
     const words = text.trim().split(/\s+/);

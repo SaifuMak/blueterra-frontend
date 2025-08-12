@@ -22,6 +22,9 @@ export default function RootLayout({ children }) {
       {/* <body className={jost.className}> */}
       <body className="">
         <Toaster position="bottom-right" richColors />
+        
+    
+
         {/* <Navbar/> */}
         {children}
         {/* <Footer/> */}

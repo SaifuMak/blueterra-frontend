@@ -10,7 +10,7 @@ import { rubik } from '@/app/fonts'
 import AXIOS_INSTANCE from "@/lib/axios";
 import { toast } from 'sonner';
 import { useParams } from 'next/navigation';
-
+import { API_BASE_URL } from "@/app/config.";
 
 export default function EditJournal() {
 
@@ -283,7 +283,7 @@ export default function EditJournal() {
                                                 const formData = new FormData();
                                                 formData.append("file", blobInfo.blob(), blobInfo.filename());
 
-                                                const res = await fetch("http://localhost:8000/upload-blog-image/", {
+                                                const res = await fetch(`${API_BASE_URL}upload-blog-image/`, {
                                                     method: "POST",
                                                     body: formData
                                                 });
@@ -305,7 +305,7 @@ export default function EditJournal() {
                                                         const formData = new FormData();
                                                         formData.append('file', file);
 
-                                                        const res = await fetch("http://localhost:8000/upload-blog-image/", {
+                                                        const res = await fetch(`${API_BASE_URL}upload-blog-image/`, {
                                                             method: "POST",
                                                             body: formData,
                                                         });
@@ -404,7 +404,6 @@ export default function EditJournal() {
 
                         </div>
                     </form>
-
 
                 </div>
 

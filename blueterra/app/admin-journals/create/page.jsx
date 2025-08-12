@@ -9,7 +9,7 @@ import { RiImageAddLine, AiOutlineCheck, RiAddCircleLine, RxCross2, RiLoader4Lin
 import { rubik } from '@/app/fonts'
 import AXIOS_INSTANCE from "@/lib/axios";
 import { toast } from 'sonner';
-
+import { API_BASE_URL } from "@/app/config.";
 
 
 export default function AdminJournals() {
@@ -253,7 +253,7 @@ export default function AdminJournals() {
                                                 const formData = new FormData();
                                                 formData.append("file", blobInfo.blob(), blobInfo.filename());
 
-                                                const res = await fetch("http://localhost:8000/upload-blog-image/", {
+                                                const res = await fetch(`${API_BASE_URL}upload-blog-image/`, {
                                                     method: "POST",
                                                     body: formData
                                                 });
@@ -275,7 +275,7 @@ export default function AdminJournals() {
                                                         const formData = new FormData();
                                                         formData.append('file', file);
 
-                                                        const res = await fetch("http://localhost:8000/upload-blog-image/", {
+                                                        const res = await fetch(`${API_BASE_URL}upload-blog-image/`, {
                                                             method: "POST",
                                                             body: formData,
                                                         });
