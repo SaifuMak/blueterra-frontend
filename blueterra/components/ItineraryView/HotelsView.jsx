@@ -43,27 +43,7 @@ export default function HotelsView() {
     }, { scope: hotelRef });
 
     
-    // useGSAP(() => {
-    //     const elements = gsap.utils.toArray(".opacity-animate-element");
-
-    //     elements.forEach((box) => {
-    //         gsap.fromTo(
-    //             box,
-    //             { opacity: 0 },
-    //             {
-    //                 opacity: 1,
-    //                 duration: 0.7,
-    //                 ease: "power3.out",
-    //                 scrollTrigger: {
-    //                     trigger: box,
-    //                     start: "top 80%",
-    //                     toggleActions: "play none play reverse ",
-    //                     markers: true
-    //                 },
-    //             }
-    //         );
-    //     });
-    // }, { scope: hotelRef });
+    
 
 
     return (
