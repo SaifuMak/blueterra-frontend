@@ -17,6 +17,8 @@ import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers"
 
 import { useRouter } from 'next/navigation';
 import SearchComponent from "@/components/Journey/SearchComponent"
+import { useSearchParams } from "next/navigation";
+
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -40,6 +42,9 @@ export default function Search() {
 
     const router = useRouter();
 
+    const searchParams = useSearchParams();
+    const query = searchParams.get("query") || "";
+
 
     const [nextPage, setNextPage] = useState(null); // Next page URL
     const [prevPage, setPrevPage] = useState(null); // Previous page URL
@@ -52,22 +57,11 @@ export default function Search() {
     };
 
 
+    const fetchJournals = async (category = 'View All', page = 1, query = '') => {
 
-    const fetchFeaturedJournals = async () => {
-        try {
-            const response = await AXIOS_INSTANCE.get(`get-featured-journals/`)
-            setFeaturedJournals(response?.data)
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
-
-
-    const fetchJournals = async (category = 'View All', page = 1) => {
         const encodedCategory = encodeURIComponent(category);
         try {
-            const response = await AXIOS_INSTANCE.get(`get-journals/?page=${page}&category=${encodedCategory}`)
+            const response = await AXIOS_INSTANCE.get(`get-journals/?page=${page}&category=${encodedCategory}&query=${query}`)
             setJournals(response.data.results)
             const nextpage = getPageNumber(response.data.next)
             const previous = getPageNumber(response.data.previous)
@@ -77,7 +71,6 @@ export default function Search() {
 
             const totalPages = getTotalPagesCount(response.data.count, 6)
             setTotalPages(totalPages)
-
 
         }
         catch (e) {
@@ -90,14 +83,6 @@ export default function Search() {
         router.push(`/blog-single/${slug}`);
     };
 
-
-
-
-    useEffect(() => {
-        fetchFeaturedJournals()
-        fetchJournals()
-
-    }, [])
 
     useEffect(() => {
         scrollToJournals()
@@ -126,6 +111,13 @@ export default function Search() {
     }, []);
 
 
+    useEffect(() => {
+        if (!query) return;
+
+        localStorage.setItem("searchQuery", query);
+        fetchJournals('View All', 1, query)
+
+    }, [query]);
 
 
 
@@ -156,8 +148,10 @@ export default function Search() {
 
 
                     <div className=" w-11/12 md:w-10/12 2xl:w-9/12 md:space-y-10 flex flex-col  items-center  my-20  h-full ">
-                        <div className="w-full flex max-sm:flex-col  justify-between items-center   ">
+                        <div className="w-full flex flex-col  justify-between    ">
                             <SearchComponent />
+                            <p className=" font-medium text-xl mt-3">Showing results for '{query}'</p>
+
                         </div>
 
                     </div>

@@ -85,7 +85,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                 duration: 0.8,
                 ease: 'sine.out',
                 onComplete: () => {
-                   triggerMouseMoveAtCurrentPosition()
+                    triggerMouseMoveAtCurrentPosition()
                 }
 
             });
@@ -221,7 +221,6 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                                 {/* <button onClick={(e) => { e.stopPropagation(); handleHideFullCard(); }} className=" w-[250px] cursor-pointer    py-2 font-medium  rounded-full bg-white/90  text-brand-blue">VIEW ALL</button> */}
 
                             </div>}
-
 
                             {!isFullCardVisible && (<div className=" absolute bottom-3  lg:bottom-2 w-10/12 flex items-center justify-between ">
                                 <p className=' flex  items-center  text-white text-lg lg:text-2xl font-extralight '>
