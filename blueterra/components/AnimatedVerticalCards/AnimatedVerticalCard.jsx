@@ -14,9 +14,10 @@ import Lottie from "lottie-react";
 export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading, setIsFilterVisible, isFilterVisible }) {
 
     const cardRef = useRef(null)
-    
+    const [canTrackMouse, setCanTrackMouse] = useState(false);
 
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
 
     useEffect(() => {
         console.log(isFullCardVisible, 'status of full card ')
@@ -36,13 +37,57 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
     }, [isExpanded, isFullCardVisible])
 
+    const triggerMouseMoveAtCurrentPosition = () => {
+        if (!cardRef.current) return;
+
+        // Get the real current cursor position
+        const { clientX, clientY } = window._lastKnownMouse || {};
+
+        if (clientX == null || clientY == null) return; // no mouse position tracked yet
+
+        // Dispatch a synthetic mousemove with the real coords
+        const evt = new MouseEvent("mousemove", {
+            bubbles: true,
+            clientX,
+            clientY
+        });
+
+        cardRef.current.dispatchEvent(evt);
+    };
+
+    // Track mouse globally so we always have the last known position
+    useEffect(() => {
+        const updateLastMouse = (e) => {
+            window._lastKnownMouse = { clientX: e.clientX, clientY: e.clientY };
+        };
+        window.addEventListener("mousemove", updateLastMouse);
+        return () => window.removeEventListener("mousemove", updateLastMouse);
+    }, []);
+
+
+
+    const handleMouseMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        console.log(rect);
+
+        setMousePos({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top,
+        });
+
+    };
+
 
     const handleMouseEnter = () => {
         if (!isExpanded) {
             gsap.to(cardRef.current, {
                 flex: 1.8, // Grow slightly on hover
                 duration: 0.8,
-                ease: 'sine.out'
+                ease: 'sine.out',
+                onComplete: () => {
+                   triggerMouseMoveAtCurrentPosition()
+                }
+
             });
         }
     };
@@ -53,20 +98,12 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
             gsap.to(cardRef.current, {
                 flex: 1, // Shrink back
                 duration: 0.8,
-                ease: 'sine.out'
+                ease: 'sine.out',
+
             });
         }
     };
 
-    const handleMouseMove = (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        console.log(rect);
-
-        setMousePos({
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-        });
-    };
 
 
 
@@ -96,7 +133,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                 <div className={`absolute inset-0 ${!isExpanded && 'bg-[#104F82D9]/60'} pointer-events-none  transition-opacity duration-500 group-hover:opacity-0 z-10`}></div>
 
                 {!isExpanded && (
-                    <div className="absolute group-hover:opacity-100   opacity-0 inset-0 pointer-events-none z-20">
+                    <div className="absolute group-hover:opacity-100  transition-opacity  opacity-0 inset-0 pointer-events-none z-20">
                         <div
                             style={{
                                 position: "absolute", // important!
