@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import Image from 'next/image';
 import { GoDot } from '../reactIcons'
@@ -14,6 +14,9 @@ import Lottie from "lottie-react";
 export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading, setIsFilterVisible, isFilterVisible }) {
 
     const cardRef = useRef(null)
+    
+
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         console.log(isFullCardVisible, 'status of full card ')
@@ -55,6 +58,17 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
         }
     };
 
+    const handleMouseMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        console.log(rect);
+
+        setMousePos({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top,
+        });
+    };
+
+
 
 
     return (
@@ -62,6 +76,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
             onClick={onClick}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onMouseMove={handleMouseMove}
             className={`flex-1 h-[100vh] ${!isExpanded ? 'cursor-pointer' : 'cursor-default'}  relative group   overflow-hidden bg-stone-50  text-white text-3xl   `} >
             {card.title}
 
@@ -80,13 +95,26 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
                 <div className={`absolute inset-0 ${!isExpanded && 'bg-[#104F82D9]/60'} pointer-events-none  transition-opacity duration-500 group-hover:opacity-0 z-10`}></div>
 
-               {!isExpanded &&  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
-                    <Lottie
-                        path="/lottie/click.json" // public folder path
-                        loop
-                        autoplay
-                    />
-                </div>}
+                {!isExpanded && (
+                    <div className="absolute group-hover:opacity-100   opacity-0 inset-0 pointer-events-none z-20">
+                        <div
+                            style={{
+                                position: "absolute", // important!
+                                left: `${mousePos.x}px`,
+                                top: `${mousePos.y}px`,
+                                transform: "translate(-50%, -50%)",
+                            }}
+                        >
+                            <Lottie
+                                path="/lottie/click.json"
+                                loop
+                                autoplay
+                                style={{ width: 300, height: 300 }}
+                            />
+                        </div>
+                    </div>
+                )}
+
 
                 {/* if not  expanded horizontally */}
                 {!isExpanded ? (
