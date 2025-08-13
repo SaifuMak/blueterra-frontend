@@ -43,12 +43,12 @@ export default function TravelInfo() {
                         {/* Subtitle */}
                         <div className="    ">
 
-                            <div className=" flex">
+                            <div className=" flex group cursor-pointer">
                                 <h3 className={`text-2xl ${playfair.className} font-medium  text-nowrap text-dark-4B`}>{item.title}</h3>
 
-                                <div className="relative flex w-full group">
+                                <div className="relative flex w-full ">
                                     {/* Trigger */}
-                                    <div className="flex peer cursor-pointer">
+                                    <div className="flex peer ">
                                         <MdInfoOutline className="mt-3 ml-2 text-dark-4B" />
                                     </div>
 
