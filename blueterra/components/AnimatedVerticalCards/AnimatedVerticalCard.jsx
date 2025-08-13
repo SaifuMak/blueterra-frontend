@@ -5,6 +5,11 @@ import Image from 'next/image';
 import { GoDot } from '../reactIcons'
 import Button from '../generalComponents/Button';
 import { playfair } from "@/app/fonts"
+import Lottie from "lottie-react";
+
+
+
+
 
 export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading, setIsFilterVisible, isFilterVisible }) {
 
@@ -29,9 +34,35 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
     }, [isExpanded, isFullCardVisible])
 
 
+    const handleMouseEnter = () => {
+        if (!isExpanded) {
+            gsap.to(cardRef.current, {
+                flex: 1.8, // Grow slightly on hover
+                duration: 0.8,
+                ease: 'sine.out'
+            });
+        }
+    };
+
+
+    const handleMouseLeave = () => {
+        if (!isExpanded) {
+            gsap.to(cardRef.current, {
+                flex: 1, // Shrink back
+                duration: 0.8,
+                ease: 'sine.out'
+            });
+        }
+    };
+
+
 
     return (
-        <div ref={cardRef} onClick={onClick} className={`flex-1 h-[100vh] ${!isExpanded ? 'cursor-pointer' : 'cursor-default'}  relative   overflow-hidden bg-stone-50  text-white text-3xl   `} >
+        <div ref={cardRef}
+            onClick={onClick}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className={`flex-1 h-[100vh] ${!isExpanded ? 'cursor-pointer' : 'cursor-default'}  relative group   overflow-hidden bg-stone-50  text-white text-3xl   `} >
             {card.title}
 
             <div className='overflow-hidden relative w-full h-full  '>
@@ -47,6 +78,15 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                     onLoad={() => setIsLoading(false)}
                 />
 
+                <div className={`absolute inset-0 ${!isExpanded && 'bg-[#104F82D9]/60'} pointer-events-none  transition-opacity duration-500 group-hover:opacity-0 z-10`}></div>
+
+               {!isExpanded &&  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
+                    <Lottie
+                        path="/lottie/click.json" // public folder path
+                        loop
+                        autoplay
+                    />
+                </div>}
 
                 {/* if not  expanded horizontally */}
                 {!isExpanded ? (
@@ -79,11 +119,11 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                 ) : (
 
                     // when card is expanded horizontally 
-                    <div  className='bg-[#104F82D9]/80 absolute inset-0 2xl:px-20 lg:px-10 px-4  '>
+                    <div className='bg-[#104F82D9]/80 absolute inset-0 2xl:px-20 lg:px-10 px-4  '>
 
                         <div className="2xl:w-[700px] xl:w-[700px] lg:w-[500px]  h-full  w-[400px] 2xl:text-lg text-base font-light">
 
-                            {isFullCardVisible && <div  className='2xl:mt-12 mt-4'>
+                            {isFullCardVisible && <div className='2xl:mt-12 mt-4'>
 
                                 <p className='  flex  text-white text-4xl 2xl:text-5xl '>
                                     {/* {card.number} */}
@@ -118,12 +158,12 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                             </div>}
 
 
-                            {!isFullCardVisible && (<div  className=" absolute bottom-3  lg:bottom-2 w-10/12 flex items-center justify-between ">
+                            {!isFullCardVisible && (<div className=" absolute bottom-3  lg:bottom-2 w-10/12 flex items-center justify-between ">
                                 <p className=' flex  items-center  text-white text-lg lg:text-2xl font-extralight '>
                                     <img src={card.icon} alt={card.tagline} className=" object-cover size-[28px] lg:size-[38px]" />
                                     <span className='font-normal ml-2 lg:ml-3 text-nowrap'>{card.tagline}</span>
                                 </p>
-                              
+
                                 <button onClick={(e) => { e.stopPropagation(); setIsFilterVisible(!isFilterVisible); }} className="hover:bg-white/15 hover:ring-2 ring-white/80 flex items-center  bg-sky-blue-1 px-2 lg:px-4 py-1 lg:py-1.5 w-fit h-fit  text-nowrap transition-all duration-700 ease-in-out  cursor-pointer  text-[15px] font-normal rounded-sm max-lg:text-sm  text-white"><span className="mr-3"><img src='/Icons/filter.svg' className='lg:size-4 size-3 '></img></span>{isFilterVisible ? 'Hide Filters' : 'Show Filters'} </button>
 
                             </div>)}

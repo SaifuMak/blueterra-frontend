@@ -207,6 +207,7 @@ export default function Journal() {
                     <BackgroundClipPath outerClass='absolute w-fit right-0 top-0 h-fit ' ImagePath='/images/journal/journal-right-clip.png' width='500' height='1000' />
                     <BackgroundClipPath outerClass='absolute w-fit right-0 bottom-0 h-fit  ' ImagePath='/images/journal/journal-bottom-right.png' width='500' height='1000' />
 
+
                     <div className=" w-11/12 md:w-10/12 2xl:w-9/12 md:space-y-10 flex flex-col  items-center mt-8 lg:mt-16  xl:mt-28  h-full ">
                         <div className="w-full flex max-sm:flex-col  justify-between items-center   ">
 
