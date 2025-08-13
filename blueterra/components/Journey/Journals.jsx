@@ -111,9 +111,9 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
                     {/* <CarouselPrevious />
                     <CarouselNext /> */}
 
-                    <div className="  text-white absolute rounded-3xl pointer-events-none   flex flex-col justify-between inset-0 bg-gradient-to-t  from-black/80 via-transparent to-transparent">
+                    <div className="  text-white absolute rounded-3xl pointer-events-none   flex flex-col justify-between  max-sm:py-4 inset-0 bg-gradient-to-t  from-black/80 via-transparent to-transparent">
 
-                        <div className=" flex  space-x-3 p-4  md:p-10">
+                        <div className=" flex  space-x-3 p-4   md:p-10">
                             {Data?.map((_, index) => (
                                 <div key={index} className={`${currentCollection === index ? 'bg-white' : ' bg-white/30'} translate-all duration-700 ease-in-out h-[3px] rounded-3xl w-16 bg-white`}></div>
                             ))}
