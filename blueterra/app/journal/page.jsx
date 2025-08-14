@@ -2,17 +2,11 @@
 import { playfair, rubik, mrsSaint, jost } from "@/app/fonts"
 import BackgroundClipPath from "@/components/generalComponents/BackgroundClipPath"
 import Image from "next/image"
-import { HiOutlineArrowNarrowRight, RxCross2, CiSearch, HiArrowLongRight } from '@/components/reactIcons'
-import carousalData from "@/components/datas/DestinationsDetails"
-import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight, RiArrowRightSLine } from '@/components/reactIcons';
 import Journals from "@/components/Journey/Journals"
-import { HOME_COLLECTIONS } from "@/constants/home-collections"
 import SmoothScroll from "@/components/SmoothScroll"
-import { JOURNAL_COLLECTIONS } from "@/constants/blog-collections"
 import Button from "@/components/generalComponents/Button"
 import Navbar from "@/components/Navbar/page"
 import Footer from "@/components/Footer/page"
-import Link from "next/link"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -28,15 +22,6 @@ gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 export default function Journal() {
 
-    // const [isClient, setIsClient] = useState(false);
-
-    // useEffect(() => {
-    //     setIsClient(true);
-    // }, []);
-
-    // if (!isClient) {
-    //     return null; // or a loading placeholder
-    // }
 
     const [currentCollection, setCurrentCollection] = useState(0)
     const [CollectionCount, setCollectionCount] = useState(0)
@@ -53,9 +38,6 @@ export default function Journal() {
     const bannerText = useRef()
 
     const router = useRouter();
-
-
-
 
     const [nextPage, setNextPage] = useState(null); // Next page URL
     const [prevPage, setPrevPage] = useState(null); // Previous page URL

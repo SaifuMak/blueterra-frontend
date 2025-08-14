@@ -37,7 +37,6 @@ const SearchComponent = ({ isParamsRecieved = true }) => {
   };
 
 
-
   useEffect(() => {
 
     if (isParamsRecieved) {
@@ -48,6 +47,7 @@ const SearchComponent = ({ isParamsRecieved = true }) => {
 
   }, [searchParams]);
 
+  
   useEffect(() => {
 
     if (!isParamsRecieved) {
