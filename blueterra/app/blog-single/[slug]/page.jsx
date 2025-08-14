@@ -1,22 +1,17 @@
 'use client'
 import Image from "next/image"
-import { playfair, rubik, mrsSaint, jost } from "@/app/fonts"
+import { playfair, rubik } from "@/app/fonts"
 import Button from "@/components/generalComponents/Button"
 import Navbar from "@/components/Navbar/page"
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath"
 import SmoothScroll from "@/components/SmoothScroll"
 import Footer from "@/components/Footer/page"
-import gsap from "gsap"
-import { useGSAP } from "@gsap/react"
-import { useRef } from "react"
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BlogCards from "@/components/generalComponents/BlogCards"
-import { Dummy_Blog } from "@/constants/dummy-blog"
 import { useEffect, useState } from "react"
 import Loader from "@/components/generalComponents/Loader"
 import { useParams, useRouter } from 'next/navigation';
 import AXIOS_INSTANCE from "@/lib/axios"
-import { getReadingTime, journalPreview } from "@/app/utils/helperFunctions"
+import { getReadingTime } from "@/app/utils/helperFunctions"
 import SearchInSingleBlog from "@/components/Journey/SearchInSingleBlog"
 
 

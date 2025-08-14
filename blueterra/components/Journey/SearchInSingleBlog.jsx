@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { playfair, rubik } from "@/app/fonts";
+import { rubik } from "@/app/fonts";
 import { useRouter, useSearchParams } from 'next/navigation';
 
 
@@ -9,8 +9,6 @@ const SearchInSingleBlog = () => {
 
     const [searchValue, setSearchValue] = useState("");
     const router = useRouter();
-    const searchParams = useSearchParams();
-
 
     // Handle input change and save to localStorage
     const handleChange = (e) => {
