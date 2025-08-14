@@ -17,7 +17,7 @@ import Loader from "@/components/generalComponents/Loader"
 import { useParams, useRouter } from 'next/navigation';
 import AXIOS_INSTANCE from "@/lib/axios"
 import { getReadingTime, journalPreview } from "@/app/utils/helperFunctions"
-
+import SearchInSingleBlog from "@/components/Journey/SearchInSingleBlog"
 
 
 export default function BlogSingle() {
@@ -84,6 +84,10 @@ export default function BlogSingle() {
 
     }, [blog]);
 
+   
+
+
+
 
     const socialIconsStyle = 'cursor-pointer object-cover size-6 xl:size-7 2xl:size-8'
 
@@ -136,14 +140,15 @@ export default function BlogSingle() {
                     </div>
 
                     <div className=" w-full lg:w-6/12 xl:w-5/12 py-5 space-y-10 h-full border-l px-4 2xl:px-10 ">
+                        <SearchInSingleBlog />
 
-                        <div className="">
+                        {/* <div className="">
                             <p className=" text-xl ml-1">Search</p>
                             <div className=" w-full h-10 mt-2 border rounded-full border-[#2A282880]/50 px-4 flex  justify-between items-center ">
                                 <input type="text" className="w-[120px] outline-none placeholder:text-sm md:placeholder:text-base" placeholder="Search journal..." />
                                 <img src="/Icons/search.svg" alt="search icon " className=" size-4" />
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="bg-light-beige rounded-2xl px-5 pb-4 pt-7">
                             <h3 className=" text-[24px] mb-5 ">More Blogs</h3>
@@ -200,7 +205,7 @@ export default function BlogSingle() {
                     </div>
                 </div>
 
-               {relatedBlogs.length > 0 &&  <div className=" w-11/12  my-10 lg:my-20 rounded-3xl py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden flex justify-center  bg-sky-blue-light  md:min-h-[85vh] h-full   relative  ">
+                {relatedBlogs.length > 0 && <div className=" w-11/12  my-10 lg:my-20 rounded-3xl py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden flex justify-center  bg-sky-blue-light  md:min-h-[85vh] h-full   relative  ">
                     <ResponsiveClipPath outerClass='absolute z-30 w-full  h-4/12   lg:w-7/12 md:w-9/12 md:h-7/12 lg:h-6/12 xl:w-9/12  2xl:w-8/12 left-0 top-0 xl:h-8/12' ImagePath='/images/blog-single/related-blogs-clip-path.png' />
                     <ResponsiveClipPath outerClass='absolute z-30 md:w-2/12 w-9/12 h-3/12 right-0 bottom-0 md:h-4/12' ImagePath='/images/blog-single/related-blogs-clip-bottom.png' />
 

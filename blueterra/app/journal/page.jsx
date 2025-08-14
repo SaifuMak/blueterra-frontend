@@ -19,6 +19,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState, useRef } from "react"
 import AXIOS_INSTANCE from "@/lib/axios"
 import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers"
+import SearchComponent from "@/components/Journey/SearchComponent"
 
 import { useRouter } from 'next/navigation';
 
@@ -165,9 +166,9 @@ export default function Journal() {
     }, [])
 
     useEffect(() => {
-      scrollToJournals()
+        scrollToJournals()
     }, [currentPage])
-    
+
 
 
 
@@ -211,14 +212,7 @@ export default function Journal() {
                     <div className=" w-11/12 md:w-10/12 2xl:w-9/12 md:space-y-10 flex flex-col  items-center mt-8 lg:mt-16  xl:mt-28  h-full ">
                         <div className="w-full flex max-sm:flex-col  justify-between items-center   ">
 
-                            <div className=" md:w-6/12 w-full  flex flex-col ">
-                                <p className={`xl:text-3xl text-2xl font-medium ${playfair.className}`}>Get Inspired</p>
-                                <div className="md:w-[80%] w-[90%] h-9 md:h-10 xl:h-12 xl:mt-4 mt-3 rounded-sm border border-[#2A282880]/50 px-3 flex  justify-between items-center ">
-                                    <input type="text" className="w-[120px] outline-none placeholder:text-sm md:placeholder:text-base" placeholder="Search journal..." />
-                                    {/* <span className="ml-1 text-slate-900  font-bold"><CiSearch /></span> */}
-                                    <img src="/Icons/search.svg" alt="search icon " className=" size-5" />
-                                </div>
-                            </div>
+                            <SearchComponent isParamsRecieved={false} />
 
                             <div className=" w-full max-sm:mt-5 md:w-6/12 ml-4  flex relative flex-col items-center p-5 md:p-8  xl:pl-10 xl:pt-10 ">
                                 <p className={`2xl:text-[25px] lg:text-[18px] xl:text-[22px] font-light leading-8 xl:leading-10 `}>The best stories aren’t found in books, they’re written on the roads we take, the strangers we meet, and the sunsets we chase.</p>
@@ -251,68 +245,68 @@ export default function Journal() {
 
 
                 <div ref={JournalListRef} className=" w-full  h-full  flex-center ">
-                    
-                  {journals.length > 0 ? (
 
-                  <div className=" w-11/12 relative min-h-[140vh]  flex flex-col  items-center bg-sky-blue-light rounded-3xl">
+                    {journals.length > 0 ? (
 
-                        <div className=" w-11/12 2xl:w-10/12 mt-20 z-20   grid md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-12   ">
-                            {journals?.map((journal, index) => (
+                        <div className=" w-11/12 relative min-h-[140vh]  flex flex-col  items-center bg-sky-blue-light rounded-3xl">
 
-                                <div key={index} className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
+                            <div className=" w-11/12 2xl:w-10/12 mt-20 z-20   grid md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-12   ">
+                                {journals?.map((journal, index) => (
 
-                                    <Image
-                                        src={journal.image_public_url}
-                                        alt={journal.title}
-                                        fill
-                                        className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"
-                                    />
+                                    <div key={index} className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
 
-                                    <div className="absolute inset-0 group">
-                                        {/* Gradient overlay shown only on hover */}
-                                        <div className="transition-all delay-75 duration-700 ease-in-out  opacity-100 bg-gradient-to-t from-black/90 via-transparent to-transparent absolute inset-0 z-0" />
+                                        <Image
+                                            src={journal.image_public_url}
+                                            alt={journal.title}
+                                            fill
+                                            className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"
+                                        />
 
-                                        {/* Text content always visible, moves up on hover */}
-                                        <div className="flex items-end absolute inset-0  z-10">
-                                            <div className="xl:py-6 py-4 px-5 xl:px-8 transform transition-transform duration-1000 group-hover:translate-y-0 2xl:translate-y-[80px] xl:translate-y-[90px] lg:translate-y-[90px] md:translate-y-[80px] translate-y-[80px] text-white">
-                                                <h6 className={` text-lg lg:text-xl  xl:leading-9 2xl:leading-10 font-normal 2xl:text-2xl`}>{journal.title}</h6>
-                                                <Button text='LEARN MORE' buttonStyle={`opacity-0 group-hover:opacity-100 transition-all duration-500 mb-10 mt-5 ease-in-out  max-md:text-sm px-4 lg:px-6 xl:px-8 py-1.5 xl:py-2 `} onClickFunction={() => handleGetBlog(journal.slug)} />
+                                        <div className="absolute inset-0 group">
+                                            {/* Gradient overlay shown only on hover */}
+                                            <div className="transition-all delay-75 duration-700 ease-in-out  opacity-100 bg-gradient-to-t from-black/90 via-transparent to-transparent absolute inset-0 z-0" />
 
+                                            {/* Text content always visible, moves up on hover */}
+                                            <div className="flex items-end absolute inset-0  z-10">
+                                                <div className="xl:py-6 py-4 px-5 xl:px-8 transform transition-transform duration-1000 group-hover:translate-y-0 2xl:translate-y-[80px] xl:translate-y-[90px] lg:translate-y-[90px] md:translate-y-[80px] translate-y-[80px] text-white">
+                                                    <h6 className={` text-lg lg:text-xl  xl:leading-9 2xl:leading-10 font-normal 2xl:text-2xl`}>{journal.title}</h6>
+                                                    <Button text='LEARN MORE' buttonStyle={`opacity-0 group-hover:opacity-100 transition-all duration-500 mb-10 mt-5 ease-in-out  max-md:text-sm px-4 lg:px-6 xl:px-8 py-1.5 xl:py-2 `} onClickFunction={() => handleGetBlog(journal.slug)} />
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                ))}
+                            </div>
+
+
+                            {journals?.length > 0 && <div className=" w-full  my-16 flex justify-center space-x-4  z-20 items-center">
+
+                                <div onClick={() => fetchJournals(selectedFilter, currentPage - 1)} className={`${currentPage > 1 ? ' opacity-100 cursor-pointer' : 'opacity-0 pointer-events-none'}`}>
+                                    <img src="/Icons/arrow-blue.svg" alt="search icon " className={` rotate-180 size-4 `} />
                                 </div>
-                            ))}
+
+                                {[...Array(totalPages)].map((_, index) => (
+                                    <div key={index} onClick={() => fetchJournals(selectedFilter, index + 1)} className={`${index + 1 === currentPage ? 'bg-sky-blue-1 text-white pointer-events-none' : 'bg-white text-sky-blue-1'} transition-all cursor-pointer duration-300 ease-in-out  rounded-sm px-3 py-1.5 border border-slate-100`}>{index + 1}</div>
+                                ))}
+
+                                <div onClick={() => fetchJournals(selectedFilter, currentPage + 1)} className={`${currentPage === totalPages ? ' opacity-0 pointer-events-none' : ' opacity-100 cursor-pointer'}`}>
+                                    <img src="/Icons/arrow-blue.svg" alt="search icon " className=" size-4" />
+                                </div>
+                            </div>}
+
+
+                            <BackgroundClipPath outerClass='absolute    bottom-0   ' ImagePath='/images/journal/journal-card-bottom.png' width='500' height='1000' />
+                            <BackgroundClipPath outerClass='absolute top-[20%] right-0   ' ImagePath='/images/journal/journal-card-left-clippath.png' width='500' height='1000' />
+                            <BackgroundClipPath outerClass='absolute top-[60%] w-fit right-0   ' ImagePath='/images/journal/journal-card-linear-clippath.png' width='500' height='1000' />
+
                         </div>
 
-
-                        {journals?.length > 0 && <div className=" w-full  my-16 flex justify-center space-x-4  z-20 items-center">
-
-                            <div onClick={() => fetchJournals(selectedFilter, currentPage - 1)} className={`${currentPage > 1 ? ' opacity-100 cursor-pointer' : 'opacity-0 pointer-events-none'}`}>
-                                <img src="/Icons/arrow-blue.svg" alt="search icon " className={` rotate-180 size-4 `} />
-                            </div>
-
-                            {[...Array(totalPages)].map((_, index) => (
-                                <div key={index} onClick={() => fetchJournals(selectedFilter, index + 1)} className={`${index + 1 === currentPage ? 'bg-sky-blue-1 text-white pointer-events-none' : 'bg-white text-sky-blue-1'} transition-all cursor-pointer duration-300 ease-in-out  rounded-sm px-3 py-1.5 border border-slate-100`}>{index + 1}</div>
-                            ))}
-
-                            <div onClick={() => fetchJournals(selectedFilter, currentPage + 1)} className={`${currentPage === totalPages ? ' opacity-0 pointer-events-none' : ' opacity-100 cursor-pointer'}`}>
-                                <img src="/Icons/arrow-blue.svg" alt="search icon " className=" size-4" />
-                            </div>
-                        </div>}
-
-
-                        <BackgroundClipPath outerClass='absolute    bottom-0   ' ImagePath='/images/journal/journal-card-bottom.png' width='500' height='1000' />
-                        <BackgroundClipPath outerClass='absolute top-[20%] right-0   ' ImagePath='/images/journal/journal-card-left-clippath.png' width='500' height='1000' />
-                        <BackgroundClipPath outerClass='absolute top-[60%] w-fit right-0   ' ImagePath='/images/journal/journal-card-linear-clippath.png' width='500' height='1000' />
-
-                    </div>
-
-                      ) : (
-                    <div className="w-11/12 relative min-h-[140vh]  flex flex-col  items-center bg-sky-blue-light rounded-3xl">
-                        <p className=" mt-20 text-2xl">No results</p>
-                    </div>
-                  )}
+                    ) : (
+                        <div className="w-11/12 relative min-h-[140vh]  flex flex-col  items-center bg-sky-blue-light rounded-3xl">
+                            <p className=" mt-20 text-2xl">No results</p>
+                        </div>
+                    )}
                 </div>
 
             </div>

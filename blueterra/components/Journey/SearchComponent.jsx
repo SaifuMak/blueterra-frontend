@@ -5,7 +5,7 @@ import { playfair } from "@/app/fonts";
 import { useRouter, useSearchParams } from 'next/navigation';
 
 
-const SearchComponent = () => {
+const SearchComponent = ({ isParamsRecieved = true }) => {
 
   const [searchValue, setSearchValue] = useState("");
   const router = useRouter();
@@ -36,11 +36,28 @@ const SearchComponent = () => {
 
   };
 
+
+
   useEffect(() => {
-    const urlQuery = searchParams.get("query") || "";
-    setSearchValue(urlQuery);
-    localStorage.setItem("searchQuery", urlQuery); // keep storage in sync
+
+    if (isParamsRecieved) {
+      const urlQuery = searchParams.get("query") || "";
+      setSearchValue(urlQuery);
+      localStorage.setItem("searchQuery", urlQuery); // keep storage in sync
+    }
+
   }, [searchParams]);
+
+  useEffect(() => {
+
+    if (!isParamsRecieved) {
+      const searchValue = localStorage.getItem("searchQuery")
+      setSearchValue(searchValue);
+    }
+
+  }, [searchValue]);
+
+
 
 
 
