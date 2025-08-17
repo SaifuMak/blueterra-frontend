@@ -1,23 +1,20 @@
 'use client'
 import Sidebar from "@/components/admin/Sidebar";
 import Navbar from "@/components/admin/Navbar";
-import { useState, useRef } from "react";
-import { IoIosStarOutline, IoIosStar, IoIosStarHalf } from "react-icons/io";
-import { jost, rubik } from '@/app/fonts'
-import ReorderIcons from "@/components/admin/ReorderIcons";
-import ColorThemePicker from "@/components/admin/Itinerary/ColorThemePicker";
-import ImageUploader from "@/components/admin/Itinerary/ImageUploader";
+import { useState } from "react";
+import { rubik } from '@/app/fonts'
+import Dropdown from "@/components/admin/Itinerary/DropDown";
 
 import BannerSection from "@/components/admin/Itinerary/BannerSection";
 import DaysSection from "@/components/admin/Itinerary/DaysSection";
-
 import HotelsSection from "@/components/admin/Itinerary/HotelsSection";
 import LocationsSection from "@/components/admin/Itinerary/LocationsSection";
 import DestinationHighlights from "@/components/admin/Itinerary/DestinationHighlights";
 import SignatureHighlights from "@/components/admin/Itinerary/SignatureHighlights";
 import PackageInclusions from "@/components/admin/Itinerary/PackageInclusions";
 import PackageExclusions from "@/components/admin/Itinerary/PackageExclusions";
-
+import MapRoutingSection from "@/components/admin/Itinerary/MapRoutingSection";
+import GallerySection from "@/components/admin/Itinerary/GallerySection";
 
 export default function AdminAddItinerary() {
 
@@ -32,7 +29,6 @@ export default function AdminAddItinerary() {
     const [days, setDays] = useState([{ title: '', description: '', banner: null, image_title: '' }]);
     const [hotels, setHotels] = useState([{ title: '', description: '', coordinates: '', location: '', mapLink: '', rating: 0 }]);
     const [locations, setLocations] = useState([{ title: '', cordinates: '' }]);
-    const [experiences, setExperiences] = useState([{ title: '' }]);
 
     const [destinationHighlights, setDestinationHighlights] = useState([{ title: '' }]);
     const [signatureHighlights, setSignatureHighlights] = useState([{ title: '' }]);
@@ -42,109 +38,8 @@ export default function AdminAddItinerary() {
     const [mapRouting, setMapRouting] = useState([{ location: '', coordinates: '', transfer: '' }]);
     const [gallery, setGallery] = useState([{ image: '', title: '' }]);
 
-    const experienceRefs = useRef([]);
-
-    const mapRoutingRef = useRef([]);
-    const galleryRef = useRef([]);
-
-
     const inputStyle = 'placeholder:text-[#949393] w-full bg-white rounded-[4px] border border-[#B5B5B5] outline-none  py-2 px-4'
     const textAreaStyle = 'placeholder:text-[#949393] bg-white rounded-[4px] border border-[#B5B5B5] outline-none  min-h-28  py-2 px-4'
-
-    // image uplaoding logic
-
-
-    const handleAddExperiences = () => {
-
-        const lastIndex = experiences.length;
-        setExperiences([...experiences, { title: '' }])
-        setTimeout(() => {
-            const target = experienceRefs.current[lastIndex];
-            target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 200);
-    }
-
-
-    const handleAddMapRouting = () => {
-        const lastIndex = mapRouting.length;
-        setMapRouting([...mapRouting, { location: '', coordinates: '', transfer: '' }]);
-        setTimeout(() => {
-            mapRoutingRef.current[lastIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 200);
-    };
-
-    const handleAddGallery = () => {
-        const lastIndex = gallery.length;
-        setGallery([...gallery, { image: '', title: '' }]);
-
-        setTimeout(() => {
-            const target = galleryRef.current[lastIndex];
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        }, 200);
-    };
-
-    const handleGalleryChange = (index, field, value) => {
-        const updatedGallery = [...gallery];
-        updatedGallery[index][field] = value;
-        setGallery(updatedGallery);
-    };
-
-    const handleDeleteGallery = (indexToDelete) => {
-        const previousIndex = indexToDelete - 1;
-        setGallery((prev) => prev.filter((_, index) => index !== indexToDelete));
-
-        if (previousIndex >= 0) {
-            setTimeout(() => {
-                const target = galleryRef.current[previousIndex];
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                }
-            }, 100);
-        }
-    };
-
-    // Handle changing a experiences input
-    const handleExperienceChange = (index, field, value) => {
-        const updatedExperiences = [...experiences];
-        updatedExperiences[index][field] = value;
-        setExperiences(updatedExperiences);
-    };
-
-    const handleMapRoutingChange = (index, field, value) => {
-        const updated = [...mapRouting];
-        updated[index][field] = value;
-        setMapRouting(updated);
-    };
-
-
-    const handleDeleteExperience = (indexToDelete) => {
-
-        const previousIndex = indexToDelete - 1
-        setExperiences((prevExperiences) => prevExperiences.filter((_, index) => indexToDelete !== index))
-        if (previousIndex > 0) {
-            setTimeout(() => {
-                const target = experienceRefs.current[previousIndex];
-                target.scrollIntoView({ behavior: 'smooth', block: 'end' });
-            }, 100);
-        }
-    }
-
-    const handleDeleteMapRouting = (indexToDelete) => {
-        const previousIndex = indexToDelete - 1;
-        setMapRouting((prev) => prev.filter((_, index) => index !== indexToDelete));
-
-        if (previousIndex >= 0) {
-            setTimeout(() => {
-                const target = mapRoutingRef.current[previousIndex];
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                }
-            }, 100);
-        }
-    };
-
 
     const handleReorder = (index, action, arrayOfElements, setElements) => {
 
@@ -163,6 +58,19 @@ export default function AdminAddItinerary() {
         setElements(newArray);
     }
 
+    const transferOptions = ["Land", "Air"];
+
+    const [openDropdown, setOpenDropdown] = useState(null); // track which one is open
+
+    const [destination, setDestination] = useState("");
+    const [country, setCountry] = useState("");
+    const [collection, setCollection] = useState("");
+    const [category, setCategory] = useState("");
+
+    const destinationOptions = ["Paris", "London", "Tokyo", "Rome"];
+    const countryOptions = ["France", "Italy", "Japan", "India"];
+    const collectionOptions = ["Luxury", "Adventure", "Romantic", "Budget"];
+    const categoryOptions = ["Beach", "Mountain", "City", "Safari"];
 
     return (
 
@@ -176,7 +84,6 @@ export default function AdminAddItinerary() {
                 <Sidebar />
 
                 <div className=" flex-1 relative    ml-4  mr-8  p-10 rounded-xl bg-admin-light-dark-background w-full flex justify-center overflow-y-scroll h-[97vh] z-50">
-
 
                     <div className=" flex space-x-3 max-xl:text-sm text-white  absolute  right-5 top-5">
                         <button className=" bg-[#524D4D]  w-fit h-fit px-4  py-2  rounded-sm">Save Draft</button>
@@ -199,7 +106,6 @@ export default function AdminAddItinerary() {
                             setSelectedImageFile={setSelectedImageFile}
                         />
 
-
                         {/* Days  of itinerary */}
                         <DaysSection
                             textAreaStyle={textAreaStyle}
@@ -209,7 +115,6 @@ export default function AdminAddItinerary() {
                             handleReorder={handleReorder}
                         />
 
-
                         {/* Hotels in itinerary */}
                         <HotelsSection
                             textAreaStyle={textAreaStyle}
@@ -218,7 +123,6 @@ export default function AdminAddItinerary() {
                             hotels={hotels}
                             setHotels={setHotels}
                         />
-
 
                         {/* Locations in itinerary */}
                         <LocationsSection
@@ -262,130 +166,67 @@ export default function AdminAddItinerary() {
 
                         />
 
+                        <MapRoutingSection
+                            handleReorder={handleReorder}
+                            transferOptions={transferOptions}
+                            mapRouting={mapRouting}
+                            setMapRouting={setMapRouting}
+                            inputStyle={inputStyle}
+                        />
 
-                        {/* Experiences  of itinerary */}
-                        {/* <div className="flex flex-col w-9/12 xl:w-6/12   transition-all duration-300 ease-in-out">
+                        <div className=" w-11/12">
+                            <h2 className="text-xl font-medium">Post in:</h2>
 
-                            <div className="flex items-center space-x-8 mb-8">
-                                <h2 className=" text-xl font-medium">Experiences to Unlock</h2>
-                                <img onClick={handleAddExperiences} src="/Icons/sqaure-add-icon.svg" alt="" className=" cursor-pointer size-7" />
-                            </div>
+                            <div className="flex mt-5 gap-8">
+                                <Dropdown
+                                    value={destination}
+                                    onChange={setDestination}
+                                    options={destinationOptions}
+                                    placeholder="Select Destination"
+                                    isOpen={openDropdown === "destination"}
+                                    onToggle={(isOpen) => setOpenDropdown(isOpen ? "destination" : null)}
+                                />
 
-                            {experiences?.map((experience, index) => (
-                                <div key={index} ref={(el) => (experienceRefs.current[index] = el)} className={` my-2 relative flex flex-col space-y-2`}>
+                                <Dropdown
+                                    value={country}
+                                    onChange={setCountry}
+                                    options={countryOptions}
+                                    placeholder="Select Country"
+                                    isOpen={openDropdown === "country"}
+                                    onToggle={(isOpen) => setOpenDropdown(isOpen ? "country" : null)}
+                                />
 
-                                    <input type="text" value={experience.title} onChange={(e) => handleExperienceChange(index, 'title', e.target.value)} placeholder="Title.." className={`${inputStyle}`} />
+                                <Dropdown
+                                    value={collection}
+                                    onChange={setCollection}
+                                    options={collectionOptions}
+                                    placeholder="Select Collection"
+                                    isOpen={openDropdown === "collection"}
+                                    onToggle={(isOpen) => setOpenDropdown(isOpen ? "collection" : null)}
+                                />
 
-                                    <div className=" absolute flex items-center space-x-3 -right-48 top-3">
-                                        <ReorderIcons handleReorder={handleReorder} index={index} handleDelete={handleDeleteExperience} arrayOfElements={experiences} setElements={setExperiences} />
-                                    </div>
-
-                                </div>))}
-                        </div> */}
-
-                        <div className="flex flex-col xl:w-6/12 transition-all duration-300 ease-in-out">
-                            <div className="flex items-center space-x-8">
-                                <h2 className="text-xl font-medium">Map Routing</h2>
-                                <img
-                                    onClick={handleAddMapRouting}
-                                    src="/Icons/sqaure-add-icon.svg"
-                                    alt=""
-                                    className="cursor-pointer size-7"
+                                <Dropdown
+                                    value={category}
+                                    onChange={setCategory}
+                                    options={categoryOptions}
+                                    placeholder="Select Category"
+                                    isOpen={openDropdown === "category"}
+                                    onToggle={(isOpen) => setOpenDropdown(isOpen ? "category" : null)}
                                 />
                             </div>
-
-                            {mapRouting.map((data, index) => (
-                                <div
-                                    key={index}
-                                    ref={(el) => (mapRoutingRef.current[index] = el)}
-                                    className="my-1 relative flex flex-col space-y-4"
-                                >
-                                    <div className="w-full flex flex-col space-y-6 mt-6">
-
-                                        <div className="flex space-x-5 ">
-                                            <input
-                                                type="text"
-                                                value={data.location}
-                                                onChange={(e) => handleMapRoutingChange(index, 'location', e.target.value)}
-                                                placeholder="Location.."
-                                                className={inputStyle}
-                                            />
-                                            <input
-                                                type="text"
-                                                value={data.coordinates}
-                                                onChange={(e) => handleMapRoutingChange(index, 'coordinates', e.target.value)}
-                                                placeholder="Coordinates.."
-                                                className={inputStyle}
-                                            />
-                                        </div>
-
-
-                                    </div>
-
-                                    <div className="absolute flex items-center space-x-3 -right-48 top-8">
-                                        <ReorderIcons
-                                            handleReorder={handleReorder}
-                                            index={index}
-                                            handleDelete={handleDeleteMapRouting}
-                                            arrayOfElements={mapRouting}
-                                            setElements={setMapRouting}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
                         </div>
 
-
-                        <div className="flex flex-col xl:w-6/12 transition-all duration-300 ease-in-out">
-                            <div className="flex items-center space-x-8">
-                                <h2 className="text-xl font-medium">Gallery images</h2>
-                                <img
-                                    onClick={handleAddGallery}
-                                    src="/Icons/sqaure-add-icon.svg"
-                                    alt=""
-                                    className="cursor-pointer size-7"
-                                />
-                            </div>
-
-
-                            {gallery.map((data, index) => (
-                                <div
-                                    key={index}
-                                    ref={(el) => (galleryRef.current[index] = el)}
-                                    className="my-1 mt-4 relative flex flex-col space-y-4"
-                                >
-
-                                    {/* Image URL Field */}
-                                    <div className=" flex w-full items-center space-x-12 mt-4  ">
-                                        <ImageUploader
-                                            label="Image upload"
-                                            selectedFile={data.image}
-                                            setSelectedFile={(file) => handleGalleryChange(index, "image", file)}
-                                            id={`GalleryUpload-${index}`} // unique per day
-                                        />
-                                        {/* Title Field */}
-                                        <div className=" flex flex-1 ">
-
-                                            <input
-                                                type="text"
-                                                value={data.title}
-                                                onChange={(e) => handleGalleryChange(index, 'title', e.target.value)}
-                                                placeholder="Image title"
-                                                className={inputStyle}
-                                            />
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            ))}
-                        </div>
+                        <GallerySection
+                            textAreaStyle={textAreaStyle}
+                            inputStyle={inputStyle}
+                            handleReorder={handleReorder}
+                            gallery={gallery}
+                            setGallery={setGallery} />
 
                     </div>
-
                 </div>
-
             </div>
         </div>
     )
 }
+
