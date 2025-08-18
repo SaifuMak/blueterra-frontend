@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import { MdKeyboardArrowDown } from '@/components/reactIcons'
+
 
 const TravelModeDropDown = ({ value, onChange, options, placeholder, className = "" }) => {
   const [open, setOpen] = useState(false);
@@ -25,15 +27,16 @@ const TravelModeDropDown = ({ value, onChange, options, placeholder, className =
         onClick={() => setOpen(!open)}
         className="px-3 py-2 cursor-pointer flex justify-between items-center"
       >
-        <span className={value ? "text-black" : "text-[#949393]"}>
+        <span className={value ? " text-dark-28" : "text-[#949393]"}>
           {value || placeholder}
         </span>
-        <span className="text-gray-500">▾</span>
+        <MdKeyboardArrowDown className={`${open ? ' rotate-180' : ' rotate-0'} text-2xl text-dark-blue transform transition-all duration-500 `} />
+
       </div>
 
       {/* Dropdown options */}
       {open && (
-        <div className="absolute mt-1 w-full border rounded-lg bg-white shadow-lg z-10">
+        <div className="absolute mt-1 w-full text-dark-28 border rounded-lg bg-white shadow-lg z-10">
           {options.map((opt, idx) => (
             <div
               key={idx}
@@ -41,9 +44,8 @@ const TravelModeDropDown = ({ value, onChange, options, placeholder, className =
                 onChange(opt);
                 setOpen(false);
               }}
-              className={`px-3 py-2 cursor-pointer hover:bg-gray-100 ${
-                value === opt ? "bg-gray-200" : ""
-              }`}
+              className={`px-3 py-2 cursor-pointer hover:bg-gray-100 ${value === opt ? "bg-gray-200" : ""
+                }`}
             >
               {opt}
             </div>

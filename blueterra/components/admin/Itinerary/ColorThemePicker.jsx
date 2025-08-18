@@ -33,7 +33,7 @@ export default function ColorThemePicker({color, setColor}) {
             <div className="relative">
                 <div
                     onClick={() => setIsPickerVisible((prev) => !prev)}
-                    className="w-8 h-8 rounded-full border border-gray-400 cursor-pointer"
+                    className=" size-7 rounded-full border border-black cursor-pointer"
                     style={{ backgroundColor: color }}
                 ></div>
 

@@ -42,7 +42,7 @@ function PackageInclusions({ packageInclusions, setPackageInclusions, textAreaSt
     return (
         <div className="flex flex-col xl:w-3/12 transition-all duration-300 ease-in-out">
             <div className="flex items-center space-x-8">
-                <h2 className="text-xl font-medium">Package Inclusions</h2>
+                <h2 className="text-xl font-medium text-dark-blue">Package Inclusions</h2>
                 <img
                     onClick={handleAddPackageInclusions}
                     src="/Icons/sqaure-add-icon.svg"
@@ -64,6 +64,7 @@ function PackageInclusions({ packageInclusions, setPackageInclusions, textAreaSt
                             onChange={(e) => handlePackageInclusionChange(index, 'title', e.target.value)}
                             placeholder="Title.."
                             className={inputStyle}
+                            required
                         />
                     </div>
 

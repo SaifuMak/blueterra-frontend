@@ -4,6 +4,7 @@ import useClickOutside from '@/app/hooks/useClickOutside'
 
 import { RxCross2 } from '@/components/reactIcons'
 import ScrollContainer from 'react-indiana-drag-scroll';
+import {destinations,countries,collections,categories} from '@/components/datas/FilterOptions'
 
 export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex,handleChangeCollection }) {
 
@@ -18,10 +19,7 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible, ex
 
     const filterScrollRef = useRef();
 
-    const destinations = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia",]
-    const countries = ["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"]
-    const collections = ["Signature Journeys", "Explore by Landscape", "Adventures in Motion", "Mindful Escapes", "Unforgettable Editions", "Tailored for You"]
-    const categories = ["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys"]
+   
 
     const [selectedFilters, setSelectedFilters] = useState({
         categories: [],

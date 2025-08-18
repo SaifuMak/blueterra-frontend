@@ -45,7 +45,7 @@ function PackageExclusions({ packageExclusions, setPackageExclusions, textAreaSt
     return (
         <div className="flex flex-col xl:w-3/12 transition-all duration-300 ease-in-out">
             <div className="flex items-center space-x-8">
-                <h2 className="text-xl font-medium">Package Exclusions</h2>
+                <h2 className="text-xl font-medium text-dark-blue">Package Exclusions</h2>
                 <img
                     onClick={handleAddPackageExclusions}
                     src="/Icons/sqaure-add-icon.svg"
@@ -67,6 +67,7 @@ function PackageExclusions({ packageExclusions, setPackageExclusions, textAreaSt
                             onChange={(e) => handlePackageExclusionChange(index, 'title', e.target.value)}
                             placeholder="Title.."
                             className={inputStyle}
+                            required
                         />
                     </div>
 

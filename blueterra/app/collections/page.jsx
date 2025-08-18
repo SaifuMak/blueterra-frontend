@@ -172,9 +172,7 @@ export default function Collection() {
 
       {!isMobile && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} />}
 
-
       <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
-
 
         {isMobile && <MobileFilter
           setIsAnyFilterOpened={setIsAnyFilterOpened}

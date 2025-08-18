@@ -39,14 +39,14 @@ function DestinationHighlights({  destinationHighlights, setDestinationHighlight
         <div className="flex flex-col  xl:w-3/12   transition-all duration-300 ease-in-out">
 
             <div className="flex items-center space-x-8">
-                <h2 className=" text-xl font-medium">Destination Highlights</h2>
+                <h2 className=" text-xl text-dark-blue font-medium">Destination Highlights</h2>
                 <img onClick={handleAddDestinationHighlights} src="/Icons/sqaure-add-icon.svg" alt="" className=" cursor-pointer size-7" />
             </div>
             {destinationHighlights?.map((data, index) => (
                 <div key={index} ref={(el) => (destinationHighlightsRef.current[index] = el)} className={` my-1 relative flex flex-col space-y-4`}>
 
                     <div className=" w-full flex items-center space-x-5 mt-6">
-                        <input type="text" value={data.title} onChange={(e) => handleDestinationsChange(index, 'title', e.target.value)} placeholder="Title.." className={`${inputStyle}`} />
+                        <input type="text" value={data.title} onChange={(e) => handleDestinationsChange(index, 'title', e.target.value)} placeholder="Title.." className={`${inputStyle}`}  required/>
                     </div>
 
                     <div className=" absolute flex items-center space-x-3 -right-48 top-8">

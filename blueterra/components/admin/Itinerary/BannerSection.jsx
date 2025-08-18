@@ -4,7 +4,7 @@ import ColorThemePicker from './ColorThemePicker'
 
 function BannerSection({
     textAreaStyle,
-     title,
+    title,
     setTitle,
     locationTitle,
     setLocationTitle,
@@ -29,11 +29,11 @@ function BannerSection({
         < div className=" flex flex-col w-6/12 space-y-6" >
 
             <div className=" flex  space-x-5 ">
-                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Itinerary Title...." className={`placeholder:text-[#949393] bg-white rounded-[4px] border border-[#B5B5B5] outline-none  py-2 px-4  w-full`} />
-                <input type="text" value={locationTitle} onChange={(e) => setLocationTitle(e.target.value)} placeholder="Location title" className={`placeholder:text-[#949393] bg-white rounded-[4px] border border-[#B5B5B5] outline-none  py-2 px-4  w-full`} />
+                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Itinerary Title...." className={`placeholder:text-[#949393] bg-white rounded-[4px] border border-[#B5B5B5] outline-none  py-2 px-4  w-full`} required />
+                <input type="text" value={locationTitle} onChange={(e) => setLocationTitle(e.target.value)} placeholder="Location title" className={`placeholder:text-[#949393] bg-white rounded-[4px] border border-[#B5B5B5] outline-none  py-2 px-4  w-full`} required />
             </div>
 
-            <textarea name="" id="" placeholder="Banner description" value={description} onChange={(e) => setDescription(e.target.value)} className={`${textAreaStyle} w-full  `}></textarea>
+            <textarea name="" id="" placeholder="Banner description" value={description} onChange={(e) => setDescription(e.target.value)} className={`${textAreaStyle} w-full   `} required></textarea>
 
 
             <div className="space-y-2">

@@ -32,7 +32,7 @@ const HotelIcon = new L.Icon({
     shadowSize: [41, 41]
 });
 
-// Your location data
+
 const locations = [
     { coords: [-1.2717, 36.8089], title: 'Nairobi City', routeType: 'land' },
     { coords: [-1.3308, 36.9253], title: 'Jomo Kenyatta International Airport', routeType: 'flight' },

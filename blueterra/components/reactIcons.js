@@ -25,6 +25,7 @@ import { MdInfoOutline } from "react-icons/md";
 import { IoMdArrowDropup } from "react-icons/io";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { RiLoader4Line } from "react-icons/ri";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 export {
     GoDot,
@@ -54,4 +55,5 @@ export {
     IoMdArrowDropup,
     MdOutlineArrowForwardIos,
     RiLoader4Line,
+    MdKeyboardArrowDown,
 };

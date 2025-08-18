@@ -41,7 +41,7 @@ const MapRoutingSection = ({handleReorder,transferOptions,mapRouting,setMapRouti
     return (
         <div className="flex flex-col xl:w-7/12 transition-all duration-300  ease-in-out">
             <div className="flex items-center space-x-8">
-                <h2 className="text-xl font-medium">Map Routing</h2>
+                <h2 className="text-xl text-dark-blue font-medium">Map Routing</h2>
                 <img
                     onClick={handleAddMapRouting}
                     src="/Icons/sqaure-add-icon.svg"
@@ -65,6 +65,7 @@ const MapRoutingSection = ({handleReorder,transferOptions,mapRouting,setMapRouti
                                 onChange={(e) => handleMapRoutingChange(index, 'location', e.target.value)}
                                 placeholder="Location.."
                                 className={inputStyle}
+                                required
                             />
                             <input
                                 type="text"
@@ -72,6 +73,7 @@ const MapRoutingSection = ({handleReorder,transferOptions,mapRouting,setMapRouti
                                 onChange={(e) => handleMapRoutingChange(index, 'coordinates', e.target.value)}
                                 placeholder="Coordinates.."
                                 className={inputStyle}
+                                required
                             />
 
                         </div>

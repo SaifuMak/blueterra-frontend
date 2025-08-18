@@ -14,7 +14,7 @@ export default function ImageUploader({
   };
 
   return (
-    <div className="space-y-2  text-nowrap">
+    <div className="space-y-2 ">
       {/* Upload Row */}
       <div className="flex  space-x-8">
         <p>{label}</p>
