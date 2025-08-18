@@ -43,12 +43,12 @@ function FeaturedPoints({ featuredPoints, setFeaturedPoints, textAreaStyle, inpu
         <div className="flex flex-col w-5/12 transition-all duration-300 ease-in-out">
             <div className="flex items-center space-x-8">
                 <h2 className="text-xl text-dark-blue font-medium">Featured Points</h2>
-                <img
+                {/* <img
                     onClick={handleAddFeaturedPoints}
                     src="/Icons/sqaure-add-icon.svg"
                     alt=""
                     className="cursor-pointer size-7"
-                />
+                /> */}
             </div>
 
             {featuredPoints.map((data, index) => (

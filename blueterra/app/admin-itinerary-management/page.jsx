@@ -3,8 +3,13 @@ import Sidebar from "@/components/admin/Sidebar";
 import Navbar from "@/components/admin/Navbar";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import AXIOS_INSTANCE from "@/lib/axios";
+
 
 export default function AdminItinerary() {
+
+
 
     const ItineraryData = [
         { name: '11 Days Iceland Nature & Northern Lights', days: '03', collection: 'Lorem Ipsum', action: ' ', add: ' ' },
@@ -14,12 +19,31 @@ export default function AdminItinerary() {
         { name: '5 Days Iceland Nature & Northern Lights', days: '03', collection: 'Lorem Ipsum', action: ' ', add: ' ' },
     ]
 
+    const [Itineraries, setItineraries] = useState()
+
     const rowStyle = 'px-4 py-6  border-t order-gray-100/10'
     const router = useRouter()
 
     const handleAddItineraray = () => {
         router.push('/admin-create-itinerary')
     }
+
+    const getItineraries = async () => {
+
+        try {
+            const response = await AXIOS_INSTANCE.get(`itineraries/`)
+            setItineraries(response?.data?.results)
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    useEffect(() => {
+        getItineraries()
+    }, [])
+
 
     return (
         <div className=" h-screen w-full ">
@@ -45,12 +69,14 @@ export default function AdminItinerary() {
                                 </tr>
                             </thead>
                             <tbody className=" bg-white ">
-                                {ItineraryData?.map((item, index) => (
+                                {Itineraries?.map((item, index) => (
                                     <tr key={index} className=" rounded-3xl">
 
-                                        <td className={rowStyle}>{item.name}</td>
-                                        <td className={rowStyle}>{item.days}</td>
+                                        <td className={rowStyle}>{item.title}</td>
+                                        <td className={rowStyle}>{item.days.length}</td>
                                         <td className={rowStyle}>{item.collection}</td>
+
+                                       
                                         <td className={rowStyle}>
                                             <div className=" flex  justify-between">
                                                 <img src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />

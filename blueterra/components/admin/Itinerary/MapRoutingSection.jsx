@@ -54,9 +54,9 @@ const MapRoutingSection = ({handleReorder,transferOptions,mapRouting,setMapRouti
                 <div
                     key={index}
                     ref={(el) => (mapRoutingRef.current[index] = el)}
-                    className="my-1 relative flex flex-col space-y-4"
+                    className=" relative flex flex-col"
                 >
-                    <div className="w-full flex flex-col space-y-6 mt-6">
+                    <div className="w-full flex flex-col space-y-4 mt-6">
 
                         <div className="flex space-x-5 ">
                             <input
@@ -78,7 +78,7 @@ const MapRoutingSection = ({handleReorder,transferOptions,mapRouting,setMapRouti
 
                         </div>
 
-                        <div className="">
+                        <div className={`${mapRouting?.length -1 === index ? 'opacity-0 pointer-events-none' : 'opacity-100'} mt-2`}>
                             <TravelModeDropDown
                                 value={data.transfer}
                                 onChange={(val) => handleMapRoutingChange(index, "transfer", val)}

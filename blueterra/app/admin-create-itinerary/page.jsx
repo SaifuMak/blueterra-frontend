@@ -5,7 +5,7 @@ import { useState } from "react";
 import { rubik } from '@/app/fonts'
 import Dropdown from "@/components/admin/Itinerary/DropDown";
 import { toast } from 'sonner';
-
+import AXIOS_INSTANCE from "@/lib/axios";
 import { destinations, countries, collections, categories } from '@/components/datas/FilterOptions'
 
 import BannerSection from "@/components/admin/Itinerary/BannerSection";
@@ -41,7 +41,7 @@ export default function AdminAddItinerary() {
     const [packageInclusions, setPackageInclusions] = useState([{ title: '' }]);
     const [packageExclusions, setPackageExclusions] = useState([{ title: '' }]);
 
-    const [mapRouting, setMapRouting] = useState([{ location: '', coordinates: '', transfer: '' }]);
+    const [mapRouting, setMapRouting] = useState([{ location: '', coordinates: '', transfer: '' }, { location: '', coordinates: '', transfer: '' }]);
     const [gallery, setGallery] = useState([{ image: '', title: '' }]);
     const [featuredPoints, setFeaturedPoints] = useState([{ suggestedDate: '', price: '', additionalInformation: '' }])
 
@@ -73,6 +73,19 @@ export default function AdminAddItinerary() {
     }
 
 
+    const confirmAddItinerary = async (formData) => {
+
+        try {
+            const response = await AXIOS_INSTANCE.post(`create-itinerary/`, formData)
+
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+
     const handleAddItinerary = (e) => {
         e.preventDefault();
 
@@ -96,7 +109,7 @@ export default function AdminAddItinerary() {
         }
 
         for (let i = 0; i < mapRouting.length; i++) {
-            if (!mapRouting[i].transfer) {
+            if (!mapRouting[i].transfer && i !== mapRouting.length - 1) {
                 toast.error(`Transfer is missing in Map Routing ${i + 1}`);
                 return;
             }
@@ -156,10 +169,9 @@ export default function AdminAddItinerary() {
             formData.append(`hotels[${index}][location]`, hotel.location);
             formData.append(`hotels[${index}][mapLink]`, hotel.mapLink);
             formData.append(`hotels[${index}][rating]`, hotel.rating);
-            // if hotels also have images later, handle same way as gallery
         });
 
-        
+
         // gallery needs file + title
         gallery.forEach((item, index) => {
             if (item.image) {
@@ -171,7 +183,8 @@ export default function AdminAddItinerary() {
         for (let [key, value] of formData.entries()) {
             console.log(key, value);
         }
-        alert('posted')
+        confirmAddItinerary(formData)
+        // alert('posted')
     }
 
 
