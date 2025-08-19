@@ -7,7 +7,7 @@ import Dropdown from "@/components/admin/Itinerary/DropDown";
 import { toast } from 'sonner';
 import AXIOS_INSTANCE from "@/lib/axios";
 import { destinations, countries, collections, categories } from '@/components/datas/FilterOptions'
-
+import { useRef } from "react";
 import BannerSection from "@/components/admin/Itinerary/BannerSection";
 import DaysSection from "@/components/admin/Itinerary/DaysSection";
 import HotelsSection from "@/components/admin/Itinerary/HotelsSection";
@@ -19,11 +19,17 @@ import PackageExclusions from "@/components/admin/Itinerary/PackageExclusions";
 import MapRoutingSection from "@/components/admin/Itinerary/MapRoutingSection";
 import GallerySection from "@/components/admin/Itinerary/GallerySection";
 import FeaturedPoints from "@/components/admin/Itinerary/FeaturedPoints";
+import Loader from "@/components/generalComponents/Loader";
+import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 
 export default function AdminAddItinerary() {
 
     const inputStyle = 'placeholder:text-[#949393] w-full bg-white rounded-[4px] border border-[#B5B5B5] outline-none  py-2 px-4'
     const textAreaStyle = 'placeholder:text-[#949393] bg-white rounded-[4px] border border-[#B5B5B5] outline-none  min-h-28  py-2 px-4'
+
+
+    const containerRef = useRef(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     const [title, setTitle] = useState('')
     const [locationTitle, setLocationTitle] = useState('')
@@ -74,6 +80,7 @@ export default function AdminAddItinerary() {
 
 
     const confirmAddItinerary = async (formData) => {
+        containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
         try {
             const response = await AXIOS_INSTANCE.post(`create-itinerary/`, formData)
@@ -83,11 +90,22 @@ export default function AdminAddItinerary() {
         catch (e) {
             console.log(e)
         }
+        finally {
+            setIsLoading(false)
+        }
     }
 
 
     const handleAddItinerary = (e) => {
+
         e.preventDefault();
+        if (isLoading) return
+
+        const isPublish = e.nativeEvent.submitter.value === "publish";
+
+        console.log(isPublish, 'this is the publish status -------------');
+        
+
 
         if (!selectedBannerImageFile) {
             toast.error("Banner image is not uploaded!");
@@ -127,7 +145,9 @@ export default function AdminAddItinerary() {
             }
         }
 
+        setIsLoading(true)
         const formData = new FormData();
+        formData.delete("is_published");
 
         formData.append("title", title);
         formData.append("location_title", locationTitle);
@@ -137,6 +157,7 @@ export default function AdminAddItinerary() {
         formData.append("country", country);
         formData.append("collection", collection);
         formData.append("category", category);
+        formData.append("is_published", isPublish ? "true" : "false")
 
         // banner image
         if (selectedBannerImageFile) {
@@ -205,8 +226,10 @@ export default function AdminAddItinerary() {
                     <div className=" flex-1 relative    ml-4  mr-8  p-10 rounded-xl bg-admin-light-dark-background w-full flex justify-center overflow-y-scroll h-[97vh] z-50">
 
                         <div className=" flex space-x-3 max-xl:text-sm text-white  absolute   right-5 top-5">
-                            <button type="submit" className=" bg-[#524D4D]  w-fit h-fit px-4  py-2  rounded-sm">Save Draft</button>
-                            <button className=" bg-[#129366]  w-fit h-fit px-4 py-2 rounded-sm  ">Publish</button>
+                            <button type="submit" name="action"
+                                value="draft" className=" bg-[#524D4D]  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
+                            <button type="submit" name="action"
+                                value="publish" className=" bg-[#129366] min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
                         </div>
 
                         <div className="flex flex-col w-full  space-y-10">
@@ -280,8 +303,6 @@ export default function AdminAddItinerary() {
                                     handleReorder={handleReorder}
                                     packageInclusions={packageInclusions}
                                     setPackageInclusions={setPackageInclusions}
-
-
                                 />
                             </div>
 
@@ -361,8 +382,10 @@ export default function AdminAddItinerary() {
 
                             <div className=" py-10">
                                 <div className=" flex space-x-3 max-xl:text-sm text-white">
-                                    <button type="submit" className=" bg-[#524D4D]  w-fit h-fit px-4  py-2  rounded-sm">Save Draft</button>
-                                    <button className=" bg-[#129366]  w-fit h-fit px-4 py-2 rounded-sm  ">Publish</button>
+                                    <button type="submit" name="action"
+                                        value="draft" className=" bg-[#524D4D]  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
+                                    <button type="submit" name="action"
+                                        value="publish" className=" bg-[#129366] min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
                                 </div>
 
                             </div>

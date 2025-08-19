@@ -2,10 +2,10 @@ import React from 'react'
 import { BiLoaderCircle } from "react-icons/bi";
 
 
-const Loader = () => {
+const Loader = ({ height = 'h-[100vh]' }) => {
     return (
-        <div className=" bg-white  z-50 absolute inset-0 w-full h-[100vh] flex-center">
-            <BiLoaderCircle className=' animate-spin text-3xl text-sky-blue-1' />
+        <div className={` ${height} bg-white  z-50 absolute inset-0 w-full h-[100vh] flex  justify-center items-center  `} >
+            <BiLoaderCircle className=' animate-spin text-3xl text-sky-blue-1 ' />
         </div>
     )
 }

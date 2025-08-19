@@ -13,6 +13,8 @@ import { toast } from 'sonner';
 import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
 import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 
+
+
 export default function AdminBlogs() {
 
     const rowStyle = 'px-4 py-6 text-base 2xl:text-lg border-t border-gray-100/10'
@@ -215,8 +217,6 @@ export default function AdminBlogs() {
                             </div>
                         </div>
                     </div>
-
-
 
                     {isLoading ? (
                         <div className=" min-h-[500px] flex-center mt-5">
