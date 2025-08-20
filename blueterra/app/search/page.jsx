@@ -18,10 +18,10 @@ import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers"
 
 import { useRouter } from 'next/navigation';
 // import SearchComponent from "@/components/Journey/SearchComponent"
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
-const SearchComponent = dynamic(() => import("@/components/Journey/SearchComponent"), { ssr: false });
+// const SearchComponent = dynamic(() => import("@/components/Journey/SearchComponent"), { ssr: false });
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -152,9 +152,9 @@ export default function Search() {
 
                     <div className=" w-11/12 md:w-10/12 2xl:w-9/12 md:space-y-10 flex flex-col  items-center  my-20  h-full ">
                         <div className="w-full flex flex-col  justify-between    ">
-                            <Suspense fallback={<div>Loading search...</div>}>
+                            {/* <Suspense fallback={<div>Loading search...</div>}>
                                 <SearchComponent />
-                            </Suspense>
+                            </Suspense> */}
 
                             {/* <SearchComponent /> */}
 
