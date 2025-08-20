@@ -150,9 +150,11 @@ export default function Search() {
 
                     <div className=" w-11/12 md:w-10/12 2xl:w-9/12 md:space-y-10 flex flex-col  items-center  my-20  h-full ">
                         <div className="w-full flex flex-col  justify-between    ">
-                           <Suspense fallback={<div>Loading search...</div>}>
+                           {/* <Suspense fallback={<div>Loading search...</div>}>
                                 <SearchComponent />
-                            </Suspense> 
+                            </Suspense>  */}
+                            
+                                <SearchComponent />
                            
                             <p className=" font-normal text-xl mt-3">   {`Showing results for`} <span className=" font-medium">{query}</span> </p>
 

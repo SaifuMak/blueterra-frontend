@@ -22,7 +22,6 @@ export default function EditJournal() {
     const [journalCoverImage, setJournalCoverImage] = useState(null)
     const [blogContent, setBlogContent] = useState('');
 
-
     const [createCategoryPopupOpened, setCreateCategoryPopupOpened] = useState(false)
     const fileInputRef = useRef();
     const createCategoryInputRef = useRef()

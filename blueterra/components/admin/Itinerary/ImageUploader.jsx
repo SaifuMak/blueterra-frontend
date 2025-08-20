@@ -17,7 +17,7 @@ export default function ImageUploader({
     <div className="space-y-2 ">
       {/* Upload Row */}
       <div className="flex  space-x-8">
-        <p>{label}</p>
+        <p className=" text-nowrap">{label}</p>
 
         {/* Hidden file input */}
         <input
@@ -31,7 +31,7 @@ export default function ImageUploader({
         {/* Browse Button */}
         <label
           htmlFor={id}
-          className="px-4 border border-dark-4B w-fit bg-white cursor-pointer"
+          className="px-4 border h-fit border-dark-4B w-fit bg-white cursor-pointer"
         >
           Browse
         </label>

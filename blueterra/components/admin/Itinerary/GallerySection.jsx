@@ -41,9 +41,9 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
         }
     };
 
-    
+
     return (
-        <div className="flex flex-col xl:w-6/12 transition-all duration-300 ease-in-out">
+        <div className="flex flex-col xl:w-9/12 transition-all duration-300 ease-in-out">
             <div className="flex items-center space-x-8">
                 <h2 className="text-xl font-medium text-dark-blue">Gallery images</h2>
                 <img
@@ -54,7 +54,6 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
                 />
             </div>
 
-
             {gallery.map((data, index) => (
                 <div
                     key={index}
@@ -64,16 +63,16 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
 
                     {/* Image URL Field */}
                     <div className=" flex w-full items-center space-x-12 mt-4  ">
-                        <div className=" w-1/2">
-                        <ImageUploader
-                            label="Image upload"
-                            selectedFile={data.image}
-                            setSelectedFile={(file) => handleGalleryChange(index, "image", file)}
-                            id={`GalleryUpload-${index}`} // unique per day
-                        />
+                        <div className=" ">
+                            <ImageUploader
+                                label="Image upload"
+                                selectedFile={data.image}
+                                setSelectedFile={(file) => handleGalleryChange(index, "image", file)}
+                                id={`GalleryUpload-${index}`} // unique per day
+                            />
                         </div>
                         {/* Title Field */}
-                      {data.image &&   <div className=" flex flex-1 ">
+                        {data.image && <div className=" ml-4 flex flex-1 ">
 
                             <input
                                 type="text"
@@ -84,7 +83,21 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
                                 required
                             />
                         </div>}
-
+                        {data.image_public_url && (
+                            // <button
+                            //     onClick={() => window.open(data.image_public_url, "_blank")}
+                            //     className="px-3 py-1 bg-sky-blue-dark text-sm w-fit text-white rounded transition"
+                            // >
+                            //     View Image
+                            // </button>
+                            <a href={data.image_public_url} target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src={data.image_public_url}
+                                    alt="gallery Preview"
+                                    className="w-20 h-12 cursor-pointer object-cover rounded shadow-md hover:opacity-80 transition"
+                                />
+                            </a>
+                        )}
                     </div>
 
                 </div>

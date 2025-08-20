@@ -14,6 +14,7 @@ function BannerSection({
     setColor,
     selectedImageFile,
     setSelectedImageFile,
+    selectedBannerImageUrl = null,
 }) {
 
 
@@ -74,6 +75,15 @@ function BannerSection({
                     <div className="text-sm text-sky-blue-dark">
                         <p>{selectedImageFile.name}</p>
                     </div>
+                )}
+                
+                {selectedBannerImageUrl && (
+                    <button
+                        onClick={() => window.open(selectedBannerImageUrl, "_blank")}
+                        className="px-3 py-1 bg-sky-blue-dark text-sm text-white rounded transition"
+                    >
+                        View Image
+                    </button>
                 )}
 
 

@@ -53,7 +53,7 @@ const DaysSection = ({ textAreaStyle, inputStyle, days, setDays, handleReorder }
                     <input type="text" value={day.title} onChange={(e) => handleDayChange(index, 'title', e.target.value)} placeholder="Title.." className={`${inputStyle}`} required />
                     <textarea name="" id="" placeholder="Input descriptions here..." value={day.description} onChange={(e) => handleDayChange(index, 'description', e.target.value)} className={`${textAreaStyle} w-full mt-4`} required></textarea>
 
-                    <div className=" flex w-full space-x-8 mt-4  ">
+                    <div className=" flex w-full items-center space-x-8 mt-4  ">
                         <ImageUploader
                             label="Image upload"
                             selectedFile={day.image}
@@ -64,11 +64,22 @@ const DaysSection = ({ textAreaStyle, inputStyle, days, setDays, handleReorder }
                             value={day.image_title}
                             onChange={(e) => handleDayChange(index, 'image_title', e.target.value)}
                             placeholder="Image title"
-                            className={`placeholder:text-[#949393] bg-white rounded-[4px] border border-[#B5B5B5] outline-none flex-1 h-fit  py-2 px-4 `}
+                            className={`placeholder:text-[#949393] ml-4 bg-white rounded-[4px] border border-[#B5B5B5] outline-none flex-1 h-fit  py-2 px-4 `}
                             required
                         />}
 
+
                     </div>
+                 
+                      {day.image_public_url && (
+                    <button
+                        onClick={() => window.open(day.image_public_url, "_blank")}
+                        className="px-3 py-1 bg-sky-blue-dark text-sm w-fit text-white rounded transition"
+                    >
+                        View Image
+                    </button>
+                )}
+
 
 
                     <div className=" absolute flex items-center -right-48 top-16">

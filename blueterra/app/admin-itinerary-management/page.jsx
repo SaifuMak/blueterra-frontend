@@ -101,9 +101,12 @@ export default function AdminItinerary() {
         }
     }
 
-    const handleEditClick = () => {
+    
+    const handleEditClick = (id) => {
+        router.push(`/admin-edit-itinerary/${id}`);
+    };
 
-    }
+
 
     const handleDeleteJournal = (id) => {
         setRequestedItineraryForDeletion(id)

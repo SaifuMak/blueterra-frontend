@@ -24,7 +24,7 @@ const Dropdown = ({ value, onChange, options, placeholder, className, isOpen, on
                 onClick={() => onToggle(!isOpen)}
                 className="px-3 py-2.5 cursor-pointer flex justify-between items-center"
             >
-                <span className={value ? " text-dark-28" : "text-[#949393]"}>
+                <span className={value ? " text-dark-28 text-nowrap " : "text-[#949393] text-nowrap "}>
                     {value || placeholder}
                 </span>
                 <MdKeyboardArrowDown className={`${isOpen ? ' rotate-180' : ' rotate-0'} text-2xl text-dark-blue transform transition-all duration-500 `} />

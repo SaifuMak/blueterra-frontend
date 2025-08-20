@@ -77,6 +77,14 @@ function HotelsSection({ hotels, setHotels, textAreaStyle, inputStyle, handleReo
                         />
 
                     </div>
+                     {hotel.image_public_url && (
+                    <button
+                        onClick={() => window.open(hotel.image_public_url, "_blank")}
+                        className="px-3 py-1 bg-sky-blue-dark text-sm w-fit text-white rounded transition"
+                    >
+                        View Image
+                    </button>
+                )}
 
 
                     <div className=" absolute flex items-center space-x-3 -right-48 top-16">
