@@ -40,13 +40,13 @@ export default function EditItinerary() {
 
 
     const [days, setDays] = useState([{ id: '', title: '', description: '', image: null, image_public_url: '', image_title: '' }]);
-    const [hotels, setHotels] = useState([{ title: '', description: '', image: null, image_public_url: '', coordinates: '', location: '', mapLink: '', rating: 5 }]);
+    const [hotels, setHotels] = useState([{id: '', title: '', description: '', image: null, image_public_url: '', coordinates: '', location: '', mapLink: '', rating: 5 }]);
     const [destinationHighlights, setDestinationHighlights] = useState([{ title: '' }]);
     const [signatureHighlights, setSignatureHighlights] = useState([{ title: '' }]);
     const [packageInclusions, setPackageInclusions] = useState([{ title: '' }]);
     const [packageExclusions, setPackageExclusions] = useState([{ title: '' }]);
     const [mapRouting, setMapRouting] = useState([{ location: '', coordinates: '', transfer: '' }]);
-    const [gallery, setGallery] = useState([{ image: '', title: '', image_public_url: '' }]);
+    const [gallery, setGallery] = useState([{id: '', image: '', title: '', image_public_url: '' }]);
     const [featuredPoints, setFeaturedPoints] = useState([{ suggestedDate: '', price: '', additionalInformation: '' }]);
 
     const [destination, setDestination] = useState("");
@@ -234,7 +234,9 @@ export default function EditItinerary() {
             formData.append(`days[${index}][image_title]`, day.image_title);
         });
 
+
         hotels.forEach((hotel, index) => {
+            formData.append(`hotels[${index}][id]`, hotel.id);
             formData.append(`hotels[${index}][title]`, hotel.title);
             formData.append(`hotels[${index}][description]`, hotel.description);
             formData.append(`hotels[${index}][image]`, hotel.image);
@@ -250,6 +252,7 @@ export default function EditItinerary() {
             if (item.image) {
                 formData.append(`gallery[${index}][image]`, item.image);
             }
+            formData.append(`gallery[${index}][id]`, item.id);
             formData.append(`gallery[${index}][title]`, item.title);
         });
      

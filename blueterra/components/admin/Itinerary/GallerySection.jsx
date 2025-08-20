@@ -84,12 +84,6 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
                             />
                         </div>}
                         {data.image_public_url && (
-                            // <button
-                            //     onClick={() => window.open(data.image_public_url, "_blank")}
-                            //     className="px-3 py-1 bg-sky-blue-dark text-sm w-fit text-white rounded transition"
-                            // >
-                            //     View Image
-                            // </button>
                             <a href={data.image_public_url} target="_blank" rel="noopener noreferrer">
                                 <img
                                     src={data.image_public_url}
@@ -98,6 +92,12 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
                                 />
                             </a>
                         )}
+                        <img
+                            src="/Icons/red-delete-icon.svg"
+                            alt="delete"
+                            className="cursor-pointer size-5.5 xl:size-6"
+                            onClick={() => handleDeleteGallery(index)}
+                        />
                     </div>
 
                 </div>
