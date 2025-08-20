@@ -59,26 +59,26 @@ export default function Search() {
     };
 
 
-    // const fetchJournals = async (category = 'View All', page = 1, query = '') => {
+    const fetchJournals = async (category = 'View All', page = 1, query = '') => {
 
-    //     const encodedCategory = encodeURIComponent(category);
-    //     try {
-    //         const response = await AXIOS_INSTANCE.get(`get-journals/?page=${page}&category=${encodedCategory}&query=${query}`)
-    //         setJournals(response.data.results)
-    //         const nextpage = getPageNumber(response.data.next)
-    //         const previous = getPageNumber(response.data.previous)
-    //         setNextPage(nextpage)
-    //         setPrevPage(previous)
-    //         setCurrentPage(page)
+        const encodedCategory = encodeURIComponent(category);
+        try {
+            const response = await AXIOS_INSTANCE.get(`get-journals/?page=${page}&category=${encodedCategory}&query=${query}`)
+            setJournals(response.data.results)
+            const nextpage = getPageNumber(response.data.next)
+            const previous = getPageNumber(response.data.previous)
+            setNextPage(nextpage)
+            setPrevPage(previous)
+            setCurrentPage(page)
 
-    //         const totalPages = getTotalPagesCount(response.data.count, 6)
-    //         setTotalPages(totalPages)
+            const totalPages = getTotalPagesCount(response.data.count, 6)
+            setTotalPages(totalPages)
 
-    //     }
-    //     catch (e) {
-    //         console.log(e)
-    //     }
-    // }
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
 
 
     const handleGetBlog = (slug) => {
@@ -157,7 +157,7 @@ export default function Search() {
 
                             {/* <SearchComponent /> */}
 
-                            <p className=" font-normal text-xl mt-3">   {`Showing results for`} <span className=" font-medium">{query}</span> </p>
+                            {/* <p className=" font-normal text-xl mt-3">   {`Showing results for`} <span className=" font-medium">{query}</span> </p> */}
 
                         </div>
 
