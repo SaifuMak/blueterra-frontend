@@ -13,6 +13,7 @@ import { useParams, useRouter } from 'next/navigation';
 import AXIOS_INSTANCE from "@/lib/axios"
 import { getReadingTime } from "@/app/utils/helperFunctions"
 import SearchInSingleBlog from "@/components/Journey/SearchInSingleBlog"
+import { Suspense } from "react";
 
 
 export default function BlogSingle() {
@@ -135,7 +136,13 @@ export default function BlogSingle() {
                     </div>
 
                     <div className=" w-full lg:w-6/12 xl:w-5/12 py-5 space-y-10 h-full border-l px-4 2xl:px-10 ">
-                        <SearchInSingleBlog />
+                       
+
+                         <Suspense fallback={<div>Loading search...</div>}>
+                             <SearchInSingleBlog />
+                            </Suspense> 
+                           
+                       
 
                         {/* <div className="">
                             <p className=" text-xl ml-1">Search</p>
