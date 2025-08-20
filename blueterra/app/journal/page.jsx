@@ -193,9 +193,9 @@ export default function Journal() {
                     <div className=" w-11/12 md:w-10/12 2xl:w-9/12 md:space-y-10 flex flex-col  items-center mt-8 lg:mt-16  xl:mt-28  h-full ">
                         <div className="w-full flex max-sm:flex-col  justify-between items-center   ">
 
-                            {/* <Suspense fallback={<div>Loading search...</div>}>
+                            <Suspense fallback={<div>Loading search...</div>}>
                                 <SearchComponent isParamsRecieved={false} />
-                            </Suspense> */}
+                            </Suspense>
 
                             {/* <SearchComponent isParamsRecieved={false} /> */}
 
