@@ -380,7 +380,6 @@ export default function AdminJournals() {
                         </div>
                     </form>
 
-
                 </div>
 
             </div>

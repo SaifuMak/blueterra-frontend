@@ -14,7 +14,7 @@ import { useEffect, useState, useRef } from "react"
 import AXIOS_INSTANCE from "@/lib/axios"
 import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers"
 import SearchComponent from "@/components/Journey/SearchComponent"
-
+import { Suspense } from "react";
 import { useRouter } from 'next/navigation';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
@@ -194,7 +194,11 @@ export default function Journal() {
                     <div className=" w-11/12 md:w-10/12 2xl:w-9/12 md:space-y-10 flex flex-col  items-center mt-8 lg:mt-16  xl:mt-28  h-full ">
                         <div className="w-full flex max-sm:flex-col  justify-between items-center   ">
 
-                            <SearchComponent isParamsRecieved={false} />
+
+                            <Suspense fallback={<div>Loading search...</div>}>
+                                <SearchComponent isParamsRecieved={false} />
+                            </Suspense>
+                            {/* <SearchComponent isParamsRecieved={false} /> */}
 
                             <div className=" w-full max-sm:mt-5 md:w-6/12 ml-4  flex relative flex-col items-center p-5 md:p-8  xl:pl-10 xl:pt-10 ">
                                 <p className={`2xl:text-[25px] lg:text-[18px] xl:text-[22px] font-light leading-8 xl:leading-10 `}>The best stories aren’t found in books, they’re written on the roads we take, the strangers we meet, and the sunsets we chase.</p>

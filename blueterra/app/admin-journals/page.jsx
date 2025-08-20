@@ -182,8 +182,6 @@ export default function AdminBlogs() {
         }
     }
 
-
-
     useEffect(() => {
 
         fetchJournals()
