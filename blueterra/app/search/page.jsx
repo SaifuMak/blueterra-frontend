@@ -28,7 +28,6 @@ gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 export default function Search() {
 
-
     const [currentCollection, setCurrentCollection] = useState(0)
     const [CollectionCount, setCollectionCount] = useState(0)
     const [selectedFilter, setSelectedFilter] = useState('View All')
@@ -45,8 +44,8 @@ export default function Search() {
 
     const router = useRouter();
 
-    const searchParams = useSearchParams();
-    const query = searchParams.get("query") || "";
+    // const searchParams = useSearchParams();
+    // const query = searchParams.get("query") || "";
 
 
     const [nextPage, setNextPage] = useState(null); // Next page URL
@@ -114,13 +113,13 @@ export default function Search() {
     }, []);
 
 
-    useEffect(() => {
-        if (!query) return;
+    // useEffect(() => {
+    //     if (!query) return;
 
-        localStorage.setItem("searchQuery", query);
-        fetchJournals('View All', 1, query)
+    //     localStorage.setItem("searchQuery", query);
+    //     fetchJournals('View All', 1, query)
 
-    }, [query]);
+    // }, [query]);
 
 
 
