@@ -27,6 +27,11 @@ export default function AdminItinerary() {
     const [requestedItineraryForStatusChange, setRequestedItineraryForStatusChange] = useState(null)
     const [isStatusChangeModel, setIsStatusChangeModel] = useState(false)
 
+    const [isDeleteItineraryModal, setIsDeleteItineraryModal] = useState(false)
+    const [requestedItineraryForDeletion, setRequestedItineraryForDeletion] = useState(null)
+
+
+
 
     const [selectedItineraryStatus, setSelectedItineraryStatus] = useState('Published')
 
@@ -100,8 +105,29 @@ export default function AdminItinerary() {
 
     }
 
-    const handleDeleteJournal = () => {
+    const handleDeleteJournal = (id) => {
+        setRequestedItineraryForDeletion(id)
+        setIsDeleteItineraryModal(true)
+    }
 
+
+    const confirmDeleteItinerary = async () => {
+        setIsLoading(true)
+
+        const id = requestedItineraryForDeletion
+
+        try {
+            const response = await AXIOS_INSTANCE.delete(`itinerary/${id}/`)
+            selectedItineraryStatus === 'Published' ? getItineraries(currentPage, 'Published') : getItineraries(currentPage, 'Drafted')
+            toast.success(response.data.message)
+            setIsDeleteItineraryModal(false)
+        }
+        catch (e) {
+            console.log(e)
+        }
+        finally {
+            setIsLoading(false)
+        }
     }
 
 
@@ -238,6 +264,16 @@ export default function AdminItinerary() {
                             <button onClick={confirmItineraryStatus} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Okay</button>
                         </div>
                         <RxCross2 onClick={() => setIsStatusChangeModel(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
+                    </div>
+                </div>}
+
+                {isDeleteItineraryModal && <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
+                    <div className="bg-white relative rounded-lg flex flex-col  justify-center  shadow-xl p-6 w-100">
+                        <h2 className="text-lg mt-5 font-medium mb-4 text-dark-4B text-center ">Are you sure to delete this Itinerary ?</h2>
+                        <div className=" flex justify-center mt-4">
+                            <button onClick={confirmDeleteItinerary} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Okay</button>
+                        </div>
+                        <RxCross2 onClick={() => setIsDeleteItineraryModal(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
                     </div>
                 </div>}
 

@@ -84,7 +84,7 @@ export default function AdminAddItinerary() {
 
         try {
             const response = await AXIOS_INSTANCE.post(`create-itinerary/`, formData)
-
+            toast.success(response.data.message)
 
         }
         catch (e) {
@@ -104,7 +104,7 @@ export default function AdminAddItinerary() {
         const isPublish = e.nativeEvent.submitter.value === "publish";
 
         console.log(isPublish, 'this is the publish status -------------');
-        
+
 
 
         if (!selectedBannerImageFile) {
