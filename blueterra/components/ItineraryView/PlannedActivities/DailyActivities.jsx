@@ -6,7 +6,7 @@ import { MdOutlineKeyboardArrowRight, MdInfoOutline, IoMdArrowDropup } from '../
 import ReactTooltip from "@/components/generalComponents/ReactTooltip"
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
 
-export default function DailyActivities({ expandCards, index, selectedTab }) {
+export default function DailyActivities({ expandCards, index, selectedTab, itineraryData }) {
 
     const [OpenedAccordian, setOpenedAccordian] = useState([])
 
@@ -48,9 +48,9 @@ export default function DailyActivities({ expandCards, index, selectedTab }) {
 
                 <div className="  ">
 
-                    {accordionData?.map((data, index) => (
+                    {itineraryData?.days?.map((data, index) => (
                         <div key={index} className=" flex border-l  relative  ">
-                            <div className={`shrink-0 absolute flex  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === accordionData.length - 1 ? 'pb-32' : ''}  bg-white `}>
+                            <div className={`shrink-0 absolute flex  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === itineraryData?.days.length - 1 ? 'pb-32' : ''}  bg-white `}>
                                 <p className=" font-normal text-sm  ">Day</p>
                                 <span className="size-5 ml-2   text-white text-xs  bg-[#026E9E] flex justify-center items-center  rounded-full">{index + 1}</span>
                             </div>
@@ -65,7 +65,7 @@ export default function DailyActivities({ expandCards, index, selectedTab }) {
                                         <div className="py-5 px-5 ml-1  mt-8 border-dashed border-slate-500 border-l relative ">
                                             <img src="/Icons/big-dot.svg" alt="dot" className=" w-5 h-5 absolute -top-0.5 -left-2.5" />
                                             <p className="absolute -top-1 left-4 font-medium">Destination</p>
-                                            <p className=" mt-2">{data.content}</p>
+                                            <p className=" mt-2">{data.description}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -24,6 +24,7 @@ import { usePathname } from "next/navigation";
 import MobileFilter from "@/components/collections/MobileFilter";
 import MobileFilterPopup from "@/components/collections/MobileFilterPopup";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
+import AXIOS_INSTANCE from "@/lib/axios";
 
 
 
@@ -32,6 +33,9 @@ export default function Collection() {
   const isMobile = useIsMobile()
 
   // const pathname = usePathname();
+
+  const [isLoading, setIsLoading] = useState(true)
+  const [itineraryData, setItineraryData] = useState(null)
 
 
 
@@ -145,6 +149,49 @@ export default function Collection() {
   }, [isMobile])
 
 
+  const fetchItinerary = async (page = 1, loading = false) => {
+
+    setIsLoading(true)
+    // loading === true ? setIsLoading(true) : ''
+
+    try {
+      const response = await AXIOS_INSTANCE.get('itinerary-list/', {
+        params: {
+          page,
+          categories: selectedFilters.categories.join(','),
+          destinations: selectedFilters.destinations.join(','),
+          countries: selectedFilters.countries.join(','),
+          collections: selectedFilters.collections.join(',')
+        }
+
+      })
+      setItineraryData(response?.data?.results)
+
+    }
+
+    catch (e) {
+      console.log(e)
+    }
+    finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+
+    console.log(selectedFilters);
+
+    fetchItinerary()
+
+
+  }, [selectedFilters])
+
+
+  // if (isLoading) {
+  //   return (
+  //     <div className=" h-screen bg-slate-200  w-full "></div>
+  //   )
+  // }
 
   return (
 
@@ -170,7 +217,7 @@ export default function Collection() {
         />
       )}
 
-      {!isMobile && <FilterLayout setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} />}
+      {!isMobile && <FilterLayout selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} />}
 
       <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
 
@@ -184,11 +231,20 @@ export default function Collection() {
           setSelectedFilters={setSelectedFilters}
         />}
 
-        <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10   md:grid-cols-2 w-10/12 xl:w-9/12" >
-
-          <DestinationCards Destinations={Destinations} />
-
+        <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
+          {isLoading ? (
+            <div className="flex items-center justify-center w-full min-h-[60vh] col-span-2">
+              <p className="text-lg font-medium">Loading...</p>
+            </div>
+          ) : itineraryData && itineraryData.length > 0 ? (
+            <DestinationCards Destinations={Destinations} itineraryData={itineraryData} />
+          ) : (
+            <div className="flex items-center justify-center min-h-[60vh]  w-full col-span-2">
+              <p className="text-lg font-medium">No results found</p>
+            </div>
+          )}
         </div>
+
       </div>
 
       <AdventureSection setFormOpen={setFormOpen} />

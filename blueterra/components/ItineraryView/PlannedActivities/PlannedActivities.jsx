@@ -16,7 +16,7 @@ import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
 gsap.registerPlugin(ScrollTrigger);
 
 
-export default function PlannedActivities({ }) {
+export default function PlannedActivities({itineraryData }) {
 
     const dailyActivitiesRef = useRef(null)
     const mapRef = useRef(null)
@@ -382,7 +382,7 @@ export default function PlannedActivities({ }) {
                             key={index}
                             className="w-[48%]  h-[48%]"
                         >
-                            <DynamicComponent expandCards={expandCards} index={index} selectedTab={selectedTab} />
+                            <DynamicComponent expandCards={expandCards} index={index} selectedTab={selectedTab} itineraryData={itineraryData} />
 
                         </div>)
                     })}

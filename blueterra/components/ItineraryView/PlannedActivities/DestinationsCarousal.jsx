@@ -25,7 +25,7 @@ import carousalData from "@/components/datas/DestinationsDetails";
 
 gsap.registerPlugin(useGSAP)
 
-export default function DestinationsCarousal() {
+export default function DestinationsCarousal({itineraryData}) {
 
     const [api, setApi] = useState()
 
@@ -87,14 +87,14 @@ export default function DestinationsCarousal() {
                 >
                     <CarouselContent>
 
-                        {carousalData?.map((item, index) => (
+                        {itineraryData?.days?.map((item, index) => (
                             <CarouselItem key={index} className="basis-1/1  flex-center ">
 
                                 <div className=" relative group cursor-pointer w-full h-[30vh] overflow-hidden  ">
 
                                     <Image
-                                        src={item.image}
-                                        alt={item.alt}
+                                        src={item.image_public_url}
+                                        alt={item.image_title}
                                         fill
                                         className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"
                                     />
@@ -112,19 +112,17 @@ export default function DestinationsCarousal() {
                         <div className="  w-full h-full flex flex-col justify-between bg-gradient-to-t from-black/50 via-transparent to-transparent py-2 px-4  ">
                             <div className=" flex items-center space-x-2 mt-3">
 
-                                {[...Array(carousalData.length)].map((_, ind) => (
+                                {[...Array(itineraryData?.days?.length)].map((_, ind) => (
                                     <div key={ind} className={`h-[3px] flex flex-1 ${ind <= currentCollection ? 'bg-white' : 'bg-white/30'} `} />
                                 ))}
                             </div>
 
                             <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-5 left-3 text-2xl font-normal">
                                 <p>Day {currentCollection + 1}:</p>
-                                <p className="capitalize ">{carousalData[currentCollection].name}</p>
+                                <p className="capitalize ">{itineraryData?.days?.[currentCollection].image_title}</p>
                             </div>
                         </div>
-
                     </div>
-
 
 
                     {/* Arrow buttons */}

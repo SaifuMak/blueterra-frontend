@@ -21,6 +21,7 @@ import GallerySection from "@/components/admin/Itinerary/GallerySection";
 import FeaturedPoints from "@/components/admin/Itinerary/FeaturedPoints";
 import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 
+
 export default function EditItinerary() {
 
     const inputStyle = 'placeholder:text-[#949393] w-full bg-white rounded-[4px] border border-[#B5B5B5] outline-none  py-2 px-4'
@@ -266,7 +267,9 @@ export default function EditItinerary() {
     }
 
     if (isLoading) return (
-        <div className=" w-full h-screen bg-slate-200"></div>
+        <div className=" w-full h-screen flex-center  bg-slate-50">
+           <LoaderIcon className=' animate-spin text-dark-blue text-3xl'/>
+        </div>
     )
 
 

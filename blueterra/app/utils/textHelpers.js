@@ -5,3 +5,5 @@
     ? words.slice(0, wordLimit).join(' ') + '...'
     : text;
 };
+
+

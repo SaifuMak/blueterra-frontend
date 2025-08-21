@@ -65,7 +65,7 @@ export default function DestinationCardCarousal({ Data }) {
             onMouseLeave={handleMouseLeave}
             className=" flex justify-center items-center flex-col rounded-2xl   ">
 
-            <div className=" group  w-full  overflow-hidden  relative  flex-center rounded-2xl  ">
+            <div className=" group  w-full  overflow-hidden  relative  flex-center rounded-t-2xl  ">
 
                 <Carousel
                     setApi={setApi}
@@ -79,12 +79,12 @@ export default function DestinationCardCarousal({ Data }) {
 
                     <CarouselContent>
 
-                        {Data?.map((image, index) => (
-                            <CarouselItem key={index} className="md:basis-1/1 lg:basis-1/1  flex-center rounded-2xl  ">
+                        {Data?.map((gallery, index) => (
+                            <CarouselItem key={index} className="md:basis-1/1 lg:basis-1/1  flex-center rounded-t-2xl  ">
 
-                                <div className=" relative group cursor-pointer w-full  min-h-[300px] rounded-2xl overflow-hidden">
+                                <div className=" relative group bg-slate-50 cursor-pointer w-full  min-h-[300px] rounded-t-2xl overflow-hidden">
                                     <Image
-                                        src={image}
+                                        src={gallery.image_public_url}
                                         alt='image'
                                         fill
                                         className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"

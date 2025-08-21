@@ -6,7 +6,7 @@ import { RxCross2 } from '@/components/reactIcons'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import {destinations,countries,collections,categories} from '@/components/datas/FilterOptions'
 
-export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex,handleChangeCollection }) {
+export default function FilterLayout({selectedFilters, setSelectedFilters, setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex,handleChangeCollection }) {
 
     // const [openedFilters, setOpenedFilters] = useState([])
 
@@ -21,12 +21,12 @@ export default function FilterLayout({ setIsAnyFilterOpened, isFilterVisible, ex
 
    
 
-    const [selectedFilters, setSelectedFilters] = useState({
-        categories: [],
-        destinations: [],
-        countries: [],
-        collections: []
-    })
+    // const [selectedFilters, setSelectedFilters] = useState({
+    //     categories: [],
+    //     destinations: [],
+    //     countries: [],
+    //     collections: []
+    // })
 
     // const handleFilters = (filter) => {
     //     setOpenedFilters((prev) =>
