@@ -89,6 +89,7 @@ export default function AdminAddItinerary() {
         }
         catch (e) {
             console.log(e)
+            toast.error('something went wrong')
         }
         finally {
             setIsLoading(false)
