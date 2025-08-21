@@ -25,8 +25,12 @@ import MobileFilter from "@/components/collections/MobileFilter";
 import MobileFilterPopup from "@/components/collections/MobileFilterPopup";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
 import AXIOS_INSTANCE from "@/lib/axios";
+import Head from "next/head";
 
-
+// export const metadata = {
+//   title: "My Blog Title | CashPlus",
+//   description: "This is the description of my blog page for SEO purposes.",
+// };
 
 export default function Collection() {
 
