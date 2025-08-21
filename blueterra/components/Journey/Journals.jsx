@@ -130,9 +130,9 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
 
                             </div>
                             <div className=" flex items-center  max-2xl:text-sm font-light justify-between  ">
-                                {/* <div className="">
+                                <div className="">
                                     <p className=" flex  items-center "> <span className=""><img src="/Icons/calender.svg" alt="" className=" size-4 object-cover mr-2 " /></span>{Data[currentCollection]?.created_at}</p>
-                                </div> */}
+                                </div>
 
                                 <Link href='/blog-single'>
                                     <div className=" flex  items-center ">
