@@ -8,4 +8,3 @@ const AXIOS_INSTANCE = axios.create({
 });
 
 export default AXIOS_INSTANCE;
-

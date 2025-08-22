@@ -15,6 +15,7 @@ function BannerSection({
     selectedImageFile,
     setSelectedImageFile,
     selectedBannerImageUrl = null,
+    isEditPage=false
 }) {
 
 
@@ -22,8 +23,16 @@ function BannerSection({
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files.length > 0) {
             setSelectedImageFile(e.target.files[0]); // store the actual File object
+            sethasUserDeletedOrChangedImageFile(true)
         }
     };
+
+    const [hasUserDeletedOrChangedImageFile, sethasUserDeletedOrChangedImageFile] = useState(false)
+
+    const handleDeleteSelectedImage =()=>{
+        setSelectedImageFile(null)
+        sethasUserDeletedOrChangedImageFile(true)
+    }
 
 
     return (
@@ -65,20 +74,21 @@ function BannerSection({
                             src="/Icons/red-delete-icon.svg"
                             alt="delete"
                             className="cursor-pointer size-5.5 xl:size-6"
-                            onClick={() => setSelectedImageFile(null)}
+                            onClick={handleDeleteSelectedImage}
                         />
                     )}
                 </div>
 
                 {/* Show file name */}
-                {selectedImageFile && (
+                {selectedImageFile &&(
                     <div className="text-sm text-sky-blue-dark">
                         <p>{selectedImageFile.name}</p>
                     </div>
                 )}
                 
-                {selectedBannerImageUrl && (
+                {selectedBannerImageUrl  && !hasUserDeletedOrChangedImageFile && (
                     <button
+                    type='button'
                         onClick={() => window.open(selectedBannerImageUrl, "_blank")}
                         className="px-3 py-1 bg-sky-blue-dark text-sm text-white rounded transition"
                     >

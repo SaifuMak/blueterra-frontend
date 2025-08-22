@@ -12,6 +12,7 @@ function DestinationHighlights({  destinationHighlights, setDestinationHighlight
         const lastIndex = destinationHighlights.length;
         setDestinationHighlights([...destinationHighlights, { title: '' }])
         setTimeout(() => {
+            
             const target = destinationHighlightsRef.current[lastIndex];
             target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }, 200);

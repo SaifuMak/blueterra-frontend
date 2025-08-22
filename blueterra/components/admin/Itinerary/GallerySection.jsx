@@ -3,7 +3,7 @@ import ImageUploader from './ImageUploader'
 import { useRef } from 'react';
 import { IoIosStarOutline, IoIosStar, IoIosStarHalf } from '@/components/reactIcons'
 import ReorderIcons from '../ReorderIcons';
-
+import TooltipWrapper from '@/components/generalComponents/TooltipWrapper';
 
 function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handleReorder }) {
 
@@ -62,15 +62,17 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
                 >
 
                     {/* Image URL Field */}
-                    <div className=" flex w-full items-center space-x-12 mt-4  ">
+                    <div className=" flex w-full space-x-12 mt-4  ">
                         <div className=" ">
                             <ImageUploader
                                 label="Image upload"
                                 selectedFile={data.image}
                                 setSelectedFile={(file) => handleGalleryChange(index, "image", file)}
                                 id={`GalleryUpload-${index}`} // unique per day
+                                isDeleteOptionAvailable={false}
                             />
                         </div>
+
                         {/* Title Field */}
                         {data.image && <div className=" ml-4 flex flex-1 ">
 
@@ -83,15 +85,20 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
                                 required
                             />
                         </div>}
-                        {data.image_public_url && (
+
+                        {data.image_public_url && typeof data.image === "string" && (
+
                             <a href={data.image_public_url} target="_blank" rel="noopener noreferrer">
-                                <img
-                                    src={data.image_public_url}
-                                    alt="gallery Preview"
-                                    className="w-20 h-12 cursor-pointer object-cover rounded shadow-md hover:opacity-80 transition"
-                                />
+                                <TooltipWrapper message="uploaded image">
+                                    <img
+                                        src={data.image_public_url}
+                                        alt="gallery Preview"
+                                        className="w-20 h-12 cursor-pointer object-cover rounded shadow-md hover:opacity-80 transition"
+                                    />
+                                </TooltipWrapper>
                             </a>
                         )}
+
                         <img
                             src="/Icons/red-delete-icon.svg"
                             alt="delete"

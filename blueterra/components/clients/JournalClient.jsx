@@ -9,7 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState, useRef } from "react"
 import AXIOS_INSTANCE from "@/lib/axios"
-import { getTotalPagesCount,getPageNumber } from "@/app/utils/paginationHelpers"
+import { getTotalPagesCount, getPageNumber } from "@/app/utils/paginationHelpers"
 import SearchComponent from "@/components/Journey/SearchComponent"
 import { Suspense } from "react";
 import { useRouter } from 'next/navigation';
@@ -152,6 +152,7 @@ function JournalClient() {
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
+
 
     return (
 

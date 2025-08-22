@@ -350,10 +350,9 @@ export default function AdminJournals() {
                                         )}
                                     </div>
 
-
                                     <p
                                         onClick={handleRemoveImage}
-                                        className={`text-right text-red-400 mt-2 text-sm hover:underline cursor-pointer ${previewImage ? 'opacity-100' : 'opacity-0'}`}
+                                        className={`text-right  text-sky-blue-dark mt-2 text-sm hover:underline cursor-pointer ${previewImage ? 'opacity-100' : 'opacity-0'}`}
                                     >
                                         Remove Featured Image
                                     </p>
@@ -362,7 +361,7 @@ export default function AdminJournals() {
 
 
 
-                                <div className=" w-full  2xl:mt-10 ">
+                                <div className=" w-full mt-10  2xl:mt-10 ">
                                     <div className=" flex max-xl:flex-col xl:items-center justify-between">
                                         <label htmlFor="text" className=" font-medium" >Select Catagory</label>
                                         <p onClick={handleOpenCreateCategoryPopup} className=" cursor-pointer flex items-center text-sky-blue-dark font-medium "><RiAddCircleLine className=" 2xl:text-xl mr-0.5 " /> Add</p>

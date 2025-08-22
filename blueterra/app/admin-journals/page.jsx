@@ -12,7 +12,7 @@ import { IoEyeOutline, IoEyeOffOutline, RxCross2, AiOutlineCheck } from '@/compo
 import { toast } from 'sonner';
 import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
 import LoaderIcon from "@/components/generalComponents/LoaderIcon";
-
+import Loader from "@/components/generalComponents/Loader";
 
 
 export default function AdminBlogs() {
@@ -101,10 +101,10 @@ export default function AdminBlogs() {
 
         try {
             const response = await AXIOS_INSTANCE.patch(`journals/`, data, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                })
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
             setIsStatusChangeModel(false)
             toast.success(requestedStatusChange === 'draft' ? " Blog post unpublished successfully!" : "Blog post published successfully!");
             requestedStatusChange === 'draft' ? fetchJournals(currentPage, 'Published') : fetchJournals(currentPage, 'Drafted')
@@ -222,8 +222,8 @@ export default function AdminBlogs() {
                         </div>
                     ) : (
 
-                        <div className=" w-full overflow-hidden  transition-all duration-700 ease-in-out rounded-lg  border mt-5   ">
-                            <table className="w-full text-lg   rounded-3xl text-left text-gray-700">
+                        <div className={`w-full overflow-hidden  transition-all duration-700 ease-in-out rounded-lg   mt-5 ${journals?.length > 0 ? 'border' : ''} `}>
+                            {journals.length > 0 ? (<table className="w-full text-lg   rounded-3xl text-left text-gray-700">
                                 <thead className={`bg-[#394C5D] rounded-3xl text-white  `}>
                                     <tr>
                                         <th className="px-4 2xl:text-lg text-base py-5 font-normal ">Title</th>
@@ -280,7 +280,17 @@ export default function AdminBlogs() {
                                         </tr>
                                     ))}
                                 </tbody>
+
                             </table>
+
+                            ) : (
+                                <div className=" w-full mt-10 text-xl text-dark-4B  font-medium text-center">
+                                    <div className=" flex justify-end w-full">
+                                        <button onClick={handleAddJournal} className=" bg-custom-sky-blue cursor-pointer text-white rounded-sm px-6 py-1">Add</button>
+                                    </div>
+                                    <p className=" mt-10">No results found</p>
+                                </div>
+                            )}
                         </div>)}
 
 

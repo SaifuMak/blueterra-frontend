@@ -5,7 +5,8 @@ export default function ImageUploader({
   selectedFile,
   setSelectedFile,
   accept = "image/*",
-  id
+  id,
+  isDeleteOptionAvailable= true
 }) {
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -37,7 +38,7 @@ export default function ImageUploader({
         </label>
 
         {/* Delete Icon */}
-        {selectedFile && (
+        {selectedFile && isDeleteOptionAvailable && (
           <img
             src="/Icons/red-delete-icon.svg"
             alt="delete"

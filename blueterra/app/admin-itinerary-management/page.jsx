@@ -32,7 +32,6 @@ export default function AdminItinerary() {
 
 
 
-
     const [selectedItineraryStatus, setSelectedItineraryStatus] = useState('Published')
 
 
@@ -101,7 +100,7 @@ export default function AdminItinerary() {
         }
     }
 
-    
+
     const handleEditClick = (id) => {
         router.push(`/admin-edit-itinerary/${id}`);
     };
@@ -109,6 +108,7 @@ export default function AdminItinerary() {
 
 
     const handleDeleteJournal = (id) => {
+        if (isLoading) return
         setRequestedItineraryForDeletion(id)
         setIsDeleteItineraryModal(true)
     }
@@ -185,7 +185,7 @@ export default function AdminItinerary() {
                         </div>
                     </div>
 
-                    <div className={`${Itineraries?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg   mt-10  h-fit`}>
+                    {Itineraries?.length > 0 ? (<div className={`${Itineraries?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg   mt-10  h-fit`}>
 
                         <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
                             <thead className="bg-[#394C5D] rounded-3xl text-white  ">
@@ -198,54 +198,56 @@ export default function AdminItinerary() {
                                 </tr>
                             </thead>
 
-                            {Itineraries?.length > 0 ? (
-                                <tbody className=" bg-white ">
-                                    {Itineraries?.map((item, index) => (
-                                        <tr key={index} className=" rounded-3xl">
 
-                                            <td className={rowStyle}>{item.title}</td>
-                                            <td className={rowStyle}>{item.days.length}</td>
-                                            <td className={rowStyle}>{item.collection}</td>
+                            <tbody className=" bg-white ">
+                                {Itineraries?.map((item, index) => (
+                                    <tr key={index} className=" rounded-3xl">
+
+                                        <td className={rowStyle}>{item.title}</td>
+                                        <td className={rowStyle}>{item.days.length}</td>
+                                        <td className={rowStyle}>{item.collection}</td>
 
 
-                                            <td className={rowStyle}>
-                                                <div className=" flex justify-center space-x-10">
-                                                    <TooltipWrapper message="Edit">
-                                                        <img onClick={() => handleEditClick(item.id)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
-                                                    </TooltipWrapper>
+                                        <td className={rowStyle}>
+                                            <div className=" flex justify-center space-x-10">
+                                                <TooltipWrapper message="Edit">
+                                                    <img onClick={() => handleEditClick(item.id)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
+                                                </TooltipWrapper>
 
-                                                    <TooltipWrapper message="Delete">
-                                                        <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
-                                                    </TooltipWrapper>
+                                                <TooltipWrapper message="Delete">
+                                                    <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
+                                                </TooltipWrapper>
 
-                                                    <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
-                                                        <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
-                                                            {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
-                                                        </div>
-                                                    </TooltipWrapper>
-                                                </div>
-                                            </td>
+                                                <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
+                                                    <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
+                                                        {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                                                    </div>
+                                                </TooltipWrapper>
+                                            </div>
+                                        </td>
 
-                                            <td className={rowStyle}>
-                                                <div className=" flex justify-center ">
-                                                    <img src="/Icons/add.svg" alt="edit" className=" cursor-pointer size-5 " />
-                                                </div>
+                                        <td className={rowStyle}>
+                                            <div onClick={handleAddItineraray} className=" flex justify-center ">
+                                                <img src="/Icons/add.svg" alt="edit" className=" cursor-pointer size-5 " />
+                                            </div>
 
-                                            </td>
+                                        </td>
 
-                                        </tr>
-                                    ))}
-
-                                </tbody>
-                            ) : (
-                                <tbody className=" w-full ">
-                                    <tr className="">
-                                        <td colSpan={5} className=" pt-20 font-medium text-center">No Results Found</td>
                                     </tr>
-                                </tbody>
-                            )}
+                                ))}
+
+                            </tbody>
+
                         </table>
                     </div>
+                    ) : (
+                        <div className=" w-full mt-10 text-xl text-dark-4B  font-medium text-center">
+                            <div className=" flex justify-end w-full">
+                                <button onClick={handleAddItineraray} className=" bg-custom-sky-blue cursor-pointer text-white rounded-sm px-6 py-1">Add</button>
+                            </div>
+                            <p className=" mt-10">No results found</p>
+                        </div>
+                    )}
 
                     {Itineraries?.length > 0 && (<Pagination
                         prevPage={prevPage}

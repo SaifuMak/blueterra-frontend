@@ -80,6 +80,7 @@ export default function AdminAddItinerary() {
 
 
     const confirmAddItinerary = async (formData) => {
+        toast.dismiss()
         containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
         try {
