@@ -2,19 +2,19 @@
 import { useEffect, useState } from "react";
 
 export default function usePageLoaded() {
-  const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    const handleLoad = () => setIsLoaded(true);
+    useEffect(() => {
+        const handleLoad = () => setIsLoaded(true);
 
-    if (document.readyState === "complete") {
-      // Page already fully loaded
-      setIsLoaded(true);
-    } else {
-      window.addEventListener("load", handleLoad);
-      return () => window.removeEventListener("load", handleLoad);
-    }
-  }, []);
+        if (document.readyState === "complete") {
+            // Page already fully loaded
+            setIsLoaded(true);
+        } else {
+            window.addEventListener("load", handleLoad);
+            return () => window.removeEventListener("load", handleLoad);
+        }
+    }, []);
 
-  return isLoaded;
+    return isLoaded;
 }

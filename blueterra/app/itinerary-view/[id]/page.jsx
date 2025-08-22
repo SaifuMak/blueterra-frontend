@@ -79,8 +79,6 @@ export default function ItineraryView() {
     ];
 
 
-
-
     const [focusedIndex, setFocusedIndex] = useState(Math.floor(galleryData.length / 2));
 
 
@@ -131,8 +129,6 @@ export default function ItineraryView() {
     }, { scope: planningRef });
 
 
-
-
     useGSAP(() => {
         if (isLoading || !itineraryData) return;
         gsap.fromTo(
@@ -148,6 +144,7 @@ export default function ItineraryView() {
             }
         );
     }, { scope: bannerContainer, dependencies: [isLoading, itineraryData] });
+
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });

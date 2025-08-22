@@ -16,7 +16,7 @@ export default function TravelInfo() {
             subtitle: (
                 <>
                     From $8,000pp excl. flights
-                 
+
                 </>
             )
         },
@@ -46,13 +46,13 @@ export default function TravelInfo() {
                             <div className=" flex group cursor-pointer">
                                 <h3 className={`text-2xl ${playfair.className} font-medium  text-nowrap text-dark-4B`}>{item.title}</h3>
 
-                                <div className="relative flex w-full ">
-                                    {/* Trigger */}
+                                {item.idx === 1 && <div className="relative flex w-full ">
+
+
                                     <div className="flex peer ">
                                         <MdInfoOutline className="mt-3 ml-2 text-dark-4B" />
                                     </div>
 
-                                    {/* Popup */}
                                     <div className="absolute bottom-6 left-3/4 -translate-x-3/4 min-h-[200px] max-w-[600px] min-w-[450px] z-[999] hidden 
                                         peer-hover:block group-hover:block hover:block
                                         transition-all duration-300">
@@ -62,7 +62,7 @@ export default function TravelInfo() {
                                             <TravelInfoDummy />
                                         </div>
                                     </div>
-                                </div>
+                                </div>}
 
                             </div>
 
