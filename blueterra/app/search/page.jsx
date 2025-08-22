@@ -40,7 +40,7 @@ export default function Search() {
     const [categories, setCategories] = useState([])
     const [journals, setJournals] = useState([])
     const [featuredJournals, setFeaturedJournals] = useState([])
-    const JournalListRef = useRef(null);
+    const resultsRef = useRef(null);
 
 
     const containerRef = useRef()
@@ -58,8 +58,8 @@ export default function Search() {
     const [totalPages, setTotalPages] = useState(null)
 
 
-    const scrollToJournals = () => {
-        JournalListRef.current?.scrollIntoView({ behavior: "smooth" });
+    const scrollToResults = () => {
+        resultsRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
 
@@ -78,6 +78,8 @@ export default function Search() {
             const totalPages = getTotalPagesCount(response.data.count, 6)
             setTotalPages(totalPages)
 
+            scrollToResults()
+
         }
         catch (e) {
             console.log(e)
@@ -90,10 +92,9 @@ export default function Search() {
     };
 
 
-    useEffect(() => {
-        scrollToJournals()
-    }, [currentPage])
-
+    // useEffect(() => {
+    //     scrollToResults()
+    // }, [currentPage])
 
 
     useGSAP(() => {
@@ -113,18 +114,9 @@ export default function Search() {
 
 
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        scrollToResults()
+        // window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
-
-
-    // useEffect(() => {
-    //     if (!query) return;
-
-    //     localStorage.setItem("searchQuery", query);
-    //     fetchJournals('View All', 1, query)
-
-    // }, [query]);
-
 
 
     return (
@@ -149,14 +141,14 @@ export default function Search() {
                 </div>
 
 
-                <div className=" w-full  h-full  flex-center relative ">
+                <div ref={resultsRef} className=" w-full  h-full  flex-center relative ">
                     <Suspense fallback={<div>Loading search...</div>}>
                         <SearchInSearchPage fetchJournals={fetchJournals} />
                     </Suspense>
                 </div>
 
 
-                <div ref={JournalListRef} className=" w-full  h-full  flex-center ">
+                <div  className=" w-full  h-full  flex-center ">
 
                     {journals.length > 0 ? (
 
@@ -165,7 +157,7 @@ export default function Search() {
                             <div className=" w-11/12 2xl:w-10/12 mt-20 z-20   grid md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-12   ">
                                 {journals?.map((journal, index) => (
 
-                                    <div key={index} className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
+                                    <div key={index} onClick={() => handleGetBlog(journal.slug)} className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
 
                                         <Image
                                             src={journal.image_public_url}

@@ -99,7 +99,6 @@ function JournalClient() {
     };
 
 
-
     useGSAP(() => {
         const elements = gsap.utils.toArray(".scale-opacity-animate");
 
@@ -138,6 +137,7 @@ function JournalClient() {
         );
     },);
 
+
     useEffect(() => {
         fetchFeaturedJournals()
         fetchJournals()
@@ -150,6 +150,9 @@ function JournalClient() {
 
 
     useEffect(() => {
+        // localStorage.removeItem("searchQuery");
+        localStorage.setItem("searchQuery", '')
+
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
@@ -230,7 +233,7 @@ function JournalClient() {
                             <div className=" w-11/12 2xl:w-10/12 mt-20 z-20   grid md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-12   ">
                                 {journals?.map((journal, index) => (
 
-                                    <div key={index} className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
+                                    <div key={index} onClick={() => handleGetBlog(journal.slug)}  className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
 
                                         <Image
                                             src={journal.image_public_url}

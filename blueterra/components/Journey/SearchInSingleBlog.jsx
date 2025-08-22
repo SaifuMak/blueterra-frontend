@@ -34,12 +34,11 @@ const SearchInSingleBlog = () => {
 
     };
 
+
     useEffect(() => {
-
-        const searchValue = localStorage.getItem("searchQuery")
-        setSearchValue(searchValue);
-
-    }, [searchValue]);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        localStorage.setItem("searchQuery", '')
+    }, []);
 
 
 

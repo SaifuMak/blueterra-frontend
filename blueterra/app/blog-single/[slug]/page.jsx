@@ -69,6 +69,7 @@ export default function BlogSingle() {
                 const blogs = response?.data
                 const filteredBlogs = blogs.filter(blog => blog.slug !== slug);
                 setRelatedBlogs(filteredBlogs)
+
             } catch (error) {
                 console.error('Failed to load journal:', error);
             } finally {
@@ -80,7 +81,7 @@ export default function BlogSingle() {
 
     }, [blog]);
 
-   
+
 
 
 
@@ -136,13 +137,13 @@ export default function BlogSingle() {
                     </div>
 
                     <div className=" w-full lg:w-6/12 xl:w-5/12 py-5 space-y-10 h-full border-l px-4 2xl:px-10 ">
-                       
 
-                         <Suspense fallback={<div>Loading search...</div>}>
-                             <SearchInSingleBlog />
-                            </Suspense> 
-                           
-                       
+
+                        <Suspense fallback={<div>Loading search...</div>}>
+                            <SearchInSingleBlog />
+                        </Suspense>
+
+
 
                         {/* <div className="">
                             <p className=" text-xl ml-1">Search</p>
@@ -207,6 +208,7 @@ export default function BlogSingle() {
                     </div>
                 </div>
 
+
                 {relatedBlogs.length > 0 && <div className=" w-11/12  my-10 lg:my-20 rounded-3xl py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden flex justify-center  bg-sky-blue-light  md:min-h-[85vh] h-full   relative  ">
                     <ResponsiveClipPath outerClass='absolute z-30 w-full  h-4/12   lg:w-7/12 md:w-9/12 md:h-7/12 lg:h-6/12 xl:w-9/12  2xl:w-8/12 left-0 top-0 xl:h-8/12' ImagePath='/images/blog-single/related-blogs-clip-path.png' />
                     <ResponsiveClipPath outerClass='absolute z-30 md:w-2/12 w-9/12 h-3/12 right-0 bottom-0 md:h-4/12' ImagePath='/images/blog-single/related-blogs-clip-bottom.png' />
@@ -220,16 +222,13 @@ export default function BlogSingle() {
 
                             <BlogCards
                                 outerConatainerClass="relative group cursor-pointer  z-30 h-full  w-full md:w-5/12  rounded-2xl overflow-hidden"
-                                // imageUrl="/images/home/girrafe-in-grassland.jpg"
-                                // title="Top Stargazing Spots Around the World for Unforgettable" 
                                 blog={relatedBlogs[0]}
                             />
-                            <BlogCards
+
+                            {relatedBlogs.length > 1 && <BlogCards
                                 outerConatainerClass="relative group cursor-pointer  z-30 w-full h-full  md:w-7/12  rounded-2xl overflow-hidden"
-                                imageUrl="/images/home/zebras-in-grasslands.jpg"
-                                title="Best Destinations for Wellness and Mindfulness"
                                 blog={relatedBlogs[1]}
-                            />
+                            />}
                         </div>
 
 
