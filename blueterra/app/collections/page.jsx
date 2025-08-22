@@ -26,22 +26,24 @@ import MobileFilterPopup from "@/components/collections/MobileFilterPopup";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
 import AXIOS_INSTANCE from "@/lib/axios";
 import Head from "next/head";
+import usePageLoaded from "../hooks/usePageLoaded";
 
 // export const metadata = {
 //   title: "My Blog Title | CashPlus",
 //   description: "This is the description of my blog page for SEO purposes.",
 // };
 
+
 export default function Collection() {
 
   const isMobile = useIsMobile()
+  const isLoaded = usePageLoaded();
+
 
   // const pathname = usePathname();
 
   const [isLoading, setIsLoading] = useState(true)
   const [itineraryData, setItineraryData] = useState(null)
-
-
 
   // zoho form 
   const [formOpen, setFormOpen] = useState(false);
@@ -49,7 +51,6 @@ export default function Collection() {
   const [isCardRequestedToShowInMobile, setisCardRequestedToShowInMobile] = useState(false)
 
   const [collectionRequestedToShowInMobile, setCollectionRequestedToShowInMobile] = useState(null)
-
 
   const [isfullCardEnabledForFirstTime, setIsfullCardEnabledForFirstTime] = useState(false)
 
@@ -199,7 +200,9 @@ export default function Collection() {
 
   return (
 
+
     <div className={`${rubik.className} text-dark-28`}>
+
       <Navbar isfixed={true} onNavClick={handleNavClick} />
 
       {isMobile ? (
@@ -221,7 +224,7 @@ export default function Collection() {
         />
       )}
 
-      {!isMobile && <FilterLayout selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} />}
+      {!isMobile && <FilterLayout selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} setExpandedTileIndex={setExpandedIndex} setIsFilterVisible={setIsFilterVisible} />}
 
       <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
 

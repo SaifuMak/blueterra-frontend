@@ -4,9 +4,9 @@ import useClickOutside from '@/app/hooks/useClickOutside'
 
 import { RxCross2 } from '@/components/reactIcons'
 import ScrollContainer from 'react-indiana-drag-scroll';
-import {destinations,countries,collections,categories} from '@/components/datas/FilterOptions'
+import { destinations, countries, collections, categories } from '@/components/datas/FilterOptions'
 
-export default function FilterLayout({selectedFilters, setSelectedFilters, setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex,handleChangeCollection }) {
+export default function FilterLayout({ selectedFilters, setSelectedFilters, setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex, handleChangeCollection, setExpandedTileIndex, setIsFilterVisible }) {
 
     // const [openedFilters, setOpenedFilters] = useState([])
 
@@ -18,8 +18,6 @@ export default function FilterLayout({selectedFilters, setSelectedFilters, setIs
     const filterContaineRef = useClickOutside(() => setOpenedFilter(null))
 
     const filterScrollRef = useRef();
-
-   
 
     // const [selectedFilters, setSelectedFilters] = useState({
     //     categories: [],
@@ -49,6 +47,7 @@ export default function FilterLayout({selectedFilters, setSelectedFilters, setIs
             collections: []
         })
         setFlatSelectedFilters([])
+
     }
 
     const handleItemSelection = (filter, value) => {
@@ -78,6 +77,7 @@ export default function FilterLayout({selectedFilters, setSelectedFilters, setIs
     }
 
     const handleRemoveFilter = (valueToRemove) => {
+        console.log(valueToRemove)
 
         // clear the flat list of selected filters
         setFlatSelectedFilters(prev => prev.filter(item => item !== valueToRemove)
@@ -104,9 +104,6 @@ export default function FilterLayout({selectedFilters, setSelectedFilters, setIs
     }, [expandedBannerCollectionIndex])
 
 
-
-
-
     useEffect(() => {
         // make the container scroll to end
         setTimeout(() => {
@@ -117,6 +114,13 @@ export default function FilterLayout({selectedFilters, setSelectedFilters, setIs
                 });
             }
         }, 0);
+        console.log(flatSelectedFilters);
+        
+
+        if (flatSelectedFilters.length === 0) {
+            setExpandedTileIndex(null)
+            setIsFilterVisible(true)
+        }
     }, [flatSelectedFilters])
 
 
@@ -169,7 +173,7 @@ export default function FilterLayout({selectedFilters, setSelectedFilters, setIs
             </div>
 
 
-            {flatSelectedFilters?.length > 0 && <div className=" flex  xl:w-9/12  w-9/12    ">
+            {flatSelectedFilters?.filter(Boolean)?.length > 0 && <div className=" flex  xl:w-9/12  w-9/12    ">
 
                 <ScrollContainer
                     innerRef={filterScrollRef}
@@ -178,7 +182,7 @@ export default function FilterLayout({selectedFilters, setSelectedFilters, setIs
                     horizontal={true}
                     hideScrollbars={false} // set true to hide
                 >
-                    {flatSelectedFilters?.map((filter, index) => (
+                    {flatSelectedFilters?.filter(Boolean)?.map((filter, index) => (
                         <div key={index} onClick={() => handleRemoveFilter(filter)} className=" flex-center cursor-pointer border rounded-full py-1.5 px-3 ">
                             <p className=" text-sm max-lg:text-xs text-nowrap">{filter}</p>
                             <RxCross2 className=' ml-1' />
