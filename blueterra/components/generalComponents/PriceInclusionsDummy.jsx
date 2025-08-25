@@ -18,40 +18,39 @@ const priceExcludes = [
 ];
 
 
-export default function PriceInclusionsDummy() {
+export default function PriceInclusionsDummy({itineraryData}) {
     return (
         <div className={`w-full mx-auto px-4 py-8 ${rubik.className} `}>
             <p className="mb-4 text-gray-800">As detailed in the itinerary:</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-20 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
 
-                <div className=' mx-auto'>
+                <div className=' '>
                     <h3 className=" font-medium text-lg mb-4">INCLUDES</h3>
-                    <ul className="space-y-3">
-                        {priceIncludes.map((item, idx) => (
+                    <ul className="space-y-3 max-h-44 overflow-y-auto ">
+                        {itineraryData?.package_inclusions?.map((item, idx) => (
                             <li
                                 key={idx}
-                                className={`flex ${item.note ? 'justify-between' : 'items-start gap-2'
-                                    }`}
+                                className={`flex justify-between`}
                             >
                                 <div className="flex items-start gap-2">
                                     <FaCheckCircle className="text-green-600 mt-1" />
-                                    <span>{item.text}</span>
+                                    <span>{item.title}</span>
                                 </div>
-                                {item.note && (
-                                    <span className="text-gray-500 text-nowrap text-sm ml-3">{item.note}</span>
-                                )}
+                                {/* {item.title && (
+                                    <span className="text-gray-500 text-nowrap text-sm ml-3">as detailed</span>
+                                )} */}
                             </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className=' mx-auto'>
+                <div className=''>
                     <h3 className="font-medium text-lg mb-4">EXCLUDES</h3>
-                    <ul className="space-y-3">
-                        {priceExcludes.map((item, idx) => (
+                    <ul className="space-y-3 max-h-44 overflow-y-auto ">
+                        {itineraryData?.package_exclusions?.map((item, idx) => (
                             <li key={idx} className="flex items-start gap-2">
                                 <FaTimes className="text-red-600 mt-1" />
-                                <span>{item}</span>
+                                <span>{item.title}</span>
                             </li>
                         ))}
                     </ul>

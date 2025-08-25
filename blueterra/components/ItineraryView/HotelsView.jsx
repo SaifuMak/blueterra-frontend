@@ -11,7 +11,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
 
-export default function HotelsView() {
+export default function HotelsView({data}) {
 
     const [currentHotel, setCurrentHotel] = useState(0)
     const [hotelsCount, setHotelsCount] = useState(0)
@@ -43,7 +43,6 @@ export default function HotelsView() {
     }, { scope: hotelRef });
 
     
-    
 
 
     return (
@@ -55,11 +54,11 @@ export default function HotelsView() {
             </div>
            
             <div className="w-full vertically-animated-element h-full ">
-                <HotelsList HotelsData={HotelsData} setCurrent={setCurrentHotel} setCount={setHotelsCount} />
+                <HotelsList HotelsData={data} setCurrent={setCurrentHotel} setCount={setHotelsCount} />
             </div>
 
             <div className="flex-center space-x-2 overflow-hidden">
-                {[...Array(hotelsCount)].map((_, index) => (
+                {[...Array(data?.length)].map((_, index) => (
                     <span key={index} className={` transform transition-all duration-300 ease-in-out  ${currentHotel === index + 1 ? "w-12 h-2.5  bg-sky-blue-1" : "w-2 h-2 bg-sky-blue-1/30"} rounded-full`} />
 
                 ))}

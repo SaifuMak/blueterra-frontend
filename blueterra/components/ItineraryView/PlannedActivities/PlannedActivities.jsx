@@ -16,7 +16,7 @@ import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
 gsap.registerPlugin(ScrollTrigger);
 
 
-export default function PlannedActivities({itineraryData }) {
+export default function PlannedActivities({ itineraryData }) {
 
     const dailyActivitiesRef = useRef(null)
     const mapRef = useRef(null)
@@ -395,11 +395,11 @@ export default function PlannedActivities({itineraryData }) {
                         <MdInfoOutline className="ml-2" />
                     </div>
 
-                    <div className="absolute bottom-6 min-h-[300px] min-w-[900px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
+                    <div className="absolute   top-5 min-h-[300px] min-w-[900px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
 
-                        <div className=" relative mb-4   border px-6 !z-[1999] rounded-xl shadow-2xl bg-white  ">
-                            <IoMdArrowDropup className=" text-4xl  text-white absolute left-1/4 -translate-x-1/4 rotate-180  -bottom-5   " />
-                            <PriceInclusionsDummy />
+                        <div className=" relative mt-4 bg-white    px-6 !z-[1999] rounded-xl  shadow-[0_0_20px_rgba(0,0,0,0.15)]   ">
+                            <IoMdArrowDropup className=" text-4xl  text-white absolute left-1/4 -translate-x-1/4 -top-5 " />
+                            <PriceInclusionsDummy itineraryData={itineraryData} />
                         </div>
                     </div>
 

@@ -221,13 +221,34 @@ export default function ItineraryView() {
                             <PlannedActivities itineraryData={itineraryData} />
                         </div>
 
-                        <TravelInfo />
+                        <div className="  bg-white pb-28">
+                            <div className=" w-10/12 mx-auto flex justify-between ">
+                                <TravelInfo
+                                    icon='/Icons/Itinerary/leaf.svg'
+                                    title='Best Time to Travel'
+                                    subtitle={itineraryData?.featured_points[0]?.suggested_date}
+                                />
+                                <TravelInfo
+                                    icon='/Icons/Itinerary/dollar.svg'
+                                    title='Price start from'
+                                    subtitle={itineraryData?.featured_points[0]?.price}
+                                    additionalInformation={itineraryData?.featured_points[0]?.additional_information}
+                                />
+                                <TravelInfo
+                                    icon='/Icons/Itinerary/ballon.svg'
+                                    title='Adventures in Motion'
+                                    subtitle={itineraryData?.category}
+                                    
+                                />
+                            </div>
+                        </div>
+
 
 
                         <div className=" w-full   min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">
                             <div className=" w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige">
                                 <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 top-0 h-10/12' ImagePath='/images/itinerary/hotels-clip-path.png' />
-                                <HotelsView />
+                                <HotelsView data={itineraryData?.hotels} />
                             </div>
                         </div>
 

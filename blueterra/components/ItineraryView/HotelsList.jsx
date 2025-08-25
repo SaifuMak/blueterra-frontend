@@ -1,6 +1,7 @@
 
 'use client'
 import { CarouselApi } from "@/components/ui/carousel"
+import { trimWords } from "@/app/utils/textHelpers";
 
 import { useState, useEffect } from "react";
 import {
@@ -62,19 +63,19 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                     <CarouselContent>
 
                         {HotelsData?.map((item, index) => (
-                            <CarouselItem key={index} className="md:basis-1/2 2xl:p-3 pb-2 xl:basis-1/3 flex-center over">
+                            <CarouselItem key={index} className="md:basis-1/2 2xl:p-3 pb-2 xl:basis-1/3  flex  over">
 
-                                <div className="  mx-4 lg:mx-2 group ">
+                                <div className="  mx-4 lg:mx-2 group  ">
 
                                     <div className=" relative  rounded-sm overflow-hidden  transition-all duration-700 ease-in-out h-[200px] md:h-[250px] 2xl:h-[300px] w-full">
                                         <Image
-                                            src={item.image}
-                                            alt={item.title}
+                                            src={item?.image_public_url}
+                                            alt={item?.title}
                                             fill
                                             className="object-cover delay-300 transition-all duration-700 ease-in-out group-hover:scale-110"
                                         />
                                         <div className=" absolute flex-center inset-0 w-full h-full delay-200 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100 group-hover:bg-black/40 ">
-                                            <a href="#">
+                                            <a href={item.map_link} target="_blank" rel="noopener noreferrer">
                                                 <FaMapMarkerAlt className="text-3xl text-white" />
                                             </a>
 
@@ -83,22 +84,22 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
 
                                     <div className="  space-y-1">
 
-                                        <div className="flex mt-2 items-center justify-between">
-                                            <h3 className="font-medium text-xl text-dark-4B xl:text-3xl">{item.title}</h3>
-                                            <div className="flex space-x-1">
+                                        <div className="flex mt-2  justify-between">
+                                            <h3 className="font-medium text-xl text-dark-4B xl:text-3xl">{trimWords(item.title,3)}</h3>
+                                            <div className="flex space-x-1 mt-3">
                                                 {[...Array(5)].map((_, ind) => (
-                                                    <IoIosStar key={ind} className="fill-[#FFCB1F] text-xl" />
+                                                    <IoIosStar key={ind} className={`text-xl ${ind < item.rating ? "fill-[#FFCB1F]" : "fill-gray-300"
+                                                        }`} />
                                                 ))}
                                             </div>
                                         </div>
                                         <div className="">
-                                            <p className=" xl:text-lg ">{item.subtitle}</p>
+                                            <p className=" xl:text-lg ">{item.location}</p>
                                         </div>
 
                                         <div className="mt-2">
                                             <p className=" font-light my-6">
-                                                Donec malesuada, sapien nec interdum facilisis, tortor leo volutpat neque,
-                                                in ultrices eros arcu at purus. Curabitur at augue sed met commodo gravida. Donec malesu Read more...
+                                                {item?.description}
                                             </p>
                                         </div>
 
