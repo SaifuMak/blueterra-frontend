@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import useClickOutside from "@/app/hooks/useClickOutside";
 import AXIOS_INSTANCE from "@/lib/axios";
+import { toast } from 'sonner';
+import ChangePasswordPopup from "./ChangePasswordPopup";
 
 
 const Navbar = () => {
@@ -15,6 +17,7 @@ const Navbar = () => {
     const router = useRouter()
     const [itemName, setItemName] = useState('');
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [isChangePasswordModal, setIsChangePasswordModal] = useState(false)
 
     const dropDownRef = useClickOutside(() => setDropdownOpen(false))
 
@@ -28,6 +31,7 @@ const Navbar = () => {
     const handleLogout = async () => {
         try {
             const response = await AXIOS_INSTANCE.post(`logout/`, {});
+            toast.success('Logged out successfully')
             router.replace("/login");
 
         } catch (error) {
@@ -39,7 +43,12 @@ const Navbar = () => {
 
     }
 
+    const handleChangePassword = () => {
+
+    }
+
     return (
+        <>
         <div className=" w-full flex  h-[70px] lg:h-[75px] justify-end pl-10 bg-brand-blue">
 
             <div className=" w-full flex   px-6 items-center justify-between bg-white  rounded-bl-4xl">
@@ -88,7 +97,7 @@ const Navbar = () => {
                                 <div className="absolute z-[999] right-0 top-16 w-48 bg-white shadow-lg rounded-lg py-2 border">
 
                                     <button
-                                        onClick={handleLogout}
+                                        onClick={()=>setIsChangePasswordModal(true)}
                                         className="block w-full cursor-pointer text-left px-4 py-2 text-sm  hover:bg-gray-100"
                                     >
                                         Change Password
@@ -106,6 +115,8 @@ const Navbar = () => {
                 </div>
             </div>
         </div>
+        { isChangePasswordModal &&  <ChangePasswordPopup closeModal={setIsChangePasswordModal} />}
+        </>
     )
 }
 

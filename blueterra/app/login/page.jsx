@@ -30,12 +30,14 @@ export default function login() {
         }));
     }
 
+
     const handleLogin = async (e) => {
         e.preventDefault()
         setIsLoading(true)
         toast.dismiss()
         try {
             const response = await AXIOS_INSTANCE.post(`login-admin/`, formData);
+            toast.success('Logged in successfully')
             router.replace("/admin/dashboard");
 
         } catch (error) {
@@ -110,7 +112,7 @@ export default function login() {
                                 {formData.password && <span onClick={() => setIsPasswordVisible(!isPasswordVisible)} className=" cursor-pointer  absolute right-1 bottom-2">{isPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}</span>}
                             </div>
 
-                            <button type="submit" disabled={isLoading} className=" w-full cursor-pointer rounded-sm flex justify-center text-sm font-light text-center text-white bg-brand-blue py-3">{isLoading ? <LoaderIcon className='text-sky-blue-1 text-xl animate-spin' /> : 'LOGIN'}</button>
+                            <button type="submit" disabled={isLoading} className=" w-full cursor-pointer rounded-sm flex justify-center text-sm font-light text-center text-white bg-brand-blue py-3">{isLoading ? <LoaderIcon className='text-white text-xl animate-spin' /> : 'LOGIN'}</button>
                         </div>
                     </div>
                 </form>

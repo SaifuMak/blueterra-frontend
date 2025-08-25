@@ -293,7 +293,7 @@ export default function Journals() {
                         </div>)}
 
 
-                    {journals?.length > 0 && (<Pagination
+                    {journals?.length > 0 && !isLoading && (<Pagination
                         prevPage={prevPage}
                         nextPage={nextPage}
                         function_to_call={fetchJournals}
