@@ -19,18 +19,9 @@ import PackageExclusions from "@/components/admin/Itinerary/PackageExclusions";
 import MapRoutingSection from "@/components/admin/Itinerary/MapRoutingSection";
 import GallerySection from "@/components/admin/Itinerary/GallerySection";
 import FeaturedPoints from "@/components/admin/Itinerary/FeaturedPoints";
-import Loader from "@/components/generalComponents/Loader";
 import LoaderIcon from "@/components/generalComponents/LoaderIcon";
-import useAuthCheck from "../hooks/useAuthCheck";
 
-export default function AdminAddItinerary() {
-
-    const { isAuthenticating } = useAuthCheck();
-    if (isAuthenticating) {
-        return (
-            <Loader />
-        )
-    }
+export default function CreateItinerary() {
 
     const inputStyle = 'placeholder:text-[#949393] w-full bg-white rounded-[4px] border border-[#B5B5B5] outline-none  py-2 px-4'
     const textAreaStyle = 'placeholder:text-[#949393] bg-white rounded-[4px] border border-[#B5B5B5] outline-none  min-h-28  py-2 px-4'

@@ -5,7 +5,7 @@ import { BiLoaderAlt } from "react-icons/bi";
 
 const Loader = ({ height = 'h-[100vh]' }) => {
     return (
-        <div className={` ${height} bg-white  z-50 absolute inset-0 w-full h-[100vh] flex  justify-center items-center  `} >
+        <div className={` ${height} bg-white  z-50 absolute inset-0 w-full  flex  justify-center items-center  `} >
             <BiLoaderAlt className=' animate-spin text-3xl text-sky-blue-1 ' />
         </div>
     )

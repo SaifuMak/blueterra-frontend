@@ -1,16 +1,12 @@
 'use client'
 import Sidebar from "@/components/admin/Sidebar";
 import Navbar from "@/components/admin/Navbar";
-import useAuthCheck from "../hooks/useAuthCheck";
 import Loader from "@/components/generalComponents/Loader";
+
+
 export default function Dashboard() {
 
-    const { isAuthenticating } = useAuthCheck();
-    if (isAuthenticating) {
-        return (
-            <Loader />
-        )
-    }
+   
 
     return (
         <div className="   h-screen w-full ">
