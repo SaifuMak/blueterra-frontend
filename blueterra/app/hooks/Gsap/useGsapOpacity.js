@@ -24,10 +24,10 @@ const useGsapOpacity = (index = 0, options = {}) => {
         y: 0,
         scale : 1,
         duration: options.duration || 0.9,
-        ease: options.ease || "linear",
+        ease: options.ease || "sine.out",
         scrollTrigger: {
           trigger: elementRef.current,
-          start: options.start || "top 80%",
+          start: options.start || "top 85%",
           toggleActions: options.toggleActions || "play none none reverse",
         //   onEnter: () => {
         //     elementRef.current?.classList?.remove("hidden-text");

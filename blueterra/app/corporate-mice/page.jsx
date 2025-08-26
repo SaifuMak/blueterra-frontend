@@ -348,9 +348,9 @@ export default function Corporate() {
 
                             <div className="lg:w-4/12  w-full flex flex-col max-sm:pl-3  xl:space-y-6 2xl:space-y-8 ">
                                 <h4 className={`${playfair.className} vertically-animated-element font-medium max-md:text-3xl text-[42px] xl:text-[50px]`} >Get in Touch</h4>
-                                <p className=" text-xl xl:text-2xl vertically-animated-element max-sm:mt-2 font-light">Have questions or need assistance?</p>
+                                {/* <p className=" text-xl xl:text-2xl vertically-animated-element max-sm:mt-2 font-light">Have questions or need assistance?</p> */}
 
-                                <div className=" vertically-animated-element  lg:space-y-4 max-sm:space-y-3 space-y-5 xl:space-y-6 mt-5">
+                                <div className=" vertically-animated-element  lg:space-y-4 max-sm:space-y-3 space-y-5 xl:space-y-6 mt-2">
                                     {CONTACT_DETAILS?.map((data, index) => (
                                         <div key={index} className=" flex items-center font-light space-x-3 xl:space-x-5">
                                             <img src={data.icon} alt="search icon " className=" object-cover shrink-0 size-7 lg:size-8 xl:size-9" />

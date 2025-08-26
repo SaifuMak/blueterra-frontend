@@ -6,6 +6,7 @@ const CardData = [
   { number: '04', icon: '/Icons/collections/meditation.svg', image: '/images/home/men-in-yellow-dress.png', alt: 'men-in-yellow-dress', tagline: 'Mindful Escapes' },
   { number: '05', icon: '/Icons/collections/exited.svg', image: '/images/home/old-man.jpeg', alt: 'old-man', tagline: 'Unforgettable Editions' },
   { number: '06', icon: '/Icons/collections/gift.svg', image: '/images/home/yellow-man-second.png', alt: 'yellow-man-second', tagline: 'Tailored for You' },
+
 ]
 
 

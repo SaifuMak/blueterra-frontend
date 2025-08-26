@@ -183,7 +183,7 @@ export default function ThreeCardSection() {
                     <section
                         key={i}
                         ref={(el) => (sectionsRef.current[i] = el)}
-                        className="md:min-h-[80vh] min-h-[60vh]   flex  items-center justify-center"
+                        className="md:min-h-[80vh]   min-h-[60vh]   flex  items-center justify-center"
                     >
                         <div
                             ref={(el) => (cardsRef.current[i] = el)}

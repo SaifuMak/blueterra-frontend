@@ -18,9 +18,12 @@ import Marquee from "react-fast-marquee";
 import DestinationCarousal from "@/components/Home/DestinationCarousal";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
+import JournalSection from "@/components/Home/JournalSection";
+import useGsapFadeIn from "./hooks/Gsap/useGsapFadeIn";
+import PlanningCardSection from "@/components/Home/PlanningCardSection";
+import PartnerCompaniesSection from "@/components/Home/PartnerCompaniesSection";
 
-
-gsap.registerPlugin(useGSAP, ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger)
 
 
 export default function Home() {
@@ -46,6 +49,8 @@ export default function Home() {
   const titleRef = useRef()
   const descRef = useRef()
 
+  const cardOne = useGsapFadeIn(0, {})
+
   const currentDestinationTitleRef = useRef()
   const prevDestinationTitleRef = useRef()
 
@@ -53,18 +58,6 @@ export default function Home() {
   const prevDestinationDescriptionRef = useRef()
 
 
-  const boxData = [
-    { id: 1, title: 'Box 1', color: 'bg-red-400' },
-    { id: 2, title: 'Box 2', color: 'bg-green-400' },
-    { id: 3, title: 'Box 3', color: 'bg-blue-400' },
-    { id: 4, title: 'Box 4', color: 'bg-yellow-400' },
-    { id: 5, title: 'Box 5', color: 'bg-purple-400' },
-    { id: 6, title: 'Box 1', color: 'bg-red-400' },
-    { id: 7, title: 'Box 2', color: 'bg-green-400' },
-    { id: 8, title: 'Box 3', color: 'bg-blue-400' },
-    { id: 9, title: 'Box 4', color: 'bg-yellow-400' },
-    { id: 10, title: 'Box 5', color: 'bg-purple-400' },
-  ];
   const cardRefs = useRef([]);
 
   const testimonialContainer = useRef(null);
@@ -201,7 +194,7 @@ export default function Home() {
           scrollTrigger: {
             trigger: box,
             start: "top 90%",
-            toggleActions: "play reverse play reverse",
+            toggleActions: "play none none reverse",
           },
         }
       );
@@ -209,27 +202,27 @@ export default function Home() {
   }, { scope: welcomeContainerRef });
 
 
-  useGSAP(() => {
-    const elements = gsap.utils.toArray(".scale-opacity-animate");
+  // useGSAP(() => {
+  //   const elements = gsap.utils.toArray(".scale-opacity-animate");
 
-    elements.forEach((box) => {
-      gsap.fromTo(
-        box,
-        { opacity: 0, scale: 0.9 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: box,
-            start: "top 90%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
-    });
-  }, { scope: welcomeContainerRef });
+  //   elements.forEach((box) => {
+  //     gsap.fromTo(
+  //       box,
+  //       { opacity: 0, scale: 0.9 },
+  //       {
+  //         opacity: 1,
+  //         scale: 1,
+  //         duration: 0.7,
+  //         ease: "sine.out",
+  //         scrollTrigger: {
+  //           trigger: box,
+  //           start: "top 90%",
+  //           toggleActions: "play none none reverse",
+  //         },
+  //       }
+  //     );
+  //   });
+  // }, { scope: welcomeContainerRef });
 
 
   const videoRef = useRef(null);
@@ -493,165 +486,10 @@ export default function Home() {
 
         </div>
 
+        <JournalSection />
+        <PartnerCompaniesSection/>
 
-        <div className=" relative w-full flex  flex-col  items-center h-[120vh]   py-10 xl:py-16 2xl:py-20 space-y-12 xl:space-y-20   max-lg:hidden ">
-          <div className=" w-[30%]   absolute left-0 top-0    ">
-            <Image
-              src='/images/home/journal-left-path.png'
-              alt="pattern"
-              width={300}
-              height={400}
-              className=" object-cover"
-            />
-          </div>
-
-          <div className=" w-fit absolute  right-0  bottom-0">
-            <Image
-              src='/images/home/journal-right-path.png'
-              alt="pattern"
-              width={500}
-              height={500}
-              className=" object-cover"
-            />
-          </div>
-
-          <div className=" w-full flex justify-center text-dark-4B">
-            <h3 className={`${playfair.className} vertically-animated-element heading-text`}>BlueTerra Journal</h3>
-          </div>
-
-          <div className=" flex h-[100%]   space-x-7  2xl:space-x-10 w-11/12">
-            <div className=" w-1/3 group overflow-hidden h-full cursor-pointer rounded-xl  relative scale-opacity-animate">
-              <Image
-                src='/images/home/zebras-in-grasslands.jpg'
-                alt="zebra"
-                fill
-                className=" object-cover group-hover:scale-110 delay-100 rounded-xl transition-all duration-1000 ease-in-out"
-              />
-              <JournalsCardOverlay text='Best Destinations for Wellness and Mindfulness' />
-            </div>
-
-            <div className=" flex flex-col h-full w-1/3 space-y-7  2xl:space-y-10 ">
-              <div className=" w-full group overflow-hidden cursor-pointer h-[50%]  rounded-xl relative scale-opacity-animate">
-                <Image
-                  src='/images/home/rock-in-river.jpg'
-                  alt="rock in river "
-                  fill
-                  className="object-cover group-hover:scale-110 delay-100 rounded-xl transition-all duration-1000 ease-in-out"
-                />
-                <JournalsCardOverlay text='Why Boutique Travel is Shapingthe Future of Personalized' />
-
-              </div>
-              <div className=" w-full group overflow-hidden cursor-pointer h-[50%]  rounded-xl relative scale-opacity-animate">
-                <Image
-                  src='/images/home/zebras-in-grasslands.jpg'
-                  alt="zebra"
-                  fill
-                  className="object-cover group-hover:scale-110 delay-100 rounded-xl transition-all duration-1000 ease-in-out"
-                />
-                <JournalsCardOverlay text='Most Instagrammable Villages Around the Globe' />
-
-              </div>
-
-            </div>
-
-            <div className=" w-1/3 h-full group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative scale-opacity-animate">
-              <Image
-                src='/images/home/girrafe-in-grassland.jpg'
-                alt="zebra"
-                fill
-                className="object-cover group-hover:scale-110 delay-100 rounded-xl transition-all duration-1000 ease-in-out"
-              />
-              <JournalsCardOverlay text='Top Stargazing Spots Around the World for Unforgettable' />
-            </div>
-
-          </div>
-
-          <div className="">
-            <Button text='VIEW ALL' buttonStyle='px-16 py-2  ' isHoverWhiteApplied={false} />
-          </div>
-
-        </div>
-
-
-        <div className=" w-full flex-center pb-10 mt-10  ">
-          <div className=" 2xl:w-10/12 w-full lg:w-11/12 flex lg:px-10   py-3  lg:space-x-20   ">
-            <Marquee pauseOnHover>
-              {boxData?.map((data, index) => (
-                <div key={index} className="   group cursor-pointer h-[40px] w-[150px] relative mx-5 lg:mx-10">
-                  <Image
-                    src='/images/partner-company/logo-1.png'
-                    alt="pattern"
-                    fill
-                    className=" object-cover grayscale group-hover:grayscale-0 transition duration-500"
-                  />
-                </div>
-              ))}
-            </Marquee>
-          </div>
-        </div>
-
-
-        <div className=" lg:h-[50vh] xl:h-[60vh]  2xl:h-[70vh]  max-lg:mb-10  w-full flex flex-col items-center relative py-5 md:py-12  2xl:py-20 ">
-
-          <div className=" w-[30%]  absolute left-0  bottom-0    ">
-            <Image
-              src='/images/home/newsletter-left-path.png'
-              alt="pattern"
-              width={500}
-              height={500}
-              className=" object-cover"
-            />
-          </div>
-
-          <div className=" w-fit  absolute  right-0  bottom-0    ">
-            <Image
-              src='/images/home/newsletter-right-path.png'
-              alt="pattern"
-              width={500}
-              height={500}
-              className=" object-cover"
-            />
-          </div>
-
-          <div className={`flex max-lg:flex-col w-10/12 lg:w-11/12  lg:h-screen  max-lg:space-y-10 lg:space-x-10  xl:space-x-16 ${rubik.className}`}>
-            <div className=" w-full lg:w-1/2 max-lg:h-[40vh]  relative group overflow-hidden rounded-4xl scale-opacity-animate">
-              <Image
-                src='/images/home/three-friends.jpg'
-                alt="three-friends"
-                fill
-                className="object-cover scalling-group-110 rounded-4xl "
-              />
-              <div className=" absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black/20 cursor-pointer rounded-4xl">
-                <h3 className={`2xl:text-[50px] text-3xl xl:text-[45px]  lg:text-4xl ${playfair.className} vertically-animated-element text-center  font-normal text-white`}>Book Your Next Trip</h3>
-                <Button text='PLAN YOUR TRIP' buttonStyle='xl:px-12 px-6 py-2 xl:py-2.5 mt-8 max-md:text-xs  vertically-animated-element' onClickFunction={() => setFormOpen(true)} />
-
-              </div>
-            </div>
-            <div className=" w-full lg:w-1/2 max-lg:h-[40vh] group overflow-hidden  relative rounded-4xl scale-opacity-animate">
-              <Image
-                src='/images/home/beautiful-sea.jpeg'
-                alt="beautiful-sea"
-                fill
-                className={`object-cover scalling-group-110 rounded-4xl`}
-              />
-              <div className=" absolute inset-0 w-full h-full flex flex-col justify-center text-center items-center bg-black/20 cursor-pointer rounded-4xl">
-                <h3 className={`2xl:text-[50px] xl:text-[45px] text-3xl lg:text-4xl ${playfair.className} vertically-animated-element  font-normal text-white`}>Join Our Community</h3>
-                <p className=" xl:text-[23px] lg:text-xl max-md:px-4  2xl:text-[23px] text-white font-light mt-7 vertically-animated-element tracking-wide ">Get expert travel tips straight to your inbox.</p>
-                <div className="w-11/12 mt-4 h-[150px]  ">
-                  <iframe
-                    title="Zoho Form"
-                    src="https://forms.zohopublic.com/blueterra1/form/JoinOurCommunity1/formperma/tq1z2CAalSFUwdWkL0eLA_mkzm2nXum54WsJjuA1SzA"
-                    style={{ width: '100%', height: '100%', border: 'none', objectFit: 'cover' }}
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-
-        </div>
+        <PlanningCardSection />
 
         <Footer />
         <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />

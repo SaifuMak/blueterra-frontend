@@ -22,10 +22,10 @@ const useGsapFadeIn = (index = 0, options = {}) => {
         opacity: 1,
         y: 0,
         duration: options.duration || 0.8,
-        ease: options.ease || "power2.out",
+        ease: options.ease || "sine.out",
         scrollTrigger: {
           trigger: elementRef.current,
-          start: options.start || "top 80%",
+          start: options.start || "top 85%",
           toggleActions: options.toggleActions || "play none none reverse",
         //   onEnter: () => {
         //     elementRef.current?.classList?.remove("hidden-text");
