@@ -16,7 +16,7 @@ const galleryData = [
     { name: "Cultural Celebration", image: "https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg" },
 ];
 
-export default function GalleryList() {
+export default function GalleryList({ data }) {
     const containerRef = useRef(null);
     const cardRefs = useRef([]);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,7 +24,7 @@ export default function GalleryList() {
     const [expandedIndex, setExpandedIndex] = useState(null);
 
     const visibleCards = 5;
-    const totalCards = galleryData.length;
+    const totalCards = data.length;
 
     const [cardWidthPct, setCardWidthPct] = useState(20);
     const [gapPercent, setGapPercent] = useState(0);
@@ -106,7 +106,7 @@ export default function GalleryList() {
             {/* Carousel */}
             <div className="overflow-hidden rounded-3xl">
                 <div ref={containerRef} className="flex w-full gap-x-3">
-                    {galleryData.map((item, index) => (
+                    {data.map((item, index) => (
                         <div
                             key={index}
                             ref={(el) => (cardRefs.current[index] = el)}
@@ -115,16 +115,14 @@ export default function GalleryList() {
                             onMouseLeave={handleMouseLeave}
                         >
                             <Image
-                                src={item.image}
-                                alt={item.name}
+                                src={item.image_public_url}
+                                alt={item.title}
                                 fill
                                 className="object-cover rounded-3xl"
                             />
-                            <p className={`text-nowrap ${expandedIndex === index ? 'opacity-100 translate-x-12'  : 'opacity-0' }  font-medium absolute delay-200 bottom-10   -left-5 transition-all duration-500 2xl:text-2xl text-white`}>
-                                {item.name}
+                            <p className={`text-nowrap ${expandedIndex === index ? 'opacity-100 translate-x-12' : 'opacity-0'}  font-medium absolute delay-200 bottom-10   -left-5 transition-all duration-500 2xl:text-2xl text-white`}>
+                                {item.title}
                             </p>
-                         
-
                         </div>
                     ))}
                 </div>

@@ -303,7 +303,7 @@ export default function EditItinerary() {
                             <div className=" flex space-x-3 max-xl:text-sm text-white  absolute   right-5 top-5">
 
                                 <button type="submit" name="action"
-                                    value="publish" className=" bg-[#129366] min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save'}</button>
+                                    value="publish" className=" bg-[#129366] min-w-28 h-fit cursor-pointer  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save'}</button>
                             </div>
 
                             <div className="flex flex-col w-full  space-y-10">
@@ -459,7 +459,7 @@ export default function EditItinerary() {
                                 <div className=" py-10">
                                     <div className=" flex space-x-3 max-xl:text-sm text-white">
                                         <button type="submit" name="action"
-                                            value="publish" className=" bg-[#129366] min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save'}</button>
+                                            value="publish" className=" bg-[#129366] min-w-28 h-fit cursor-pointer py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save'}</button>
                                     </div>
 
                                 </div>

@@ -24,7 +24,7 @@ export default function TravelInfo({ icon, title, subtitle, additionalInformatio
 
                     {additionalInformation && <div className="relative  flex w-full ">
 
-                        <div className="flex peer ">
+                        <div className="flex peer cursor-pointer ">
                             <MdInfoOutline className="mt-3 ml-2 text-dark-4B" />
                         </div>
 

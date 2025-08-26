@@ -169,6 +169,7 @@ export default function ItineraryView() {
         fetchItinerary();
     }, [id]);
 
+
     return (
 
         <>
@@ -216,7 +217,7 @@ export default function ItineraryView() {
                         </div>
 
 
-                        <div className=" w-full bg-white relative   min-h-screen flex flex-col items-center ">
+                        <div className=" w-full bg-white relative  bg-red-200  min-h-screen flex flex-col items-center ">
                             {/* <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' /> */}
                             <PlannedActivities itineraryData={itineraryData} />
                         </div>
@@ -238,7 +239,7 @@ export default function ItineraryView() {
                                     icon='/Icons/Itinerary/ballon.svg'
                                     title='Adventures in Motion'
                                     subtitle={itineraryData?.category}
-                                    
+
                                 />
                             </div>
                         </div>
@@ -288,7 +289,7 @@ export default function ItineraryView() {
 
                                 </div> */}
 
-                                    <GalleryList />
+                                    <GalleryList data={itineraryData?.gallery} />
 
                                 </div>
                             </div>

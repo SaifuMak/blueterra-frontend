@@ -65,7 +65,7 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                         {HotelsData?.map((item, index) => (
                             <CarouselItem key={index} className="md:basis-1/2 2xl:p-3 pb-2 xl:basis-1/3  flex  over">
 
-                                <div className="  mx-4 lg:mx-2 group  ">
+                                <div className="  mx-4 lg:mx-2 group  w-full h-full flex flex-col ">
 
                                     <div className=" relative  rounded-sm overflow-hidden  transition-all duration-700 ease-in-out h-[200px] md:h-[250px] 2xl:h-[300px] w-full">
                                         <Image
@@ -99,7 +99,7 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
 
                                         <div className="mt-2">
                                             <p className=" font-light my-6">
-                                                {item?.description}
+                                                {trimWords(item?.description,40)}
                                             </p>
                                         </div>
 

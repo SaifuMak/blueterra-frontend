@@ -30,10 +30,10 @@ export default function HotelsView({data}) {
                     opacity: 1,
                     y: 0,
                     duration: 0.7,
-                    ease: "power3.out",
+                    ease: "sine.out",
                     scrollTrigger: {
                         trigger: box,
-                        start: "top 80%",
+                        start: "top 85%",
                         toggleActions: "play none play reverse ",
                         // markers: true
                     },
