@@ -27,6 +27,7 @@ import ZohoFormModal from "@/components/Forms/ZohoFormModal";
 import AXIOS_INSTANCE from "@/lib/axios";
 import Head from "next/head";
 import usePageLoaded from "../hooks/usePageLoaded";
+import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 
 // export const metadata = {
 //   title: "My Blog Title | CashPlus",
@@ -241,7 +242,7 @@ export default function Collection() {
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
           {isLoading ? (
             <div className="flex items-center justify-center w-full min-h-[60vh] col-span-2">
-              <p className="text-lg font-medium">Loading...</p>
+              <LoaderIcon/>
             </div>
           ) : itineraryData && itineraryData.length > 0 ? (
             <DestinationCards Destinations={Destinations} itineraryData={itineraryData} />

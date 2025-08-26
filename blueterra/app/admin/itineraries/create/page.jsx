@@ -55,7 +55,7 @@ export default function CreateItinerary() {
     const [collection, setCollection] = useState("");
     const [category, setCategory] = useState("");
 
-    const transferOptions = ["Land", "Air"];
+    const transferOptions = ["Land", "Air", "Water"];
 
     const [openDropdown, setOpenDropdown] = useState(null); // track which one is open
 

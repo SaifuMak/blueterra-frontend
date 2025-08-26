@@ -319,10 +319,10 @@ export default function PlannedActivities({ itineraryData }) {
                     opacity: 1,
                     y: 0,
                     duration: 0.7,
-                    ease: "power3.out",
+                    ease: "sine.out",
                     scrollTrigger: {
                         trigger: box,
-                        start: "top 90%",
+                        start: "top 80%",
                         toggleActions: "play none play reverse ",
                         // markers: true
                     },
@@ -374,7 +374,7 @@ export default function PlannedActivities({ itineraryData }) {
                     ))}
                 </div>
 
-                <div ref={plannerCardsRef} className="relative vertically-animated-element flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  overflow-hidden">
+                <div ref={plannerCardsRef} className="relative vertically-animated-element w-full h-full flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  overflow-hidden">
                     {Components?.map((item, index) => {
                         const DynamicComponent = item.component;
                         return (<div

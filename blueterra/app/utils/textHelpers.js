@@ -1,8 +1,8 @@
- export const trimWords = (text, wordLimit) => {
+ export const trimWords = (text, wordLimit, end='...') => {
   if (!text) return '';
   const words = text.trim().split(/\s+/);
   return words.length > wordLimit
-    ? words.slice(0, wordLimit).join(' ') + '...'
+    ? words.slice(0, wordLimit).join(' ') + end
     : text;
 };
 

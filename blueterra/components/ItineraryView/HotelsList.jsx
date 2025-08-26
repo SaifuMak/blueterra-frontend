@@ -99,7 +99,7 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
 
                                         <div className="mt-2">
                                             <p className=" font-light my-6">
-                                                {trimWords(item?.description,40)}
+                                                {trimWords(item?.description,40,' Read More...')}
                                             </p>
                                         </div>
 

@@ -33,21 +33,21 @@ const HotelIcon = new L.Icon({
 });
 
 
-const locations = [
-    { coords: [-1.2717, 36.8089], title: 'Nairobi City', routeType: 'land' },
-    { coords: [-1.3308, 36.9253], title: 'Jomo Kenyatta International Airport', routeType: 'flight' },
-    { coords: [-2.6829, 37.1825], title: 'Amboseli National Park', routeType: 'flight' },
-    { coords: [0.2528, 37.3889], title: 'Lewa Conservancy', routeType: 'flight' },
-    { coords: [-1.2484, 35.0119], title: 'Masai Mara Reserve', routeType: 'land' }
-];
+// const locations = [
+//     { coords: [-1.2717, 36.8089], location: 'Nairobi City', transfer: 'Land' },
+//     { coords: [-1.3308, 36.9253], location: 'Jomo Kenyatta International Airport', transfer: 'Air' },
+//     { coords: [-2.6829, 37.1825], location: 'Amboseli National Park', transfer: 'Air' },
+//     { coords: [0.2528, 37.3889], location: 'Lewa Conservancy', transfer: 'Air' },
+//     { coords: [-1.2484, 35.0119], location: 'Masai Mara Reserve', transfer: '' }
+// ];
 
 
-const hotels = [
-    { coords: [-1.2717, 36.8089], title: 'Villa Rosa Kempinski' },
-    { coords: [-2.6829, 37.1825], title: 'Elewana Tortilis Camp' },
-    { coords: [0.2528, 37.3889], title: 'Lewa Safari Camp by Elewana' },
-    { coords: [-1.2484, 35.0119], title: 'Beyond Bateleur Camp' }
-];
+// const hotels = [
+//     { coords: [-1.2717, 36.8089], title: 'Villa Rosa Kempinski' },
+//     { coords: [-2.6829, 37.1825], title: 'Elewana Tortilis Camp' },
+//     { coords: [0.2528, 37.3889], title: 'Lewa Safari Camp by Elewana' },
+//     { coords: [-1.2484, 35.0119], title: 'Beyond Bateleur Camp' }
+// ];
 
 
 function FitBoundsOnLoad({ routes }) {
@@ -76,7 +76,7 @@ function FitBoundsOnLoad({ routes }) {
 
 
 
-function ResizeHandler({ expandCards }) {
+function ResizeHandler({ expandCards, locations }) {
     const map = useMap();
 
 
@@ -103,8 +103,24 @@ function ResizeHandler({ expandCards }) {
 
 
 
-export default function MapDemo({ expandCards }) {
+export default function MapDemo({ expandCards, itineraryData }) {
     const [routes, setRoutes] = useState([]);
+
+    const transformedHotelsData = itineraryData?.hotels.map(hotel => ({
+        ...hotel,
+        coords: hotel.coordinates
+            ?.split(",")
+            .map(c => parseFloat(c))
+            .filter(Boolean) // remove empty entries
+    }));
+
+    const locations = itineraryData?.map_routing.map(route => ({
+        ...route,
+        coords: route.coordinates
+            ?.split(",")
+            .map(c => parseFloat(c))
+            .filter(Boolean) // remove empty entries
+    }));
 
     useEffect(() => {
         async function fetchRoutes() {
@@ -114,13 +130,20 @@ export default function MapDemo({ expandCards }) {
                 const start = locations[i];
                 const end = locations[i + 1];
 
-                if (end.routeType === "flight") {
+                if (start.transfer === "Air") {
                     // Flight: straight dashed line
                     routeSegments.push({
                         coords: [start.coords, end.coords],
-                        type: "flight"
+                        type: "Air"
                     });
-                } else {
+                }
+                else if (start.transfer === "Water") {
+                    routeSegments.push({
+                        coords: [start.coords, end.coords],
+                        type: "Water"
+                    });
+                }
+                else {
                     // Land: get OSRM route
                     const coordString = `${start.coords[1]},${start.coords[0]};${end.coords[1]},${end.coords[0]}`;
                     const url = `https://router.project-osrm.org/route/v1/driving/${coordString}?overview=full&geometries=geojson`;
@@ -132,7 +155,7 @@ export default function MapDemo({ expandCards }) {
                             const coords = data.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
                             routeSegments.push({
                                 coords,
-                                type: "land"
+                                type: "Land"
                             });
                         }
                     } catch (err) {
@@ -173,11 +196,14 @@ export default function MapDemo({ expandCards }) {
                         key={idx}
                         positions={r.coords}
                         pathOptions={
-                            r.type === "flight"
-                                ? { color: "#026E9E", dashArray: "6, 6", weight: 3 }
-                                : { color: "#026E9E", weight: 3 }
+                            r.type === "Air"
+                                ? { color: "#026E9E", weight: 3 } // Solid straight line
+                                : r.type === "Water"
+                                    ? { color: "#026E9E", dashArray: "6, 6", weight: 3 } // Dashed line
+                                    : { color: "#026E9E", weight: 3 } // Default for Land
                         }
                     />
+
                 ))}
 
                 {/* Markers */}
@@ -191,14 +217,14 @@ export default function MapDemo({ expandCards }) {
                         }}
                     >
                         <Popup>
-                            <strong>{loc.title}</strong>
+                            <strong>{loc.location}</strong>
                             <br />
                             {/* Route Type: {loc.routeType} */}
                         </Popup>
                     </Marker>
                 ))}
 
-                {hotels.map((hotel, idx) => (
+                {transformedHotelsData.map((hotel, idx) => (
                     <Marker
                         key={`hotel-${idx}`}
                         position={hotel.coords}
@@ -214,7 +240,7 @@ export default function MapDemo({ expandCards }) {
                     </Marker>
                 ))}
 
-                <ResizeHandler expandCards={expandCards} />
+                <ResizeHandler expandCards={expandCards} locations={locations} />
 
 
             </MapContainer>

@@ -111,7 +111,7 @@ export default function EditItinerary() {
     }, [id]);
 
 
-    const transferOptions = ["Land", "Air"];
+     const transferOptions = ["Land", "Air", "Water"];
 
     const [openDropdown, setOpenDropdown] = useState(null); // track which one is open
 
@@ -140,7 +140,7 @@ export default function EditItinerary() {
 
         try {
             const response = await AXIOS_INSTANCE.patch(`itinerary/${id}/`, formData)
-            router.push('/admin-itinerary-management')
+            router.push('/admin/itineraries')
 
             toast.success(response.data.message)
 

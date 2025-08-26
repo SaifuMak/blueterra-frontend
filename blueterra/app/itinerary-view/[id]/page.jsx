@@ -25,6 +25,7 @@ import TravelInfo from "@/components/ItineraryView/TravelInfo";
 
 import GalleryList from "@/components/ItineraryView/PlannedActivities/GalleryList";
 import AXIOS_INSTANCE from "@/lib/axios";
+import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -178,7 +179,7 @@ export default function ItineraryView() {
 
                 {isLoading ? (
                     <div className="min-h-[90vh] flex items-center justify-center text-2xl font-medium">
-                        Loading itinerary...
+                       <LoaderIcon/>
                     </div>
                 ) : !itineraryData ? (
                     <div className="min-h-[90vh] flex items-center justify-center text-2xl font-medium">
@@ -217,7 +218,7 @@ export default function ItineraryView() {
                         </div>
 
 
-                        <div className=" w-full bg-white relative  bg-red-200  min-h-screen flex flex-col items-center ">
+                        <div className=" w-full bg-white relative   min-h-screen flex flex-col items-center ">
                             {/* <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' /> */}
                             <PlannedActivities itineraryData={itineraryData} />
                         </div>
