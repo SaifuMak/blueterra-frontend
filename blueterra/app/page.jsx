@@ -22,11 +22,19 @@ import JournalSection from "@/components/Home/JournalSection";
 import useGsapFadeIn from "./hooks/Gsap/useGsapFadeIn";
 import PlanningCardSection from "@/components/Home/PlanningCardSection";
 import PartnerCompaniesSection from "@/components/Home/PartnerCompaniesSection";
+import useGsapOpacity from "./hooks/Gsap/useGsapOpacity";
+import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
+import { useIsMobile } from "./hooks/useIsMobile";
+import ReviewWidget from "@/components/Footer/ReviewWidget";
 
 gsap.registerPlugin(ScrollTrigger)
 
 
 export default function Home() {
+
+  const cardRef = useGsapOpacity(0, {})
+
+  const isMobile = useIsMobile()
 
   // zoho form 
   const [formOpen, setFormOpen] = useState(false);
@@ -65,7 +73,7 @@ export default function Home() {
   const destinationBannerRef = useRef(null);
 
 
-  const scrollSpeed = 1.5; // pixels per frame
+  const scrollSpeed = isMobile ? 0.5 : 1.5; // pixels per frame
 
   // Duplicate the testimonials for seamless looping
   const extendedTestimonials = [...testimonials, ...testimonials];
@@ -323,38 +331,24 @@ export default function Home() {
 
         <div ref={messageContainerRef} className=" w-full h-auto    flex flex-col justify-center  relative overflow-hidden ">
 
-          <div className="absolute w-[25%] left-0  bottom-0 h-fit">
+          <ResponsiveClipPath
+            outerClass='absolute w-[35%] left-0  bottom-0 h-fit'
+            ImagePath='/images/home/patterns/welcome-bottom-left.png'
+            width={600}
+          />
+          <ResponsiveClipPath
+            outerClass='absolute md:w-[15%] w-[25%] -right-10 top-1/2 -translate-y-1/2  h-fit'
+            ImagePath='/images/home/patterns/welcome-right.png'
+            width={300}
+            height={200}
+          />
 
-            <Image
-              src='/images/general/clip-path-one.png'
-              alt='clip path'
-              width={500}
-              height={1000}
-              priority
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-
-
-          <div className="absolute w-[30%] right-0 bottom-0 h-full">
-
-            <Image
-              src='/images/general/double-clip-path.png'
-              alt='clip path'
-              fill
-              priority
-              className=" "
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-
-
-          <div className={` w-full py-10 md:py-16 xl:py-24  2xl:py-28 flex justify-center bg-white  text-center`}>
-            <div className={`${rubik.className}  md:px-10 px-5 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
-              <h2 className={`${playfair.className} text-3xl vertically-animated-element  lg:text-4xl xl:text-[48px] text-dark-4B`}>Welcome To BlueTerra</h2>
-              <p className=" vertically-animated-element 2xl:text-2xl max-sm:text-base text-lg lg:text-xl font-light leading-8 xl:leading-10 ">We are a boutique, founder-led travel brand based in the UAE, dedicated to crafting thoughtful and personalized journeys. </p>
-              <p className=" vertically-animated-element 2xl:text-xl text-sm lg:text-lg font-light leading-8 xl:leading-10 lg:px-6  ">With a strong commitment to sustainability, we design travel experiences that honor local cultures and reduce environmental impact. Each itinerary reflects a deep understanding of conscious travel, offering unique adventures tailored for the modern explorer. Our mission is to redefine luxury through purpose-driven travel.</p>
-              <p className=" vertically-animated-element 2xl:text-xl lg:text-lg text-sm -mt-3  font-light leading-8 xl:leading-10 ">Every journey we curate is rooted in authenticity, blending meaningful experiences with comfort and style. We partner with local communities, artisans, and guides to ensure that our travelers connect deeply with the places they visit, beyond the surface. </p>
+          <div className={` w-full py-10 md:py-16 xl:py-36  2xl:py-44 flex justify-center bg-white  text-center`}>
+            <div className={`${rubik.className}  md:px-10 px-10 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
+              <h2 className={`${playfair.className} text-3xl vertically-animated-element  max-sm:opacity-0  lg:text-4xl xl:text-[48px] text-dark-4B`}>Welcome To BlueTerra</h2>
+              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-2xl max-sm:text-base text-lg lg:text-xl font-light leading-8 xl:leading-10 ">We are a boutique, founder-led travel brand based in the UAE, dedicated to crafting thoughtful and personalized journeys. </p>
+              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-xl text-sm lg:text-lg font-light leading-8 xl:leading-10 lg:px-6  ">With a strong commitment to sustainability, we design travel experiences that honor local cultures and reduce environmental impact. Each itinerary reflects a deep understanding of conscious travel, offering unique adventures tailored for the modern explorer. Our mission is to redefine luxury through purpose-driven travel.</p>
+              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-xl lg:text-lg text-sm -mt-3  font-light leading-8 xl:leading-10 ">Every journey we curate is rooted in authenticity, blending meaningful experiences with comfort and style. We partner with local communities, artisans, and guides to ensure that our travelers connect deeply with the places they visit, beyond the surface. </p>
 
               <p className={`vertically-animated-element text-lg lg:text-3xl 2xl:text-4xl ${mrsSaint.className}`}> <span className={` ${rubik.className} font-extralight opacity-55 mr-2 `}>-</span>Jerald Jacob</p>
             </div>
@@ -371,7 +365,7 @@ export default function Home() {
               <h3 className={`${playfair.className} vertically-animated-element text-dark-4B heading-text`} >Our Featured Collections</h3>
               <p className={`xl:text-xl lg:text-lg font-light vertically-animated-element ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>Discover a handpicked selection of our most iconic journeys—each crafted with care, intention, and an eye for timeless experiences.</p>
 
-              <div className=" 2xl:w-11/12 w-full max-2xl:px-5   mt-4 ">
+              <div ref={cardRef} className=" 2xl:w-11/12 w-full max-2xl:px-5   mt-4 ">
                 <CollectionsList Data={HOME_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} />
               </div>
 
@@ -436,26 +430,6 @@ export default function Home() {
 
         <div className=" w-full flex-center relative h-[100vh] bg-sky-blue-light ">
 
-          <div className=" w-[30%]  absolute left-0 top-0    ">
-            <Image
-              src='/images/home/testimonial-left-pattern.png'
-              alt="pattern"
-              width={400}
-              height={500}
-              className=" object-cover"
-            />
-          </div>
-
-          <div className=" w-[20%] absolute right-0 bottom-0    ">
-            <Image
-              src='/images/home/testimonial-right-pattern.png'
-              alt="pattern"
-              width={400}
-              height={500}
-              className=" object-cover "
-            />
-          </div>
-
           <div className={` h-fit   flex flex-col  items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
 
             <div className="flex flex-col mt-10 lg:mt-16 2xl:mt-20">
@@ -465,7 +439,7 @@ export default function Home() {
 
 
             <div className="   z-30  w-full h-fit  mt-10  overflow-x-auto scrollbar-hide">
-              <div ref={scaleTrackerContainer} className=" absolute    z-0 w-[1vh] lg:w-[1vh] h-[100px] left-[73%] lg:left-[62%] top-0 -translate-x-1/2 "></div>
+              <div ref={scaleTrackerContainer} className=" absolute   z-0 w-[1vh] lg:w-[1vh] h-[100px] left-[73%] md:left-[67%] lg:left-[62%] xl:left-[59%] 2xl:left-[59%] top-0 -translate-x-1/2 "></div>
 
               <div ref={testimonialContainer} style={{
                 willChange: 'transform',
@@ -487,7 +461,7 @@ export default function Home() {
         </div>
 
         <JournalSection />
-        <PartnerCompaniesSection/>
+        <PartnerCompaniesSection />
 
         <PlanningCardSection />
 

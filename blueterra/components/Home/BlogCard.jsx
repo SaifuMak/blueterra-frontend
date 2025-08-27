@@ -6,6 +6,8 @@ import Image from 'next/image'
 import useGsapOpacity from '@/app/hooks/Gsap/useGsapOpacity'
 import { useRouter } from 'next/navigation'
 
+
+
 function BlogCard({ outerClass, data }) {
 
     const router = useRouter()

@@ -7,14 +7,14 @@ import Button from '../generalComponents/Button'
 import BlogCard from './BlogCard'
 import AXIOS_INSTANCE from '@/lib/axios'
 import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn'
+import ResponsiveClipPath from '../generalComponents/ResponsiveClipPath'
 
 function JournalSection() {
 
     const [journals, setJournals] = useState([])
 
-    const blogTitleRef = useGsapFadeIn(0,{})
-    const blogButtonRef = useGsapFadeIn(0,{})
-
+    const blogTitleRef = useGsapFadeIn(0, {})
+    const blogButtonRef = useGsapFadeIn(0, {})
 
     const fetchJournals = async (category = 'View All', page = 1) => {
         try {
@@ -37,53 +37,43 @@ function JournalSection() {
     // }
 
     return (
-        <div className=" relative w-full flex  flex-col  items-center h-[120vh]   py-10 xl:py-16 2xl:py-20 space-y-12 xl:space-y-20   max-lg:hidden ">
+        <div className=" relative w-full flex  flex-col  items-center lg:h-[120vh] py-10 xl:py-16 2xl:py-20 space-y-12 xl:space-y-20   ">
             <div className=" w-[30%]   absolute left-0 top-0    ">
-                <Image
-                    src='/images/home/journal-left-path.png'
-                    alt="pattern"
-                    width={300}
-                    height={400}
-                    className=" object-cover"
-                />
+
+            </div>
+            <ResponsiveClipPath
+                outerClass='md:w-[30%] w-[50%]   absolute left-0 top-0 '
+                ImagePath='/images/home/patterns/journal-top-left.png'
+                width={600}
+            />
+
+
+            <div className=" w-full flex justify-center max-sm:mt-5 text-dark-4B">
+                <h3 ref={blogTitleRef} className={`${playfair.className} heading-text`}>BlueTerra Journal</h3>
             </div>
 
-            <div className=" w-fit absolute  right-0  bottom-0">
-                <Image
-                    src='/images/home/journal-right-path.png'
-                    alt="pattern"
-                    width={500}
-                    height={500}
-                    className=" object-cover"
-                />
-            </div>
-
-            <div className=" w-full flex justify-center text-dark-4B">
-                <h3 ref={blogTitleRef} className={`${playfair.className} text-[50px]`}>BlueTerra Journal</h3>
-            </div>
-
-            <div className=" flex h-[100%] space-x-7  2xl:space-x-10 w-11/12">
+            <div className=" lg:flex lg:h-[100%]  md:space-x-7  max-lg:space-y-10 2xl:space-x-10 w-11/12">
 
                 {journals?.length > 0 && <BlogCard
-                    outerClass='w-1/3 group overflow-hidden h-full cursor-pointer rounded-xl  relative '
+                    outerClass='lg:w-1/3  w-full group overflow-hidden max-lg:h-[400px] cursor-pointer rounded-xl  relative '
                     data={journals[0]}
                 />}
-              
-                <div className=" flex flex-col h-full w-1/3 space-y-7  2xl:space-y-10 ">
+
+                <div className=" flex flex-col h-full lg:w-1/3 w-full space-y-7  2xl:space-y-10 ">
 
                     {journals?.length > 1 && <BlogCard
-                        outerClass='w-full group overflow-hidden cursor-pointer h-[50%]  rounded-xl relative '
+                        outerClass='w-full group overflow-hidden cursor-pointer lg:h-[50%] max-lg:h-[400px]  rounded-xl relative '
                         data={journals[1]}
                     />}
                     {journals?.length > 2 && <BlogCard
-                        outerClass=' w-full group overflow-hidden cursor-pointer h-[50%]  rounded-xl relative '
+                        outerClass=' w-full group overflow-hidden cursor-pointer lg:h-[50%] max-lg:h-[400px]  rounded-xl relative '
                         data={journals[2]}
                     />}
 
                 </div>
 
                 {journals?.length > 3 && <BlogCard
-                    outerClass='  w-1/3 h-full group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative animate-journals'
+                    outerClass=' w-full   lg:w-1/3 h-full  max-lg:h-[400px]  group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative animate-journals'
                     data={journals[3]}
                 />}
 
