@@ -3,11 +3,13 @@ import Image from 'next/image'
 
 import { playfair, rubik, } from '@/app/fonts'
 import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn'
+import useGsapOpacity from '@/app/hooks/Gsap/useGsapOpacity'
 
 
 const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, imageUrl, outerClass = '' }) => {
 
-    
+    const imageRef = useGsapOpacity(0, { start: 'top 70%' })
+
 
     return (
 
@@ -25,8 +27,8 @@ const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, i
                     <p className="">{secondPara}</p>
                 </div>
 
-                <div className=" vertically-animated-element w-4/12 flex justify-end h-fit ">
-                    <div className=" w-[400px] md:h-[380px] lg:h-[480px] xl:h-[550px] 2xl:h-[600px] relative rounded-3xl overflow-hidden">
+                <div className="  w-4/12 flex justify-end h-fit ">
+                    <div ref={imageRef} className=" w-[400px] md:h-[380px] lg:h-[480px] xl:h-[550px] 2xl:h-[600px] relative rounded-3xl overflow-hidden">
                         <Image
                             src={imageUrl}
                             alt='quote'
@@ -41,17 +43,17 @@ const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, i
 
             <div className={`${outerClass} md:hidden text-center w-11/12 flex flex-col`}   >
 
-                <div className="  flex flex-col px-2  text-2xl font-medium  ">
+                <div className=" vertically-animated-element  flex flex-col px-2  text-2xl font-medium  ">
                     <h3 className={`${playfair.className} `}>{firstTitle} {secondTitle}</h3>
                     <p className=" font-light mt-3 text-lg">{description}</p>
                 </div>
 
-                <div className=" space-y-2 text-sm font-light px-2 mt-5">
+                <div className=" vertically-animated-element space-y-2 text-sm font-light px-2 mt-5">
                     <p className="">{firstPara}</p>
                     <p className="">{secondPara}</p>
                 </div>
 
-                <div className=" w-full mt-4 h-full">
+                <div className=" vertically-animated-element w-full mt-4 h-full">
                     <div className=" w-full h-[300px] relative rounded-3xl overflow-hidden ">
                         <Image
                             src={imageUrl}

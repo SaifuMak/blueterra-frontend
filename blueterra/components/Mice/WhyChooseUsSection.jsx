@@ -14,8 +14,6 @@ function WhyChooseUsSection() {
     const cardRef = useGsapFadeIn()
 
 
-
-
     const WHY_CHOOSE_US = [
         {
             "title": "End to end ownership",
