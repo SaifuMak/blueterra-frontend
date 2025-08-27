@@ -14,7 +14,6 @@ function PlanningCardSection() {
 
         <div className=" lg:h-[50vh] xl:h-[60vh]  2xl:h-[70vh]  max-lg:mb-10  w-full flex flex-col items-center relative py-5 md:py-12  2xl:py-20 ">
 
-           
 
             <div className=" w-fit  absolute  right-0  bottom-0    ">
                 {/* <Image

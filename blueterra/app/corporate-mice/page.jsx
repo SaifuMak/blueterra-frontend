@@ -12,7 +12,7 @@ import { useGSAP } from "@gsap/react"
 import { useRef, useState, useEffect } from "react"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal"
-
+import WhyChooseUsSection from "@/components/Mice/WhyChooseUsSection"
 import useGsapFadeIn from "../hooks/Gsap/useGsapFadeIn"
 
 
@@ -77,21 +77,6 @@ export default function Corporate() {
             "title": "Family & Social Events",
             "description": "Thoughtfully designed to connect generations and create lifelong memories."
         },
-    ]
-
-    const WHY_CHOOSE_US = [
-        {
-            "title": "End to end ownership",
-            "description": "We handle your entire journey—from planning to return—ensuring a smooth and worry-free travel experience."
-        },
-        {
-            "title": "Bespoke Personalized experiences",
-            "description": "It’s refer to travel plans that are custom-designed to match your unique interests, preferences, and pace—offering a journey that's truly your own."
-        }, {
-            "title": "Organized and attention to detail",
-            "description": "Every part of your trip is carefully planned and executed, ensuring nothing is overlooked and everything runs smoothly."
-        },
-
     ]
 
 
@@ -178,7 +163,6 @@ export default function Corporate() {
     };
 
 
-
     return (
         <>
             <SmoothScroll>
@@ -200,11 +184,16 @@ export default function Corporate() {
                         </div>
                     </div>
 
-                    {/* <div className=" w-full 2xl:min-h-[90vh] xl:min-h-[80vh] md:min-h-[70vh] h-full max-sm:py-7 flex-center  bg-light-beige relative"> */}
-                    <div className=" w-full py-12 lg:py-20  h-full max-sm:py-7 flex-center  bg-light-beige relative">
+                    <div className=" w-full py-12 lg:py-32  h-full max-sm:py-7 flex-center  bg-light-beige relative">
 
-                        <ResponsiveClipPath outerClass='absolute md:w-7/12 w-full right-0 top-0 h-full  ' ImagePath='/images/corporate/intro-right-clip-path.png' />
-                        <ResponsiveClipPath outerClass='absolute w-full md:w-1/4 left-0 bottom-0 h-10/12  ' ImagePath='/images/corporate/intro-left-clip-path.png' />
+                        {/* <ResponsiveClipPath outerClass='absolute md:w-7/12 w-full right-0 top-0 h-full  ' ImagePath='/images/corporate/intro-right-clip-path.png' />
+                        <ResponsiveClipPath outerClass='absolute w-full md:w-1/4 left-0 bottom-0 h-10/12  ' ImagePath='/images/corporate/intro-left-clip-path.png' /> */}
+
+                        <ResponsiveClipPath
+                            outerClass='absolute w-[18%] left-0  top-12 h-fit'
+                            ImagePath='/images/corporate/patterns/welcome-left.png'
+                            width={600}
+                        />
 
                         <div ref={aboutTitle} className="  space-y-5 xl:space-y-4 2xl:space-y-8 max-sm:text-sm text-xl font-light text-dark-28  h-full flex-col 2xl:w-8/12 xl:w-11/12  flex justify-center items-center ">
                             <h2 className={`${playfair.className}  text-3xl  md:text-5xl xl:text-6xl 2xl:text-7xl font-semibold text-dark-4B`}> <span className=" text-xl font-light  mr-1">At</span>
@@ -224,7 +213,13 @@ export default function Corporate() {
                     {/* <div className=" w-full  text-dark-28 flex-center  h-full md:min-h-[70vh] xl:min-h-[100vh] relative "> */}
                     <div className=" w-full  text-dark-28 flex-center  h-full py-12 lg:py-20  relative ">
 
-                        <ResponsiveClipPath outerClass='absolute w-full md:w-1/4 left-0 top-0 h-10/12' ImagePath='/images/corporate/experiences-left-clip-path.png' />
+                        <ResponsiveClipPath
+                            outerClass='absolute w-[29%] left-0 -bottom-5  h-fit'
+                            ImagePath='/images/corporate/patterns/corporate-events-bottom-left.png'
+                            width={600}
+                        />
+
+                        {/* <ResponsiveClipPath outerClass='absolute w-full md:w-1/4 left-0 top-0 h-10/12' ImagePath='/images/corporate/experiences-left-clip-path.png' /> */}
 
                         <Events firstTitle='Corporate'
                             secondTitle='Experiences'
@@ -266,7 +261,6 @@ export default function Corporate() {
 
 
 
-                        <ResponsiveClipPath outerClass='absolute  md:w-1/4 right-0  bottom-0 h-3/12  ' ImagePath='/images/corporate/events-bottom-clip-path.png' />
                     </div>
 
 
@@ -321,25 +315,16 @@ export default function Corporate() {
                                 </div>
                             ))}
                         </div>
-                        <ResponsiveClipPath outerClass='absolute w-full md:w-4/12 left-0  -bottom-7 h-6/12  ' ImagePath='/images/corporate/private-events-clip-path.png' />
+                        <ResponsiveClipPath
+                            outerClass='absolute w-[29%] left-0  h-fit'
+                            ImagePath='/images/corporate/patterns/private-events-left.png'
+                            width={600}
+                        />
+
+                        {/* <ResponsiveClipPath outerClass='absolute w-full md:w-4/12 left-0  -bottom-7 h-6/12  ' ImagePath='/images/corporate/private-events-clip-path.png' /> */}
                     </div>
 
-
-                    <div className=" bg-dark-beige flex w-11/12 overflow-hidden  relative rounded-3xl items-center py-12 2xl:py-24 text-dark-28 flex-col ">
-                        <h2 className={` text-3xl vertically-animated-element xl:text-[45px]  2xl:text-[50px] ${playfair.className} font-medium `} >Why  Choose Us?</h2>
-                        <div className=" 2xl:w-10/12 xl:w-11/12 max-xl:px-5  mb-10  mt-10 2xl:mt-20  h-fit grid grid-cols-1 lg:grid-cols-3 gap-10 2xl:gap-16">
-                            {WHY_CHOOSE_US?.map((data, index) => (
-                                <div key={index} className=" z-30 vertically-animated-element bg-dark-beige  max-sm:p-4  md:py-5 xl:py-10 text-lg xl:text-xl  2xl:text-[22px] font-light md:px-5  xl:px-10 rounded-2xl w-full text-center  flex flex-col items-center" style={{ boxShadow: '0 0 25px 1px rgba(50, 70, 70, 0.1)' }}
-                                >
-                                    <h5 className="  text-dark-4B font-normal ">{data.title}</h5>
-                                    <p className=" mt-3  text-base xl:text-lg 2xl:text-xl leading-8">{data.description}</p>
-                                </div>
-                            ))}
-                        </div>
-
-                        <p className=" vertically-animated-element xl:text-xl 2xl:text-2xl xl:mt-5 2xl:mt-8">Afterall, you can truly TRUST us.</p>
-                        <ResponsiveClipPath outerClass='absolute w-full md:w-3/12 top-0 z-10 left-0 h-11/12' ImagePath='/images/corporate/why-us-clip-path.png' />
-                    </div>
+                    <WhyChooseUsSection />
 
                     <div ref={contactSectionRef} className=" w-full h-full py-7 md:py-20   text-dark-28  flex-center relative">
                         <ResponsiveClipPath outerClass='absolute max-sm:hidden  w-full lg:w-3/12 bottom-0 z-10 right-0 h-full' ImagePath='/images/corporate/contact-clip-path.png' />
@@ -368,13 +353,13 @@ export default function Corporate() {
 
                             <div className="lg:w-6/12  w-full  h-full overflow-hidden  ">
                                 <div className="w-full max-sm:h-[640px] md:h-[500px] lg:h-[460px] 2xl:h-[460px] ">
-                                    <iframe
+                                    {/* <iframe
                                         title="Zoho Form"
                                         src="https://forms.zohopublic.com/blueterra1/form/Sendusadirectmessage/formperma/LH1SC9iQKsMbkmNpCxnvw8TsFKPf79BaLG-GgDCVlFw"
                                         frameBorder="0"
                                         style={{ width: '100%', height: '100%', border: 'none' }}
                                         allowFullScreen
-                                    />
+                                    /> */}
                                 </div>
 
                             </div>
