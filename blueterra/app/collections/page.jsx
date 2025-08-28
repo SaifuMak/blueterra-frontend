@@ -40,7 +40,6 @@ export default function Collection() {
   const isMobile = useIsMobile()
   const isLoaded = usePageLoaded();
 
-
   // const pathname = usePathname();
 
   const [isLoading, setIsLoading] = useState(true)
@@ -112,7 +111,6 @@ export default function Collection() {
 
   const handleShowFullCard = (index) => {
 
-
     // when a card is clicked for its full size intially record it 
     setIsfullCardEnabledForFirstTime(true)
 
@@ -127,10 +125,14 @@ export default function Collection() {
 
   const handleSetCollectionRequestedToShowInMobile = (index) => {
     document.body.style.overflow = 'auto'
-    setCollectionRequestedToShowInMobile(index)
+    // setCollectionRequestedToShowInMobile(index)
     homeRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
+
+  const handleScrollToItineraryResults = () =>{
+     homeRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }
 
   useEffect(() => {
 
@@ -225,6 +227,7 @@ export default function Collection() {
       <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
 
         {isMobile && <MobileFilter
+          page='collections'
           setIsAnyFilterOpened={setIsAnyFilterOpened}
           isFilterVisible={isFilterVisible}
           showMobileFilter={showMobileFilter}
@@ -232,6 +235,11 @@ export default function Collection() {
           flatSelectedFilters={flatSelectedFilters}
           setFlatSelectedFilters={setFlatSelectedFilters}
           setSelectedFilters={setSelectedFilters}
+          dataCount={itineraryData?.length}
+          selectedFilters={selectedFilters}
+          handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
+          setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
+          handleScrollToItineraryResults = {handleScrollToItineraryResults}
         />}
 
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
@@ -253,6 +261,7 @@ export default function Collection() {
       <AdventureSection setFormOpen={setFormOpen} />
 
       <MobileFilterPopup
+        page='collections'
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
         showMobileFilter={showMobileFilter}

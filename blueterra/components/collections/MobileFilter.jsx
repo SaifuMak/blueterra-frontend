@@ -7,60 +7,10 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { playfair } from '@/app/fonts'
 
 
-export default function MobileFilter({ setIsAnyFilterOpened, isFilterVisible, showMobileFilter, setShowMobileFilter,flatSelectedFilters, setFlatSelectedFilters,setSelectedFilters }) {
-
-    const [openedFilters, setOpenedFilters] = useState([])
-
-    // const filterContaineRef = useClickOutside(() => setOpenedFilters([]))
-
-    const [openedFilter, setOpenedFilter] = useState(null)
-
-    // const [flatSelectedFilters, setFlatSelectedFilters] = useState([])
-
-    // const filterContaineRef = useClickOutside(() => setOpenedFilter(null))
+export default function MobileFilter({ page, setIsAnyFilterOpened, isFilterVisible, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters, setSelectedFilters, dataCount, selectedFilters,setSelectedVerticalTileMobile,handleSetCollectionRequestedToShowInMobile,handleScrollToItineraryResults }) {
 
     const filterScrollRef = useRef();
 
-    // const destinations = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia",]
-    // const countries = ["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"]
-    // const collections = ["Signature Journeys", "Explore by Landscape", "Adventures in Motion", "Mindful Escapes", "Unforgettable Editions", "Tailored for You"]
-    // const categories = ["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys"]
-
-    // const [selectedFilters, setSelectedFilters] = useState({
-    //     categories: [],
-    //     destinations: [],
-    //     countries: [],
-    //     collections: []
-    // })
-
-    // const handleFilters = (filter) => {
-    //     filter === openedFilter ? setOpenedFilter(null) : setOpenedFilter(filter)
-
-    // }
-
-    // const handleItemSelection = (filter, value) => {
-
-    //     // deals with actual data 
-    //     setSelectedFilters(prev => {
-    //         const selectedFilter = prev[filter];
-    //         return {
-    //             ...prev,
-    //             [filter]: selectedFilter.includes(value)
-    //                 ? selectedFilter.filter(item => item !== value)
-    //                 : [...selectedFilter, value]
-    //         };
-    //     });
-
-    //     // deals with flat list data 
-    //     setFlatSelectedFilters(prev =>
-    //         prev.includes(value)
-    //             ? prev.filter(item => item !== value)
-    //             : [...prev, value]
-    //     );
-
-    // }
-
-    
     const handleRemoveFilter = (valueToRemove) => {
 
         // clear the flat list of selected filters
@@ -103,12 +53,26 @@ export default function MobileFilter({ setIsAnyFilterOpened, isFilterVisible, sh
     }, [flatSelectedFilters])
 
 
-    return ( 
+    // close the tile when the node filter is removed 
+    useEffect(() => {
+        if (page == 'collections' && selectedFilters['collections'].length === 0) {
+            setSelectedVerticalTileMobile(null)
+            // handleSetCollectionRequestedToShowInMobile(null)
+            handleScrollToItineraryResults()
+        }
+        else if (page == 'destinations' && selectedFilters['countries'].length === 0) {
+             setSelectedVerticalTileMobile(null)
+             handleScrollToItineraryResults()
+            //   handleSetCollectionRequestedToShowInMobile(null)
+        }
+    }, [selectedFilters])
+
+    return (
         <>
 
             <div className=" w-11/12 px-6  my-5 flex  flex-col  bg-white  z-20 sticky top-[50px]   ">
                 <div className=" w-full flex justify-between mb-2 mt-4 items-center  ">
-                    <p className={`${flatSelectedFilters?.length > 0 ? 'opacity-100' : '  opacity-0'} text-sm ml-2`}>showing 12 results for:</p>
+                    <p className={`${flatSelectedFilters?.length > 0 ? 'opacity-100' : '  opacity-0'} text-sm ml-2`}>showing {dataCount} {dataCount === 1 ? "result" : "results"} for:</p>
                     <button onClick={() => setShowMobileFilter(true)} className="   flex items-center  bg-sky-blue-1 px-3  py-1.5  w-fit h-fit  text-nowrap  text-[13px] font-normal rounded-sm max-lg:text-sm  text-white"><span className="mr-1"><img src='/Icons/filter.svg' className=' size-3 shrink-0 '></img></span>Filters</button>
 
                 </div>
@@ -132,7 +96,7 @@ export default function MobileFilter({ setIsAnyFilterOpened, isFilterVisible, sh
                         horizontal={true}
                         hideScrollbars={false} // set true to hide
                     >
-                        
+
                         {flatSelectedFilters?.map((filter, index) => (
                             <div key={index} onClick={() => handleRemoveFilter(filter)} className=" flex-center cursor-pointer border rounded-full py-1.5 px-3 ">
                                 <p className=" max-lg:text-xs text-nowrap">{filter}</p>

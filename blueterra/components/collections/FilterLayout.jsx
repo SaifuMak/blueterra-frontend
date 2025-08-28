@@ -88,6 +88,11 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
 
     useEffect(() => {
 
+        if(expandedBannerCollectionIndex === null){
+            // this condition helps in  preventing in clearing all filters when the node filter is removed, 
+            return
+        }
+
         handleClearAllSelectedFilters()
         if (page === 'destinations') {
             handleItemSelection('countries', countries[expandedBannerCollectionIndex])
@@ -118,7 +123,7 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
     }, [flatSelectedFilters])
 
 
-    // close the title when the node filter is removed 
+    // close the tile when the node filter is removed 
     useEffect(() => {
         if (page == 'collections' && selectedFilters['collections'].length === 0) {
             setExpandedTileIndex(null)

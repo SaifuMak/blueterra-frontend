@@ -82,6 +82,7 @@ export default function Destination() {
     setExpandedIndex(indexOfCollection)
   }
 
+  // this deals with the expansion of vertical cards in mobile
   const handleChangeCollectionForMobile = (indexOfCollection) => {
     setSelectedVerticalTileMobile(indexOfCollection)
   }
@@ -127,9 +128,15 @@ export default function Destination() {
 
   const handleSetCollectionRequestedToShowInMobile = (index) => {
     document.body.style.overflow = 'auto'
-    setCollectionRequestedToShowInMobile(index)
+    // setCollectionRequestedToShowInMobile(index)
     homeRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
+
+  
+  const handleScrollToItineraryResults = () =>{
+     homeRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }
+
 
 
   useEffect(() => {
@@ -206,11 +213,11 @@ export default function Destination() {
           selectedVerticalTileMobile={selectedVerticalTileMobile}
           setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
           handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
-          
+
         />
       ) : (
         <BannerAnimation
-        CardData={CardData}
+          CardData={CardData}
           expandedIndex={expandedIndex}
           setExpandedIndex={setExpandedIndex}
           isFullCardVisible={isFullCardVisible}
@@ -218,7 +225,7 @@ export default function Destination() {
           handleShowFullCard={handleShowFullCard}
           setIsFilterVisible={setIsFilterVisible}
           isFilterVisible={isFilterVisible}
-          
+
         />
       )}
 
@@ -227,6 +234,7 @@ export default function Destination() {
       <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
 
         {isMobile && <MobileFilter
+          page='destinations'
           setIsAnyFilterOpened={setIsAnyFilterOpened}
           isFilterVisible={isFilterVisible}
           showMobileFilter={showMobileFilter}
@@ -234,12 +242,18 @@ export default function Destination() {
           flatSelectedFilters={flatSelectedFilters}
           setFlatSelectedFilters={setFlatSelectedFilters}
           setSelectedFilters={setSelectedFilters}
+          dataCount={itineraryData?.length}
+          selectedFilters={selectedFilters}
+          setCollectionRequestedToShowInMobile={setCollectionRequestedToShowInMobile}
+          setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
+          handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
+           handleScrollToItineraryResults = {handleScrollToItineraryResults}
         />}
 
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
           {isLoading ? (
             <div className="flex items-center justify-center w-full min-h-[60vh] col-span-2">
-              <LoaderIcon/>
+              <LoaderIcon />
             </div>
           ) : itineraryData && itineraryData.length > 0 ? (
             <DestinationCards Destinations={Destinations} itineraryData={itineraryData} />
@@ -255,6 +269,7 @@ export default function Destination() {
       <AdventureSection setFormOpen={setFormOpen} />
 
       <MobileFilterPopup
+        page='destinations'
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
         showMobileFilter={showMobileFilter}

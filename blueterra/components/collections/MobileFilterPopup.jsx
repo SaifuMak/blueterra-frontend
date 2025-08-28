@@ -4,15 +4,12 @@ import { useState, useEffect } from 'react';
 import { RxCross2 } from '@/components/reactIcons';
 import MobileFilterComponent from './MobileFilterComponent';
 import { playfair } from '@/app/fonts';
+import { destinations, countries, collections, categories } from '@/components/datas/FilterOptions'
 
-export default function MobileFilterPopup({ selectedFilters, setSelectedFilters, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters, expandedBannerCollectionIndex , handleChangeCollection}) {
+
+export default function MobileFilterPopup({ page, selectedFilters, setSelectedFilters, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters, expandedBannerCollectionIndex, handleChangeCollection }) {
 
     const [openedFilter, setOpenedFilter] = useState(null);
-
-    const destinations = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"];
-    const countries = ["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"];
-    const collections = ["Signature Journeys", "Explore by Landscape", "Adventures in Motion", "Mindful Escapes", "Unforgettable Editions", "Tailored for You"];
-    const categories = ["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys"];
 
     const handleFilters = (filter) => {
         setOpenedFilter(openedFilter === filter ? null : filter);
@@ -29,12 +26,15 @@ export default function MobileFilterPopup({ selectedFilters, setSelectedFilters,
     };
 
 
-
     const handleItemSelection = (filter, value) => {
 
-        if (filter === 'collections') {
+        if (filter === 'collections' && page === 'collections') {
             handleClearAllSelectedFilters()
             handleChangeCollection(collections.indexOf(value))
+        }
+        else if (filter === 'countries' && page === 'destinations') {
+            handleClearAllSelectedFilters()
+            handleChangeCollection(countries.indexOf(value))
         }
 
         setSelectedFilters((prev) => {
@@ -50,12 +50,17 @@ export default function MobileFilterPopup({ selectedFilters, setSelectedFilters,
         );
     };
 
-    useEffect(() => {
 
+    useEffect(() => {
         if (expandedBannerCollectionIndex == null) return
 
         handleClearAllSelectedFilters()
-        handleItemSelection('collections', collections[expandedBannerCollectionIndex])
+        if (page === 'destinations') {
+            handleItemSelection('countries', countries[expandedBannerCollectionIndex])
+        }
+        else if (page === 'collections') {
+            handleItemSelection('collections', collections[expandedBannerCollectionIndex])
+        }
 
     }, [expandedBannerCollectionIndex])
 

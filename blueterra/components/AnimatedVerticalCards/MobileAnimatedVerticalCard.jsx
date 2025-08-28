@@ -37,7 +37,7 @@ export default function MobileAnimatedVerticalCard({ CardData, selectedVerticalT
 
               <hr className=' opacity-40 mt-1'></hr>
               <h3 className={`font-normal mt-5 ${playfair.className}`}>Popular Journeys</h3>
-              <div className="flex   w-11/12 flex-wrap  gap-y-1 gap-x-4 pr-3 font-light text-[12px] mt-2">
+              <div className="flex   w-11/12 flex-wrap  gap-y-1  gap-x-4 pr-3 font-light text-[12px] mt-2">
                 {["United Arab Emirates", "Kenya",  "South Africa", "Norway","Iceland"].map((destination, index) => (
                   <div key={index} className="   ">
                     <span className=" text-nowrap">{destination}</span></div>
@@ -46,7 +46,7 @@ export default function MobileAnimatedVerticalCard({ CardData, selectedVerticalT
 
               <p className=" text-sm font-light mt-2 ">Our Signature Journeys are the essence of what we do—thoughtfully curated travel experiences that reflect our passion for conscious exploration, cultural connection, and sustainable luxury.</p>
 
-              <div className="space-y-1 font-light text-sm mt-3 h-[15vh]  gap-x-3 overflow-y-auto  flex flex-col  ">
+              <div className="space-y-1 font-light text-sm mt-3 h-[12vh]  gap-x-3 overflow-y-auto  flex flex-col  ">
                 {["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys",].map((feature, index) => (
                   <div key={index} className=" text-white flex items-center">  <img src="/Icons/dot.svg" alt="dot" className="w-2 h-2" /> <p className=" ml-1">{feature}</p></div>
                 ))}

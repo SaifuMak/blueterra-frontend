@@ -10,8 +10,6 @@ import { trimWords } from "@/app/utils/textHelpers";
 
 export default function DestinationCards({ itineraryData }) {
 
-    const router = useRouter();
-
     return (
         <>
 
@@ -43,7 +41,7 @@ export default function DestinationCards({ itineraryData }) {
 
                         <div className="px-7 py-4 lg:h-5/12   space-y-3 2xl:space-y-5">
                             <div className=" flex max-md:flex-col justify-between md:items-center">
-                                <p className="text-base font-normal">{trimWords(destination.title, 5)}</p>
+                                <p className="text-base font-normal max-sm:text-dark-4B">{trimWords(destination.title, 5)}</p>
                                 <div className=" flex max-md:flex-col   md:items-center ">
                                     <div className=" flex space-x-0.5 ">
 
@@ -68,13 +66,13 @@ export default function DestinationCards({ itineraryData }) {
 
                                 </div>
                             </div>
-                            <h3 className=" xl:text-xl lg:text-lg  font-medium text-dark-4B ">{trimWords(destination.description, 16)}</h3>
+                            <h3 className=" xl:text-xl lg:text-lg   md:font-medium text-dark-4B ">{trimWords(destination.description, 16)}</h3>
                             <div className=" flex justify-between text-sm">
                                 <div className=" text-base">
-                                    From <span className="font-medium">$3/ person</span>
+                                    From <span className="md:font-medium ">$3/person</span>
                                 </div>
-                                <div className="flex items-center font-medium cursor-pointer">
-                                    <p className=" font-medium text-base">Explore</p>
+                                <div className="flex items-center  cursor-pointer">
+                                    <p className=" md:font-medium text-base">Explore</p>
 
                                     <img src='/Icons/Arrow.svg' className="ml-1 group-hover:translate-x-2 transition-all duration-700 w-4 lg:w-5 mt-1"></img>
 
