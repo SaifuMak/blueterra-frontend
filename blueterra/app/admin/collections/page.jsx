@@ -5,7 +5,6 @@ import Navbar from "@/components/admin/Navbar";
 import { useState, useRef } from "react";
 
 
-
 export default function Collections() {
 
 

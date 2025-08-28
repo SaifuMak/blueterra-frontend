@@ -180,7 +180,6 @@ function JournalClient() {
                 </div>
 
 
-
                 <div className=" w-full  h-full  flex-center relative ">
                     {/* <BackgroundClipPath outerClass='absolute w-[16%] left-0 top-0 h-fit ' ImagePath='/images/journal/journal-left-clip.png' width='500' height='1000' /> */}
                     {/* <BackgroundClipPath outerClass='absolute w-fit right-0 top-0 h-fit ' ImagePath='/images/journal/journal-right-clip.png' width='500' height='1000' />

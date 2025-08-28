@@ -4,18 +4,18 @@ import PartnerCompaniesData from "../datas/PartnerCompaniesData"
 import Marquee from "react-fast-marquee"
 import Image from "next/image"
 import useGsapFadeIn from "@/app/hooks/Gsap/useGsapFadeIn";
-
+import ResponsiveClipPath from "../generalComponents/ResponsiveClipPath";
 
 export default function PartnerCompanies() {
 
     const partnerCompaniesTitleRef = useGsapFadeIn()
 
     const partnerCompaniesimageRef = useGsapFadeIn()
-    
-    
+
+
     return (
 
-        <div className=" my-16 w-full flex-center flex-col  bg-white relative ">
+        <div className=" my-32 w-full flex-center flex-col  bg-white relative ">
 
             <div ref={partnerCompaniesTitleRef} className="">
                 <TitleText text='Trusted Partners' />
@@ -35,6 +35,12 @@ export default function PartnerCompanies() {
                     ))}
                 </Marquee>
             </div>
+
+            <ResponsiveClipPath
+                outerClass='absolute md:w-[24%] w-[78%] z-0  -bottom-32  right-0 h-fit'
+                ImagePath='/images/our-story/patterns/pattern-bottom.png'
+                width={800}
+            />
         </div>
     )
 }
