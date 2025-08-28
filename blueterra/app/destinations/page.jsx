@@ -28,7 +28,7 @@ import AXIOS_INSTANCE from "@/lib/axios";
 import Head from "next/head";
 import usePageLoaded from "../hooks/usePageLoaded";
 import LoaderIcon from "@/components/generalComponents/LoaderIcon";
-
+import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
 // export const metadata = {
 //   title: "My Blog Title | CashPlus",
 //   description: "This is the description of my blog page for SEO purposes.",
@@ -100,7 +100,7 @@ export default function Destination() {
 
   };
 
-  
+
   const handleScrollTop = () => {
     setTimeout(() => {
 
@@ -133,9 +133,9 @@ export default function Destination() {
     homeRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  
-  const handleScrollToItineraryResults = () =>{
-     homeRef.current?.scrollIntoView({ behavior: 'smooth' });
+
+  const handleScrollToItineraryResults = () => {
+    homeRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
 
@@ -234,6 +234,11 @@ export default function Destination() {
 
       <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
 
+        <ResponsiveClipPath
+          outerClass='absolute md:w-[24%] w-[78%]  top-10 left-0 h-fit'
+          ImagePath='/images/destinations/patterns/top-pattern.png'
+          width={800}
+        />
         {isMobile && <MobileFilter
           page='destinations'
           setIsAnyFilterOpened={setIsAnyFilterOpened}
@@ -248,7 +253,7 @@ export default function Destination() {
           setCollectionRequestedToShowInMobile={setCollectionRequestedToShowInMobile}
           setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
           handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
-           handleScrollToItineraryResults = {handleScrollToItineraryResults}
+          handleScrollToItineraryResults={handleScrollToItineraryResults}
         />}
 
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
