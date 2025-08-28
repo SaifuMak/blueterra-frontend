@@ -179,7 +179,7 @@ export default function ItineraryView() {
 
                 {isLoading ? (
                     <div className="min-h-[90vh] flex items-center justify-center text-2xl font-medium">
-                       <LoaderIcon/>
+                        <LoaderIcon />
                     </div>
                 ) : !itineraryData ? (
                     <div className="min-h-[90vh] flex items-center justify-center text-2xl font-medium">
@@ -219,11 +219,21 @@ export default function ItineraryView() {
 
 
                         <div className=" w-full bg-white relative   min-h-screen flex flex-col items-center ">
+                            <ResponsiveClipPath
+                                outerClass='absolute md:w-[20%] w-[28%]  top-0  left-0 h-fit'
+                                ImagePath='/images/itinerary/patterns/plan-top-left.png'
+                                width={800}
+                            />
                             {/* <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' /> */}
                             <PlannedActivities itineraryData={itineraryData} />
                         </div>
 
-                        <div className="  bg-white pb-28">
+                        <div className="  relative bg-white pb-28">
+                             <ResponsiveClipPath
+                                outerClass='absolute md:w-[20%] w-[28%]  bottom-0 right-0 h-fit'
+                                ImagePath='/images/itinerary/patterns/travel-bottom.png'
+                                width={800}
+                            />
                             <div className=" w-10/12 mx-auto flex justify-between ">
                                 <TravelInfo
                                     icon='/Icons/Itinerary/leaf.svg'
@@ -243,19 +253,25 @@ export default function ItineraryView() {
 
                                 />
                             </div>
+                            
                         </div>
 
 
 
                         <div className=" w-full   min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">
                             <div className=" w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige">
-                                <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 top-0 h-10/12' ImagePath='/images/itinerary/hotels-clip-path.png' />
+                                {/* <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 top-0 h-10/12' ImagePath='/images/itinerary/hotels-clip-path.png' /> */}
                                 <HotelsView data={itineraryData?.hotels} />
                             </div>
                         </div>
 
 
-                        <div ref={galleryRef} className="  bg-white  w-full h-full">
+                        <div ref={galleryRef} className=" relative  bg-white  w-full h-full">
+                            <ResponsiveClipPath
+                                outerClass='absolute md:w-[30%] w-[32%]  bottom-10 right-0 h-fit'
+                                ImagePath='/images/itinerary/patterns/gallery-bottom.png'
+                                width={800}
+                            />
 
                             <div className="w-full h-full bg-white/30   flex-center relative">
                                 {/* <Image

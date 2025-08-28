@@ -28,7 +28,7 @@ export default function TravelInfo({ icon, title, subtitle, additionalInformatio
                             <MdInfoOutline className="mt-3 ml-2 text-dark-4B" />
                         </div>
 
-                        <div className="absolute top-8 left-4/4  bg-white -translate-x-3/4 rounded-2xl  min-h-[200px] max-w-[600px] min-w-[450px] z-[999] hidden 
+                        <div className="absolute top-8 left-4/4  -translate-x-3/4 rounded-2xl  min-h-[200px] max-w-[600px] min-w-[450px] z-[999] hidden 
                                         peer-hover:block group-hover:block hover:block
                                         transition-all duration-300">
 
