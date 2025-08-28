@@ -43,9 +43,20 @@ function JournalClient() {
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(null)
 
+    const [hasEntered, setHasEntered] = useState(false)
+
+
+
+    // const scrollToJournals = () => {
+    //     JournalListRef.current?.scrollIntoView({ behavior: "smooth" });
+    // };
 
     const scrollToJournals = () => {
-        JournalListRef.current?.scrollIntoView({ behavior: "smooth" });
+        gsap.to(window, {
+            duration: 1, // scroll duration (in seconds)
+            scrollTo: { y: JournalListRef.current, offsetY: 0 },
+            ease: "sine.inOut" // easing for smoothness
+        });
     };
 
     const fetchCategories = async () => {
@@ -158,6 +169,7 @@ function JournalClient() {
     }, []);
 
 
+    
     return (
 
         <SmoothScroll>
@@ -201,7 +213,7 @@ function JournalClient() {
                         <div className="w-full flex max-sm:flex-col  justify-between items-center   ">
 
                             <Suspense fallback={<div>Loading search...</div>}>
-                                <SearchComponent isParamsRecieved={false} />
+                                <SearchComponent isParamsRecieved={false} setHasEntered={setHasEntered} hasEntered={hasEntered} />
                             </Suspense>
 
                             {/* <SearchComponent isParamsRecieved={false} /> */}

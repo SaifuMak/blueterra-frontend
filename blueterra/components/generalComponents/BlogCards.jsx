@@ -27,7 +27,7 @@ const BlogCards = ({ outerConatainerClass, blog }) => {
                             <p className=" font-light flex  items-center "> <span className=""><img src="/Icons/calender.svg" alt="" className=" size-4 object-cover mr-2 " /></span>{blog?.created_at}</p>
                         </div>
                         <div className="  font-light flex items-center ">
-                            <p className="">Read more{blog?.slug}</p>
+                            <p className="">Read more</p>
                             <span className="  text-2xl font-light  ml-1 text-white"><HiArrowLongRight /></span>
                         </div>
                     </div>

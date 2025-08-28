@@ -4,13 +4,11 @@ import { useEffect, useState } from "react";
 import { playfair } from "@/app/fonts";
 import { useRouter, useSearchParams } from 'next/navigation';
 
-
-const SearchComponent = ({ isParamsRecieved = true }) => {
+const SearchComponent = ({ isParamsRecieved = true, setHasEntered, hasEntered }) => {
 
   const [searchValue, setSearchValue] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
-
 
   // Handle input change and save to localStorage
   const handleChange = (e) => {
@@ -24,13 +22,13 @@ const SearchComponent = ({ isParamsRecieved = true }) => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSearch();
-
+      setHasEntered(!hasEntered)
     }
   };
 
   const handleSearch = () => {
 
-    const searchValue = localStorage.getItem("searchQuery");
+    // const searchValue = localStorage.getItem("searchQuery");
     if (searchValue.trim() === "") return;
     router.push(`/search?query=${encodeURIComponent(searchValue)}`);
 
@@ -47,7 +45,7 @@ const SearchComponent = ({ isParamsRecieved = true }) => {
 
   }, [searchParams]);
 
-  
+
   useEffect(() => {
 
     if (!isParamsRecieved) {

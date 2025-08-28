@@ -83,11 +83,12 @@ export default function BlogSingle() {
 
 
 
-
-
-
     const socialIconsStyle = 'cursor-pointer object-cover size-6 xl:size-7 2xl:size-8'
 
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [blog]);
 
     return (
 
@@ -119,7 +120,7 @@ export default function BlogSingle() {
                         <div className=" w-full flex max-xl:space-y-2  max-xl:flex-col  min-h-10  2xl:text-lg justify-between  my-5 xl:my-8">
                             <div className=" flex max-lg:flex-wrap space-x-3 xl:space-x-5 items-center text-sky-blue-dark  ">
                                 <div className=" flex "> <p className=" ">Posted on: <span className=" text-dark-46">{blog?.created_at}</span></p></div>
-                                <div className=" flex "> <p className="">In: <span className="text-dark-46 capitalize">{blog?.category_name}</span></p></div>
+                                <div className=" flex "> <p className="">Category: <span className="text-dark-46 capitalize">{blog?.category_name}</span></p></div>
                                 {blog?.blog_content && <div className=" flex "> <p className="">Read Time: <span className="text-dark-46">{getReadingTime(blog.blog_content)} Minutes</span></p></div>}
                             </div>
                             <div className=" flex space-x-1.5 xl:space-x-3 items-center  ">
@@ -169,7 +170,7 @@ export default function BlogSingle() {
                                             />
                                         </div>
                                         <div className="font-light mt-1 max-xl:text-sm ">
-                                            <p className=" flex items-center "><img src="/Icons/calender-dark.svg" alt="" className=" size-4 mr-2" />{blog.created_at}</p>
+                                            <p className=" flex items-center text-sm "><img src="/Icons/calender-dark.svg" alt="" className=" size-3 mr-2" />{blog.created_at}</p>
                                             <p className=" xl:leading-7 mt-1">{blog.title}</p>
                                         </div>
                                     </div>

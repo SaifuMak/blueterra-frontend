@@ -7,7 +7,7 @@ import { trimWords } from "@/app/utils/textHelpers";
 import AXIOS_INSTANCE from "@/lib/axios";
 import { useEffect, useState } from "react";
 import Pagination from "@/components/generalComponents/Pagination";
-import { getPageNumber,getTotalPagesCount } from "@/app/utils/paginationHelpers";
+import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
 import { IoEyeOutline, IoEyeOffOutline, RxCross2, AiOutlineCheck } from '@/components/reactIcons'
 import { toast } from 'sonner';
 import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";

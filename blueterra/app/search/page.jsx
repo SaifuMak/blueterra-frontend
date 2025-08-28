@@ -12,6 +12,7 @@ import Link from "next/link"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useEffect, useState, useRef } from "react"
 import AXIOS_INSTANCE from "@/lib/axios"
 import { getPageNumber, getTotalPagesCount } from "../utils/paginationHelpers"
@@ -27,7 +28,7 @@ import { Suspense } from "react";
 import SearchInSearchPage from "@/components/Journey/SearchInSearchPage"
 
 
-gsap.registerPlugin(useGSAP, ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 
 export default function Search() {
@@ -48,20 +49,18 @@ export default function Search() {
 
     const router = useRouter();
 
-    // const searchParams = useSearchParams();
-    // const query = searchParams.get("query") || "";
-
-
     const [nextPage, setNextPage] = useState(null); // Next page URL
     const [prevPage, setPrevPage] = useState(null); // Previous page URL
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(null)
 
-
     const scrollToResults = () => {
-        resultsRef.current?.scrollIntoView({ behavior: "smooth" });
+        gsap.to(window, {
+            duration: 1.3, // scroll duration (in seconds)
+            scrollTo: { y: resultsRef.current, offsetY: 0 },
+            ease: "sine.inOut" // easing for smoothness
+        });
     };
-
 
     const fetchJournals = async (category = 'View All', page = 1, query = '') => {
 
@@ -92,11 +91,6 @@ export default function Search() {
     };
 
 
-    // useEffect(() => {
-    //     scrollToResults()
-    // }, [currentPage])
-
-
     useGSAP(() => {
         gsap.fromTo(
             bannerText.current,
@@ -112,11 +106,12 @@ export default function Search() {
         );
     },);
 
-
     useEffect(() => {
-        scrollToResults()
-        // window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+     console.log('page reloaded ');
+     
+    }, [])
+    
+
 
 
     return (
