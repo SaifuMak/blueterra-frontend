@@ -16,6 +16,7 @@ import { useRouter } from 'next/navigation';
 import SmoothScroll from "@/components/SmoothScroll"
 import Navbar from "@/components/Navbar/page"
 import Footer from "@/components/Footer/page"
+import ResponsiveClipPath from "../generalComponents/ResponsiveClipPath"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -181,11 +182,23 @@ function JournalClient() {
 
 
                 <div className=" w-full  h-full  flex-center relative ">
-                    <BackgroundClipPath outerClass='absolute w-[16%] left-0 top-0 h-fit ' ImagePath='/images/journal/journal-left-clip.png' width='500' height='1000' />
-                    <BackgroundClipPath outerClass='absolute w-fit right-0 top-0 h-fit ' ImagePath='/images/journal/journal-right-clip.png' width='500' height='1000' />
-                    <BackgroundClipPath outerClass='absolute w-fit right-0 bottom-0 h-fit  ' ImagePath='/images/journal/journal-bottom-right.png' width='500' height='1000' />
+                    {/* <BackgroundClipPath outerClass='absolute w-[16%] left-0 top-0 h-fit ' ImagePath='/images/journal/journal-left-clip.png' width='500' height='1000' /> */}
+                    {/* <BackgroundClipPath outerClass='absolute w-fit right-0 top-0 h-fit ' ImagePath='/images/journal/journal-right-clip.png' width='500' height='1000' />
+                    <BackgroundClipPath outerClass='absolute w-fit right-0 bottom-0 h-fit  ' ImagePath='/images/journal/journal-bottom-right.png' width='500' height='1000' /> */}
+                    <ResponsiveClipPath
+                        outerClass='absolute md:w-[48%] w-[78%]  top-0  lg:right-36 h-fit'
+                        ImagePath='/images/journal/patterns/search-top-right.png'
+                        width={800}
+                    />
 
-                    <div className=" w-11/12 md:w-10/12 2xl:w-9/12 md:space-y-10 flex flex-col  items-center mt-8 lg:mt-16  xl:mt-28  h-full ">
+                    <div className=" w-11/12  relative  md:w-10/12 2xl:w-9/12 md:space-y-10 flex flex-col  items-center mt-8 lg:mt-16  xl:mt-28  h-full ">
+
+                        <ResponsiveClipPath
+                            outerClass='absolute md:w-[28%] w-[48%] bottom-0 md:-bottom-10 right-6 h-fit'
+                            ImagePath='/images/journal/patterns/filter-bottom.png'
+                            width={800}
+                        />
+
                         <div className="w-full flex max-sm:flex-col  justify-between items-center   ">
 
                             <Suspense fallback={<div>Loading search...</div>}>
@@ -224,7 +237,10 @@ function JournalClient() {
                 </div>
 
 
-                <div ref={JournalListRef} className=" w-full  h-full  flex-center ">
+                <div ref={JournalListRef} className=" w-full  h-full   flex-center ">
+
+
+
 
                     {journals.length > 0 ? (
 
@@ -233,7 +249,7 @@ function JournalClient() {
                             <div className=" w-11/12 2xl:w-10/12 mt-20 z-20   grid md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-12   ">
                                 {journals?.map((journal, index) => (
 
-                                    <div key={index} onClick={() => handleGetBlog(journal.slug)}  className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
+                                    <div key={index} onClick={() => handleGetBlog(journal.slug)} className=" scale-opacity-animate relative group cursor-pointer w-full 2xl:h-[700px] xl:h-[560px]  h-[470px] rounded-2xl overflow-hidden">
 
                                         <Image
                                             src={journal.image_public_url}
@@ -276,9 +292,9 @@ function JournalClient() {
                             </div>}
 
 
-                            <BackgroundClipPath outerClass='absolute    bottom-0   ' ImagePath='/images/journal/journal-card-bottom.png' width='500' height='1000' />
+                            {/* <BackgroundClipPath outerClass='absolute    bottom-0   ' ImagePath='/images/journal/journal-card-bottom.png' width='500' height='1000' />
                             <BackgroundClipPath outerClass='absolute top-[20%] right-0   ' ImagePath='/images/journal/journal-card-left-clippath.png' width='500' height='1000' />
-                            <BackgroundClipPath outerClass='absolute top-[60%] w-fit right-0   ' ImagePath='/images/journal/journal-card-linear-clippath.png' width='500' height='1000' />
+                            <BackgroundClipPath outerClass='absolute top-[60%] w-fit right-0   ' ImagePath='/images/journal/journal-card-linear-clippath.png' width='500' height='1000' /> */}
 
                         </div>
 

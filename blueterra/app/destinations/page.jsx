@@ -100,6 +100,7 @@ export default function Destination() {
 
   };
 
+  
   const handleScrollTop = () => {
     setTimeout(() => {
 
