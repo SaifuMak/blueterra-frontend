@@ -19,7 +19,7 @@ import TitleText from "@/components/generalComponents/TitleText";
 import Button from "@/components/generalComponents/Button";
 import AdventureSection from "@/components/collections/AdventureSection";
 
-import CardData from "@/components/datas/Collections";
+import CardData from "@/components/datas/Destinations";
 import { usePathname } from "next/navigation";
 import MobileFilter from "@/components/collections/MobileFilter";
 import MobileFilterPopup from "@/components/collections/MobileFilterPopup";
@@ -35,7 +35,7 @@ import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 // };
 
 
-export default function Collection() {
+export default function Destination() {
 
   const isMobile = useIsMobile()
   const isLoaded = usePageLoaded();
@@ -206,10 +206,11 @@ export default function Collection() {
           selectedVerticalTileMobile={selectedVerticalTileMobile}
           setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
           handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
+          
         />
       ) : (
         <BannerAnimation
-          CardData={CardData}
+        CardData={CardData}
           expandedIndex={expandedIndex}
           setExpandedIndex={setExpandedIndex}
           isFullCardVisible={isFullCardVisible}
@@ -217,10 +218,11 @@ export default function Collection() {
           handleShowFullCard={handleShowFullCard}
           setIsFilterVisible={setIsFilterVisible}
           isFilterVisible={isFilterVisible}
+          
         />
       )}
 
-      {!isMobile && <FilterLayout page='collections' selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} setExpandedTileIndex={setExpandedIndex} setIsFilterVisible={setIsFilterVisible} />}
+      {!isMobile && <FilterLayout page='destinations' selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} setExpandedTileIndex={setExpandedIndex} setIsFilterVisible={setIsFilterVisible} />}
 
       <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
 
@@ -237,10 +239,10 @@ export default function Collection() {
         <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
           {isLoading ? (
             <div className="flex items-center justify-center w-full min-h-[60vh] col-span-2">
-              <LoaderIcon />
+              <LoaderIcon/>
             </div>
           ) : itineraryData && itineraryData.length > 0 ? (
-            <DestinationCards itineraryData={itineraryData} />
+            <DestinationCards Destinations={Destinations} itineraryData={itineraryData} />
           ) : (
             <div className="flex items-center justify-center min-h-[60vh]  w-full col-span-2">
               <p className="text-lg font-medium">No results found</p>

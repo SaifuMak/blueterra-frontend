@@ -4,12 +4,12 @@ import VerticalCards from "../AnimatedVerticalCards/VerticalCards"
 import gsap from 'gsap';
 import { useState, useRef } from "react"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CardData from "../datas/Destinations";
+
 
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function BannerAnimation({ expandedIndex, setExpandedIndex, isFullCardVisible, setIsFullCardVisible, handleShowFullCard, setIsFilterVisible, isFilterVisible }) {
+export default function BannerAnimation({CardData, expandedIndex, setExpandedIndex, isFullCardVisible, setIsFullCardVisible, handleShowFullCard, setIsFilterVisible, isFilterVisible }) {
 
     const [isLoading, setIsLoading] = useState(true)
 

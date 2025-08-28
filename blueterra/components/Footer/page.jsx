@@ -20,7 +20,7 @@ export default function Footer() {
             "Home": "/",
             "Our Story": "/our-story",
             "The Blueterra Collection": "/collections",
-            "Destinations": "#",
+            "Destinations": "/destinations",
             "Cruise": "#",
             "MICE": "/corporate-mice"
         },

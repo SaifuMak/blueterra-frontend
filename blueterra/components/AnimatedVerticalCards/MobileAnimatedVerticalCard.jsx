@@ -37,10 +37,10 @@ export default function MobileAnimatedVerticalCard({ CardData, selectedVerticalT
 
               <hr className=' opacity-40 mt-1'></hr>
               <h3 className={`font-normal mt-5 ${playfair.className}`}>Popular Journeys</h3>
-              <div className="flex space-x-4 pr-3 font-light text-[12px] mt-2">
-                {["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"].map((destination, index) => (
-                  <div key={index} className="  flex  ">
-                    <span className="">{destination}</span></div>
+              <div className="flex   w-11/12 flex-wrap  gap-y-1 gap-x-4 pr-3 font-light text-[12px] mt-2">
+                {["United Arab Emirates", "Kenya",  "South Africa", "Norway","Iceland"].map((destination, index) => (
+                  <div key={index} className="   ">
+                    <span className=" text-nowrap">{destination}</span></div>
                 ))}
               </div>
 

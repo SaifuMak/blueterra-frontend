@@ -203,7 +203,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                                 <h3 className={`${playfair.className} text-2xl 2xl:text-3xl font-medium`} >Popular Journeys</h3>
 
                                 <div className="flex  space-x-6">
-                                    {["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"].map((destination, index) => (
+                                    {["United Arab Emirates", "Kenya", "South Africa", "Norway","Iceland"].map((destination, index) => (
                                         <div key={index} className="  flex  bor-b ">
                                             <span className="">{destination}</span></div>
                                     ))}

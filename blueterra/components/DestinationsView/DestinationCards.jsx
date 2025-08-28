@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { trimWords } from "@/app/utils/textHelpers";
 
 
-export default function DestinationCards({ Destinations, itineraryData }) {
+export default function DestinationCards({ itineraryData }) {
 
     const router = useRouter();
 

@@ -6,7 +6,7 @@ import { RxCross2 } from '@/components/reactIcons'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { destinations, countries, collections, categories } from '@/components/datas/FilterOptions'
 
-export default function FilterLayout({ selectedFilters, setSelectedFilters, setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex, handleChangeCollection, setExpandedTileIndex, setIsFilterVisible }) {
+export default function FilterLayout({ page, selectedFilters, setSelectedFilters, setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex, handleChangeCollection, setExpandedTileIndex, setIsFilterVisible }) {
 
     // const [openedFilters, setOpenedFilters] = useState([])
 
@@ -18,21 +18,6 @@ export default function FilterLayout({ selectedFilters, setSelectedFilters, setI
     const filterContaineRef = useClickOutside(() => setOpenedFilter(null))
 
     const filterScrollRef = useRef();
-
-    // const [selectedFilters, setSelectedFilters] = useState({
-    //     categories: [],
-    //     destinations: [],
-    //     countries: [],
-    //     collections: []
-    // })
-
-    // const handleFilters = (filter) => {
-    //     setOpenedFilters((prev) =>
-    //         prev.includes(filter)
-    //             ? prev.filter((f) => f !== filter)
-    //             : [...prev, filter]
-    //     );
-    // }
 
     const handleFilters = (filter) => {
         filter === openedFilter ? setOpenedFilter(null) : setOpenedFilter(filter)
@@ -51,9 +36,13 @@ export default function FilterLayout({ selectedFilters, setSelectedFilters, setI
     }
 
     const handleItemSelection = (filter, value) => {
-        if (filter === 'collections') {
+        if (filter === 'collections' && page === 'collections') {
             handleClearAllSelectedFilters()
             handleChangeCollection(collections.indexOf(value))
+        }
+        else if (filter === 'countries' && page === 'destinations') {
+            handleClearAllSelectedFilters()
+            handleChangeCollection(countries.indexOf(value))
         }
 
         // deals with actual data 
@@ -75,6 +64,7 @@ export default function FilterLayout({ selectedFilters, setSelectedFilters, setI
         );
 
     }
+
 
     const handleRemoveFilter = (valueToRemove) => {
         console.log(valueToRemove)
@@ -99,7 +89,12 @@ export default function FilterLayout({ selectedFilters, setSelectedFilters, setI
     useEffect(() => {
 
         handleClearAllSelectedFilters()
-        handleItemSelection('collections', collections[expandedBannerCollectionIndex])
+        if (page === 'destinations') {
+            handleItemSelection('countries', countries[expandedBannerCollectionIndex])
+        }
+        else if (page === 'collections') {
+            handleItemSelection('collections', collections[expandedBannerCollectionIndex])
+        }
 
     }, [expandedBannerCollectionIndex])
 
@@ -115,14 +110,23 @@ export default function FilterLayout({ selectedFilters, setSelectedFilters, setI
             }
         }, 0);
         console.log(flatSelectedFilters);
-        
 
         if (flatSelectedFilters.length === 0) {
-            setExpandedTileIndex(null)
+            // setExpandedTileIndex(null)
             setIsFilterVisible(true)
         }
     }, [flatSelectedFilters])
 
+
+    // close the title when the node filter is removed 
+    useEffect(() => {
+        if (page == 'collections' && selectedFilters['collections'].length === 0) {
+            setExpandedTileIndex(null)
+        }
+        else if (page == 'destinations' && selectedFilters['countries'].length === 0) {
+            setExpandedTileIndex(null)
+        }
+    }, [selectedFilters])
 
 
 
@@ -131,7 +135,9 @@ export default function FilterLayout({ selectedFilters, setSelectedFilters, setI
             <div ref={filterContaineRef} className={`${isFilterVisible ? 'visible' : 'hidden'} xl:w-9/12  w-10/12 h-auto grid grid-cols-4 py-2   gap-7`} >
 
 
-                <FilterComponent
+
+
+                {page === 'collections' && <FilterComponent
                     name='collections'
                     options={collections}
                     handleFilters={handleFilters}
@@ -139,7 +145,17 @@ export default function FilterLayout({ selectedFilters, setSelectedFilters, setI
                     isOpened={openedFilter === "collections"}
                     handleItemSelection={handleItemSelection}
                     selectedFilters={selectedFilters}
-                />
+                />}
+
+                 {page === 'destinations' && <FilterComponent
+                    name='countries'
+                    options={countries}
+                    handleFilters={handleFilters}
+                    // isOpened={openedFilters.includes("countries")}
+                    isOpened={openedFilter === "countries"}
+                    handleItemSelection={handleItemSelection}
+                    selectedFilters={selectedFilters}
+                />}
 
                 <FilterComponent
                     name='categories'
@@ -160,7 +176,17 @@ export default function FilterLayout({ selectedFilters, setSelectedFilters, setI
                     selectedFilters={selectedFilters}
                 />
 
-                <FilterComponent
+                {page === 'destinations' && <FilterComponent
+                    name='collections'
+                    options={collections}
+                    handleFilters={handleFilters}
+                    // isOpened={openedFilters.includes("collections")}
+                    isOpened={openedFilter === "collections"}
+                    handleItemSelection={handleItemSelection}
+                    selectedFilters={selectedFilters}
+                />}
+
+                  {page === 'collections' &&<FilterComponent
                     name='countries'
                     options={countries}
                     handleFilters={handleFilters}
@@ -168,7 +194,7 @@ export default function FilterLayout({ selectedFilters, setSelectedFilters, setI
                     isOpened={openedFilter === "countries"}
                     handleItemSelection={handleItemSelection}
                     selectedFilters={selectedFilters}
-                />
+                />}
 
             </div>
 

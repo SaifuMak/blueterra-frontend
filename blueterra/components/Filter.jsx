@@ -2,7 +2,7 @@
 import { HiOutlineArrowNarrowRight, RxCross2, CiSearch } from './reactIcons'
 import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
-import CardData from './datas/Destinations';
+import CardData from './datas/Collections';
 
 
 export default function Filter({ isFilterVisible, setIsFilterVisible, expandedIndex }) {

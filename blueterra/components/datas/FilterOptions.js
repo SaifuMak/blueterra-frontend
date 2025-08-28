@@ -1,4 +1,4 @@
 export const destinations = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia",]
-export const countries = ["Dubai", "Thailand", "Kenya", "Maldives", "Iceland"]
+export const countries = ["United Arab Emirates", "Kenya", "South Africa", "Norway", "Iceland"]
 export const collections = ["Signature Journeys", "Explore by Landscape", "Adventures in Motion", "Mindful Escapes", "Unforgettable Editions", "Tailored for You"]
 export const categories = ["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys"]
