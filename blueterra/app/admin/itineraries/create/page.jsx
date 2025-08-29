@@ -59,6 +59,32 @@ export default function CreateItinerary() {
 
     const [openDropdown, setOpenDropdown] = useState(null); // track which one is open
 
+    const handleReset = () => {
+        setTitle('');
+        setLocationTitle('');
+        setDescription('');
+        setColor('#3FD896');
+        setSelectedBannerImageFile(null);
+
+        setDays([{ title: '', description: '', image: null, image_title: '' }]);
+        setHotels([{ title: '', description: '', image: null, coordinates: '', location: '', mapLink: '', rating: 5 }]);
+
+        setDestinationHighlights([{ title: '' }]);
+        setSignatureHighlights([{ title: '' }]);
+        setPackageInclusions([{ title: '' }]);
+        setPackageExclusions([{ title: '' }]);
+
+        setMapRouting([{ location: '', coordinates: '', transfer: '' }, { location: '', coordinates: '', transfer: '' }]);
+        setGallery([{ image: '', title: '' }]);
+        setFeaturedPoints([{ suggestedDate: '', price: '', additionalInformation: '' }]);
+
+        setDestination('');
+        setCountry('');
+        setCollection('');
+        setCategory('');
+    };
+
+
 
     const handleReorder = (index, action, arrayOfElements, setElements) => {
 
@@ -85,6 +111,7 @@ export default function CreateItinerary() {
         try {
             const response = await AXIOS_INSTANCE.post(`create-itinerary/`, formData)
             toast.success(response.data.message)
+            handleReset()
 
         }
         catch (e) {
@@ -228,9 +255,9 @@ export default function CreateItinerary() {
 
                         <div className=" flex space-x-3 max-xl:text-sm text-white  absolute   right-5 top-5">
                             <button type="submit" name="action"
-                                value="draft" className=" bg-[#524D4D]  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
+                                value="draft" className=" bg-[#524D4D] cursor-pointer  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
                             <button type="submit" name="action"
-                                value="publish" className=" bg-[#129366] min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
+                                value="publish" className=" bg-[#129366] cursor-pointer min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
                         </div>
 
                         <div className="flex flex-col w-full  space-y-10">
@@ -384,9 +411,9 @@ export default function CreateItinerary() {
                             <div className=" py-10">
                                 <div className=" flex space-x-3 max-xl:text-sm text-white">
                                     <button type="submit" name="action"
-                                        value="draft" className=" bg-[#524D4D]  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
+                                        value="draft" className=" bg-[#524D4D]  cursor-pointer  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
                                     <button type="submit" name="action"
-                                        value="publish" className=" bg-[#129366] min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
+                                        value="publish" className=" bg-[#129366] cursor-pointer  min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
                                 </div>
 
                             </div>

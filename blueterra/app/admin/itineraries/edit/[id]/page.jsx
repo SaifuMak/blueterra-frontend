@@ -150,7 +150,10 @@ export default function EditItinerary() {
             toast.error('something went wrong')
         }
         finally {
+            setTimeout(() => {
             setIsLoading(false)
+                
+            }, 1000);
         }
     }
 
