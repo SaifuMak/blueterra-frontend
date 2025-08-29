@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { Editor } from '@tinymce/tinymce-react';
 import { useRef, useState, useEffect } from 'react';
-import { RiImageAddLine, AiOutlineCheck, RiAddCircleLine, RxCross2 } from '@/components/reactIcons'
+import { RiImageAddLine, AiOutlineCheck, RiAddCircleLine, RxCross2, RiLoader4Line } from '@/components/reactIcons'
 import { rubik } from '@/app/fonts'
 import AXIOS_INSTANCE from "@/lib/axios";
 import { toast } from 'sonner';
@@ -17,6 +17,8 @@ export default function EditJournal() {
     const editorRef = useRef(null);
     const [isClient, setIsClient] = useState(false);
     const [journal, setJournal] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
+
 
     const [previewImage, setPreviewImage] = useState(null);
     const [journalCoverImage, setJournalCoverImage] = useState(null)
@@ -142,6 +144,9 @@ export default function EditJournal() {
 
 
     const handleSubmit = async (e, publish = true) => {
+
+        if(isLoading) return
+
         toast.dismiss()
         e.preventDefault(); // prevent page reload
 
@@ -175,7 +180,8 @@ export default function EditJournal() {
                 ...(journalCoverImage && { preview_image: journalCoverImage }),
             };
 
-            console.log(updatedFormData);
+            // console.log(updatedFormData);
+            setIsLoading(true)
             setFormDataState(updatedFormData)
 
             try {
@@ -194,6 +200,9 @@ export default function EditJournal() {
             catch (e) {
                 const firstError = Object.values(e?.response?.data)?.[0]?.[0];
                 toast.error(firstError || "Something went wrong.");
+            }
+            finally {
+                setIsLoading(false)
             }
         }
         else {
@@ -275,7 +284,7 @@ export default function EditJournal() {
                                             plugins: [
                                                 'image', 'link', 'lists', 'table', 'code'
                                             ],
-                                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | image link | removeImage',
+                                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | image link | removeImage',
 
                                             /* Handle file upload */
                                             images_upload_handler: async (blobInfo) => {
@@ -334,7 +343,7 @@ export default function EditJournal() {
                                     <div className=" flex items-center justify-between ">
                                         <h2 className=" text-lg 2xl:text-xl font-medium ">Post Journal </h2>
 
-                                        <button onClick={(e) => handleSubmit(e, true)} className=" max-xl:hidden rounded-sm cursor-pointer text-sm font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">Publish</button>
+                                        <button onClick={(e) => handleSubmit(e, true)} className=" max-xl:hidden rounded-sm cursor-pointer text-sm font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
 
                                     </div>
                                     <button onClick={(e) => handleSubmit(e, true)} className=" xl:hidden mt-4 rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">Publish</button>

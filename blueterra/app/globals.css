@@ -228,10 +228,10 @@ body {
 .blog-content h4,
 .blog-content p,
 .blog-content li,
-.blog-content ul
- {
- font-family: 'Rubik', sans-serif;
+.blog-content ul {
+  font-family: 'Rubik', sans-serif;
 }
+
 /* 
 .blog-content h1 {
    font-family: 'Playfair Display', serif;
@@ -271,7 +271,7 @@ body {
   font-size: 18px;
   margin-bottom: 1.5rem;
   color: #2A2828;
- line-height: 1.9;
+  line-height: 1.9;
 }
 
 .blog-content table {
@@ -287,8 +287,7 @@ body {
 }
 
 .blog-content th,
-.blog-content td
- {
+.blog-content td {
   font-weight: 300;
   color: #2A2828;
   font-size: 18px;
@@ -320,55 +319,29 @@ body {
 
 }
 
-/* styles.css */
-/* Large bullets for h4 headings in ordered/unordered lists */
-.blog-content ol h4, 
-.blog-content ul h4 {
-  list-style-type: none;
-  position: relative;
-  padding-left: 25px;
-  margin-bottom: 10px;
-}
 
-.blog-content ol h4::before, 
-.blog-content ul h4::before {
-  content: "•";
-  font-size: 1.5em;
-  color: #026E9E;
-  position: absolute;
-  left: 1;
-  top: -7px;
-}
+  .blog-content ul {
+    list-style-type: disc;
+    /* default bullet */
+    padding-left: 1.5rem;
+    /* spacing */
+  }
 
-/* Small bullets for list items */
-.blog-content ol li ul, 
-.blog-content ul li ul {
-  padding-left: 10px;
-}
+  .blog-content ol {
+    list-style-type: decimal;
+    /* default numbering */
+    padding-left: 1.5rem;
+  }
 
-.blog-content ol li ul li, 
-.blog-content ul li ul li {
-  list-style-type: none;
-  position: relative;
-  padding-left: 25px;
-  margin-bottom: 5px;
-}
+  .blog-content li {
+    margin-bottom: 0.5rem;
+    list-style-position: outside;
+    /* bullet/number outside the text */
+  }
 
-.blog-content ol li ul li::before, 
-.blog-content ul li ul li::before {
-   content: "•";
-  font-size: 1.8em;
-  color: #026E9E ;
-  position: absolute;
-  left: 5px;
-  top: -11px;
-}
 
-.blog-content ul ul,
-.blog-content ol ol {
-  margin-top: 0.5rem;
-  margin-bottom: 0;
-}
+
+
 
 /* Add this at the end of your CSS file */
 @media (max-width: 768px) {
@@ -381,47 +354,49 @@ body {
   .blog-content h1 {
     display: none;
   }
-  
+
   .blog-content h2 {
     font-size: 20px;
     line-height: 1.3;
     margin: 2rem 0 0.8rem;
   }
-  
+
   .blog-content h3 {
-    font-size: 1.3rem; /* ~21px */
+    font-size: 1.3rem;
+    /* ~21px */
     line-height: 1.4;
   }
-  
+
   .blog-content h4 {
-    font-size: 1.1rem; /* ~18px */
+    font-size: 1.1rem;
+    /* ~18px */
     line-height: 1.4;
   }
-  
+
   .blog-content p {
     font-size: 15px;
     line-height: 1.7;
     margin-bottom: 1.2rem;
   }
-   
+
   .blog-content table td {
     font-size: 15px;
   }
-  
-.blog-content li {
-  font-size: 15px;
 
-}
+  .blog-content li {
+    font-size: 15px;
 
-.blog-content li h4 {
-  font-size: 15px;
+  }
 
-}
+  .blog-content li h4 {
+    font-size: 15px;
 
-  
+  }
+
   .blog-content table th,
   .blog-content table td {
-    padding: 8px; /* Reduced padding */
+    padding: 8px;
+    /* Reduced padding */
   }
 }
 
@@ -458,5 +433,6 @@ body {
 .custom-tooltip[data-side="bottom"]::before,
 .custom-tooltip[data-side="left"]::before,
 .custom-tooltip[data-side="right"]::before {
-    background-color: white !important; /* match your tooltip background */
+  background-color: white !important;
+  /* match your tooltip background */
 }

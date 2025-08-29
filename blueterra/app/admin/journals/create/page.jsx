@@ -245,7 +245,7 @@ export default function CreateJournal() {
                                             plugins: [
                                                 'image', 'link', 'lists', 'table', 'code'
                                             ],
-                                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | image link | removeImage',
+                                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | image link | removeImage',
                                             resize: true, // enables resizing
                                             statusbar: true,
                                             /* Handle file upload */

@@ -302,6 +302,7 @@ export default function Home() {
       <div ref={welcomeContainerRef} className={`w-full h-full  `}>
 
         <div className="w-full relative  h-[50vh] md:h-screen">
+          {/* src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4" */}
           <video ref={videoRef} src="https://res.cloudinary.com/dbmsyy9mx/video/upload/v1756462732/Home_page_Opening_video_2_ehpv1l.mp4"
             className=" w-full h-full object-cover"
             autoPlay
@@ -316,6 +317,7 @@ export default function Home() {
             onError={(e) => console.error("Video error", e)}
           ></video>
 
+
           <div className=" w-full h-full absolute bg-black/20  inset-0 flex-center flex-col text-white ">
             <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
               <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Curated Travel. Crafted for You.</h1>
@@ -325,7 +327,6 @@ export default function Home() {
 
             </div>
           </div>
-
         </div>
 
 
@@ -336,6 +337,7 @@ export default function Home() {
             ImagePath='/images/home/patterns/welcome-bottom-left.png'
             width={600}
           />
+
           <ResponsiveClipPath
             outerClass='absolute md:w-[15%] w-[25%] -right-10 top-1/2 -translate-y-1/2  h-fit'
             ImagePath='/images/home/patterns/welcome-right.png'
