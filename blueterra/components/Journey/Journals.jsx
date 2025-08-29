@@ -94,7 +94,7 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
                         {Data?.map((item, index) => (
                             <CarouselItem key={index} className="md:basis-1/1 lg:basis-1/1  flex-center rounded-2xl  ">
 
-                                <div onClick={()=>router.push(`/blog-single/${item.slug}`)} className=" relative group cursor-pointer w-[100%] h-[30vh] md:h-[35vh] lg:h-[45vh] xl:h-[55vh] 2xl:h-[65vh] rounded-2xl overflow-hidden">
+                                <div onClick={()=>router.push(`/blog/${item.slug}`)} className=" relative group cursor-pointer w-[100%] h-[30vh] md:h-[35vh] lg:h-[45vh] xl:h-[55vh] 2xl:h-[65vh] rounded-2xl overflow-hidden">
 
                                     <Image
                                         src={item.image_public_url}
@@ -134,7 +134,7 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
                                     <p className=" flex  items-center "> <span className=""><img src="/Icons/calender.svg" alt="" className=" size-4 object-cover mr-2 " /></span>{Data[currentCollection]?.created_at}</p>
                                 </div>
 
-                                <Link href='/blog-single'>
+                                <Link href={`/blog/${Data[currentCollection]?.slug}`}>
                                     <div className=" flex  items-center ">
                                         <p className="">Read more</p>
                                         <span className="  text-2xl font-light  ml-1 text-white"><HiArrowLongRight /></span>

@@ -12,8 +12,8 @@ export default function Footer() {
     const footerLinks = {
         "Useful Information": {
             "About us": "#",
-            "Privacy Policy": "#",
-            "Terms & conditions": "#",
+            "Privacy Policy": "/privacy-policy",
+            "Terms & conditions": "/terms-and-condition",
             "Careers": "#"
         },
         "Quick Links": {

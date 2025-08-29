@@ -17,8 +17,10 @@ import SmoothScroll from "@/components/SmoothScroll"
 import Navbar from "@/components/Navbar/page"
 import Footer from "@/components/Footer/page"
 import ResponsiveClipPath from "../generalComponents/ResponsiveClipPath"
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger)
+
+gsap.registerPlugin( ScrollTrigger,ScrollToPlugin)
 
 function JournalClient() {
 
@@ -32,6 +34,7 @@ function JournalClient() {
     const [journals, setJournals] = useState([])
     const [featuredJournals, setFeaturedJournals] = useState([])
     const JournalListRef = useRef(null);
+    const [isFirstFetched, setIsFirstFetched] = useState(false)
 
     const containerRef = useRef()
     const bannerText = useRef()
@@ -46,16 +49,12 @@ function JournalClient() {
     const [hasEntered, setHasEntered] = useState(false)
 
 
-
-    // const scrollToJournals = () => {
-    //     JournalListRef.current?.scrollIntoView({ behavior: "smooth" });
-    // };
-
     const scrollToJournals = () => {
+        if(!isFirstFetched) return
         gsap.to(window, {
-            duration: 1, // scroll duration (in seconds)
-            scrollTo: { y: JournalListRef.current, offsetY: 0 },
-            ease: "sine.inOut" // easing for smoothness
+            duration: 0.6,
+            scrollTo: { y: JournalListRef.current, offsetY: 10 },
+            ease: "sine.inOut",
         });
     };
 
@@ -94,6 +93,7 @@ function JournalClient() {
 
             const totalPages = getTotalPagesCount(response.data.count, 6)
             setTotalPages(totalPages)
+            setIsFirstFetched(true)
 
         }
         catch (e) {
@@ -107,7 +107,7 @@ function JournalClient() {
     }
 
     const handleGetBlog = (slug) => {
-        router.push(`/blog-single/${slug}`);
+        router.push(`/blog/${slug}`);
     };
 
 
@@ -169,7 +169,7 @@ function JournalClient() {
     }, []);
 
 
-    
+
     return (
 
         <SmoothScroll>

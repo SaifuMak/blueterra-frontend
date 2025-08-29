@@ -14,7 +14,7 @@ import AXIOS_INSTANCE from "@/lib/axios"
 import { getReadingTime } from "@/app/utils/helperFunctions"
 import SearchInSingleBlog from "@/components/Journey/SearchInSingleBlog"
 import { Suspense } from "react";
-
+import { toast } from "sonner"
 
 export default function BlogSingle() {
 
@@ -82,8 +82,25 @@ export default function BlogSingle() {
     }, [blog]);
 
 
-
     const socialIconsStyle = 'cursor-pointer object-cover size-6 xl:size-7 2xl:size-8'
+
+    const handleShare = async () => {
+
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: "BlueTerra",
+                    text: "Check this out!",
+                    url: `https://blueterra.vercel.app/blog/${blog?.slug}`
+                });
+            } catch (err) {
+                console.error("Error sharing:", err);
+            }
+        } else {
+            toast.error("Sharing not supported on this browser")
+        }
+    };
+
 
 
     useEffect(() => {
@@ -124,11 +141,35 @@ export default function BlogSingle() {
                                 {blog?.blog_content && <div className=" flex "> <p className="">Read Time: <span className="text-dark-46">{getReadingTime(blog.blog_content)} Minutes</span></p></div>}
                             </div>
                             <div className=" flex space-x-1.5 xl:space-x-3 items-center  ">
-                                <img src="/Icons/single-blog/insta.svg" alt="instagram" className={`${socialIconsStyle}`} />
-                                <img src="/Icons/single-blog/fb.svg" alt="facebook" className={`${socialIconsStyle}`} />
-                                <img src="/Icons/single-blog/x.svg" alt="x" className={`${socialIconsStyle}`} />
-                                <img src="/Icons/single-blog/whatsapp.svg" alt="whatsapp" className={`${socialIconsStyle}`} />
-                                <img src="/Icons/single-blog/linkdn.svg" alt="linkedin" className={`${socialIconsStyle}`} />
+                                <img onClick={handleShare} src="/Icons/single-blog/insta.svg" alt="instagram" className={`${socialIconsStyle}`} />
+                                <a
+                                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://blueterra.vercel.app/blog/${blog?.slug}`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src="/Icons/single-blog/fb.svg" alt="facebook" className={`${socialIconsStyle}`} />
+                                </a>
+                                <a
+                                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("Sharing something awesome with you 🤩")}+${encodeURIComponent(`https://blueterra.vercel.app/blog/${blog?.slug}`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src="/Icons/single-blog/x.svg" alt="x" className={`${socialIconsStyle}`} />
+                                </a>
+                                <a
+                                    href={`https://wa.me/?text=${encodeURIComponent("Sharing something awesome with you 🤩")}+${encodeURIComponent(`https://blueterra.vercel.app/blog/${blog?.slug}`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src="/Icons/single-blog/whatsapp.svg" alt="whatsapp" className={`${socialIconsStyle}`} />
+                                </a>
+                                <a
+                                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://blueterra.vercel.app/blog/${blog?.slug}`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src="/Icons/single-blog/linkdn.svg" alt="linkedin" className={`${socialIconsStyle}`} />
+                                </a>
                             </div>
                         </div>
                         {blog?.blog_content && <div className=" w-full h-full blog-content" dangerouslySetInnerHTML={{ __html: blog.blog_content }}>
@@ -159,7 +200,7 @@ export default function BlogSingle() {
 
                             <div className=" max-lg:flex max-lg:flex-wrap">
                                 {moreBlogs?.filter(blog => blog.slug !== slug).slice(0, 3).map((blog, index) => (
-                                    <div key={index} onClick={() => router.push(`/blog-single/${blog.slug}`)} className=" cursor-pointer flex my-3 lg:my-6 space-x-3">
+                                    <div key={index} onClick={() => router.push(`/blog/${blog.slug}`)} className=" cursor-pointer flex my-3 lg:my-6 space-x-3">
                                         <div className=" w-[130px] shrink-0 rounded-lg overflow-hidden h-[120px] 2xl:h-[130px] relative">
                                             <Image
                                                 src={blog.image_public_url}

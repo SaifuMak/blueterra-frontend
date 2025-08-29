@@ -56,7 +56,7 @@ export default function Search() {
 
     const scrollToResults = () => {
         gsap.to(window, {
-            duration: 1.3, // scroll duration (in seconds)
+            duration: 1, // scroll duration (in seconds)
             scrollTo: { y: resultsRef.current, offsetY: 0 },
             ease: "sine.inOut" // easing for smoothness
         });
@@ -87,7 +87,7 @@ export default function Search() {
 
 
     const handleGetBlog = (slug) => {
-        router.push(`/blog-single/${slug}`);
+        router.push(`/blog/${slug}`);
     };
 
 

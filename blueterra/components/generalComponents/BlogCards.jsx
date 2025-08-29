@@ -9,7 +9,7 @@ const BlogCards = ({ outerConatainerClass, blog }) => {
     const router = useRouter();
 
     return (
-        <div onClick={() => router.push(`/blog-single/${blog.slug}`)} className={`${outerConatainerClass}`}>
+        <div onClick={() => router.push(`/blog/${blog.slug}`)} className={`${outerConatainerClass}`}>
             <Image
                 src={blog?.image_public_url}
                 alt={blog?.title ? blog?.title : 'blog-image'}

@@ -15,7 +15,7 @@ function BlogCard({ outerClass, data }) {
     const journalRef = useGsapOpacity(0, {})
 
     const handleGetBlog = (slug) => {
-        router.push(`/blog-single/${slug}`);
+        router.push(`/blog/${slug}`);
     };
 
     return (
