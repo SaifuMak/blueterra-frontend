@@ -235,7 +235,7 @@ export default function Destination() {
       <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
 
         <ResponsiveClipPath
-          outerClass='absolute md:w-[24%] w-[78%]  top-10 left-0 h-fit'
+          outerClass='absolute  max-sm:hidden md:w-[24%] w-[78%]  top-10 left-0 h-fit'
           ImagePath='/images/destinations/patterns/top-pattern.png'
           width={800}
         />

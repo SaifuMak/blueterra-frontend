@@ -301,8 +301,8 @@ export default function Home() {
       <Navbar />
       <div ref={welcomeContainerRef} className={`w-full h-full  `}>
 
-        <div className="w-full relative h-[50vh] md:h-screen">
-          <video ref={videoRef} src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4"
+        <div className="w-full relative  h-[50vh] md:h-screen">
+          <video ref={videoRef} src="https://res.cloudinary.com/dbmsyy9mx/video/upload/v1756462732/Home_page_Opening_video_2_ehpv1l.mp4"
             className=" w-full h-full object-cover"
             autoPlay
             muted
@@ -316,7 +316,7 @@ export default function Home() {
             onError={(e) => console.error("Video error", e)}
           ></video>
 
-          <div className=" w-full h-full absolute  inset-0 flex-center flex-col text-white ">
+          <div className=" w-full h-full absolute bg-black/20  inset-0 flex-center flex-col text-white ">
             <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
               <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Curated Travel. Crafted for You.</h1>
               <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all font-light duration-700 ease-in-out lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Bespoke journeys. No compromises.</p>
@@ -463,7 +463,7 @@ export default function Home() {
         <JournalSection />
         <PartnerCompaniesSection />
 
-        <PlanningCardSection />
+        <PlanningCardSection setFormOpen={setFormOpen} />
 
         <Footer />
         <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />

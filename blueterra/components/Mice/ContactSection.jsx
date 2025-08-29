@@ -14,11 +14,11 @@ const ContactSection = forwardRef((props, ref) => {
 
     ]
 
-    
+
     return (
         <div ref={ref} className=" w-full h-full py-7 md:py-20   text-dark-28  flex-center relative">
 
-            <ResponsiveClipPath 
+            <ResponsiveClipPath
                 outerClass='absolute md:w-[28%] w-[45%]  -bottom-12 right-0 h-fit'
                 ImagePath='/images/corporate/patterns/contact-bottom.png'
                 width={600}
@@ -46,14 +46,14 @@ const ContactSection = forwardRef((props, ref) => {
                 </div>
 
                 <div className="lg:w-6/12  w-full  h-full overflow-hidden  ">
-                    <div className="w-full max-sm:h-[640px] md:h-[500px] lg:h-[460px] 2xl:h-[460px] ">
-                        {/* <iframe
-                                        title="Zoho Form"
-                                        src="https://forms.zohopublic.com/blueterra1/form/Sendusadirectmessage/formperma/LH1SC9iQKsMbkmNpCxnvw8TsFKPf79BaLG-GgDCVlFw"
-                                        frameBorder="0"
-                                        style={{ width: '100%', height: '100%', border: 'none' }}
-                                        allowFullScreen
-                                    /> */}
+                    <div className="w-full max-sm:h-[640px]  md:h-[500px] lg:h-[460px] 2xl:h-[460px] ">
+                        <iframe
+                            title="Zoho Form"
+                            src="https://forms.zohopublic.com/blueterra/form/Sendusadirectmessage/formperma/LH1SC9iQKsMbkmNpCxnvw8TsFKPf79BaLG-GgDCVlFw"
+                            frameBorder="0"
+                            style={{ width: '100%', height: '100%', border: 'none' }}
+                            allowFullScreen
+                        />
                     </div>
 
                 </div>

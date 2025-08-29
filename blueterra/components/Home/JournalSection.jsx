@@ -8,13 +8,16 @@ import BlogCard from './BlogCard'
 import AXIOS_INSTANCE from '@/lib/axios'
 import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn'
 import ResponsiveClipPath from '../generalComponents/ResponsiveClipPath'
-
+import { useRouter } from 'next/navigation'
 function JournalSection() {
+
 
     const [journals, setJournals] = useState([])
 
     const blogTitleRef = useGsapFadeIn(0, {})
     const blogButtonRef = useGsapFadeIn(0, {})
+
+    const router = useRouter()
 
     const fetchJournals = async (category = 'View All', page = 1) => {
         try {
@@ -76,12 +79,10 @@ function JournalSection() {
                     outerClass=' w-full   lg:w-1/3 h-full  max-lg:h-[400px]  group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative animate-journals'
                     data={journals[3]}
                 />}
-
-
             </div>
 
             <div ref={blogButtonRef} className="">
-                <Button text='VIEW ALL' buttonStyle='px-16 py-2  ' isHoverWhiteApplied={false} />
+                <Button text='VIEW ALL' buttonStyle='px-16 py-2 ' isHoverWhiteApplied={false} onClickFunction={()=>router.push('/journal')}  />
             </div>
 
         </div>

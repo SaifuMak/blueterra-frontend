@@ -228,7 +228,7 @@ export default function Collection() {
       <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
        
         <ResponsiveClipPath
-          outerClass='absolute md:w-[24%] w-[78%]  top-10 left-0 h-fit'
+          outerClass='absolute md:w-[24%]  max-sm:hidden w-[78%]  top-10 left-0 h-fit'
           ImagePath='/images/destinations/patterns/top-pattern.png'
           width={800}
         />

@@ -53,11 +53,12 @@ export default function OurStory() {
                     {/* partner companies section */}
                     <PartnerCompanies />
 
-                    <Footer />
 
                     <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
 
                 </div>
+                    <Footer />
+
             </SmoothScroll>
         </>
 

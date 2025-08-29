@@ -166,7 +166,7 @@ export default function ThreeCardSection() {
 
 
     return (
-        <div ref={threeCardsContainerRef} className="relative min-h-[200vh]  md:min-h-[270vh]">
+        <div ref={threeCardsContainerRef} className="relative min-h-[200vh]  pointer-events-none   md:min-h-[270vh]">
 
             {/* Background image*/}
             <div

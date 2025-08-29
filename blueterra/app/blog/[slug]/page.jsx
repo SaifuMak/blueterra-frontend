@@ -15,11 +15,16 @@ import { getReadingTime } from "@/app/utils/helperFunctions"
 import SearchInSingleBlog from "@/components/Journey/SearchInSingleBlog"
 import { Suspense } from "react";
 import { toast } from "sonner"
+import { FRONTEND_BASE_URL } from "@/app/config."
+import ZohoFormModal from "@/components/Forms/ZohoFormModal"
 
 export default function BlogSingle() {
 
     const { slug } = useParams(); // slug from URL
     const router = useRouter();
+
+    const [formOpen, setFormOpen] = useState(false);
+
 
     const [blog, setBlog] = useState(null);
     const [moreBlogs, setMoreBlogs] = useState([])
@@ -91,7 +96,7 @@ export default function BlogSingle() {
                 await navigator.share({
                     title: "BlueTerra",
                     text: "Check this out!",
-                    url: `https://blueterra.vercel.app/blog/${blog?.slug}`
+                    url: `${FRONTEND_BASE_URL}/blog/${blog?.slug}`
                 });
             } catch (err) {
                 console.error("Error sharing:", err);
@@ -140,31 +145,31 @@ export default function BlogSingle() {
                                 <div className=" flex "> <p className="">Category: <span className="text-dark-46 capitalize">{blog?.category_name}</span></p></div>
                                 {blog?.blog_content && <div className=" flex "> <p className="">Read Time: <span className="text-dark-46">{getReadingTime(blog.blog_content)} Minutes</span></p></div>}
                             </div>
-                            <div className=" flex space-x-1.5 xl:space-x-3 items-center  ">
+                            <div className=" flex max-sm:space-x-3 space-x-1.5 xl:space-x-3 items-center  ">
                                 <img onClick={handleShare} src="/Icons/single-blog/insta.svg" alt="instagram" className={`${socialIconsStyle}`} />
                                 <a
-                                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://blueterra.vercel.app/blog/${blog?.slug}`)}`}
+                                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${FRONTEND_BASE_URL}/blog/${blog?.slug}`)}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     <img src="/Icons/single-blog/fb.svg" alt="facebook" className={`${socialIconsStyle}`} />
                                 </a>
                                 <a
-                                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("Sharing something awesome with you 🤩")}+${encodeURIComponent(`https://blueterra.vercel.app/blog/${blog?.slug}`)}`}
+                                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("Sharing something awesome with you 🤩")}+${encodeURIComponent(`${FRONTEND_BASE_URL}/blog/${blog?.slug}`)}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     <img src="/Icons/single-blog/x.svg" alt="x" className={`${socialIconsStyle}`} />
                                 </a>
                                 <a
-                                    href={`https://wa.me/?text=${encodeURIComponent("Sharing something awesome with you 🤩")}+${encodeURIComponent(`https://blueterra.vercel.app/blog/${blog?.slug}`)}`}
+                                    href={`https://wa.me/?text=${encodeURIComponent("Sharing something awesome with you 🤩")}+${encodeURIComponent(`${FRONTEND_BASE_URL}/blog/${blog?.slug}`)}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     <img src="/Icons/single-blog/whatsapp.svg" alt="whatsapp" className={`${socialIconsStyle}`} />
                                 </a>
                                 <a
-                                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://blueterra.vercel.app/blog/${blog?.slug}`)}`}
+                                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${FRONTEND_BASE_URL}/blog/${blog?.slug}`)}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -232,7 +237,7 @@ export default function BlogSingle() {
                             <div className=" w-full h-full flex items-end  bg-gradient-to-t from-black via-black/30 to-transparent  absolute inset-0">
                                 <div className=" flex flex-col p-5  space-y-3">
                                     <h3 className={`md:text-[30px] text-2xl xl:pr-7 leading-11  text-white ${playfair.className}`}>Turning your travel dreams into real Adventures.</h3>
-                                    <Button text='PLAN YOUR TRIP' buttonStyle={` transition-all mb-3 vertically-animated-element  max-sm:text-sm duration-500 w-full py-2.5  ease-in-out font-medium  `} />
+                                    <Button text='PLAN YOUR TRIP' buttonStyle={` transition-all mb-3 vertically-animated-element  max-sm:text-sm duration-500 w-full py-2.5  ease-in-out font-medium`}  onClickFunction={() => setFormOpen(true)}/>
 
                                 </div>
 
@@ -243,8 +248,14 @@ export default function BlogSingle() {
                         <div className="  space-y-6 w-full h-full pb-6 pt-10 px-5 text-center rounded-2xl bg-dark-beige">
                             <h5 className={`${playfair.className} font-medium text-2xl`}>Join Our Community Today!</h5>
                             <p className=" px-4 lg:px-7 font-light">Get started for free and receive instant notifications about updates.</p>
-                            <input type="text" className=" text-dark-28 outline-none w-full py-2 pl-4 rounded-md border-2 border-[#979797]/50" placeholder="Enter your email" />
-                            <Button text='SUBSCRIBE' buttonStyle={` transition-all mb-3 vertically-animated-element duration-500  w-full py-2.5  max-sm:text-sm ease-in-out font-medium  `} />
+                             <iframe
+                                title="Zoho Form"
+                                src="https://forms.zohopublic.com/blueterra/form/JoinOurCommunity1/formperma/tq1z2CAalSFUwdWkL0eLA_mkzm2nXum54WsJjuA1SzA"
+                                style={{ width: '100%', height: '80%', border: 'none', objectFit: 'cover' }}
+                                allowFullScreen
+                            />
+                            {/* <input type="text" className=" text-dark-28 outline-none w-full py-2 pl-4 rounded-md border-2 border-[#979797]/50" placeholder="Enter your email" />
+                            <Button text='SUBSCRIBE' buttonStyle={` transition-all mb-3 vertically-animated-element duration-500  w-full py-2.5  max-sm:text-sm ease-in-out font-medium  `} /> */}
                         </div>
 
                     </div>
@@ -280,6 +291,8 @@ export default function BlogSingle() {
                 </div>}
 
             </div>
+                <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
+
             <Footer />
 
         </SmoothScroll>
