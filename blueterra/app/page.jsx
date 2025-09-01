@@ -320,10 +320,10 @@ export default function Home() {
 
           <div className=" w-full h-full absolute bg-black/20  inset-0 flex-center flex-col text-white ">
             <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
-              <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Curated Travel. Crafted for You.</h1>
-              <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all font-light duration-700 ease-in-out lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Bespoke journeys. No compromises.</p>
+              <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Travel Beyond Ordinary</h1>
+              <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all font-light duration-700 ease-in-out lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Soulful journeys and bespoke celebrations,  curated with passion and care.</p>
               {/* <button className=" bg-sky-blue-1 font-medium px-10 py-2.5 rounded-sm ">PLAN YOUR TRIP</button> */}
-              <Button text='PLAN YOUR TRIP' buttonStyle={`  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'}  translate-all duration-1000 ease-in-out max-md:text-sm px-4 lg:px-8 xl:px-10 py-1.5 lg:py-2.5 `} onClickFunction={() => setFormOpen(true)} />
+              <Button text='PLAN YOUR JOURNEY' buttonStyle={`  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'}  translate-all duration-1000 ease-in-out max-md:text-sm px-4 lg:px-8 xl:px-10 py-1.5 lg:py-2.5 `} onClickFunction={() => setFormOpen(true)} />
 
             </div>
           </div>
@@ -347,10 +347,10 @@ export default function Home() {
 
           <div className={` w-full py-10 md:py-16 xl:py-36  2xl:py-44 flex justify-center bg-white  text-center`}>
             <div className={`${rubik.className}  md:px-10 px-10 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
-              <h2 className={`${playfair.className} text-3xl vertically-animated-element  max-sm:opacity-0  lg:text-4xl xl:text-[48px] text-dark-4B`}>Welcome To BlueTerra</h2>
-              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-2xl max-sm:text-base text-lg lg:text-xl font-light leading-8 xl:leading-10 ">We are a boutique, founder-led travel brand based in the UAE, dedicated to crafting thoughtful and personalized journeys. </p>
-              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-xl text-sm lg:text-lg font-light leading-8 xl:leading-10 lg:px-6  ">With a strong commitment to sustainability, we design travel experiences that honor local cultures and reduce environmental impact. Each itinerary reflects a deep understanding of conscious travel, offering unique adventures tailored for the modern explorer. Our mission is to redefine luxury through purpose-driven travel.</p>
-              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-xl lg:text-lg text-sm -mt-3  font-light leading-8 xl:leading-10 ">Every journey we curate is rooted in authenticity, blending meaningful experiences with comfort and style. We partner with local communities, artisans, and guides to ensure that our travelers connect deeply with the places they visit, beyond the surface. </p>
+              <h2 className={`${playfair.className} text-3xl vertically-animated-element  max-sm:opacity-0  lg:text-4xl xl:text-[48px] text-dark-4B`}>Discover BlueTerra</h2>
+              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-2xl max-sm:text-base text-lg lg:text-xl font-light leading-8 xl:leading-10 ">BlueTerra is more than a boutique travel company. It is a dream nurtured for years and brought to life with love</p>
+              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-xl text-sm lg:text-lg font-light leading-8 xl:leading-10 lg:px-6  ">What began as a simple thought has grown into something far more meaningful. Every time we see someone set out on a journey and return with a smile, renewed and inspired, it reminds us why BlueTerra exists. We believe travel is not about taking a holiday simply to go somewhere. It is about what you wish to feel, experience, and become. That is why every retreat, every celebration, and every journey we design is imagined with soul and crafted with care, so that when you return you carry not just memories but a new part of yourself.BlueTerra was created from passion and joy for like minded individuals who believe travel can change us for the better.</p>
+              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-xl lg:text-lg text-sm -mt-3  font-light leading-8 xl:leading-10 ">With BlueTerra, we help you discover a way of travel where luxury and meaning meet, and where every journey becomes a story worth remembering</p>
 
               <p className={`vertically-animated-element text-lg lg:text-3xl 2xl:text-4xl ${mrsSaint.className}`}> <span className={` ${rubik.className} font-extralight opacity-55 mr-2 `}>-</span>Jerald Jacob</p>
             </div>
@@ -364,8 +364,8 @@ export default function Home() {
         <div className="pb-10 ">
           <div className="w-full h-full px-4 md:px-10 bg-white">
             <div className=" bg-light-yellow flex flex-col items-center rounded-4xl space-y-6 xl:space-y-10  px-4 xl:py-24 py-10  2xl:px-10 2xl:py-32 ">
-              <h3 className={`${playfair.className} vertically-animated-element text-dark-4B heading-text`} >Our Featured Collections</h3>
-              <p className={`xl:text-xl lg:text-lg font-light vertically-animated-element ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>Discover a handpicked selection of our most iconic journeys—each crafted with care, intention, and an eye for timeless experiences.</p>
+              <h3 className={`${playfair.className} vertically-animated-element text-dark-4B heading-text`} >The BlueTerra Collecton</h3>
+              <p className={`xl:text-xl lg:text-lg font-light vertically-animated-element ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>Explore our handpicked collection of journeys, each created with intention and shaped to deliver timeless experiences you can trust.</p>
 
               <div ref={cardRef} className=" 2xl:w-11/12 w-full max-2xl:px-5   mt-4 ">
                 <CollectionsList Data={HOME_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} />
@@ -397,7 +397,7 @@ export default function Home() {
             <div className={`2xl:w-11/12 w-full max-2xl:pl-10 h-[60vh] xl:h-[60vh]   mt-[10vh] ${playfair.className} `}>
 
               <h2 className=" vertically-animated-element text-[45px] xl:text-[50px]  ">Our Destination Highlights</h2>
-              <p className={`${rubik.className} vertically-animated-element  mt-4 leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>Discover the Unique Charm and Unforgettable Experiences Each Destination Has to Offer</p>
+              <p className={`${rubik.className} vertically-animated-element  mt-4 leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>Discover destinations that reflect the essence of BlueTerra</p>
 
               <div className="  flex  h-full    w-full ">
 
@@ -436,7 +436,7 @@ export default function Home() {
 
             <div className="flex flex-col mt-10 lg:mt-16 2xl:mt-20">
               <h2 className={`${playfair.className} vertically-animated-element text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
-              <p className=" text-center vertically-animated-element mt-7 lg:text-lg xl:text-2xl font-light max-sm:px-5">Genuine Experiences Shared by Our Happy Travelers Worldwide</p>
+              <p className=" text-center vertically-animated-element mt-7 lg:text-lg xl:text-2xl font-light max-sm:px-5">Experiences Shared by Our Travelers</p>
             </div>
 
 
