@@ -35,8 +35,8 @@ export default function JourneryIntro() {
                         )
                     }
 
-                    <p ref={descriptionRef} className=" font-light lg:text-lg xl:text-xl 2xl:text-[21px] mt-6 lg:leading-8 xl:leading-9 2xl:leading-9 max-sm:text-center  max-w-2xl text-dark-28">At BlueTerra, every journey begins with understanding. We take the time to learn what you hope to feel, discover, and carry home from your travels. Guided by this, we bring together destinations and experiences that are both authentic and seamless. Every element is crafted with care, built on trust, and designed to give you more than memories. They become moments you will share and cherish for years to come.</p>
-                    <p ref={secondDescriptionRef} className="font-light lg:text-lg xl:text-xl 2xl:text-[21px] mt-2 lg:leading-8 xl:leading-9 2xl:leading-9 max-sm:text-center  max-w-2xl text-dark-28">
+                    <p ref={descriptionRef} className=" font-light lg:text-lg 2xl:text-xl  mt-6 lg:leading-8 xl:leading-9 2xl:leading-9 max-sm:text-center  max-w-2xl text-dark-28">At BlueTerra, every journey begins with understanding. We take the time to learn what you hope to feel, discover, and carry home from your travels. Guided by this, we bring together destinations and experiences that are both authentic and seamless. Every element is crafted with care, built on trust, and designed to give you more than memories. They become moments you will share and cherish for years to come.</p>
+                    <p ref={secondDescriptionRef} className="font-light lg:text-lg 2xl:text-xl  mt-2 lg:leading-8 xl:leading-9 2xl:leading-9 max-sm:text-center  max-w-2xl text-dark-28">
                         Because true luxury is a journey shaped around you.</p>
                 </div>
 

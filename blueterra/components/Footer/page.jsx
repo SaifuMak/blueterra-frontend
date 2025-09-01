@@ -6,7 +6,7 @@ import ReviewWidget from "./ReviewWidget"
 
 export default function Footer() {
 
-    const IconsStyle = 'w-6 h-6 cursor-pointer '
+    const IconsStyle = 'w-6 h-6 cursor-pointer shrink-0 '
     const RatingStarStyle = 'md:w-6 md:h-6 w-4 h-4 '
 
     const footerLinks = {

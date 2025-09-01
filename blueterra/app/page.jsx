@@ -321,7 +321,7 @@ export default function Home() {
           <div className=" w-full h-full absolute bg-black/20  inset-0 flex-center flex-col text-white ">
             <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
               <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Travel Beyond Ordinary</h1>
-              <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all font-light duration-700 ease-in-out lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Soulful journeys and bespoke celebrations,  curated with passion and care.</p>
+              <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all font-light duration-700 ease-in-out px-5  text-center lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Soulful journeys and bespoke celebrations,  curated with passion and care.</p>
               {/* <button className=" bg-sky-blue-1 font-medium px-10 py-2.5 rounded-sm ">PLAN YOUR TRIP</button> */}
               <Button text='PLAN YOUR JOURNEY' buttonStyle={`  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'}  translate-all duration-1000 ease-in-out max-md:text-sm px-4 lg:px-8 xl:px-10 py-1.5 lg:py-2.5 `} onClickFunction={() => setFormOpen(true)} />
 
@@ -347,10 +347,14 @@ export default function Home() {
 
           <div className={` w-full py-10 md:py-16 xl:py-36  2xl:py-44 flex justify-center bg-white  text-center`}>
             <div className={`${rubik.className}  md:px-10 px-10 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
-              <h2 className={`${playfair.className} text-3xl vertically-animated-element  max-sm:opacity-0  lg:text-4xl xl:text-[48px] text-dark-4B`}>Discover BlueTerra</h2>
-              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-2xl max-sm:text-base text-lg lg:text-xl font-light leading-8 xl:leading-10 ">BlueTerra is more than a boutique travel company. It is a dream nurtured for years and brought to life with love</p>
-              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-xl text-sm lg:text-lg font-light leading-8 xl:leading-10 lg:px-6  ">What began as a simple thought has grown into something far more meaningful. Every time we see someone set out on a journey and return with a smile, renewed and inspired, it reminds us why BlueTerra exists. We believe travel is not about taking a holiday simply to go somewhere. It is about what you wish to feel, experience, and become. That is why every retreat, every celebration, and every journey we design is imagined with soul and crafted with care, so that when you return you carry not just memories but a new part of yourself.BlueTerra was created from passion and joy for like minded individuals who believe travel can change us for the better.</p>
-              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-xl lg:text-lg text-sm -mt-3  font-light leading-8 xl:leading-10 ">With BlueTerra, we help you discover a way of travel where luxury and meaning meet, and where every journey becomes a story worth remembering</p>
+              <h2 className={`${playfair.className} text-3xl vertically-animated-element   max-sm:opacity-0  lg:text-4xl xl:text-[48px] text-dark-4B`}>Discover BlueTerra</h2>
+              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-[23px]   max-sm:text-base text-xl font-light leading-8 xl:leading-10 ">BlueTerra is more than a boutique travel company. It is a dream nurtured for years and brought to life with love</p>
+              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-xl lg:text-lg  text-sm  font-light leading-8 2xl:leading-10 lg:px-6  ">What began as a simple thought has grown into something far more meaningful. Every time we see someone set out on a journey and return with a smile, renewed and inspired, it reminds us why BlueTerra exists. We believe travel is not about taking a holiday simply to go somewhere.
+                It is about what you wish to feel, experience, and become. That is why every retreat,
+                every celebration, and every journey we design is imagined with soul and crafted with care,
+                so that when you return you carry not just memories but a new part of yourself.
+                BlueTerra was created from passion and joy for like minded individuals who believe travel can change us for the better.</p>
+              <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-xl lg:text-lg  text-sm  font-light leading-8 2xl:leading-10 lg:px-6">With BlueTerra, we help you discover a way of travel where luxury and meaning meet, and where every journey becomes a story worth remembering</p>
 
               <p className={`vertically-animated-element text-lg lg:text-3xl 2xl:text-4xl ${mrsSaint.className}`}> <span className={` ${rubik.className} font-extralight opacity-55 mr-2 `}>-</span>Jerald Jacob</p>
             </div>

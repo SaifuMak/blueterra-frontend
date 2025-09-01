@@ -25,7 +25,7 @@ export default function TeamSection() {
     const founderTextRef = useGsapFadeIn()
     const founderTextMobileRef = useGsapFadeIn()
 
-    const founderDescriptionRef = useGsapFadeIn(0, { start: "top 60%" })
+    const founderDescriptionRef = useGsapFadeIn(0, { start: "top 80%" })
 
     const TeamTitleRef = useGsapFadeIn()
     const TeamImageRef = useGsapFadeIn()
@@ -121,8 +121,7 @@ export default function TeamSection() {
             </div>
 
             {/* section showing the employees data */}
-            <div className="xl:w-10/12 px-6 py-3 md:py-10 xl:py-16 z-30 ">
-                {/* Heading */}
+            {/* <div className="xl:w-10/12 px-6 py-3 md:py-10 xl:py-16 z-30 ">
                 <div ref={TeamTitleRef} className="text-center mb-16 ">
                     <TitleText text='Meet the Team' />
                 </div>
@@ -164,7 +163,7 @@ export default function TeamSection() {
                     </div>
                 )}
 
-            </div>
+            </div> */}
 
         </div>
     )

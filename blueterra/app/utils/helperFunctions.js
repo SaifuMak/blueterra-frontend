@@ -17,5 +17,5 @@ export function journalPreview(htmlString, wordLimit = 10) {
 
     const preview = words.slice(0, wordLimit).join(" ");
 
-     return `${preview}... Read more`;
+     return `${preview}...`;
 }

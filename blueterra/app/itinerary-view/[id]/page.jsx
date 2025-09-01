@@ -53,6 +53,8 @@ export default function ItineraryView() {
     const hotelGalleryRef = useRef()
     const bannerContainer = useRef()
 
+    const [isLenisAvailable, setIsLenisAvailable] = useState(true)
+
 
     const [currentGallery, setCurrentGallery] = useState(0)
     const [GalleryCount, setGalleryCount] = useState(0)
@@ -174,7 +176,7 @@ export default function ItineraryView() {
     return (
 
         <>
-            <SmoothScroll>
+            <SmoothScroll enabled={isLenisAvailable}>
                 <Navbar />
 
                 {isLoading ? (
@@ -225,11 +227,11 @@ export default function ItineraryView() {
                                 width={800}
                             />
                             {/* <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' /> */}
-                            <PlannedActivities itineraryData={itineraryData} />
+                            <PlannedActivities itineraryData={itineraryData} setIsLenisAvailable={setIsLenisAvailable} />
                         </div>
 
                         <div className="  relative bg-white pb-28">
-                             <ResponsiveClipPath
+                            <ResponsiveClipPath
                                 outerClass='absolute md:w-[20%] w-[28%]  bottom-0 right-0 h-fit'
                                 ImagePath='/images/itinerary/patterns/travel-bottom.png'
                                 width={800}
@@ -253,7 +255,7 @@ export default function ItineraryView() {
 
                                 />
                             </div>
-                            
+
                         </div>
 
 
@@ -274,37 +276,11 @@ export default function ItineraryView() {
                             />
 
                             <div className="w-full h-full bg-white/30   flex-center relative">
-                                {/* <Image
-                            src='/images/itinerary/gallery-banner.png'
-                            alt="forest"
-                            fill
-                            className=" object-cover  "
-                            priority
-                        /> */}
 
                                 {/* <div className=" w-11/12  space-y-10 mb-24  py-16  h-full flex flex-col  items-center rounded-3xl vertically-animated-element bg-white/10 backdrop-blur-xl border border-white/40 "> */}
                                 <div className=" w-11/12 overflow-hidden   space-y-10 mb-24   h-full flex flex-col  items-center rounded-3xl  ">
 
                                     <h6 className={`${playfair.className} gallery-title   text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
-
-                                    {/* <div className="  w-full px-3  mt-5 z-50  vertically-animated-element  flex rounded-xl overflow-hidden  gap-4   ">
-
-                                    {galleryData?.map((item, index) => (
-                                        // <div key={index} className={`relative group min-h-[70vh] delay-75 hover:flex-4 flex-1 transition-[flex] duration-700 ease-[cubic-bezier(0.25, 1, 0.5, 1)] gallery-tile overflow-hidden hover:cursor-pointer rounded-xl`}>
-                                        <div key={index} className={`relative  group min-h-[80vh]  hover:flex-5 gallery-tile  overflow-hidden delay-200 hover:cursor-pointer w-full  flex-1 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transition-all  duration-700 rounded-xl`}>
-                                            <Image
-                                                src={item.image}
-                                                alt='image'
-                                                fill
-                                                className='object-cover rounded-xl'
-                                                priority
-
-                                            />
-                                            <p className=" text-nowrap opacity-0 font-medium absolute delay-200 bottom-10 group-hover:opacity-100 group-hover:translate-x-12 -left-5 translate-all duration-500   2xl:text-2xl text-white">{item.name}</p>
-                                        </div>
-                                    ))}
-
-                                </div> */}
 
                                     <GalleryList data={itineraryData?.gallery} />
 
@@ -319,8 +295,6 @@ export default function ItineraryView() {
                                 backgroundImage: "url('/images/our-story/yellow-banner.png')",
                             }}
                         >
-                            {/* <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 bottom-0 h-full' ImagePath='/images/itinerary/planning-left-clip-path.png' />
-                        <ResponsiveClipPath outerClass='absolute  w-1/12  right-0 bottom-0 h-10/12' ImagePath='/images/itinerary/planning-right-clip-path.png' /> */}
 
                             <div className="lg:w-8/12 md:w-10/12  space-y-10   text-center h-auto flex-col text-dark-28  flex-center">
                                 <h3 className={`xl:text-[50px] text-2xl  font-medium  antialiased  text-dark-4B text-center vertically-animated-element ${playfair.className}`}>Design Your Perfect Itinerary</h3>

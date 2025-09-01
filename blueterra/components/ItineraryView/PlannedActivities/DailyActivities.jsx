@@ -6,7 +6,7 @@ import { MdOutlineKeyboardArrowRight, MdInfoOutline, IoMdArrowDropup } from '../
 import ReactTooltip from "@/components/generalComponents/ReactTooltip"
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
 
-export default function DailyActivities({ expandCards, index, selectedTab, itineraryData }) {
+export default function DailyActivities({ expandCards, index, selectedTab, itineraryData, lockScreen, unLockScreen }) {
 
     const [OpenedAccordian, setOpenedAccordian] = useState([])
 
@@ -43,14 +43,16 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
     }
 
     useEffect(() => {
-        if (selectedTab !== 'Daily Schedule') {
+        if (selectedTab === "Daily Schedule") {
+            // open all
+            setTimeout(() => {
+                setOpenedAccordian(itineraryData?.days?.map((_, idx) => idx) || [])
+
+            }, 1100);
+        }
+        else {
             setOpenedAccordian([])
         }
-        // if (selectedTab === 'Daily Schedule' && OpenedAccordian.length === 0) {
-        //     setTimeout(() => {
-        //         setOpenedAccordian([0])
-        //     }, 1000);
-        // }
 
     }, [selectedTab])
 
@@ -61,7 +63,7 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
             <div className="  w-full overflow-y-auto h-full  flex flex-col px-1 lg:pl-[44px]  max-xl:text-sm  xl:pl-[44px]  space-y-2 content-between text-base ">
 
-                <div className="  w-full">
+                <div onMouseEnter={lockScreen} onMouseLeave={unLockScreen} className="  w-full">
 
                     {itineraryData?.days?.map((data, index) => (
                         <div key={index} ref={(el) => (accordiansRef.current[index] = el)} className=" flex border-l relative  ">
@@ -76,13 +78,13 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
                                         {data.title}
                                         <span className={`transition-all duration-300  ${OpenedAccordian.includes(index) ? 'rotate-90' : 'rotate-0'}`}><MdOutlineKeyboardArrowRight className=" text-xl" /></span>
                                     </div>
-                                    <div className={` overflow-hidden    transition-all duration-700 text-[#363636] ease-in-out px-4 ${OpenedAccordian.includes(index) ? 'max-h-[200px]    opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`}>
+                                    <div className={` overflow-hidden    transition-all duration-700 text-dark-28 ease-in-out px-4 ${OpenedAccordian.includes(index) ? 'max-h-[200px]    opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`}>
                                         {/* <div className="py-5 px-5 ml-1  mt-8 border-dashed border-slate-500 border-l relative "> */}
                                         <div className=" ml-1 py-3  relative ">
 
                                             {/* <img src="/Icons/big-dot.svg" alt="dot" className=" w-5 h-5 absolute -top-0.5 -left-2.5" />
                                             <p className="absolute -top-1 left-4 font-medium">Destination</p> */}
-                                            <p className=" mt-2">{data.description}</p>
+                                            <p className=" mt-2 font-light">{data.description}</p>
                                         </div>
                                     </div>
                                 </div>

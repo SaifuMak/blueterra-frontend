@@ -13,10 +13,12 @@ import { useGSAP } from "@gsap/react";
 import ReactTooltip from "@/components/generalComponents/ReactTooltip"
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
 import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
+import { useLenis } from "@/components/SmoothScroll"
+
 gsap.registerPlugin(ScrollTrigger);
 
 
-export default function PlannedActivities({ itineraryData }) {
+export default function PlannedActivities({ itineraryData, setIsLenisAvailable }) {
 
     const dailyActivitiesRef = useRef(null)
     const mapRef = useRef(null)
@@ -29,10 +31,21 @@ export default function PlannedActivities({ itineraryData }) {
 
     const plannerRef = useRef()
     const plannerCardsRef = useRef()
-
-
+    const lenis = useLenis();
 
     const [selectedTab, setselectedTab] = useState('Overview')
+
+
+    const lockScreen = () => {
+        // lenis.destroy()
+        // setIsLenisAvailable(false)
+        // document.body.style.overflow = 'hidden'
+    };
+
+    const unLockScreen = () => {
+        // lenis.start()
+        // document.body.style.overflow = 'auto'
+    }
 
 
     const ExpandMapCard = (ActivitiesCard, MapCard, CarousalCard, DetailsCard) => {
@@ -374,7 +387,7 @@ export default function PlannedActivities({ itineraryData }) {
                     ))}
                 </div>
 
-                <div ref={plannerCardsRef} className="relative vertically-animated-element w-full h-full flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  overflow-hidden">
+                <div ref={plannerCardsRef} className="relative vertically-animated-element w-full h-full flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  overflow-y-auto">
                     {Components?.map((item, index) => {
                         const DynamicComponent = item.component;
                         return (<div
@@ -382,7 +395,7 @@ export default function PlannedActivities({ itineraryData }) {
                             key={index}
                             className="w-[48%]  h-[48%]"
                         >
-                            <DynamicComponent expandCards={expandCards} index={index} selectedTab={selectedTab} itineraryData={itineraryData} />
+                            <DynamicComponent expandCards={expandCards} index={index} selectedTab={selectedTab} itineraryData={itineraryData} lockScreen={lockScreen} unLockScreen={unLockScreen} />
 
                         </div>)
                     })}

@@ -7,7 +7,7 @@ import { useRef, useState } from 'react';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import useGsapStaggerDesktop from "@/app/hooks/Gsap/useGsapStaggerDesktop";
-
+import useGsapOpacity from "@/app/hooks/Gsap/useGsapOpacity";
 
 export default function WhyTravelWithUsSection() {
     const isMobile = useIsMobile()
@@ -21,7 +21,7 @@ export default function WhyTravelWithUsSection() {
         selector: '.grid-card'
     });
 
-    const backgroundImageContainer = useGsapFadeIn()
+    const backgroundImageContainer = useGsapOpacity()
     const titleRef = useGsapFadeIn()
     const descriptionRef = useGsapFadeIn()
 
