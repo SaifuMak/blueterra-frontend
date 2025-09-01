@@ -60,7 +60,7 @@ export default function Footer() {
                             </a>
 
                             <a href="https://wa.me/971585412123" target="_blank" rel="noopener noreferrer">
-                                <img src="/Icons/whatsapp-white.svg" alt="WhatsApp" className={IconsStyle} />
+                                <img src="/Icons/what.png" alt="WhatsApp" className={IconsStyle} />
                             </a>
 
                             <a href="https://www.linkedin.com/company/myblueterra/" target="_blank" rel="noopener noreferrer">
