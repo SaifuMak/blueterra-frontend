@@ -13,13 +13,13 @@ function InfoCards({ data }) {
 
             className="group relative h-[250px] xl:h-[290px] 2xl:h-[320px]  w-full rounded-2xl overflow-hidden"
         >
-            <Image
-                src="/images/corporate/banner.png"
+          {data?.img &&   <Image
+                src={data?.img}
                 alt="quote"
                 fill
                 priority
                 className="absolute inset-0  object-cover rounded-2xl p-0.5 overflow-hidden w-full h-full z-0"
-            />
+            />}
 
             <div className="absolute inset-0 bg-light-beige z-10 transition-all duration-1000 ease-in-out group-hover:opacity-0" />
 

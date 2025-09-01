@@ -41,8 +41,8 @@ function PlanningCardSection({ setFormOpen }) {
                 </div>
                 <div ref={secondImageCard} className=" w-full lg:w-1/2 max-lg:h-[40vh] group overflow-hidden  relative rounded-4xl">
                     <Image
-                        src='/images/home/beautiful-sea.jpeg'
-                        alt="beautiful-sea"
+                        src='/images/home/join-our-community.jpg'
+                        alt="join-our-community"
                         fill
                         className={`object-cover scalling-group-110 rounded-4xl`}
                     />

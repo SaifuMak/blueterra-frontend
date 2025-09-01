@@ -178,7 +178,7 @@ function JournalClient() {
 
                 <div className="w-full relative h-[30vh] md:h-[400px] lg:h-[500px] xl:h-[500px] 2xl:h-[600px]">
                     <Image
-                        src='/images/journal/banner.png'
+                        src='/images/journal/banner.jpg'
                         alt='quote'
                         fill
                         priority

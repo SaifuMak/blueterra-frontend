@@ -26,9 +26,9 @@ function CorporateEventsSection() {
                 description='"Turning vision into flawless experiences"'
                 firstPara='At BlueTerra, each touchpoint is designed to align with your objectives, engage your audience, and reflect the stature of your brand. From global conferences to executive offsites, we bring care, creativity, and attention to detail, ensuring experiences that connect people and deliver real impact.'
                 // secondPara='Every touchpoint is designed to align with your objectives, engage your audience and reflect your brand’s stature. From global incentive trips to C-suite offsites, we manage it all- meticulously and with absolute ownership.'
-                imageUrl='/images/corporate/girl-with-map.png'
+                imageUrl='/images/corporate/corporate.jpg'
                 outerClass="max-sm:my-10"
-                isDescriptionBold = {true}
+                isDescriptionBold={true}
             />
 
         </div>
