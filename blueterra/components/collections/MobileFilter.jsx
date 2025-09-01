@@ -7,7 +7,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { playfair } from '@/app/fonts'
 
 
-export default function MobileFilter({ page, setIsAnyFilterOpened, isFilterVisible, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters, setSelectedFilters, dataCount, selectedFilters,setSelectedVerticalTileMobile,handleSetCollectionRequestedToShowInMobile,handleScrollToItineraryResults }) {
+export default function MobileFilter({ page, setIsAnyFilterOpened, isFilterVisible, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters, setSelectedFilters, dataCount, selectedFilters, setSelectedVerticalTileMobile, handleSetCollectionRequestedToShowInMobile, handleScrollToItineraryResults }) {
 
     const filterScrollRef = useRef();
 
@@ -60,9 +60,9 @@ export default function MobileFilter({ page, setIsAnyFilterOpened, isFilterVisib
             // handleSetCollectionRequestedToShowInMobile(null)
             handleScrollToItineraryResults()
         }
-        else if (page == 'destinations' && selectedFilters['countries'].length === 0) {
-             setSelectedVerticalTileMobile(null)
-             handleScrollToItineraryResults()
+        else if (page == 'destinations' && selectedFilters['destinations'].length === 0) {
+            setSelectedVerticalTileMobile(null)
+            handleScrollToItineraryResults()
             //   handleSetCollectionRequestedToShowInMobile(null)
         }
     }, [selectedFilters])

@@ -39,7 +39,7 @@ export default function WhyTravelWithUsSection() {
                         <div ref={titleRef} className="">
                             <TitleText text='Why Travel with Us' className='text-white' />
                         </div>
-                        <p ref={descriptionRef} className=" max-sm:px-2 md:text-xl 2xl:text-2xl font-light md:max-w-2xl">Discover the difference with personalized service, expert planning, and unforgettable experiences.</p>
+                        <p ref={descriptionRef} className=" max-sm:px-2 md:text-xl 2xl:text-2xl font-light md:max-w-2xl">With BlueTerra, every journey becomes a personal tale, heartfelt and timeless, woven into memories you will carry far ahead.</p>
                     </div>
 
 

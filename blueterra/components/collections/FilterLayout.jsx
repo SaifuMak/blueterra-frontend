@@ -40,9 +40,9 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
             handleClearAllSelectedFilters()
             handleChangeCollection(collections.indexOf(value))
         }
-        else if (filter === 'countries' && page === 'destinations') {
+        else if (filter === 'destinations' && page === 'destinations') {
             handleClearAllSelectedFilters()
-            handleChangeCollection(countries.indexOf(value))
+            handleChangeCollection(destinations.indexOf(value))
         }
 
         // deals with actual data 
@@ -95,7 +95,7 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
 
         handleClearAllSelectedFilters()
         if (page === 'destinations') {
-            handleItemSelection('countries', countries[expandedBannerCollectionIndex])
+            handleItemSelection('destinations', destinations[expandedBannerCollectionIndex])
         }
         else if (page === 'collections') {
             handleItemSelection('collections', collections[expandedBannerCollectionIndex])
@@ -128,7 +128,7 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
         if (page == 'collections' && selectedFilters['collections'].length === 0) {
             setExpandedTileIndex(null)
         }
-        else if (page == 'destinations' && selectedFilters['countries'].length === 0) {
+        else if (page == 'destinations' && selectedFilters['destinations'].length === 0) {
             setExpandedTileIndex(null)
         }
     }, [selectedFilters])

@@ -45,43 +45,43 @@ export default function Corporate() {
 
     const events = [
         {
-            "title": "MICE (Meetings, Incentives, Conferences and Exhibitions)",
-            "description": "End to end planning and delivery for business events across global destinations — tailored, efficient, and flawlessly managed."
+            "title": "MICE Programs",
+            "description": "Comprehensive planning and management of meetings, incentives, conferences and exhibitions across global destinations, ensuring seamless operations, tailored experiences, and professional delivery for every business event"
         },
         {
-            "title": "Leadership Retreats & Offsites",
-            "description": "Curated environments for strategic thinking, executive alignment, and team renewal."
+            "title": "Leadership Retreats and Offsites",
+            "description": "Exclusive retreats and offsite programs designed to strengthen leadership alignment, encourage strategic thinking, and provide space for innovation in inspiring and distraction-free settings"
         },
         {
-            "title": "Global Conferences & Summits",
-            "description": "Scalable, high-impact events designed to engage audiences and elevate your brand."
+            "title": "Global Conferences and Summits",
+            "description": "Large-scale conferences and international summits delivered with precision, engaging formats, and impactful content that connect audiences and elevate organizational presence on a global stage"
         },
         {
             "title": "Incentive Travel",
-            "description": "Memorable experiences that reward performance - from luxury getaways to cultural immersions."
+            "description": " Reward teams and top performers with unforgettable travel experiences, including luxury getaways, cultural programs, and motivational journeys that build loyalty and boost performance"
         },
         {
-            "title": "Product Launches & Activations",
-            "description": "Bold, brand-forward moments that drive buzz, visibility and impact."
+            "title": "Executive Bleisure Travel",
+            "description": "Tailored journeys that combine business and leisure, allowing executives and teams to balance productivity with relaxation while strengthening relationships in premium destinations"
         },
         {
-            "title": "Trade Shows & Exhibitions",
-            "description": "Bespoke setups that showcase your brand with clarity and competitive edge."
+            "title": "Corporate Engagement Programs",
+            "description": "Creative programs that bring colleagues together, strengthen collaboration, and boost morale through immersive travel experiences designed to connect teams beyond the workplace"
         }
     ]
 
     const PRIVATE_EVENTS = [
         {
             "title": "Milestone Celebrations",
-            "description": "Anniversaries, birthdays, and life’s landmark moments — crafted with style and soul."
+            "description": "Seamless planning and thoughtful details for life’s big moments, creating elegant and memorable experiences"
         },
         {
-            "title": "Intimate Gatherings & Luxury Parties",
-            "description": "Exclusive experiences, flawless execution, and the highest level of privacy and care."
+            "title": "Intimate Gatherings and Parties",
+            "description": "Private occasions delivered with care and smooth execution, designed to feel exclusive and personal"
         },
         {
             "title": "Family & Social Events",
-            "description": "Thoughtfully designed to connect generations and create lifelong memories."
+            "description": "Well-planned gatherings that bring generations together, creating meaningful connections and memories to last"
         },
     ]
 
@@ -179,7 +179,7 @@ export default function Corporate() {
                         />
 
                         <div className=" w-full opacity-0  banner-elements absolute inset-0 text-white  h-full  flex flex-col justify-center items-center">
-                            <h1 className={` ${playfair.className}   font-medium text-2xl text-center md:text-[65px] xl:text-[75px] 2xl:text-[80px]`}>MICE & Signature Events</h1>
+                            <h1 className={` ${playfair.className}   font-medium text-2xl text-center md:text-[65px] xl:text-[75px] 2xl:text-[80px]`}>MICE and Signature Events</h1>
                             <Button text='GET IN TOUCH' buttonStyle={` transition-all duration-500 mb-10 mt-5 ease-in-out font-medium max-md:text-sm  px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} onClickFunction={handleNavigateToContactForm} />
                         </div>
                     </div>

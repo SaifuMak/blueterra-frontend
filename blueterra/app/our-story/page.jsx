@@ -19,6 +19,7 @@ import Navbar from "@/components/Navbar/page";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
 
+
 gsap.registerPlugin(ScrollTrigger)
 
 

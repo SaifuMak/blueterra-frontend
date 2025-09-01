@@ -19,22 +19,24 @@ const MissionVisionValues = forwardRef((props, ref) => {
         {
             title: isMobile ? 'Mission' : 'Our Mission',
             content: [
-                'To become the most trusted premium travel curator in the region — leading a new era of sustainable, experience-driven exploration that enriches both traveler and destination.',
-                'We provide tailored experiences that celebrate culture, nature, and personal growth through responsible travel practices.',
+                'To craft travel experiences and events that inspire and connect people, driven by attention to detail & a commitment to excellence.',
+                // 'We provide tailored experiences that celebrate culture, nature, and personal growth through responsible travel practices.',
             ],
         },
         {
             title: isMobile ? 'Vision' : 'Our Vision',
             content: [
-                'We envision a future where conscious travel isn’t a trend, but the standard — where every journey is thoughtfully curated, deeply personal, and leaves a lasting, positive footprint.',
-                'Our vision extends beyond destinations; it’s about cultivating emotional connections, expanding horizons, and encouraging mindful engagement with the world.',
+                'To build a global platform that connects people, places, and possibilities - delivering exceptional experiences that enrich lives, foster discovery, and evolve with the way the world travels.',
+                // 'We envision a future where conscious travel isn’t a trend, but the standard — where every journey is thoughtfully curated, deeply personal, and leaves a lasting, positive footprint.',
+                // 'Our vision extends beyond destinations; it’s about cultivating emotional connections, expanding horizons, and encouraging mindful engagement with the world.',
             ],
         },
         {
             title: isMobile ? 'Values' : 'Core Value',
             content: [
-                'Integrity, empathy, sustainability, and innovation drive everything we do — creating memorable experiences with purpose and care.',
-                'We prioritize transparency and innovation to ensure that every journey we create respects people, cultures, and the planet.',
+                'Guided by trust, authenticity, care for nature and excellence, our values shape every journey we create.',
+                // 'Integrity, empathy, sustainability, and innovation drive everything we do — creating memorable experiences with purpose and care.',
+                // 'We prioritize transparency and innovation to ensure that every journey we create respects people, cultures, and the planet.',
             ],
         },
     ];

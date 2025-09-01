@@ -23,11 +23,12 @@ function CorporateEventsSection() {
 
             <Events firstTitle='Corporate'
                 secondTitle='Experiences'
-                description='Where Vision Meets Execution. And Every Event Leaves a Mark.'
-                firstPara='At  BlueTerra, we execute corporate events that don’t just impress — they inspire.'
-                secondPara='Every touchpoint is designed to align with your objectives, engage your audience and reflect your brand’s stature. From global incentive trips to C-suite offsites, we manage it all- meticulously and with absolute ownership.'
+                description='"Turning vision into flawless experiences"'
+                firstPara='At BlueTerra, each touchpoint is designed to align with your objectives, engage your audience, and reflect the stature of your brand. From global conferences to executive offsites, we bring care, creativity, and attention to detail, ensuring experiences that connect people and deliver real impact.'
+                // secondPara='Every touchpoint is designed to align with your objectives, engage your audience and reflect your brand’s stature. From global incentive trips to C-suite offsites, we manage it all- meticulously and with absolute ownership.'
                 imageUrl='/images/corporate/girl-with-map.png'
                 outerClass="max-sm:my-10"
+                isDescriptionBold = {true}
             />
 
         </div>

@@ -17,14 +17,14 @@ function WhyChooseUsSection() {
     const WHY_CHOOSE_US = [
         {
             "title": "End to end ownership",
-            "description": "We handle your entire journey—from planning to return—ensuring a smooth and worry-free travel experience."
+            "description": "We manage every step of the process from planning to delivery, ensuring smooth coordination and event delivery."
         },
         {
             "title": "Bespoke Personalized experiences",
-            "description": "It’s refer to travel plans that are custom-designed to match your unique interests, preferences, and pace—offering a journey that's truly your own."
+            "description": "Each experience is designed around your specific goals and brand identity, delivering events that feel relevant and truly unique."
         }, {
             "title": "Organized and attention to detail",
-            "description": "Every part of your trip is carefully planned and executed, ensuring nothing is overlooked and everything runs smoothly."
+            "description": "With clear planning and careful attention, we make sure every element is aligned, seamless, and delivered to the highest standards."
         },
 
     ]

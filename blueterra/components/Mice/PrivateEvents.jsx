@@ -7,10 +7,9 @@ function PrivateEvents({PRIVATE_EVENTS}) {
     return (
         <div className=" w-full mt-16  overflow-hidden text-dark-28 flex flex-col items-center h-full relative ">
 
-            <Events firstTitle='Private Events '
-                secondTitle='& Occasions'
+            <Events firstTitle='Private Events & Occasions'
                 description='Because Life’s Most Precious Moments Deserve Thoughtful Excellence'
-                firstPara='Beyond boardrooms and ballrooms, we also curate intimate celebrations, destination weddings, milestone anniversaries and luxury private gatherings — all executed with the same elite precision and soul-stirring flair.'
+                firstPara='Beyond boardrooms and ballrooms, we also curate intimate celebrations, destination weddings, milestone anniversaries and luxury private gatherings - All executed with the same elite precision and soul-stirring flair'
                 secondPara=''
                 imageUrl='/images/corporate/food.png' />
 

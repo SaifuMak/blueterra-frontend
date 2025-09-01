@@ -17,11 +17,11 @@ export default function PlanWithblueterra({setFormOpen}) {
             />
             <div className=" absolute flex-center  2xl:py-6 space-y-5 flex-col inset-0  w-full h-full text-center ">
                 <div ref={titleRef} className="">
-                    <TitleText text='Let’s Begin Your Journey' />
+                    <TitleText text='Where Do You Dream of Going?' />
                 </div>
-                <p ref={descriptionRef} className=" text-lg xl:text-[22px] 2xl:text-2xl font-light max-w-2xl    max-lg:px-4  text-dark-28 xl:leading-10 ">Share your travel dreams with us—we’ll turn them into unforgettable experiences.</p>
+                <p ref={descriptionRef} className=" text-lg xl:text-[22px] 2xl:text-2xl font-light max-w-2xl    max-lg:px-4  text-dark-28 xl:leading-10 ">Tell us what you long to experience, and we’ll bring it to life</p>
                 <div ref={buttonRef} className="">
-                    <Button text='PlAN WITH BLUETERRA' buttonStyle={`px-6 2xl:mt-4 max-xl:text-sm tracking-wider py-2.5`} isHoverWhiteApplied={false} onClickFunction={()=>setFormOpen(true)} />
+                    <Button text='PLAN YOUR JOURNEY' buttonStyle={`px-6 2xl:mt-4 max-xl:text-sm tracking-wider py-2.5`} isHoverWhiteApplied={false} onClickFunction={()=>setFormOpen(true)} />
                 </div>
             </div>
         </div>

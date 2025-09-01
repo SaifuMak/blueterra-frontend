@@ -32,9 +32,9 @@ export default function MobileFilterPopup({ page, selectedFilters, setSelectedFi
             handleClearAllSelectedFilters()
             handleChangeCollection(collections.indexOf(value))
         }
-        else if (filter === 'countries' && page === 'destinations') {
+        else if (filter === 'destinations' && page === 'destinations') {
             handleClearAllSelectedFilters()
-            handleChangeCollection(countries.indexOf(value))
+            handleChangeCollection(destinations.indexOf(value))
         }
 
         setSelectedFilters((prev) => {
@@ -56,7 +56,7 @@ export default function MobileFilterPopup({ page, selectedFilters, setSelectedFi
 
         handleClearAllSelectedFilters()
         if (page === 'destinations') {
-            handleItemSelection('countries', countries[expandedBannerCollectionIndex])
+            handleItemSelection('destinations', destinations[expandedBannerCollectionIndex])
         }
         else if (page === 'collections') {
             handleItemSelection('collections', collections[expandedBannerCollectionIndex])

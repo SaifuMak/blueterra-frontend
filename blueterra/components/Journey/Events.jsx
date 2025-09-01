@@ -6,7 +6,7 @@ import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn'
 import useGsapOpacity from '@/app/hooks/Gsap/useGsapOpacity'
 
 
-const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, imageUrl, outerClass = '' }) => {
+const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, imageUrl, outerClass = '', isDescriptionBold = false }) => {
 
     const imageRef = useGsapOpacity(0, { start: 'top 70%' })
 
@@ -19,7 +19,7 @@ const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, i
                 <div className=" vertically-animated-element flex flex-col  h-fit   xl:space-y-4 ">
                     <h3 className={`${playfair.className} text-4xl xl:text-5xl font-medium`}>{firstTitle}</h3>
                     <h3 className={`${playfair.className} text-4xl xl:text-5xl font-medium`}>{secondTitle}</h3>
-                    <p className="2xl:w-5/12 xl:w-9/12  xl:leading-10 font-light text-lg xl:text-xl mt-5">{description}</p>
+                    <p className={`2xl:w-7/12 xl:w-10/12 ${isDescriptionBold ? 'font-semibold' : 'font-normal'}   xl:leading-10  tracking-wide text-lg xl:text-xl mt-5`}>{description}</p>
                 </div>
 
                 <div className=" vertically-animated-element space-y-5  md:text-base lg:text-xl xl:text-2xl 2xl:text-[29px] w-6/12 font-light xl:leading-9 2xl:leading-10">

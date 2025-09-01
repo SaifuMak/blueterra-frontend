@@ -32,7 +32,6 @@ export default function EditJournal() {
     const router = useRouter()
 
 
-
     const [newCategory, setNewCategory] = useState('')
 
 

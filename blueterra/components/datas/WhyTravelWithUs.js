@@ -2,34 +2,34 @@
 
 const WhyTravelWithUs = [
     {
-        "title": "Authentic Local Partnerships",
-        "description": "From the moment you book to your return home, our dedicated team is here to provide tailored assistance every step of the way.",
+        "title": "Authentic Partnerships",
+        "description": "We work with trusted local experts who know their home best, so your journey feels real and meaningful",
         "icon": "Icons/our-story/handshake.svg"
 
     },
     {
         "title": "Curated Experiences",
-        "description": "Every journey is thoughtfully designed to match your interests, ensuring meaningful, immersive, and unforgettable moments wherever you go.",
+        "description": "Every trip is designed around what you enjoy most, with moments that stay with you long after you return",
         "icon": "Icons/our-story/experience.svg"
     },
     {
-        "title": "Seamless End-to-End Planning",
-        "description": "We handle every detail from start to finish, ensuring a smooth, stress-free journey. All you need to do is relax and enjoy the experience.",
+        "title": "Seamless Planning",
+        "description": "From the first conversation to your return home, every detail is handled with precision so that you can just chill",
         "icon": "Icons/our-story/map.svg"
     },
     {
         "title": "Personalized Support",
-        "description": "Exclusive Access – Gain entry to hidden gems, private events, and off-the-beaten-path experiences not available to the general public, curated through our trusted global network.",
+        "description": "Our team is by your side at every step, ready to guide, assist, and make things easy for you",
         "icon": "Icons/our-story/technology.svg"
     },
     {
-        "title": "Sustainable Travel Ethos",
-        "description": "We prioritize eco-conscious choices and support local communities to ensure your travels leave a positive impact on the environment and the people you meet.",
+        "title": " Responsible Travel",
+        "description": "We care for nature and local communities, making sure your journey leaves a positive impact wherever you go",
         "icon": "Icons/our-story/suitcase.svg"
     },
     {
         "title": "Exclusive Access",
-        "description": "Gain entry to hidden gems, private tours, and once-in-a-lifetime experiences not available to the general public.",
+        "description": "Travel beyond the usual. From private tours to hidden places, we open doors to experiences few get to enjoy",
         "icon": "Icons/our-story/travel.svg"
     }
 ]

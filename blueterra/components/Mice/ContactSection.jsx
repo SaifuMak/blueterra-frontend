@@ -7,10 +7,10 @@ import { forwardRef } from 'react'
 const ContactSection = forwardRef((props, ref) => {
 
     const CONTACT_DETAILS = [
-        { "title": "Call:", "details": "+ 91 123 456 7890", "icon": "/Icons/phone-blue.svg" },
-        { "title": "Email:", "details": "info@yourdomain.com", "icon": "/Icons/email-blue.svg" },
+        { "title": "Call:", "details": "+971 58 541 2123", "icon": "/Icons/phone-blue.svg" },
+        { "title": "Email:", "details": "connect@myblueterra.com", "icon": "/Icons/email-blue.svg" },
         { "title": "Business Hours:", "details": "Mon - Sat: 9AM - 6PM", "icon": "/Icons/clock-blue.svg" },
-        { "title": "Head Office:", "details": "123 Sheikh Zayed Road,", "subDetails": "Downtown Dubai", "icon": "/Icons/location-blue.svg" },
+        { "title": "Address:", "details": "Meydan Freezone,", "subDetails": "Dubai - U.A.E", "icon": "/Icons/location-blue.svg" },
 
     ]
 
@@ -33,9 +33,9 @@ const ContactSection = forwardRef((props, ref) => {
                         {CONTACT_DETAILS?.map((data, index) => (
                             <div key={index} className=" flex items-center font-light space-x-3 xl:space-x-5">
                                 <img src={data.icon} alt="search icon " className=" object-cover shrink-0 size-7 lg:size-8 xl:size-9" />
-                                <div className=" xl:space-y-2 lg:space-y-1 text-lg xl:text-xl max-sm:text-base ">
+                                <div className=" text-lg xl:text-xl max-sm:text-base ">
                                     <p className=" font-normal">{data.title}</p>
-                                    <p className=" opacity-90   ">{data.details}</p>
+                                    <p className=" opacity-90 mt-3   ">{data.details}</p>
                                     {data.subDetails && <p className="opacity-90  ">{data.subDetails}</p>}
                                 </div>
 
