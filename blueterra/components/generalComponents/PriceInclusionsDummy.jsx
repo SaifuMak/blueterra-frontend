@@ -19,11 +19,11 @@ const priceExcludes = [
 ];
 
 
-export default function PriceInclusionsDummy({itineraryData}) {
+export default function PriceInclusionsDummy({ itineraryData }) {
 
     const lenis = useLenis()
     return (
-        <div  className={`w-full  mx-auto px-4 py-8 ${rubik.className} `}>
+        <div className={`w-full  mx-auto px-4 py-8 ${rubik.className} `}>
             <p className="mb-4 text-gray-800">As detailed in the itinerary:</p>
             <div className="grid text-sm font-light grid-cols-1 md:grid-cols-2 gap-10 ">
 
@@ -46,6 +46,7 @@ export default function PriceInclusionsDummy({itineraryData}) {
                         ))}
                     </ul>
                 </div>
+
 
                 <div className=''>
                     <h3 className="font-medium  mb-4">EXCLUDES</h3>
