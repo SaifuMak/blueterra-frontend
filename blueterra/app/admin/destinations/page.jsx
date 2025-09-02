@@ -17,7 +17,7 @@ import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 import useClickOutside from "@/app/hooks/useClickOutside";
 
 
-export default function Collections() {
+export default function Destinations() {
 
     const [isLoading, setIsLoading] = useState(true)
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -26,10 +26,10 @@ export default function Collections() {
     const [selectedIconImage, setSelectedIconImage] = useState(null);
 
 
-    const [collections, setCollections] = useState([])
+    const [destinations, setDestinations] = useState([])
     const rowStyle = 'px-4 py-6  border-t order-gray-100/10'
 
-    const [selectedCollection, setSelectedCollection] = useState(null)
+    const [selectedDestination, setSelectedDestination] = useState(null)
     const [isEditPopup, setIsEditPopup] = useState(false)
 
     const [selectedBannerImage, setSelectedBannerImage] = useState(null)
@@ -78,7 +78,7 @@ export default function Collections() {
             icon: null,
         })
         setSelectedBannerImage(null)
-        setSelectedCollection(null)
+        setSelectedDestination(null)
         setIsEditPopup(false)
         setSelectedIconImage(null)
     }
@@ -89,7 +89,7 @@ export default function Collections() {
     const handleEditClick = (collection) => {
         if (isSubmitting) return
 
-        setSelectedCollection(collection)
+        setSelectedDestination(collection)
         setFormData({
             title: collection.title,
             description: collection.description,
@@ -100,11 +100,11 @@ export default function Collections() {
     }
 
 
-    const fetchCollections = async () => {
+    const fetchdestinations = async () => {
         try {
-            const response = await AXIOS_INSTANCE.get('collections/')
+            const response = await AXIOS_INSTANCE.get('destinations/')
             console.log(response.data);
-            setCollections(response.data)
+            setDestinations(response.data)
 
         }
         catch (error) {
@@ -133,10 +133,10 @@ export default function Collections() {
 
 
         try {
-            const response = await AXIOS_INSTANCE.patch(`collections/${selectedCollection.id}/`, formDataCoverted)
+            const response = await AXIOS_INSTANCE.patch(`destinations/${selectedDestination.id}/`, formDataCoverted)
             handleClearStates()
-            fetchCollections()
-            toast.success('Collection has been updated')
+            fetchdestinations()
+            toast.success('Destination has been updated')
         }
         catch (error) {
             console.log(error);
@@ -151,7 +151,7 @@ export default function Collections() {
 
 
     useEffect(() => {
-        fetchCollections()
+        fetchdestinations()
     }, [])
 
 
@@ -169,10 +169,10 @@ export default function Collections() {
                     {isLoading && <Loader />}
 
                     <div className=" flex justify-between items-center">
-                        <h2 className=" text-4xl font-medium text-dark-4B  ">Collections </h2>
+                        <h2 className=" text-4xl font-medium text-dark-4B  ">Destinations </h2>
                     </div>
 
-                    {collections?.length > 0 ? (<div className={`${collections?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg   mt-10  h-fit`}>
+                    {destinations?.length > 0 ? (<div className={`${destinations?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg   mt-10  h-fit`}>
 
                         <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
                             <thead className="bg-[#394C5D] rounded-3xl text-white  ">
@@ -187,7 +187,7 @@ export default function Collections() {
 
 
                             <tbody className=" bg-white ">
-                                {collections?.map((item, index) => (
+                                {destinations?.map((item, index) => (
                                     <tr key={index} className=" rounded-3xl">
 
                                         <td className={rowStyle}>{item.title}</td>
@@ -240,7 +240,7 @@ export default function Collections() {
                 </div>
 
 
-                {selectedCollection && isEditPopup && <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
+                {selectedDestination && isEditPopup && <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
                     <form onSubmit={handleSubmit} >
 
                         <div ref={editModalRef} className="bg-white relative rounded-lg flex flex-col  justify-center  shadow-xl p-10 min-w-4xl ">
@@ -253,7 +253,7 @@ export default function Collections() {
 
                                 <div className=" w-full">
                                     <label htmlFor="text" className=" font-medium">Description</label>
-                                    <textarea name="description" onChange={handlechange} value={formData?.description} id="description" className="border rounded-sm  mt-2  p-2 w-full outline-none" required></textarea>
+                                    <textarea name="description" onChange={handlechange} value={formData?.description} id="description" className="border  rounded-sm   min-h-32  mt-2  p-2 w-full outline-none" required></textarea>
                                 </div>
 
                                 <div className=" w-full flex  space-x-6 items-center ">
@@ -279,7 +279,7 @@ export default function Collections() {
                                     {selectedBannerImage ? (
                                         <div className=" text-xs text-sky-blue-dark">{selectedBannerImage?.name}</div>
                                     ) : (
-                                        <img src={selectedCollection?.banner_image_public_url} alt="banner image" className=" w-32 h-20 rounded-sm object-cover" />
+                                        <img src={selectedDestination?.banner_image_public_url} alt="banner image" className=" w-32 h-20 rounded-sm object-cover" />
                                     )}
                                 </div>
 
@@ -298,7 +298,7 @@ export default function Collections() {
 
                                         <label
                                             htmlFor="iconUpload"
-                                            className="px-2 py-0 mt-1 border w-fit  bg-stone-100cursor-pointer"
+                                            className="px-2 py-0 mt-1 border w-fit bg-stone-100 cursor-pointer"
                                         >
                                             Browse
                                         </label>
@@ -308,7 +308,7 @@ export default function Collections() {
                                         <div className="text-xs text-sky-blue-dark">{selectedIconImage?.name}</div>
                                     ) : (
                                         <img
-                                            src={selectedCollection?.icon_public_url}
+                                            src={selectedDestination?.icon_public_url}
                                             alt="icon image"
                                             className="w-12 h-12 ml-10 bg-dark-4B rounded-sm object-cover border"
                                         />

@@ -14,6 +14,7 @@ const Dropdown = ({ value, onChange, options, placeholder, className, isOpen, on
         return () => document.removeEventListener("click", handleClickOutside);
     }, [onToggle]);
 
+    
     return (
         <div
             ref={ref}
