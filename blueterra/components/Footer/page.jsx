@@ -78,7 +78,7 @@ export default function Footer() {
 
                     </div>
 
-                    <ReviewWidget/>
+                    <ReviewWidget />
 
 
 
@@ -99,7 +99,7 @@ export default function Footer() {
                     </div> */}
                 </div>
 
-        
+
 
                 <div className=" flex justify-between max-lg:flex-col max-lg:space-y-5  py-5 xl:py-10 border-white/30 border-t border-b ">
 
