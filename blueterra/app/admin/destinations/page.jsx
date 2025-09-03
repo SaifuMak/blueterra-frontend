@@ -173,9 +173,9 @@ export default function Destinations() {
                     </div>
 
                     {destinations?.length > 0 ? (<div className={`${destinations?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg   mt-10  h-fit`}>
-
+ <div className="max-h-[600px] overflow-y-auto">
                         <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
-                            <thead className="bg-[#394C5D] rounded-3xl text-white  ">
+                            <thead className="bg-[#394C5D] sticky top-0 rounded-3xl text-white  ">
                                 <tr>
                                     <th className="px-4 py-5 font-normal ">Title</th>
                                     <th className="px-4 py-5 font-normal ">Description</th>
@@ -228,6 +228,7 @@ export default function Destinations() {
                             </tbody>
 
                         </table>
+                           </div>
                     </div>
                     ) : (
                         <div className=" w-full mt-10 text-xl text-dark-4B  font-medium text-center">
@@ -316,7 +317,7 @@ export default function Destinations() {
                                 </div>
 
                             </div>
-                            <button type="submit" disabled={isSubmitting} className=" mt-10 cursor-pointer w-fit mx-auto rounded-sm font-medium  border bg- px-10 py-1.5 text-sm bg-sky-blue-dark text-white ">{isSubmitting ? <LoaderIcon className="text-white text-xl animate-spin" /> : 'save'}</button>
+                            <button type="submit" disabled={isSubmitting} className=" mt-10 cursor-pointer w-fit mx-auto rounded-sm font-medium  border bg- px-10 py-1.5 text-sm bg-admin-button text-white ">{isSubmitting ? <LoaderIcon className="text-white text-xl animate-spin" /> : 'save'}</button>
 
                             <RxCross2 onClick={() => setIsEditPopup(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
                         </div>

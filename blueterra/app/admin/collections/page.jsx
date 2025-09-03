@@ -83,6 +83,7 @@ export default function Collections() {
         setSelectedIconImage(null)
     }
 
+
     const editModalRef = useClickOutside(() => handleClearStates())
 
 
@@ -173,61 +174,63 @@ export default function Collections() {
                     </div>
 
                     {collections?.length > 0 ? (<div className={`${collections?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg   mt-10  h-fit`}>
-
-                        <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
-                            <thead className="bg-[#394C5D] rounded-3xl text-white  ">
-                                <tr>
-                                    <th className="px-4 py-5 font-normal ">Title</th>
-                                    <th className="px-4 py-5 font-normal ">Description</th>
-                                    <th className="px-4 py-5 font-normal text-nowrap">Banner image</th>
-                                    <th className="px-4 py-5 text-center font-normal text-nowrap">Icon image</th>
-                                    <th className="px-4 py-5 text-center font-normal text-nowrap"><button className="  cursor-pointer text-white rounded-sm px-6 py-1">Actions</button></th>
-                                </tr>
-                            </thead>
-
-
-                            <tbody className=" bg-white ">
-                                {collections?.map((item, index) => (
-                                    <tr key={index} className=" rounded-3xl">
-
-                                        <td className={rowStyle}>{item.title}</td>
-                                        <td className={rowStyle}>{trimWords(item.description, 15)}</td>
-
-                                        <td className={rowStyle}>
-                                            <div className=" flex justify-center ">
-                                                <a href={item.banner_image_public_url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="">
-                                                    <img src={item.banner_image_public_url} alt="icon" className=" cursor-pointer border w-16 h-10 rounded-sm shrink-0 " />
-                                                </a>
-                                            </div>
-                                        </td>
-
-                                        <td className={rowStyle}>
-                                            <div className=" flex justify-center ">
-                                                <a href={item.icon_public_url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer" className="">
-                                                    <img src={item.icon_public_url} alt="icon" className=" cursor-pointer rounded-sm border bg-[#394C5D] size-10 p-0.5 shrink-0 " />
-                                                </a>
-                                            </div>
-                                        </td>
-
-                                        <td className={rowStyle}>
-                                            <div className=" flex justify-center space-x-10">
-                                                <TooltipWrapper message="Edit">
-                                                    <img onClick={() => handleEditClick(item)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
-                                                </TooltipWrapper>
-                                            </div>
-                                        </td>
-
+                        <div className="max-h-[600px] overflow-y-auto">
+                            <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
+                                <thead className="bg-[#394C5D] sticky top-0 rounded-3xl text-white  ">
+                                    <tr>
+                                        <th className="px-4 py-5 font-normal ">Title</th>
+                                        <th className="px-4 py-5 font-normal ">Description</th>
+                                        <th className="px-4 py-5 font-normal text-nowrap">Banner image</th>
+                                        <th className="px-4 py-5 text-center font-normal text-nowrap">Icon image</th>
+                                        <th className="px-4 py-5 text-center font-normal text-nowrap"><button className="  cursor-pointer text-white rounded-sm px-6 py-1">Actions</button></th>
                                     </tr>
-                                ))}
+                                </thead>
 
-                            </tbody>
 
-                        </table>
+                                <tbody className="  bg-white  ">
+                                    {collections?.map((item, index) => (
+                                        <tr key={index} className=" rounded-3xl">
+
+                                            <td className={rowStyle}>{item.title}</td>
+                                            <td className={rowStyle}>{trimWords(item.description, 15)}</td>
+
+                                            <td className={rowStyle}>
+                                                <div className=" flex justify-center ">
+                                                    <a href={item.banner_image_public_url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="">
+                                                        <img src={item.banner_image_public_url} alt="icon" className=" cursor-pointer border w-16 h-10 rounded-sm shrink-0 " />
+                                                    </a>
+                                                </div>
+                                            </td>
+
+                                            <td className={rowStyle}>
+                                                <div className=" flex justify-center ">
+                                                    <a href={item.icon_public_url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer" className="">
+                                                        <img src={item.icon_public_url} alt="icon" className=" cursor-pointer rounded-sm border bg-[#394C5D] size-10 p-0.5 shrink-0 " />
+                                                    </a>
+                                                </div>
+                                            </td>
+
+                                            <td className={rowStyle}>
+                                                <div className=" flex justify-center space-x-10">
+                                                    <TooltipWrapper message="Edit">
+                                                        <img onClick={() => handleEditClick(item)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
+                                                    </TooltipWrapper>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    ))}
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
                     </div>
                     ) : (
                         <div className=" w-full mt-10 text-xl text-dark-4B  font-medium text-center">
@@ -298,7 +301,7 @@ export default function Collections() {
 
                                         <label
                                             htmlFor="iconUpload"
-                                            className="px-2 py-0 mt-1 border w-fit  bg-stone-100cursor-pointer"
+                                            className="px-2 py-0 mt-1 border w-fit  bg-stone-100 cursor-pointer"
                                         >
                                             Browse
                                         </label>
@@ -316,7 +319,7 @@ export default function Collections() {
                                 </div>
 
                             </div>
-                            <button type="submit" disabled={isSubmitting} className=" mt-10 cursor-pointer w-fit mx-auto rounded-sm font-medium  border bg- px-10 py-1.5 text-sm bg-sky-blue-dark text-white ">{isSubmitting ? <LoaderIcon className="text-white text-xl animate-spin" /> : 'save'}</button>
+                            <button type="submit" disabled={isSubmitting} className=" mt-10 cursor-pointer w-fit mx-auto rounded-sm font-medium  border bg- px-10 py-1.5 text-sm bg-admin-button text-white ">{isSubmitting ? <LoaderIcon className="text-white text-xl animate-spin" /> : 'save'}</button>
 
                             <RxCross2 onClick={() => setIsEditPopup(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
                         </div>

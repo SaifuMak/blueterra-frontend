@@ -218,15 +218,15 @@ export default function Countries() {
                                     </div>
                                 </div>
 
-                                <button type="submit" className="px-6 cursor-pointer py-1.5 mt-8 rounded-sm bg-sky-blue-dark text-white">
+                                <button type="submit" className="px-6 cursor-pointer py-1.5 mt-8 rounded-sm bg-admin-button text-white">
                                     Save
                                 </button>
                             </div>
                         </form>
 
-                        <div className=" w-2/3 ml-20  rounded-lg max-h-96  overflow-y-auto  bg-indigo-50">
+                        <div className=" w-2/3 ml-20  rounded-lg max-h-96  overflow-y-auto ">
                             <table className="w-full text-lg   text-left text-gray-700">
-                                <thead className="bg-[#394C5D] text-white  ">
+                                <thead className="bg-[#394C5D] sticky top-0 text-white  ">
                                     <tr>
                                         <th className="px-4 py-5 font-normal ">Country</th>
                                         <th className="px-4 py-5 font-normal ">Destination</th>
@@ -236,30 +236,43 @@ export default function Countries() {
                                 </thead>
 
 
-                                <tbody className="  bg-white ">
-                                    {countryData?.map((item, index) => (
-                                        <tr key={index} className="">
-
-                                            <td className={rowStyle}>{item?.title}</td>
-                                            <td className={rowStyle}>{item?.destination?.title}</td>
-
-
-                                            <td className={rowStyle}>
-                                                <div className=" flex justify-center space-x-10">
-                                                    <TooltipWrapper message="Edit">
-                                                        <img onClick={() => handleEditCountry(item)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
-                                                    </TooltipWrapper>
-
-                                                    <TooltipWrapper message="Delete">
-                                                        <img onClick={() => handleDeleteCountry(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
-                                                    </TooltipWrapper>
-                                                </div>
+                                <tbody className="bg-white">
+                                    {countryData?.length > 0 ? (
+                                        countryData.map((item, index) => (
+                                            <tr key={index}>
+                                                <td className={rowStyle}>{item?.title}</td>
+                                                <td className={rowStyle}>{item?.destination?.title}</td>
+                                                <td className={rowStyle}>
+                                                    <div className="flex justify-center space-x-10">
+                                                        <TooltipWrapper message="Edit">
+                                                            <img
+                                                                onClick={() => handleEditCountry(item)}
+                                                                src="/Icons/edit-black.svg"
+                                                                alt="edit"
+                                                                className="size-4 cursor-pointer"
+                                                            />
+                                                        </TooltipWrapper>
+                                                        <TooltipWrapper message="Delete">
+                                                            <img
+                                                                onClick={() => handleDeleteCountry(item.id)}
+                                                                src="/Icons/delete.svg"
+                                                                alt="delete"
+                                                                className="size-4 cursor-pointer"
+                                                            />
+                                                        </TooltipWrapper>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={3} className="text-center py-6 text-gray-500">
+                                                No results found
                                             </td>
-
                                         </tr>
-                                    ))}
-
+                                    )}
                                 </tbody>
+
 
                             </table>
                         </div>
@@ -270,7 +283,7 @@ export default function Countries() {
 
                 {isDeleteModal && <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
                     <div className="bg-white relative rounded-lg flex flex-col  justify-center  shadow-xl p-6 w-100">
-                        <h2 className="text-lg mt-5 font-medium mb-4 text-dark-4B text-center ">Are you sure to delete this Country ?</h2>
+                        <h2 className="text-lg mt-5 font-medium mb-4 text-dark-4B text-center ">Are you sure to delete this country ?</h2>
                         <div className=" flex justify-center mt-4">
                             <button onClick={confirmDeleteCountry} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Okay</button>
                         </div>
@@ -318,7 +331,7 @@ export default function Countries() {
                                     </div>
                                 </div>
 
-                                <button type="submit" className="px-6 cursor-pointer py-1.5 mt-8 rounded-sm bg-sky-blue-dark text-white">
+                                <button type="submit" className="px-6 cursor-pointer py-1.5 mt-8 rounded-sm bg-admin-button text-white">
                                     Save
                                 </button>
                             </div>
