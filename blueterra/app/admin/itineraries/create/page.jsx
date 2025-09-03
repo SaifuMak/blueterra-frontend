@@ -1,7 +1,7 @@
 'use client'
 import Sidebar from "@/components/admin/Sidebar";
 import Navbar from "@/components/admin/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { rubik } from '@/app/fonts'
 import Dropdown from "@/components/admin/Itinerary/DropDown";
 import { toast } from 'sonner';
@@ -111,7 +111,7 @@ export default function CreateItinerary() {
         try {
             const response = await AXIOS_INSTANCE.post(`create-itinerary/`, formData)
             toast.success(response.data.message)
-            handleReset()
+            // handleReset()
 
         }
         catch (e) {
@@ -237,6 +237,56 @@ export default function CreateItinerary() {
     }
 
 
+    const [filtersList, setFiltersList] = useState(null)
+
+    const fetchFilters = async () => {
+        try {
+            const response = await AXIOS_INSTANCE.get(`filters-list/`);
+            const data = response?.data
+            setFiltersList(response?.data)
+
+        } catch (error) {
+            console.error('Failed to load journal:', error);
+        } finally {
+            // setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        
+        fetchFilters()
+    }, [])
+
+    const [filteredCountries, setFilteredCountries] = useState([]);
+    const [filteredCategories, setFilteredCategories] = useState([]);
+
+    // when destination changes → filter countries + reset country
+    useEffect(() => {
+        if (!filtersList) return;
+
+        setFilteredCountries(
+            destination
+                ? filtersList.countries.filter(c => c.destination?.title === destination)
+                : filtersList.countries
+        );
+
+        setCountry(""); // reset only country
+    }, [destination, filtersList]);
+
+    // when collection changes → filter categories + reset category
+    useEffect(() => {
+        if (!filtersList) return;
+
+        setFilteredCategories(
+            collection
+                ? filtersList.categories.filter(cat => cat.collection?.title === collection)
+                : filtersList.categories
+        );
+
+        setCategory(""); // reset only category
+    }, [collection, filtersList]);
+
+
     return (
 
         <div className={`h-screen w-full ${rubik.className}`}>
@@ -357,12 +407,11 @@ export default function CreateItinerary() {
                             <div className=" w-full  pt-10  border-t border-[#969696]/50">
                                 <div className=" w-11/12">
                                     <h2 className="text-xl text-dark-blue font-medium">Post in:</h2>
-
                                     <div className="flex mt-5  gap-8">
                                         <Dropdown
                                             value={destination}
                                             onChange={setDestination}
-                                            options={destinations}
+                                            options={filtersList?.destinations}
                                             placeholder="Select Destination"
                                             isOpen={openDropdown === "destination"}
                                             onToggle={(isOpen) => setOpenDropdown(isOpen ? "destination" : null)}
@@ -371,7 +420,7 @@ export default function CreateItinerary() {
                                         <Dropdown
                                             value={country}
                                             onChange={setCountry}
-                                            options={countries}
+                                            options={filteredCountries}
                                             placeholder="Select Country"
                                             isOpen={openDropdown === "country"}
                                             onToggle={(isOpen) => setOpenDropdown(isOpen ? "country" : null)}
@@ -380,7 +429,7 @@ export default function CreateItinerary() {
                                         <Dropdown
                                             value={collection}
                                             onChange={setCollection}
-                                            options={collections}
+                                            options={filtersList?.collections}
                                             placeholder="Select Collection"
                                             isOpen={openDropdown === "collection"}
                                             onToggle={(isOpen) => setOpenDropdown(isOpen ? "collection" : null)}
@@ -389,7 +438,7 @@ export default function CreateItinerary() {
                                         <Dropdown
                                             value={category}
                                             onChange={setCategory}
-                                            options={categories}
+                                            options={filteredCategories}
                                             placeholder="Select Category"
                                             isOpen={openDropdown === "category"}
                                             onToggle={(isOpen) => setOpenDropdown(isOpen ? "category" : null)}

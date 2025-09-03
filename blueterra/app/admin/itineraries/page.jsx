@@ -206,7 +206,7 @@ export default function Itinerary() {
 
                                         <td className={rowStyle}>{item.title}</td>
                                         <td className={rowStyle}>{item.days.length}</td>
-                                        <td className={rowStyle}>{item.collection}</td>
+                                        <td className={rowStyle}>{item.collection?.title}</td>
 
 
                                         <td className={rowStyle}>

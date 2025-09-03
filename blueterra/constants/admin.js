@@ -2,7 +2,7 @@ export const SIDEBAR_ITEMS = [
     { icon: "/Icons/home.svg", name: "Dashboard", path: "/admin/dashboard" },
     { icon: "/Icons/navigation.svg", name: "Itinerary", path: "/admin/itineraries" },
     { icon: "/Icons/file.svg", name: "Collections", path: "/admin/collections" },
-    { icon: "/Icons/page.svg", name: "Catagories", path: "/admin/catagories" },
+    { icon: "/Icons/page.svg", name: "Categories", path: "/admin/catagories" },
     { icon: "/Icons/destination.svg", name: "Destinations", path: "/admin/destinations" },
     { icon: "/Icons/destination.svg", name: "Countries", path: "/admin/countries" },
     // { icon: "/Icons/page.svg", name: "Pages", path: "/admin-pages" },

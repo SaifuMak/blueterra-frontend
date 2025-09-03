@@ -31,6 +31,8 @@ export default function EditItinerary() {
     const { id } = useParams();
     const router = useRouter()
 
+    const [itineraryData, setItineraryData] = useState(null)
+
 
     const containerRef = useRef(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -57,6 +59,21 @@ export default function EditItinerary() {
     const [country, setCountry] = useState("");
     const [collection, setCollection] = useState("");
     const [category, setCategory] = useState("");
+
+    const [filtersList, setFiltersList] = useState(null)
+
+    const fetchFilters = async () => {
+        try {
+            const response = await AXIOS_INSTANCE.get(`filters-list/`);
+            const data = response?.data
+            setFiltersList(response?.data)
+
+        } catch (error) {
+            console.error('Failed to load journal:', error);
+        } finally {
+            // setIsLoading(false);
+        }
+    };
 
 
     useEffect(() => {
@@ -94,11 +111,12 @@ export default function EditItinerary() {
                         additionalInformation: point.additional_information
                     })) || []
                 );
+                setItineraryData(response?.data)
 
-                setDestination(data.destination || "");
-                setCountry(data.country || "");
-                setCollection(data.collection || "");
-                setCategory(data.category || "");
+                setDestination(data?.destination?.title || "");
+                setCountry(data.country?.title || "");
+                setCollection(data.collection?.title || "");
+                setCategory(data.category?.title || "");
 
             } catch (error) {
                 console.error('Failed to load journal:', error);
@@ -108,10 +126,13 @@ export default function EditItinerary() {
         };
 
         fetchItinerary();
+        fetchFilters()
+
     }, [id]);
 
 
-     const transferOptions = ["Land", "Air", "Water"];
+
+    const transferOptions = ["Land", "Air", "Water"];
 
     const [openDropdown, setOpenDropdown] = useState(null); // track which one is open
 
@@ -133,7 +154,7 @@ export default function EditItinerary() {
     }
 
 
-    
+
     const confirmSaveItinerary = async (formData) => {
 
         containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -151,8 +172,8 @@ export default function EditItinerary() {
         }
         finally {
             setTimeout(() => {
-            setIsLoading(false)
-                
+                setIsLoading(false)
+
             }, 1000);
         }
     }
@@ -278,6 +299,36 @@ export default function EditItinerary() {
 
         // alert('posted')
     }
+
+    const [filteredCountries, setFilteredCountries] = useState([]);
+    const [filteredCategories, setFilteredCategories] = useState([]);
+
+    // when destination changes → filter countries + reset country
+    useEffect(() => {
+        if (!filtersList) return;
+
+        setFilteredCountries(
+            destination
+                ? filtersList.countries.filter(c => c.destination?.title === destination)
+                : filtersList.countries
+        );
+
+        setCountry(""); // reset only country
+    }, [destination, filtersList]);
+
+    // when collection changes → filter categories + reset category
+    useEffect(() => {
+        if (!filtersList) return;
+
+        setFilteredCategories(
+            collection
+                ? filtersList.categories.filter(cat => cat.collection?.title === collection)
+                : filtersList.categories
+        );
+
+        setCategory(""); // reset only category
+    }, [collection, filtersList]);
+
 
 
     return (
@@ -413,7 +464,7 @@ export default function EditItinerary() {
                                             <Dropdown
                                                 value={destination}
                                                 onChange={setDestination}
-                                                options={destinations}
+                                                options={filtersList?.destinations}
                                                 placeholder="Select Destination"
                                                 isOpen={openDropdown === "destination"}
                                                 onToggle={(isOpen) => setOpenDropdown(isOpen ? "destination" : null)}
@@ -422,7 +473,7 @@ export default function EditItinerary() {
                                             <Dropdown
                                                 value={country}
                                                 onChange={setCountry}
-                                                options={countries}
+                                                options={filteredCountries}
                                                 placeholder="Select Country"
                                                 isOpen={openDropdown === "country"}
                                                 onToggle={(isOpen) => setOpenDropdown(isOpen ? "country" : null)}
@@ -431,7 +482,7 @@ export default function EditItinerary() {
                                             <Dropdown
                                                 value={collection}
                                                 onChange={setCollection}
-                                                options={collections}
+                                                options={filtersList?.collections}
                                                 placeholder="Select Collection"
                                                 isOpen={openDropdown === "collection"}
                                                 onToggle={(isOpen) => setOpenDropdown(isOpen ? "collection" : null)}
@@ -440,7 +491,7 @@ export default function EditItinerary() {
                                             <Dropdown
                                                 value={category}
                                                 onChange={setCategory}
-                                                options={categories}
+                                                options={filteredCategories}
                                                 placeholder="Select Category"
                                                 isOpen={openDropdown === "category"}
                                                 onToggle={(isOpen) => setOpenDropdown(isOpen ? "category" : null)}

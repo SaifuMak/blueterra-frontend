@@ -45,6 +45,12 @@ export default function Collection() {
 
   const [isLoading, setIsLoading] = useState(true)
   const [itineraryData, setItineraryData] = useState(null)
+  
+  const [collectionsData, setCollectionsData] = useState([])
+  const [collectionsLoading, setCollectionsLoading] = useState(true)
+
+    const [filtersList, setFiltersList] = useState(null)
+
 
   // zoho form 
   const [formOpen, setFormOpen] = useState(false);
@@ -110,6 +116,7 @@ export default function Collection() {
     }, 300);
   }
 
+
   const handleShowFullCard = (index) => {
 
     // when a card is clicked for its full size intially record it 
@@ -158,6 +165,36 @@ export default function Collection() {
   }, [isMobile])
 
 
+
+  const fetchFilters = async () => {
+    try {
+      const response = await AXIOS_INSTANCE.get(`filters-list/`);
+      const data = response?.data
+      setFiltersList(response?.data)
+
+    } catch (error) {
+      console.error('Failed to load journal:', error);
+    } finally {
+      // setIsLoading(false);
+    }
+  };
+
+
+  const fetchCollections = async () => {
+
+    try {
+      const response = await AXIOS_INSTANCE.get('get-collections/')
+      setCollectionsData(response?.data)
+    }
+    catch (error) {
+
+    }
+    finally {
+      setCollectionsLoading(false)
+    }
+  }
+
+
   const fetchItinerary = async (page = 1, loading = false) => {
 
     setIsLoading(true)
@@ -188,103 +225,120 @@ export default function Collection() {
 
   useEffect(() => {
 
-    console.log(selectedFilters);
-
     fetchItinerary()
-
 
   }, [selectedFilters])
 
+  useEffect(() => {
+    fetchFilters()
+    fetchCollections()
+  }, [])
+
+
 
   return (
+    <>
 
-
-    <div className={`${rubik.className} text-dark-28`}>
-
-      <Navbar isfixed={true} onNavClick={handleNavClick} />
-
-      {isMobile ? (
-        <MobileAnimatedVerticalCard
-          CardData={CardData}
-          selectedVerticalTileMobile={selectedVerticalTileMobile}
-          setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
-          handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
-        />
-      ) : (
-        <BannerAnimation
-          CardData={CardData}
-          expandedIndex={expandedIndex}
-          setExpandedIndex={setExpandedIndex}
-          isFullCardVisible={isFullCardVisible}
-          setIsFullCardVisible={setIsFullCardVisible}
-          handleShowFullCard={handleShowFullCard}
-          setIsFilterVisible={setIsFilterVisible}
-          isFilterVisible={isFilterVisible}
-        />
-      )}
-
-      {!isMobile && <FilterLayout page='collections' selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} setExpandedTileIndex={setExpandedIndex} setIsFilterVisible={setIsFilterVisible} />}
-
-      <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
-       
-        <ResponsiveClipPath
-          outerClass='absolute md:w-[24%]  max-sm:hidden w-[78%]  top-10 left-0 h-fit'
-          ImagePath='/images/destinations/patterns/top-pattern.png'
-          width={800}
-        />
-
-        {isMobile && <MobileFilter
-          page='collections'
-          setIsAnyFilterOpened={setIsAnyFilterOpened}
-          isFilterVisible={isFilterVisible}
-          showMobileFilter={showMobileFilter}
-          setShowMobileFilter={setShowMobileFilter}
-          flatSelectedFilters={flatSelectedFilters}
-          setFlatSelectedFilters={setFlatSelectedFilters}
-          setSelectedFilters={setSelectedFilters}
-          dataCount={itineraryData?.length}
-          selectedFilters={selectedFilters}
-          handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
-          setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
-          handleScrollToItineraryResults={handleScrollToItineraryResults}
-        />}
-
-        <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
-          {isLoading ? (
-            <div className="flex items-center justify-center w-full min-h-[60vh] col-span-2">
-              <LoaderIcon />
-            </div>
-          ) : itineraryData && itineraryData.length > 0 ? (
-            <DestinationCards itineraryData={itineraryData} />
-          ) : (
-            <div className="flex items-center justify-center min-h-[60vh]  w-full col-span-2">
-              <p className="text-lg font-medium">No results found</p>
-            </div>
-          )}
+      {collectionsLoading ? (
+        <div className="  w-full h-screen flex-center  ">
+          <Navbar isfixed={true} onNavClick={handleNavClick} />
+          <LoaderIcon />
         </div>
+      ) : (
 
-      </div>
+        <div className={`${rubik.className} text-dark-28`}>
 
-      <AdventureSection setFormOpen={setFormOpen} />
+          <Navbar isfixed={true} onNavClick={handleNavClick} />
 
-      <MobileFilterPopup
-        page='collections'
-        selectedFilters={selectedFilters}
-        setSelectedFilters={setSelectedFilters}
-        showMobileFilter={showMobileFilter}
-        setShowMobileFilter={setShowMobileFilter}
-        flatSelectedFilters={flatSelectedFilters}
-        setFlatSelectedFilters={setFlatSelectedFilters}
-        expandedBannerCollectionIndex={selectedVerticalTileMobile}
-        handleChangeCollection={handleChangeCollectionForMobile}
-      />
+          {isMobile ? (
+            <MobileAnimatedVerticalCard
+            page='collections'
+              CardData={collectionsData}
+              selectedVerticalTileMobile={selectedVerticalTileMobile}
+              setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
+              handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
+            />
+          ) : (
+            <BannerAnimation
+            page='collections'
+              CardData={collectionsData}
+              expandedIndex={expandedIndex}
+              setExpandedIndex={setExpandedIndex}
+              isFullCardVisible={isFullCardVisible}
+              setIsFullCardVisible={setIsFullCardVisible}
+              handleShowFullCard={handleShowFullCard}
+              setIsFilterVisible={setIsFilterVisible}
+              isFilterVisible={isFilterVisible}
+            />
+          )}
 
-      <Footer />
-      <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
+          {!isMobile && <FilterLayout page='collections' filtersList={filtersList} selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} setExpandedTileIndex={setExpandedIndex} setIsFilterVisible={setIsFilterVisible} />}
+
+          <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
+
+            <ResponsiveClipPath
+              outerClass='absolute md:w-[24%]  max-sm:hidden w-[78%]  top-10 left-0 h-fit'
+              ImagePath='/images/destinations/patterns/top-pattern.png'
+              width={800}
+            />
+
+            {isMobile && <MobileFilter
+              page='collections'
+              setIsAnyFilterOpened={setIsAnyFilterOpened}
+              isFilterVisible={isFilterVisible}
+              showMobileFilter={showMobileFilter}
+              setShowMobileFilter={setShowMobileFilter}
+              flatSelectedFilters={flatSelectedFilters}
+              setFlatSelectedFilters={setFlatSelectedFilters}
+              setSelectedFilters={setSelectedFilters}
+              dataCount={itineraryData?.length}
+              selectedFilters={selectedFilters}
+              handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
+              setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
+              handleScrollToItineraryResults={handleScrollToItineraryResults}
+            />}
+
+            
+            
+
+            <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
+              {isLoading ? (
+                <div className="flex items-center justify-center w-full min-h-[60vh] col-span-2">
+                  <LoaderIcon />
+                </div>
+              ) : itineraryData && itineraryData.length > 0 ? (
+                <DestinationCards itineraryData={itineraryData} />
+              ) : (
+                <div className="flex items-center justify-center min-h-[60vh]  w-full col-span-2">
+                  <p className="text-lg font-medium">No results found</p>
+                </div>
+              )}
+            </div>
+
+          </div>
+
+          <AdventureSection setFormOpen={setFormOpen} />
+
+          <MobileFilterPopup
+            page='collections'
+             filtersList={filtersList}
+            selectedFilters={selectedFilters}
+            setSelectedFilters={setSelectedFilters}
+            showMobileFilter={showMobileFilter}
+            setShowMobileFilter={setShowMobileFilter}
+            flatSelectedFilters={flatSelectedFilters}
+            setFlatSelectedFilters={setFlatSelectedFilters}
+            expandedBannerCollectionIndex={selectedVerticalTileMobile}
+            handleChangeCollection={handleChangeCollectionForMobile}
+          />
+         
+          <Footer />
+          <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
 
 
-    </div>
-
+        </div>
+      )}
+    </>
     // </SmoothScroll>
 
 

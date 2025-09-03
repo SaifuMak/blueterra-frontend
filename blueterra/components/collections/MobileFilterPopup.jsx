@@ -7,7 +7,7 @@ import { playfair } from '@/app/fonts';
 import { destinations, countries, collections, categories } from '@/components/datas/FilterOptions'
 
 
-export default function MobileFilterPopup({ page, selectedFilters, setSelectedFilters, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters, expandedBannerCollectionIndex, handleChangeCollection }) {
+export default function MobileFilterPopup({ page, filtersList, selectedFilters, setSelectedFilters, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters, expandedBannerCollectionIndex, handleChangeCollection }) {
 
     const [openedFilter, setOpenedFilter] = useState(null);
 
@@ -30,11 +30,13 @@ export default function MobileFilterPopup({ page, selectedFilters, setSelectedFi
 
         if (filter === 'collections' && page === 'collections') {
             handleClearAllSelectedFilters()
-            handleChangeCollection(collections.indexOf(value))
+            const index = filtersList?.collections.findIndex(item => item.title === value);
+            handleChangeCollection(index)
         }
         else if (filter === 'destinations' && page === 'destinations') {
             handleClearAllSelectedFilters()
-            handleChangeCollection(destinations.indexOf(value))
+            const index = filtersList?.destinations.findIndex(item => item.title === value);
+            handleChangeCollection(index)
         }
 
         setSelectedFilters((prev) => {
@@ -56,13 +58,51 @@ export default function MobileFilterPopup({ page, selectedFilters, setSelectedFi
 
         handleClearAllSelectedFilters()
         if (page === 'destinations') {
-            handleItemSelection('destinations', destinations[expandedBannerCollectionIndex])
+            handleItemSelection('destinations', filtersList?.destinations[expandedBannerCollectionIndex]?.title)
         }
         else if (page === 'collections') {
-            handleItemSelection('collections', collections[expandedBannerCollectionIndex])
+            handleItemSelection('collections', filtersList?.collections[expandedBannerCollectionIndex]?.title)
         }
 
     }, [expandedBannerCollectionIndex])
+
+
+
+    const [filteredCategories, setFilteredCategories] = useState(filtersList?.categories || []);
+    const [filteredCountries, setFilteredCountries] = useState(filtersList?.countries || []);
+
+
+    // this is the custom logic for the filter collection and destination
+    useEffect(() => {
+
+        if (page === 'collections') {
+            if (selectedFilters.collections.length > 0) {
+                const activeCollection = selectedFilters.collections[0]
+                const filtered = filtersList?.categories?.filter(
+                    (cat) => cat.collection.title === activeCollection
+                );
+                setFilteredCategories(filtered);
+            }
+            else {
+                setFilteredCategories(filtersList?.categories || []);
+            }
+        }
+
+        if (page === 'destinations') {
+            if (selectedFilters.destinations.length > 0) {
+                const activeDestinations = selectedFilters.destinations[0]
+                const filtered = filtersList?.countries?.filter(
+                    (cat) => cat.destination.title === activeDestinations
+                );
+                setFilteredCountries(filtered);
+            }
+            else {
+                setFilteredCountries(filtersList?.categories || []);
+            }
+        }
+
+    }, [selectedFilters])
+
 
 
     if (!showMobileFilter) return null;
@@ -86,38 +126,84 @@ export default function MobileFilterPopup({ page, selectedFilters, setSelectedFi
                             <h2 className={`${playfair.className} tracking-wide text-xl font-medium`}>Refine Your Search</h2>
 
                             <div className="w-11/12 grid grid-cols-1  py-2 mt-5 gap-4">
-                                <MobileFilterComponent
-                                    name="collections"
-                                    options={collections}
-                                    handleFilters={handleFilters}
-                                    isOpened={openedFilter === "collections"}
-                                    handleItemSelection={handleItemSelection}
-                                    selectedFilters={selectedFilters}
-                                />
-                                <MobileFilterComponent
-                                    name="categories"
-                                    options={categories}
-                                    handleFilters={handleFilters}
-                                    isOpened={openedFilter === "categories"}
-                                    handleItemSelection={handleItemSelection}
-                                    selectedFilters={selectedFilters}
-                                />
-                                <MobileFilterComponent
-                                    name="destinations"
-                                    options={destinations}
-                                    handleFilters={handleFilters}
-                                    isOpened={openedFilter === "destinations"}
-                                    handleItemSelection={handleItemSelection}
-                                    selectedFilters={selectedFilters}
-                                />
-                                <MobileFilterComponent
-                                    name="countries"
-                                    options={countries}
-                                    handleFilters={handleFilters}
-                                    isOpened={openedFilter === "countries"}
-                                    handleItemSelection={handleItemSelection}
-                                    selectedFilters={selectedFilters}
-                                />
+                                {page === 'collections' && (
+                                    <>
+                                        <MobileFilterComponent
+                                            name="collections"
+                                            options={filtersList?.collections}
+                                            handleFilters={handleFilters}
+                                            isOpened={openedFilter === "collections"}
+                                            handleItemSelection={handleItemSelection}
+                                            selectedFilters={selectedFilters}
+                                        />
+                                        <MobileFilterComponent
+                                            name="categories"
+                                            options={filteredCategories}
+                                            handleFilters={handleFilters}
+                                            isOpened={openedFilter === "categories"}
+                                            handleItemSelection={handleItemSelection}
+                                            selectedFilters={selectedFilters}
+                                        />
+                                        <MobileFilterComponent
+                                            name="destinations"
+                                            options={filtersList?.destinations}
+                                            handleFilters={handleFilters}
+                                            isOpened={openedFilter === "destinations"}
+                                            handleItemSelection={handleItemSelection}
+                                            selectedFilters={selectedFilters}
+                                        />
+                                        <MobileFilterComponent
+                                            name="countries"
+                                            options={filtersList?.countries}
+                                            handleFilters={handleFilters}
+                                            isOpened={openedFilter === "countries"}
+                                            handleItemSelection={handleItemSelection}
+                                            selectedFilters={selectedFilters}
+                                        />
+                                    </>
+                                )}
+
+
+                                {page === 'destinations' && (
+                                    <>
+
+                                        <MobileFilterComponent
+                                            name="destinations"
+                                            options={filtersList?.destinations}
+                                            handleFilters={handleFilters}
+                                            isOpened={openedFilter === "destinations"}
+                                            handleItemSelection={handleItemSelection}
+                                            selectedFilters={selectedFilters}
+                                        />
+                                        <MobileFilterComponent
+                                            name="countries"
+                                            options={filteredCountries}
+                                            handleFilters={handleFilters}
+                                            isOpened={openedFilter === "countries"}
+                                            handleItemSelection={handleItemSelection}
+                                            selectedFilters={selectedFilters}
+                                        />
+                                        <MobileFilterComponent
+                                            name="collections"
+                                            options={filtersList?.collections}
+                                            handleFilters={handleFilters}
+                                            isOpened={openedFilter === "collections"}
+                                            handleItemSelection={handleItemSelection}
+                                            selectedFilters={selectedFilters}
+                                        />
+                                        <MobileFilterComponent
+                                            name="categories"
+                                            options={filtersList?.categories}
+                                            handleFilters={handleFilters}
+                                            isOpened={openedFilter === "categories"}
+                                            handleItemSelection={handleItemSelection}
+                                            selectedFilters={selectedFilters}
+                                        />
+
+                                    </>
+                                )}
+
+
                             </div>
                         </div>
 

@@ -6,7 +6,7 @@ import { RxCross2 } from '@/components/reactIcons'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { destinations, countries, collections, categories } from '@/components/datas/FilterOptions'
 
-export default function FilterLayout({ page, selectedFilters, setSelectedFilters, setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex, handleChangeCollection, setExpandedTileIndex, setIsFilterVisible }) {
+export default function FilterLayout({ page, filtersList, selectedFilters, setSelectedFilters, setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex, handleChangeCollection, setExpandedTileIndex, setIsFilterVisible }) {
 
     // const [openedFilters, setOpenedFilters] = useState([])
 
@@ -36,14 +36,25 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
     }
 
     const handleItemSelection = (filter, value) => {
+        console.log(filter, value);
+
         if (filter === 'collections' && page === 'collections') {
+            console.log('yes it is the collecton filter and page ');
+
             handleClearAllSelectedFilters()
-            handleChangeCollection(collections.indexOf(value))
+            const index = filtersList?.collections.findIndex(item => item.title === value);
+            // handleChangeCollection(filtersList?.collections.indexOf(value))
+            handleChangeCollection(index)
+
+
         }
         else if (filter === 'destinations' && page === 'destinations') {
             handleClearAllSelectedFilters()
-            handleChangeCollection(destinations.indexOf(value))
+            const index = filtersList?.destinations.findIndex(item => item.title === value);
+
+            handleChangeCollection(index)
         }
+
 
         // deals with actual data 
         setSelectedFilters(prev => {
@@ -88,17 +99,17 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
 
     useEffect(() => {
 
-        if(expandedBannerCollectionIndex === null){
+        if (expandedBannerCollectionIndex === null) {
             // this condition helps in  preventing in clearing all filters when the node filter is removed, 
             return
         }
 
         handleClearAllSelectedFilters()
         if (page === 'destinations') {
-            handleItemSelection('destinations', destinations[expandedBannerCollectionIndex])
+            handleItemSelection('destinations', filtersList?.destinations[expandedBannerCollectionIndex]?.title)
         }
         else if (page === 'collections') {
-            handleItemSelection('collections', collections[expandedBannerCollectionIndex])
+            handleItemSelection('collections', filtersList?.collections[expandedBannerCollectionIndex]?.title)
         }
 
     }, [expandedBannerCollectionIndex])
@@ -114,7 +125,6 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
                 });
             }
         }, 0);
-        console.log(flatSelectedFilters);
 
         if (flatSelectedFilters.length === 0) {
             // setExpandedTileIndex(null)
@@ -135,16 +145,136 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
 
 
 
+    const [filteredCategories, setFilteredCategories] = useState(filtersList?.categories || []);
+    const [filteredCountries, setFilteredCountries] = useState(filtersList?.countries || []);
+
+
+    // this is the custom logic for the filter collection and destination
+    useEffect(() => {
+
+        if (page === 'collections') {
+            if (selectedFilters.collections.length > 0) {
+                const activeCollection = selectedFilters.collections[0]
+                const filtered = filtersList?.categories?.filter(
+                    (cat) => cat.collection.title === activeCollection
+                );
+                setFilteredCategories(filtered);
+            }
+            else {
+                setFilteredCategories(filtersList?.categories || []);
+            }
+        }
+
+        if (page === 'destinations') {
+            if (selectedFilters.destinations.length > 0) {
+                const activeDestinations = selectedFilters.destinations[0]
+                const filtered = filtersList?.countries?.filter(
+                    (cat) => cat.destination.title === activeDestinations
+                );
+                setFilteredCountries(filtered);
+            }
+            else {
+                setFilteredCountries(filtersList?.categories || []);
+            }
+        }
+
+    }, [selectedFilters])
+
+
+
+
     return (
         <div className={` ${isFilterVisible && flatSelectedFilters.length > 0 ? 'min-h-[30px]' : 'min-h-[0px]'}  w-full   pt-3 bg-white  fixed top-0 z-10 shadow-[0_4px_20px_rgba(0,0,0,0.05)] mt-32  flex flex-col items-center justify-center`} >
             <div ref={filterContaineRef} className={`${isFilterVisible ? 'visible' : 'hidden'} xl:w-9/12  w-10/12 h-auto grid grid-cols-4 py-2   gap-7`} >
 
 
+                {page === 'collections' && (
+                    <>
+                        <FilterComponent
+                            name='collections'
+                            options={filtersList?.collections}
+                            handleFilters={handleFilters}
+                            // isOpened={openedFilters.includes("collections")}
+                            isOpened={openedFilter === "collections"}
+                            handleItemSelection={handleItemSelection}
+                            selectedFilters={selectedFilters}
+                        />
+                        <FilterComponent
+                            name='categories'
+                            options={filteredCategories}
+                            handleFilters={handleFilters}
+                            // isOpened={openedFilters.includes("categories")}
+                            isOpened={openedFilter === "categories"}
+                            handleItemSelection={handleItemSelection}
+                            selectedFilters={selectedFilters}
+                        />
+                        <FilterComponent
+                            name='destinations'
+                            options={filtersList?.destinations}
+                            handleFilters={handleFilters}
+                            isOpened={openedFilter === "destinations"}
+                            handleItemSelection={handleItemSelection}
+                            selectedFilters={selectedFilters}
+                        />
+                        <FilterComponent
+                            name='countries'
+                            options={filtersList?.countries}
+                            handleFilters={handleFilters}
+                            // isOpened={openedFilters.includes("countries")}
+                            isOpened={openedFilter === "countries"}
+                            handleItemSelection={handleItemSelection}
+                            selectedFilters={selectedFilters}
+                        />
+                    </>
+                )}
 
 
-                {page === 'collections' && <FilterComponent
+                {page === 'destinations' && (
+                    <>
+                        <FilterComponent
+                            name='destinations'
+                            options={filtersList?.destinations}
+                            handleFilters={handleFilters}
+                            isOpened={openedFilter === "destinations"}
+                            handleItemSelection={handleItemSelection}
+                            selectedFilters={selectedFilters}
+                        />
+                        <FilterComponent
+                            name='countries'
+                            options={filteredCountries}
+                            handleFilters={handleFilters}
+                            // isOpened={openedFilters.includes("countries")}
+                            isOpened={openedFilter === "countries"}
+                            handleItemSelection={handleItemSelection}
+                            selectedFilters={selectedFilters}
+                        />
+                        <FilterComponent
+                            name='collections'
+                            options={filtersList?.collections}
+                            handleFilters={handleFilters}
+                            // isOpened={openedFilters.includes("collections")}
+                            isOpened={openedFilter === "collections"}
+                            handleItemSelection={handleItemSelection}
+                            selectedFilters={selectedFilters}
+                        />
+                        <FilterComponent
+                            name='categories'
+                            options={filtersList?.categories}
+                            handleFilters={handleFilters}
+                            // isOpened={openedFilters.includes("categories")}
+                            isOpened={openedFilter === "categories"}
+                            handleItemSelection={handleItemSelection}
+                            selectedFilters={selectedFilters}
+                        />
+
+                    </>
+                )}
+
+
+
+                {/* {page === 'collections' && <FilterComponent
                     name='collections'
-                    options={collections}
+                    options={filtersList?.collections}
                     handleFilters={handleFilters}
                     // isOpened={openedFilters.includes("collections")}
                     isOpened={openedFilter === "collections"}
@@ -152,19 +282,19 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
                     selectedFilters={selectedFilters}
                 />}
 
-                 {page === 'destinations' && <FilterComponent
-                    name='countries'
-                    options={countries}
+                {page === 'destinations' && <FilterComponent
+                    name='destinations'
+                    options={filtersList?.destinations}
                     handleFilters={handleFilters}
-                    // isOpened={openedFilters.includes("countries")}
-                    isOpened={openedFilter === "countries"}
+                    isOpened={openedFilter === "destinations"}
                     handleItemSelection={handleItemSelection}
                     selectedFilters={selectedFilters}
-                />}
+                />
+                }
 
                 <FilterComponent
                     name='categories'
-                    options={categories}
+                    options={filtersList?.categories}
                     handleFilters={handleFilters}
                     // isOpened={openedFilters.includes("categories")}
                     isOpened={openedFilter === "categories"}
@@ -173,17 +303,18 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
                 />
 
                 <FilterComponent
-                    name='destinations'
-                    options={destinations}
+                    name='countries'
+                    options={filtersList?.countries}
                     handleFilters={handleFilters}
-                    isOpened={openedFilter === "destinations"}
+                    // isOpened={openedFilters.includes("countries")}
+                    isOpened={openedFilter === "countries"}
                     handleItemSelection={handleItemSelection}
                     selectedFilters={selectedFilters}
                 />
 
                 {page === 'destinations' && <FilterComponent
                     name='collections'
-                    options={collections}
+                    options={filtersList?.collections}
                     handleFilters={handleFilters}
                     // isOpened={openedFilters.includes("collections")}
                     isOpened={openedFilter === "collections"}
@@ -191,16 +322,15 @@ export default function FilterLayout({ page, selectedFilters, setSelectedFilters
                     selectedFilters={selectedFilters}
                 />}
 
-                  {page === 'collections' &&<FilterComponent
-                    name='countries'
-                    options={countries}
+                {page === 'collections' && <FilterComponent
+                    name='destinations'
+                    options={filtersList?.destinations}
                     handleFilters={handleFilters}
-                    // isOpened={openedFilters.includes("countries")}
-                    isOpened={openedFilter === "countries"}
+                    isOpened={openedFilter === "destinations"}
                     handleItemSelection={handleItemSelection}
                     selectedFilters={selectedFilters}
-                />}
-
+                />
+                } */}
             </div>
 
 

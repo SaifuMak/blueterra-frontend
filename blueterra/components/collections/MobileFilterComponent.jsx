@@ -35,10 +35,10 @@ export default function MobileFilterComponent({
                     {options?.map((option, index) => (
                         <div
                             key={index}
-                            onClick={() => handleItemSelection(name, option)}
-                            className={`w-fit flex items-center transition-all duration-500  px-2 border py-2 ${selectedFilters[name].includes(option) ? ' bg-sky-blue-1 text-white' : ' bg-white text-dark-28'}   px-2 cursor-pointer  rounded-md`}
+                            onClick={() => handleItemSelection(name, option?.title)}
+                            className={`w-fit flex items-center transition-all duration-500  px-2 border py-2 ${selectedFilters[name].includes(option?.title) ? ' bg-sky-blue-1 text-white' : ' bg-white text-dark-28'}   px-2 cursor-pointer  rounded-md`}
                         >
-                            <p className=" text-[14px] whitespace-nowrap">{option}</p>
+                            <p className=" text-[14px] whitespace-nowrap">{option?.title}</p>
                         </div>
                     ))}
                 </AccordionContent>

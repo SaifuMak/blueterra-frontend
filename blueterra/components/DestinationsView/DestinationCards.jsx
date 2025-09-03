@@ -41,7 +41,7 @@ export default function DestinationCards({ itineraryData }) {
 
                         <div className="px-7 py-4 lg:h-5/12   space-y-3 2xl:space-y-5">
                             <div className=" flex max-md:flex-col justify-between md:items-center">
-                                <p className="text-base font-normal max-sm:text-dark-4B">{trimWords(destination.title, 5)}</p>
+                                <p className="text-base font-normal max-sm:text-dark-4B">{trimWords(destination?.title, 5)}</p>
                                 <div className=" flex max-md:flex-col   md:items-center ">
                                     <div className=" flex space-x-0.5 ">
 
@@ -58,15 +58,15 @@ export default function DestinationCards({ itineraryData }) {
                                                 <IoIosStarOutline key={index} className="text-[#FFCB1F]" />
                                             );
                                         })}
-                                        <p className="text-sm ml-1 md:hidden font-normal">{destination.rating}</p>
+                                        <p className="text-sm ml-1 md:hidden font-normal">{destination?.rating}</p>
 
                                     </div>
-                                    <p className="text-sm ml-1 max-md:hidden font-normal">{destination.rating}</p>
-                                    <div className=" max-md:mt-2 rounded-full border flex justify-center md:ml-3  px-2 py-1.5 lg:px-2 xl:py-2 max-md:w-fit text-nowrap border-[#E4E4E4] text-xs text-[#828282]">{trimWords(destination.category, 3)}</div>
+                                    <p className="text-sm ml-1 max-md:hidden font-normal">{destination?.rating}</p>
+                                    <div className=" max-md:mt-2 rounded-full border flex justify-center md:ml-3  px-2 py-1.5 lg:px-2 xl:py-2 max-md:w-fit text-nowrap border-[#E4E4E4] text-xs text-[#828282]">{trimWords(destination?.category?.title, 3)}</div>
 
                                 </div>
                             </div>
-                            <h3 className=" xl:text-xl lg:text-lg   md:font-medium text-dark-4B ">{trimWords(destination.description, 16)}</h3>
+                            <h3 className=" xl:text-xl lg:text-lg   md:font-medium text-dark-4B ">{trimWords(destination?.description, 16)}</h3>
                             <div className=" flex justify-between text-sm">
                                 <div className=" text-base">
                                     From <span className="md:font-medium ">$3/person</span>

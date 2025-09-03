@@ -38,13 +38,13 @@ const Dropdown = ({ value, onChange, options, placeholder, className, isOpen, on
                         <div
                             key={idx}
                             onClick={() => {
-                                onChange(opt);
+                                onChange(opt?.title);
                                 onToggle(false);
                             }}
-                            className={`px-3 py-2 cursor-pointer  text-dark-28 hover:bg-gray-50 ${value === opt ? "bg-gray-200" : ""
+                            className={`px-3 py-2 cursor-pointer  text-dark-28 hover:bg-gray-50 ${value === opt?.title ? "bg-gray-200" : ""
                                 }`}
                         >
-                            {opt}
+                            {opt?.title}
                         </div>
                     ))}
                 </div>

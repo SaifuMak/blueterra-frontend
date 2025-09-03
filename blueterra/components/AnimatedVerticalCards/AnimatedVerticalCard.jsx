@@ -9,9 +9,7 @@ import Lottie from "lottie-react";
 
 
 
-
-
-export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading, setIsFilterVisible, isFilterVisible }) {
+export default function AnimatedVerticalCard({page, card, onClick, isExpanded, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading, setIsFilterVisible, isFilterVisible }) {
 
     const cardRef = useRef(null)
     const [canTrackMouse, setCanTrackMouse] = useState(false);
@@ -20,7 +18,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
 
     useEffect(() => {
-        console.log(isFullCardVisible, 'status of full card ')
+        // console.log(isFullCardVisible, 'status of full card ')
 
         if (cardRef.current) {
             // ease: 'elastic.out(1, 0.5)'
@@ -68,7 +66,7 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
     const handleMouseMove = (e) => {
         const rect = e.currentTarget.getBoundingClientRect();
-        console.log(rect);
+        // console.log(rect);
 
         setMousePos({
             x: e.clientX - rect.left,
@@ -105,9 +103,6 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
     };
 
 
-
-
-
     return (
         <div ref={cardRef}
             onClick={onClick}
@@ -115,13 +110,13 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMove}
             className={`flex-1 h-[100vh] ${!isExpanded ? 'cursor-pointer' : 'cursor-default'}  relative group   overflow-hidden bg-stone-50  text-white text-3xl   `} >
-            {card.title}
+            {/* {card.title} */}
 
             <div className='overflow-hidden relative w-full h-full  '>
 
                 <Image
-                    src={card.image}
-                    alt={card.alt}
+                    src={card?.banner_image_public_url}
+                    alt={card?.title}
                     fill
                     priority={true}
                     sizes="(max-width: 368px) 100vw, (max-width: 400px) 50vw, 33vw"
@@ -164,19 +159,19 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
 
                                 {/* <span className="text-4xl font-normal">{card.number}</span> */}
-                                <img src={card.icon} alt={card.tagline} className=" object-cover size-[52px]" />
+                                <img src={card.icon_public_url} alt={card.title} className=" object-cover size-[52px]" />
 
                                 <div className="bg-white/40 w-0.5 flex-1 my-3"></div>
 
                                 <p className=" rotate-180 text-3xl tracking-wide [writing-mode:vertical-rl]">
-                                    {card.tagline}
+                                    {card.title}
                                 </p>
                             </div>
 
                         ) : (
 
                             <div className=" flex-center h-full text-white ">
-                                <img src={card.icon} alt={card.tagline} className=" object-cover size-[30px] lg:size-[40px]" />
+                                <img src={card.icon_public_url} alt={card.title} className=" object-cover size-[30px] lg:size-[40px]" />
                             </div>
                         )}
 
@@ -192,9 +187,9 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
                                 <p className='  flex  text-white text-4xl 2xl:text-5xl '>
                                     {/* {card.number} */}
-                                    <img src={card.icon} alt={card.tagline} className=" object-cover size-[52px]" />
+                                    <img src={card.icon_public_url} alt={card.title} className=" object-cover size-[52px]" />
 
-                                    <span className={`font-medium ml-7 ${playfair.className} `}>{card.tagline}</span>
+                                    <span className={`font-medium ml-7 ${playfair.className} `}>{card.title}</span>
                                 </p>
                                 <hr className=' opacity-40 mt-5'></hr>
                             </div>}
@@ -209,13 +204,14 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
                                     ))}
                                 </div>
 
-                                <p className="  w-9/12 leading-relaxed ">Our Signature Journeys are the essence of what we do—thoughtfully curated travel experiences that reflect our passion for conscious exploration, cultural connection, and sustainable luxury.</p>
+                                <p className="  w-9/12 leading-relaxed ">{card?.description}</p>
 
-                                <div className="space-y-3 h-[190px] w-9/12 p-0 flex flex-col flex-wrap ">
-                                    {["Adventure & Exploration", "Luxury Escapes", "Romantic Getaways", "Cultural Immersion", "Historical Journeys", "Gastronomic Trails", "Nature & Wildlife Expeditions", "Safari Experiences", "Polar & Arctic Journeys",].map((feature, index) => (
-                                        <div key={index} className=" text-white flex items-center">  <img src="/Icons/dot.svg" alt="dot" className="w-2.5 h-2.5" /> <p className=" ml-3">{feature}</p></div>
+                              {page === 'collections' &&   <div className="space-y-3 h-[190px] w-9/12 p-0 flex flex-col flex-wrap ">
+                                    {card?.categories?.map((category, index) => (
+                                        <div key={index} className=" text-white flex items-center">  <img src="/Icons/dot.svg" alt="dot" className="w-2.5 h-2.5" /> <p className=" ml-3">{category?.title}</p></div>
                                     ))}
-                                </div>
+                                </div>}
+
                                 <button onClick={(e) => { e.stopPropagation(); handleHideFullCard(); }} className="hover:bg-white/15 hover:ring-2 ring-white/80  bg-sky-blue-1 px-20 py-2.5 transition-all duration-700 ease-in-out  cursor-pointer  text-[15px] font-medium rounded-sm  text-white w-fit h-fit">VIEW ALL</button>
 
                                 {/* <button onClick={(e) => { e.stopPropagation(); handleHideFullCard(); }} className=" w-[250px] cursor-pointer    py-2 font-medium  rounded-full bg-white/90  text-brand-blue">VIEW ALL</button> */}
@@ -224,8 +220,8 @@ export default function AnimatedVerticalCard({ card, onClick, isExpanded, isFull
 
                             {!isFullCardVisible && (<div className=" absolute bottom-3  lg:bottom-2 w-10/12 flex items-center justify-between ">
                                 <p className=' flex  items-center  text-white text-lg lg:text-2xl font-extralight '>
-                                    <img src={card.icon} alt={card.tagline} className=" object-cover size-[28px] lg:size-[38px]" />
-                                    <span className='font-normal ml-2 lg:ml-3 text-nowrap'>{card.tagline}</span>
+                                    <img src={card.icon_public_url} alt={card.title} className=" object-cover size-[28px] lg:size-[38px]" />
+                                    <span className='font-normal ml-2 lg:ml-3 text-nowrap'>{card.title}</span>
                                 </p>
 
                                 <button onClick={(e) => { e.stopPropagation(); setIsFilterVisible(!isFilterVisible); }} className="hover:bg-white/15 hover:ring-2 ring-white/80 flex items-center  bg-sky-blue-1 px-2 lg:px-4 py-1 lg:py-1.5 w-fit h-fit  text-nowrap transition-all duration-700 ease-in-out  cursor-pointer  text-[15px] font-normal rounded-sm max-lg:text-sm  text-white"><span className="mr-3"><img src='/Icons/filter.svg' className='lg:size-4 size-3 '></img></span>{isFilterVisible ? 'Hide Filters' : 'Show Filters'} </button>
