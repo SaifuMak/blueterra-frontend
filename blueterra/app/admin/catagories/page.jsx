@@ -1,14 +1,19 @@
 'use client'
 import Sidebar from "@/components/admin/Sidebar";
 import Navbar from "@/components/admin/Navbar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Dropdown from "@/components/admin/Itinerary/DropDown";
 import AXIOS_INSTANCE from "@/lib/axios";
 import { toast } from "sonner";
 import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
 import { RxCross2 } from '@/components/reactIcons'
+import BasicDropDown from "@/components/admin/Itinerary/BasicDropDown";
+
+
 
 export default function Categories() {
+
+     const [loading, setLoading] = useState(true); // loading state
 
     const [categoryTitle, setCategoryTitle] = useState('')
     const [categoryTitleForEditing, setCategoryTitleForEditing] = useState('')
@@ -29,6 +34,8 @@ export default function Categories() {
     const [itemToBeEdited, setItemToBeEdited] = useState(null)
 
     const rowStyle = 'px-4 py-6 border-t border-gray-100/10'
+    const tableRef = useRef()
+
 
     const handleDeleteCategory = (id) => {
         setIsDeleteModal(true)
@@ -42,6 +49,16 @@ export default function Categories() {
         setCategoryTitleForEditing(item?.title)
     }
 
+    const scrollDownTable = () => {
+        if (tableRef.current) {
+            tableRef.current.scrollTo({
+                top: tableRef.current.scrollHeight,
+                behavior: "smooth", // smooth scroll
+            });
+        }
+    };
+
+
     const fetchCollections = async () => {
         try {
             const response = await AXIOS_INSTANCE.get('collections-list/')
@@ -49,6 +66,7 @@ export default function Categories() {
         } catch (error) {
             console.error(error)
         }
+        
     }
 
     const fetchCategories = async () => {
@@ -57,6 +75,9 @@ export default function Categories() {
             setCategoryData(response.data)
         } catch (error) {
             console.error(error)
+        }
+        finally{
+            setLoading(false)
         }
     }
 
@@ -106,6 +127,11 @@ export default function Categories() {
             setCategoryTitle('')
             toast.success(response?.data?.message)
             fetchCategories()
+
+            setTimeout(() => {
+                scrollDownTable()
+            }, 500);
+
         } catch (error) {
             console.error(error)
         }
@@ -127,6 +153,8 @@ export default function Categories() {
         fetchCollections()
         fetchCategories()
     }, [])
+
+
 
     return (
         <div className="h-screen w-full">
@@ -159,8 +187,8 @@ export default function Categories() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="font-medium">Related Collection</label>
-                                        <Dropdown
+                                        <label className="font-medium">Parent Collection</label>
+                                        <BasicDropDown
                                             value={collection}
                                             onChange={setCollection}
                                             options={collectionOptions}
@@ -178,10 +206,12 @@ export default function Categories() {
                         </form>
 
                         {/* Category Table */}
-                        <div className="w-2/3 ml-20 rounded-lg max-h-96 overflow-y-auto ">
+                        <div ref={tableRef} className="w-2/3 ml-20 rounded-lg max-h-96 overflow-y-auto ">
                             <table className="w-full text-lg text-left text-gray-700">
                                 <thead className="bg-[#394C5D] sticky top-0 text-white">
                                     <tr>
+                                        <th className="px-4 py-5 font-normal">sno</th>
+
                                         <th className="px-4 py-5 font-normal">Category</th>
                                         <th className="px-4 py-5 font-normal">Collection</th>
                                         <th className="px-4 py-5 text-center font-normal text-nowrap">Actions</th>
@@ -189,40 +219,54 @@ export default function Categories() {
                                 </thead>
 
                                 <tbody className="bg-white">
-                                    {categoryData?.length > 0 ? (
-                                        categoryData.map((item, index) => (
-                                            <tr key={index}>
-                                                <td className={rowStyle}>{item?.title}</td>
-                                                <td className={rowStyle}>{item?.collection?.title}</td>
-                                                <td className={rowStyle}>
-                                                    <div className="flex justify-center space-x-10">
-                                                        <TooltipWrapper message="Edit">
-                                                            <img
-                                                                onClick={() => handleEditCategory(item)}
-                                                                src="/Icons/edit-black.svg"
-                                                                alt="edit"
-                                                                className="size-4 cursor-pointer"
-                                                            />
-                                                        </TooltipWrapper>
-                                                        <TooltipWrapper message="Delete">
-                                                            <img
-                                                                onClick={() => handleDeleteCategory(item.id)}
-                                                                src="/Icons/delete.svg"
-                                                                alt="delete"
-                                                                className="size-4 cursor-pointer"
-                                                            />
-                                                        </TooltipWrapper>
+                                    {
+                                        loading ? (
+                                            <tr>
+                                                <td colSpan={4} className="text-center py-20">
+                                                    <div className="flex items-center justify-center space-x-3">
+                                                        <span className="text-gray-600">Loading...</span>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        ))
-                                    ) : (
-                                        <tr>
-                                            <td colSpan={3} className="text-center py-6 text-gray-500">
-                                                No results found
-                                            </td>
-                                        </tr>
-                                    )}
+                                        ) :
+                                            categoryData?.length > 0 ? (
+                                                categoryData.map((item, index) => (
+                                                    <tr key={index}>
+                                                        <td className={rowStyle}>{index + 1}</td>
+
+                                                        <td className={rowStyle}>{item?.title}</td>
+                                                        <td className={rowStyle}>{item?.collection?.title}</td>
+                                                        <td className={rowStyle}>
+                                                            <div className="flex justify-center space-x-10">
+                                                                <TooltipWrapper message="Edit">
+                                                                    <img
+                                                                        onClick={() => handleEditCategory(item)}
+                                                                        src="/Icons/edit-black.svg"
+                                                                        alt="edit"
+                                                                        className="size-4 cursor-pointer"
+                                                                    />
+                                                                </TooltipWrapper>
+                                                                <TooltipWrapper message="Delete">
+                                                                    <img
+                                                                        onClick={() => handleDeleteCategory(item.id)}
+                                                                        src="/Icons/delete.svg"
+                                                                        alt="delete"
+                                                                        className="size-4 cursor-pointer"
+                                                                    />
+                                                                </TooltipWrapper>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            ) : (
+
+                                                <tr>
+                                                    <td colSpan={3} className="text-center py-6 text-gray-500">
+                                                        No results found
+                                                    </td>
+                                                </tr>
+                                            )}
+
                                 </tbody>
 
                             </table>
@@ -274,8 +318,8 @@ export default function Categories() {
                                             />
                                         </div>
                                         <div>
-                                            <label className="font-medium">Related Collection</label>
-                                            <Dropdown
+                                            <label className="font-medium">Parent Collection</label>
+                                            <BasicDropDown
                                                 value={collectionForEditing}
                                                 onChange={setCollectionForEditing}
                                                 options={collectionOptions}
@@ -299,6 +343,6 @@ export default function Categories() {
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     )
 }

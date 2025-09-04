@@ -206,7 +206,7 @@ export default function AnimatedVerticalCard({page, card, onClick, isExpanded, i
 
                                 <p className="  w-9/12 leading-relaxed ">{card?.description}</p>
 
-                              {page === 'collections' &&   <div className="space-y-3 h-[190px] w-9/12 p-0 flex flex-col flex-wrap ">
+                              {page === 'collections' &&   <div className="space-y-3 h-[190px] w-9/12 p-0 flex flex-col gap-x-5 flex-wrap ">
                                     {card?.categories?.map((category, index) => (
                                         <div key={index} className=" text-white flex items-center">  <img src="/Icons/dot.svg" alt="dot" className="w-2.5 h-2.5" /> <p className=" ml-3">{category?.title}</p></div>
                                     ))}

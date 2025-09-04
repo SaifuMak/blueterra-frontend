@@ -91,7 +91,7 @@ export default function Destination() {
   const handleChangeCollectionForMobile = (indexOfCollection) => {
 
     console.log(indexOfCollection, 'this is the index of banner that requested to  expand in destinations');
-    
+
     setSelectedVerticalTileMobile(indexOfCollection)
   }
 
@@ -101,9 +101,13 @@ export default function Destination() {
 
   const handleNavClick = (link) => {
 
-    if (link === '/collections') {
+    if (link === '/destinations') {
       setIsfullCardEnabledForFirstTime(false)
       setIsFullCardVisible(true)
+      setIsLoading(true)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 500);
     }
 
   };
@@ -225,7 +229,9 @@ export default function Destination() {
 
     }
     finally {
-      setDestinationLoading(false)
+      setTimeout(() => {
+        setDestinationLoading(false)
+      }, 500);
     }
   }
 
@@ -244,7 +250,6 @@ export default function Destination() {
   }, [])
 
 
-
   return (
     <>
 
@@ -261,7 +266,7 @@ export default function Destination() {
 
           {isMobile ? (
             <MobileAnimatedVerticalCard
-            page='destinations'
+              page='destinations'
               CardData={destinationsData}
               selectedVerticalTileMobile={selectedVerticalTileMobile}
               setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
@@ -270,7 +275,7 @@ export default function Destination() {
             />
           ) : (
             <BannerAnimation
-            page='destinations'
+              page='destinations'
               CardData={destinationsData}
               expandedIndex={expandedIndex}
               setExpandedIndex={setExpandedIndex}
@@ -331,7 +336,7 @@ export default function Destination() {
 
           <MobileFilterPopup
             page='destinations'
-              filtersList={filtersList}
+            filtersList={filtersList}
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
             showMobileFilter={showMobileFilter}

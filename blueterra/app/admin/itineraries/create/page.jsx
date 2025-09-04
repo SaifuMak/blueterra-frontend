@@ -111,7 +111,7 @@ export default function CreateItinerary() {
         try {
             const response = await AXIOS_INSTANCE.post(`create-itinerary/`, formData)
             toast.success(response.data.message)
-            // handleReset()
+            handleReset()
 
         }
         catch (e) {
@@ -131,9 +131,7 @@ export default function CreateItinerary() {
 
         const isPublish = e.nativeEvent.submitter.value === "publish";
 
-        console.log(isPublish, 'this is the publish status -------------');
-
-
+        // console.log(isPublish, 'this is the publish status -------------');
 
         if (!selectedBannerImageFile) {
             toast.error("Banner image is not uploaded!");
@@ -271,7 +269,7 @@ export default function CreateItinerary() {
         );
 
         setCountry(""); // reset only country
-    }, [destination, filtersList]);
+    }, [destination]);
 
     // when collection changes → filter categories + reset category
     useEffect(() => {
@@ -284,7 +282,7 @@ export default function CreateItinerary() {
         );
 
         setCategory(""); // reset only category
-    }, [collection, filtersList]);
+    }, [collection]);
 
 
     return (

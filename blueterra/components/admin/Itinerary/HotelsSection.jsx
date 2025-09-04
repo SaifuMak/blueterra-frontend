@@ -1,7 +1,7 @@
 import React from 'react'
 import ImageUploader from './ImageUploader'
 import { useRef } from 'react';
-import {IoIosStarOutline, IoIosStar, IoIosStarHalf } from '@/components/reactIcons'
+import { IoIosStarOutline, IoIosStar, IoIosStarHalf } from '@/components/reactIcons'
 import ReorderIcons from '../ReorderIcons';
 
 function HotelsSection({ hotels, setHotels, textAreaStyle, inputStyle, handleReorder }) {
@@ -65,7 +65,7 @@ function HotelsSection({ hotels, setHotels, textAreaStyle, inputStyle, handleReo
 
                     <div className=" flex w-full space-x-4 ">
                         <input type="text" value={hotel.coordinates} onChange={(e) => handleHotelChange(index, 'coordinates', e.target.value)} placeholder="Coordinates" className={`${inputStyle}`} required />
-                        <input type="text" value={hotel.mapLink} onChange={(e) => handleHotelChange(index, 'mapLink', e.target.value)} placeholder="Google Maps link" className={`${inputStyle}`}  required/>
+                        <input type="text" value={hotel.mapLink} onChange={(e) => handleHotelChange(index, 'mapLink', e.target.value)} placeholder="Google Maps link" className={`${inputStyle}`} required />
                     </div>
 
                     <div className=" flex w-full space-x-8 mt-4  ">
@@ -77,15 +77,25 @@ function HotelsSection({ hotels, setHotels, textAreaStyle, inputStyle, handleReo
                         />
 
                     </div>
-                     {hotel.image_public_url &&  typeof hotel.image === "string" && (
-                    <button
-                    type='button'
-                        onClick={() => window.open(hotel.image_public_url, "_blank")}
-                        className="px-3 py-1 bg-sky-blue-dark text-sm w-fit text-white rounded transition"
-                    >
-                        View Image
-                    </button>
-                )}
+
+                    <div className=" flex items-center ">
+                        {hotel.image_public_url && typeof hotel.image === "string" && (
+                            <button
+                                type='button'
+                                onClick={() => window.open(hotel.image_public_url, "_blank")}
+                                className="px-3 py-1 cursor-pointer bg-sky-blue-dark text-sm w-fit text-white rounded transition"
+                            >
+                                View Image
+                            </button>
+                        )}
+
+                        {hotel.image_public_url && typeof hotel.image === "string" && (
+                            <div className="  ml-7 bg-slate-50">
+                                <img src={hotel.image_public_url} alt="banner" className=" w-16 h-10 object-cover rounded-sm" />
+                            </div>
+                        )}
+
+                    </div>
 
 
                     <div className=" absolute flex items-center space-x-3 -right-48 top-16">

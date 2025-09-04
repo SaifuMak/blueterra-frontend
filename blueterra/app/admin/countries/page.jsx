@@ -1,19 +1,23 @@
 'use client'
 import Sidebar from "@/components/admin/Sidebar";
 import Navbar from "@/components/admin/Navbar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Dropdown from "@/components/admin/Itinerary/DropDown";
 import AXIOS_INSTANCE from "@/lib/axios";
 import { toast } from "sonner";
 import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
 import { IoEyeOutline, IoEyeOffOutline, RxCross2, AiOutlineCheck } from '@/components/reactIcons'
-
+import BasicDropDown from "@/components/admin/Itinerary/BasicDropDown";
 
 
 export default function Countries() {
 
     const [countryTitle, setCountryTitle] = useState('')
     const [countryTitleForEditing, setCountryTitleForEditing] = useState('')
+
+    const tableRef = useRef()
+     const [loading, setLoading] = useState(true); // loading state
+
 
 
     const [countryData, setCountryData] = useState([])
@@ -50,6 +54,15 @@ export default function Countries() {
         setCountryTitleForEditing(item?.title)
     }
 
+    const scrollDownTable = () => {
+        if (tableRef.current) {
+            tableRef.current.scrollTo({
+                top: tableRef.current.scrollHeight,
+                behavior: "smooth", // smooth scroll
+            });
+        }
+    };
+
 
     const fetchDestinations = async () => {
         try {
@@ -80,6 +93,7 @@ export default function Countries() {
 
         }
         finally {
+            setLoading(false)
         }
     }
 
@@ -132,6 +146,10 @@ export default function Countries() {
             setCountryTitle('')
             toast.success(response?.data?.message)
             fetchCountries()
+            setTimeout(() => {
+                scrollDownTable()
+            }, 500);
+
         }
         catch (error) {
 
@@ -204,9 +222,9 @@ export default function Countries() {
 
                                     <div>
                                         <label htmlFor="text" className="font-medium">
-                                            Related Destination
+                                            Parent Destination
                                         </label>
-                                        <Dropdown
+                                        <BasicDropDown
                                             value={destination}
                                             onChange={setDestination}
                                             options={destinationOptions}
@@ -224,10 +242,12 @@ export default function Countries() {
                             </div>
                         </form>
 
-                        <div className=" w-2/3 ml-20  rounded-lg max-h-96  overflow-y-auto ">
+                        <div ref={tableRef} className=" w-2/3 ml-20  rounded-lg max-h-96  overflow-y-auto ">
                             <table className="w-full text-lg   text-left text-gray-700">
                                 <thead className="bg-[#394C5D] sticky top-0 text-white  ">
                                     <tr>
+                                        <th className="px-4 py-5 font-normal">sno</th>
+
                                         <th className="px-4 py-5 font-normal ">Country</th>
                                         <th className="px-4 py-5 font-normal ">Destination</th>
 
@@ -237,40 +257,52 @@ export default function Countries() {
 
 
                                 <tbody className="bg-white">
-                                    {countryData?.length > 0 ? (
-                                        countryData.map((item, index) => (
-                                            <tr key={index}>
-                                                <td className={rowStyle}>{item?.title}</td>
-                                                <td className={rowStyle}>{item?.destination?.title}</td>
-                                                <td className={rowStyle}>
-                                                    <div className="flex justify-center space-x-10">
-                                                        <TooltipWrapper message="Edit">
-                                                            <img
-                                                                onClick={() => handleEditCountry(item)}
-                                                                src="/Icons/edit-black.svg"
-                                                                alt="edit"
-                                                                className="size-4 cursor-pointer"
-                                                            />
-                                                        </TooltipWrapper>
-                                                        <TooltipWrapper message="Delete">
-                                                            <img
-                                                                onClick={() => handleDeleteCountry(item.id)}
-                                                                src="/Icons/delete.svg"
-                                                                alt="delete"
-                                                                className="size-4 cursor-pointer"
-                                                            />
-                                                        </TooltipWrapper>
+                                    {
+                                        loading ? (
+                                            <tr>
+                                                <td colSpan={4} className="text-center py-20">
+                                                    <div className="flex items-center justify-center space-x-3">
+                                                        <span className="text-gray-600">Loading...</span>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        ))
-                                    ) : (
-                                        <tr>
-                                            <td colSpan={3} className="text-center py-6 text-gray-500">
-                                                No results found
-                                            </td>
-                                        </tr>
-                                    )}
+                                        ) :
+                                            countryData?.length > 0 ? (
+                                                countryData.map((item, index) => (
+                                                    <tr key={index}>
+                                                        <td className={rowStyle}>{index + 1}</td>
+
+                                                        <td className={rowStyle}>{item?.title}</td>
+                                                        <td className={rowStyle}>{item?.destination?.title}</td>
+                                                        <td className={rowStyle}>
+                                                            <div className="flex justify-center space-x-10">
+                                                                <TooltipWrapper message="Edit">
+                                                                    <img
+                                                                        onClick={() => handleEditCountry(item)}
+                                                                        src="/Icons/edit-black.svg"
+                                                                        alt="edit"
+                                                                        className="size-4 cursor-pointer"
+                                                                    />
+                                                                </TooltipWrapper>
+                                                                <TooltipWrapper message="Delete">
+                                                                    <img
+                                                                        onClick={() => handleDeleteCountry(item.id)}
+                                                                        src="/Icons/delete.svg"
+                                                                        alt="delete"
+                                                                        className="size-4 cursor-pointer"
+                                                                    />
+                                                                </TooltipWrapper>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            ) : (
+                                                <tr>
+                                                    <td colSpan={3} className="text-center py-6 text-gray-500">
+                                                        No results found
+                                                    </td>
+                                                </tr>
+                                            )}
                                 </tbody>
 
 
@@ -317,9 +349,9 @@ export default function Countries() {
 
                                     <div>
                                         <label htmlFor="text" className="font-medium">
-                                            Related Destination
+                                            Parent Destination
                                         </label>
-                                        <Dropdown
+                                        <BasicDropDown
                                             value={destinationForEditing}
                                             onChange={setDestinationForEditing}
                                             options={destinationOptions}

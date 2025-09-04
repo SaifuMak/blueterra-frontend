@@ -313,8 +313,8 @@ export default function EditItinerary() {
                 : filtersList.countries
         );
 
-        setCountry(""); // reset only country
-    }, [destination, filtersList]);
+        setCountry(""); 
+    }, [destination]);
 
     // when collection changes → filter categories + reset category
     useEffect(() => {
@@ -326,8 +326,8 @@ export default function EditItinerary() {
                 : filtersList.categories
         );
 
-        setCategory(""); // reset only category
-    }, [collection, filtersList]);
+        setCategory(""); 
+    }, [collection]);
 
 
 

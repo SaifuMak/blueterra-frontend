@@ -70,16 +70,25 @@ const DaysSection = ({ textAreaStyle, inputStyle, days, setDays, handleReorder }
 
 
                     </div>
-                 
-                      {day.image_public_url && typeof day.image === "string" && (
-                    <button
-                    type='button'
-                        onClick={() => window.open(day.image_public_url, "_blank")}
-                        className="px-3 py-1 bg-sky-blue-dark text-sm w-fit text-white rounded transition"
-                    >
-                        View Image
-                    </button>
-                )}
+
+                    <div className=" flex items-center">
+
+                        {day.image_public_url && typeof day.image === "string" && (
+                            <button
+                                type='button'
+                                onClick={() => window.open(day.image_public_url, "_blank")}
+                                className="px-3 py-1 cursor-pointer bg-sky-blue-dark text-sm w-fit text-white rounded transition"
+                            >
+                                View Image
+                            </button>
+                        )}
+
+                        {day.image_public_url && typeof day.image === "string" && (
+                            <div className="  ml-7 bg-slate-50">
+                                <img src={day.image_public_url} alt="banner" className=" w-16 h-10 object-cover rounded-sm" />
+                            </div>
+                        )}
+                    </div>
 
                     <div className=" absolute flex items-center -right-48 top-16">
                         <ReorderIcons handleReorder={handleReorder} index={index} handleDelete={handleDeleteDay} arrayOfElements={days} setElements={setDays} />

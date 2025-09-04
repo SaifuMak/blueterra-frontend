@@ -45,11 +45,11 @@ export default function Collection() {
 
   const [isLoading, setIsLoading] = useState(true)
   const [itineraryData, setItineraryData] = useState(null)
-  
+
   const [collectionsData, setCollectionsData] = useState([])
   const [collectionsLoading, setCollectionsLoading] = useState(true)
 
-    const [filtersList, setFiltersList] = useState(null)
+  const [filtersList, setFiltersList] = useState(null)
 
 
   // zoho form 
@@ -101,6 +101,11 @@ export default function Collection() {
     if (link === '/collections') {
       setIsfullCardEnabledForFirstTime(false)
       setIsFullCardVisible(true)
+      setIsLoading(true)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 500);
+    
     }
 
   };
@@ -190,7 +195,10 @@ export default function Collection() {
 
     }
     finally {
-      setCollectionsLoading(false)
+      setTimeout(() => {
+        setCollectionsLoading(false)
+
+      }, 500);
     }
   }
 
@@ -252,7 +260,7 @@ export default function Collection() {
 
           {isMobile ? (
             <MobileAnimatedVerticalCard
-            page='collections'
+              page='collections'
               CardData={collectionsData}
               selectedVerticalTileMobile={selectedVerticalTileMobile}
               setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
@@ -260,7 +268,7 @@ export default function Collection() {
             />
           ) : (
             <BannerAnimation
-            page='collections'
+              page='collections'
               CardData={collectionsData}
               expandedIndex={expandedIndex}
               setExpandedIndex={setExpandedIndex}
@@ -298,8 +306,8 @@ export default function Collection() {
               handleScrollToItineraryResults={handleScrollToItineraryResults}
             />}
 
-            
-            
+
+
 
             <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
               {isLoading ? (
@@ -321,7 +329,7 @@ export default function Collection() {
 
           <MobileFilterPopup
             page='collections'
-             filtersList={filtersList}
+            filtersList={filtersList}
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
             showMobileFilter={showMobileFilter}
@@ -331,7 +339,7 @@ export default function Collection() {
             expandedBannerCollectionIndex={selectedVerticalTileMobile}
             handleChangeCollection={handleChangeCollectionForMobile}
           />
-         
+
           <Footer />
           <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
 

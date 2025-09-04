@@ -86,15 +86,24 @@ function BannerSection({
                     </div>
                 )}
                 
+
+                <div className=" flex  my-5 items-center">
                 {selectedBannerImageUrl  && !hasUserDeletedOrChangedImageFile && (
                     <button
                     type='button'
                         onClick={() => window.open(selectedBannerImageUrl, "_blank")}
-                        className="px-3 py-1 bg-sky-blue-dark text-sm text-white rounded transition"
+                        className="px-3 py-1 cursor-pointer h-fit bg-sky-blue-dark text-sm text-white rounded transition"
                     >
                         View Image
                     </button>
                 )}
+
+                 {selectedBannerImageUrl  && !hasUserDeletedOrChangedImageFile && (
+                   <div className="  ml-7 bg-slate-50">
+                    <img src={selectedBannerImageUrl} alt="banner" className=" w-16 h-10 object-cover rounded-sm" />
+                   </div>
+                )}
+                </div>
 
 
             </div>
