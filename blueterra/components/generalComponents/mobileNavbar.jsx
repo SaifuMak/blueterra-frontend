@@ -11,18 +11,18 @@ import { usePathname } from "next/navigation";
 import ZohoFormModal from "../Forms/ZohoFormModal";
 
 
-export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened}) {
+export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened }) {
 
     const pathname = usePathname()
 
-  const [formOpen, setFormOpen] = useState(false);
+    const [formOpen, setFormOpen] = useState(false);
 
 
 
     return (
         <>
 
-            <div className={` ${rubik.className} w-full flex flex-col relative   z-30 justify-center`}>
+            <div className={` ${rubik.className} w-full flex flex-col relative   z-50 justify-center`}>
 
                 <div className="flex justify-between w-full  h-[50px] items-center pr-5 ">
                     <Link href='/'>
@@ -56,7 +56,7 @@ export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened}
                 </div> */}
 
 
-                <div className={`w-full h-[120vh]  inset-0 absolute transform duration-1000 ease-in-out  transition-transform ${isMenuOpened ? 'translate-x-0' : '-translate-x-[900px]'}  `}>
+                <div className={`w-full h-[120vh]  z-[999px] inset-0 absolute transform duration-1000 ease-in-out  transition-transform ${isMenuOpened ? 'translate-x-0' : 'md:-translate-x-[1000px] -translate-x-[800px]'}  `}>
                     <div className={` shadow-lg bg-white  overflow-hidden  px-5 py-3  flex  flex-col  h-screen`}>
 
                         <div className="  min-h-[50px] flex justify-end ">
@@ -72,7 +72,7 @@ export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened}
                             {MenuItems.map((items, index) => (
                                 <Link key={index} href={items.link} className={`${items.url === pathname ? ' text-brand-blue' : ' text-dark-28'}`}>{items.nav}</Link>
                             ))}
-                            <Button text='PLAN YOUR EXPERIENCE' buttonStyle='text-nowrap max-md:text-[12px] px-4 lg:px-2 xl:px-6 py-1.5 lg:py-2 ' isHoverWhiteApplied={false}  onClickFunction={() => setFormOpen(true)} />
+                            <Button text='PLAN YOUR EXPERIENCE' buttonStyle='text-nowrap max-md:text-[12px] px-4 lg:px-2 xl:px-6 py-1.5 lg:py-2 ' isHoverWhiteApplied={false} onClickFunction={() => setFormOpen(true)} />
 
                             {/* <Link href="/" className="   px-4 rounded-sm   bg-sky-blue-1  text-white w-fit py-1">Contact us</Link> */}
 
@@ -81,8 +81,8 @@ export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened}
                 </div>
 
             </div>
-                  <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
-            
+            <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
+
         </>
     )
 }

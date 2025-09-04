@@ -118,7 +118,7 @@ export default function Footer() {
                             Trusted partners, seamless planning, and stories you’ll carry long after the journey ends.</p>
                     </div>
 
-                    <div className=" flex max-md:flex-col  2xl:space-x-10 xl:space-x-10 space-x-5  ">
+                    <div className=" flex max-md:flex-col  2xl:space-x-10 xl:space-x-10 space-x-5 ml-5 xl:ml-10  ">
                         {Object.entries(footerLinks).map(([section, links]) => (
                             <div key={section} className=" flex flex-col ">
                                 <h6 className=" text-lg  font-normal md:mb-5  max-md:mt-5 max-md:mb-2">{section}</h6>
@@ -126,11 +126,11 @@ export default function Footer() {
                                     {Object.entries(links).map(([LinkText, link]) => (
                                         <li key={LinkText}>
                                             {LinkText === "Careers" ? (
-                                                <a href="mailto:connect@myblueterra.com" className="text-nowrap hover:opacity-80 transition">
+                                                <a href="mailto:connect@myblueterra.com" className=" hover:opacity-80 transition">
                                                     {LinkText}
                                                 </a>
                                             ) : (
-                                                <Link href={link} className="text-nowrap hover:opacity-80 transition">
+                                                <Link href={link} className=" hover:opacity-80 transition">
                                                     {LinkText}
                                                 </Link>
                                             )}

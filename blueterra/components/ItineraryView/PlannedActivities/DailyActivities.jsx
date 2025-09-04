@@ -5,12 +5,15 @@ import { MdOutlineKeyboardArrowRight, MdInfoOutline, IoMdArrowDropup } from '../
 
 import ReactTooltip from "@/components/generalComponents/ReactTooltip"
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
+import { useIsTablet } from "@/app/hooks/useIsTablet"
 
 export default function DailyActivities({ expandCards, index, selectedTab, itineraryData, lockScreen, unLockScreen }) {
 
     const [OpenedAccordian, setOpenedAccordian] = useState([])
 
     const accordiansRef = useRef([])
+
+    const isTablet = useIsTablet()
 
     const handleAccordion = (index) => {
         if (selectedTab !== 'Daily Schedule') {
@@ -61,7 +64,7 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
         <>
 
-            <div className="  w-full overflow-y-auto h-full  flex flex-col px-1 lg:pl-[44px]  max-xl:text-sm  xl:pl-[44px]  space-y-2 content-between text-base ">
+            <div className="  w-full  overflow-y-auto h-full  flex flex-col px-1 pl-12 lg:pl-[44px]  max-xl:text-sm  xl:pl-[44px]  space-y-2 content-between text-base ">
 
                 <div onMouseEnter={lockScreen} onMouseLeave={unLockScreen} className="  w-full">
 
@@ -74,7 +77,13 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
                             <div className=" flex w-full flex-col pl-5 mb-4  ">
                                 <div className=" border border-[#DCDCE3] rounded-sm">
-                                    <div onClick={() => handleAccordion(index)} className={`  flex font-normal  justify-between rounded-t-sm text-sm items-center py-1.5 ${OpenedAccordian.includes(index) ? ' bg-[#3A938C] text-white' : ''}  pl-4 pr-2 cursor-pointer`}>
+                                    <div onClick={() => handleAccordion(index)} className={`  flex font-normal  justify-between rounded-t-sm text-sm items-center py-1.5   pl-4 pr-2 cursor-pointer`}
+                                        style={{
+                                            backgroundColor: OpenedAccordian.includes(index)
+                                                ? itineraryData.color
+                                                : "transparent",
+                                            color: OpenedAccordian.includes(index) ? "white" : "black",
+                                        }}>
                                         {data.title}
                                         <span className={`transition-all duration-300  ${OpenedAccordian.includes(index) ? 'rotate-90' : 'rotate-0'}`}><MdOutlineKeyboardArrowRight className=" text-xl" /></span>
                                     </div>

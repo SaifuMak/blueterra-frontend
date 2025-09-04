@@ -26,6 +26,9 @@ import TravelInfo from "@/components/ItineraryView/TravelInfo";
 import GalleryList from "@/components/ItineraryView/PlannedActivities/GalleryList";
 import AXIOS_INSTANCE from "@/lib/axios";
 import LoaderIcon from "@/components/generalComponents/LoaderIcon";
+import PlannedActivitiesMobile from "@/components/ItineraryView/PlannedActivities/Mobile/PlannedActivitiesMobile";
+import { useIsTablet } from "@/app/hooks/useIsTablet";
+
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -35,6 +38,8 @@ export default function ItineraryView() {
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(true)
     const [itineraryData, setItineraryData] = useState(null)
+
+    const isTablet = useIsTablet()
 
     // zoho form 
     const [formOpen, setFormOpen] = useState(false);
@@ -190,7 +195,7 @@ export default function ItineraryView() {
                 ) : (
                     <div className={`${rubik.className}`}>
 
-                        <div className="relative  w-full min-h-[90vh] ">
+                        <div className="relative  w-full min-h-[100vh] ">
                             {/* Fixed Background */}
                             <div className="fixed inset-0 -z-10">
                                 <Image src={itineraryData?.banner_image_public_url} alt="forest" fill className="" priority />
@@ -201,17 +206,17 @@ export default function ItineraryView() {
 
                             <div ref={bannerContainer} className="   h-full flex  ">
 
-                                <div className=" text-white z-30 mt-10  flex flex-col  justify-between  text-center w-full h-full   ">
+                                <div className=" text-white z-30 mt-24  flex flex-col  justify-between  text-center w-full h-full   ">
 
                                     <div className={`${playfair.className}`}>
-                                        <p className=" text-[100px] opacity-0 vertically-animate-element font-medium">{itineraryData.title}</p>
-                                        <p className=" text-white/30 opacity-0 vertically-animate-element font-medium h-fit -mt-28 text-[250px]">{itineraryData.location_title}</p>
+                                        <p className=" text-[45px] md:text-[80px] xl:text-[100px] opacity-0 vertically-animate-element font-medium">{itineraryData.title}</p>
+                                        <p className=" text-white/30 opacity-0 vertically-animate-element font-medium h-fit -mt-6  md:-mt-16 lg:-mt-20  xl:-mt-28 text-[70px] md:text-[150px] lg:text-[200px] xl:text-[250px]">{itineraryData.location_title}</p>
                                     </div>
 
                                     <div className=" space-y-5  text-center flex font-light flex-col items-center">
                                         {/* <p className=" text-[25px] opacity-0 vertically-animate-element leading-9 w-5/12">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities, carefully selected destinations, accommodations, transportation details, and unique experiences.</p>
                                     <p className=" w-4/12 text-xl opacity-0 vertically-animate-element leading-9">A comprehensive and meticulously curated document that presents a day-by-day breakdown of your travel journey, featuring thoughtfully.</p> */}
-                                        <p className=" w-8/12 text-[22px] opacity-0 vertically-animate-element my-10 font-light leading-10">{itineraryData.description}</p>
+                                        <p className=" 2xl:w-8/12 xl:w-9/12 md:w-9/12 w-10/12 text-sm md:text-lg xl:text-xl 2xl:text-[22px] opacity-0 vertically-animate-element 2xl:my-10 font-light leading-6 md:leading-7 xl:leading-9">{itineraryData.description}</p>
                                         <Button text='START PLANNING' buttonStyle={` opacity-0 vertically-animate-element font-normal transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `} onClickFunction={() => setFormOpen(true)} />
                                     </div>
 
@@ -220,23 +225,33 @@ export default function ItineraryView() {
                         </div>
 
 
-                        <div className=" w-full bg-white relative   min-h-screen flex flex-col items-center ">
+                        {!isTablet && <div className=" w-full bg-white relative  min-h-screen flex flex-col items-center ">
                             <ResponsiveClipPath
                                 outerClass='absolute md:w-[20%] w-[28%]  top-0  left-0 h-fit'
                                 ImagePath='/images/itinerary/patterns/plan-top-left.png'
                                 width={800}
                             />
-                            {/* <ResponsiveClipPath outerClass='absolute  w-7/12  right-0 bottom-0 h-full' ImagePath='/images/itinerary/planned-activity-clip-path.png' /> */}
                             <PlannedActivities itineraryData={itineraryData} setIsLenisAvailable={setIsLenisAvailable} />
-                        </div>
+                        </div>}
+                        {isTablet &&
+                            <div className=" w-full bg-white relative  min-h-screen flex flex-col items-center ">
+                                <ResponsiveClipPath
+                                    outerClass='absolute md:w-[20%] w-[28%]  top-0  left-0 h-fit'
+                                    ImagePath='/images/itinerary/patterns/plan-top-left.png'
+                                    width={800}
+                                />
+                                <PlannedActivitiesMobile itineraryData={itineraryData} />
+                            </div>
+                        }
 
-                        <div className="  relative bg-white pb-28">
+
+                        <div className="  relative bg-white pb-28 ">
                             <ResponsiveClipPath
                                 outerClass='absolute md:w-[20%] w-[28%]  bottom-0 right-0 h-fit'
                                 ImagePath='/images/itinerary/patterns/travel-bottom.png'
                                 width={800}
                             />
-                            <div className=" w-10/12 mx-auto flex justify-between ">
+                            <div className=" lg:w-10/12 w-11/12 mx-auto flex justify-between ">
                                 <TravelInfo
                                     icon='/Icons/Itinerary/leaf.svg'
                                     title='Best Time to Travel'
@@ -259,10 +274,8 @@ export default function ItineraryView() {
                         </div>
 
 
-
                         <div className=" w-full   min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">
                             <div className=" w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige">
-                                {/* <ResponsiveClipPath outerClass='absolute  w-4/12  left-0 top-0 h-10/12' ImagePath='/images/itinerary/hotels-clip-path.png' /> */}
                                 <HotelsView data={itineraryData?.hotels} />
                             </div>
                         </div>
@@ -277,7 +290,6 @@ export default function ItineraryView() {
 
                             <div className="w-full h-full bg-white/30   flex-center relative">
 
-                                {/* <div className=" w-11/12  space-y-10 mb-24  py-16  h-full flex flex-col  items-center rounded-3xl vertically-animated-element bg-white/10 backdrop-blur-xl border border-white/40 "> */}
                                 <div className=" w-11/12 overflow-hidden   space-y-10 mb-24   h-full flex flex-col  items-center rounded-3xl  ">
 
                                     <h6 className={`${playfair.className} gallery-title   text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
@@ -306,7 +318,6 @@ export default function ItineraryView() {
 
                             </div>
                         </div>
-
 
                         <Footer />
                         <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />

@@ -117,7 +117,7 @@ export default function DestinationsCarousal({itineraryData}) {
                                 ))}
                             </div>
 
-                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-5 left-3 text-2xl font-normal">
+                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-5 left-3 text-lg lg:text-2xl font-normal">
                                 <p>Day {currentCollection + 1}:</p>
                                 <p className="capitalize ">{itineraryData?.days?.[currentCollection].image_title}</p>
                             </div>
@@ -147,9 +147,9 @@ export default function DestinationsCarousal({itineraryData}) {
 
             <div className="w-full   text-dark-28 pl-2 mt-2 ">
                 <div className=" flex ">
-                    <p className="text-2xl ">
+                    <p className="xl:text-2xl text-xl ">
                         {carousalData[currentCollection].temp}
-                        <span className="relative -top-1 text-2xl">°</span>C
+                        <span className="relative -top-1 text-lg lg:text-2xl">°</span>C
                     </p>
                     <div className="ml-2 mt-0.5">
                         <img src="/Icons/cloud.svg" alt="cloud" className="" />

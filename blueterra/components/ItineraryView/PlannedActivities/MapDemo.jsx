@@ -75,8 +75,8 @@ function FitBoundsOnLoad({ routes }) {
 
 
 
-
-function ResizeHandler({ expandCards, locations }) {
+// Given default value for expandCards to render it on small screen 
+function ResizeHandler({ expandCards = null, locations }) {
     const map = useMap();
 
 

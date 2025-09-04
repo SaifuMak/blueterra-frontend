@@ -1,115 +1,222 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import Image from "next/image";
+import { DESTINATIONS_COLLECTIONS } from "@/constants/home-destinations";
+import { rubik, playfair } from '@/app/fonts'
 
-const galleryData = [
-  { name: "Safari Adventure", image: "https://images.pexels.com/photos/59989/elephant-herd-of-elephants-african-bush-elephant-africa-59989.jpeg" },
-  { name: "Safari Adventure", image: "https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg" },
-  { name: "Island Escape", image: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg" },
-  { name: "Cultural Celebration", image: "https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg" },
-  { name: "Majestic Waterfalls", image: "https://images.pexels.com/photos/1266831/pexels-photo-1266831.jpeg" },
-  { name: "Safari Adventure", image: "https://images.pexels.com/photos/59989/elephant-herd-of-elephants-african-bush-elephant-africa-59989.jpeg" },
-  { name: "Safari Adventure", image: "https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg" },
-  { name: "Island Escape", image: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg" },
-  { name: "Cultural Celebration", image: "https://images.pexels.com/photos/532263/pexels-photo-532263.jpeg" },
-];
-
-export default function Carousel() {
+export default function HomePage() {
   const containerRef = useRef(null);
-  const cardRefs = useRef([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const intervalRef = useRef(null);
+  const cardsRef = useRef([]);
+  const bannerRefs = useRef([]); // store 2 banners for crossfade
 
-  const visibleCards = 5;
-  const totalCards = galleryData.length;
+  // Duplicate for infinite loop
+  const slides = [
+    ...DESTINATIONS_COLLECTIONS,
+    ...DESTINATIONS_COLLECTIONS,
+    ...DESTINATIONS_COLLECTIONS,
+    ...DESTINATIONS_COLLECTIONS,
+    ...DESTINATIONS_COLLECTIONS,
+    ...DESTINATIONS_COLLECTIONS, ...DESTINATIONS_COLLECTIONS,
+    ...DESTINATIONS_COLLECTIONS,
+    ...DESTINATIONS_COLLECTIONS, ...DESTINATIONS_COLLECTIONS,
+    ...DESTINATIONS_COLLECTIONS,
+    ...DESTINATIONS_COLLECTIONS,
+  ];
 
+  // Auto-play
   useEffect(() => {
-    cardRefs.current.forEach((el) => {
-      gsap.set(el, { flex: "0 0 20%" }); // 5 cards, each 20%
-    });
-  }, []);
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) =>
+        prev + 1 > slides.length - 3 ? 0 : prev + 1
+      );
+    }, 5000);
 
-  const handleMouseEnter = (index) => {
-    cardRefs.current.forEach((el, i) => {
-      if (i === index) {
-        gsap.to(el, {
-          flex: "0 0 70%", // hovered grows
-          duration: 1,
-          ease: "power1.out",
-        });
-      } else {
-        gsap.to(el, {
-          flex: "0 0 15%", // others shrink
-          duration: 1,
-          ease: "power1.out",
-        });
+    return () => clearInterval(intervalRef.current);
+  }, [slides.length]);
+
+  // Animate everything on index change
+  useEffect(() => {
+
+    if (!slides.length) return;
+
+    const tl = gsap.timeline();
+
+    // Slide container
+    tl.to(containerRef.current, {
+      x: `-${currentIndex * (100 / 3)}%`,
+      duration: 1,
+      ease: "power2.inOut",
+    });
+
+    // Scale active card
+    if (cardsRef.current[currentIndex]) {
+      tl.to(
+        cardsRef.current[currentIndex],
+        { scaleY: 1.15, duration: 0.8, delay: 0.5, ease: "sine.out" },
+        "<" // start with slide animation
+      );
+    }
+    if (cardsRef.current[currentIndex - 1]) {
+      tl.to(
+        cardsRef.current[currentIndex - 1],
+        { scaleY: 1, duration: 0.8, ease: "sine.out" },
+        "<"
+      );
+    }
+
+    // Titles & descriptions (replace querySelector with refs if possible)
+    tl.to(
+      ".title-slider",
+      { y: -currentIndex * 65, duration: 0.8, ease: "power3.inOut" },
+      "<0.2"
+    );
+    tl.to(
+      ".desc-slider",
+      { y: -currentIndex * 160, duration: 0.8, ease: "power3.inOut" },
+      "<"
+    );
+
+
+    const targetLayer = bannerRefs.current[currentIndex % 3];
+
+    // Update background on the target layer
+    gsap.set(targetLayer, {
+      backgroundImage: `url(${slides[currentIndex].bannerImage})`,
+    });
+
+    // Fade in target layer
+    tl.to(
+      targetLayer,
+      { autoAlpha: 1, duration: 1.6, ease: "sine.inOut" },
+      0
+    );
+
+    // Fade out all other layers
+    bannerRefs.current.forEach((layer, idx) => {
+      if (layer !== targetLayer) {
+        tl.to(
+          layer,
+          { autoAlpha: 0, duration: 1.2, ease: "sine.inOut" },
+          0
+        );
       }
     });
-  };
 
-  const handleMouseLeave = () => {
-    cardRefs.current.forEach((el) => {
-      gsap.to(el, {
-        flex: "0 0 20%", // reset
-        duration: 1,
-        ease: "power1.out",
-      });
-    });
-  };
 
-  const slideTo = (newIndex) => {
-    if (newIndex < 0 || newIndex > totalCards - visibleCards) return;
-    setCurrentIndex(newIndex);
-    const offset = -(newIndex * (100 / visibleCards));
-    gsap.to(containerRef.current, {
-      xPercent: offset,
-      duration: 0.5,
-      ease: "power1.inOut",
-    });
-  };
+  }, [currentIndex]);
 
-  const nextSlide = () => slideTo(currentIndex + 1);
-  const prevSlide = () => slideTo(currentIndex - 1);
+  const handleClick = (index) => {
+    setCurrentIndex(index);
+    clearInterval(intervalRef.current);
+
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 5000);
+  };
 
   return (
-    <div className="w-full">
-      {/* Carousel */}
-      <div className="overflow-hidden">
-        <div ref={containerRef} className="flex">
-          {galleryData.map((item, index) => (
-            <div
-              key={index}
-              ref={(el) => (cardRefs.current[index] = el)}
-              className="relative h-[90vh] flex items-center justify-center cursor-pointer overflow-hidden"
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-            >
-              <Image
-                src={item.image}
-                alt={item.name}
-                fill
-                className="object-cover "
-              />
+    <div className="min-h-[110vh] w-full relative overflow-hidden">
 
-            </div>
-          ))}
+
+      {/* Two banners for crossfade */}
+      <div
+        ref={(el) => (bannerRefs.current[0] = el)}
+        className="banner absolute inset-0  bg-cover bg-center bg-no-repeat"
+        style={{ opacity: 1 }}
+      />
+      <div
+        ref={(el) => (bannerRefs.current[1] = el)}
+        className="banner absolute  inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ opacity: 0 }}
+      />
+      <div
+        ref={(el) => (bannerRefs.current[2] = el)}
+        className="banner absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ opacity: 0 }}
+      />
+
+      <div className=" absolute w-full h-full inset-0 bg-black/70"></div>
+
+
+      <div className="max-w-11/12 mx-auto  ">
+
+        <div className=" w-full  text-white relative  py-20 border border-white ">
+          <h2 className={` ${playfair.className} vertically-animated-element text-[45px] xl:text-[50px]`}>Our Destination Highlights</h2>
+          <p className={`${rubik.className} vertically-animated-element  mt-4 leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>Discover destinations that reflect the essence of BlueTerra</p>
+
         </div>
-      </div>
 
-      {/* Controls */}
-      <div className="flex justify-center gap-4 mt-4">
-        <button
-          onClick={prevSlide}
-          className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
-        >
-           Prev
-        </button>
-        <button
-          onClick={nextSlide}
-          className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
-        >
-          Next 
-        </button>
+        <div className=" w-full  mx-auto items-center  py-5 grid grid-cols-12 ">
+
+          {/* LEFT SECTION */}
+          <div className="2xl:col-span-3 col-span-4 relative flex flex-col">
+            {/* Title area */}
+            <div className="h-[65px]  overflow-hidden">
+              <div className="title-slider">
+                {slides.map((slide, idx) => (
+                  <div
+                    key={slide.id + "-title-" + idx}
+                    className="h-[65px] flex items-center"
+                  >
+                    <h2 className={`xl:text-7xl text-6xl font-medium text-nowrap text-white ${playfair.className}`}>
+                      {slide.titile}
+                    </h2>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Separator */}
+            {/* <div className="h-[6px] border w-12 bg-gray-400/40 my-2"></div> */}
+
+            {/* Description area */}
+            <div className="h-[160px] mt-5  overflow-hidden">
+              <div className="desc-slider">
+                {slides.map((slide, idx) => (
+                  <div
+                    key={slide.id + "-desc-" + idx}
+                    className="h-[160px] flex items-center"
+                  >
+                    <p className="text-xl border font-light leading-8 text-white ">
+                      {slide.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT SECTION: Carousel */}
+          <div className="2xl:col-span-9 col-span-8 relative w-full overflow-hidden py-12 ml-12 2xl:ml-20 ">
+            <div ref={containerRef} className="flex w-full">
+              {slides.map((slide, index) => (
+                <div
+                  key={slide.id + "-" + index}
+                  className="w-1/3 flex-shrink-0 cursor-pointer px-2 2xl:px-5"
+                  onClick={() => handleClick(index)}
+                >
+                  <div
+                    ref={(el) => (cardsRef.current[index] = el)}
+                    className="carousel-card 2xl:h-[400px] xl:h-[320px] h-72 rounded-2xl shadow-xl overflow-hidden relative"
+                  >
+                    <img
+                      src={slide.bannerImage}
+                      alt={slide.alt}
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/40 text-white p-2 text-center">
+                      <p className="text-sm">{slide.subTitle}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
   );
