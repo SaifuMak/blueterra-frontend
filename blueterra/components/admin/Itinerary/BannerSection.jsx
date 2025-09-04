@@ -15,7 +15,7 @@ function BannerSection({
     selectedImageFile,
     setSelectedImageFile,
     selectedBannerImageUrl = null,
-    isEditPage=false
+    isEditPage = false
 }) {
 
 
@@ -29,7 +29,7 @@ function BannerSection({
 
     const [hasUserDeletedOrChangedImageFile, sethasUserDeletedOrChangedImageFile] = useState(false)
 
-    const handleDeleteSelectedImage =()=>{
+    const handleDeleteSelectedImage = () => {
         setSelectedImageFile(null)
         sethasUserDeletedOrChangedImageFile(true)
     }
@@ -80,29 +80,29 @@ function BannerSection({
                 </div>
 
                 {/* Show file name */}
-                {selectedImageFile &&(
+                {selectedImageFile && (
                     <div className="text-sm text-sky-blue-dark">
                         <p>{selectedImageFile.name}</p>
                     </div>
                 )}
-                
+
 
                 <div className=" flex  my-5 items-center">
-                {selectedBannerImageUrl  && !hasUserDeletedOrChangedImageFile && (
-                    <button
-                    type='button'
-                        onClick={() => window.open(selectedBannerImageUrl, "_blank")}
-                        className="px-3 py-1 cursor-pointer h-fit bg-sky-blue-dark text-sm text-white rounded transition"
-                    >
-                        View Image
-                    </button>
-                )}
+                    {selectedBannerImageUrl && !hasUserDeletedOrChangedImageFile && (
+                        <button
+                            type='button'
+                            onClick={() => window.open(selectedBannerImageUrl, "_blank")}
+                            className="px-3 py-1 cursor-pointer h-fit bg-sky-blue-dark text-sm text-white rounded transition"
+                        >
+                            View Image
+                        </button>
+                    )}
 
-                 {selectedBannerImageUrl  && !hasUserDeletedOrChangedImageFile && (
-                   <div className="  ml-7 bg-slate-50">
-                    <img src={selectedBannerImageUrl} alt="banner" className=" w-16 h-10 object-cover rounded-sm" />
-                   </div>
-                )}
+                    {selectedBannerImageUrl && !hasUserDeletedOrChangedImageFile && (
+                        <div className="  ml-7 bg-slate-50">
+                            <img src={selectedBannerImageUrl} alt="banner" className=" w-16 h-10 object-cover rounded-sm" />
+                        </div>
+                    )}
                 </div>
 
 

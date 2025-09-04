@@ -11,9 +11,8 @@ import { usePathname } from "next/navigation";
 import ZohoFormModal from "../Forms/ZohoFormModal";
 
 
-export default function mobileNavbar({ MenuItems }) {
+export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened}) {
 
-    const [isMenuOpened, setIsMenuOpened] = useState(false)
     const pathname = usePathname()
 
   const [formOpen, setFormOpen] = useState(false);
@@ -57,7 +56,7 @@ export default function mobileNavbar({ MenuItems }) {
                 </div> */}
 
 
-                <div className={`w-full h-screen bg-red-50 inset-0 absolute transform duration-1000 ease-in-out  transition-transform ${isMenuOpened ? 'translate-x-0' : '-translate-x-[900px]'}  `}>
+                <div className={`w-full h-[120vh]  inset-0 absolute transform duration-1000 ease-in-out  transition-transform ${isMenuOpened ? 'translate-x-0' : '-translate-x-[900px]'}  `}>
                     <div className={` shadow-lg bg-white  overflow-hidden  px-5 py-3  flex  flex-col  h-screen`}>
 
                         <div className="  min-h-[50px] flex justify-end ">

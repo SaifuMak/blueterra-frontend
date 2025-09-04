@@ -32,7 +32,7 @@ export default function OurStory() {
         <>
 
             <SmoothScroll>
-                <Navbar isfixed={true} />
+                <Navbar  />
 
                 <div className={`${rubik.className}  w-full h-full `}>
 

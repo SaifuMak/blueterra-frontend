@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 // import { HiMenuAlt3 } from '../reactIcons'
 // import { IoSearchOutline } from "react-icons/io5";
 import MobileNavbar from "../generalComponents/mobileNavbar";
@@ -9,15 +9,21 @@ import { usePathname } from "next/navigation";
 import Button from "../generalComponents/Button";
 import { rubik } from "@/app/fonts"
 import ZohoFormModal from "../Forms/ZohoFormModal";
+import { gsap } from "gsap";
+
 
 export default function Navbar({ isfixed = false, onNavClick }) {
 
   const pathname = usePathname()
-
+  const navRef = useRef(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [formOpen, setFormOpen] = useState(false);
 
+  const [isMenuOpened, setIsMenuOpened] = useState(false)
+
+
   const MenuItems = [
-    
+
     { nav: 'Our Story', link: '/our-story', url: '/our-story' },
     { nav: 'The Blueterra Collection', link: '/collections', url: '/collections' },
     { nav: 'Destinations', link: '/destinations', url: '/destinations' },
@@ -27,10 +33,40 @@ export default function Navbar({ isfixed = false, onNavClick }) {
 
   ]
 
+  useEffect(() => {
+    if (isfixed) {
+      return
+    }
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // scrolling down → hide navbar
+        gsap.to(navRef.current, {
+          y: isMenuOpened ? "0%" :  "-100%",
+          // y:  "-100%",
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      } else {
+        // scrolling up → show navbar
+        gsap.to(navRef.current, {
+          y: "0%",
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+
 
   return (
     <>
-      <div className={` ${rubik.className} w-full ${isfixed ? ' z-50 fixed top-0' : ''}  bg-white max-xl:text-sm  h-[50px]  lg:h-[70px] flex justify-center `}>
+      {/* <div className={` ${rubik.className} w-full ${isfixed ? ' z-50 fixed top-0' : ''}  bg-white max-xl:text-sm  h-[50px]  lg:h-[70px] flex justify-center `}> */}
+      <div ref={navRef} className={` ${rubik.className} w-full  z-[999]  fixed top-0 bg-white max-xl:text-sm  h-[50px]  lg:h-[70px] flex justify-center `}>
 
         <div className="xl:w-11/12 w-full max-xl:pr-4 max-lg:hidden  flex  overflow-hidden max-2xl:text-sm  items-center justify-between">
           {/* <div className="xl:w-[200px] relative xl:h-[200px] h-[160px]  w-[160px] "> */}
@@ -76,7 +112,7 @@ export default function Navbar({ isfixed = false, onNavClick }) {
         </div>
 
         <div className="w-full  lg:hidden">
-          <MobileNavbar MenuItems={MenuItems} />
+          <MobileNavbar MenuItems={MenuItems} isMenuOpened={isMenuOpened} setIsMenuOpened={setIsMenuOpened} />
         </div>
 
       </div>

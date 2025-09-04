@@ -11,7 +11,7 @@ export default function VerticalCards({ page, CardDetails, expandedIndex, handle
     // }
 
     return (
-        <div className=" md:flex  w-full md:overflow-hidden">
+        <div className=" md:flex   w-full md:overflow-hidden">
             {
                 CardDetails?.map((data, index) => (
                     <AnimatedVerticalCard key={index} page={page}  card={data} onClick={() => handleCardClick(index)} isExpanded={expandedIndex === index} isFullCardVisible={isFullCardVisible} handleHideFullCard={handleHideFullCard} setIsLoading={setIsLoading} isLoading={isLoading} setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} />

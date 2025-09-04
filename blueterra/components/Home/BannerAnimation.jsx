@@ -34,6 +34,7 @@ export default function BannerAnimation({page,CardData, expandedIndex, setExpand
         // <div ref={animationBannerRef} className={` z-30 ${isFullCardVisible ? 'relative' : 'fixed top-0 '} w-full`}>
         <div ref={animationBannerRef} className={` z-30  w-full fixed top-[70px]`}>
 
+
             {/* <HorizontalCards CardDetails={CardData} expandedIndex={expandedIndex} handleCardClick={handleShowFullCard} /> */}
             <VerticalCards page={page} CardDetails={CardData} expandedIndex={expandedIndex} handleCardClick={handleShowFullCard} isFullCardVisible={isFullCardVisible} handleHideFullCard={handleHideFullCard} setIsLoading={setIsLoading} isLoading={isLoading} setIsFilterVisible={setIsFilterVisible} isFilterVisible={isFilterVisible} />
 
