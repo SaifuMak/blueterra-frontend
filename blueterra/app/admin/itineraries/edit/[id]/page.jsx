@@ -41,6 +41,8 @@ export default function EditItinerary() {
     const [locationTitle, setLocationTitle] = useState('');
     const [description, setDescription] = useState('');
     const [color, setColor] = useState("#3FD896");
+    const [generalRating, setGeneralRating] = useState(5)
+
     const [selectedBannerImageFile, setSelectedBannerImageFile] = useState(null);
     const [selectedBannerImageUrl, setSelectedBannerImageUrl] = useState(null);
 
@@ -88,6 +90,9 @@ export default function EditItinerary() {
                 setLocationTitle(data.location_title || '');
                 setDescription(data.description || '');
                 setColor(data.color || "#3FD896");
+                setGeneralRating(data.general_rating || 5);
+
+
                 setSelectedBannerImageFile(data.banner_image || null);
                 setSelectedBannerImageUrl(data.banner_image_public_url || null)
 
@@ -239,6 +244,7 @@ export default function EditItinerary() {
         formData.append("location_title", locationTitle);
         formData.append("description", description);
         formData.append("color", color);
+        formData.append("generalRating", generalRating);
         formData.append("destination", destination);
         formData.append("country", country);
         formData.append("collection", collection);
@@ -313,7 +319,7 @@ export default function EditItinerary() {
                 : filtersList.countries
         );
 
-        setCountry(""); 
+        setCountry("");
     }, [destination]);
 
     // when collection changes → filter categories + reset category
@@ -326,7 +332,7 @@ export default function EditItinerary() {
                 : filtersList.categories
         );
 
-        setCategory(""); 
+        setCategory("");
     }, [collection]);
 
 
@@ -376,6 +382,9 @@ export default function EditItinerary() {
                                     setSelectedImageFile={setSelectedBannerImageFile}
                                     selectedBannerImageUrl={selectedBannerImageUrl}
                                     isEditPage={true}
+                                    generalRating={generalRating}
+                                    setGeneralRating={setGeneralRating}
+
                                 />
 
                                 <DaysSection

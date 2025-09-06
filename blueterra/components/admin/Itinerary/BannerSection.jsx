@@ -1,6 +1,9 @@
 import React, { forwardRef } from 'react'
 import { useState } from 'react'
 import ColorThemePicker from './ColorThemePicker'
+import { IoIosStar } from '@/components/reactIcons'
+
+
 
 function BannerSection({
     textAreaStyle,
@@ -15,7 +18,10 @@ function BannerSection({
     selectedImageFile,
     setSelectedImageFile,
     selectedBannerImageUrl = null,
-    isEditPage = false
+    isEditPage = false,
+    generalRating,
+    setGeneralRating,
+
 }) {
 
 
@@ -105,7 +111,15 @@ function BannerSection({
                     )}
                 </div>
 
+            </div>
 
+            <div className=" flex items-center ">
+                <p className=" font-normal text-dark-28">Genaral Ratings</p>
+                <div className=" flex space-x-0.5 ml-4">
+                    {[...Array(5)].map((_, ratingIndex) => (
+                        <IoIosStar onClick={() => setGeneralRating(ratingIndex + 1)} key={ratingIndex} className={` ${ratingIndex + 1 <= generalRating ? 'fill-[#FFCB1F]' : 'fill-slate-400'} size-4 cursor-pointer`} />
+                    ))}
+                </div>
             </div>
 
             <ColorThemePicker color={color} setColor={setColor} />

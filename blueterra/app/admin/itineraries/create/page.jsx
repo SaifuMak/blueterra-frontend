@@ -32,6 +32,8 @@ export default function CreateItinerary() {
 
     const [title, setTitle] = useState('')
     const [locationTitle, setLocationTitle] = useState('')
+    const [generalRating, setGeneralRating] = useState(5)
+
 
     const [description, setDescription] = useState('')
 
@@ -178,6 +180,7 @@ export default function CreateItinerary() {
         formData.append("title", title);
         formData.append("location_title", locationTitle);
         formData.append("description", description);
+        formData.append("generalRating", generalRating);
         formData.append("color", color);
         formData.append("destination", destination);
         formData.append("country", country);
@@ -251,7 +254,7 @@ export default function CreateItinerary() {
     };
 
     useEffect(() => {
-        
+
         fetchFilters()
     }, [])
 
@@ -308,6 +311,7 @@ export default function CreateItinerary() {
                                 value="publish" className=" bg-[#129366] cursor-pointer min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
                         </div>
 
+
                         <div className="flex flex-col w-full  space-y-10">
 
                             <BannerSection
@@ -322,6 +326,9 @@ export default function CreateItinerary() {
                                 setColor={setColor}
                                 selectedImageFile={selectedBannerImageFile}
                                 setSelectedImageFile={setSelectedBannerImageFile}
+                                generalRating={generalRating}
+                                setGeneralRating={setGeneralRating}
+
                             />
 
                             <DaysSection

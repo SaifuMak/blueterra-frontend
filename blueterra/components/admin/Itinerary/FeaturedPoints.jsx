@@ -77,7 +77,7 @@ function FeaturedPoints({ featuredPoints, setFeaturedPoints, textAreaStyle, inpu
                                 type="text"
                                 value={data.price}
                                 onChange={(e) => handleFeaturedPointsChange(index, 'price', e.target.value)}
-                                placeholder="From $8,000pp excl. flights"
+                                placeholder="Enter Price In Dollars (eg : $8,000)"
                                 className={inputStyle}
                                 required
                             />

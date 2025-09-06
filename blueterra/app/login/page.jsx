@@ -37,7 +37,9 @@ export default function login() {
         toast.dismiss()
         try {
             const response = await AXIOS_INSTANCE.post(`login-admin/`, formData);
-            toast.success('Logged in successfully')
+            setTimeout(() => {
+                toast.success('Logged in successfully')
+            }, 500);
             router.replace("/admin/dashboard");
 
         } catch (error) {
