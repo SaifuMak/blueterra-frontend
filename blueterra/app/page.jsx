@@ -26,6 +26,7 @@ import useGsapOpacity from "./hooks/Gsap/useGsapOpacity";
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
 import { useIsMobile } from "./hooks/useIsMobile";
 import ReviewWidget from "@/components/Footer/ReviewWidget";
+import AXIOS_INSTANCE from "@/lib/axios";
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -35,6 +36,8 @@ export default function Home() {
   const cardRef = useGsapOpacity(0, {})
 
   const isMobile = useIsMobile()
+  const [collectionsData, setCollectionsData] = useState([])
+
 
   // zoho form 
   const [formOpen, setFormOpen] = useState(false);
@@ -269,6 +272,26 @@ export default function Home() {
 
   // }, [])
 
+  
+  const fetchCollections = async () => {
+
+    try {
+      const response = await AXIOS_INSTANCE.get('get-collections/')
+      setCollectionsData(response?.data)
+    }
+    catch (error) {
+
+    }
+    finally {
+    }
+  }
+
+  useEffect(() => {
+   fetchCollections()
+  }, [])
+  
+
+
 
 
   // useGSAP(() => {
@@ -372,11 +395,11 @@ export default function Home() {
               <p className={`xl:text-xl lg:text-lg font-light vertically-animated-element ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>Explore our handpicked collection of journeys, each created with intention and shaped to deliver timeless experiences you can trust.</p>
 
               <div ref={cardRef} className=" 2xl:w-11/12 w-full max-2xl:px-5   mt-4 ">
-                <CollectionsList Data={HOME_COLLECTIONS} setCurrent={setCurrentCollection} setCount={setCollectionCount} />
+               {collectionsData?.length > 0 &&   <CollectionsList Data={collectionsData} setCurrent={setCurrentCollection} setCount={setCollectionCount} />}
               </div>
 
               <div className=" flex-center w-full h-full">
-                {HOME_COLLECTIONS?.map((_, index) => (
+                {collectionsData?.map((_, index) => (
                   <span key={index} className={` h-2 rounded-full translate-all duration-500 ease-in-out  mx-1 ${currentCollection === index + 1 ? '  bg-sky-blue-1 w-10' : 'bg-sky-blue-1/30 w-2'}`}  ></span>
                 ))}
               </div>
