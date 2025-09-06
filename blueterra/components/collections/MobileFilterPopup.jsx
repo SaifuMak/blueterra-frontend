@@ -102,7 +102,6 @@ export default function MobileFilterPopup({ page, filtersList, selectedFilters, 
     }, [selectedFilters])
 
 
-
     if (!showMobileFilter) return null;
 
     return (

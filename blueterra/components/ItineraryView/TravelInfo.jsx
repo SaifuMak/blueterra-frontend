@@ -8,12 +8,12 @@ export default function TravelInfo({ icon, title, subtitle, additionalInformatio
 
     return (
 
-        <div className="flex space-x-2 border-y border-[#CDCDCD] px-6 py-7 ">
+        <div className="flex space-x-2 border-y border-[#CDCDCD] lg:px-6 lg:py-7 py-3 ">
             {/* Top border */}
-
+        
             {/* Icon + title */}
             <div className="flex  mt-1.5">
-                <img src={icon} alt={title} className=" size-5.5 object-contain" />
+                <img src={icon} alt={title} className="  lg:size-5.5 object-contain" />
             </div>
 
             {/* Subtitle */}

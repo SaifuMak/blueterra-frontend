@@ -251,7 +251,7 @@ export default function ItineraryView() {
                                 ImagePath='/images/itinerary/patterns/travel-bottom.png'
                                 width={800}
                             />
-                            <div className=" lg:w-10/12 w-11/12 mx-auto flex justify-between ">
+                            <div className=" lg:w-10/12  w-11/12 mx-auto flex  max-lg:flex-col justify-between ">
                                 <TravelInfo
                                     icon='/Icons/Itinerary/leaf.svg'
                                     title='Best Time to Travel'
