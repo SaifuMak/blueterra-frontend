@@ -49,7 +49,7 @@ export default function CreateItinerary() {
     const [packageExclusions, setPackageExclusions] = useState([{ title: '' }]);
 
     const [mapRouting, setMapRouting] = useState([{ location: '', coordinates: '', transfer: '' }, { location: '', coordinates: '', transfer: '' }]);
-    const [gallery, setGallery] = useState([{ image: '', title: '' }]);
+    const [gallery, setGallery] = useState([{ image: '', title: '', is_checked: false }]);
     const [featuredPoints, setFeaturedPoints] = useState([{ suggestedDate: '', price: '', additionalInformation: '' }])
 
     const [destination, setDestination] = useState("");
@@ -173,6 +173,12 @@ export default function CreateItinerary() {
             }
         }
 
+        const checkedCount = gallery.filter((item) => item.is_checked).length;
+        if (checkedCount === 0) {
+            toast.error(`Select at least one gallery image to display in card`);
+            return
+        }
+
         setIsLoading(true)
         const formData = new FormData();
         formData.delete("is_published");
@@ -228,6 +234,9 @@ export default function CreateItinerary() {
                 formData.append(`gallery[${index}][image]`, item.image);
             }
             formData.append(`gallery[${index}][title]`, item.title);
+            // formData.append(`gallery[${index}][isChecked]`, item.isChecked);
+            formData.append(`gallery[${index}][is_checked]`, item.is_checked ? 1 : 0);
+
         });
 
         for (let [key, value] of formData.entries()) {

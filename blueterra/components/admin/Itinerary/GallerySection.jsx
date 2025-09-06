@@ -3,6 +3,8 @@ import ImageUploader from './ImageUploader'
 import { useRef } from 'react';
 import { IoIosStarOutline, IoIosStar, IoIosStarHalf } from '@/components/reactIcons'
 import ReorderIcons from '../ReorderIcons';
+
+import { toast } from 'sonner';
 import TooltipWrapper from '@/components/generalComponents/TooltipWrapper';
 
 function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handleReorder }) {
@@ -11,7 +13,7 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
 
     const handleAddGallery = () => {
         const lastIndex = gallery.length;
-        setGallery([...gallery, { image: '', title: '' }]);
+        setGallery([...gallery, { image: '', title: '', is_checked: false }]);
 
         setTimeout(() => {
             const target = galleryRef.current[lastIndex];
@@ -42,6 +44,22 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
     };
 
 
+    const handleCheckboxChange = (index) => {
+        toast.dismiss()
+        const checkedCount = gallery.filter((item) => item.is_checked).length;
+
+        const updatedGallery = [...gallery];
+
+        if (!updatedGallery[index].is_checked && checkedCount >= 3) {
+            toast.error("You can only select up to 3 images."); // optional UX
+            return;
+        }
+
+        updatedGallery[index].is_checked = !updatedGallery[index].is_checked;
+        setGallery(updatedGallery);
+    };
+
+
     return (
         <div className="flex flex-col xl:w-9/12 transition-all duration-300 ease-in-out">
             <div className="flex items-center space-x-8">
@@ -62,7 +80,15 @@ function GallerySection({ gallery, setGallery, textAreaStyle, inputStyle, handle
                 >
 
                     {/* Image URL Field */}
-                    <div className=" flex w-full space-x-12 mt-4  ">
+                    <div className=" flex w-full items-center space-x-5 mt-4  ">
+                        <TooltipWrapper message="Display in Itinerary card">
+                            <input
+                                type="checkbox"
+                                checked={data.is_checked || false}
+                                onChange={() => handleCheckboxChange(index)}
+                                className=" size-4 border cursor-pointer accent-dark-blue"
+                            />
+                        </TooltipWrapper>
                         <div className=" ">
                             <ImageUploader
                                 label="Image upload"
