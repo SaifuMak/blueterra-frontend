@@ -63,21 +63,24 @@ export default function DestinationCards({ itineraryData }) {
                                     </div> */}
 
                                     <div className="flex space-x-0.5">
-                                        {[...Array(5)].map((_, index) => (
+                                        {/* {[...Array(5)].map((_, index) => (
                                             <IoIosStar key={index} className="text-[#FFCB1F] fill-[#FFCB1F]" />
+                                        ))} */}
+                                        {[...Array(5)].map((_, ratingIndex) => (
+                                            <IoIosStar  key={ratingIndex} className={` ${ratingIndex + 1 <= destination?.general_rating ? 'fill-[#FFCB1F]' : 'fill-slate-200'} size-4 cursor-pointer`} />
                                         ))}
-                                        <p className="text-sm ml-1 md:hidden font-normal">{destination?.rating}</p>
+                                        <p className="text-sm ml-1 md:hidden font-normal">{destination?.general_rating}</p>
                                     </div>
 
-                                    <p className="text-sm ml-1 max-md:hidden font-normal">{destination?.rating}</p>
+                                    <p className="text-sm ml-1 mt-1 max-md:hidden font-normal text-dark-2B">{destination?.general_rating}</p>
                                     <div className=" max-md:mt-2 rounded-full border flex justify-center md:ml-3  px-2 py-1.5 lg:px-2 xl:py-2 max-md:w-fit text-nowrap border-[#E4E4E4] text-xs text-[#828282]">{trimWords(destination?.category?.title, 3)}</div>
 
                                 </div>
                             </div>
-                            <h3 className=" xl:text-xl lg:text-lg  text-sm  md:font-medium text-dark-4B ">{trimWords(destination?.description, 16)}</h3>
+                            <h3 className=" xl:text-xl lg:text-lg  text-sm  md:font-medium text-dark-2B ">{trimWords(destination?.description, 16)}</h3>
                             <div className=" flex justify-between text-sm">
                                 <div className=" lg:text-base">
-                                    From <span className="md:font-medium text-dark-28  ">$3/person</span>
+                                    From <span className="md:font-medium text-dark-28  ">{destination?.featured_points?.[0]?.price}/person</span>
                                 </div>
                                 <div className="flex items-center  cursor-pointer">
                                     <p className=" md:font-medium lg:text-base text-dark-28">Explore</p>

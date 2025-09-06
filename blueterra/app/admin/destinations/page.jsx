@@ -173,62 +173,62 @@ export default function Destinations() {
                     </div>
 
                     {destinations?.length > 0 ? (<div className={`${destinations?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg   mt-10  h-fit`}>
- <div className="max-h-[600px] overflow-y-auto">
-                        <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
-                            <thead className="bg-[#394C5D] sticky top-0 rounded-3xl text-white  ">
-                                <tr>
-                                    <th className="px-4 py-5 font-normal ">Title</th>
-                                    <th className="px-4 py-5 font-normal ">Description</th>
-                                    <th className="px-4 py-5 font-normal text-nowrap">Banner image</th>
-                                    <th className="px-4 py-5 text-center font-normal text-nowrap">Icon image</th>
-                                    <th className="px-4 py-5 text-center font-normal text-nowrap"><button className="  cursor-pointer text-white rounded-sm px-6 py-1">Actions</button></th>
-                                </tr>
-                            </thead>
-
-
-                            <tbody className=" bg-white ">
-                                {destinations?.map((item, index) => (
-                                    <tr key={index} className=" rounded-3xl">
-
-                                        <td className={rowStyle}>{item.title}</td>
-                                        <td className={rowStyle}>{trimWords(item.description, 15)}</td>
-
-                                        <td className={rowStyle}>
-                                            <div className=" flex justify-center ">
-                                                <a href={item.banner_image_public_url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="">
-                                                    <img src={item.banner_image_public_url} alt="icon" className=" cursor-pointer border w-16 h-10 rounded-sm shrink-0 " />
-                                                </a>
-                                            </div>
-                                        </td>
-
-                                        <td className={rowStyle}>
-                                            <div className=" flex justify-center ">
-                                                <a href={item.icon_public_url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer" className="">
-                                                    <img src={item.icon_public_url} alt="icon" className=" cursor-pointer rounded-sm border bg-[#394C5D] size-10 p-0.5 shrink-0 " />
-                                                </a>
-                                            </div>
-                                        </td>
-
-                                        <td className={rowStyle}>
-                                            <div className=" flex justify-center space-x-10">
-                                                <TooltipWrapper message="Edit">
-                                                    <img onClick={() => handleEditClick(item)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
-                                                </TooltipWrapper>
-                                            </div>
-                                        </td>
-
+                        <div className="max-h-[600px] overflow-y-auto">
+                            <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
+                                <thead className="bg-[#394C5D] sticky top-0 rounded-3xl text-white  ">
+                                    <tr>
+                                        <th className="px-4 py-5 font-normal ">Title</th>
+                                        <th className="px-4 py-5 font-normal ">Description</th>
+                                        <th className="px-4 py-5 font-normal text-nowrap">Banner image</th>
+                                        <th className="px-4 py-5 text-center font-normal text-nowrap">Icon image</th>
+                                        <th className="px-4 py-5 text-center font-normal text-nowrap"><button className="  cursor-pointer text-white rounded-sm px-6 py-1">Actions</button></th>
                                     </tr>
-                                ))}
+                                </thead>
 
-                            </tbody>
 
-                        </table>
-                           </div>
+                                <tbody className=" bg-white ">
+                                    {destinations?.map((item, index) => (
+                                        <tr key={index} className=" rounded-3xl">
+
+                                            <td className={rowStyle}>{item.title}</td>
+                                            <td className={rowStyle}>{trimWords(item.description, 15)}</td>
+
+                                            <td className={rowStyle}>
+                                                <div className=" flex justify-center ">
+                                                    <a href={item.banner_image_public_url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="">
+                                                        <img src={item.banner_image_public_url} alt="icon" className=" cursor-pointer border w-16 h-10 rounded-sm shrink-0 " />
+                                                    </a>
+                                                </div>
+                                            </td>
+
+                                            <td className={rowStyle}>
+                                                <div className=" flex justify-center ">
+                                                    <a href={item.icon_public_url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer" className="">
+                                                        <img src={item.icon_public_url} alt="icon" className=" cursor-pointer rounded-sm border bg-[#394C5D] size-10 p-0.5 shrink-0 " />
+                                                    </a>
+                                                </div>
+                                            </td>
+
+                                            <td className={rowStyle}>
+                                                <div className=" flex justify-center space-x-10">
+                                                    <TooltipWrapper message="Edit">
+                                                        <img onClick={() => handleEditClick(item)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
+                                                    </TooltipWrapper>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    ))}
+
+                                </tbody>
+
+                            </table>
+                        </div>
                     </div>
                     ) : (
                         <div className=" w-full mt-10 text-xl text-dark-4B  font-medium text-center">

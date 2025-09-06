@@ -9,7 +9,7 @@ import Lottie from "lottie-react";
 
 
 
-export default function AnimatedVerticalCard({page, card, onClick, isExpanded, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading, setIsFilterVisible, isFilterVisible }) {
+export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading, setIsFilterVisible, isFilterVisible }) {
 
     const cardRef = useRef(null)
     const [canTrackMouse, setCanTrackMouse] = useState(false);
@@ -197,16 +197,28 @@ export default function AnimatedVerticalCard({page, card, onClick, isExpanded, i
                             {isFullCardVisible && <div className="w-full 2xl:mt-10 mt-5 space-y-6 xl:space-y-10 ">
                                 <h3 className={`${playfair.className} text-2xl 2xl:text-3xl font-medium`} >Popular Journeys</h3>
 
-                                <div className="flex  space-x-6">
-                                    {["United Arab Emirates", "Kenya", "South Africa", "Norway","Iceland"].map((destination, index) => (
+                                {page === 'destinations' && <div className="flex  space-x-6">
+                                    {card?.countries?.map((country, index) => (
                                         <div key={index} className="  flex  bor-b ">
-                                            <span className="">{destination}</span></div>
+                                            <span className="">{country?.title}</span></div>
                                     ))}
-                                </div>
+                                </div>}
+                                
+                                {page === 'collections' && (
+                                    <div className="flex space-x-6">
+                                        {card?.popular_journeys
+                                            ?.split(",")                // split by comma
+                                            .map((item, index) => (
+                                                <div key={index} className="flex bor-b">
+                                                    <span>{item.trim()}</span>
+                                                </div>
+                                            ))}
+                                    </div>
+                                )}
 
                                 <p className="  w-9/12 leading-relaxed ">{card?.description}</p>
 
-                              {page === 'collections' &&   <div className="space-y-3 h-[190px] w-9/12 p-0 flex flex-col gap-x-5 flex-wrap ">
+                                {page === 'collections' && <div className="space-y-3 h-[190px] w-9/12 p-0 flex flex-col gap-x-5 flex-wrap ">
                                     {card?.categories?.map((category, index) => (
                                         <div key={index} className=" text-white flex items-center">  <img src="/Icons/dot.svg" alt="dot" className="w-2.5 h-2.5" /> <p className=" ml-3">{category?.title}</p></div>
                                     ))}
