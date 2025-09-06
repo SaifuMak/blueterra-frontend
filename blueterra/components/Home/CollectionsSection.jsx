@@ -33,7 +33,7 @@ function CollectionsSection() {
                     <h3 className={`${playfair.className} vertically-animated-element text-dark-4B heading-text`} >The BlueTerra Collecton</h3>
                     <p className={`xl:text-xl lg:text-lg font-light vertically-animated-element ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>Explore our handpicked collection of journeys, each created with intention and shaped to deliver timeless experiences you can trust.</p>
 
-                    <div className=" 2xl:w-11/12 w-full max-2xl:px-5 vertically-animated-element  mt-4 ">
+                    <div className=" 2xl:w-11/12 w-full   max-2xl:px-5 vertically-animated-element   mt-4 ">
                         {collectionsData?.length > 0 && <CollectionsList Data={collectionsData} setCurrent={setCurrentCollection} setCount={setCollectionCount} />}
                     </div>
 

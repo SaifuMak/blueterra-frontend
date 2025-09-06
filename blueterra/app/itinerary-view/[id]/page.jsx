@@ -267,7 +267,7 @@ export default function ItineraryView() {
                                 <TravelInfo
                                     icon='/Icons/Itinerary/ballon.svg'
                                     title='Adventures in Motion'
-                                    subtitle={itineraryData?.category}
+                                    subtitle={itineraryData?.category?.title}
 
                                 />
                             </div>

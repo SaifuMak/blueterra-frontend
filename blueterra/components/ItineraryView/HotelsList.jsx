@@ -85,8 +85,8 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                                     <div className="  space-y-1">
 
                                         <div className="flex lg:mt-2 mt-4  justify-between">
-                                            <h3 className="font-medium text-xl mr-3 text-dark-4B xl:text-3xl  max-lg:hidden">{trimWords(item.title, 3)}</h3>
-                                            <h3 className="font-medium text-xl mr-3 text-dark-4B xl:text-3xl  lg:hidden">{item.title}</h3>
+                                            <h3 className="font-medium text-xl mr-3 text-dark-4B xl:text-2xl 2xl:text-2xl  max-lg:hidden">{trimWords(item.title, 6)}</h3>
+                                            <h3 className="font-medium text-xl mr-3 text-dark-4B 2xl:text-3xl  lg:hidden">{item.title}</h3>
 
                                             <div className="flex space-x-1 mt-3">
                                                 {[...Array(5)].map((_, ind) => (
