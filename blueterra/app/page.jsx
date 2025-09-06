@@ -6,27 +6,21 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar/page";
 import Footer from "@/components/Footer/page";
 import { playfair, rubik, mrsSaint, jost } from "@/app/fonts"
-import { HOME_COLLECTIONS } from "@/constants/home-collections";
 import { DESTINATIONS_COLLECTIONS } from '@/constants/home-destinations'
-import CollectionsList from "@/components/Home/Collections";
 import { testimonials } from "@/constants/testimonials";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import JournalsCardOverlay from "@/components/HomePage/JournalsCardOverlay";
 import Button from "@/components/generalComponents/Button";
-import Marquee from "react-fast-marquee";
 import DestinationCarousal from "@/components/Home/DestinationCarousal";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
 import JournalSection from "@/components/Home/JournalSection";
-import useGsapFadeIn from "./hooks/Gsap/useGsapFadeIn";
 import PlanningCardSection from "@/components/Home/PlanningCardSection";
 import PartnerCompaniesSection from "@/components/Home/PartnerCompaniesSection";
 import useGsapOpacity from "./hooks/Gsap/useGsapOpacity";
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
 import { useIsMobile } from "./hooks/useIsMobile";
-import ReviewWidget from "@/components/Footer/ReviewWidget";
-import AXIOS_INSTANCE from "@/lib/axios";
+import CollectionsSection from "@/components/Home/CollectionsSection";
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -36,14 +30,10 @@ export default function Home() {
   const cardRef = useGsapOpacity(0, {})
 
   const isMobile = useIsMobile()
-  const [collectionsData, setCollectionsData] = useState([])
-
 
   // zoho form 
   const [formOpen, setFormOpen] = useState(false);
 
-  const [currentCollection, setCurrentCollection] = useState(0)
-  const [CollectionCount, setCollectionCount] = useState(0)
   const [isBannerVideoLoaded, setIsBannerVideoLoaded] = useState(false)
 
   const [currentDestination, setCurrentDestination] = useState(0)
@@ -53,14 +43,9 @@ export default function Home() {
 
 
   const welcomeContainerRef = useRef()
-  const featuredCollectionsContainerRef = useRef()
 
   const messageContainerRef = useRef()
 
-  const titleRef = useRef()
-  const descRef = useRef()
-
-  const cardOne = useGsapFadeIn(0, {})
 
   const currentDestinationTitleRef = useRef()
   const prevDestinationTitleRef = useRef()
@@ -213,29 +198,6 @@ export default function Home() {
   }, { scope: welcomeContainerRef });
 
 
-  // useGSAP(() => {
-  //   const elements = gsap.utils.toArray(".scale-opacity-animate");
-
-  //   elements.forEach((box) => {
-  //     gsap.fromTo(
-  //       box,
-  //       { opacity: 0, scale: 0.9 },
-  //       {
-  //         opacity: 1,
-  //         scale: 1,
-  //         duration: 0.7,
-  //         ease: "sine.out",
-  //         scrollTrigger: {
-  //           trigger: box,
-  //           start: "top 90%",
-  //           toggleActions: "play none none reverse",
-  //         },
-  //       }
-  //     );
-  //   });
-  // }, { scope: welcomeContainerRef });
-
-
   const videoRef = useRef(null);
 
 
@@ -273,22 +235,6 @@ export default function Home() {
   // }, [])
 
   
-  const fetchCollections = async () => {
-
-    try {
-      const response = await AXIOS_INSTANCE.get('get-collections/')
-      setCollectionsData(response?.data)
-    }
-    catch (error) {
-
-    }
-    finally {
-    }
-  }
-
-  useEffect(() => {
-   fetchCollections()
-  }, [])
   
 
 
@@ -388,24 +334,7 @@ export default function Home() {
 
 
         {/* our featured collections  */}
-        <div className="pb-10 ">
-          <div className="w-full h-full px-4 md:px-10 bg-white">
-            <div className=" bg-light-yellow flex flex-col items-center rounded-4xl space-y-6 xl:space-y-10  px-4 xl:py-24 py-10  2xl:px-10 2xl:py-32 ">
-              <h3 className={`${playfair.className} vertically-animated-element text-dark-4B heading-text`} >The BlueTerra Collecton</h3>
-              <p className={`xl:text-xl lg:text-lg font-light vertically-animated-element ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>Explore our handpicked collection of journeys, each created with intention and shaped to deliver timeless experiences you can trust.</p>
-
-              <div ref={cardRef} className=" 2xl:w-11/12 w-full max-2xl:px-5   mt-4 ">
-               {collectionsData?.length > 0 &&   <CollectionsList Data={collectionsData} setCurrent={setCurrentCollection} setCount={setCollectionCount} />}
-              </div>
-
-              <div className=" flex-center w-full h-full">
-                {collectionsData?.map((_, index) => (
-                  <span key={index} className={` h-2 rounded-full translate-all duration-500 ease-in-out  mx-1 ${currentCollection === index + 1 ? '  bg-sky-blue-1 w-10' : 'bg-sky-blue-1/30 w-2'}`}  ></span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        <CollectionsSection/>
 
 
         {/* destinations section  */}
@@ -439,7 +368,7 @@ export default function Home() {
                     <p ref={prevDestinationDescriptionRef} className={`w-full ${rubik.className} 2xl:leading-8 2xl:pr-10  absolute font-extralight xl:text-lg`} >{DESTINATIONS_COLLECTIONS[prevDestination].description}</p>
                   </div>
 
-                  <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${jost.className} py-2`} />
+                  <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2`} />
                 </div>
 
 
