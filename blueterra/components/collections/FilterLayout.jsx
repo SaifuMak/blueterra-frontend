@@ -39,13 +39,11 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
         console.log(filter, value);
 
         if (filter === 'collections' && page === 'collections') {
-            console.log('yes it is the collecton filter and page ');
 
             handleClearAllSelectedFilters()
             const index = filtersList?.collections.findIndex(item => item.title === value);
             // handleChangeCollection(filtersList?.collections.indexOf(value))
             handleChangeCollection(index)
-
 
         }
         else if (filter === 'destinations' && page === 'destinations') {
@@ -152,30 +150,28 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
     // this is the custom logic for the filter collection and destination
     useEffect(() => {
 
-        if (page === 'collections') {
-            if (selectedFilters.collections.length > 0) {
-                const activeCollection = selectedFilters.collections[0]
-                const filtered = filtersList?.categories?.filter(
-                    (cat) => cat.collection.title === activeCollection
-                );
-                setFilteredCategories(filtered);
-            }
-            else {
-                setFilteredCategories(filtersList?.categories || []);
-            }
+        if (selectedFilters.collections.length > 0) {
+           
+            const filtered = filtersList?.categories?.filter(
+                (cat) => selectedFilters.collections.includes(cat.collection.title)
+            );
+
+            setFilteredCategories(filtered);
+        }
+        else {
+            setFilteredCategories(filtersList?.categories || []);
         }
 
-        if (page === 'destinations') {
-            if (selectedFilters.destinations.length > 0) {
-                const activeDestinations = selectedFilters.destinations[0]
-                const filtered = filtersList?.countries?.filter(
-                    (cat) => cat.destination.title === activeDestinations
-                );
-                setFilteredCountries(filtered);
-            }
-            else {
-                setFilteredCountries(filtersList?.categories || []);
-            }
+        if (selectedFilters.destinations.length > 0) {
+
+            const filtered = filtersList?.countries?.filter(
+                (cat) => selectedFilters.destinations.includes(cat.destination.title)
+            );
+
+            setFilteredCountries(filtered);
+        }
+        else {
+            setFilteredCountries(filtersList?.countries || []);
         }
 
     }, [selectedFilters])
@@ -218,7 +214,7 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
                         />
                         <FilterComponent
                             name='countries'
-                            options={filtersList?.countries}
+                            options={filteredCountries}
                             handleFilters={handleFilters}
                             // isOpened={openedFilters.includes("countries")}
                             isOpened={openedFilter === "countries"}
@@ -259,7 +255,7 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
                         />
                         <FilterComponent
                             name='categories'
-                            options={filtersList?.categories}
+                            options={filteredCategories}
                             handleFilters={handleFilters}
                             // isOpened={openedFilters.includes("categories")}
                             isOpened={openedFilter === "categories"}
@@ -271,66 +267,6 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
                 )}
 
 
-
-                {/* {page === 'collections' && <FilterComponent
-                    name='collections'
-                    options={filtersList?.collections}
-                    handleFilters={handleFilters}
-                    // isOpened={openedFilters.includes("collections")}
-                    isOpened={openedFilter === "collections"}
-                    handleItemSelection={handleItemSelection}
-                    selectedFilters={selectedFilters}
-                />}
-
-                {page === 'destinations' && <FilterComponent
-                    name='destinations'
-                    options={filtersList?.destinations}
-                    handleFilters={handleFilters}
-                    isOpened={openedFilter === "destinations"}
-                    handleItemSelection={handleItemSelection}
-                    selectedFilters={selectedFilters}
-                />
-                }
-
-                <FilterComponent
-                    name='categories'
-                    options={filtersList?.categories}
-                    handleFilters={handleFilters}
-                    // isOpened={openedFilters.includes("categories")}
-                    isOpened={openedFilter === "categories"}
-                    handleItemSelection={handleItemSelection}
-                    selectedFilters={selectedFilters}
-                />
-
-                <FilterComponent
-                    name='countries'
-                    options={filtersList?.countries}
-                    handleFilters={handleFilters}
-                    // isOpened={openedFilters.includes("countries")}
-                    isOpened={openedFilter === "countries"}
-                    handleItemSelection={handleItemSelection}
-                    selectedFilters={selectedFilters}
-                />
-
-                {page === 'destinations' && <FilterComponent
-                    name='collections'
-                    options={filtersList?.collections}
-                    handleFilters={handleFilters}
-                    // isOpened={openedFilters.includes("collections")}
-                    isOpened={openedFilter === "collections"}
-                    handleItemSelection={handleItemSelection}
-                    selectedFilters={selectedFilters}
-                />}
-
-                {page === 'collections' && <FilterComponent
-                    name='destinations'
-                    options={filtersList?.destinations}
-                    handleFilters={handleFilters}
-                    isOpened={openedFilter === "destinations"}
-                    handleItemSelection={handleItemSelection}
-                    selectedFilters={selectedFilters}
-                />
-                } */}
             </div>
 
 

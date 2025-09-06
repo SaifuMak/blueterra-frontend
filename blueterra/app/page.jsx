@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar/page";
 import Footer from "@/components/Footer/page";
-import { playfair, rubik, mrsSaint, jost } from "@/app/fonts"
+import { playfair, rubik, mrsSaint } from "@/app/fonts"
 import { DESTINATIONS_COLLECTIONS } from '@/constants/home-destinations'
 import { testimonials } from "@/constants/testimonials";
 import gsap from "gsap";

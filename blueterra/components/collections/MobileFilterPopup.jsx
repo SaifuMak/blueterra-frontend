@@ -75,30 +75,28 @@ export default function MobileFilterPopup({ page, filtersList, selectedFilters, 
     // this is the custom logic for the filter collection and destination
     useEffect(() => {
 
-        if (page === 'collections') {
-            if (selectedFilters.collections.length > 0) {
-                const activeCollection = selectedFilters.collections[0]
-                const filtered = filtersList?.categories?.filter(
-                    (cat) => cat.collection.title === activeCollection
-                );
-                setFilteredCategories(filtered);
-            }
-            else {
-                setFilteredCategories(filtersList?.categories || []);
-            }
+        if (selectedFilters.collections.length > 0) {
+
+            const filtered = filtersList?.categories?.filter(
+                (cat) => selectedFilters.collections.includes(cat.collection.title)
+            );
+
+            setFilteredCategories(filtered);
+        }
+        else {
+            setFilteredCategories(filtersList?.categories || []);
         }
 
-        if (page === 'destinations') {
-            if (selectedFilters.destinations.length > 0) {
-                const activeDestinations = selectedFilters.destinations[0]
-                const filtered = filtersList?.countries?.filter(
-                    (cat) => cat.destination.title === activeDestinations
-                );
-                setFilteredCountries(filtered);
-            }
-            else {
-                setFilteredCountries(filtersList?.categories || []);
-            }
+        if (selectedFilters.destinations.length > 0) {
+
+            const filtered = filtersList?.countries?.filter(
+                (cat) => selectedFilters.destinations.includes(cat.destination.title)
+            );
+
+            setFilteredCountries(filtered);
+        }
+        else {
+            setFilteredCountries(filtersList?.countries || []);
         }
 
     }, [selectedFilters])
@@ -154,7 +152,7 @@ export default function MobileFilterPopup({ page, filtersList, selectedFilters, 
                                         />
                                         <MobileFilterComponent
                                             name="countries"
-                                            options={filtersList?.countries}
+                                            options={filteredCountries}
                                             handleFilters={handleFilters}
                                             isOpened={openedFilter === "countries"}
                                             handleItemSelection={handleItemSelection}
@@ -193,7 +191,7 @@ export default function MobileFilterPopup({ page, filtersList, selectedFilters, 
                                         />
                                         <MobileFilterComponent
                                             name="categories"
-                                            options={filtersList?.categories}
+                                            options={filteredCategories}
                                             handleFilters={handleFilters}
                                             isOpened={openedFilter === "categories"}
                                             handleItemSelection={handleItemSelection}
