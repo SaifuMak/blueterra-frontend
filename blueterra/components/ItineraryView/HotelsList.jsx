@@ -23,7 +23,6 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
     const [api, setApi] = useState()
 
 
-
     useEffect(() => {
 
         if (!api) {
@@ -67,7 +66,7 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
 
                                 <div className="  mx-4 lg:mx-2 group  w-full h-full flex flex-col ">
 
-                                    <div className=" relative  rounded-sm overflow-hidden  transition-all duration-700 ease-in-out h-[200px] md:h-[250px] 2xl:h-[300px] w-full">
+                                    <div className=" relative  rounded-sm overflow-hidden  transition-all duration-700 ease-in-out h-[180px] md:h-[250px] 2xl:h-[300px] w-full">
                                         <Image
                                             src={item?.image_public_url}
                                             alt={item?.title}
@@ -82,13 +81,16 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                                         </div>
                                     </div>
 
+
                                     <div className="  space-y-1">
 
-                                        <div className="flex mt-2  justify-between">
-                                            <h3 className="font-medium text-xl text-dark-4B xl:text-3xl">{trimWords(item.title,3)}</h3>
+                                        <div className="flex lg:mt-2 mt-4  justify-between">
+                                            <h3 className="font-medium text-xl mr-3 text-dark-4B xl:text-3xl  max-lg:hidden">{trimWords(item.title, 3)}</h3>
+                                            <h3 className="font-medium text-xl mr-3 text-dark-4B xl:text-3xl  lg:hidden">{item.title}</h3>
+
                                             <div className="flex space-x-1 mt-3">
                                                 {[...Array(5)].map((_, ind) => (
-                                                    <IoIosStar key={ind} className={`text-xl ${ind < item.rating ? "fill-[#FFCB1F]" : "fill-gray-300"
+                                                    <IoIosStar key={ind} className={`lg:text-xl  text-lg  ${ind < item.rating ? "fill-[#FFCB1F]" : "fill-gray-300"
                                                         }`} />
                                                 ))}
                                             </div>
@@ -99,7 +101,7 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
 
                                         <div className="mt-2">
                                             <p className=" font-light my-6">
-                                                {trimWords(item?.description,40,' Read More...')}
+                                                {trimWords(item?.description, 40, '...')}
                                             </p>
                                         </div>
 

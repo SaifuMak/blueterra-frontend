@@ -27,8 +27,9 @@ import GalleryList from "@/components/ItineraryView/PlannedActivities/GalleryLis
 import AXIOS_INSTANCE from "@/lib/axios";
 import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 import PlannedActivitiesMobile from "@/components/ItineraryView/PlannedActivities/Mobile/PlannedActivitiesMobile";
-import { useIsTablet } from "@/app/hooks/useIsTablet";
 
+import { useIsTablet } from "@/app/hooks/useIsTablet";
+import GalleryCarousal from "@/components/ItineraryView/PlannedActivities/GalleryCarousal";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -245,13 +246,13 @@ export default function ItineraryView() {
                         }
 
 
-                        <div className="  relative bg-white pb-28 ">
+                        <div className="  relative bg-white lg:pb-28 pb-12 ">
                             <ResponsiveClipPath
                                 outerClass='absolute md:w-[20%] w-[28%]  bottom-0 right-0 h-fit'
                                 ImagePath='/images/itinerary/patterns/travel-bottom.png'
                                 width={800}
                             />
-                            <div className=" lg:w-10/12  w-11/12 mx-auto flex  max-lg:flex-col justify-between ">
+                            <div className="xl:w-10/12  w-11/12 mx-auto flex  max-lg:flex-col justify-between ">
                                 <TravelInfo
                                     icon='/Icons/Itinerary/leaf.svg'
                                     title='Best Time to Travel'
@@ -274,12 +275,11 @@ export default function ItineraryView() {
                         </div>
 
 
-                        <div className=" w-full   min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center  px-7">
-                            <div className=" w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige">
+                        <div className=" w-full   min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center px-4  lg:px-7">
+                            <div className=" lg:w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige">
                                 <HotelsView data={itineraryData?.hotels} />
                             </div>
                         </div>
-
 
                         <div ref={galleryRef} className=" relative  bg-white  w-full h-full">
                             <ResponsiveClipPath
@@ -288,29 +288,37 @@ export default function ItineraryView() {
                                 width={800}
                             />
 
-                            <div className="w-full h-full bg-white/30   flex-center relative">
-
+                            {!isTablet && <div className="w-full h-full bg-white/30   flex-center relative">
                                 <div className=" w-11/12 overflow-hidden   space-y-10 mb-24   h-full flex flex-col  items-center rounded-3xl  ">
-
                                     <h6 className={`${playfair.className} gallery-title   text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
-
                                     <GalleryList data={itineraryData?.gallery} />
 
                                 </div>
-                            </div>
+                            </div>}
+
+                            {isTablet && <div className=" pb-10 space-y-10">
+                                <h6 className={`${playfair.className}   text-center text-3xl text-dark-4B font-medium`} >Gallery</h6>
+                                <GalleryCarousal data={itineraryData?.gallery} setCurrent={setCurrentGallery} setCount={setGalleryCount} />
+                                <div className="flex-center space-x-2 overflow-hidden">
+                                    {[...Array(itineraryData?.gallery?.length)].map((_, index) => (
+                                        <span key={index} className={` transform transition-all duration-300 ease-in-out  ${currentGallery === index + 1 ? "w-12 h-2.5  bg-sky-blue-1" : "w-2 h-2 bg-sky-blue-1/30"} rounded-full`} />
+
+                                    ))}
+                                </div>
+                            </div>}
                         </div>
 
 
                         <div ref={planningRef}
-                            className="w-full  min-h-[50vh]  bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center  overflow-hidden relative"
+                            className="w-full  lg:min-h-[50vh] min-h-[40vh]   bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center  overflow-hidden relative"
                             style={{
                                 backgroundImage: "url('/images/our-story/yellow-banner.png')",
                             }}
                         >
 
-                            <div className="lg:w-8/12 md:w-10/12  space-y-10   text-center h-auto flex-col text-dark-28  flex-center">
-                                <h3 className={`xl:text-[50px] text-2xl  font-medium  antialiased  text-dark-4B text-center vertically-animated-element ${playfair.className}`}>Design Your Perfect Itinerary</h3>
-                                <p className=" lg:text-2xl font-light  leading-9 text-xs vertically-animated-element lg:w-5/6 ">
+                            <div className="lg:w-8/12 md:w-10/12 space-y-5  lg:space-y-10   text-center h-auto flex-col text-dark-28  flex-center">
+                                <h3 className={`xl:text-[50px] lg:text-4xl text-2xl  font-medium  antialiased  text-dark-4B text-center vertically-animated-element ${playfair.className}`}>Design Your Perfect Itinerary</h3>
+                                <p className=" xl:text-2xl lg:text-xl font-light leading-7 lg:leading-9  vertically-animated-element w-11/12 lg:w-5/6 ">
                                     Create a journey that reflects your interests, pace, and
                                     travel style — from handpicked experiences to seamless logistics, every detail is yours to shape.
                                 </p>
