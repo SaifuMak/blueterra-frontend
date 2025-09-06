@@ -270,7 +270,7 @@ export default function Home() {
       <Navbar />
       <div ref={welcomeContainerRef} className={`w-full h-full  `}>
 
-        <div className="w-full relative  h-[50vh] md:h-screen">
+        <div className="w-full relative  h-screen">
           {/* src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4" */}
           <video ref={videoRef} src="https://res.cloudinary.com/dbmsyy9mx/video/upload/v1756462732/Home_page_Opening_video_2_ehpv1l.mp4"
             className=" w-full h-full object-cover"

@@ -77,7 +77,6 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
                                         className=" object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out"
                                     />
 
-
                                     <div className="absolute inset-0 group">
                                         {/* Gradient overlay shown only on hover */}
                                         <div className="transition-all delay-75 duration-700 ease-in-out opacity-30 group-hover:opacity-100 bg-gradient-to-t from-black/70 to-transparent absolute inset-0 z-0" />
@@ -101,8 +100,6 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
                     <CarouselNext /> */}
                 </Carousel>
             </div>
-
-
 
         </div>
     )
