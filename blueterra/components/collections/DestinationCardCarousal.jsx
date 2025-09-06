@@ -79,7 +79,7 @@ export default function DestinationCardCarousal({ Data }) {
 
                     <CarouselContent>
 
-                        {Data?.map((gallery, index) => (
+                        {Data?.filter((gallery) => gallery.is_checked).map((gallery, index) => (
                             <CarouselItem key={index} className="md:basis-1/1 lg:basis-1/1  flex-center rounded-t-2xl  ">
 
                                 <div className=" relative group bg-slate-50 cursor-pointer w-full  min-h-[300px] rounded-t-2xl overflow-hidden">
@@ -97,8 +97,8 @@ export default function DestinationCardCarousal({ Data }) {
 
                     <div className="   text-white absolute rounded-2xl pointer-events-none   inset-0 bg-gradient-to-b  from-black/80 via-transparent to-transparent">
 
-                        <div className=" flex group-hover:opacity-100 opacity-0 transition-all duration-300 ease-in-out space-x-3 p-4  md:p-10 justify-end">
-                            {Data?.map((_, index) => (
+                    <div className=" flex group-hover:opacity-100 opacity-0 transition-all duration-300 ease-in-out space-x-3 p-4  md:p-10 justify-end">
+                            {Data?.filter((gallery) => gallery.is_checked).map((_, index) => (
                                 <div key={index} className={`${currentCollection === index ? 'bg-white' : ' bg-white/30'} translate-all duration-700 ease-in-out h-[3px] rounded-3xl w-16 bg-white`}></div>
                             ))}
                         </div>

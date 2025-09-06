@@ -105,7 +105,7 @@ export default function Collection() {
       setTimeout(() => {
         setIsLoading(false)
       }, 500);
-    
+
     }
 
   };
