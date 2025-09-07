@@ -18,11 +18,19 @@ import Navbar from "@/components/Navbar/page"
 import Footer from "@/components/Footer/page"
 import ResponsiveClipPath from "../generalComponents/ResponsiveClipPath"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { useMediaQuery } from 'react-responsive'
+import { useLenis } from "@/components/SmoothScroll"
 
-
-gsap.registerPlugin( ScrollTrigger,ScrollToPlugin)
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 function JournalClient() {
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 844px)'
+    })
+
+    const lenis = useLenis();
+
 
 
     const [currentCollection, setCurrentCollection] = useState(0)
@@ -50,7 +58,7 @@ function JournalClient() {
 
 
     const scrollToJournals = () => {
-        if(!isFirstFetched) return
+        if (!isFirstFetched) return
         gsap.to(window, {
             duration: 0.6,
             scrollTo: { y: JournalListRef.current, offsetY: 10 },
@@ -168,6 +176,11 @@ function JournalClient() {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
+    useEffect(() => {
+        if (isMobile) {
+            lenis?.stop()
+        }
+    }, [isMobile])
 
 
     return (
@@ -249,8 +262,6 @@ function JournalClient() {
 
 
                 <div ref={JournalListRef} className=" w-full  h-full   flex-center ">
-
-
 
 
                     {journals.length > 0 ? (
