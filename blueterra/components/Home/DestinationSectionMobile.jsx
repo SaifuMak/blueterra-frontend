@@ -8,6 +8,8 @@ import Button from '../generalComponents/Button';
 import { useRouter } from 'next/navigation';
 import { MdKeyboardArrowRight } from "react-icons/md";
 
+import {MdOutlineArrowForwardIos} from '@/components/reactIcons'
+
 function DestinationSectionMobile() {
     const containerRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -145,7 +147,7 @@ function DestinationSectionMobile() {
                                 {slides.map((slide, index) => (
                                     <div
                                         key={slide.id + "-" + index}
-                                        className="w-full flex-shrink-0 px-5"
+                                        className="w-full flex-shrink-0 px-10"
                                     >
                                         <div ref={(el) => (cardsRef.current[index] = el)} className="carousel-card h-[360px] rounded-2xl shadow-xl overflow-hidden relative">
                                             <img src={slide.banner_image_public_url} alt={slide.alt} className="w-full h-full object-cover rounded-2xl" />
@@ -160,8 +162,8 @@ function DestinationSectionMobile() {
                             </div>
 
                             {/* Navigation Arrows */}
-                            <button onClick={handlePrev} className="absolute -left-2 top-1/2 -translate-y-1/2 hover:bg-white bg-black/40 text-white p-2 rounded-full"><MdKeyboardArrowRight className=' rotate-180 text-3xl' /></button>
-                            <button onClick={handleNext} className="absolute -right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full"><MdKeyboardArrowRight className=' text-3xl' /></button>
+                            <button onClick={handlePrev} className="absolute -left-1 top-1/2 -translate-y-1/2 p-2 rounded-sm  bg-sky-blue-1 text-white "><MdOutlineArrowForwardIos className=" text-xl rotate-180  " /></button>
+                            <button onClick={handleNext} className="absolute -right-1 top-1/2 -translate-y-1/2  text-white p-2 rounded-sm  bg-sky-blue-1"><MdOutlineArrowForwardIos className=" text-xl " /></button>
                         </div>
                         <div className=" px-4 flex-center mt-7">
                             <Button

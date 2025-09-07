@@ -24,7 +24,6 @@ import CollectionsSection from "@/components/Home/CollectionsSection";
 import DestinationSection from "@/components/Home/DestinationSection";
 import DestinationSectionMediumDevice from "@/components/Home/DestinationSectionMediumDevice";
 import DestinationSectionMobile from "@/components/Home/DestinationSectionMobile";
-
 import { useMediaQuery } from 'react-responsive'
 
 
