@@ -41,7 +41,7 @@ export default function Navbar({ isfixed = false, onNavClick }) {
       if (window.scrollY > lastScrollY) {
         // scrolling down → hide navbar
         gsap.to(navRef.current, {
-          y: isMenuOpened ? "0%" :  "-100%",
+          y: isMenuOpened ? "0%" : "-100%",
           // y:  "-100%",
           duration: 0.8,
           ease: "power3.out",
@@ -99,7 +99,10 @@ export default function Navbar({ isfixed = false, onNavClick }) {
           </div>
 
           <div className=" flex xl:space-x-5  space-x-3 items-center   ">
-            <p className=" text-dark-28 text-nowrap">+971 58 541 2123</p>
+            <a href="tel:+971585412123" className="ml-2  hover:opacity-80 transition">
+              <p className=" text-dark-28 text-nowrap">+971 58 541 2123</p>
+
+            </a>
 
             <Button text='PLAN YOUR EXPERIENCE' buttonStyle='text-nowrap max-md:text-sm px-4 lg:px-2 xl:px-6 py-1.5 lg:py-2 text-xs 2xl:text-sm' isHoverWhiteApplied={false} onClickFunction={() => setFormOpen(true)} />
 
