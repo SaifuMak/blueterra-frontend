@@ -38,7 +38,7 @@ function DestinationSection() {
         fetchDestinations()
     }, [])
 
-    const handleNavigateToDestinations =()=>{
+    const handleNavigateToDestinations = () => {
         router.push('/destinations')
     }
 
@@ -46,7 +46,7 @@ function DestinationSection() {
     const slides = [
         ...destinationsData,
         ...destinationsData,
-         ...destinationsData,
+        ...destinationsData,
         ...destinationsData, ...destinationsData,
         ...destinationsData, ...destinationsData,
         ...destinationsData, ...destinationsData,
@@ -228,7 +228,7 @@ function DestinationSection() {
                                 </div>
                             </div>
 
-                             <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2 ` } onClick={handleNavigateToDestinations} />
+                            <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2 `} onClickFunction={handleNavigateToDestinations} />
                         </div>
 
                         {/* RIGHT SECTION: Carousel */}

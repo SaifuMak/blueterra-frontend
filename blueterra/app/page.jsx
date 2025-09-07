@@ -31,17 +31,17 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Home() {
 
-   const isMobile = useMediaQuery({
-        query: '(max-width: 644px)'
-    })
+  const isMobile = useMediaQuery({
+    query: '(max-width: 644px)'
+  })
 
-   const isMediumDevice = useMediaQuery({
-        query: '(min-width: 650px)'
-    })
+  const isMediumDevice = useMediaQuery({
+    query: '(min-width: 650px)'
+  })
 
-   const isLargeDevice = useMediaQuery({
-        query: '(min-width: 1280px)'
-    })
+  const isLargeDevice = useMediaQuery({
+    query: '(min-width: 1280px)'
+  })
 
 
   const cardRef = useGsapOpacity(0, {})
@@ -251,7 +251,7 @@ export default function Home() {
 
   // }, [])
 
-  
+
 
   // useGSAP(() => {
   //   if (!isBannerVideoLoaded) return;
@@ -275,10 +275,10 @@ export default function Home() {
   //   dependencies: [isBannerVideoLoaded] // Add dependency here
   // });
 
-  
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }, [])
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [])
 
 
   return (
@@ -349,11 +349,11 @@ export default function Home() {
         </div>
 
         {/* our featured collections  */}
-        <CollectionsSection/>
+        <CollectionsSection />
 
-      {isLargeDevice &&   <DestinationSection/>}
+        {isLargeDevice && <DestinationSection />}
 
-      {/* {isMediumDevice &&   <DestinationSectionMediumDevice/>} */}
+        {/* {isMediumDevice &&   <DestinationSectionMediumDevice/>} */}
 
 
         {/* destinations section  */}
