@@ -121,7 +121,7 @@ export default function BlogSingle() {
             <div className={` ${rubik.className} w-full text-dark-28 h-full flex flex-col justify-center items-center relative`} >
                 {isLoading && <Loader />}
 
-                {blog && <div className="w-full h-[600px] relative">
+                {blog && <div className="w-full h-[40vh] md:h-[600px] relative">
                     <Image
                         src={blog.image_public_url}
                         alt='quote'
@@ -136,16 +136,16 @@ export default function BlogSingle() {
                 <div className=" w-11/12 2xl:w-10/12 mt-10 md:mt-20  mb-10 flex max-lg:flex-col   ">
                     <div className="  w-full pr-3  xl:pr-10 mt-4   h-full" >
                         <div className=" min-h-10 ">
-                            <h1 className={`2xl:text-[50px] text-4xl leading-12 xl:leading-16  text-dark-4B  ${playfair.className}`}>{blog?.title}</h1>
+                            <h1 className={`2xl:text-[50px] text-3xl lg:text-4xl leading-10 lg:leading-12 xl:leading-16  text-dark-4B  ${playfair.className}`}>{blog?.title}</h1>
                         </div>
 
                         <div className=" w-full flex max-xl:space-y-2  max-xl:flex-col  min-h-10  2xl:text-lg justify-between  my-5 xl:my-8">
-                            <div className=" flex max-lg:flex-wrap space-x-3 xl:space-x-5 items-center text-sky-blue-dark  ">
+                            <div className=" flex max-sm:flex-col max-lg:flex-wrap max-sm:space-y-1 space-x-3 xl:space-x-5 lg:items-center text-sky-blue-dark  ">
                                 <div className=" flex "> <p className=" ">Posted on: <span className=" text-dark-46">{blog?.created_at}</span></p></div>
                                 <div className=" flex "> <p className="">Category: <span className="text-dark-46 capitalize">{blog?.category_name}</span></p></div>
                                 {blog?.blog_content && <div className=" flex "> <p className="">Read Time: <span className="text-dark-46">{getReadingTime(blog.blog_content)} Minutes</span></p></div>}
                             </div>
-                            <div className=" flex max-sm:space-x-3 space-x-1.5 xl:space-x-3 items-center  ">
+                            <div className=" flex max-sm:space-x-3 space-x-1.5 xl:space-x-3 items-center max-sm:mt-3  ">
                                 <img onClick={handleShare} src="/Icons/single-blog/insta.svg" alt="instagram" className={`${socialIconsStyle}`} />
                                 <a
                                     href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${FRONTEND_BASE_URL}/blog/${blog?.slug}`)}`}
@@ -183,7 +183,7 @@ export default function BlogSingle() {
 
                     </div>
 
-                    <div className=" w-full lg:w-6/12 xl:w-5/12 py-5 space-y-10 h-full border-l px-4 2xl:px-10 ">
+                    <div className=" w-full lg:w-6/12 xl:w-5/12 py-5 space-y-10 h-full lg:border-l lg:px-4 2xl:px-10 ">
 
 
                         <Suspense fallback={<div>Loading search...</div>}>
@@ -268,7 +268,7 @@ export default function BlogSingle() {
 
 
                     <div className=" xl:w-10/12  w-11/12  h-full">
-                        <h2 className={`${playfair.className}  text-3xl md:text-4xl xl:text-[50px] font-semibold text-dark-4B`}>Related Posts</h2>
+                        <h2 className={`${playfair.className}  text-2xl md:text-4xl xl:text-[50px] font-semibold text-dark-4B`}>Related Posts</h2>
 
 
                         <div className=" w-full flex max-sm:flex-col  mt-5 lg:mt-10 space-y-6 md:space-x-10 h-[400px] md:h-[300px] lg:h-[400px] xl:h-[400px] 2xl:h-[480px]">
