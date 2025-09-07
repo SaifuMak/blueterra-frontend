@@ -149,7 +149,7 @@ function DestinationSectionMobile() {
                                         key={slide.id + "-" + index}
                                         className="w-full flex-shrink-0 px-10"
                                     >
-                                        <div ref={(el) => (cardsRef.current[index] = el)} className="carousel-card h-[360px] rounded-2xl shadow-xl overflow-hidden relative">
+                                        <div ref={(el) => (cardsRef.current[index] = el)} className="carousel-card h-[380px] rounded-2xl shadow-xl overflow-hidden relative">
                                             <img src={slide.banner_image_public_url} alt={slide.alt} className="w-full h-full object-cover rounded-2xl" />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent text-white p-2 text-center">
                                                 <div className="w-full h-full flex flex-col justify-end">
