@@ -32,7 +32,7 @@ export default function OurStory() {
         <>
 
             <SmoothScroll>
-                <Navbar  />
+                <Navbar />
 
                 <div className={`${rubik.className}  w-full h-full `}>
 
@@ -58,7 +58,7 @@ export default function OurStory() {
                     <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
 
                 </div>
-                    <Footer />
+                <Footer />
 
             </SmoothScroll>
         </>

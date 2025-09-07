@@ -7,15 +7,20 @@ import IntroCard from './IntroCard';
 import WhereItAllBegan from './WhereItAllBegan';
 import MissionVisionValues from './MissionVisionValues';
 import { useGSAP } from '@gsap/react';
-import { useIsMobile } from '@/app/hooks/useIsMobile';
+// import { useIsMobile } from '@/app/hooks/useIsMobile';
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMediaQuery } from 'react-responsive'
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ThreeCardSection() {
 
-    const isMobile = useIsMobile();
+    // const isMobile = useIsMobile();
+    const isMobile = useMediaQuery({
+        query: '(max-width: 844px)'
+    })
+
 
     const threeCardsContainerRef = useRef()
     const backgroundImageRef = useRef(null);
@@ -32,7 +37,7 @@ export default function ThreeCardSection() {
             gsap.fromTo(cardsRef.current[0],
                 {
                     opacity: 0,
-                    y: isMobile ? 100 : 200
+                    y: isMobile ? 200 : 200
                 },
                 {
                     opacity: 1,
@@ -66,8 +71,8 @@ export default function ThreeCardSection() {
                 ease: 'none',
                 scrollTrigger: {
                     trigger: threeCardsContainerRef.current, // outer scrollable container
-                    start: isMobile ? 'bottom 50%' : 'bottom -70%',
-                    end: isMobile ? 'bottom -50%' : 'bottom -130%',
+                    start: isMobile ? 'bottom -30%' : 'bottom -70%',
+                    end: isMobile ? 'bottom -80%' : 'bottom -130%',
                     scrub: true,
                     // markers: true
                 },
@@ -80,44 +85,36 @@ export default function ThreeCardSection() {
 
             if (!section || !card) return;
 
-            // const tl = gsap.timeline({
-            //     scrollTrigger: {
-            //         trigger: section,
-            //         start: isMobile ? 'top 60%' : 'top 50%',
-            //         end: isMobile ? 'top -30%' : 'top -35%',
-            //         scrub: true,
-            //         markers : true,
-            //         ...(index === 2 && {
-            //             pin: true,
-            //             pinSpacing: true,
-            //             start: isMobile ? 'top 75%' :  'top 15%', // pin starting point
-            //             end: '+=800',    // adjust this for how long it stays pinned
-            //         })
-
-            //     }
-            // });
-
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: section,
                     scrub: true,
-                    // markers: true,
-                    ...(index === 2
-                        ? {
-                            pin: true,
-                            pinSpacing: true,
-                            start: isMobile ? 'top 75%' : 'top 17%',
-                            // end: '+=1250'
-                            end: "bottom -95%",
+                    markers: true,
+                    start: isMobile ? 'top 60%' : 'top 50%',
+                    ...(index === 2) ? {
+                         end: isMobile ? "bottom -55%" :  "bottom -100%",
+                    }
+                        :
+                        {
+                            end: isMobile ? 'top -60%' : 'top -60%',
+
                         }
-                        : {
-                            start: isMobile ? 'top 40%' : 'top 50%',
-                            end: isMobile ? 'top -30%' : 'top -40%',
-                        })
+
+                    // ...(index === 2
+                    //     ? {
+                    //         pin: true,
+                    //         pinSpacing: true,
+                    //         start: isMobile ? 'top 10%' : 'top 17%',
+                    //         // end: '+=1250'
+                    //         end: "bottom -95%",
+
+                    //     }
+                    //     : {
+                    //         start: isMobile ? 'top 60%' : 'top 50%',
+                    //         end: isMobile ? 'top -50%' : 'top -60%',
+                    //     })
                 }
             });
-
-
 
             tl.fromTo(card,
                 {
@@ -136,10 +133,22 @@ export default function ThreeCardSection() {
                 }
             )
 
+            if (index === 2  ) {
+                ScrollTrigger.create({
+                    trigger: section,
+                    pin: true,
+                    pinSpacing: true,
+                    start: isMobile ? "top 0%" : "top 10%",
+                    end: "bottom -95%",
+                    markers: true,
+                });
+            }
+            
+
             if (index === 2 && missionRef.current) {
                 tl.to({}, {
                     duration: 10,
-                    delay : 1.5,
+                    delay: 1.5,
                     onUpdate: function () {
                         const prog = this.progress();
                         const tabIndex = prog < 0.33 ? 0 : prog < 0.66 ? 1 : 2;
@@ -183,7 +192,7 @@ export default function ThreeCardSection() {
                     <section
                         key={i}
                         ref={(el) => (sectionsRef.current[i] = el)}
-                        className="md:min-h-[80vh]   min-h-[60vh]   flex  items-center justify-center"
+                        className="md:min-h-[85vh]   min-h-[90vh] border   flex  items-center justify-center"
                     >
                         <div
                             ref={(el) => (cardsRef.current[i] = el)}

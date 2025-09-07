@@ -27,6 +27,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Home() {
 
+
   const cardRef = useGsapOpacity(0, {})
 
   const isMobile = useIsMobile()
@@ -293,7 +294,7 @@ export default function Home() {
           ></video>
 
 
-          <div className=" w-full h-full absolute bg-black/20  inset-0 flex-center flex-col text-white ">
+          <div className=" w-full h-full absolute bg-black/10  inset-0 flex-center flex-col text-white ">
             <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
               <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Travel Beyond Ordinary</h1>
               <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all font-light duration-700 ease-in-out px-5  text-center lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Soulful journeys and bespoke celebrations,  curated with passion and care.</p>
