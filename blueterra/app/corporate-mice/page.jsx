@@ -179,7 +179,7 @@ export default function Corporate() {
                 <Navbar />
                 <div ref={containerRef} className={`  ${rubik.className} w-full overflow-hidden h-full flex flex-col items-center justify-center`}  >
 
-                    <div ref={bannerRef} className=" w-full  h-[30vh] md:h-[100vh] relative">
+                    <div ref={bannerRef} className=" w-full  h-[100vh] relative">
                         <Image
                             src='/images/corporate/banner.jpg'
                             alt='quote'

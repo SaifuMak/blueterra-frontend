@@ -7,7 +7,7 @@ function WelcomeNoteSection() {
 
     const contentRef = useGsapFadeIn()
     return (
-        <div className=" w-full py-12 lg:py-32  h-full max-sm:py-7 flex-center  bg-light-beige relative">
+        <div className=" w-full py-12 lg:py-32  h-full max-sm:py-12 flex-center  bg-light-beige relative">
 
             <ResponsiveClipPath
                 outerClass='absolute md:w-[18%] w-[45%] left-0  top-12 h-fit'
