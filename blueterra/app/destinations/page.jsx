@@ -187,6 +187,7 @@ export default function Destination() {
 
     return () => {
       document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
     };
   }, [isMobile, showMobileFilter, isFullCardVisible, isAnyFilterOpened]);
 

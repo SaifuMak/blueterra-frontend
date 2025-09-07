@@ -58,7 +58,7 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
 
               <p className=" text-sm font-light mt-2 ">{card?.description}</p>
 
-              {page === 'collections' && <div className="space-y-1 font-light text-sm mt-3 h-[17vh]  gap-x-3 overflow-y-auto  flex flex-col ">
+              {page === 'collections' && <div className="space-y-1 font-light text-sm mt-3 h-[19vh]  gap-x-3 overflow-y-auto  flex flex-col ">
                 {card?.categories?.map((category, index) => (
                   <div key={index} className=" text-white flex items-center text-sm">  <img src="/Icons/dot.svg" alt="dot" className="w-2.5 h-2.5" /> <p className=" ml-3">{category?.title}</p></div>
                 ))}
