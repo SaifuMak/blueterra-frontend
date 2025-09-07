@@ -19,9 +19,9 @@ export default function JourneryIntro() {
     return (
         <div className=" relative   flex-center md:px-10 px-3 bg-white w-full h-full ">
 
-            <div className=" py-10 2xl:py-7 my-20 w-full items-center max-md:space-y-5 max-sm:px-3 max-sm:py-7 md:space-x-10  justify-end rounded-4xl bg-[#F4FBFF] h-full md:flex   ">
+            <div className=" py-10 2xl:py-7 my-20 w-full items-center max-md:space-y-5 max-sm:px-3 max-sm:py-7 max-sm:pt-16 md:space-x-10    justify-center rounded-4xl bg-[#F4FBFF] h-full md:flex   ">
 
-                <div ref={titleRef} className=" lg:w-5/12   md:w-6/12 w-full flex flex-col   max-sm:pl-0 max-lg:pl-5 2xl:pl-20 ">
+                <div ref={titleRef} className=" lg:w-5/12   md:w-6/12 w-full flex flex-col   max-sm:pl-0 max-lg:pl-5  ">
                     {isMobile ?
                         (
                             <TitleText text='The BlueTerra Approach' className=' font-medium text-center  ' />
