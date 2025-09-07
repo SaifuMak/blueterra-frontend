@@ -19,7 +19,7 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
           />
 
 
-          <div className={`absolute ${selectedVerticalTileMobile === index ? "opacity-0" : " opacity-100"} text-white transition-all duration-500 ease-in-out inset-0   bg-[#00284680]/50`}>
+          <div className={`absolute ${selectedVerticalTileMobile === index ? "opacity-0" : " opacity-100"} text-white transition-all duration-500 ease-in-out inset-0   bg-[#104F82D9]/70`}>
             <div className="flex   w-full h-full px-3 mt-2 space-x-2 ">
               <img src={card?.icon_public_url} alt={card?.title} className=" object-cover size-[27px]" />
               <div className="bg-white/40 h-0.5 flex-1 my-3"></div>
@@ -28,7 +28,7 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
             </div>
           </div>
 
-          <div className={`bg-[#104F82D9]/80 text-white transition-all duration-500 ease-in-out absolute inset-0 ${selectedVerticalTileMobile === index ? "opacity-100" : " opacity-0"}`}>
+          <div className={`bg-[#104F82D9]/50 text-white transition-all duration-500 ease-in-out absolute inset-0 ${selectedVerticalTileMobile === index ? "opacity-100" : " opacity-0"}`}>
             <div className=" w-full h-full p-6 ">
 
               <p className='  flex  text-white text-lg  '>
@@ -58,7 +58,7 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
 
               <p className=" text-sm font-light mt-2 ">{card?.description}</p>
 
-              {page === 'collections' && <div className="space-y-1 font-light text-sm mt-3 h-[13vh]  gap-x-3 overflow-y-auto  flex flex-col ">
+              {page === 'collections' && <div className="space-y-1 font-light text-sm mt-3 h-[17vh]  gap-x-3 overflow-y-auto  flex flex-col ">
                 {card?.categories?.map((category, index) => (
                   <div key={index} className=" text-white flex items-center text-sm">  <img src="/Icons/dot.svg" alt="dot" className="w-2.5 h-2.5" /> <p className=" ml-3">{category?.title}</p></div>
                 ))}

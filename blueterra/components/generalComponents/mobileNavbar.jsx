@@ -60,7 +60,7 @@ export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened 
                     <div className={` shadow-lg bg-white  overflow-hidden  px-5 py-3  flex  flex-col  h-screen`}>
 
                         <div className="  min-h-[50px] flex justify-end ">
-                            <RxCross2 onClick={() => setIsMenuOpened(false)} className="text-3xl text-sky-blue-1 cursor-pointer " />
+                            <RxCross2 onClick={() => setIsMenuOpened(false)} className="text-3xl mt-5 text-sky-blue-1 cursor-pointer " />
                         </div>
 
                         {/* <div className=" w-full h-[40px] flex border-b border-sky-blue-1/50  mt-5 space-x-1 items-center ">
@@ -68,11 +68,11 @@ export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened 
                             <IoSearchOutline className="text-2xl  text-sky-blue-1 font-semibold" />
                         </div> */}
 
-                        <div className=" flex flex-col space-y-5 mt-5 font-extralight ">
+                        <div className=" flex flex-col space-y-5 mt-5  font-extralight ">
                             {MenuItems.map((items, index) => (
-                                <Link key={index} href={items.link} className={`${items.url === pathname ? ' text-brand-blue' : ' text-dark-28'}`}>{items.nav}</Link>
+                                <Link key={index} href={items.link} className={`${items.url === pathname ? ' text-brand-blue' : ' text-dark-28'} text-base`}>{items.nav}</Link>
                             ))}
-                            <Button text='PLAN YOUR EXPERIENCE' buttonStyle='text-nowrap max-md:text-[12px] px-4 lg:px-2 xl:px-6 py-1.5 lg:py-2 ' isHoverWhiteApplied={false} onClickFunction={() => setFormOpen(true)} />
+                            <Button text='PLAN YOUR EXPERIENCE' buttonStyle='text-nowrap max-md:text-[12px] px-4 lg:px-2 xl:px-6 py-2 lg:py-2 ' isHoverWhiteApplied={false} onClickFunction={() => setFormOpen(true)} />
 
                             {/* <Link href="/" className="   px-4 rounded-sm   bg-sky-blue-1  text-white w-fit py-1">Contact us</Link> */}
 

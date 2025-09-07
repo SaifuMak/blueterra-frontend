@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { rubik } from "@/app/fonts"
 import ReviewWidget from "./ReviewWidget"
+import ChatWidget from "./ChatWidget"
 
 export default function Footer() {
 
@@ -190,6 +191,7 @@ export default function Footer() {
 
                     <p className=" group"><a href="https://maktalseo.com/" target="_blank" rel="noopener noreferrer" className=" hover:cursor-pointer">Website designed by <span className=" transition-all duration-700">MakTal</span></a></p>
                 </div>
+                <ChatWidget/>
 
             </div>
 
