@@ -89,10 +89,10 @@ export default function ThreeCardSection() {
                 scrollTrigger: {
                     trigger: section,
                     scrub: true,
-                    markers: true,
+                    // markers: true,
                     start: isMobile ? 'top 60%' : 'top 50%',
                     ...(index === 2) ? {
-                         end: isMobile ? "bottom -55%" :  "bottom -100%",
+                        end: isMobile ? "bottom -55%" : "bottom -100%",
                     }
                         :
                         {
@@ -133,17 +133,17 @@ export default function ThreeCardSection() {
                 }
             )
 
-            if (index === 2  ) {
+            if (index === 2) {
                 ScrollTrigger.create({
                     trigger: section,
                     pin: true,
                     pinSpacing: true,
                     start: isMobile ? "top 0%" : "top 10%",
                     end: "bottom -95%",
-                    markers: true,
+                    // markers: true,
                 });
             }
-            
+
 
             if (index === 2 && missionRef.current) {
                 tl.to({}, {
