@@ -29,6 +29,7 @@ import Head from "next/head";
 import usePageLoaded from "../hooks/usePageLoaded";
 import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
+import { useMediaQuery } from 'react-responsive'
 
 // export const metadata = {
 //   title: "My Blog Title | CashPlus",
@@ -38,7 +39,11 @@ import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPat
 
 export default function Collection() {
 
-  const isMobile = useIsMobile()
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 844px)'
+  })
+  // const isMobile = useIsMobile()
   const isLoaded = usePageLoaded();
 
   // const pathname = usePathname();
@@ -131,27 +136,32 @@ export default function Collection() {
     if (!isfullCardEnabledForFirstTime) {
       setIsFullCardVisible(true)
     }
+    console.log('scroll top is called from the handleShowfulcard');
+
     handleScrollTop()
     setExpandedIndex(index)
   }
 
 
   const handleSetCollectionRequestedToShowInMobile = (index) => {
+
     document.body.style.overflow = 'auto'
+    document.documentElement.style.overflow = 'auto'
     // setCollectionRequestedToShowInMobile(index)
     homeRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
 
-  const handleScrollToItineraryResults = () => {
-    homeRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }
-
   useEffect(() => {
 
     if (isMobile) {
-      document.body.style.overflow = showMobileFilter || isAnyFilterOpened ? 'hidden' : 'auto';
+      
+      // document.body.style.overflow = showMobileFilter || isAnyFilterOpened ||  selectedVerticalTileMobile === null ? 'hidden' : 'auto';
+      document.documentElement.style.overflow = selectedVerticalTileMobile === null ? 'hidden' : 'auto';
+
     } else {
+      console.log('enetred the else block ');
+
       document.body.style.overflow = isFullCardVisible || showMobileFilter || isAnyFilterOpened ? 'hidden' : 'auto';
     }
 
@@ -168,6 +178,14 @@ export default function Collection() {
     }
     handleScrollTop()
   }, [isMobile])
+
+
+
+  const handleScrollToItineraryResults = () => {
+    if (selectedVerticalTileMobile !== null) {
+      homeRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
 
 
@@ -305,8 +323,6 @@ export default function Collection() {
               setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
               handleScrollToItineraryResults={handleScrollToItineraryResults}
             />}
-
-
 
 
             <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">

@@ -141,21 +141,22 @@ export default function Destination() {
 
   const handleSetCollectionRequestedToShowInMobile = (index) => {
     document.body.style.overflow = 'auto'
+    document.documentElement.style.overflow = 'auto'
+
     // setCollectionRequestedToShowInMobile(index)
     homeRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
 
-  const handleScrollToItineraryResults = () => {
-    homeRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }
 
 
 
   useEffect(() => {
 
     if (isMobile) {
-      document.body.style.overflow = showMobileFilter || isAnyFilterOpened ? 'hidden' : 'auto';
+      // document.body.style.overflow = showMobileFilter || isAnyFilterOpened ? 'hidden' : 'auto';
+      document.documentElement.style.overflow = selectedVerticalTileMobile === null ? 'hidden' : 'auto';
+
     } else {
       document.body.style.overflow = isFullCardVisible || showMobileFilter || isAnyFilterOpened ? 'hidden' : 'auto';
     }
@@ -173,6 +174,13 @@ export default function Destination() {
     }
     handleScrollTop()
   }, [isMobile])
+
+
+  const handleScrollToItineraryResults = () => {
+    if (selectedVerticalTileMobile !== null) {
+      homeRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
 
   const fetchItinerary = async (page = 1, loading = false) => {
