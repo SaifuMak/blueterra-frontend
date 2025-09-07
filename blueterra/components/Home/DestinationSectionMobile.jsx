@@ -1,0 +1,181 @@
+'use client'
+import React, { useState, useEffect, useRef } from 'react'
+import AXIOS_INSTANCE from '@/lib/axios'
+import { gsap } from "gsap";
+import { rubik, playfair } from '@/app/fonts'
+import { trimWords } from '@/app/utils/textHelpers';
+import Button from '../generalComponents/Button';
+import { useRouter } from 'next/navigation';
+import { MdKeyboardArrowRight } from "react-icons/md";
+
+function DestinationSectionMobile() {
+    const containerRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const intervalRef = useRef(null);
+    const cardsRef = useRef([]);
+    const bannerRefs = useRef([]); // store 2 banners for crossfade
+    const [destinationsData, setDestinationsData] = useState([]);
+
+    const router = useRouter();
+
+    const fetchDestinations = async () => {
+        try {
+            const response = await AXIOS_INSTANCE.get('get-destinations/')
+            setDestinationsData(response?.data || [])
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        fetchDestinations()
+    }, [])
+
+    const slides = [
+        ...destinationsData,
+        ...destinationsData,
+        ...destinationsData,
+        ...destinationsData,
+        ...destinationsData,
+        ...destinationsData,]
+    // Auto-play (optional, can remove if arrows only)
+    useEffect(() => {
+        if (!slides.length) return;
+        intervalRef.current = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % slides.length);
+        }, 5000);
+
+        return () => clearInterval(intervalRef.current);
+    }, [slides.length]);
+
+    // Animate on index change
+    useEffect(() => {
+        if (!slides.length) return;
+
+        const tl = gsap.timeline();
+
+        // Slide container (one card per view)
+        tl.to(containerRef.current, {
+            x: `-${currentIndex * 100}%`,
+            duration: 1,
+            ease: "power2.inOut",
+        });
+
+        // Active card scaling
+        if (cardsRef.current[currentIndex]) {
+            tl.to(cardsRef.current[currentIndex], { scale: 1.05, duration: 0.8 }, "<");
+        }
+        if (cardsRef.current[currentIndex - 1]) {
+            tl.to(cardsRef.current[currentIndex - 1], { scale: 1, duration: 0.8 }, "<");
+        }
+
+        // Title + description sliders
+        tl.to(".title-slider", { y: -currentIndex * 50, duration: 0.8, ease: "power3.inOut" }, "<0.2");
+        tl.to(".desc-slider", { y: -currentIndex * 110, duration: 0.8, ease: "power3.inOut" }, "<");
+
+        // Crossfade background
+        const targetLayer = bannerRefs.current[currentIndex % 2];
+        gsap.set(targetLayer, {
+            backgroundImage: `url(${slides[currentIndex].banner_image_public_url})`,
+        });
+        tl.to(targetLayer, { autoAlpha: 1, duration: 1.6 }, 0);
+        bannerRefs.current.forEach((layer, idx) => {
+            if (layer !== targetLayer) {
+                tl.to(layer, { autoAlpha: 0, duration: 1.2 }, 0);
+            }
+        });
+    }, [currentIndex, slides]);
+
+    // Manual navigation
+    const handlePrev = () => {
+        clearInterval(intervalRef.current);
+        setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    };
+
+    const handleNext = () => {
+        clearInterval(intervalRef.current);
+        setCurrentIndex((prev) => (prev + 1) % slides.length);
+    };
+
+    return (
+        <>
+            {slides.length > 0 && (
+                <div className="min-h-[100vh] py-16 w-full relative overflow-hidden">
+                    {/* Two banners for crossfade */}
+                    <div ref={(el) => (bannerRefs.current[0] = el)} className="banner absolute inset-0 bg-cover bg-center" style={{ opacity: 1 }} />
+                    <div ref={(el) => (bannerRefs.current[1] = el)} className="banner absolute inset-0 bg-cover bg-center" style={{ opacity: 0 }} />
+                    <div className="absolute inset-0 bg-[#0E5181]/60"></div>
+
+                    <div className="max-w-11/12 mx-auto relative  z-10">
+                        {/* Header */}
+                        <div className="w-full text-white px-2 ">
+                            <h2 className={`${playfair.className}  text-[30px]`}>Our Destination Highlights</h2>
+                            <p className={`${rubik.className} mt-2  font-light text-lg`}>Discover destinations that reflect the essence of BlueTerra</p>
+                        </div>
+
+                        {/* Titles & Descriptions */}
+                        <div className="grid grid-cols-1 mt-10">
+                            <div className="h-[50px]  overflow-hidden">
+                                <div className="title-slider">
+                                    {slides.map((slide, idx) => (
+                                        <div key={slide.id + "-title-" + idx} className="h-[50px] px-2  flex items-center">
+                                            <h2 className={`text-3xl font-medium text-white ${playfair.className}`}>
+                                                {trimWords(slide.title, 5, '')}
+                                            </h2>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="h-[110px]   overflow-hidden">
+                                <div className="desc-slider">
+                                    {slides.map((slide, idx) => (
+                                        <div key={slide.id + "-desc-" + idx} className="h-[110px]  px-2  flex items-center">
+                                            <p className="text-base font-light text-white">{slide.description}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {/* Carousel (1 card per view) */}
+                        <div className="relative w-full mt-10">
+                            <div ref={containerRef} className="flex w-full">
+                                {slides.map((slide, index) => (
+                                    <div
+                                        key={slide.id + "-" + index}
+                                        className="w-full flex-shrink-0 px-5"
+                                    >
+                                        <div ref={(el) => (cardsRef.current[index] = el)} className="carousel-card h-[360px] rounded-2xl shadow-xl overflow-hidden relative">
+                                            <img src={slide.banner_image_public_url} alt={slide.alt} className="w-full h-full object-cover rounded-2xl" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent text-white p-2 text-center">
+                                                <div className="w-full h-full flex flex-col justify-end">
+                                                    <p className="mb-2 text-base ">{slide.title}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Navigation Arrows */}
+                            <button onClick={handlePrev} className="absolute -left-2 top-1/2 -translate-y-1/2 hover:bg-white bg-black/40 text-white p-2 rounded-full"><MdKeyboardArrowRight className=' rotate-180 text-3xl' /></button>
+                            <button onClick={handleNext} className="absolute -right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full"><MdKeyboardArrowRight className=' text-3xl' /></button>
+                        </div>
+                        <div className=" px-4 flex-center mt-7">
+                            <Button
+                                text="EXPLORE"
+                                buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2`}
+                                onClickFunction={() => router.push('/destinations')}
+                            />
+                        </div>
+
+                    </div>
+                </div>
+            )}
+        </>
+    )
+}
+
+export default DestinationSectionMobile

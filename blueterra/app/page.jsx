@@ -23,6 +23,8 @@ import { useIsMobile } from "./hooks/useIsMobile";
 import CollectionsSection from "@/components/Home/CollectionsSection";
 import DestinationSection from "@/components/Home/DestinationSection";
 import DestinationSectionMediumDevice from "@/components/Home/DestinationSectionMediumDevice";
+import DestinationSectionMobile from "@/components/Home/DestinationSectionMobile";
+
 import { useMediaQuery } from 'react-responsive'
 
 
@@ -31,20 +33,12 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Home() {
 
-  const isMobile = useMediaQuery({
-    query: '(max-width: 644px)'
-  })
-
+  const isMobile = useMediaQuery({ query: "(max-width: 644px)" });
   const isMediumDevice = useMediaQuery({
-    query: '(max-width: 1280px)'
-  })
+    query: "(min-width: 645px) and (max-width: 1279px)",
+  });
+  const isLargeDevice = useMediaQuery({ query: "(min-width: 1280px)" });
 
-  const isLargeDevice = useMediaQuery({
-    query: '(min-width: 1280px)'
-  })
-
-
-  const cardRef = useGsapOpacity(0, {})
 
   // const isMobile = useIsMobile()
 
@@ -53,29 +47,14 @@ export default function Home() {
 
   const [isBannerVideoLoaded, setIsBannerVideoLoaded] = useState(false)
 
-  const [currentDestination, setCurrentDestination] = useState(0)
-  const [DestinationCount, setDestinationCount] = useState(0)
-
-  const [selectedDestination, setSelectedDestination] = useState(DESTINATIONS_COLLECTIONS[0])
-
-
   const welcomeContainerRef = useRef()
 
   const messageContainerRef = useRef()
-
-
-  const currentDestinationTitleRef = useRef()
-  const prevDestinationTitleRef = useRef()
-
-  const currentDestinationDescriptionRef = useRef()
-  const prevDestinationDescriptionRef = useRef()
-
 
   const cardRefs = useRef([]);
 
   const testimonialContainer = useRef(null);
   const scaleTrackerContainer = useRef(null);
-  const destinationBannerRef = useRef(null);
 
 
   const scrollSpeed = isMobile ? 0.5 : 1.5; // pixels per frame
@@ -148,43 +127,43 @@ export default function Home() {
   }, []);
 
 
-  const prevDestination =
-    (currentDestination - 1 + DESTINATIONS_COLLECTIONS.length) % DESTINATIONS_COLLECTIONS.length
+  // const prevDestination =
+  //   (currentDestination - 1 + DESTINATIONS_COLLECTIONS.length) % DESTINATIONS_COLLECTIONS.length
 
-  useEffect(() => {
-    const tl = gsap.timeline()
-    const t2 = gsap.timeline()
-
-
-    tl.fromTo(prevDestinationTitleRef.current, { yPercent: 0 }, { yPercent: -100, duration: 0.8 })
-    t2.fromTo(prevDestinationDescriptionRef.current, { yPercent: 0 }, { yPercent: -100, duration: 1.3 })
+  // useEffect(() => {
+  //   const tl = gsap.timeline()
+  //   const t2 = gsap.timeline()
 
 
-    // Animate current title to center
-    tl.from(currentDestinationTitleRef.current, {
-      yPercent: 90,
-      opacity: 1,
-      duration: 0.9,
-      ease: 'power2.out',
-    }, '-=0.7') // slight overlap
-    t2.from(currentDestinationDescriptionRef.current, {
-      yPercent: 170,
-      opacity: 1,
-      duration: 1.2,
-      ease: 'power2.out',
-    }, '-=1') // slight overlap
-
-  }, [currentDestination])
+  //   tl.fromTo(prevDestinationTitleRef.current, { yPercent: 0 }, { yPercent: -100, duration: 0.8 })
+  //   t2.fromTo(prevDestinationDescriptionRef.current, { yPercent: 0 }, { yPercent: -100, duration: 1.3 })
 
 
+  //   // Animate current title to center
+  //   tl.from(currentDestinationTitleRef.current, {
+  //     yPercent: 90,
+  //     opacity: 1,
+  //     duration: 0.9,
+  //     ease: 'power2.out',
+  //   }, '-=0.7') // slight overlap
+  //   t2.from(currentDestinationDescriptionRef.current, {
+  //     yPercent: 170,
+  //     opacity: 1,
+  //     duration: 1.2,
+  //     ease: 'power2.out',
+  //   }, '-=1') // slight overlap
 
-  useEffect(() => {
-    gsap.fromTo(
-      destinationBannerRef.current,
-      { opacity: 0.5, scale: 1 },
-      { opacity: 1, duration: 3, scale: 1.15, ease: "power1.out" }
-    );
-  }, [currentDestination]);
+  // }, [currentDestination])
+
+
+
+  // useEffect(() => {
+  //   gsap.fromTo(
+  //     destinationBannerRef.current,
+  //     { opacity: 0.5, scale: 1 },
+  //     { opacity: 1, duration: 3, scale: 1.15, ease: "power1.out" }
+  //   );
+  // }, [currentDestination]);
 
 
   useEffect(() => {
@@ -225,55 +204,6 @@ export default function Home() {
     }
   }, []);
 
-
-  // video  player 
-
-  // useEffect(() => {
-
-
-  //   if (!messageContainerRef.current) return
-
-  //   gsap.fromTo(
-  //     videoRef.current,
-  //     { scale: 1 }, // Starting value
-  //     {
-  //       scale: 1.09, // Ending value
-  //       duration: 2,
-  //       ease: "power3.out", // 
-  //       scrollTrigger: {
-  //         trigger: messageContainerRef.current,
-  //         start: "top 90%",
-  //         toggleActions: "play reverse play reverse",
-  //         // markers: true,
-  //       },
-  //     }
-  //   );
-
-  // }, [])
-
-
-
-  // useGSAP(() => {
-  //   if (!isBannerVideoLoaded) return;
-
-  //   const elements = gsap.utils.toArray(".video-animated-element");
-
-  //   elements.forEach((box) => {
-  //     gsap.fromTo(
-  //       box,
-  //       { opacity: 0, y: 100 },
-  //       {
-  //         opacity: 1,
-  //         y: 0,
-  //         duration: 0.7,
-  //         ease: "power3.out",
-  //       }
-  //     );
-  //   });
-  // }, {
-  //   scope: welcomeContainerRef,
-  //   dependencies: [isBannerVideoLoaded] // Add dependency here
-  // });
 
 
   useEffect(() => {
@@ -353,56 +283,10 @@ export default function Home() {
 
         {isLargeDevice && <DestinationSection />}
 
-        {isMediumDevice &&   <DestinationSectionMediumDevice/>}
+        { isMediumDevice &&    <DestinationSectionMediumDevice/>}
 
+        {isMobile && <DestinationSectionMobile />}
 
-        {/* destinations section  */}
-        {/* <div className=" w-full mt-12 2xl:mt-20 z-0 h-[100dvh] overflow-hidden relative max-lg:hidden ">
-
-          <Image
-            ref={destinationBannerRef}
-            src={DESTINATIONS_COLLECTIONS[currentDestination].bannerImage}
-            alt="air balloon"
-            fill
-            priority
-            className="object-fill"
-          />
-          <div className=" w-full h-full text-white absolute flex flex-col translate-all duration-1000 ease-in-out  items-end inset-0 bg-[#0E5181]/60 ">
-
-            <div className={`2xl:w-11/12 w-full max-2xl:pl-10 h-[60vh] xl:h-[60vh]   mt-[10vh] ${playfair.className} `}>
-
-              <h2 className=" vertically-animated-element text-[45px] xl:text-[50px]  ">Our Destination Highlights</h2>
-              <p className={`${rubik.className} vertically-animated-element  mt-4 leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>Discover destinations that reflect the essence of BlueTerra</p>
-
-              <div className="  flex  h-full    w-full ">
-
-                <div className="w-4/12 max-2xl:w-5/12 flex flex-col justify-center">
-                  <div className=" h-[50px] xl:h-[80px] flex items-center  relative  overflow-hidden">
-                    <h3 ref={currentDestinationTitleRef} className=" text-5xl xl:text-[70px] absolute text-nowrap  font-semibold ">{DESTINATIONS_COLLECTIONS[currentDestination].titile}</h3>
-                    <h3 ref={prevDestinationTitleRef} className={` ${currentDestination === 0 ? ' opacity-50' : 'opacity-100'} text-5xl  xl:text-[70px] absolute  text-nowrap  font-semibold `} >{DESTINATIONS_COLLECTIONS[prevDestination].titile}</h3>
-                  </div>
-
-                  <div className=" md:h-[120px] xl:h-[140px] 2xl:h-[150px] relative   overflow-hidden mt-5">
-                    <p ref={currentDestinationDescriptionRef} className={`w-full ${rubik.className} 2xl:leading-8 2xl:pr-10 absolute  font-extralight xl:text-lg`} >{DESTINATIONS_COLLECTIONS[currentDestination].description}</p>
-                    <p ref={prevDestinationDescriptionRef} className={`w-full ${rubik.className} 2xl:leading-8 2xl:pr-10  absolute font-extralight xl:text-lg`} >{DESTINATIONS_COLLECTIONS[prevDestination].description}</p>
-                  </div>
-
-                  <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2`} />
-                </div>
-
-
-                <div className=" flex items-center  w-10/12 justify-end overflow-hidden     space-x-8 ">
-
-                  <div className=" w-full   pl-5   ">
-                    <DestinationCarousal Data={DESTINATIONS_COLLECTIONS} setCurrent={setCurrentDestination} setCount={setDestinationCount} currentDestination={currentDestination} />
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div> */}
 
 
         <div className=" w-full flex-center relative h-[100vh] bg-sky-blue-light ">
