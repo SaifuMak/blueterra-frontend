@@ -192,7 +192,7 @@ export default function Collection() {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isMobile, showMobileFilter, isFullCardVisible, isAnyFilterOpened, isTileSelectedForFirstTime]);
+  }, [isMobile, showMobileFilter, isFullCardVisible, isAnyFilterOpened]);
 
 
   //  this is made to prevent scrolling 
