@@ -36,7 +36,7 @@ export default function Home() {
   })
 
   const isMediumDevice = useMediaQuery({
-    query: '(min-width: 650px)'
+    query: '(max-width: 1280px)'
   })
 
   const isLargeDevice = useMediaQuery({
@@ -353,7 +353,7 @@ export default function Home() {
 
         {isLargeDevice && <DestinationSection />}
 
-        {/* {isMediumDevice &&   <DestinationSectionMediumDevice/>} */}
+        {isMediumDevice &&   <DestinationSectionMediumDevice/>}
 
 
         {/* destinations section  */}
