@@ -8,7 +8,7 @@ import Button from '../generalComponents/Button';
 import { useRouter } from 'next/navigation';
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-import {MdOutlineArrowForwardIos} from '@/components/reactIcons'
+import { MdOutlineArrowForwardIos } from '@/components/reactIcons'
 
 function DestinationSectionMobile() {
     const containerRef = useRef(null);
@@ -162,10 +162,14 @@ function DestinationSectionMobile() {
                             </div>
 
                             {/* Navigation Arrows */}
-                            <button onClick={handlePrev} className="absolute -left-1 top-1/2 -translate-y-1/2 p-2 rounded-sm  bg-sky-blue-1 text-white "><MdOutlineArrowForwardIos className=" text-xl rotate-180  " /></button>
-                            <button onClick={handleNext} className="absolute -right-1 top-1/2 -translate-y-1/2  text-white p-2 rounded-sm  bg-sky-blue-1"><MdOutlineArrowForwardIos className=" text-xl " /></button>
+
                         </div>
-                        <div className=" px-4 flex-center mt-7">
+
+                        <div className=" mt-5 flex-center space-x-6">
+                            <button onClick={handlePrev} className=" p-1.5 rounded-sm border-white border  text-white "><MdOutlineArrowForwardIos className=" text-lg rotate-180  " /></button>
+                            <button onClick={handleNext} className="   p-1.5 rounded-sm  border-white border  text-white"><MdOutlineArrowForwardIos className=" text-lg " /></button>
+                        </div>
+                        <div className=" px-4 flex-center mt-5">
                             <Button
                                 text="EXPLORE"
                                 buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2`}
