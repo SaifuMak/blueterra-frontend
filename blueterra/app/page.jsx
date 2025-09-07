@@ -262,6 +262,12 @@ export default function Home() {
   //   dependencies: [isBannerVideoLoaded] // Add dependency here
   // });
 
+  
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [])
+
+
 
 
   return (

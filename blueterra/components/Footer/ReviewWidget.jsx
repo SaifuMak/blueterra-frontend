@@ -24,7 +24,7 @@ const ReviewWidget = () => {
 
   return (
     <div
-      className="review-widget_net w-fit -ml-3"
+      className="review-widget_net w-fit -ml-1 lg:-ml-3"
       data-uuid="9fb7e6df-3f62-44bf-ad76-51792094115b"
       data-template="2"
       data-lang="en"

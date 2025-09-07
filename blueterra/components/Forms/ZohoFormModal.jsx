@@ -35,7 +35,7 @@ export default function ZohoFormModal({ isOpen, onClose }) {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-            <div ref={ZohoFormsRef} className="relative bg-white w-11/12 max-w-4xl py-10 h-[85vh] rounded-xl shadow-lg overflow-hidden">
+            <div ref={ZohoFormsRef} className="relative bg-white w-11/12 max-w-4xl py-10 h-[75vh] rounded-xl shadow-lg overflow-hidden mt-12">
                 <RxCross2 className=' cursor-pointer absolute text-3xl text-dark-28 top-5 right-5' onClick={onClose} />
 
                 {/* Loader overlay */}
