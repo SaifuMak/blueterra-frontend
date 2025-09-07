@@ -129,11 +129,23 @@ export default function EditItinerary() {
                 setIsLoading(false);
             }
         };
-
         fetchItinerary();
         fetchFilters()
 
+
     }, [id]);
+
+
+    function usePrevious(value) {
+        const ref = useRef();
+        useEffect(() => {
+            ref.current = value;
+        }, [value]);
+        return ref.current;
+    }
+
+    const prevDestination = usePrevious(destination);
+    const prevCollection = usePrevious(collection);
 
 
 
@@ -325,9 +337,13 @@ export default function EditItinerary() {
                 ? filtersList.countries.filter(c => c.destination?.title === destination)
                 : filtersList.countries
         );
+        console.log(prevDestination, destination);
 
-        setCountry("");
-    }, [destination]);
+
+        if (prevDestination && prevDestination !== destination) {
+            setCountry("");
+        }
+    }, [filtersList, destination]);
 
     // when collection changes → filter categories + reset category
     useEffect(() => {
@@ -339,8 +355,10 @@ export default function EditItinerary() {
                 : filtersList.categories
         );
 
-        setCategory("");
-    }, [collection]);
+        if (prevCollection && prevCollection !== collection) {
+            setCategory("");
+        }
+    }, [filtersList, collection]);
 
 
 
