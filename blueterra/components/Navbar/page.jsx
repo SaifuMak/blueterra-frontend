@@ -99,7 +99,7 @@ export default function Navbar({ isfixed = false, onNavClick }) {
           </div>
 
           <div className=" flex xl:space-x-5  space-x-3 items-center   ">
-            <p className=" text-dark-28 text-nowrap">+ 123 456 7890</p>
+            <p className=" text-dark-28 text-nowrap">+971 58 541 2123</p>
 
             <Button text='PLAN YOUR EXPERIENCE' buttonStyle='text-nowrap max-md:text-sm px-4 lg:px-2 xl:px-6 py-1.5 lg:py-2 text-xs 2xl:text-sm' isHoverWhiteApplied={false} onClickFunction={() => setFormOpen(true)} />
 
