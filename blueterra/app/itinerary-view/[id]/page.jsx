@@ -35,7 +35,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function ItineraryView() {
 
-
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(true)
     const [itineraryData, setItineraryData] = useState(null)

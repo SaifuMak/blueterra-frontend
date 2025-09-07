@@ -21,16 +21,32 @@ import useGsapOpacity from "./hooks/Gsap/useGsapOpacity";
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
 import { useIsMobile } from "./hooks/useIsMobile";
 import CollectionsSection from "@/components/Home/CollectionsSection";
+import DestinationSection from "@/components/Home/DestinationSection";
+import DestinationSectionMediumDevice from "@/components/Home/DestinationSectionMediumDevice";
+import { useMediaQuery } from 'react-responsive'
+
 
 gsap.registerPlugin(ScrollTrigger)
 
 
 export default function Home() {
 
+   const isMobile = useMediaQuery({
+        query: '(max-width: 644px)'
+    })
+
+   const isMediumDevice = useMediaQuery({
+        query: '(min-width: 650px)'
+    })
+
+   const isLargeDevice = useMediaQuery({
+        query: '(min-width: 1280px)'
+    })
+
 
   const cardRef = useGsapOpacity(0, {})
 
-  const isMobile = useIsMobile()
+  // const isMobile = useIsMobile()
 
   // zoho form 
   const [formOpen, setFormOpen] = useState(false);
@@ -236,10 +252,6 @@ export default function Home() {
   // }, [])
 
   
-  
-
-
-
 
   // useGSAP(() => {
   //   if (!isBannerVideoLoaded) return;
@@ -267,8 +279,6 @@ export default function Home() {
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, [])
-
-
 
 
   return (
@@ -338,14 +348,16 @@ export default function Home() {
 
         </div>
 
-
-
         {/* our featured collections  */}
         <CollectionsSection/>
 
+      {isLargeDevice &&   <DestinationSection/>}
+
+      {isMediumDevice &&   <DestinationSectionMediumDevice/>}
+
 
         {/* destinations section  */}
-        <div className=" w-full mt-12 2xl:mt-20 z-0 h-[100dvh] overflow-hidden relative max-lg:hidden ">
+        {/* <div className=" w-full mt-12 2xl:mt-20 z-0 h-[100dvh] overflow-hidden relative max-lg:hidden ">
 
           <Image
             ref={destinationBannerRef}
@@ -390,7 +402,7 @@ export default function Home() {
 
             </div>
           </div>
-        </div>
+        </div> */}
 
 
         <div className=" w-full flex-center relative h-[100vh] bg-sky-blue-light ">

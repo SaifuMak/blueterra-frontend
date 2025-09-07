@@ -166,14 +166,9 @@ export default function Destination() {
     isTileSelectedForFirstTimeRef.current = true;
     handleScrollToItineraryResults()
 
-
     // setCollectionRequestedToShowInMobile(index)
     // homeRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
-
-
-
-
 
   useEffect(() => {
 
