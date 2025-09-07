@@ -351,9 +351,9 @@ export default function Home() {
         {/* our featured collections  */}
         <CollectionsSection/>
 
-      {isLargeDevice &&   <DestinationSection/>}
+      {/* {isLargeDevice &&   <DestinationSection/>}
 
-      {isMediumDevice &&   <DestinationSectionMediumDevice/>}
+      {isMediumDevice &&   <DestinationSectionMediumDevice/>} */}
 
 
         {/* destinations section  */}
