@@ -46,6 +46,9 @@ export default function Destination() {
   const isMobile = useIsMobile()
   const isLoaded = usePageLoaded();
 
+  // const [isTileSelectedForFirstTime, setIsTileSelectedForFirstTime] = useState(false)
+  const isTileSelectedForFirstTimeRef = useRef(false);
+
 
   // const pathname = usePathname();
 
@@ -65,6 +68,7 @@ export default function Destination() {
   const [collectionRequestedToShowInMobile, setCollectionRequestedToShowInMobile] = useState(null)
 
   const [isfullCardEnabledForFirstTime, setIsfullCardEnabledForFirstTime] = useState(false)
+
 
   const [expandedIndex, setExpandedIndex] = useState(null)
   const [isFullCardVisible, setIsFullCardVisible] = useState(true)
@@ -146,7 +150,7 @@ export default function Destination() {
 
 
   const handleScrollToItineraryResults = () => {
-    if (selectedVerticalTileMobile !== null) {
+    if (isTileSelectedForFirstTimeRef.current) {
       gsap.to(window, {
         duration: 0.8, // scroll duration (in seconds)
         scrollTo: { y: homeRef.current, offsetY: 30 },
@@ -156,9 +160,12 @@ export default function Destination() {
   }
 
   const handleSetCollectionRequestedToShowInMobile = (index) => {
+
     document.body.style.overflow = 'auto'
     document.documentElement.style.overflow = 'auto'
+    isTileSelectedForFirstTimeRef.current = true;
     handleScrollToItineraryResults()
+
 
     // setCollectionRequestedToShowInMobile(index)
     // homeRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -172,7 +179,7 @@ export default function Destination() {
 
     if (isMobile) {
       // document.body.style.overflow = showMobileFilter || isAnyFilterOpened ? 'hidden' : 'auto';
-      document.documentElement.style.overflow = selectedVerticalTileMobile === null ? 'hidden' : 'auto';
+      document.documentElement.style.overflow = showMobileFilter || isAnyFilterOpened || !isTileSelectedForFirstTimeRef.current ? 'hidden' : 'auto';
 
     } else {
       document.body.style.overflow = isFullCardVisible || showMobileFilter || isAnyFilterOpened ? 'hidden' : 'auto';

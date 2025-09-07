@@ -70,6 +70,8 @@ export default function Collection() {
   const [collectionRequestedToShowInMobile, setCollectionRequestedToShowInMobile] = useState(null)
 
   const [isfullCardEnabledForFirstTime, setIsfullCardEnabledForFirstTime] = useState(false)
+  const isTileSelectedForFirstTimeRef = useRef(false);
+
 
   const [expandedIndex, setExpandedIndex] = useState(null)
   const [isFullCardVisible, setIsFullCardVisible] = useState(true)
@@ -141,7 +143,6 @@ export default function Collection() {
     if (!isfullCardEnabledForFirstTime) {
       setIsFullCardVisible(true)
     }
-    console.log('scroll top is called from the handleShowfulcard');
 
     handleScrollTop()
     setExpandedIndex(index)
@@ -149,7 +150,9 @@ export default function Collection() {
 
 
   const handleScrollToItineraryResults = () => {
-    if (selectedVerticalTileMobile !== null) {
+  
+
+    if (isTileSelectedForFirstTimeRef.current) {
       gsap.to(window, {
         duration: 0.8, // scroll duration (in seconds)
         scrollTo: { y: homeRef.current, offsetY: 30 },
@@ -158,10 +161,15 @@ export default function Collection() {
     }
   }
 
+
   const handleSetCollectionRequestedToShowInMobile = (index) => {
+   
+
+    console.log('iti si callled ----');
 
     document.body.style.overflow = 'auto'
     document.documentElement.style.overflow = 'auto'
+    isTileSelectedForFirstTimeRef.current = true
     handleScrollToItineraryResults()
     // setCollectionRequestedToShowInMobile(index)
     // homeRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -173,7 +181,7 @@ export default function Collection() {
     if (isMobile) {
 
       // document.body.style.overflow = showMobileFilter || isAnyFilterOpened ||  selectedVerticalTileMobile === null ? 'hidden' : 'auto';
-      document.documentElement.style.overflow = selectedVerticalTileMobile === null ? 'hidden' : 'auto';
+      document.documentElement.style.overflow = showMobileFilter || isAnyFilterOpened || !isTileSelectedForFirstTimeRef.current ? 'hidden' : 'auto';
 
     } else {
       console.log('enetred the else block ');
@@ -184,7 +192,7 @@ export default function Collection() {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isMobile, showMobileFilter, isFullCardVisible, isAnyFilterOpened]);
+  }, [isMobile, showMobileFilter, isFullCardVisible, isAnyFilterOpened, isTileSelectedForFirstTime]);
 
 
   //  this is made to prevent scrolling 
