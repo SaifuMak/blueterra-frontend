@@ -31,6 +31,11 @@ import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
 import { useMediaQuery } from 'react-responsive'
 
+import gsap from "gsap"
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+
+gsap.registerPlugin(ScrollToPlugin);
 // export const metadata = {
 //   title: "My Blog Title | CashPlus",
 //   description: "This is the description of my blog page for SEO purposes.",
@@ -143,19 +148,30 @@ export default function Collection() {
   }
 
 
+  const handleScrollToItineraryResults = () => {
+    if (selectedVerticalTileMobile !== null) {
+      gsap.to(window, {
+        duration: 0.8, // scroll duration (in seconds)
+        scrollTo: { y: homeRef.current, offsetY: 30 },
+        ease: "sine.inOut" // easing for smoothness
+      });
+    }
+  }
+
   const handleSetCollectionRequestedToShowInMobile = (index) => {
 
     document.body.style.overflow = 'auto'
     document.documentElement.style.overflow = 'auto'
+    handleScrollToItineraryResults()
     // setCollectionRequestedToShowInMobile(index)
-    homeRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // homeRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
 
   useEffect(() => {
 
     if (isMobile) {
-      
+
       // document.body.style.overflow = showMobileFilter || isAnyFilterOpened ||  selectedVerticalTileMobile === null ? 'hidden' : 'auto';
       document.documentElement.style.overflow = selectedVerticalTileMobile === null ? 'hidden' : 'auto';
 
@@ -180,12 +196,6 @@ export default function Collection() {
   }, [isMobile])
 
 
-
-  const handleScrollToItineraryResults = () => {
-    if (selectedVerticalTileMobile !== null) {
-      homeRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
 
 
 

@@ -33,6 +33,12 @@ import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPat
 //   title: "My Blog Title | CashPlus",
 //   description: "This is the description of my blog page for SEO purposes.",
 // };
+import gsap from "gsap"
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+
+gsap.registerPlugin(ScrollToPlugin);
+
 
 
 export default function Destination() {
@@ -139,12 +145,23 @@ export default function Destination() {
   }
 
 
+  const handleScrollToItineraryResults = () => {
+    if (selectedVerticalTileMobile !== null) {
+      gsap.to(window, {
+        duration: 0.8, // scroll duration (in seconds)
+        scrollTo: { y: homeRef.current, offsetY: 30 },
+        ease: "sine.inOut" // easing for smoothness
+      });
+    }
+  }
+
   const handleSetCollectionRequestedToShowInMobile = (index) => {
     document.body.style.overflow = 'auto'
     document.documentElement.style.overflow = 'auto'
+    handleScrollToItineraryResults()
 
     // setCollectionRequestedToShowInMobile(index)
-    homeRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // homeRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
 
@@ -176,11 +193,7 @@ export default function Destination() {
   }, [isMobile])
 
 
-  const handleScrollToItineraryResults = () => {
-    if (selectedVerticalTileMobile !== null) {
-      homeRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
+
 
 
   const fetchItinerary = async (page = 1, loading = false) => {
