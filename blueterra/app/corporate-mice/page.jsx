@@ -185,7 +185,7 @@ export default function Corporate() {
                             alt='quote'
                             fill
                             priority
-                            style={{ objectFit: 'cover' }}
+                            className=" object-cover "
                         />
 
                         <div className=" w-full opacity-0 bg-black/30  banner-elements absolute inset-0 text-white  h-full  flex flex-col justify-center items-center">

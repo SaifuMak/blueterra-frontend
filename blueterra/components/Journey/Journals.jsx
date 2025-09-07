@@ -113,14 +113,14 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
 
                     <div className="  text-white absolute rounded-3xl pointer-events-none   flex flex-col justify-between  max-sm:py-4 inset-0 bg-gradient-to-t  from-black/80 via-transparent to-transparent">
 
-                        <div className=" flex  space-x-3 p-4   md:p-10">
+                        <div className=" flex  space-x-3 px-4   md:p-10">
                             {Data?.map((_, index) => (
                                 <div key={index} className={`${currentCollection === index ? 'bg-white' : ' bg-white/30'} translate-all duration-700 ease-in-out h-[3px] rounded-3xl w-16 bg-white`}></div>
                             ))}
                         </div>
 
 
-                        <div className=" pointer-events-auto  px-4 md:px-10 md:py-5 lg:space-y-5 space-y-3  vertical-fade-in">
+                        <div className=" pointer-events-none  px-4 md:px-10 md:py-5 lg:space-y-5 space-y-3  vertical-fade-in">
                             <div className=" space-y-3 overflow-hidden vertical-fade-in">
                                 <h2 className=" 2xl:text-[30px] xl:text-[24px] md:text-xl   font-medium">{Data[currentCollection]?.title}</h2>
                                 <p
