@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useLayoutEffect, useRef } from "react"
 import accordionData from "@/components/datas/DailyActivitiesData"
 import { MdOutlineKeyboardArrowRight, MdInfoOutline, IoMdArrowDropup } from '../../reactIcons'
 
@@ -13,7 +13,6 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
     const accordiansRef = useRef([])
 
-    const isTablet = useIsTablet()
 
     const handleAccordion = (index) => {
         if (selectedTab !== 'Daily Schedule') {
@@ -59,14 +58,37 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
     }, [selectedTab])
 
+    const [hasScrollbar, setHasScrollbar] = useState(false);
+    const containerRef = useRef();
+
+
+    
+    useLayoutEffect(() => {
+        if (!containerRef.current) return;
+
+        const checkOverflow = () => {
+            const el = containerRef.current;
+            setHasScrollbar(el.scrollHeight > el.clientHeight);
+        };
+
+        checkOverflow(); // run initially
+
+        // Watch for size/content changes
+        const resizeObserver = new ResizeObserver(checkOverflow);
+        resizeObserver.observe(containerRef.current);
+
+        return () => resizeObserver.disconnect();
+    }, [OpenedAccordian]);
+
+
 
     return (
 
         <>
 
-            <div className="  w-full  overflow-y-auto h-full  flex flex-col px-1 pl-12 lg:pl-[44px]  max-xl:text-sm  xl:pl-[44px]  space-y-2 content-between text-base  " data-lenis-prevent>
+            <div ref={containerRef} className="  w-full  overflow-y-auto h-full  flex flex-col px-1 pl-12 lg:pl-[44px]  max-xl:text-sm  xl:pl-[44px]  space-y-2 content-between text-base  "   {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
 
-                <div  className="  w-full">
+                <div className="  w-full">
 
                     {itineraryData?.days?.map((data, index) => (
                         <div key={index} ref={(el) => (accordiansRef.current[index] = el)} className=" flex border-l relative  ">
