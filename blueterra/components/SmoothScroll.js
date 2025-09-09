@@ -17,6 +17,8 @@ export default function SmoothScroll({ children, enabled = true }) {
     const lenis = new Lenis({
       smooth: true,
       syncTouch: true, // important so touch/wheel propagate correctly
+      gestureTarget: document.querySelectorAll('[data-lenis-scrollable]')
+
     });
 
     lenisRef.current = lenis;

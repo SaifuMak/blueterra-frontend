@@ -64,9 +64,9 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
         <>
 
-            <div className="  w-full  overflow-y-auto h-full  flex flex-col px-1 pl-12 lg:pl-[44px]  max-xl:text-sm  xl:pl-[44px]  space-y-2 content-between text-base ">
+            <div className="  w-full  overflow-y-auto h-full  flex flex-col px-1 pl-12 lg:pl-[44px]  max-xl:text-sm  xl:pl-[44px]  space-y-2 content-between text-base  " data-lenis-prevent>
 
-                <div onMouseEnter={lockScreen} onMouseLeave={unLockScreen} className="  w-full">
+                <div  className="  w-full">
 
                     {itineraryData?.days?.map((data, index) => (
                         <div key={index} ref={(el) => (accordiansRef.current[index] = el)} className=" flex border-l relative  ">
