@@ -62,7 +62,7 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
     const containerRef = useRef();
 
 
-    
+
     useLayoutEffect(() => {
         if (!containerRef.current) return;
 

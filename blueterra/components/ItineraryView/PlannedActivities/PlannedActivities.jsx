@@ -377,7 +377,7 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
         <>
             {/* <div className="relative flex flex-wrap bg-red-50 border   w-[800px] min-h-[400px] overflow-hidden"> */}
 
-            <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[105vh] bg-white xl:w-11/12 my-16   z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12   flex flex-col items-center `}>
+            <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[105vh]  xl:w-11/12 my-16   z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12   flex flex-col items-center `}>
 
                 <div className=" flex  flex-col vertically-animated-element z-[999] items-center transform-gpu ">
                     <h3 className={`text-5xl font-medium ${playfair.className}`}>Planned Activities</h3>
