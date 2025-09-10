@@ -67,13 +67,13 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
         <>
 
-            <div ref={containerRef} className="  w-full  overflow-y-auto h-full flex flex-col px-1 pl-12 lg:pl-[44px]   max-xl:text-sm  xl:pl-[44px]   space-y-2 content-between text-base  max-sm:max-h-[200px] "   {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
+            <div ref={containerRef} className="  w-full  overflow-y-auto h-full flex flex-col px-1 pl-12 lg:pl-[44px]   max-xl:text-sm  xl:pl-[44px]   space-y-2 content-between text-base   max-sm:max-h-[300px] "   {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
 
-                <div className="  w-full  h-full flex flex-col  ">
+                <div className="  w-full  h-full flex flex-col   ">
 
                     {itineraryData?.days?.map((data, index) => (
-                        <div key={index} ref={(el) => (accordiansRef.current[index] = el)} className=" flex border-l relative  ">
-                            <div className={`shrink-0 absolute flex  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === itineraryData?.days.length - 1 ? `lg:pb-64 ${hasScrollbar ? 'max-sm:pb-0' : 'max-sm:pb-0' }  ` : ''} `}>
+                        <div key={index} ref={(el) => (accordiansRef.current[index] = el)} className=" flex  border-l relative  ">
+                            <div className={`shrink-0 absolute flex  transition-all duration-700  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === itineraryData?.days.length - 1 ? ` ${OpenedAccordian.includes(index) ? 'lg:pb-0' : 'lg:pb-6'}  ` : ''} bg-white `}>
                                 <p className=" font-normal text-sm  ">Day</p>
                                 <span className="size-5 ml-2   text-white text-xs  bg-[#026E9E] flex-center  rounded-full">{index + 1}</span>
                             </div>

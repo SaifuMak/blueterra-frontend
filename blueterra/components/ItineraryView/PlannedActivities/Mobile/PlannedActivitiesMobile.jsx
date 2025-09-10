@@ -35,9 +35,6 @@ function PlannedActivitiesMobile({ itineraryData }) {
         };
     }, [isPriceInclusionPopupOpened, lenis]);
 
-   
-
-
 
     return (
         <div className="  w-11/12 my-10 ">
@@ -58,7 +55,7 @@ function PlannedActivitiesMobile({ itineraryData }) {
             </div>
 
             {isPriceInclusionPopupOpened && (<div className="fixed inset-0 flex items-center justify-center bg-black/10 bg-opacity-50 z-50">
-                <div ref={priceInclusionRef} className=" bg-white w-11/12 relative rounded-2xl">
+                <div ref={priceInclusionRef} className=" bg-white w-11/12 px-3 relative rounded-2xl">
                     <RxCross2 onClick={() => setIsPriceInclusionPopupOpened(false)} className=' absolute text-xl  top-5 right-5' />
                     <PriceInclusionsDummy itineraryData={itineraryData} />
                 </div>

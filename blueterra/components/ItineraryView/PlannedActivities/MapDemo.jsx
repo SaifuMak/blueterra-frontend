@@ -83,7 +83,6 @@ function ResizeHandler({ expandCards = null, locations }) {
     useEffect(() => {
 
         if (expandCards) {
-            console.log('map  resize is calling ---------------');
             const timeout = setTimeout(() => {
                 map.invalidateSize();
                 const bounds = L.latLngBounds(locations.map((l) => l.coords));
@@ -184,6 +183,12 @@ export default function MapDemo({ expandCards, itineraryData }) {
                 zoom={8}
                 // scrollWheelZoom={true}
                 style={{ height: "100%", width: "100%" }}
+                scrollWheelZoom={false}   // avoid scroll hijacking
+                doubleClickZoom={false}
+                dragging={true}
+                touchZoom={true}
+                tap={false}
+                className="h-full w-full overscroll-contain touch-none rounded-xl"
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
