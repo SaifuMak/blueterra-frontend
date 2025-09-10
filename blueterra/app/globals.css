@@ -218,6 +218,9 @@ body {
 
 
 #zsiq_float {
+  /* min-width:55px !important;
+  min-height: 55px !important; */
+
   width: 75px !important;
   height: auto !important;
   max-height: 75px !important;
@@ -329,24 +332,24 @@ body {
 }
 
 
-  .blog-content ul {
-    list-style-type: disc;
-    /* default bullet */
-    padding-left: 1.5rem;
-    /* spacing */
-  }
+.blog-content ul {
+  list-style-type: disc;
+  /* default bullet */
+  padding-left: 1.5rem;
+  /* spacing */
+}
 
-  .blog-content ol {
-    list-style-type: decimal;
-    /* default numbering */
-    padding-left: 1.5rem;
-  }
+.blog-content ol {
+  list-style-type: decimal;
+  /* default numbering */
+  padding-left: 1.5rem;
+}
 
-  .blog-content li {
-    margin-bottom: 0.5rem;
-    list-style-position: outside;
-    /* bullet/number outside the text */
-  }
+.blog-content li {
+  margin-bottom: 0.5rem;
+  list-style-position: outside;
+  /* bullet/number outside the text */
+}
 
 
 

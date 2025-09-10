@@ -3,7 +3,6 @@ import Image from "next/image"
 import { playfair, rubik } from "@/app/fonts"
 import Button from "@/components/generalComponents/Button"
 import Navbar from "@/components/Navbar/page"
-import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath"
 import SmoothScroll from "@/components/SmoothScroll"
 import Footer from "@/components/Footer/page"
 import BlogCards from "@/components/generalComponents/BlogCards"
@@ -18,13 +17,13 @@ import { toast } from "sonner"
 import { FRONTEND_BASE_URL } from "@/app/config."
 import ZohoFormModal from "@/components/Forms/ZohoFormModal"
 
+
 export default function BlogSingle() {
 
     const { slug } = useParams(); // slug from URL
     const router = useRouter();
 
     const [formOpen, setFormOpen] = useState(false);
-
 
     const [blog, setBlog] = useState(null);
     const [moreBlogs, setMoreBlogs] = useState([])
@@ -237,7 +236,7 @@ export default function BlogSingle() {
                             <div className=" w-full h-full flex items-end  bg-gradient-to-t from-black via-black/30 to-transparent  absolute inset-0">
                                 <div className=" flex flex-col p-5  space-y-3">
                                     <h3 className={`md:text-[30px] text-2xl xl:pr-7 leading-11  text-white ${playfair.className}`}>Turning your travel dreams into real Adventures.</h3>
-                                    <Button text='PLAN YOUR TRIP' buttonStyle={` transition-all mb-3 vertically-animated-element  max-sm:text-sm duration-500 w-full py-2.5  ease-in-out font-medium`}  onClickFunction={() => setFormOpen(true)}/>
+                                    <Button text='PLAN YOUR TRIP' buttonStyle={` transition-all mb-3 vertically-animated-element  max-sm:text-sm duration-500 w-full py-2.5  ease-in-out font-medium`} onClickFunction={() => setFormOpen(true)} />
 
                                 </div>
 
@@ -248,7 +247,7 @@ export default function BlogSingle() {
                         <div className="  space-y-6 w-full h-full pb-6 pt-10 px-5 text-center rounded-2xl bg-dark-beige">
                             <h5 className={`${playfair.className} font-medium text-2xl`}>Join Our Community Today!</h5>
                             <p className=" px-4 lg:px-7 font-light">Get started for free and receive instant notifications about updates.</p>
-                             <iframe
+                            <iframe
                                 title="Zoho Form"
                                 src="https://forms.zohopublic.com/blueterra/form/JoinOurCommunity1/formperma/tq1z2CAalSFUwdWkL0eLA_mkzm2nXum54WsJjuA1SzA"
                                 style={{ width: '100%', height: '80%', border: 'none', objectFit: 'cover' }}
@@ -291,7 +290,7 @@ export default function BlogSingle() {
                 </div>}
 
             </div>
-                <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
+            <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
 
             <Footer />
 

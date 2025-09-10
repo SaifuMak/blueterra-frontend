@@ -112,8 +112,6 @@ export default function Search() {
     }, [])
 
 
-
-
     return (
         <SmoothScroll>
             <Navbar />
