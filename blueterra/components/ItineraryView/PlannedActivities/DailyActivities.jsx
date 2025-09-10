@@ -6,12 +6,15 @@ import { MdOutlineKeyboardArrowRight, MdInfoOutline, IoMdArrowDropup } from '../
 import ReactTooltip from "@/components/generalComponents/ReactTooltip"
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
 import { useIsTablet } from "@/app/hooks/useIsTablet"
+import { useHasScrollbar } from "@/app/hooks/useHasScrollbar"
 
 export default function DailyActivities({ expandCards, index, selectedTab, itineraryData, lockScreen, unLockScreen }) {
 
     const [OpenedAccordian, setOpenedAccordian] = useState([])
 
     const accordiansRef = useRef([])
+
+    const { containerRef, hasScrollbar } = useHasScrollbar([OpenedAccordian])
 
 
     const handleAccordion = (index) => {
@@ -58,28 +61,6 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
     }, [selectedTab])
 
-    const [hasScrollbar, setHasScrollbar] = useState(false);
-    const containerRef = useRef();
-
-
-
-    useLayoutEffect(() => {
-        if (!containerRef.current) return;
-
-        const checkOverflow = () => {
-            const el = containerRef.current;
-            setHasScrollbar(el.scrollHeight > el.clientHeight);
-        };
-
-        checkOverflow(); // run initially
-
-        // Watch for size/content changes
-        const resizeObserver = new ResizeObserver(checkOverflow);
-        resizeObserver.observe(containerRef.current);
-
-        return () => resizeObserver.disconnect();
-    }, [OpenedAccordian]);
-
 
 
     return (
@@ -88,11 +69,11 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
             <div ref={containerRef} className="  w-full  overflow-y-auto h-full  flex flex-col px-1 pl-12 lg:pl-[44px]  max-xl:text-sm  xl:pl-[44px]  space-y-2 content-between text-base  "   {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
 
-                <div className="  w-full">
+                <div className="  w-full  h-full flex flex-col  ">
 
                     {itineraryData?.days?.map((data, index) => (
                         <div key={index} ref={(el) => (accordiansRef.current[index] = el)} className=" flex border-l relative  ">
-                            <div className={`shrink-0 absolute flex  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === itineraryData?.days.length - 1 ? 'pb-36' : ''}  bg-white `}>
+                            <div className={`shrink-0 absolute flex  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === itineraryData?.days.length - 1 ? 'lg:pb-64' : ''} bg-white `}>
                                 <p className=" font-normal text-sm  ">Day</p>
                                 <span className="size-5 ml-2   text-white text-xs  bg-[#026E9E] flex-center  rounded-full">{index + 1}</span>
                             </div>
@@ -109,13 +90,11 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
                                         {data.title}
                                         <span className={`transition-all duration-300  ${OpenedAccordian.includes(index) ? 'rotate-90' : 'rotate-0'}`}><MdOutlineKeyboardArrowRight className=" text-xl" /></span>
                                     </div>
-                                    <div className={` overflow-hidden    transition-all duration-700 text-dark-28 ease-in-out px-4 ${OpenedAccordian.includes(index) ? 'max-h-[200px]    opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`}>
-                                        {/* <div className="py-5 px-5 ml-1  mt-8 border-dashed border-slate-500 border-l relative "> */}
-                                        <div className=" ml-1 py-3  relative ">
+                                    <div ref={containerRef} className={` overflow-x-auto    transition-all duration-700 text-dark-28 ease-in-out px-4  ${OpenedAccordian.includes(index) ? 'max-h-[300px]  max-sm:max-h-[200px]   opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`} {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
+                                        <div className=" ml-1 pt-3  pb-5  relative  ">
 
-                                            {/* <img src="/Icons/big-dot.svg" alt="dot" className=" w-5 h-5 absolute -top-0.5 -left-2.5" />
-                                            <p className="absolute -top-1 left-4 font-medium">Destination</p> */}
-                                            <p className=" mt-2 font-light">{data.description}</p>
+                                            <p className=" mt-2   font-light">{data.description}</p>
+
                                         </div>
                                     </div>
                                 </div>

@@ -198,15 +198,15 @@ export default function ItineraryView() {
                         <div className="relative  w-full min-h-[100vh] ">
                             {/* Fixed Background */}
                             <div className="fixed inset-0 -z-10">
-                                <Image src={itineraryData?.banner_image_public_url} alt="forest" fill className="" priority />
+                                <Image src={itineraryData?.banner_image_public_url} alt="forest" fill className=" object-cover" priority />
                             </div>
-                            <div className=" w-full h-full absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent ">
+                            <div className=" w-full h-full absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10 ">
                             </div>
 
 
                             <div ref={bannerContainer} className="   h-full flex  ">
 
-                                <div className=" text-white z-30 mt-24  flex flex-col  justify-between  text-center w-full h-full   ">
+                                <div className=" text-white z-30 mt-32  flex flex-col  justify-between  text-center w-full h-full   ">
 
                                     <div className={`${playfair.className}`}>
                                         <p className=" text-[45px] md:text-[80px] xl:text-[100px] opacity-0 vertically-animate-element font-medium">{itineraryData.title}</p>
@@ -216,7 +216,7 @@ export default function ItineraryView() {
                                     <div className=" space-y-5  text-center flex font-light flex-col items-center">
                                         {/* <p className=" text-[25px] opacity-0 vertically-animate-element leading-9 w-5/12">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities, carefully selected destinations, accommodations, transportation details, and unique experiences.</p>
                                     <p className=" w-4/12 text-xl opacity-0 vertically-animate-element leading-9">A comprehensive and meticulously curated document that presents a day-by-day breakdown of your travel journey, featuring thoughtfully.</p> */}
-                                        <p className=" 2xl:w-8/12 xl:w-9/12 md:w-9/12 w-10/12 text-sm md:text-lg xl:text-xl 2xl:text-[22px] opacity-0 vertically-animate-element 2xl:my-10 font-light leading-6 md:leading-7 xl:leading-9">{itineraryData.description}</p>
+                                        <p className=" 2xl:w-8/12 xl:w-9/12 md:w-9/12 w-11/12 text-[13px] md:text-lg xl:text-xl 2xl:text-[22px] opacity-0 vertically-animate-element 2xl:my-10 font-light leading-6 md:leading-7 xl:leading-9">{itineraryData.description}</p>
                                         <Button text='START PLANNING' buttonStyle={` opacity-0 vertically-animate-element font-normal transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `} onClickFunction={() => setFormOpen(true)} />
                                     </div>
 

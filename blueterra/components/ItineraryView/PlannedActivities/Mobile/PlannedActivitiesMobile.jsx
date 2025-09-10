@@ -9,6 +9,7 @@ import PriceInclusionsDummy from '@/components/generalComponents/PriceInclusions
 import { useState, useEffect } from 'react'
 import { useLenis } from '@/components/SmoothScroll'
 import useClickOutside from '@/app/hooks/useClickOutside'
+import { BsQuestionLg } from "react-icons/bs";
 
 function PlannedActivitiesMobile({ itineraryData }) {
 
@@ -48,13 +49,14 @@ function PlannedActivitiesMobile({ itineraryData }) {
                 <DestinationsCarousal itineraryData={itineraryData} />
                 <Details itineraryData={itineraryData} />
             </div>
-            <div className="flex items-center peer cursor-pointer">
+
+            <div className="flex items-center peer cursor-pointer mt-8">
                 <p className=' text-dark-28'>Inclusions and Exclusions</p>
-                <button onClick={() => setIsPriceInclusionPopupOpened(true)} className=" px-4 ml-2 py-0.5 flex-center bg-sky-blue-1 font-light rounded-sm text-sm text-white">View </button>
+                <button onClick={() => setIsPriceInclusionPopupOpened(true)} className="  ml-2  p-1 flex-center  bg-sky-blue-dark font-light rounded-full text-sm text-white"><BsQuestionLg /> </button>
             </div>
 
             {isPriceInclusionPopupOpened && (<div className="fixed inset-0 flex items-center justify-center bg-black/10 bg-opacity-50 z-50">
-                <div ref={priceInclusionRef} className=" bg-white w-10/12 relative rounded-2xl">
+                <div ref={priceInclusionRef} className=" bg-white w-11/12 relative rounded-2xl">
                     <RxCross2 onClick={() => setIsPriceInclusionPopupOpened(false)} className=' absolute text-xl  top-5 right-5' />
                     <PriceInclusionsDummy itineraryData={itineraryData} />
                 </div>

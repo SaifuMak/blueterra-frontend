@@ -410,9 +410,9 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
                         <MdInfoOutline className="ml-2" />
                     </div>
 
-                    <div className="absolute   top-5 min-h-[300px] lg:min-w-[600px] xl:min-w-[700px] 2xl:min-w-[800px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
+                    <div className="absolute   max-w-6/12  top-5 min-h-[300px] lg:min-w-[600px] xl:min-w-[700px] 2xl:min-w-[800px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
 
-                        <div className=" relative mt-4 bg-white    px-6 !z-[1999] rounded-xl  shadow-[0_0_20px_rgba(0,0,0,0.15)]   ">
+                        <div className=" relative mt-4 bg-white w-full  px-6 !z-[1999] rounded-xl  shadow-[0_0_20px_rgba(0,0,0,0.15)]   ">
                             <IoMdArrowDropup className=" text-4xl  text-white absolute left-1/4 -translate-x-1/4 -top-5 " />
                             <PriceInclusionsDummy itineraryData={itineraryData} />
                         </div>

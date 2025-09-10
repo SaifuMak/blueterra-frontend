@@ -1,42 +1,29 @@
 import { FaCheckCircle, FaTimes } from 'react-icons/fa';
 
 import { rubik } from '@/app/fonts'
-import { useLenis } from '../SmoothScroll';
-
-const priceIncludes = [
-    { text: "Internal flights", note: "(as detailed)" },
-    { text: "Transfers", note: "(as detailed)" },
-    { text: "Activities and excursions", note: "(as detailed)" },
-    { text: "Accommodation and meals indicated", note: "(as detailed)" },
-    { text: "24/7 Support whilst away", note: null },
-];
-
-const priceExcludes = [
-    "Travel Insurance",
-    "Visas",
-    "Gratuities",
-    "International flights",
-];
+import { useHasScrollbar } from '@/app/hooks/useHasScrollbar';
 
 
 export default function PriceInclusionsDummy({ itineraryData }) {
 
-    const lenis = useLenis()
+    const { containerRef, hasScrollbar } = useHasScrollbar([])
+
+
     return (
-        <div className={`w-full  mx-auto px-4 py-8 ${rubik.className} `}>
+        <div className={`w-full  mx-auto px-4 py-8  ${rubik.className} `}>
             <p className="mb-4 text-gray-800">As detailed in the itinerary:</p>
             <div className="grid text-sm font-light grid-cols-1 md:grid-cols-2 gap-10 ">
 
                 <div className='  '>
-                    <h3 className=" font-medium mb-4 ">INCLUDES</h3>
-                    <ul className="space-y-3 max-h-44 overflow-y-auto ">
+                    <h3 className=" font-medium capitalize mb-4 ">Includes</h3>
+                    <ul ref={containerRef} className="space-y-3 max-h-44 pb-10 overflow-y-auto " {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
                         {itineraryData?.package_inclusions?.map((item, idx) => (
                             <li
                                 key={idx}
                                 className={`flex   justify-between`}
                             >
                                 <div className="flex items-start gap-2">
-                                    <FaCheckCircle className="text-green-600 mt-1" />
+                                    <FaCheckCircle className="text-green-600 mt-1 shrink-0" />
                                     <span>{item.title}</span>
                                 </div>
                                 {/* {item.title && (
@@ -49,11 +36,11 @@ export default function PriceInclusionsDummy({ itineraryData }) {
 
 
                 <div className=''>
-                    <h3 className="font-medium  mb-4">EXCLUDES</h3>
-                    <ul className="space-y-3 max-h-44 overflow-y-auto ">
+                    <h3 className="font-medium  mb-4">Excludes</h3>
+                    <ul ref={containerRef} className="space-y-3 max-h-44 pb-10 overflow-y-auto " {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
                         {itineraryData?.package_exclusions?.map((item, idx) => (
                             <li key={idx} className="flex items-start  gap-2">
-                                <FaTimes className="text-red-600 mt-1" />
+                                <FaTimes className="text-red-600 mt-1 shrink-0" />
                                 <span>{item.title}</span>
                             </li>
                         ))}

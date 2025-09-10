@@ -60,7 +60,7 @@ export default function GalleryCarousal({ data, setCurrent, setCount }) {
                         {data?.map((item, index) => (
                             <CarouselItem key={index} className="basis-full md:basis-1/2 w-full  flex  ">
 
-                                <div className="  mx-1  lg:mx-2 group  w-full h-full flex flex-col ">
+                                <div className="  mx-1   lg:mx-2 group  w-full h-full flex flex-col ">
 
                                     <div className=" relative   rounded-2xl overflow-hidden  transition-all duration-700 ease-in-out h-[400px] w-full">
                                         <Image
@@ -69,6 +69,9 @@ export default function GalleryCarousal({ data, setCurrent, setCount }) {
                                             fill
                                             className="object-cover"
                                         />
+                                        <div className=" absolute flex items-end bg-gradient-to-t from-black via-transparent to-transparent  w-full h-full  inset-0">
+                                            <p className=" text-white text-lg ml-5 mb-5">{item?.title}</p>
+                                        </div>
 
                                     </div>
 
