@@ -198,7 +198,7 @@ export default function ItineraryView() {
     return (
 
         <>
-            <SmoothScroll enabled={isLenisAvailable}>
+            {/* <SmoothScroll enabled={isLenisAvailable}> */}
                 <Navbar />
 
                 {isLoading ? (
@@ -349,7 +349,7 @@ export default function ItineraryView() {
                     </div>
                 )}
 
-            </SmoothScroll>
+            {/* </SmoothScroll> */}
 
         </>
 
