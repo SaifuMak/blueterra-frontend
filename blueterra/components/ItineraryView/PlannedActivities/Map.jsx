@@ -8,46 +8,16 @@ import { useMediaQuery } from 'react-responsive'
 //     ssr: false,
 // });
 
-
-
 const MapClient = dynamic(() => import('./MapDemo'), {
     ssr: false,
 });
 
 export default function Map({ expandCards, index, itineraryData }) {
- 
+
 
       const isMobile = useMediaQuery({
         query: '(max-width: 844px)'
     })
-
-    
-
-    // useEffect(() => {
-
-    //     const handleClickInside = (event) => {
-
-    //         if (containerRef.current && !containerRef.current.contains(event.target)) {
-    //             document.documentElement.style.overflow = 'auto'
-    //              console.log('it is clicked outside');
-    //              lenis?.start();
-                 
-    //         }
-    //         else {
-    //             document.documentElement.style.overflow = 'hidden'
-    //               lenis?.stop();
-    //              console.log('it is clicked inside');
-    //             //  alert('it is clicked inside')
-    //         }
-    //     }
-    //     document.addEventListener('mousedown', handleClickInside);
-
-    //     return () => {
-    //         document.removeEventListener('mousedown', handleClickInside);
-    //         document.documentElement.style.overflow = 'auto'
-    //     }
-
-    // }, [])
 
 
     return (

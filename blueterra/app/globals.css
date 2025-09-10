@@ -217,6 +217,13 @@ body {
 }
 
 
+#zsiq_float {
+  width: 75px !important;
+  height: auto !important;
+  max-height: 75px !important;
+}
+
+
 
 /* styles/editor-content.css */
 .blog-content {
