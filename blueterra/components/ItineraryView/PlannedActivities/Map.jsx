@@ -15,10 +15,11 @@ const MapClient = dynamic(() => import('./MapDemo'), {
 });
 
 export default function Map({ expandCards, index, itineraryData }) {
-    const containerRef = useRef(null);
-    const lockedRef = useRef(false);
+ 
 
-    const lenis = useLenis();
+      const isMobile = useMediaQuery({
+        query: '(max-width: 844px)'
+    })
 
     
 
@@ -49,10 +50,9 @@ export default function Map({ expandCards, index, itineraryData }) {
     // }, [])
 
 
-
     return (
         // <div onClick={()=>expandCards(index)} className=" relative rounded-sm  overflow-hidden cursor-pointer w-full h-full">
-        <div ref={containerRef} className=" relative  bg-red-400 rounded-xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " data-lenis-prevent>
+        <div  className=" relative   rounded-xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " {...(isMobile ? { 'data-lenis-prevent': true } : {})}>
 
 
             <MapClient expandCards={expandCards} itineraryData={itineraryData} />
