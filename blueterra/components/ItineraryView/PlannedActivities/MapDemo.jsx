@@ -188,7 +188,7 @@ export default function MapDemo({ expandCards, itineraryData }) {
                 dragging={true}
                 touchZoom={true}
                 tap={false}
-                className="h-full w-full overscroll-contain touch-none rounded-xl"
+                className="h-full w-full rounded-xl"
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
