@@ -7,7 +7,7 @@ function CorporateEventsSection() {
 
     const patternRef = useGsapFadeIn(0, { start: 'top 60%' })
     return (
-        <div className=" w-full  text-dark-28 flex-center  h-full py-12 lg:py-20  relative ">
+        <div className=" w-full  text-dark-28 flex-center  h-full py-6 lg:py-20  relative ">
 
             {/* pattern */}
             <div ref={patternRef} className={`absolute  md:w-[29%] w-[80%] left-0 -bottom-5  h-fit`}>

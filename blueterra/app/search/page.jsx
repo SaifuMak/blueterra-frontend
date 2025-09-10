@@ -107,10 +107,10 @@ export default function Search() {
     },);
 
     useEffect(() => {
-     console.log('page reloaded ');
-     
+        console.log('page reloaded ');
+
     }, [])
-    
+
 
 
 
@@ -120,7 +120,7 @@ export default function Search() {
 
             <div ref={containerRef} className={`w-full h-full flex flex-col justify-center  mb-20 text-dark-28 ${rubik.className}`}>
 
-                <div className="w-full relative h-screen md:h-[400px] lg:h-[500px] xl:h-[500px] 2xl:h-[600px]">
+                <div className="w-full relative h-[40vh] md:h-[400px] lg:h-[500px] xl:h-[500px] 2xl:h-[600px]">
                     <Image
                         src='/images/journal/banner.jpg'
                         alt='quote'
@@ -143,7 +143,7 @@ export default function Search() {
                 </div>
 
 
-                <div  className=" w-full  h-full  flex-center ">
+                <div className=" w-full  h-full  flex-center ">
 
                     {journals.length > 0 ? (
 

@@ -13,7 +13,7 @@ function PrivateEvents({PRIVATE_EVENTS}) {
                 secondPara=''
                 imageUrl='/images/corporate/food.png' />
 
-            <div className=" w-10/12  2xl:mb-20 mb-10  z-20  mt-12 2xl:mt-20 text-dark-28 h-fit grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div className=" w-10/12  2xl:mb-20 mb-10  z-20  mt-12 2xl:mt-20 text-dark-28 h-fit grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-10">
                 {PRIVATE_EVENTS?.map((data, index) => (
                     <InfoCards key={index} data={data} />
                 ))}

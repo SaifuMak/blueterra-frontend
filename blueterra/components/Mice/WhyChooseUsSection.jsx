@@ -39,7 +39,7 @@ function WhyChooseUsSection() {
             <h2 ref={titleRef} className={`  max-sm:text-2xl text-3xl z-20 lg:text-[36px]  xl:text-[45px]  2xl:text-[50px] ${playfair.className} font-medium `} >Why  Choose Us?</h2>
 
             {/* for mobile  */}
-            <div className=" sm:hidden 2xl:w-10/12   xl:w-11/12 max-xl:px-5  mb-10  mt-10 2xl:mt-20  h-fit grid grid-cols-1 lg:grid-cols-3 gap-10 2xl:gap-16">
+            <div className=" sm:hidden 2xl:w-10/12   xl:w-11/12 max-xl:px-5  mb-10  mt-10 2xl:mt-20  h-fit grid grid-cols-1 lg:grid-cols-3 md:gap-10 gap-5 2xl:gap-16">
                 {WHY_CHOOSE_US?.map((data, index) => (
                     <WhyChooseUsCard key={index} data={data} index={index} />
                 ))}

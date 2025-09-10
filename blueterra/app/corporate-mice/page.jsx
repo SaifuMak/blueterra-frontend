@@ -198,8 +198,8 @@ export default function Corporate() {
 
                     <CorporateEventsSection />
 
-                    <div className=" w-full h-full pb-10 xl:pb-20 2xl:pb-32 md:mt-5 relative flex justify-center  ">
-                        <div className="w-11/12 xl:w-10/12 max-sm:px-4  z-20 text-dark-28 h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-6 2xl:gap-10">
+                    <div className=" w-full h-full pb-10  xl:pb-20 2xl:pb-32 md:mt-5 relative flex justify-center  ">
+                        <div className="w-11/12 xl:w-10/12 max-sm:px-4  z-20 text-dark-28 h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-10 gap-5 xl:gap-6 2xl:gap-10">
                             {events?.map((data, index) => (
                                 <InfoCards key={index} data={data} />
                             ))}

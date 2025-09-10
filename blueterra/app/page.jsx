@@ -260,7 +260,7 @@ export default function Home() {
             height={200}
           />
 
-          <div className={` w-full py-10 md:py-16 xl:py-36  2xl:py-44 flex justify-center bg-white  text-center`}>
+          <div className={` w-full py-16 md:py-16 xl:py-36  2xl:py-44 flex justify-center bg-white  text-center`}>
             <div className={`${rubik.className}  md:px-10 px-10 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
               <h2 className={`${playfair.className} text-3xl vertically-animated-element   max-sm:opacity-0  lg:text-4xl xl:text-[48px] text-dark-4B`}>Discover BlueTerra</h2>
               <p className=" vertically-animated-element max-sm:opacity-0 2xl:text-[23px]   max-sm:text-base text-xl font-light leading-8 xl:leading-10 ">BlueTerra is more than a boutique travel company. It is a dream nurtured for years and brought to life with love</p>
@@ -282,13 +282,12 @@ export default function Home() {
 
         {isLargeDevice && <DestinationSection />}
 
-        { isMediumDevice &&    <DestinationSectionMediumDevice/>}
+        {isMediumDevice && <DestinationSectionMediumDevice />}
 
         {isMobile && <DestinationSectionMobile />}
 
 
-
-        <div className=" w-full flex-center relative h-[100vh] bg-sky-blue-light ">
+        <div className=" w-full flex-center max-sm:py-16 relative min-h-[100vh] bg-sky-blue-light ">
 
           <div className={` h-fit   flex flex-col  items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
 
