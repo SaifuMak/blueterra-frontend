@@ -189,8 +189,6 @@ export default function BlogSingle() {
                             <SearchInSingleBlog />
                         </Suspense>
 
-
-
                         {/* <div className="">
                             <p className=" text-xl ml-1">Search</p>
                             <div className=" w-full h-10 mt-2 border rounded-full border-[#2A282880]/50 px-4 flex  justify-between items-center ">
