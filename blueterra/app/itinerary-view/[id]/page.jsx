@@ -30,10 +30,12 @@ import PlannedActivitiesMobile from "@/components/ItineraryView/PlannedActivitie
 
 import { useIsTablet } from "@/app/hooks/useIsTablet";
 import GalleryCarousal from "@/components/ItineraryView/PlannedActivities/GalleryCarousal";
+import { useLenis } from "@/components/SmoothScroll";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function ItineraryView() {
+    const lenis = useLenis()
 
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(true)
@@ -178,6 +180,21 @@ export default function ItineraryView() {
     }, [id]);
 
 
+    useEffect(() => {
+        if (isTablet) {
+
+            lenis?.stop();
+            document.body.style.overflow = 'hidden';
+
+        }
+
+        return () => {
+            document.body.style.overflow = 'auto';
+            lenis?.start();
+        };
+    }, [isTablet, lenis]);
+
+
     return (
 
         <>
@@ -216,7 +233,7 @@ export default function ItineraryView() {
                                     <div className=" space-y-5  text-center flex font-light flex-col items-center">
                                         {/* <p className=" text-[25px] opacity-0 vertically-animate-element leading-9 w-5/12">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities, carefully selected destinations, accommodations, transportation details, and unique experiences.</p>
                                     <p className=" w-4/12 text-xl opacity-0 vertically-animate-element leading-9">A comprehensive and meticulously curated document that presents a day-by-day breakdown of your travel journey, featuring thoughtfully.</p> */}
-                                        <p className=" 2xl:w-8/12 xl:w-9/12 md:w-9/12 w-11/12 text-[13px] md:text-lg xl:text-xl 2xl:text-[22px] opacity-0 vertically-animate-element 2xl:my-10 font-light leading-6 md:leading-7 xl:leading-9">{itineraryData.description}</p>
+                                        <p className=" 2xl:w-8/12 xl:w-9/12 md:w-9/12 w-11/12 text-sm md:text-lg xl:text-xl 2xl:text-[22px] opacity-0 vertically-animate-element 2xl:my-10 font-light leading-6 md:leading-7 xl:leading-9">{itineraryData.description}</p>
                                         <Button text='START PLANNING' buttonStyle={` opacity-0 vertically-animate-element font-normal transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `} onClickFunction={() => setFormOpen(true)} />
                                     </div>
 

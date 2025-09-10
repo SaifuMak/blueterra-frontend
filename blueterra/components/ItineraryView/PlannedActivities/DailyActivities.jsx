@@ -67,13 +67,13 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
         <>
 
-            <div ref={containerRef} className="  w-full  overflow-y-auto h-full  flex flex-col px-1 pl-12 lg:pl-[44px]  max-xl:text-sm  xl:pl-[44px]  space-y-2 content-between text-base  "   {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
+            <div ref={containerRef} className="  w-full  overflow-y-auto h-full flex flex-col px-1 pl-12 lg:pl-[44px]   max-xl:text-sm  xl:pl-[44px]   space-y-2 content-between text-base  max-sm:max-h-[200px] "   {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
 
                 <div className="  w-full  h-full flex flex-col  ">
 
                     {itineraryData?.days?.map((data, index) => (
                         <div key={index} ref={(el) => (accordiansRef.current[index] = el)} className=" flex border-l relative  ">
-                            <div className={`shrink-0 absolute flex  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === itineraryData?.days.length - 1 ? 'lg:pb-64' : ''} bg-white `}>
+                            <div className={`shrink-0 absolute flex  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === itineraryData?.days.length - 1 ? `lg:pb-64 ${hasScrollbar ? 'max-sm:pb-0' : 'max-sm:pb-0' }  ` : ''} `}>
                                 <p className=" font-normal text-sm  ">Day</p>
                                 <span className="size-5 ml-2   text-white text-xs  bg-[#026E9E] flex-center  rounded-full">{index + 1}</span>
                             </div>
@@ -90,7 +90,7 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
                                         {data.title}
                                         <span className={`transition-all duration-300  ${OpenedAccordian.includes(index) ? 'rotate-90' : 'rotate-0'}`}><MdOutlineKeyboardArrowRight className=" text-xl" /></span>
                                     </div>
-                                    <div ref={containerRef} className={` overflow-x-auto    transition-all duration-700 text-dark-28 ease-in-out px-4  ${OpenedAccordian.includes(index) ? 'max-h-[300px]  max-sm:max-h-[200px]   opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`} {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
+                                    <div ref={containerRef} className={` overflow-y-auto    transition-all duration-700 text-dark-28 ease-in-out px-4  ${OpenedAccordian.includes(index) ? 'max-h-[500px]  max-sm:max-h-[1000px]   opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`} {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
                                         <div className=" ml-1 pt-3  pb-5  relative  ">
 
                                             <p className=" mt-2   font-light">{data.description}</p>

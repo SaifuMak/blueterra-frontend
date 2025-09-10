@@ -35,6 +35,8 @@ function PlannedActivitiesMobile({ itineraryData }) {
         };
     }, [isPriceInclusionPopupOpened, lenis]);
 
+   
+
 
 
     return (
