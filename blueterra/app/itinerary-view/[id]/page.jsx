@@ -180,25 +180,25 @@ export default function ItineraryView() {
     }, [id]);
 
 
-    useEffect(() => {
-        if (isTablet) {
+    // useEffect(() => {
+    //     if (isTablet) {
 
-            lenis?.stop();
-            document.body.style.overflow = 'hidden';
+    //         lenis?.stop();
+    //         document.body.style.overflow = 'hidden';
 
-        }
+    //     }
 
-        return () => {
-            document.body.style.overflow = 'auto';
-            lenis?.start();
-        };
-    }, [isTablet, lenis]);
+    //     return () => {
+    //         document.body.style.overflow = 'auto';
+    //         lenis?.start();
+    //     };
+    // }, [isTablet, lenis]);
 
 
     return (
 
         <>
-            {/* <SmoothScroll enabled={isLenisAvailable}> */}
+            <SmoothScroll enabled={isLenisAvailable}>
                 <Navbar />
 
                 {isLoading ? (
@@ -349,7 +349,7 @@ export default function ItineraryView() {
                     </div>
                 )}
 
-            {/* </SmoothScroll> */}
+            </SmoothScroll>
 
         </>
 
