@@ -43,9 +43,9 @@ const MissionVisionValues = forwardRef((props, ref) => {
 
 
     return (
-        <div className={`${rubik.className}  w-full  flex-center`}>
+        <div className={`${rubik.className}  w-full rounded-2xl overflow-hidden  flex-center`}>
 
-            <div className=" w-full font-light text-xl flex justify-center md:items-center max-sm:min-h-[60vh] text-white px-1 md:px-10 2xl:py-20 md:py-10 py-8  backdrop-blur-2xl border rounded-2xl  border-white/30 shadow-lg bg-black/0  ">
+            <div className=" w-full font-light text-xl  flex justify-center md:items-center max-sm:min-h-[40vh] text-white px-1 md:px-10 2xl:py-20 md:py-10 py-8  backdrop-blur-2xl border rounded-2xl  border-white/30 shadow-lg bg-black/0  ">
 
                 <div className=" flex max-sm:flex-col  md:justify-between items-center  2xl:w-9/12  lg:min-h-[50vh]">
 

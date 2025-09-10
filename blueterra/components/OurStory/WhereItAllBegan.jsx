@@ -5,7 +5,7 @@ export default function WhereItAllBegan() {
 
     return (
         <div className={`${rubik.className}   flex-center`}>
-            <div className=" w-full font-light text-[15px] md:text-lg  xl:text-xl flex-center  text-white px-4  md:px-10 2xl:py-20 md:py-10 py-5  backdrop-blur-2xl border rounded-2xl  border-white/30 shadow-lg bg-black/0  ">
+            <div className=" w-full font-light text-[15px] md:text-lg  xl:text-xl flex-center  text-white px-4  md:px-10 2xl:py-20 md:py-10 py-10  backdrop-blur-2xl border rounded-2xl  border-white/30 shadow-lg bg-black/0  ">
                 <div className="flex flex-col items-center  w-full  xl:w-10/12 text-center space-y-2 lg:space-y-5">
                     <h1 className={`${playfair.className} font-light text-2xl md:text-5xl xl:text-[60px] max-sm:mb-4 2xl:text-[70px]`}>How it All Began</h1>
                     <p className=" xl:leading-9 leading-6 md:leading-8 mt-6 2xl:leading-10  2xl:text-xl">BlueTerra Travel and Experiences was born from a collection of travel stories gathered over the years, each trip adding a new chapter to who we are. One journey in particular left a lasting impression on us. What began as a casual family holiday quickly became something much more meaningful. It was in the unexpected detours, the quiet moments shared under vast skies, and the laughter that echoed across unfamiliar landscapes where we discovered what travel truly means.

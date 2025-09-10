@@ -15,7 +15,7 @@ export default function PartnerCompanies() {
 
     return (
 
-        <div className=" my-32 w-full flex-center flex-col  bg-white relative ">
+        <div className=" lg:my-32 my-20 w-full flex-center flex-col  bg-white relative ">
 
             <div ref={partnerCompaniesTitleRef} className="">
                 <TitleText text='Trusted Partners' />

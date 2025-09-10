@@ -64,7 +64,7 @@ export default function TeamSection() {
 
 
             {/* founder details */}
-            <div className=" w-11/12 xl:w-10/12 items-center  2xl:my-32 xl:my-16 md:my-12 my-10 space-x-6 z-30  md:flex    "  >
+            <div className=" w-11/12 xl:w-10/12 items-center  2xl:my-32 xl:my-16 md:my-12 my-5 space-x-6 z-30  md:flex    "  >
 
                 <div ref={founderTextMobileRef} className={` ${isMobile ? 'opacity-100' : 'opacity-0 hidden'}  w-full text-center mb-5`}>
                     <TitleText text='Meet the Founder' />

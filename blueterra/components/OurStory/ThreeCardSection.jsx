@@ -138,7 +138,7 @@ export default function ThreeCardSection() {
                     trigger: section,
                     pin: true,
                     pinSpacing: true,
-                    start: isMobile ? "top 0%" : "top 10%",
+                    start: isMobile ? "top 10%" : "top 10%",
                     end: "bottom -95%",
                     // markers: true,
                 });
@@ -192,7 +192,7 @@ export default function ThreeCardSection() {
                     <section
                         key={i}
                         ref={(el) => (sectionsRef.current[i] = el)}
-                        className="md:min-h-[85vh]   min-h-[90vh]    flex  items-center justify-center"
+                        className="md:min-h-[85vh]    min-h-[90vh]    flex  items-center justify-center"
                     >
                         <div
                             ref={(el) => (cardsRef.current[i] = el)}
