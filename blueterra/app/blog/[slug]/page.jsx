@@ -20,9 +20,6 @@ export async function generateMetadata({ params }) {
         }
         const blog = response?.data
 
-
-
-
         return {
             title: blog.meta_title || blog.title,
             description: blog.meta_description || blog.blog_content?.slice(0, 150),
