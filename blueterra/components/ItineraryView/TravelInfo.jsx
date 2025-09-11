@@ -62,7 +62,6 @@ export default function TravelInfo({ icon, title, subtitle, additionalInformatio
 
                         <div className="flex peer cursor-pointer lg:hidden" >
                             <button onClick={() => setIsMobileInfoOpen(true)} className="  ml-2  mt-1 shrink-0  size-5 flex-center  bg-sky-blue-dark font-light rounded-full text-sm text-white"><BsQuestionLg /> </button>
-
                         </div>
 
 
@@ -80,7 +79,6 @@ export default function TravelInfo({ icon, title, subtitle, additionalInformatio
                 </div>
 
                 {subtitle && (
-
                     <p className={`${rubik.className}  mt-1  max-sm:text-sm lg:mt-3 font-light`}  >
                         {title === 'Price start from' ? `From ${subtitle}pp excl. flights` : `${subtitle}`}
 

@@ -46,7 +46,6 @@ export default function EditItinerary() {
     const [selectedBannerImageFile, setSelectedBannerImageFile] = useState(null);
     const [selectedBannerImageUrl, setSelectedBannerImageUrl] = useState(null);
 
-
     const [days, setDays] = useState([{ id: '', title: '', description: '', image: null, image_public_url: '', image_title: '' }]);
     const [hotels, setHotels] = useState([{ id: '', title: '', description: '', image: null, image_public_url: '', coordinates: '', location: '', mapLink: '', rating: 5 }]);
     const [destinationHighlights, setDestinationHighlights] = useState([{ title: '' }]);
@@ -76,7 +75,6 @@ export default function EditItinerary() {
             // setIsLoading(false);
         }
     };
-
 
     useEffect(() => {
         if (!id) return;
@@ -206,53 +204,53 @@ export default function EditItinerary() {
 
         const isPublish = e.nativeEvent.submitter.value === "publish";
 
-        console.log(isPublish, 'this is the publish status -------------');
+        if (isPublish) {
 
-
-
-        if (!selectedBannerImageFile) {
-            toast.error("Banner image is not uploaded!");
-            return;
-        }
-
-        for (let i = 0; i < days.length; i++) {
-            if (!days[i].image) {
-                toast.error(`Image not uploaded for Day ${i + 1}`);
+            if (!selectedBannerImageFile) {
+                toast.error("Banner image is not uploaded!");
                 return;
+            }
+
+            for (let i = 0; i < days.length; i++) {
+                if (!days[i].image) {
+                    toast.error(`Image not uploaded for Day ${i + 1}`);
+                    return;
+                }
+            }
+
+            for (let i = 0; i < hotels.length; i++) {
+                if (!hotels[i].image) {
+                    toast.error(`Image not uploaded for Hotel ${i + 1}`);
+                    return;
+                }
+            }
+
+            for (let i = 0; i < mapRouting.length; i++) {
+                if (!mapRouting[i].transfer && i !== mapRouting.length - 1) {
+                    toast.error(`Transfer is missing in Map Routing ${i + 1}`);
+                    return;
+                }
+            }
+
+            if (!destination || !country || !collection || !category) {
+                toast.error("Filter is not applied");
+                return;
+            }
+
+            for (let i = 0; i < gallery.length; i++) {
+                if (!gallery[i].image) {
+                    toast.error(`Image not uploaded in Gallery ${i + 1}`);
+                    return;
+                }
+            }
+
+            const checkedCount = gallery.filter((item) => item.is_checked).length;
+            if (checkedCount === 0) {
+                toast.error(`Select at least one gallery image to display in card`);
+                return
             }
         }
 
-        for (let i = 0; i < hotels.length; i++) {
-            if (!hotels[i].image) {
-                toast.error(`Image not uploaded for Hotel ${i + 1}`);
-                return;
-            }
-        }
-
-        for (let i = 0; i < mapRouting.length; i++) {
-            if (!mapRouting[i].transfer && i !== mapRouting.length - 1) {
-                toast.error(`Transfer is missing in Map Routing ${i + 1}`);
-                return;
-            }
-        }
-
-        if (!destination || !country || !collection || !category) {
-            toast.error("Filter is not applied");
-            return;
-        }
-
-        for (let i = 0; i < gallery.length; i++) {
-            if (!gallery[i].image) {
-                toast.error(`Image not uploaded in Gallery ${i + 1}`);
-                return;
-            }
-        }
-
-        const checkedCount = gallery.filter((item) => item.is_checked).length;
-        if (checkedCount === 0) {
-            toast.error(`Select at least one gallery image to display in card`);
-            return
-        }
 
         setIsLoading(true)
         const formData = new FormData();
@@ -386,9 +384,10 @@ export default function EditItinerary() {
                         <div className=" flex-1 relative    ml-4  mr-8  p-10 rounded-xl bg-admin-light-dark-background w-full flex justify-center overflow-y-scroll h-[97vh] z-50">
 
                             <div className=" flex space-x-3 max-xl:text-sm text-white  absolute   right-5 top-5">
-
                                 <button type="submit" name="action"
-                                    value="publish" className=" bg-[#129366] min-w-28 h-fit cursor-pointer  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save'}</button>
+                                    value="draft" className=" bg-[#524D4D] cursor-pointer  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
+                                <button type="submit" name="action"
+                                    value="publish" className=" bg-[#129366] min-w-28 h-fit cursor-pointer  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
                             </div>
 
                             <div className="flex flex-col w-full  space-y-10">
@@ -547,7 +546,9 @@ export default function EditItinerary() {
                                 <div className=" py-10">
                                     <div className=" flex space-x-3 max-xl:text-sm text-white">
                                         <button type="submit" name="action"
-                                            value="publish" className=" bg-[#129366] min-w-28 h-fit cursor-pointer py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save'}</button>
+                                            value="draft" className=" bg-[#524D4D] cursor-pointer  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
+                                        <button type="submit" name="action"
+                                            value="publish" className=" bg-[#129366] min-w-28 h-fit cursor-pointer py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
                                     </div>
 
                                 </div>

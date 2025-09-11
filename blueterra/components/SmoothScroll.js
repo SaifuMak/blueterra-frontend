@@ -2,7 +2,6 @@
 import { createContext, useContext, useEffect, useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
 
-
 const LenisContext = createContext(null);
 
 export function useLenis() {

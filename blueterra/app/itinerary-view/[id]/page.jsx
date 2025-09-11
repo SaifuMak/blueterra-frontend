@@ -11,7 +11,6 @@ export async function generateMetadata({ params }) {
             cache: "no-store", // prevent stale SEO
         });
 
-
         if (!response?.data) {
             return {
                 title: "Itinerary Not Found",

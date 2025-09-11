@@ -133,52 +133,56 @@ export default function CreateItinerary() {
 
         const isPublish = e.nativeEvent.submitter.value === "publish";
 
-        // console.log(isPublish, 'this is the publish status -------------');
+        // validate data only when the status is publised
+        if (isPublish) {
 
-        if (!selectedBannerImageFile) {
-            toast.error("Banner image is not uploaded!");
-            return;
-        }
-
-        for (let i = 0; i < days.length; i++) {
-            if (!days[i].image) {
-                toast.error(`Image not uploaded for Day ${i + 1}`);
+            if (!selectedBannerImageFile) {
+                toast.error("Banner image is not uploaded!");
                 return;
+            }
+
+            for (let i = 0; i < days.length; i++) {
+                if (!days[i].image) {
+                    toast.error(`Image not uploaded for Day ${i + 1}`);
+                    return;
+                }
+            }
+
+            for (let i = 0; i < hotels.length; i++) {
+                if (!hotels[i].image) {
+                    toast.error(`Image not uploaded for Hotel ${i + 1}`);
+                    return;
+                }
+            }
+
+            for (let i = 0; i < mapRouting.length; i++) {
+                if (!mapRouting[i].transfer && i !== mapRouting.length - 1) {
+                    toast.error(`Transfer is missing in Map Routing ${i + 1}`);
+                    return;
+                }
+            }
+
+            if (!destination || !country || !collection || !category) {
+                toast.error("Filter is not applied");
+                return;
+            }
+
+            for (let i = 0; i < gallery.length; i++) {
+                if (!gallery[i].image) {
+                    toast.error(`Image not uploaded in Gallery ${i + 1}`);
+                    return;
+                }
+            }
+
+            const checkedCount = gallery.filter((item) => item.is_checked).length;
+            if (checkedCount === 0) {
+                toast.error(`Select at least one gallery image to display in card`);
+                return
             }
         }
 
-        for (let i = 0; i < hotels.length; i++) {
-            if (!hotels[i].image) {
-                toast.error(`Image not uploaded for Hotel ${i + 1}`);
-                return;
-            }
-        }
 
-        for (let i = 0; i < mapRouting.length; i++) {
-            if (!mapRouting[i].transfer && i !== mapRouting.length - 1) {
-                toast.error(`Transfer is missing in Map Routing ${i + 1}`);
-                return;
-            }
-        }
-
-        if (!destination || !country || !collection || !category) {
-            toast.error("Filter is not applied");
-            return;
-        }
-
-        for (let i = 0; i < gallery.length; i++) {
-            if (!gallery[i].image) {
-                toast.error(`Image not uploaded in Gallery ${i + 1}`);
-                return;
-            }
-        }
-
-        const checkedCount = gallery.filter((item) => item.is_checked).length;
-        if (checkedCount === 0) {
-            toast.error(`Select at least one gallery image to display in card`);
-            return
-        }
-
+        
         setIsLoading(true)
         const formData = new FormData();
         formData.delete("is_published");

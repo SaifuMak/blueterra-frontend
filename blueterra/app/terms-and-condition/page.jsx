@@ -13,7 +13,7 @@ export default function TermsAndConditions() {
   return (
     <>
       <Navbar />
-      <div className={`lg:max-w-9/12 ${rubik.className} mx-auto px-6 py-16 mb-10  leading-relaxed`}>
+      <div className={`lg:max-w-9/12 ${rubik.className} mx-auto px-6 py-16 mb-10 mt-10  lg:mt-16 leading-relaxed`}>
         {/* Main Heading */}
         <h1 className={`lg:text-4xl text-3xl  font-semibold lg:mb-16 mb-10 text-center ${playfair.className}`}>
           Booking Terms & Condition

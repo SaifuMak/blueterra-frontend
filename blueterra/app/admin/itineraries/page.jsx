@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import AXIOS_INSTANCE from "@/lib/axios";
 import Pagination from "@/components/generalComponents/Pagination";
-import { getPageNumber ,getTotalPagesCount} from "@/app/utils/paginationHelpers";
+import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
 import Loader from "@/components/generalComponents/Loader";
 import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
 import { IoEyeOutline, IoEyeOffOutline, RxCross2, AiOutlineCheck } from '@/components/reactIcons'
@@ -32,10 +32,7 @@ export default function Itinerary() {
     const [isDeleteItineraryModal, setIsDeleteItineraryModal] = useState(false)
     const [requestedItineraryForDeletion, setRequestedItineraryForDeletion] = useState(null)
 
-
-
     const [selectedItineraryStatus, setSelectedItineraryStatus] = useState('Published')
-
 
     const rowStyle = 'px-4 py-6  border-t order-gray-100/10'
     const router = useRouter()
@@ -206,7 +203,7 @@ export default function Itinerary() {
 
                                         <td className={rowStyle}>{item.title}</td>
                                         <td className={rowStyle}>{item.days.length}</td>
-                                        <td className={rowStyle}>{item.collection?.title}</td>
+                                        <td className={rowStyle}>{item.collection?.title ? item.collection?.title : 'Nil' }</td>
 
 
                                         <td className={rowStyle}>
@@ -219,11 +216,11 @@ export default function Itinerary() {
                                                     <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
                                                 </TooltipWrapper>
 
-                                                <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
+                                                {selectedItineraryStatus == 'Published' && <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
                                                     <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
                                                         {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
                                                     </div>
-                                                </TooltipWrapper>
+                                                </TooltipWrapper>}
                                             </div>
                                         </td>
 
