@@ -1,0 +1,298 @@
+'use client'
+import Image from "next/image"
+import { playfair, rubik } from "@/app/fonts"
+import Button from "@/components/generalComponents/Button"
+import Navbar from "@/components/Navbar/page"
+import SmoothScroll from "@/components/SmoothScroll"
+import Footer from "@/components/Footer/page"
+import BlogCards from "@/components/generalComponents/BlogCards"
+import { useEffect, useState } from "react"
+import Loader from "@/components/generalComponents/Loader"
+import { useRouter } from 'next/navigation';
+import AXIOS_INSTANCE from "@/lib/axios"
+import { getReadingTime } from "@/app/utils/helperFunctions"
+import SearchInSingleBlog from "@/components/Journey/SearchInSingleBlog"
+import { Suspense } from "react";
+import { toast } from "sonner"
+import { FRONTEND_BASE_URL } from "@/app/config."
+import ZohoFormModal from "@/components/Forms/ZohoFormModal"
+
+
+export default  function BlogSingleClient({slug}) {
+
+    const router = useRouter();
+
+    const [formOpen, setFormOpen] = useState(false);
+
+    const [blog, setBlog] = useState(null);
+    const [moreBlogs, setMoreBlogs] = useState([])
+    const [relatedBlogs, setRelatedBlogs] = useState([])
+
+    const [isLoading, setIsLoading] = useState(true)
+
+    const fetchFiveJournals = async () => {
+        try {
+            const response = await AXIOS_INSTANCE.get(`get-five-journals/`);
+            setMoreBlogs(response?.data)
+        } catch (error) {
+            console.error('Failed to load journal:', error);
+        } finally {
+            // setLoading(false);
+        }
+    };
+
+
+    useEffect(() => {
+        if (!slug) return;
+
+        const fetchJournal = async () => {
+            try {
+                const response = await AXIOS_INSTANCE.get(`blog/${slug}`);
+                const data = response?.data
+                setBlog(data)
+            } catch (error) {
+                console.error('Failed to load journal:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchJournal();
+        fetchFiveJournals()
+
+    }, [slug]);
+
+
+    useEffect(() => {
+        if (!blog) return;
+
+        const fetchRelatedJournals = async () => {
+            try {
+                const response = await AXIOS_INSTANCE.get(`get-related-journals/?category=${blog.category_name}`);
+                const blogs = response?.data
+                const filteredBlogs = blogs.filter(blog => blog.slug !== slug);
+                setRelatedBlogs(filteredBlogs)
+
+            } catch (error) {
+                console.error('Failed to load journal:', error);
+            } finally {
+                // setLoading(false);
+            }
+        };
+
+        fetchRelatedJournals()
+
+    }, [blog]);
+
+
+    const socialIconsStyle = 'cursor-pointer object-cover size-6 xl:size-7 2xl:size-8'
+
+    const handleShare = async () => {
+
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: "BlueTerra",
+                    text: "Check this out!",
+                    url: `${FRONTEND_BASE_URL}/blog/${blog?.slug}`
+                });
+            } catch (err) {
+                console.error("Error sharing:", err);
+            }
+        } else {
+            toast.error("Sharing not supported on this browser")
+        }
+    };
+
+
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [blog]);
+
+    return (
+
+
+        <SmoothScroll>
+            <Navbar />
+
+            <div className={` ${rubik.className} w-full text-dark-28 h-full flex flex-col justify-center items-center relative`} >
+                {isLoading && <Loader />}
+
+                {blog && <div className="w-full h-[40vh] md:h-[600px] relative">
+                    <Image
+                        src={blog.image_public_url}
+                        alt={blog?.title}
+                        fill
+                        priority
+                        className=" object-cover"
+                        onLoad={() => setIsLoading(false)}
+                    />
+                </div>}
+
+
+                <div className=" w-11/12 2xl:w-10/12 mt-10 md:mt-20  mb-10 flex max-lg:flex-col   ">
+                    <div className="  w-full pr-3  xl:pr-10 mt-4   h-full" >
+                        <div className=" min-h-10 ">
+                            <h1 className={`2xl:text-[50px] text-3xl lg:text-4xl leading-10 lg:leading-12 xl:leading-16  text-dark-4B  ${playfair.className}`}>{blog?.title}</h1>
+                        </div>
+
+                        <div className=" w-full flex max-xl:space-y-2  max-xl:flex-col  min-h-10  2xl:text-lg justify-between  my-5 xl:my-8">
+                            <div className=" flex max-sm:flex-col max-lg:flex-wrap max-sm:space-y-1 space-x-3 xl:space-x-5 lg:items-center text-sky-blue-dark  ">
+                                <div className=" flex "> <p className=" ">Posted on: <span className=" text-dark-46">{blog?.created_at}</span></p></div>
+                                <div className=" flex "> <p className="">Category: <span className="text-dark-46 capitalize">{blog?.category_name}</span></p></div>
+                                {blog?.blog_content && <div className=" flex "> <p className="">Read Time: <span className="text-dark-46">{getReadingTime(blog.blog_content)} Minutes</span></p></div>}
+                            </div>
+                            <div className=" flex max-sm:space-x-3 space-x-1.5 xl:space-x-3 items-center max-sm:mt-3  ">
+                                <img onClick={handleShare} src="/Icons/single-blog/insta.svg" alt="instagram" className={`${socialIconsStyle}`} />
+                                <a
+                                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${FRONTEND_BASE_URL}/blog/${blog?.slug}`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src="/Icons/single-blog/fb.svg" alt="facebook" className={`${socialIconsStyle}`} />
+                                </a>
+                                <a
+                                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("Sharing something awesome with you 🤩")}+${encodeURIComponent(`${FRONTEND_BASE_URL}/blog/${blog?.slug}`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src="/Icons/single-blog/x.svg" alt="x" className={`${socialIconsStyle}`} />
+                                </a>
+                                <a
+                                    href={`https://wa.me/?text=${encodeURIComponent("Sharing something awesome with you 🤩")}+${encodeURIComponent(`${FRONTEND_BASE_URL}/blog/${blog?.slug}`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src="/Icons/single-blog/whatsapp.svg" alt="whatsapp" className={`${socialIconsStyle}`} />
+                                </a>
+                                <a
+                                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${FRONTEND_BASE_URL}/blog/${blog?.slug}`)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src="/Icons/single-blog/linkdn.svg" alt="linkedin" className={`${socialIconsStyle}`} />
+                                </a>
+                            </div>
+                        </div>
+                        {blog?.blog_content && <div className=" w-full h-full blog-content" dangerouslySetInnerHTML={{ __html: blog.blog_content }}>
+
+                        </div>}
+
+                    </div>
+
+                    <div className=" w-full lg:w-6/12 xl:w-5/12 py-5 space-y-10 h-full lg:border-l lg:px-4 2xl:px-10 ">
+
+
+                        <Suspense fallback={<div>Loading search...</div>}>
+                            <SearchInSingleBlog />
+                        </Suspense>
+
+                        {/* <div className="">
+                            <p className=" text-xl ml-1">Search</p>
+                            <div className=" w-full h-10 mt-2 border rounded-full border-[#2A282880]/50 px-4 flex  justify-between items-center ">
+                                <input type="text" className="w-[120px] outline-none placeholder:text-sm md:placeholder:text-base" placeholder="Search journal..." />
+                                <img src="/Icons/search.svg" alt="search icon " className=" size-4" />
+                            </div>
+                        </div> */}
+
+                        <div className="bg-light-beige rounded-2xl px-5 pb-4 pt-7">
+                            <h3 className=" text-[24px] mb-5 ">More Blogs</h3>
+
+                            <div className=" max-lg:flex max-lg:flex-wrap">
+                                {moreBlogs?.filter(blog => blog.slug !== slug).slice(0, 3).map((blog, index) => (
+                                    <div key={index} onClick={() => router.push(`/blog/${blog.slug}`)} className=" cursor-pointer flex my-3 lg:my-6 space-x-3">
+                                        <div className=" w-[130px] shrink-0 rounded-lg overflow-hidden h-[120px] 2xl:h-[130px] relative">
+                                            <Image
+                                                src={blog.image_public_url}
+                                                alt='blog'
+                                                fill
+                                                priority
+                                                className=" object-cover "
+                                            />
+                                        </div>
+                                        <div className="font-light mt-1 max-xl:text-sm ">
+                                            <p className=" flex items-center text-sm "><img src="/Icons/calender-dark.svg" alt="" className=" size-3 mr-2" />{blog.created_at}</p>
+                                            <p className=" xl:leading-7 mt-1">{blog.title}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+
+                        <div className=" w-full h-[600px] rounded-2xl overflow-hidden relative">
+                            <Image
+                                src='/images/blog-single/mountain-in-sea.png'
+                                alt='beach'
+                                fill
+                                priority
+                                className=" object-cover "
+                            />
+
+                            <div className=" w-full h-full flex items-end  bg-gradient-to-t from-black via-black/30 to-transparent  absolute inset-0">
+                                <div className=" flex flex-col p-5  space-y-3">
+                                    <h3 className={`md:text-[30px] text-2xl xl:pr-7 leading-11  text-white ${playfair.className}`}>Turning your travel dreams into real Adventures.</h3>
+                                    <Button text='PLAN YOUR TRIP' buttonStyle={` transition-all mb-3 vertically-animated-element  max-sm:text-sm duration-500 w-full py-2.5  ease-in-out font-medium`} onClickFunction={() => setFormOpen(true)} />
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div className="  space-y-6 w-full h-full pb-6 pt-10 px-5 text-center rounded-2xl bg-dark-beige">
+                            <h5 className={`${playfair.className} font-medium text-2xl`}>Join Our Community Today!</h5>
+                            <p className=" px-4 lg:px-7 font-light">Get started for free and receive instant notifications about updates.</p>
+                            <iframe
+                                title="Zoho Form"
+                                src="https://forms.zohopublic.com/blueterra/form/JoinOurCommunity1/formperma/tq1z2CAalSFUwdWkL0eLA_mkzm2nXum54WsJjuA1SzA"
+                                style={{ width: '100%', height: '80%', border: 'none', objectFit: 'cover' }}
+                                allowFullScreen
+                            />
+                            {/* <input type="text" className=" text-dark-28 outline-none w-full py-2 pl-4 rounded-md border-2 border-[#979797]/50" placeholder="Enter your email" />
+                            <Button text='SUBSCRIBE' buttonStyle={` transition-all mb-3 vertically-animated-element duration-500  w-full py-2.5  max-sm:text-sm ease-in-out font-medium  `} /> */}
+                        </div>
+
+                    </div>
+                </div>
+
+
+                {relatedBlogs.length > 0 && <div className=" w-11/12   mb-10  rounded-3xl py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden flex justify-center  bg-sky-blue-light  md:min-h-[85vh] h-full   relative  ">
+                    {/* <ResponsiveClipPath outerClass='absolute z-30 w-full  h-4/12   lg:w-7/12 md:w-9/12 md:h-7/12 lg:h-6/12 xl:w-9/12  2xl:w-8/12 left-0 top-0 xl:h-8/12' ImagePath='/images/blog-single/related-blogs-clip-path.png' />
+                    <ResponsiveClipPath outerClass='absolute z-30 md:w-2/12 w-9/12 h-3/12 right-0 bottom-0 md:h-4/12' ImagePath='/images/blog-single/related-blogs-clip-bottom.png' /> */}
+
+
+                    <div className=" xl:w-10/12  w-11/12  h-full">
+                        <h2 className={`${playfair.className}  text-2xl md:text-4xl xl:text-[50px] font-semibold text-dark-4B`}>Related Posts</h2>
+
+
+                        <div className=" w-full flex max-sm:flex-col  mt-5 lg:mt-10 space-y-6 md:space-x-10 h-[400px] md:h-[300px] lg:h-[400px] xl:h-[400px] 2xl:h-[480px]">
+
+                            <BlogCards
+                                outerConatainerClass="relative group cursor-pointer  z-30 h-full  w-full md:w-5/12  rounded-2xl overflow-hidden"
+                                blog={relatedBlogs[0]}
+                            />
+
+                            {relatedBlogs.length > 1 && <BlogCards
+                                outerConatainerClass="relative group cursor-pointer  z-30 w-full h-full  md:w-7/12  rounded-2xl overflow-hidden"
+                                blog={relatedBlogs[1]}
+                            />}
+                        </div>
+
+
+                    </div>
+
+
+                </div>}
+
+            </div>
+            <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
+
+            <Footer />
+
+        </SmoothScroll>
+
+    )
+}
+
