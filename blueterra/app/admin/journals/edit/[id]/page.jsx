@@ -36,6 +36,8 @@ export default function EditJournal() {
 
 
     const [categories, setCategories] = useState([])
+    const [isDraftSaving, setIsDraftSaving] = useState(false)
+
 
 
 
@@ -144,7 +146,7 @@ export default function EditJournal() {
 
     const handleSubmit = async (e, publish = true) => {
 
-        if(isLoading) return
+        if (isLoading) return
 
         toast.dismiss()
         e.preventDefault(); // prevent page reload
@@ -152,20 +154,36 @@ export default function EditJournal() {
         if (!formDataState.title) {
             toast.error('Please select a title');
             return
-        } if (!formDataState.slug) {
+        }
+         if (!formDataState.slug) {
             toast.error('Please select a slug');
             return
         }
 
-        if (!formDataState.category_name) {
-            toast.error('Please select a category');
-            return
+        if (publish === true) {
+
+            if (!formDataState.title) {
+                toast.error('Please select a title');
+                return
+            } if (!formDataState.slug) {
+                toast.error('Please select a slug');
+                return
+            }
+
+            if (!formDataState.category_name) {
+                toast.error('Please select a category');
+                return
+            }
+             if (!formDataState.meta_title || !formDataState.meta_description) {
+                toast.error('Meta title and description is required');
+                return
+            }
         }
 
         if (editorRef.current) {
             const content = editorRef.current.getContent();
-            console.log(content)
-            if (!content) {
+          
+            if (!content && publish === true) {
                 toast.error("Journal content can't be empty.");
                 return
             }
@@ -182,6 +200,7 @@ export default function EditJournal() {
             // console.log(updatedFormData);
             setIsLoading(true)
             setFormDataState(updatedFormData)
+            publish ? setIsLoading(true) : setIsDraftSaving(true)
 
             try {
                 const response = await AXIOS_INSTANCE.patch('journals/', updatedFormData, {
@@ -349,7 +368,8 @@ export default function EditJournal() {
 
                                     <div className=" my-8 flex flex-col  ">
                                         <p className=" max-xl:text-sm"> Save & Publish Later</p>
-                                        <button onClick={(e) => handleSubmit(e, false)} className=" mt-2  cursor-pointer  rounded-sm font-medium  border bg- px-4 py-2 text-sm bg-[#F7FBFD] text-dark-28">Save Draft</button>
+                                        <button disabled={isDraftSaving} onClick={(e) => handleSubmit(e, false)} className=" mt-2  cursor-pointer  rounded-sm font-medium  border flex-center  px-4 py-2 text-sm bg-[#F7FBFD] text-dark-28"> {isDraftSaving ? <RiLoader4Line className=" animate-spin  text-xl" /> : 'Save Draft'}</button>
+
                                         {/* <p className=" ">save for later</p> */}
 
                                     </div>

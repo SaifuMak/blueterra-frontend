@@ -240,7 +240,7 @@ export default function Journals() {
                                         <tr key={index} className=" rounded-3xl">
 
                                             <td className={rowStyle}>{trimWords(item.title, 8)}</td>
-                                            <td className={`${rowStyle} capitalize`}>{item.category_name}</td>
+                                            <td className={`${rowStyle} capitalize`}>{item.category_name ? item.category_name : 'N/A'}</td>
                                             <td className={rowStyle}>{item.created_at}</td>
                                             {selectedJournalStatus === 'Published' && (<td className={rowStyle}>
 
@@ -262,11 +262,11 @@ export default function Journals() {
                                                         <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
                                                     </TooltipWrapper>
 
-                                                    <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
+                                                    {selectedJournalStatus === 'Published' && <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
                                                         <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
                                                             {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
                                                         </div>
-                                                    </TooltipWrapper>
+                                                    </TooltipWrapper>}
                                                 </div>
                                             </td>
 

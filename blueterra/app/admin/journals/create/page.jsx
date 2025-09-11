@@ -135,7 +135,6 @@ export default function CreateJournal() {
     }, []);
 
 
-
     const handleSubmit = async (e, publish = true) => {
 
         if (isDraftSaving || isLoading) return
@@ -143,29 +142,49 @@ export default function CreateJournal() {
         toast.dismiss()
         e.preventDefault();
 
+
         if (!formDataState.title) {
             toast.error('Please select a title');
             return
-        } if (!formDataState.slug) {
+
+        }
+
+        if (!formDataState.slug) {
             toast.error('Please select a slug');
             return
         }
 
-        if (!formDataState.category_name) {
-            toast.error('Please select a category');
-            return
+        if (publish === true) {
+            if (!formDataState.title) {
+                toast.error('Please select a title');
+                return
+
+            }
+
+            if (!formDataState.slug) {
+                toast.error('Please select a slug');
+                return
+            }
+
+            if (!formDataState.category_name) {
+                toast.error('Please select a category');
+                return
+            }
+
+            if (!journalCoverImage) {
+                toast.error('Please select a preview image');
+                return
+            }
+             if (!formDataState.meta_title || !formDataState.meta_description) {
+                toast.error('Meta title and description is required');
+                return
+            }
         }
 
-        if (!journalCoverImage) {
-            toast.error('Please select a preview image');
-            return
-        }
-
-        publish ? setIsLoading(true) : setIsDraftSaving(true)
 
         if (editorRef.current) {
             const content = editorRef.current.getContent();
-            if (!content) {
+            if (!content && publish === true) {
                 toast.error("Journal content can't be empty.");
                 return
             }
@@ -180,6 +199,7 @@ export default function CreateJournal() {
 
             // console.log(updatedFormData);
             setFormDataState(updatedFormData)
+            publish ? setIsLoading(true) : setIsDraftSaving(true)
 
             try {
                 const response = await AXIOS_INSTANCE.post('journals/', updatedFormData, {
@@ -314,7 +334,7 @@ export default function CreateJournal() {
 
                                     <div className=" my-8 flex flex-col  ">
                                         <p className=" max-xl:text-sm"> Save & Publish Later</p>
-                                        <button onClick={(e) => handleSubmit(e, false)} className=" mt-2  cursor-pointer  rounded-sm font-medium  border flex-center  px-4 py-2 text-sm bg-[#F7FBFD] text-dark-28"> {isDraftSaving ? <RiLoader4Line className=" animate-spin  text-xl" /> : 'Save Draft'}</button>
+                                        <button disabled={isDraftSaving} onClick={(e) => handleSubmit(e, false)} className=" mt-2  cursor-pointer  rounded-sm font-medium  border flex-center  px-4 py-2 text-sm bg-[#F7FBFD] text-dark-28"> {isDraftSaving ? <RiLoader4Line className=" animate-spin  text-xl" /> : 'Save Draft'}</button>
                                         {/* <p className=" ">save for later</p> */}
 
                                     </div>
