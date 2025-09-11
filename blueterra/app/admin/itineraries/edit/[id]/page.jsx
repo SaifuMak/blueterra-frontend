@@ -108,11 +108,14 @@ export default function EditItinerary() {
                 setMapRouting(data.map_routing || []);
                 setGallery(data.gallery || []);
                 setFeaturedPoints(
-                    data.featured_points?.map(point => ({
-                        suggestedDate: point.suggested_date,
-                        price: point.price,
-                        additionalInformation: point.additional_information
-                    })) || []
+                    data.featured_points && data.featured_points.length > 0
+                        ?
+                        data.featured_points.map(point => ({
+                            suggestedDate: point.suggested_date,
+                            price: point.price,
+                            additionalInformation: point.additional_information
+                        })
+                        ) : [{ suggestedDate: '', price: '', additionalInformation: '' }]
                 );
                 setItineraryData(response?.data)
 
@@ -198,11 +201,16 @@ export default function EditItinerary() {
         // return
         toast.dismiss()
 
-
         e.preventDefault();
         if (isLoading) return
 
         const isPublish = e.nativeEvent.submitter.value === "publish";
+
+         // if the status is draft  make the min requirement for title 
+        if (!isPublish && title.trim() === '') {
+            toast.error("Title is mandatory. Please fill it.");
+            return
+        }
 
         if (isPublish) {
 
@@ -384,7 +392,7 @@ export default function EditItinerary() {
                         <div className=" flex-1 relative    ml-4  mr-8  p-10 rounded-xl bg-admin-light-dark-background w-full flex justify-center overflow-y-scroll h-[97vh] z-50">
 
                             <div className=" flex space-x-3 max-xl:text-sm text-white  absolute   right-5 top-5">
-                                <button type="submit" name="action"
+                                <button type="submit" formNoValidate name="action"
                                     value="draft" className=" bg-[#524D4D] cursor-pointer  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
                                 <button type="submit" name="action"
                                     value="publish" className=" bg-[#129366] min-w-28 h-fit cursor-pointer  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
@@ -545,7 +553,7 @@ export default function EditItinerary() {
 
                                 <div className=" py-10">
                                     <div className=" flex space-x-3 max-xl:text-sm text-white">
-                                        <button type="submit" name="action"
+                                        <button type="submit" formNoValidate name="action"
                                             value="draft" className=" bg-[#524D4D] cursor-pointer  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
                                         <button type="submit" name="action"
                                             value="publish" className=" bg-[#129366] min-w-28 h-fit cursor-pointer py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>

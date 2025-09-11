@@ -133,6 +133,12 @@ export default function CreateItinerary() {
 
         const isPublish = e.nativeEvent.submitter.value === "publish";
 
+        // if the status is draft  make the min requirement for title 
+        if (!isPublish && title.trim() === '') {
+            toast.error("Title is mandatory. Please fill it.");
+            return
+        }
+
         // validate data only when the status is publised
         if (isPublish) {
 
@@ -182,7 +188,7 @@ export default function CreateItinerary() {
         }
 
 
-        
+
         setIsLoading(true)
         const formData = new FormData();
         formData.delete("is_published");
@@ -318,12 +324,11 @@ export default function CreateItinerary() {
                     <div className=" flex-1 relative    ml-4  mr-8  p-10 rounded-xl bg-admin-light-dark-background w-full flex justify-center overflow-y-scroll h-[97vh] z-50">
 
                         <div className=" flex space-x-3 max-xl:text-sm text-white  absolute   right-5 top-5">
-                            <button type="submit" name="action"
+                            <button type="submit" formNoValidate name="action"
                                 value="draft" className=" bg-[#524D4D] cursor-pointer  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
                             <button type="submit" name="action"
                                 value="publish" className=" bg-[#129366] cursor-pointer min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
                         </div>
-
 
                         <div className="flex flex-col w-full  space-y-10">
 
@@ -477,7 +482,7 @@ export default function CreateItinerary() {
 
                             <div className=" py-10">
                                 <div className=" flex space-x-3 max-xl:text-sm text-white">
-                                    <button type="submit" name="action"
+                                    <button type="submit" formNoValidate name="action"
                                         value="draft" className=" bg-[#524D4D]  cursor-pointer  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
                                     <button type="submit" name="action"
                                         value="publish" className=" bg-[#129366] cursor-pointer  min-w-28 h-fit  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
