@@ -172,7 +172,7 @@ export default function ItineraryViewClient({ id }) {
 
                             <div ref={bannerContainer} className="   h-full flex     ">
 
-                                <div className=" text-white z-30  flex flex-col  mt-32 mb-10 justify-between   text-center w-full h-full   ">
+                                <div className=" text-white z-30  flex flex-col mt-24  md:mt-32 mb-10 justify-between   text-center w-full h-full   ">
 
                                     <div className={`${playfair.className}`}>
                                         <p className=" text-[45px] md:text-[80px] 2xl:text-[100px] opacity-0 vertically-animate-element font-medium">{itineraryData.title}</p>
