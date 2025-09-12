@@ -28,10 +28,14 @@ import GalleryCarousal from "@/components/ItineraryView/PlannedActivities/Galler
 
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
 import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
+import { useMediaQuery } from 'react-responsive'
+
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function ItineraryViewClient({ id }) {
+
+    const isLargeDevice = useMediaQuery({ query: "(max-width: 2000px)" });
 
     // const { id } = useParams();
     const [isLoading, setIsLoading] = useState(true)
@@ -157,7 +161,7 @@ export default function ItineraryViewClient({ id }) {
                 ) : (
                     <div className={`${rubik.className}`}>
 
-                        <div className="relative  w-full min-h-[100vh] ">
+                        <div className="relative  w-full min-h-[100vh] flex  items-center ">
                             {/* Fixed Background */}
                             <div className="fixed inset-0 -z-10">
                                 <Image src={itineraryData?.banner_image_public_url} alt="forest" fill className=" object-cover" priority />
@@ -166,13 +170,13 @@ export default function ItineraryViewClient({ id }) {
                             </div>
 
 
-                            <div ref={bannerContainer} className="   h-full flex  ">
+                            <div ref={bannerContainer} className="   h-full flex     ">
 
-                                <div className=" text-white z-30 mt-32  flex flex-col  justify-between  text-center w-full h-full   ">
+                                <div className=" text-white z-30  flex flex-col  mt-32 mb-10 justify-between   text-center w-full h-full   ">
 
                                     <div className={`${playfair.className}`}>
-                                        <p className=" text-[45px] md:text-[80px] xl:text-[100px] opacity-0 vertically-animate-element font-medium">{itineraryData.title}</p>
-                                        <p className=" text-white/30 opacity-0 vertically-animate-element font-medium h-fit -mt-6  md:-mt-16 lg:-mt-20  xl:-mt-28 text-[70px] md:text-[150px] lg:text-[200px] xl:text-[250px]">{itineraryData.location_title}</p>
+                                        <p className=" text-[45px] md:text-[80px] 2xl:text-[100px] opacity-0 vertically-animate-element font-medium">{itineraryData.title}</p>
+                                        <p className=" text-white/30 opacity-0 vertically-animate-element font-medium h-fit -mt-6  md:-mt-16 lg:-mt-20  2xl:-mt-28 text-[70px] md:text-[150px] lg:text-[200px] 2xl:text-[250px]">{itineraryData.location_title}</p>
                                     </div>
 
                                     <div className=" space-y-5  text-center flex font-light flex-col items-center">
