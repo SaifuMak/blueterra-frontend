@@ -17,6 +17,9 @@ function PlannedActivitiesMobile({ itineraryData }) {
     const lenis = useLenis();
     const priceInclusionRef = useClickOutside(() => setIsPriceInclusionPopupOpened(false))
 
+    const [dailyActivitiesScrollHeight, setDailyActivitiesScrollHeight] = useState(null)
+
+
     useEffect(() => {
 
         if (isPriceInclusionPopupOpened) {
@@ -43,7 +46,7 @@ function PlannedActivitiesMobile({ itineraryData }) {
             </div>
 
             <div className=" mt-10 space-y-10 mx-auto z-10">
-                <DailyActivities itineraryData={itineraryData} />
+                <DailyActivities itineraryData={itineraryData} setDailyActivitiesScrollHeight={setDailyActivitiesScrollHeight} />
                 <Map expandCards={1} index={null} itineraryData={itineraryData} />
                 <DestinationsCarousal itineraryData={itineraryData} />
                 <Details itineraryData={itineraryData} />

@@ -15,14 +15,13 @@ import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusions
 import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
 import { useLenis } from "@/components/SmoothScroll"
 
-
-
 gsap.registerPlugin(ScrollTrigger);
 
 
 export default function PlannedActivities({ itineraryData, setIsLenisAvailable }) {
 
     const dailyActivitiesRef = useRef(null)
+    const [dailyActivitiesScrollHeight, setDailyActivitiesScrollHeight] = useState(null)
     const mapRef = useRef(null)
     const carousalRef = useRef(null)
     const detailsRef = useRef(null)
@@ -158,6 +157,7 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
             height: initialHeight,
         };
 
+
         const tl = gsap.timeline();
 
         tl.to([MapCard, DetailsCard], {
@@ -172,7 +172,20 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
             opacity: 0,
             duration: 0.4,
             ease: "power2.inOut",
+
         }, "<");
+
+        const expandedHeight = ActivitiesCard.scrollHeight;
+
+
+
+
+        // tl.to(plannerCardsRef.current, {
+        //     height: expandedHeight,
+        //     duration: 0.6,
+        //     ease: "power3.inOut",
+        // }, ); 
+
 
         tl.set(ActivitiesCard, {
             position: "absolute",
@@ -284,7 +297,6 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
     }
 
 
-
     const expandCards = (index) => {
         const ActivitiesCard = dailyActivitiesRef.current
         const MapCard = mapRef.current
@@ -313,7 +325,6 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
             collapseActivitiesCard(ActivitiesCard, MapCard, CarousalCard, DetailsCard)
         }
     };
-
 
     const Components = [
         { 'component': DailyActivities, 'Ref': dailyActivitiesRef },
@@ -371,13 +382,28 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
     }, { scope: plannerCardsRef });
 
 
+    useEffect(() => {
+        if (!plannerCardsRef.current) return
+      
+        if (selectedTab === 'Daily Schedule' && dailyActivitiesScrollHeight && !isLoading) {
+            setTimeout(() => {
+                plannerCardsRef.current.style.height = `${dailyActivitiesScrollHeight}px`
+
+            },0);
+        } else {
+            plannerCardsRef.current.style.height = '70vh' // fallback/default height
+        }
+    }, [dailyActivitiesScrollHeight,isLoading])
+
+
 
 
     return (
         <>
             {/* <div className="relative flex flex-wrap bg-red-50 border   w-[800px] min-h-[400px] overflow-hidden"> */}
 
-            <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[105vh]  xl:w-11/12 my-16   z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12   flex flex-col items-center `}>
+            {/* <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[105vh]  xl:w-11/12 my-16  z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12   flex flex-col items-center `}> */}
+            <div ref={plannerRef} id="plans" className={` ${rubik.className}   planned-activities text-dark-28   xl:w-11/12 mt-16    z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12    flex flex-col items-center overflow-hidden `}>
 
                 <div className=" flex  flex-col vertically-animated-element z-[999] items-center transform-gpu ">
                     <h3 className={`text-5xl font-medium ${playfair.className}`}>Planned Activities</h3>
@@ -389,36 +415,25 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
                     ))}
                 </div>
 
-                <div ref={plannerCardsRef} className="relative vertically-animated-element w-full h-full flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  overflow-y-auto ">
+
+                <div ref={plannerCardsRef} className={`relative  h-[70vh] overflow-y-auto vertically-animated-element w-full flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  `}>
                     {Components?.map((item, index) => {
                         const DynamicComponent = item.component;
-                        return (<div
-                            ref={item.Ref}
-                            key={index}
-                            className="w-[48%]  h-[48%]"
-                        >
-                            <DynamicComponent expandCards={expandCards} index={index} selectedTab={selectedTab} itineraryData={itineraryData} lockScreen={lockScreen} unLockScreen={unLockScreen} />
 
-                        </div>)
+                        return (
+                            <div
+                                ref={item.Ref}
+                                key={index}
+                                className={` w-[48%] ${item.Ref === mapRef || item.Ref === dailyActivitiesRef ? '  h-[42%]' : '  h-[53%]'}`}
+                            >
+
+                                <DynamicComponent expandCards={expandCards} index={index} selectedTab={selectedTab} itineraryData={itineraryData} lockScreen={lockScreen} unLockScreen={unLockScreen} setDailyActivitiesScrollHeight={setDailyActivitiesScrollHeight} />
+
+                            </div>)
                     })}
                 </div>
 
 
-                <div className="relative mt-5 flex  items-center w-full ml-12   group ">
-                    <div className="flex items-center peer cursor-pointer">
-                        <p>Inclusions and Exclusions</p>
-                        <MdInfoOutline className="ml-2" />
-                    </div>
-
-                    <div className="absolute   max-w-6/12  top-5 min-h-[300px] lg:min-w-[600px] xl:min-w-[700px] 2xl:min-w-[800px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
-
-                        <div className=" relative mt-4 bg-white w-full  px-6 !z-[1999] rounded-xl  shadow-[0_0_20px_rgba(0,0,0,0.15)]   ">
-                            <IoMdArrowDropup className=" text-4xl  text-white absolute left-1/4 -translate-x-1/4 -top-5 " />
-                            <PriceInclusionsDummy itineraryData={itineraryData} />
-                        </div>
-                    </div>
-
-                </div>
             </div>
 
             {/* </div> */}

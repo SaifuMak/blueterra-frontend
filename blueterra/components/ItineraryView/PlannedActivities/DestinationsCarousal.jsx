@@ -2,6 +2,7 @@
 'use client'
 import { CarouselApi } from "@/components/ui/carousel"
 import { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import {
     Carousel,
     CarouselContent,
@@ -25,9 +26,83 @@ import carousalData from "@/components/datas/DestinationsDetails";
 
 gsap.registerPlugin(useGSAP)
 
-export default function DestinationsCarousal({itineraryData}) {
+export default function DestinationsCarousal({ selectedTab, itineraryData }) {
 
     const [api, setApi] = useState()
+    const [daysData, setDaysData] = useState([]);
+
+    const [visible, setVisible] = useState(selectedTab !== 'Daily Schedule')
+
+    useEffect(() => {
+        // delay the toggle by 500ms
+        const timeout = setTimeout(() => {
+            setVisible(selectedTab !== 'Daily Schedule')
+        }, 500)
+
+        return () => clearTimeout(timeout)
+    }, [selectedTab])
+
+
+    // const daysData = itineraryData?.days
+
+    // Step 1: Add lat/lng
+    useEffect(() => {
+        if (!itineraryData?.days) return;
+
+        const enriched = itineraryData.days.map((day, index) => ({
+            ...day,
+            latitude:
+                index === 0 ? 59.9139 : index === 1 ? 60.8645 : index === 2 ? 60.628 : 60.39299,
+            longitude:
+                index === 0 ? 10.7522 : index === 1 ? 7.114 : index === 2 ? 6.4221 : 5.32415,
+        }));
+
+        setDaysData(enriched);
+    }, [itineraryData]);
+
+
+    // Step 2: Fetch temperatures with Axios
+    useEffect(() => {
+        const fetchWeather = async () => {
+            if (!daysData.length) return;
+
+            const updated = await Promise.all(
+                daysData.map(async (day) => {
+                    try {
+                        const res = await axios.get(
+                            `https://api.open-meteo.com/v1/forecast`,
+                            {
+                                params: {
+                                    latitude: day.latitude,
+                                    longitude: day.longitude,
+                                    current_weather: true,
+                                    daily: "temperature_2m_max,temperature_2m_min", // ✅ add high & low
+                                    timezone: "auto", // ✅ ensures local timezone instead of GMT
+                                },
+                            }
+                        );
+
+                        return {
+                            ...day,
+                            temperature: res.data?.current_weather?.temperature ?? null,
+                        };
+                    } catch (error) {
+                        console.error("Weather fetch failed:", error);
+                        return { ...day, temperature: null };
+                    }
+                })
+            );
+
+            setDaysData(updated);
+        };
+
+        fetchWeather();
+    }, [daysData.length]);
+
+    console.log(daysData);
+
+
+
 
     const containerRef = useRef()
     const [currentCollection, setCurrentCollection] = useState(0)
@@ -67,7 +142,7 @@ export default function DestinationsCarousal({itineraryData}) {
     return (
 
 
-        <div className=" flex justify-center items-center  flex-col  h-full overflow-y-auto     ">
+        <div className=" flex  items-center    flex-col  h-full overflow-y-auto     " style={{ display: visible ? 'visible' : 'flex' }}>
 
             <div ref={containerRef} className="  w-full  border   relative rounded-2xl flex-center overflow-hidden  ">
                 <Carousel
@@ -87,7 +162,7 @@ export default function DestinationsCarousal({itineraryData}) {
                 >
                     <CarouselContent>
 
-                        {itineraryData?.days?.map((item, index) => (
+                        {daysData.map((item, index) => (
                             <CarouselItem key={index} className="basis-1/1  flex-center ">
 
                                 <div className=" relative group cursor-pointer w-full h-[30vh] overflow-hidden  ">

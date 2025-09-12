@@ -4,14 +4,24 @@ import uaePlaces from "@/components/datas/Places"
 import { useHasScrollbar } from "@/app/hooks/useHasScrollbar"
 
 
-export default function Details({ itineraryData }) {
+export default function Details({ selectedTab, itineraryData }) {
 
     const { containerRef, hasScrollbar } = useHasScrollbar([])
+    const [visible, setVisible] = useState(selectedTab !== 'Daily Schedule')
+
+    useEffect(() => {
+        // delay the toggle by 500ms
+        const timeout = setTimeout(() => {
+            setVisible(selectedTab !== 'Daily Schedule')
+        }, 500)
+
+        return () => clearTimeout(timeout)
+    }, [selectedTab])
 
 
 
     return (
-        <div className="w-full xl:px-2 xl:pb-2 h-full max-xl:text-sm  text-dark-28 text-base flex flex-col overflow-y-auto sm:flex-row sm:space-x-3 max-sm:space-y-8">
+        <div className="w-full xl:px-2 xl:pb-2 h-full max-xl:text-sm  text-dark-28 text-base flex flex-col overflow-y-auto sm:flex-row sm:space-x-3 max-sm:space-y-8 " style={{ display: visible ? 'visible' : 'flex' }} >
             {/* First column */}
             <div className="w-full flex flex-col ">
                 <p className="xl:text-[22px] text-lg font-normal text-dark-28">Destination Highlights</p>

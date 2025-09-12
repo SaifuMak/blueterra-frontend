@@ -26,9 +26,12 @@ import PlannedActivitiesMobile from "@/components/ItineraryView/PlannedActivitie
 import { useIsTablet } from "@/app/hooks/useIsTablet";
 import GalleryCarousal from "@/components/ItineraryView/PlannedActivities/GalleryCarousal";
 
+import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
+import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
+
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-export default function ItineraryViewClient({id}) {
+export default function ItineraryViewClient({ id }) {
 
     // const { id } = useParams();
     const [isLoading, setIsLoading] = useState(true)
@@ -184,14 +187,35 @@ export default function ItineraryViewClient({id}) {
                         </div>
 
 
-                        {!isTablet && <div className=" w-full bg-white relative  min-h-screen flex flex-col items-center ">
+                        {!isTablet && <div className=" w-full bg-white relative  min-h-[50vh]   flex flex-col items-center ">
                             <ResponsiveClipPath
                                 outerClass='absolute md:w-[20%] w-[28%]  top-0  left-0 h-fit'
                                 ImagePath='/images/itinerary/patterns/plan-top-left.png'
                                 width={800}
                             />
                             <PlannedActivities itineraryData={itineraryData} setIsLenisAvailable={setIsLenisAvailable} />
+
+                            <div className=" xl:w-10/12 w-11/12 mb-24 ">
+                                <div className="relative flex  items-center w-full  group ">
+                                    <div className="flex items-center peer cursor-pointer">
+                                        <p>Inclusions and Exclusions</p>
+                                        <MdInfoOutline className="ml-2" />
+                                    </div>
+
+                                    <div className="absolute   max-w-6/12  top-5 min-h-[300px] lg:min-w-[600px] xl:min-w-[700px] 2xl:min-w-[800px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
+
+                                        <div className=" relative mt-4 bg-white w-full  px-6 !z-[1999] rounded-xl  shadow-[0_0_20px_rgba(0,0,0,0.15)]   ">
+                                            <IoMdArrowDropup className=" text-4xl  text-white absolute left-1/4 -translate-x-1/4 -top-5 " />
+                                            <PriceInclusionsDummy itineraryData={itineraryData} />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>}
+
+
                         {isTablet &&
                             <div className=" w-full bg-white relative  min-h-screen flex flex-col items-center ">
                                 <ResponsiveClipPath
@@ -200,6 +224,8 @@ export default function ItineraryViewClient({id}) {
                                     width={800}
                                 />
                                 <PlannedActivitiesMobile itineraryData={itineraryData} />
+
+
                             </div>
                         }
 

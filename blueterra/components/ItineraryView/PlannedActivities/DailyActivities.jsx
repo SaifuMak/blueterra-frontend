@@ -8,24 +8,39 @@ import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusions
 import { useIsTablet } from "@/app/hooks/useIsTablet"
 import { useHasScrollbar } from "@/app/hooks/useHasScrollbar"
 
-export default function DailyActivities({ expandCards, index, selectedTab, itineraryData, lockScreen, unLockScreen }) {
+export default function DailyActivities({ expandCards, index, selectedTab, itineraryData, lockScreen, unLockScreen, setDailyActivitiesScrollHeight }) {
 
     const [OpenedAccordian, setOpenedAccordian] = useState([])
 
     const accordiansRef = useRef([])
 
-    const { containerRef, hasScrollbar } = useHasScrollbar([OpenedAccordian])
+    // const { containerRef, hasScrollbar } = useHasScrollbar([OpenedAccordian])
+
+    const containerRef = useRef(null);
+    const [hasScrollbar, setHasScrollbar] = useState(false);
+
+    useLayoutEffect(() => {
+        if (!containerRef.current) return;
+
+        const checkOverflow = () => {
+            const el = containerRef.current;
+            setHasScrollbar(el.scrollHeight > el.clientHeight);
+            setDailyActivitiesScrollHeight(el.scrollHeight)
+        };
+
+        checkOverflow(); // run initially
+
+        // Watch for size/content changes
+        const resizeObserver = new ResizeObserver(checkOverflow);
+        resizeObserver.observe(containerRef.current);
+
+        return () => resizeObserver.disconnect();
+    }, [OpenedAccordian]);
 
 
     const handleAccordion = (index) => {
         if (selectedTab !== 'Daily Schedule') {
-            // expandCards(0)
 
-            // setTimeout(() => {
-            //     setOpenedAccordian((prev) => (
-            //         prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-            //     ))
-            // }, 800);
             setTimeout(() => {
                 setOpenedAccordian((prev) => (
                     prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
@@ -54,6 +69,8 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
                 setOpenedAccordian(itineraryData?.days?.map((_, idx) => idx) || [])
 
             }, 1100);
+            // }, 0);
+
         }
         else {
             setOpenedAccordian([])
@@ -62,18 +79,17 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
     }, [selectedTab])
 
 
-
     return (
 
         <>
 
-            <div ref={containerRef} className="  w-full  overflow-y-auto h-full flex flex-col px-1 pl-12 lg:pl-[44px]   max-xl:text-sm  xl:pl-[44px]   space-y-2 content-between text-base   max-sm:max-h-[300px] "   {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
+            <div ref={containerRef} className={`${selectedTab === 'Daily Schedule' ? ' h-fit' : ' h-full'} w-full overflow-y-auto  flex flex-col px-1 pl-12 lg:pl-[44px]   max-xl:text-sm  xl:pl-[44px]   space-y-2 content-between text-base   max-sm:max-h-[300px] `}    {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
 
-                <div className="  w-full  h-full flex flex-col   ">
+                <div className="  w-full flex flex-col">
 
                     {itineraryData?.days?.map((data, index) => (
                         <div key={index} ref={(el) => (accordiansRef.current[index] = el)} className=" flex  border-l relative  ">
-                            <div className={`shrink-0 absolute flex  transition-all duration-700  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === itineraryData?.days.length - 1 ? ` ${OpenedAccordian.includes(index) ? 'lg:pb-0' : 'lg:pb-6'}  ` : ''} bg-white `}>
+                            <div className={`shrink-0 absolute flex  transition-all duration-700  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === itineraryData?.days.length - 1 ? ` ${OpenedAccordian.includes(index) ? 'lg:pb-0' : 'lg:pb-6'}  ` : ''} bg-white  `}>
                                 <p className=" font-normal text-sm  ">Day</p>
                                 <span className="size-5 ml-2   text-white text-xs  bg-[#026E9E] flex-center  rounded-full">{index + 1}</span>
                             </div>
@@ -103,12 +119,7 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
                         </div>
                     ))}
 
-
-
                 </div>
-
-
-
 
             </div>
 

@@ -206,7 +206,16 @@ export default function Home() {
 
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // setTimeout(() => {
+    //   // window.scrollTo({ top: 0, behavior: "smooth" });
+    //     window.scrollTo(0, 0);
+    // }, 500);
+
+    window.scrollTo(0, 0);
+
+    return () => {
+      console.log("Cleanup when page unmounts");
+    };
   }, [])
 
 
