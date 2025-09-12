@@ -170,7 +170,7 @@ export default function ItineraryViewClient({ id }) {
                             </div>
 
 
-                            <div ref={bannerContainer} className="   h-full flex     ">
+                            <div ref={bannerContainer} className="   h-full flex    w-full   ">
 
                                 <div className=" text-white z-30  flex flex-col mt-24  md:mt-32 mb-10 justify-between   text-center w-full h-full   ">
 

@@ -44,18 +44,26 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
 
 
     // const daysData = itineraryData?.days
-
-    // Step 1: Add lat/lng
+    // Step 1: Parse coordinates from API response
     useEffect(() => {
         if (!itineraryData?.days) return;
 
-        const enriched = itineraryData.days.map((day, index) => ({
-            ...day,
-            latitude:
-                index === 0 ? 59.9139 : index === 1 ? 60.8645 : index === 2 ? 60.628 : 60.39299,
-            longitude:
-                index === 0 ? 10.7522 : index === 1 ? 7.114 : index === 2 ? 6.4221 : 5.32415,
-        }));
+        const enriched = itineraryData.days.map((day) => {
+            let latitude = null;
+            let longitude = null;
+
+            if (day.coordinates) {
+                const [lat, lng] = day.coordinates.split(",").map((c) => parseFloat(c.trim()));
+                latitude = lat;
+                longitude = lng;
+            }
+
+            return {
+                ...day,
+                latitude,
+                longitude,
+            };
+        });
 
         setDaysData(enriched);
     }, [itineraryData]);
@@ -68,19 +76,18 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
 
             const updated = await Promise.all(
                 daysData.map(async (day) => {
+                    if (!day.latitude || !day.longitude) return { ...day, temperature: null };
+
                     try {
-                        const res = await axios.get(
-                            `https://api.open-meteo.com/v1/forecast`,
-                            {
-                                params: {
-                                    latitude: day.latitude,
-                                    longitude: day.longitude,
-                                    current_weather: true,
-                                    daily: "temperature_2m_max,temperature_2m_min", // ✅ add high & low
-                                    timezone: "auto", // ✅ ensures local timezone instead of GMT
-                                },
-                            }
-                        );
+                        const res = await axios.get(`https://api.open-meteo.com/v1/forecast`, {
+                            params: {
+                                latitude: day.latitude,
+                                longitude: day.longitude,
+                                current_weather: true,
+                                daily: "temperature_2m_max,temperature_2m_min",
+                                timezone: "auto",
+                            },
+                        });
 
                         return {
                             ...day,
@@ -98,6 +105,9 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
 
         fetchWeather();
     }, [daysData.length]);
+
+    console.log(daysData);
+
 
     console.log(daysData);
 
@@ -219,18 +229,18 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
             </div>
 
 
-
             <div className="w-full   text-dark-28 pl-2 mt-2 ">
-                <div className=" flex ">
+                {daysData?.[currentCollection]?.temperature && <div className=" flex ">
                     <p className="xl:text-2xl text-xl ">
-                        {carousalData[currentCollection].temp}
+                        {daysData?.[currentCollection]?.temperature ? daysData?.[currentCollection]?.temperature : '0'}
+
                         <span className="relative -top-1 text-lg lg:text-2xl">°</span>C
                     </p>
                     <div className="ml-2 mt-0.5">
                         <img src="/Icons/cloud.svg" alt="cloud" className="" />
 
                     </div>
-                </div>
+                </div>}
 
                 <div className=" flex space-x-6 text-sm items-center font-normal">
                     <p className="">Feels like Cloudy</p>

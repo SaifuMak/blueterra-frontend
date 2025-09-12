@@ -40,7 +40,7 @@ export default function CreateItinerary() {
     const [color, setColor] = useState("#3FD896");
     const [selectedBannerImageFile, setSelectedBannerImageFile] = useState(null);
 
-    const [days, setDays] = useState([{ title: '', description: '', image: null, image_title: '' }]);
+    const [days, setDays] = useState([{ title: '', description: '', coordinates: '', image: null, image_title: '' }]);
     const [hotels, setHotels] = useState([{ title: '', description: '', image: null, coordinates: '', location: '', mapLink: '', rating: 5 }]);
 
     const [destinationHighlights, setDestinationHighlights] = useState([{ title: '' }]);
@@ -219,6 +219,7 @@ export default function CreateItinerary() {
         days.forEach((day, index) => {
             formData.append(`days[${index}][title]`, day.title);
             formData.append(`days[${index}][description]`, day.description);
+            formData.append(`days[${index}][coordinates]`, day.coordinates);
 
             if (day.image) {
                 formData.append(`days[${index}][image]`, day.image); // file stays intact

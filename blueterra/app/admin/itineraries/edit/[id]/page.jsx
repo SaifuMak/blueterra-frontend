@@ -46,7 +46,7 @@ export default function EditItinerary() {
     const [selectedBannerImageFile, setSelectedBannerImageFile] = useState(null);
     const [selectedBannerImageUrl, setSelectedBannerImageUrl] = useState(null);
 
-    const [days, setDays] = useState([{ id: '', title: '', description: '', image: null, image_public_url: '', image_title: '' }]);
+    const [days, setDays] = useState([{ id: '', title: '', description: '', coordinates: '', image: null, image_public_url: '', image_title: '' }]);
     const [hotels, setHotels] = useState([{ id: '', title: '', description: '', image: null, image_public_url: '', coordinates: '', location: '', mapLink: '', rating: 5 }]);
     const [destinationHighlights, setDestinationHighlights] = useState([{ title: '' }]);
     const [signatureHighlights, setSignatureHighlights] = useState([{ title: '' }]);
@@ -291,6 +291,7 @@ export default function EditItinerary() {
             formData.append(`days[${index}][id]`, day.id);
             formData.append(`days[${index}][title]`, day.title);
             formData.append(`days[${index}][description]`, day.description);
+             formData.append(`days[${index}][coordinates]`, day.coordinates);
 
             if (day.image) {
                 formData.append(`days[${index}][image]`, day.image); // file stays intact

@@ -10,7 +10,7 @@ const DaysSection = ({ textAreaStyle, inputStyle, days, setDays, handleReorder }
 
     const handleAddDay = () => {
         const lastIndex = days.length;
-        setDays([...days, { title: '', description: '', image: null, image_title: '' }])
+        setDays([...days, { title: '', description: '', coordinates: '', image: null, image_title: '' }])
         setTimeout(() => {
             const target = dayRefs.current[lastIndex];
             target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -52,6 +52,7 @@ const DaysSection = ({ textAreaStyle, inputStyle, days, setDays, handleReorder }
                     <p className=" text-lg font-medium mt-4 ">Day {index + 1}</p>
                     <input type="text" value={day.title} onChange={(e) => handleDayChange(index, 'title', e.target.value)} placeholder="Title.." className={`${inputStyle}`} required />
                     <textarea name="" id="" placeholder="Input descriptions here..." value={day.description} onChange={(e) => handleDayChange(index, 'description', e.target.value)} className={`${textAreaStyle} w-full mt-4`} required></textarea>
+                    <input type="text" value={day.coordinates ? day.coordinates : ''} onChange={(e) => handleDayChange(index, 'coordinates', e.target.value)} placeholder="Coordinates.." className={`${inputStyle}`} required />
 
                     <div className=" flex w-full items-center space-x-8 mt-4  ">
                         <ImageUploader
