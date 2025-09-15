@@ -82,13 +82,13 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                                     </div>
 
 
-                                    <div className="  space-y-1">
+                                    <div className="  space-y-0 mt-3">
 
-                                        <div className="flex lg:mt-2 mt-4  justify-between">
-                                            <h3 className="font-medium text-xl mr-3 text-dark-4B xl:text-2xl 2xl:text-2xl  max-lg:hidden">{trimWords(item.title, 6)}</h3>
-                                            <h3 className="font-medium text-xl mr-3 text-dark-4B 2xl:text-3xl  lg:hidden">{item.title}</h3>
+                                        <div className="flex   justify-between">
+                                            <h3 className="font-medium text-xl mr-3 text-dark-4B xl:text-2xl 2xl:text-xl  max-lg:hidden">{trimWords(item.title, 6)}</h3>
+                                            <h3 className="font-medium text-xl mr-3 text-dark-4B 2xl:text-2xl  lg:hidden">{item.title}</h3>
 
-                                            <div className="flex space-x-1 mt-3">
+                                            <div className="flex space-x-1 mt-1">
                                                 {[...Array(5)].map((_, ind) => (
                                                     <IoIosStar key={ind} className={`lg:text-xl  text-lg  ${ind < item.rating ? "fill-[#FFCB1F]" : "fill-gray-300"
                                                         }`} />
@@ -100,7 +100,7 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                                         </div>
 
                                         <div className="mt-2">
-                                            <p className=" font-light my-6">
+                                            <p className=" font-light my-3">
                                                 {trimWords(item?.description, 40, '...')}
                                             </p>
                                         </div>

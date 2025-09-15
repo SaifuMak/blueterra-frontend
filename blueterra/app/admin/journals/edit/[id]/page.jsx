@@ -11,6 +11,7 @@ import AXIOS_INSTANCE from "@/lib/axios";
 import { toast } from 'sonner';
 import { useParams } from 'next/navigation';
 import { API_BASE_URL } from "@/app/config.";
+import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
 
 export default function EditJournal() {
 
@@ -34,11 +35,17 @@ export default function EditJournal() {
 
     const [newCategory, setNewCategory] = useState('')
 
+    const [categoryEdited, setCategoryEdited] = useState('')
+    const [editCategoryPopupOpened, setEditCategoryPopupOpened] = useState(false)
+    const [newEditedCategory, setNewEditedCategory] = useState('')
+
+    const [categoryToBeDeleted, setCategoryToBeDeleted] = useState(null)
+    const [deleteCategoryPopupOpened, setDeleteCategoryPopupOpened] = useState(false)
+
+
 
     const [categories, setCategories] = useState([])
     const [isDraftSaving, setIsDraftSaving] = useState(false)
-
-
 
 
     const [formDataState, setFormDataState] = useState({
@@ -48,6 +55,7 @@ export default function EditJournal() {
         blog_content: "",
         meta_title: "",
         meta_description: "",
+        category: "",
         category_name: "",
         is_published: true,
     });
@@ -61,6 +69,7 @@ export default function EditJournal() {
             blog_content: "",
             meta_title: "",
             meta_description: "",
+            category: "",
             category_name: "",
             is_published: true,
         })
@@ -74,10 +83,11 @@ export default function EditJournal() {
         }));
     };
 
-    const handleCategorySelection = (category) => {
+    const handleCategorySelection = (category, id) => {
         setFormDataState((prev) => ({
             ...prev,
-            category_name: category
+            category_name: category,
+            category: id,
         }));
     }
 
@@ -138,6 +148,18 @@ export default function EditJournal() {
         }
     }
 
+
+    const handleEditCategory = (item) => {
+        setCategoryEdited(item)
+        setNewEditedCategory(item.category)
+        setEditCategoryPopupOpened(true)
+    }
+
+    const handleDeleteCategory = (item) => {
+        setCategoryToBeDeleted(item)
+        setDeleteCategoryPopupOpened(true)
+    }
+
     useEffect(() => {
         fetchCategories()
         setIsClient(true);
@@ -146,7 +168,7 @@ export default function EditJournal() {
 
     const handleSubmit = async (e, publish = true) => {
 
-        if (isLoading) return
+        if (isLoading || isDraftSaving) return
 
         toast.dismiss()
         e.preventDefault(); // prevent page reload
@@ -155,7 +177,7 @@ export default function EditJournal() {
             toast.error('Please select a title');
             return
         }
-         if (!formDataState.slug) {
+        if (!formDataState.slug) {
             toast.error('Please select a slug');
             return
         }
@@ -174,7 +196,7 @@ export default function EditJournal() {
                 toast.error('Please select a category');
                 return
             }
-             if (!formDataState.meta_title || !formDataState.meta_description) {
+            if (!formDataState.meta_title || !formDataState.meta_description) {
                 toast.error('Meta title and description is required');
                 return
             }
@@ -182,7 +204,7 @@ export default function EditJournal() {
 
         if (editorRef.current) {
             const content = editorRef.current.getContent();
-          
+
             if (!content && publish === true) {
                 toast.error("Journal content can't be empty.");
                 return
@@ -229,36 +251,72 @@ export default function EditJournal() {
     };
 
 
+    const fetchJournal = async () => {
+        try {
+            const response = await AXIOS_INSTANCE.get(`journals/${id}`);
+            const data = response?.data
+            console.log(data)
+            setFormDataState({
+                title: data.title || "",
+                slug: data.slug || "",
+                blog_content: data.blog_content || "",
+                meta_title: data.meta_title || "",
+                meta_description: data.meta_description || "",
+                category_name: data.category_name || "",
+                category: data.category || null,
+                is_published: data.is_published ?? true, // default to true
+            });
+            setPreviewImage(data?.image_public_url)
+            setBlogContent(data.blog_content)
+        } catch (error) {
+            console.error('Failed to load journal:', error);
+        } finally {
+            // setLoading(false);
+        }
+    };
+
+
     useEffect(() => {
         if (!id) return;
-
-        const fetchJournal = async () => {
-            try {
-                const response = await AXIOS_INSTANCE.get(`journals/${id}`);
-                const data = response?.data
-                console.log(data)
-                setFormDataState({
-                    title: data.title || "",
-                    slug: data.slug || "",
-                    blog_content: data.blog_content || "",
-                    meta_title: data.meta_title || "",
-                    meta_description: data.meta_description || "",
-                    category_name: data.category_name || "",
-                    is_published: data.is_published ?? true, // default to true
-                });
-                setPreviewImage(data?.image_public_url)
-                setBlogContent(data.blog_content)
-            } catch (error) {
-                console.error('Failed to load journal:', error);
-            } finally {
-                // setLoading(false);
-            }
-        };
-
-
         fetchJournal();
     }, [id]);
 
+
+
+
+    const confirmEditCategory = async (category) => {
+
+        const data = {
+            category: category
+        }
+        try {
+            const response = await AXIOS_INSTANCE.patch(`journal-categories/${categoryEdited.id}/`, data)
+            fetchCategories()
+            fetchJournal()
+            setEditCategoryPopupOpened(false)
+            setNewEditedCategory('')
+            toast.success(response?.data?.message)
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    const confirmDeleteCategory = async (categoryId) => {
+
+        try {
+            const response = await AXIOS_INSTANCE.delete(`journal-categories/${categoryId}/`)
+            fetchCategories()
+            setDeleteCategoryPopupOpened(false)
+            setCategoryToBeDeleted(null)
+            toast.success(response?.data?.message)
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
 
 
 
@@ -364,7 +422,7 @@ export default function EditJournal() {
                                         <button onClick={(e) => handleSubmit(e, true)} className=" max-xl:hidden rounded-sm cursor-pointer text-sm font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
 
                                     </div>
-                                    <button onClick={(e) => handleSubmit(e, true)} className=" xl:hidden mt-4 rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">Publish</button>
+                                    <button onClick={(e) => handleSubmit(e, true)} className=" xl:hidden mt-4 flex-center rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
 
                                     <div className=" my-8 flex flex-col  ">
                                         <p className=" max-xl:text-sm"> Save & Publish Later</p>
@@ -420,9 +478,18 @@ export default function EditJournal() {
                                         <p onClick={handleOpenCreateCategoryPopup} className=" cursor-pointer flex items-center text-sky-blue-dark font-medium "><RiAddCircleLine className=" 2xl:text-xl mr-0.5 " /> Add</p>
 
                                     </div>
-                                    <div className=" flex flex-col mt-3 space-y-3 max-h-96 overflow-y-auto ">
+                                    <div className=" flex flex-col mt-6 space-y-6 max-h-96 overflow-y-auto ">
                                         {categories?.map((data, index) => (
-                                            <div key={index} onClick={() => handleCategorySelection(data.category)} className=" flex items-center  capitalize text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category_name === data.category && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{data.category}</div>
+                                            <div key={index} className=" flex  space-x-5">
+                                                <div onClick={() => handleCategorySelection(data.category, data.id)} className=" 2xl:min-w-32 min-w-20 flex items-center  capitalize text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category === data.id && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{data.category}</div>
+                                                <TooltipWrapper message="Edit">
+                                                    <img onClick={() => handleEditCategory(data)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
+                                                </TooltipWrapper>
+
+                                                <TooltipWrapper message="Delete">
+                                                    <img onClick={() => handleDeleteCategory(data)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
+                                                </TooltipWrapper>
+                                            </div>
                                         ))}
                                     </div>
 
@@ -448,6 +515,33 @@ export default function EditJournal() {
                     <RxCross2 onClick={() => setCreateCategoryPopupOpened(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
                 </div>
             </div>}
+
+            {editCategoryPopupOpened &&
+                <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
+                    <div className="bg-white relative rounded-lg  shadow-xl p-6 w-100">
+                        <h2 className="text-lg font-medium mb-4 text-dark-4B ">Edit Category</h2>
+                        <input type="text" onChange={(e) => setNewEditedCategory(e.target.value)} value={newEditedCategory} placeholder="" className=" px-2 py-1 w-full  outline-none border rounded-sm" />
+                        <div className=" flex justify-center mt-4">
+                            <button onClick={() => confirmEditCategory(newEditedCategory)} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Save </button>
+                        </div>
+                        <RxCross2 onClick={() => setEditCategoryPopupOpened(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
+                    </div>
+                </div>
+            }
+
+
+            {deleteCategoryPopupOpened &&
+                <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
+                    <div className="bg-white relative rounded-lg  shadow-xl p-6 w-100">
+                        <h2 className="text-lg font-medium mb-4 text-dark-4B ">Delete Category</h2>
+                        <p className="">Deleting the <span className=" font-medium">{categoryToBeDeleted?.category}</span>  category will set the category field of all linked blogs to ‘None’. Do you want to proceed?</p>
+                        <div className=" flex justify-center mt-4">
+                            <button onClick={() => confirmDeleteCategory(categoryToBeDeleted?.id)} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">confirm </button>
+                        </div>
+                        <RxCross2 onClick={() => setDeleteCategoryPopupOpened(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
+                    </div>
+                </div>
+            }
         </div>
     )
 }

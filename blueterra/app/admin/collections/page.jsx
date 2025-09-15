@@ -264,11 +264,11 @@ export default function Collections() {
                                     <textarea name="description" onChange={handlechange} value={formData?.description} id="description" className="border rounded-sm  mt-2  p-2 w-full outline-none" required></textarea>
                                 </div>
 
-                                   <div className=" w-full">
+                                <div className=" w-full">
                                     <label htmlFor="text" className=" font-medium">Popular Jounerys  <span className=" text-sm text-sky-blue-dark">(seperated by comma)</span></label>
-                                    <textarea name="popular_journeys" onChange={handlechange} value={formData?.popular_journeys ? formData?.popular_journeys : '' } id="popular_journeys" className="border rounded-sm  mt-2  p-2 w-full outline-none" required></textarea>
+                                    <textarea name="popular_journeys" onChange={handlechange} value={formData?.popular_journeys ? formData?.popular_journeys : ''} id="popular_journeys" className="border rounded-sm  mt-2  p-2 w-full outline-none" required></textarea>
                                 </div>
-    
+
 
 
                                 <div className=" w-full flex  space-x-6 items-center ">

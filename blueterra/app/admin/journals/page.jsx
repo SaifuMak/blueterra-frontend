@@ -240,7 +240,7 @@ export default function Journals() {
                                         <tr key={index} className=" rounded-3xl">
 
                                             <td className={rowStyle}>{trimWords(item.title, 8)}</td>
-                                            <td className={`${rowStyle} capitalize`}>{item.category_name ? item.category_name : 'N/A'}</td>
+                                            <td className={`${rowStyle} capitalize`}>{item.category?.category ? item.category?.category : 'N/A'}</td>
                                             <td className={rowStyle}>{item.created_at}</td>
                                             {selectedJournalStatus === 'Published' && (<td className={rowStyle}>
 

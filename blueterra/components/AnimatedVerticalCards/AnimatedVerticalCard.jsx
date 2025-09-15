@@ -194,27 +194,29 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
                                 <hr className=' opacity-40 mt-5'></hr>
                             </div>}
 
+
+
                             {isFullCardVisible && <div className="w-full 2xl:mt-10 mt-5 space-y-6 xl:space-y-10 ">
                                 <h3 className={`${playfair.className} text-2xl 2xl:text-3xl font-medium`} >Popular Journeys</h3>
 
-                                {page === 'destinations' && <div className="flex  space-x-6">
+                                {/* {page === 'destinations' && <div className="flex  space-x-6">
                                     {card?.countries?.map((country, index) => (
                                         <div key={index} className="  flex  bor-b ">
                                             <span className="">{country?.title}</span></div>
                                     ))}
-                                </div>}
+                                </div>} */}
 
-                                {page === 'collections' && (
-                                    <div className="flex space-x-6">
-                                        {card?.popular_journeys
-                                            ?.split(",")                // split by comma
-                                            .map((item, index) => (
-                                                <div key={index} className="flex bor-b">
-                                                    <span>{item.trim()}</span>
-                                                </div>
-                                            ))}
-                                    </div>
-                                )}
+
+                                <div className="flex space-x-6">
+                                    {card?.popular_journeys
+                                        ?.split(",")                // split by comma
+                                        .map((item, index) => (
+                                            <div key={index} className="flex bor-b">
+                                                <span>{item.trim()}</span>
+                                            </div>
+                                        ))}
+                                </div>
+
 
                                 <p className="  w-9/12 leading-relaxed ">{card?.description}</p>
 

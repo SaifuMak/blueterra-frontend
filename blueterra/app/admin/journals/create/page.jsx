@@ -10,7 +10,7 @@ import { rubik } from '@/app/fonts'
 import AXIOS_INSTANCE from "@/lib/axios";
 import { toast } from 'sonner';
 import { API_BASE_URL } from "@/app/config.";
-
+import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
 
 export default function CreateJournal() {
 
@@ -26,6 +26,17 @@ export default function CreateJournal() {
 
     const [newCategory, setNewCategory] = useState('')
 
+    const [categoryEdited, setCategoryEdited] = useState('')
+    const [editCategoryPopupOpened, setEditCategoryPopupOpened] = useState(false)
+    const [newEditedCategory, setNewEditedCategory] = useState('')
+
+    const [categoryToBeDeleted, setCategoryToBeDeleted] = useState(null)
+    const [deleteCategoryPopupOpened, setDeleteCategoryPopupOpened] = useState(false)
+
+
+
+
+
     const [categories, setCategories] = useState([])
 
     const [isLoading, setIsLoading] = useState(false)
@@ -38,6 +49,7 @@ export default function CreateJournal() {
         blog_content: "",
         meta_title: "",
         meta_description: "",
+        category: "",
         category_name: "",
         is_published: true,
     });
@@ -74,6 +86,41 @@ export default function CreateJournal() {
     }
 
 
+    const confirmEditCategory = async (category) => {
+
+        const data = {
+            category: category
+        }
+        try {
+            const response = await AXIOS_INSTANCE.patch(`journal-categories/${categoryEdited.id}/`, data)
+            fetchCategories()
+            setEditCategoryPopupOpened(false)
+            setNewEditedCategory('')
+            toast.success(response?.data?.message)
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    const confirmDeleteCategory = async (categoryId) => {
+
+        try {
+            const response = await AXIOS_INSTANCE.delete(`journal-categories/${categoryId}/`)
+            fetchCategories()
+            setDeleteCategoryPopupOpened(false)
+            setCategoryToBeDeleted(null)
+            toast.success(response?.data?.message)
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+
+
     const handleClearFormDataState = () => {
 
         setFormDataState({
@@ -82,6 +129,7 @@ export default function CreateJournal() {
             blog_content: "",
             meta_title: "",
             meta_description: "",
+            category: '',
             category_name: "",
             is_published: true,
         })
@@ -96,10 +144,11 @@ export default function CreateJournal() {
         }));
     };
 
-    const handleCategorySelection = (category) => {
+    const handleCategorySelection = (category, id) => {
         setFormDataState((prev) => ({
             ...prev,
-            category_name: category
+            category_name: category,
+            category: id,
         }));
     }
 
@@ -127,6 +176,18 @@ export default function CreateJournal() {
         setTimeout(() => {
             createCategoryInputRef?.current.focus()
         }, 500);
+    }
+
+
+    const handleEditCategory = (item) => {
+        setCategoryEdited(item)
+        setNewEditedCategory(item.category)
+        setEditCategoryPopupOpened(true)
+    }
+
+    const handleDeleteCategory = (item) => {
+        setCategoryToBeDeleted(item)
+        setDeleteCategoryPopupOpened(true)
     }
 
     useEffect(() => {
@@ -175,7 +236,7 @@ export default function CreateJournal() {
                 toast.error('Please select a preview image');
                 return
             }
-             if (!formDataState.meta_title || !formDataState.meta_description) {
+            if (!formDataState.meta_title || !formDataState.meta_description) {
                 toast.error('Meta title and description is required');
                 return
             }
@@ -385,11 +446,20 @@ export default function CreateJournal() {
                                     <div className=" flex max-xl:flex-col xl:items-center justify-between">
                                         <label htmlFor="text" className=" font-medium" >Select Catagory</label>
                                         <p onClick={handleOpenCreateCategoryPopup} className=" cursor-pointer flex items-center text-sky-blue-dark font-medium "><RiAddCircleLine className=" 2xl:text-xl mr-0.5 " /> Add</p>
-
                                     </div>
-                                    <div className=" flex flex-col mt-3 space-y-3 max-h-96 overflow-y-auto ">
+
+                                    <div className=" flex flex-col mt-6 space-y-6 max-h-96 overflow-y-auto ">
                                         {categories?.map((data, index) => (
-                                            <div key={index} onClick={() => handleCategorySelection(data.category)} className=" flex items-center  capitalize text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category_name === data.category && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{data.category}</div>
+                                            <div key={index} className=" flex  space-x-5">
+                                                <div onClick={() => handleCategorySelection(data.category, data.id)} className=" 2xl:min-w-32 min-w-20 flex items-center  capitalize text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category_name === data.category && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{data.category}</div>
+                                                <TooltipWrapper message="Edit">
+                                                    <img onClick={() => handleEditCategory(data)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
+                                                </TooltipWrapper>
+
+                                                <TooltipWrapper message="Delete">
+                                                    <img onClick={() => handleDeleteCategory(data)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
+                                                </TooltipWrapper>
+                                            </div>
                                         ))}
                                     </div>
 
@@ -415,6 +485,33 @@ export default function CreateJournal() {
                     <RxCross2 onClick={() => setCreateCategoryPopupOpened(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
                 </div>
             </div>}
+
+            {editCategoryPopupOpened &&
+                <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
+                    <div className="bg-white relative rounded-lg  shadow-xl p-6 w-100">
+                        <h2 className="text-lg font-medium mb-4 text-dark-4B ">Edit Category</h2>
+                        <input type="text" onChange={(e) => setNewEditedCategory(e.target.value)} value={newEditedCategory} placeholder="" className=" px-2 py-1 w-full  outline-none border rounded-sm" />
+                        <div className=" flex justify-center mt-4">
+                            <button onClick={() => confirmEditCategory(newEditedCategory)} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">Save </button>
+                        </div>
+                        <RxCross2 onClick={() => setEditCategoryPopupOpened(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
+                    </div>
+                </div>
+            }
+
+
+            {deleteCategoryPopupOpened &&
+                <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
+                    <div className="bg-white relative rounded-lg  shadow-xl p-6 w-100">
+                        <h2 className="text-lg font-medium mb-4 text-dark-4B ">Delete Category</h2>
+                        <p className="">Deleting the <span className=" font-medium">{categoryToBeDeleted?.category}</span>  category will set the category field of all linked blogs to ‘None’. Do you want to proceed?</p>
+                        <div className=" flex justify-center mt-4">
+                            <button onClick={() => confirmDeleteCategory(categoryToBeDeleted?.id)} className=" mt-1 cursor-pointer rounded-sm font-medium  border bg- px-4 py-1 text-sm bg-[#F7FBFD] ">confirm </button>
+                        </div>
+                        <RxCross2 onClick={() => setDeleteCategoryPopupOpened(false)} className=" text-dark-4B cursor-pointer absolute text-xl top-3 right-3" />
+                    </div>
+                </div>
+            }
         </div>
     )
 }

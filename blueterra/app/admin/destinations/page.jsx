@@ -37,6 +37,7 @@ export default function Destinations() {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
+        popular_journeys: "",
         banner_image: null,
         icon: null,
     });
@@ -74,6 +75,8 @@ export default function Destinations() {
         setFormData({
             title: "",
             description: "",
+            popular_journeys: "",
+
             banner_image: null,
             icon: null,
         })
@@ -93,6 +96,7 @@ export default function Destinations() {
         setFormData({
             title: collection.title,
             description: collection.description,
+            popular_journeys: collection.popular_journeys,
             banner_image: collection.banner_image,
             icon: collection.icon,
         });
@@ -124,6 +128,7 @@ export default function Destinations() {
         const formDataCoverted = new FormData();
         formDataCoverted.append("title", formData.title);
         formDataCoverted.append("description", formData.description);
+        formDataCoverted.append("popular_journeys", formData.popular_journeys);
         if (formData.banner_image instanceof File) {
             formDataCoverted.append("banner_image", formData.banner_image);
         }
@@ -256,6 +261,12 @@ export default function Destinations() {
                                     <label htmlFor="text" className=" font-medium">Description</label>
                                     <textarea name="description" onChange={handlechange} value={formData?.description} id="description" className="border  rounded-sm   min-h-32  mt-2  p-2 w-full outline-none" required></textarea>
                                 </div>
+
+                                <div className=" w-full">
+                                    <label htmlFor="text" className=" font-medium">Popular Jounerys  <span className=" text-sm text-sky-blue-dark">(seperated by comma)</span></label>
+                                    <textarea name="popular_journeys" onChange={handlechange} value={formData?.popular_journeys ? formData?.popular_journeys : ''} id="popular_journeys" className="border rounded-sm  mt-2  p-2 w-full outline-none" required></textarea>
+                                </div>
+
 
                                 <div className=" w-full flex  space-x-6 items-center ">
                                     <div className=" space-x-6 flex flex-col">

@@ -68,7 +68,7 @@ export default  function BlogSingleClient({slug}) {
 
         const fetchRelatedJournals = async () => {
             try {
-                const response = await AXIOS_INSTANCE.get(`get-related-journals/?category=${blog.category_name}`);
+                const response = await AXIOS_INSTANCE.get(`get-related-journals/?category=${blog.category?.category}`);
                 const blogs = response?.data
                 const filteredBlogs = blogs.filter(blog => blog.slug !== slug);
                 setRelatedBlogs(filteredBlogs)
@@ -140,7 +140,7 @@ export default  function BlogSingleClient({slug}) {
                         <div className=" w-full flex max-xl:space-y-2  max-xl:flex-col  min-h-10  2xl:text-lg justify-between  my-5 xl:my-8">
                             <div className=" flex max-sm:flex-col max-lg:flex-wrap max-sm:space-y-1 space-x-3 xl:space-x-5 lg:items-center text-sky-blue-dark  ">
                                 <div className=" flex "> <p className=" ">Posted on: <span className=" text-dark-46">{blog?.created_at}</span></p></div>
-                                <div className=" flex "> <p className="">Category: <span className="text-dark-46 capitalize">{blog?.category_name}</span></p></div>
+                                <div className=" flex "> <p className="">Category: <span className="text-dark-46 capitalize">{blog?.category?.category}</span></p></div>
                                 {blog?.blog_content && <div className=" flex "> <p className="">Read Time: <span className="text-dark-46">{getReadingTime(blog.blog_content)} Minutes</span></p></div>}
                             </div>
                             <div className=" flex max-sm:space-x-3 space-x-1.5 xl:space-x-3 items-center max-sm:mt-3  ">
