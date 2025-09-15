@@ -384,16 +384,16 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
 
     useEffect(() => {
         if (!plannerCardsRef.current) return
-      
+
         if (selectedTab === 'Daily Schedule' && dailyActivitiesScrollHeight && !isLoading) {
             setTimeout(() => {
                 plannerCardsRef.current.style.height = `${dailyActivitiesScrollHeight}px`
 
-            },0);
+            }, 0);
         } else {
             plannerCardsRef.current.style.height = '70vh' // fallback/default height
         }
-    }, [dailyActivitiesScrollHeight,isLoading])
+    }, [dailyActivitiesScrollHeight, isLoading])
 
 
 
@@ -409,11 +409,30 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
                     <h3 className={`text-5xl font-medium ${playfair.className}`}>Planned Activities</h3>
                 </div>
 
-                <div className=" flex text-xl vertically-animated-element space-x-8 mt-10  font-normal max-lg:hidden">
+                {/* <div className=" flex text-xl vertically-animated-element space-x-8 mt-10  font-normal max-lg:hidden">
                     {["Map", "Overview", "Daily Schedule",].map((tab, index) => (
                         <p onClick={() => handleTabSelection(tab)} key={index} className={` cursor-pointer transform transition-all duration-300  ${selectedTab === tab ? ' text-sky-blue-dark' : 'text-black'} `}>{tab}</p>
                     ))}
+                </div> */}
+                <div className="flex text-xl vertically-animated-element space-x-8 mt-10 font-normal max-lg:hidden">
+                    {["Map", "Overview", "Daily Schedule"].map((tab, index) => (
+                        <p
+                            key={index}
+                            onClick={() => handleTabSelection(tab)}
+                            className={`
+                                relative cursor-pointer transition-all duration-300
+                                ${selectedTab === tab ? "text-sky-blue-dark" : "text-black"}
+                                after:content-[''] after:absolute after:left-0 after:-bottom-3 after:h-[2px] 
+                                after:bg-sky-blue-1 after:transition-all after:duration-500
+                                ${selectedTab === tab ? "after:w-full" : "after:w-0 hover:after:w-full"}
+                            `}
+                        >
+                            {tab}
+                        </p>
+                    ))}
                 </div>
+
+
 
 
                 <div ref={plannerCardsRef} className={`relative  h-[70vh] overflow-y-auto vertically-animated-element w-full flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  `}>

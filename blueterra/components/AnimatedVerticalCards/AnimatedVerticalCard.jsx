@@ -119,9 +119,9 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
                     alt={card?.title}
                     fill
                     priority={true}
-                    sizes="(max-width: 368px) 100vw, (max-width: 400px) 50vw, 33vw"
-                    // style={{  objectPosition:'center'}}
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
+                    // sizes="(max-width: 368px) 100vw, (max-width: 400px) 50vw, 33vw"
+                    // style={{ objectFit: 'cover', objectPosition: 'center' }}
+                    className=' object-cover'
                     onLoad={() => setIsLoading(false)}
                 />
 
@@ -203,7 +203,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
                                             <span className="">{country?.title}</span></div>
                                     ))}
                                 </div>}
-                                
+
                                 {page === 'collections' && (
                                     <div className="flex space-x-6">
                                         {card?.popular_journeys
