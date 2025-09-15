@@ -2,6 +2,7 @@
 'use client'
 import { CarouselApi } from "@/components/ui/carousel"
 import { useState, useEffect, useRef } from "react";
+import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 import axios from "axios";
 import {
     Carousel,
@@ -30,8 +31,27 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
 
     const [api, setApi] = useState()
     const [daysData, setDaysData] = useState([]);
+    const [loadingWeather, setLoadingWeather] = useState(true);
 
     const [visible, setVisible] = useState(selectedTab !== 'Daily Schedule')
+
+    const weatherMap = {
+        0: "Sunny",
+        1: "Clear",
+        2: "Partly cloudy",
+        3: "Overcast",
+        45: "Fog",
+        48: "Fog",
+        51: "Light drizzle",
+        53: "Moderate drizzle",
+        55: "Dense drizzle",
+        61: "Light rain",
+        63: "Moderate rain",
+        65: "Heavy rain",
+        71: "Snow fall",
+        80: "Rain showers",
+        95: "Thunderstorm",
+    };
 
     useEffect(() => {
         // delay the toggle by 500ms
@@ -84,14 +104,24 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
                                 latitude: day.latitude,
                                 longitude: day.longitude,
                                 current_weather: true,
-                                daily: "temperature_2m_max,temperature_2m_min",
+                                daily: "temperature_2m_max,temperature_2m_min,weathercode",
                                 timezone: "auto",
                             },
                         });
+                        const currentCode = res.data?.current_weather?.weathercode ?? null;
+                        const currentCondition = currentCode !== null ? weatherMap[currentCode] || "Unknown" : null;
+                        const max_temp = res.data?.daily?.temperature_2m_max?.[0] ?? null;
+                        const min_temp = res.data?.daily?.temperature_2m_min?.[0] ?? null;
+
+
 
                         return {
                             ...day,
                             temperature: res.data?.current_weather?.temperature ?? null,
+                            weatherStatus: currentCondition,
+                            max_temp: max_temp,
+                            min_temp: min_temp
+
                         };
                     } catch (error) {
                         console.error("Weather fetch failed:", error);
@@ -101,17 +131,12 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
             );
 
             setDaysData(updated);
+            
+            setLoadingWeather(false);
         };
 
         fetchWeather();
     }, [daysData.length]);
-
-    console.log(daysData);
-
-
-    console.log(daysData);
-
-
 
 
     const containerRef = useRef()
@@ -202,7 +227,7 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
                                 ))}
                             </div>
 
-                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-5 left-3 text-lg lg:text-2xl font-normal">
+                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-5 left-3 text-lg xl:text-xl 2xl:text-2xl font-normal">
                                 <p>Day {currentCollection + 1}:</p>
                                 <p className="capitalize ">{itineraryData?.days?.[currentCollection].image_title}</p>
                             </div>
@@ -229,30 +254,31 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
             </div>
 
 
-            <div className="w-full   text-dark-28 pl-2 mt-2 ">
-                {daysData?.[currentCollection]?.temperature && <div className=" flex ">
-                    <p className="xl:text-2xl text-xl ">
-                        {daysData?.[currentCollection]?.temperature ? daysData?.[currentCollection]?.temperature : '0'}
-
-                        <span className="relative -top-1 text-lg lg:text-2xl">°</span>C
-                    </p>
-                    <div className="ml-2 mt-0.5">
-                        <img src="/Icons/cloud.svg" alt="cloud" className="" />
-
-                    </div>
-                </div>}
-
-                <div className=" flex space-x-6 text-sm items-center font-normal">
-                    <p className="">Feels like Cloudy</p>
-                    <p className="">Low: <span className=" text-base">12°C</span></p>
-                    <p className="">High: <span className=" text-base">35°C</span></p>
-
+            {loadingWeather ? (
+                <div className=" w-full min-h-16  flex-center">
+                    <LoaderIcon />
                 </div>
+            ) : (
+                <div className="w-full  text-dark-28 pl-2 mt-2 ">
+                    {daysData?.[currentCollection]?.temperature && <div className=" flex ">
+                        <p className="xl:text-2xl text-xl ">
+                            {daysData?.[currentCollection]?.temperature ? daysData?.[currentCollection]?.temperature : '0'}
 
-            </div>
+                            <span className="relative -top-1 text-lg lg:text-2xl">°</span>C
+                        </p>
+                        {/* <div className="ml-2 mt-0.5">
+                        <img src="/Icons/cloud.svg" alt="cloud" className="" />
+                    </div> */}
+                    </div>}
 
+                    {daysData?.[currentCollection]?.temperature  && <div className=" flex space-x-6 text-sm items-center font-normal">
+                        <p className="">Feels like {daysData?.[currentCollection]?.weatherStatus}</p>
+                        <p className="">Low: <span className=" text-base">{daysData?.[currentCollection]?.min_temp}°C</span></p>
+                        <p className="">High: <span className=" text-base">{daysData?.[currentCollection]?.max_temp}°C</span></p>
 
-
+                    </div>}
+                </div>
+            )}
         </div >
     )
 }

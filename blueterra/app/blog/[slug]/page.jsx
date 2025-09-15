@@ -45,6 +45,7 @@ export async function generateMetadata({ params }) {
     }
 }
 
+
 export default async function Blog({ params }) {
 
     const { slug } = await params;
