@@ -42,7 +42,7 @@ export default function Details({ selectedTab, itineraryData }) {
             <div className="w-full flex flex-col mt-0 lg:mt-0 ">
                 <p className="xl:text-[22px] text-lg font-normal text-dark-28">Signature Experiences</p>
                 <div ref={containerRef} className="flex flex-wrap mt-2 pb-3 gap-x-2 gap-y-2 font-light overflow-y-auto max-sm:h-48 "  {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
-                    {itineraryData?.destination_highlights?.map((data, index) => (
+                    {itineraryData?.signature_highlights?.map((data, index) => (
                         <div key={index} className="flex w-full">
                             <span className=" size-1.5 bg-[#026E9E] rounded-full mt-2  shrink-0"></span>
                             <p className="ml-2">{data?.title}</p>
