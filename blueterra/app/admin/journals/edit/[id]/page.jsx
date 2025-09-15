@@ -422,7 +422,7 @@ export default function EditJournal() {
                                         <button onClick={(e) => handleSubmit(e, true)} className=" max-xl:hidden rounded-sm cursor-pointer text-sm font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
 
                                     </div>
-                                    <button onClick={(e) => handleSubmit(e, true)} className=" xl:hidden mt-4 flex-center rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
+                                    <button onClick={(e) => handleSubmit(e, true)} className=" xl:hidden mt-4  rounded-sm cursor-pointer text-sm w-full font-medium tracking-wide bg-sky-blue-dark px-4 2xl:px-6 py-1.5 text-white">{isLoading ? <RiLoader4Line className=" animate-spin  text-white text-xl" /> : 'Publish'}</button>
 
                                     <div className=" my-8 flex flex-col  ">
                                         <p className=" max-xl:text-sm"> Save & Publish Later</p>
