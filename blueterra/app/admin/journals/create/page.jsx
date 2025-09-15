@@ -451,7 +451,7 @@ export default function CreateJournal() {
                                     <div className=" flex flex-col mt-6 space-y-6 max-h-96 overflow-y-auto ">
                                         {categories?.map((data, index) => (
                                             <div key={index} className=" flex  space-x-5">
-                                                <div onClick={() => handleCategorySelection(data.category, data.id)} className=" 2xl:min-w-32 min-w-20 flex items-center  capitalize text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category_name === data.category && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{data.category}</div>
+                                                <div onClick={() => handleCategorySelection(data.category, data.id)} className=" 2xl:min-w-32 min-w-20 flex items-center  capitalize text-sm transition-all duration-500 cursor-pointer"> <span className="  inline-flex flex-center border-dark-28/30 2xl:size-4 size-4    shrink-0 border  mr-2 "> {formDataState.category === data.id && <AiOutlineCheck className="2xl:text-sm text-xs text-black" />}</span>{data.category}</div>
                                                 <TooltipWrapper message="Edit">
                                                     <img onClick={() => handleEditCategory(data)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
                                                 </TooltipWrapper>
