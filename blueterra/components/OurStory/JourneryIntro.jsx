@@ -17,9 +17,9 @@ export default function JourneryIntro() {
 
 
     return (
-        <div className=" relative   flex-center md:px-10 px-3  bg-white w-full h-full ">
+        <div className=" relative    flex-center md:px-10 px-3  bg-white w-full h-full ">
 
-            <div className=" py-10 2xl:py-7 lg:my-20 my-5 w-full items-center max-md:space-y-5 max-sm:px-3 max-sm:py-7 max-sm:pt-12 md:space-x-10    justify-center rounded-4xl bg-[#F4FBFF] h-full md:flex   ">
+            <div className=" py-10 2xl:py-7 lg:my-12 my-5 w-full items-center max-md:space-y-5 max-sm:px-3 max-sm:py-7 max-sm:pt-12 md:space-x-10    justify-center rounded-4xl bg-[#F4FBFF] h-full md:flex   ">
 
                 <div ref={titleRef} className=" lg:w-5/12   md:w-6/12 w-full flex flex-col   max-sm:pl-0 max-lg:pl-5  ">
                     {isMobile ?

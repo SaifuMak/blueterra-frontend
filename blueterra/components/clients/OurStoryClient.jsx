@@ -38,7 +38,7 @@ export default function OurStoryClient() {
                     <JourneryIntro />
 
                     {/* founder and company employees section */}
-                    <TeamSection />
+                    {/* <TeamSection /> */}
 
                     {/*  why travel with us section */}
                     <WhyTravelWithUsSection />

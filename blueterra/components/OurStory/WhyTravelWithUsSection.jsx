@@ -4,8 +4,6 @@ import WhyTravelWithUs from "../datas/WhyTravelWithUs";
 import useGsapFadeIn from "@/app/hooks/Gsap/useGsapFadeIn";
 import WhyTravelWithUsCard from "./WhyTravelWithUsCard";
 import { useRef, useState } from 'react';
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import useGsapStaggerDesktop from "@/app/hooks/Gsap/useGsapStaggerDesktop";
 import useGsapOpacity from "@/app/hooks/Gsap/useGsapOpacity";
 
@@ -14,7 +12,6 @@ export default function WhyTravelWithUsSection() {
 
     const containerRef = useRef(null);
     const gridContainerRef = useRef(null)
-
 
     useGsapStaggerDesktop({
         scopeRef: gridContainerRef,
@@ -27,7 +24,7 @@ export default function WhyTravelWithUsSection() {
 
 
     return (
-        <div className=" w-full h-full px-3 md:px-10  flex-center bg-white overflow-hidden  relative" >
+        <div className=" w-full h-full px-3 md:px-10  flex-center bg-white  overflow-hidden  relative" >
             <div ref={backgroundImageContainer} className=" w-full rounded-4xl flex-center my-12 md:my-20 md:py-16 py-10 xl:py-28 relative  overflow-hidden bg-cover bg-center bg-no-repeat  border " style={{
                 backgroundImage: "url('/images/our-story/why-travel.jpg')",
             }}>
