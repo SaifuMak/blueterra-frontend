@@ -125,7 +125,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
                     onLoad={() => setIsLoading(false)}
                 />
 
-                <div className={`absolute inset-0 ${!isExpanded && 'bg-[#104F82D9]/60'} pointer-events-none  transition-opacity duration-500 group-hover:opacity-0 z-10`}></div>
+                <div className={`absolute inset-0 ${!isExpanded && 'group-hover:bg-[#104F82D9]/60' }  pointer-events-none  ease-in-out  transition-colors duration-1000  z-0`}></div>
 
                 {!isExpanded && (
                     <div className="absolute group-hover:opacity-100  transition-opacity  opacity-0 inset-0 pointer-events-none z-20">
@@ -193,7 +193,6 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
                                 </p>
                                 <hr className=' opacity-40 mt-5'></hr>
                             </div>}
-
 
 
                             {isFullCardVisible && <div className="w-full 2xl:mt-10 mt-5 space-y-6 xl:space-y-10 ">
