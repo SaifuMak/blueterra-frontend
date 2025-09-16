@@ -34,7 +34,7 @@ function PlanningCardSection({ setFormOpen }) {
                         className="object-cover scalling-group-110 rounded-4xl "
                     />
                     <div className=" absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black/20 cursor-pointer rounded-4xl">
-                        <h3 className={`2xl:text-[50px] text-3xl xl:text-[45px]  lg:text-4xl ${playfair.className}  text-center  font-normal text-white`}>Where Will You Go Next ?</h3>
+                        <h3 className={`2xl:text-[50px] text-3xl xl:text-[45px]  lg:text-4xl ${playfair.className}  text-center max-sm:px-4  font-normal text-white`}>Where Will You Go Next ?</h3>
                         <Button text='PLAN YOUR JOURNEY' buttonStyle='xl:px-12 px-6 py-2 xl:py-2.5 mt-8 max-md:text-xs  ' onClickFunction={() => setFormOpen(true)} />
 
                     </div>
