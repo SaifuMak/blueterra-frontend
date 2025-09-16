@@ -20,7 +20,7 @@ const useGsapFadeIn = (index = 0, options = {}) => {
       },
       {
         opacity: 1,
-        y: 0,
+        y: 0, 
         duration: options.duration || 0.8,
         ease: options.ease || "sine.out",
         scrollTrigger: {

@@ -21,11 +21,15 @@ import DestinationSectionMobile from "@/components/Home/DestinationSectionMobile
 import { useMediaQuery } from 'react-responsive'
 import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 import useGsapFadeIn from "./hooks/Gsap/useGsapFadeIn";
+import { useLenis } from "@/components/SmoothScroll";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger)
 
 
 export default function Home() {
+
+  const lenis = useLenis();
 
   const isMobile = useMediaQuery({ query: "(max-width: 644px)" });
   const isMediumDevice = useMediaQuery({
@@ -48,7 +52,6 @@ export default function Home() {
 
   const testimonialContainer = useRef(null);
   const scaleTrackerContainer = useRef(null);
-
 
   const scrollSpeed = isMobile ? 0.5 : 1.5; // pixels per frame
 
@@ -132,14 +135,43 @@ export default function Home() {
     }
   }, []);
 
+  useGSAP(() => {
+    const elements = gsap.utils.toArray(".vertically-animated-element");
+
+    elements.forEach((box) => {
+      gsap.fromTo(
+        box,
+        { opacity: 0, y: 70 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "sine.out",
+          scrollTrigger: {
+            trigger: box,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+            markers: false,
+          },
+        }
+      );
+    });
+  });
+
 
 
   useEffect(() => {
-
     window.scrollTo(0, 0);
-
   }, [])
 
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //         window.scrollTo(0, 0);
+  //     // window.scrollTo({ top: 0, behavior: "smooth" });
+
+  //   }, 500);
+  // }, [])
 
   return (
 
@@ -152,9 +184,9 @@ export default function Home() {
             <div className="absolute inset-0 w-full h-full flex-center bg-white"><LoaderIcon /></div>
           )}
           {/* src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4" */}
-          <video ref={videoRef} src="https://res.cloudinary.com/dbmsyy9mx/video/upload/v1756462732/Home_page_Opening_video_2_ehpv1l.mp4"
+          {/* <video ref={videoRef} src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4" */}
 
-            // <video ref={videoRef} src="https://res.cloudinary.com/dbmsyy9mx/video/upload/v1756462732/Home_page_Opening_video_2_ehpv1l.mp4"
+            <video ref={videoRef} src="https://res.cloudinary.com/dbmsyy9mx/video/upload/v1756462732/Home_page_Opening_video_2_ehpv1l.mp4"
             className=" w-full h-full object-cover"
             autoPlay
             muted
@@ -221,14 +253,13 @@ export default function Home() {
 
         {isMobile && <DestinationSectionMobile />}
 
-
         <div className=" w-full flex-center max-sm:py-16 relative min-h-[100vh] bg-sky-blue-light ">
 
-          <div ref={testimonialsContainerRef} className={` h-fit  flex flex-col  items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
+          <div className={` h-fit  flex flex-col vertically-animated-element  items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
 
-            <div className="flex flex-col mt-10 lg:mt-16 2xl:mt-20">
-              <h2 className={`${playfair.className}  text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
-              <p className=" text-center mt-7 lg:text-lg xl:text-2xl font-light max-sm:px-5">Experiences Shared by Our Travelers</p>
+            <div className="flex flex-col  mt-10 lg:mt-16 2xl:mt-20">
+              <h2 className={`${playfair.className}   text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
+              <p className=" text-center mt-7 lg:text-lg  xl:text-2xl font-light max-sm:px-5">Experiences Shared by Our Travelers</p>
             </div>
 
 
@@ -239,7 +270,7 @@ export default function Home() {
                 willChange: 'transform',
                 transform: 'translateZ(0)',
                 scrollBehavior: 'auto',
-              }} className="    flex py-10 vertically-animated-element  overflow-x-scroll scrollbar-hide ">
+              }} className="    flex py-10 no-scroll-bar  overflow-x-scroll scrollbar-hide ">
                 {extendedTestimonials?.map((testimonial, index) => (
                   <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" lg:min-w-[320px] min-w-[280px] overflow-hidden testimonial-card mx-5 lg:mx-10 z-20 bg-white  min-h-[50%] h-fit px-5 lg:px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
                     <p className=" font-light md:leading-8 leading-7 ">{testimonial.message}</p>

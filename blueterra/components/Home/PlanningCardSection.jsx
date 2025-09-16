@@ -3,16 +3,19 @@ import Image from 'next/image'
 import { rubik, playfair } from '@/app/fonts'
 import Button from '../generalComponents/Button'
 import useGsapOpacity from '@/app/hooks/Gsap/useGsapOpacity'
+import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn'
 
 function PlanningCardSection({ setFormOpen }) {
 
-    const firstImageCard = useGsapOpacity(0, {})
-    const secondImageCard = useGsapOpacity(0, {})
+    // const firstImageCard = useGsapOpacity(0, {})
+    // const secondImageCard = useGsapOpacity(0, {})
+
+    // const containerRef = useGsapFadeIn()
 
     return (
 
 
-        <div className=" lg:h-[50vh] xl:h-[60vh]  2xl:h-[70vh]  max-lg:mb-10  w-full flex flex-col items-center relative py-5 md:py-12  2xl:py-20 ">
+        <div className=" vertically-animated-element lg:h-[50vh] xl:h-[60vh]  2xl:h-[70vh]  max-lg:mb-10  w-full flex flex-col items-center relative py-5 md:py-12  2xl:py-20 ">
 
 
             <div className=" w-fit  absolute  right-0  bottom-0    ">
@@ -25,8 +28,8 @@ function PlanningCardSection({ setFormOpen }) {
                 /> */}
             </div>
 
-            <div className={`flex max-lg:flex-col w-10/12 lg:w-11/12  lg:h-screen  max-lg:space-y-10 lg:space-x-10  xl:space-x-16 ${rubik.className}`}>
-                <div ref={firstImageCard} className=" w-full lg:w-1/2 max-lg:h-[40vh]  relative group overflow-hidden rounded-4xl ">
+            <div  className={`   flex max-lg:flex-col w-10/12 lg:w-11/12  lg:h-screen  max-lg:space-y-10 lg:space-x-10  xl:space-x-16 ${rubik.className}`}>
+                <div  className=" w-full lg:w-1/2 max-lg:h-[40vh]  relative group overflow-hidden rounded-4xl ">
                     <Image
                         src='/images/home/three-friends.jpg'
                         alt="three-friends"
@@ -39,7 +42,7 @@ function PlanningCardSection({ setFormOpen }) {
 
                     </div>
                 </div>
-                <div ref={secondImageCard} className=" w-full lg:w-1/2 max-lg:h-[40vh] group overflow-hidden  relative rounded-4xl">
+                <div className=" w-full lg:w-1/2 max-lg:h-[40vh] group overflow-hidden  relative rounded-4xl">
                     <Image
                         src='/images/home/join-our-community.jpg'
                         alt="join-our-community"

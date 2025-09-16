@@ -5,7 +5,7 @@ import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn';
 
 function PartnerCompaniesSection() {
 
-    const containerRef = useGsapFadeIn(0, {})
+    // const containerRef = useGsapFadeIn(0, {})
 
     const boxData = [
         { id: 1, title: 'Box 1', color: 'bg-red-400' },
@@ -20,9 +20,11 @@ function PartnerCompaniesSection() {
         { id: 10, title: 'Box 5', color: 'bg-purple-400' },
     ];
 
+
+    
     return (
         <div className=" w-full flex-center pb-10 mt-10  ">
-            <div  ref={containerRef} className=" 2xl:w-10/12 w-full lg:w-11/12 flex lg:px-10   py-3  lg:space-x-20   ">
+            <div  className=" 2xl:w-10/12 w-full lg:w-11/12 flex lg:px-10   py-3  lg:space-x-20   ">
                 <Marquee pauseOnHover>
                     {boxData?.map((data, index) => (
                         <div key={index} className="   group cursor-pointer h-[40px] w-[150px] relative mx-5 lg:mx-10">

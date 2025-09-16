@@ -12,18 +12,21 @@ function BlogCard({ outerClass, data }) {
 
     const router = useRouter()
 
-    const journalRef = useGsapOpacity(0, {})
+    // const journalRef = useGsapOpacity(0, {})
 
     const handleGetBlog = (slug) => {
         router.push(`/blog/${slug}`);
     };
 
     return (
-        <div onClick={() => handleGetBlog(data.slug)} ref={journalRef} className={outerClass}>
+        // <div onClick={() => handleGetBlog(data.slug)} ref={journalRef} className={outerClass}>
+        <div onClick={() => handleGetBlog(data.slug)}  className={outerClass}>
+
             <Image
                 src={data.image_public_url}
                 alt={data.title}
                 fill
+                priority 
                 className=" object-cover group-hover:scale-110 delay-100 rounded-xl transition-all duration-1000 ease-in-out"
             />
             <div className={` ${rubik.className}  pointer-events-none absolute cursor-pointer  w-full bg-gradient-to-t rounded-xl from-black/60 to-transparent  flex  items-end bottom-0 right-0 inset-0 `}>

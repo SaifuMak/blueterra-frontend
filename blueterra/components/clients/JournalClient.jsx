@@ -31,8 +31,6 @@ function JournalClient() {
 
     const lenis = useLenis();
 
-
-
     const [currentCollection, setCurrentCollection] = useState(0)
     const [CollectionCount, setCollectionCount] = useState(0)
     const [selectedFilter, setSelectedFilter] = useState('View All')

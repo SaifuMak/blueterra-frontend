@@ -9,13 +9,19 @@ import AXIOS_INSTANCE from '@/lib/axios'
 import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn'
 import ResponsiveClipPath from '../generalComponents/ResponsiveClipPath'
 import { useRouter } from 'next/navigation'
+
+
 function JournalSection() {
 
 
     const [journals, setJournals] = useState([])
 
-    const blogTitleRef = useGsapFadeIn(0, {})
-    const blogButtonRef = useGsapFadeIn(0, {})
+    const blogTitleRef = useGsapFadeIn()
+    const blogButtonRef = useGsapFadeIn()
+    const blogContentRef = useGsapFadeIn()
+
+    const [isLoading, setIsLoading] = useState(true)
+
 
     const router = useRouter()
 
@@ -27,6 +33,9 @@ function JournalSection() {
         }
         catch (e) {
             console.log(e)
+        }
+        finally {
+            setIsLoading(false)
         }
     }
 
@@ -51,11 +60,12 @@ function JournalSection() {
             />
 
 
-            <div className=" w-full flex justify-center max-sm:mt-5 text-dark-4B">
-                <h3 ref={blogTitleRef} className={`${playfair.className} heading-text`}>BlueTerra Journal</h3>
+            <div  className="  vertically-animated-element w-full flex justify-center max-sm:mt-5 text-dark-4B">
+                <h3 className={`${playfair.className} heading-text`}>BlueTerra Journal</h3>
             </div>
 
-            <div className=" lg:flex lg:h-[100%]  md:space-x-7  max-lg:space-y-10 2xl:space-x-10 w-11/12">
+
+            <div className="  vertically-animated-element lg:flex lg:h-[100%]  md:space-x-7  max-lg:space-y-10 2xl:space-x-10 w-11/12 will-change-transform">
 
                 {journals?.length > 0 && <BlogCard
                     outerClass='lg:w-1/3  w-full group overflow-hidden max-lg:h-[400px] cursor-pointer rounded-xl  relative '
@@ -81,11 +91,13 @@ function JournalSection() {
                 />}
             </div>
 
-            <div ref={blogButtonRef} className="">
-                <Button text='VIEW ALL' buttonStyle='px-16 py-2 ' isHoverWhiteApplied={false} onClickFunction={()=>router.push('/journal')}  />
+
+
+            <div  className="">
+                <Button text='VIEW ALL' buttonStyle='px-16 py-2 ' isHoverWhiteApplied={false} onClickFunction={() => router.push('/journal')} />
             </div>
 
-        </div>
+        </div >
     )
 }
 

@@ -43,13 +43,9 @@ function CollectionsSection() {
                     <h3 className={`${playfair.className}  text-dark-4B heading-text`} >The BlueTerra Collecton</h3>
                     <p className={`xl:text-xl lg:text-lg font-light ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>Explore our handpicked collection of journeys, each created with intention and shaped to deliver timeless experiences you can trust.</p>
 
-                    {isLoading ? (
-                        <div className=" min-h-[30vh] w-full flex-center ">
-                            <LoaderIcon />
-                        </div>
-                    ) : (<div className=" 2xl:w-11/12 w-full   max-2xl:px-5  rounded-2xl overflow-hidden   mt-4 ">
+                   <div className=" 2xl:w-11/12 w-full   max-2xl:px-5  rounded-2xl overflow-hidden   mt-4 ">
                         {collectionsData?.length > 0 && <CollectionsList Data={collectionsData} setCurrent={setCurrentCollection} setCount={setCollectionCount} />}
-                    </div>)}
+                    </div>
 
                     <div className=" flex-center w-full h-full">
                         {collectionsData?.map((_, index) => (
