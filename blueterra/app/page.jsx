@@ -295,8 +295,6 @@ export default function Home() {
 
         </div>}
 
-
-
         {isMobile && <div className=" md:hidden">
           <TestimonialsForMobile />
         </div>}
