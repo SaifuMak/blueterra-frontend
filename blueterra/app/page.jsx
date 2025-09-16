@@ -23,6 +23,7 @@ import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 import useGsapFadeIn from "./hooks/Gsap/useGsapFadeIn";
 import { useLenis } from "@/components/SmoothScroll";
 import { useGSAP } from "@gsap/react";
+import TestimonialsForMobile from "@/components/Home/TestimonialsForMobile";
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -59,6 +60,11 @@ export default function Home() {
   const extendedTestimonials = [...testimonials, ...testimonials];
 
   useEffect(() => {
+
+    if (isMobile) {
+      return
+    }
+
     const container = testimonialContainer.current;
     if (!container) return;
 
@@ -84,6 +90,11 @@ export default function Home() {
 
 
   useEffect(() => {
+
+
+    if (isMobile) {
+      return
+    }
     let animationFrameId;
 
     const checkCards = () => {
@@ -148,7 +159,7 @@ export default function Home() {
           scrollTrigger: {
             trigger: box,
             start: "top 80%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
             markers: false,
           },
         }
@@ -184,7 +195,7 @@ export default function Home() {
           {/* src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4" */}
           {/* <video ref={videoRef} src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4" */}
 
-            <video ref={videoRef} src="https://res.cloudinary.com/dbmsyy9mx/video/upload/v1756462732/Home_page_Opening_video_2_ehpv1l.mp4"
+          <video ref={videoRef} src="https://res.cloudinary.com/dbmsyy9mx/video/upload/v1756462732/Home_page_Opening_video_2_ehpv1l.mp4"
             className=" w-full h-full object-cover"
             autoPlay
             muted
@@ -251,9 +262,9 @@ export default function Home() {
 
         {isMobile && <DestinationSectionMobile />}
 
-        <div className=" w-full flex-center max-sm:py-16 relative min-h-[100vh] bg-sky-blue-light ">
+        {!isMobile && <div className=" w-full  flex-center max-sm:py-16 relative min-h-[100vh] bg-sky-blue-light ">
 
-          <div className={` h-fit  flex flex-col   items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
+          <div className={` h-fit    flex flex-col   items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
 
             <div className="flex flex-col vertically-animated-element mt-10 lg:mt-16 2xl:mt-20">
               <h2 className={`${playfair.className}   text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
@@ -261,14 +272,15 @@ export default function Home() {
             </div>
 
 
-            <div className="   z-30  w-full h-fit  mt-10  overflow-x-auto ">
+            {/* for the larger screens  */}
+            <div className="   z-30  w-full h-fit  mt-10 max-md:hidden overflow-x-auto ">
               <div ref={scaleTrackerContainer} className=" absolute   z-0 w-[1vh] lg:w-[1vh] h-[100px] left-[73%] md:left-[67%] lg:left-[62%] xl:left-[59%] 2xl:left-[59%] top-0 -translate-x-1/2 "></div>
 
               <div ref={testimonialContainer} style={{
                 willChange: 'transform',
                 transform: 'translateZ(0)',
                 scrollBehavior: 'auto',
-              }} className="    flex py-10 no-scroll-bar  overflow-hidden  ">
+              }} className="    flex py-10 no-scroll-bar  overflow-x-scroll  ">
                 {extendedTestimonials?.map((testimonial, index) => (
                   <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" lg:min-w-[320px] min-w-[280px] overflow-hidden testimonial-card mx-5 lg:mx-10 z-20 bg-white  min-h-[50%] h-fit px-5 lg:px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
                     <p className=" font-light md:leading-8 leading-7 ">{testimonial.message}</p>
@@ -281,7 +293,13 @@ export default function Home() {
 
           </div>
 
-        </div>
+        </div>}
+
+
+
+        {isMobile && <div className=" md:hidden">
+          <TestimonialsForMobile />
+        </div>}
 
         <JournalSection />
         <PartnerCompaniesSection />
