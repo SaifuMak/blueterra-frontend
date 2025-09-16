@@ -34,6 +34,7 @@ function PlanningCardSection({ setFormOpen }) {
                         src='/images/home/three-friends.jpg'
                         alt="three-friends"
                         fill
+                        priority
                         className="object-cover scalling-group-110 rounded-4xl "
                     />
                     <div className=" absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black/20 cursor-pointer rounded-4xl">
@@ -47,6 +48,7 @@ function PlanningCardSection({ setFormOpen }) {
                         src='/images/home/join-our-community.jpg'
                         alt="join-our-community"
                         fill
+                        priority
                         className={`object-cover scalling-group-110 rounded-4xl`}
                     />
 
