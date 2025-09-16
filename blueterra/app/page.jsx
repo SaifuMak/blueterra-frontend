@@ -123,8 +123,6 @@ export default function Home() {
   }, []);
 
 
-
-
   const videoRef = useRef(null);
 
 
@@ -255,9 +253,9 @@ export default function Home() {
 
         <div className=" w-full flex-center max-sm:py-16 relative min-h-[100vh] bg-sky-blue-light ">
 
-          <div className={` h-fit  flex flex-col vertically-animated-element  items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
+          <div className={` h-fit  flex flex-col   items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
 
-            <div className="flex flex-col  mt-10 lg:mt-16 2xl:mt-20">
+            <div className="flex flex-col vertically-animated-element mt-10 lg:mt-16 2xl:mt-20">
               <h2 className={`${playfair.className}   text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
               <p className=" text-center mt-7 lg:text-lg  xl:text-2xl font-light max-sm:px-5">Experiences Shared by Our Travelers</p>
             </div>
@@ -270,7 +268,7 @@ export default function Home() {
                 willChange: 'transform',
                 transform: 'translateZ(0)',
                 scrollBehavior: 'auto',
-              }} className="    flex py-10  overflow-x-scroll  ">
+              }} className="    flex py-10 no-scroll-bar  overflow-hidden  ">
                 {extendedTestimonials?.map((testimonial, index) => (
                   <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" lg:min-w-[320px] min-w-[280px] overflow-hidden testimonial-card mx-5 lg:mx-10 z-20 bg-white  min-h-[50%] h-fit px-5 lg:px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
                     <p className=" font-light md:leading-8 leading-7 ">{testimonial.message}</p>
