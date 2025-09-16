@@ -2,13 +2,14 @@ import React from 'react'
 import Marquee from "react-fast-marquee";
 import { testimonials } from '@/constants/testimonials';
 import {playfair} from '@/app/fonts'
-
+import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn';
 
 function TestimonialsForMobile() {
+     const testimonialTitleRef = useGsapFadeIn()
     return (
         <div className=" flex   bg-sky-blue-light py-10 ">
-            <div className=" w-11/12  mx-auto rounded-2xl  bg-white py-10">
-                <div className="flex flex-col mb-8 vertically-animated-element">
+            <div className=" w-11/12  mx-auto rounded-2xl  bg-white pt-10 pb-2">
+                <div ref={testimonialTitleRef} className="flex flex-col mb-8">
                     <h2 className={`${playfair.className}   text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
                     <p className=" text-center mt-3  font-light max-sm:px-5">Experiences Shared by Our Travelers</p>
                 </div>
