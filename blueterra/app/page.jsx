@@ -263,14 +263,14 @@ export default function Home() {
             </div>
 
 
-            <div className="   z-30  w-full h-fit  mt-10  overflow-x-auto scrollbar-hide">
+            <div className="   z-30  w-full h-fit  mt-10  overflow-x-auto ">
               <div ref={scaleTrackerContainer} className=" absolute   z-0 w-[1vh] lg:w-[1vh] h-[100px] left-[73%] md:left-[67%] lg:left-[62%] xl:left-[59%] 2xl:left-[59%] top-0 -translate-x-1/2 "></div>
 
               <div ref={testimonialContainer} style={{
                 willChange: 'transform',
                 transform: 'translateZ(0)',
                 scrollBehavior: 'auto',
-              }} className="    flex py-10 no-scroll-bar  overflow-x-scroll scrollbar-hide ">
+              }} className="    flex py-10  overflow-x-scroll  ">
                 {extendedTestimonials?.map((testimonial, index) => (
                   <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" lg:min-w-[320px] min-w-[280px] overflow-hidden testimonial-card mx-5 lg:mx-10 z-20 bg-white  min-h-[50%] h-fit px-5 lg:px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
                     <p className=" font-light md:leading-8 leading-7 ">{testimonial.message}</p>
