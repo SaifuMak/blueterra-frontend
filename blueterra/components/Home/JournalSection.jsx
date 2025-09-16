@@ -60,7 +60,7 @@ function JournalSection() {
             />
 
 
-            <div  className="  vertically-animated-element w-full flex justify-center max-sm:mt-5 text-dark-4B">
+            <div ref={blogTitleRef}  className="   w-full flex justify-center max-sm:mt-5 text-dark-4B">
                 <h3 className={`${playfair.className} heading-text`}>BlueTerra Journal</h3>
             </div>
 

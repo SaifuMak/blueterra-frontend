@@ -7,8 +7,8 @@ import {playfair} from '@/app/fonts'
 function TestimonialsForMobile() {
     return (
         <div className=" flex   bg-sky-blue-light py-10 ">
-            <div className=" w-11/12  mx-auto rounded-2xl vertically-animated-element bg-white py-10">
-                <div className="flex flex-col mb-8 ">
+            <div className=" w-11/12  mx-auto rounded-2xl  bg-white py-10">
+                <div className="flex flex-col mb-8 vertically-animated-element">
                     <h2 className={`${playfair.className}   text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
                     <p className=" text-center mt-3  font-light max-sm:px-5">Experiences Shared by Our Travelers</p>
                 </div>

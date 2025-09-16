@@ -266,7 +266,7 @@ export default function Home() {
 
           <div className={` h-fit    flex flex-col   items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
 
-            <div className="flex flex-col vertically-animated-element mt-10 lg:mt-16 2xl:mt-20">
+            <div ref={testimonialsContainerRef} className="flex flex-col  mt-10 lg:mt-16 2xl:mt-20">
               <h2 className={`${playfair.className}   text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
               <p className=" text-center mt-7 lg:text-lg  xl:text-2xl font-light max-sm:px-5">Experiences Shared by Our Travelers</p>
             </div>
