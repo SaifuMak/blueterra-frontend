@@ -57,11 +57,7 @@ function DestinationSection() {
         ...destinationsData, ...destinationsData,
         ...destinationsData, ...destinationsData,
         ...destinationsData, ...destinationsData,
-        ...destinationsData, ...destinationsData,
-        ...destinationsData, ...destinationsData,
-        ...destinationsData, ...destinationsData,
-        ...destinationsData, ...destinationsData,
-        ...destinationsData,
+    
     ];
 
 
@@ -184,8 +180,8 @@ function DestinationSection() {
                 <div className="max-w-11/12 mx-auto  ">
 
                     <div className=" w-full  text-white relative  py-20   ">
-                        <h2 className={` ${playfair.className} vertically-animated-element text-[45px] xl:text-[50px]`}>Our Destination Highlights</h2>
-                        <p className={`${rubik.className} vertically-animated-element  mt-4 leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>Discover destinations that reflect the essence of BlueTerra</p>
+                        <h2 className={` ${playfair.className}  text-[45px] xl:text-[50px]`}>Our Destination Highlights</h2>
+                        <p className={`${rubik.className}   mt-4 leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>Discover destinations that reflect the essence of BlueTerra</p>
 
                     </div>
 

@@ -76,7 +76,7 @@ function JournalSection() {
                 </div>
 
                 {journals?.length > 3 && <BlogCard
-                    outerClass=' w-full   lg:w-1/3 h-full  max-lg:h-[400px]  group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative animate-journals'
+                    outerClass=' w-full   lg:w-1/3 h-full  max-lg:h-[400px]  group overflow-hidden cursor-pointer  rounded-xl bg-red-50 relative '
                     data={journals[3]}
                 />}
             </div>
