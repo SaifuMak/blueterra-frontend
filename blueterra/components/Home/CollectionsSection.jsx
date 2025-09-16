@@ -24,14 +24,17 @@ function CollectionsSection() {
 
         }
         finally {
-            setIsLoading(false)
+            setTimeout(() => {
+                setIsLoading(false)
+
+            }, 500);
         }
     }
 
     useEffect(() => {
-
         fetchCollections()
     }, [])
+
 
     return (
         <div className="pb-10 ">

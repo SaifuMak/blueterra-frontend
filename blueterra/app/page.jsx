@@ -152,7 +152,7 @@ export default function Home() {
             <div className="absolute inset-0 w-full h-full flex-center bg-white"><LoaderIcon /></div>
           )}
           {/* src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4" */}
-          <video ref={videoRef} src="https://res.cloudinary.com/dbmsyy9mx/video/upload/v1756462732/Home_page_Opening_video_2_ehpv1l.mp4"
+          <video ref={videoRef} src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4"
 
             // <video ref={videoRef} src="https://res.cloudinary.com/dbmsyy9mx/video/upload/v1756462732/Home_page_Opening_video_2_ehpv1l.mp4"
             className=" w-full h-full object-cover"
@@ -239,7 +239,7 @@ export default function Home() {
                 willChange: 'transform',
                 transform: 'translateZ(0)',
                 scrollBehavior: 'auto',
-              }} className="    flex py-10 no-scroll-bar  overflow-x-scroll scrollbar-hide ">
+              }} className="    flex py-10 vertically-animated-element  overflow-x-scroll scrollbar-hide ">
                 {extendedTestimonials?.map((testimonial, index) => (
                   <div key={index} ref={(el) => (cardRefs.current[index] = el)} className=" lg:min-w-[320px] min-w-[280px] overflow-hidden testimonial-card mx-5 lg:mx-10 z-20 bg-white  min-h-[50%] h-fit px-5 lg:px-10 py-10  rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}>
                     <p className=" font-light md:leading-8 leading-7 ">{testimonial.message}</p>
