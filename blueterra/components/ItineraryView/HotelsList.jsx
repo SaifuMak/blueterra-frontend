@@ -47,22 +47,32 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                 <Carousel
                     setApi={setApi}
                     opts={{
-                        align: "start",
+                        align: HotelsData?.length === 1 ? "center" : "start",
                         loop: true,
                     }}
-                    plugins={[
-                        Autoplay({
-                            delay: 4000,
-                            stopOnInteraction: false,
-                            stopOnMouseEnter: true,
-                        }),
-                    ]}
-                    className="w-full "
+                    plugins={
+                        HotelsData?.length > 2
+                            ? [
+                                Autoplay({
+                                    delay: 4000,
+                                    stopOnInteraction: false,
+                                    stopOnMouseEnter: true,
+                                }),
+                            ]
+                            : []
+                    }
+                    className={`  ${HotelsData?.length === 1 ? 'md:w-4/12' : 'w-full'}   `}
                 >
                     <CarouselContent>
 
                         {HotelsData?.map((item, index) => (
-                            <CarouselItem key={index} className="md:basis-1/2 2xl:p-3 pb-2 xl:basis-1/3  flex  over">
+                            <CarouselItem key={index} className={
+                                HotelsData?.length === 1
+                                    ? "basis-full flex over 2xl:p-3 pb-2"
+                                    : HotelsData?.length === 2
+                                        ? "md:basis-1/2 flex over 2xl:p-3 pb-2"
+                                        : "md:basis-1/2 xl:basis-1/3 flex over 2xl:p-3 pb-2"
+                            }>
 
                                 <div className="  mx-4 lg:mx-2 group  w-full h-full flex flex-col ">
 
