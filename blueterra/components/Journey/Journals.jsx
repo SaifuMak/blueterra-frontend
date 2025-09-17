@@ -94,7 +94,7 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
                         {Data?.map((item, index) => (
                             <CarouselItem key={index} className="md:basis-1/1 lg:basis-1/1  flex-center rounded-2xl  ">
 
-                                <div onClick={()=>router.push(`/blog/${item.slug}`)} className=" relative group cursor-pointer w-[100%] h-[30vh] md:h-[35vh] lg:h-[45vh] xl:h-[55vh] 2xl:h-[65vh] rounded-2xl overflow-hidden">
+                                <div onClick={() => router.push(`/blog/${item.slug}`)} className=" relative group cursor-pointer w-[100%] h-[30vh] md:h-[35vh] lg:h-[45vh] xl:h-[55vh] 2xl:h-[65vh] rounded-2xl overflow-hidden">
 
                                     <Image
                                         src={item.image_public_url}
@@ -123,10 +123,18 @@ export default function Journals({ Data, setCurrent, setCount, currentCollection
                         <div className=" pointer-events-none  px-4 md:px-10 md:py-5 lg:space-y-5 space-y-3  vertical-fade-in">
                             <div className=" space-y-3 overflow-hidden vertical-fade-in">
                                 <h2 className=" 2xl:text-[30px] xl:text-[24px] md:text-xl   font-medium">{Data[currentCollection]?.title}</h2>
-                                <p
+                                {/* <p
                                     className="2xl:text-xl xl:text-lg text-sm max-sm:text-xs xl:leading-8 2xl:leading-9 font-light md:w-10/12"
 
-                                >{journalPreview(Data[currentCollection]?.blog_content)}</p>
+                                >{journalPreview(Data[currentCollection]?.blog_content)}</p> */}
+
+                                <div
+                                    className="2xl:text-xl xl:text-lg text-sm max-sm:text-xs xl:leading-8 2xl:leading-9 font-light md:w-10/12"
+                                    dangerouslySetInnerHTML={{
+                                        __html: journalPreview(Data[currentCollection]?.blog_content),
+                                    }}
+                                />
+
 
                             </div>
                             <div className=" flex items-center  max-2xl:text-sm font-light justify-between  ">

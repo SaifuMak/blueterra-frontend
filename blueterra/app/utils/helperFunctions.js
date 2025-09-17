@@ -9,7 +9,7 @@ export function getReadingTime(htmlString) {
 }
 
 
-export function journalPreview(htmlString, wordLimit = 10) {
+export function journalPreview(htmlString, wordLimit = 11) {
     if(!htmlString) return
     const text = htmlString.replace(/<[^>]+>/g, " ");
 
