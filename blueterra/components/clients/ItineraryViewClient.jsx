@@ -29,7 +29,7 @@ import GalleryCarousal from "@/components/ItineraryView/PlannedActivities/Galler
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
 import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
 import { useMediaQuery } from 'react-responsive'
-
+import PlanWithUsSection from "../ItineraryView/PlanWithUsSection";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -42,6 +42,8 @@ export default function ItineraryViewClient({ id }) {
     const [itineraryData, setItineraryData] = useState(null)
 
     const isTablet = useIsTablet()
+
+
 
     // zoho form 
     const [formOpen, setFormOpen] = useState(false);
@@ -57,56 +59,9 @@ export default function ItineraryViewClient({ id }) {
     const [GalleryCount, setGalleryCount] = useState(0)
 
     useGSAP(() => {
-        const elements = gsap.utils.toArray(".vertically-animated-element");
-
-        elements.forEach((box) => {
-            gsap.fromTo(
-                box,
-                { opacity: 0, y: 60 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.7,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: box,
-                        start: "top 90%",
-                        toggleActions: "play none none reverse",
-                        // markers: true
-                    },
-                }
-            );
-        });
-    }, { scope: galleryRef });
-
-
-    useGSAP(() => {
-        const elements = gsap.utils.toArray(".vertically-animated-element");
-
-        elements.forEach((box) => {
-            gsap.fromTo(
-                box,
-                { opacity: 0, y: 60 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.7,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: box,
-                        start: "top 90%",
-                        toggleActions: "play none none reverse",
-                    },
-                }
-            );
-        });
-    }, { scope: planningRef });
-
-
-    useGSAP(() => {
         if (isLoading || !itineraryData) return;
         gsap.fromTo(
-            ".vertically-animate-element",
+            ".vertically-animate-element-banner",
             { opacity: 0, y: 60 },
             {
                 opacity: 1,
@@ -118,7 +73,6 @@ export default function ItineraryViewClient({ id }) {
             }
         );
     }, { scope: bannerContainer, dependencies: [isLoading, itineraryData] });
-
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -142,6 +96,7 @@ export default function ItineraryViewClient({ id }) {
 
         fetchItinerary();
     }, [id]);
+
 
 
     return (
@@ -175,15 +130,15 @@ export default function ItineraryViewClient({ id }) {
                                 <div className=" text-white z-30  flex flex-col mt-24  md:mt-32 mb-10 justify-between   text-center w-full h-full   ">
 
                                     <div className={`${playfair.className}`}>
-                                        <p className=" text-[45px] md:text-[80px] 2xl:text-[100px] opacity-0 vertically-animate-element font-medium">{itineraryData.title}</p>
-                                        <p className=" text-white/30 opacity-0 vertically-animate-element font-medium h-fit -mt-6  md:-mt-16 lg:-mt-20  2xl:-mt-28 text-[70px] md:text-[150px] lg:text-[200px] 2xl:text-[250px]">{itineraryData.location_title}</p>
+                                        <p className=" text-[45px] md:text-[80px] 2xl:text-[100px] opacity-0 vertically-animate-element-banner font-medium">{itineraryData.title}</p>
+                                        <p className=" text-white/30 opacity-0 vertically-animate-element-banner font-medium h-fit -mt-6  md:-mt-16 lg:-mt-20  2xl:-mt-28 text-[70px] md:text-[150px] lg:text-[200px] 2xl:text-[250px]">{itineraryData.location_title}</p>
                                     </div>
 
                                     <div className=" space-y-5  text-center flex font-light flex-col items-center">
                                         {/* <p className=" text-[25px] opacity-0 vertically-animate-element leading-9 w-5/12">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities, carefully selected destinations, accommodations, transportation details, and unique experiences.</p>
                                     <p className=" w-4/12 text-xl opacity-0 vertically-animate-element leading-9">A comprehensive and meticulously curated document that presents a day-by-day breakdown of your travel journey, featuring thoughtfully.</p> */}
-                                        <p className=" 2xl:w-8/12 xl:w-9/12 md:w-9/12 w-11/12 text-sm md:text-lg xl:text-xl 2xl:text-[22px] opacity-0 vertically-animate-element 2xl:my-10 font-light leading-6 md:leading-7 xl:leading-9">{itineraryData.description}</p>
-                                        <Button text='START PLANNING' buttonStyle={` opacity-0 vertically-animate-element font-normal transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `} onClickFunction={() => setFormOpen(true)} />
+                                        <p className=" 2xl:w-8/12 xl:w-9/12 md:w-9/12 w-11/12 text-sm md:text-lg xl:text-xl 2xl:text-[22px] opacity-0 vertically-animate-element-banner 2xl:my-10 font-light leading-6 md:leading-7 xl:leading-9">{itineraryData.description}</p>
+                                        <Button text='START PLANNING' buttonStyle={` opacity-0 vertically-animate-element-banner font-normal transition-all duration-500 mb-10  mt-5 ease-in-out font-medium max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2 `} onClickFunction={() => setFormOpen(true)} />
                                     </div>
 
                                 </div>
@@ -216,7 +171,6 @@ export default function ItineraryViewClient({ id }) {
 
                                 </div>
                             </div>
-
                         </div>}
 
 
@@ -228,13 +182,11 @@ export default function ItineraryViewClient({ id }) {
                                     width={800}
                                 />
                                 <PlannedActivitiesMobile itineraryData={itineraryData} />
-
-
                             </div>
                         }
 
 
-                        <div className="  relative bg-white lg:pb-28 pb-12 ">
+                        <div className="relative bg-white lg:pb-28 pb-12 ">
                             <ResponsiveClipPath
                                 outerClass='absolute md:w-[20%] w-[28%]  bottom-0 right-0 h-fit'
                                 ImagePath='/images/itinerary/patterns/travel-bottom.png'
@@ -264,10 +216,13 @@ export default function ItineraryViewClient({ id }) {
 
 
                         <div className=" w-full   min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center px-4  lg:px-7">
-                            <div className=" lg:w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige">
+                            {/* <div className=" lg:w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige"> */}
+                            <div className="  lg:w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-sky-blue-light">
+
                                 <HotelsView data={itineraryData?.hotels} />
                             </div>
                         </div>
+
 
                         <div ref={galleryRef} className=" relative  bg-white  w-full h-full">
                             <ResponsiveClipPath
@@ -297,23 +252,7 @@ export default function ItineraryViewClient({ id }) {
                         </div>
 
 
-                        <div ref={planningRef}
-                            className="w-full  lg:min-h-[50vh] min-h-[40vh]   bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center  overflow-hidden relative"
-                            style={{
-                                backgroundImage: "url('/images/our-story/yellow-banner.png')",
-                            }}
-                        >
-
-                            <div className="lg:w-8/12 md:w-10/12 space-y-5  lg:space-y-10   text-center h-auto flex-col text-dark-28  flex-center">
-                                <h3 className={`xl:text-[50px] lg:text-4xl text-2xl  font-medium  antialiased  text-dark-4B text-center vertically-animated-element ${playfair.className}`}>Design Your Perfect Itinerary</h3>
-                                <p className=" xl:text-2xl lg:text-xl font-light leading-7 lg:leading-9  vertically-animated-element w-11/12 lg:w-5/6 ">
-                                    Create a journey that reflects your interests, pace, and
-                                    travel style — from handpicked experiences to seamless logistics, every detail is yours to shape.
-                                </p>
-                                <Button text='START PLANNING' buttonStyle={`  transition-all duration-500 vertically-animated-element ease-in-out font-light  max-md:text-sm px-4 lg:px-6 xl:px-12 py-1.5 xl:py-2.5 `} isHoverWhiteApplied={false} onClickFunction={() => setFormOpen(true)} />
-
-                            </div>
-                        </div>
+                        <PlanWithUsSection setFormOpen={setFormOpen} />
 
                         <Footer />
                         <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />

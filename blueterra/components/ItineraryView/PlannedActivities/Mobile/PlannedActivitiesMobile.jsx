@@ -42,7 +42,7 @@ function PlannedActivitiesMobile({ itineraryData }) {
     return (
         <div className="  w-11/12 my-10 ">
             <div className=" flex  mt-10 flex-col vertically-animated-element  items-center  ">
-                <h3 className={`text-3xl font-medium ${playfair.className}`}>Planned Activities</h3>
+                <h3 className={`text-3xl font-medium ${playfair.className}`}>Travel Guide</h3>
             </div>
 
             <div className=" mt-10 space-y-10 mx-auto z-10">

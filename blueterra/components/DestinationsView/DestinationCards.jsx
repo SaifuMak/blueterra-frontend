@@ -67,7 +67,7 @@ export default function DestinationCards({ itineraryData }) {
                                             <IoIosStar key={index} className="text-[#FFCB1F] fill-[#FFCB1F]" />
                                         ))} */}
                                         {[...Array(5)].map((_, ratingIndex) => (
-                                            <IoIosStar  key={ratingIndex} className={` ${ratingIndex + 1 <= destination?.general_rating ? 'fill-[#FFCB1F]' : 'fill-slate-200'} size-4 cursor-pointer`} />
+                                            <IoIosStar key={ratingIndex} className={` ${ratingIndex + 1 <= destination?.general_rating ? 'fill-[#FFCB1F]' : 'fill-slate-200'} size-4 cursor-pointer`} />
                                         ))}
                                         <p className="text-sm ml-1 md:hidden font-normal">{destination?.general_rating}</p>
                                     </div>
@@ -77,7 +77,12 @@ export default function DestinationCards({ itineraryData }) {
 
                                 </div>
                             </div>
-                            <h3 className=" xl:text-xl lg:text-lg  text-sm  md:font-medium text-dark-2B ">{trimWords(destination?.description, 16)}</h3>
+
+                            {/* <h3 className=" lg:text-lg  text-sm  md:font-normal text-dark-2B ">{trimWords(destination?.description, 16)}</h3> */}
+                            <div className=" text-[15px]  md:font-normal text-dark-2B" dangerouslySetInnerHTML={{
+                                __html: trimWords(destination?.description, 16),
+                            }} />
+
                             <div className=" flex justify-between text-sm">
                                 <div className=" lg:text-base">
                                     From <span className="md:font-medium text-dark-28  ">{destination?.featured_points?.[0]?.price}/person</span>

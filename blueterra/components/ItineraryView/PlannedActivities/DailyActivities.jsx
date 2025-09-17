@@ -109,7 +109,10 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
                                     <div ref={containerRef} className={` overflow-y-auto    transition-all duration-700 text-dark-28 ease-in-out px-4  ${OpenedAccordian.includes(index) ? 'max-h-[500px]  max-sm:max-h-[1000px]   opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`} {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
                                         <div className=" ml-1 pt-3  pb-5  relative  ">
 
-                                            <p className=" mt-2   font-light">{data.description}</p>
+                                            {/* <p className=" mt-2   font-light">{data.description}</p> */}
+                                            <div className="mt-2   font-light" dangerouslySetInnerHTML={{
+                                                __html: data?.description,
+                                            }} />
 
                                         </div>
                                     </div>

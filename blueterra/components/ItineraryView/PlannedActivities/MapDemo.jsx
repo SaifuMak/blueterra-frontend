@@ -33,23 +33,6 @@ const HotelIcon = new L.Icon({
 });
 
 
-// const locations = [
-//     { coords: [-1.2717, 36.8089], location: 'Nairobi City', transfer: 'Land' },
-//     { coords: [-1.3308, 36.9253], location: 'Jomo Kenyatta International Airport', transfer: 'Air' },
-//     { coords: [-2.6829, 37.1825], location: 'Amboseli National Park', transfer: 'Air' },
-//     { coords: [0.2528, 37.3889], location: 'Lewa Conservancy', transfer: 'Air' },
-//     { coords: [-1.2484, 35.0119], location: 'Masai Mara Reserve', transfer: '' }
-// ];
-
-
-// const hotels = [
-//     { coords: [-1.2717, 36.8089], title: 'Villa Rosa Kempinski' },
-//     { coords: [-2.6829, 37.1825], title: 'Elewana Tortilis Camp' },
-//     { coords: [0.2528, 37.3889], title: 'Lewa Safari Camp by Elewana' },
-//     { coords: [-1.2484, 35.0119], title: 'Beyond Bateleur Camp' }
-// ];
-
-
 function FitBoundsOnLoad({ routes }) {
     const map = useMap();
 
@@ -105,6 +88,8 @@ function ResizeHandler({ expandCards = null, locations }) {
 export default function MapDemo({ expandCards, itineraryData }) {
     const [routes, setRoutes] = useState([]);
 
+    const [isFetchingRoutes, setIsFetchingRoutes] = useState(true)
+
     const transformedHotelsData = itineraryData?.hotels.map(hotel => ({
         ...hotel,
         coords: hotel.coordinates
@@ -124,46 +109,55 @@ export default function MapDemo({ expandCards, itineraryData }) {
     useEffect(() => {
         async function fetchRoutes() {
             let routeSegments = [];
+            try {
+                for (let i = 0; i < locations.length - 1; i++) {
+                    const start = locations[i];
+                    const end = locations[i + 1];
 
-            for (let i = 0; i < locations.length - 1; i++) {
-                const start = locations[i];
-                const end = locations[i + 1];
+                    if (start.transfer === "Air") {
+                        // Flight: straight dashed line
+                        routeSegments.push({
+                            coords: [start.coords, end.coords],
+                            type: "Air"
+                        });
+                    }
+                    else if (start.transfer === "Water") {
+                        routeSegments.push({
+                            coords: [start.coords, end.coords],
+                            type: "Water"
+                        });
+                    }
+                    else {
+                        // Land: get OSRM route
+                        const coordString = `${start.coords[1]},${start.coords[0]};${end.coords[1]},${end.coords[0]}`;
+                        const url = `https://router.project-osrm.org/route/v1/driving/${coordString}?overview=full&geometries=geojson`;
 
-                if (start.transfer === "Air") {
-                    // Flight: straight dashed line
-                    routeSegments.push({
-                        coords: [start.coords, end.coords],
-                        type: "Air"
-                    });
-                }
-                else if (start.transfer === "Water") {
-                    routeSegments.push({
-                        coords: [start.coords, end.coords],
-                        type: "Water"
-                    });
-                }
-                else {
-                    // Land: get OSRM route
-                    const coordString = `${start.coords[1]},${start.coords[0]};${end.coords[1]},${end.coords[0]}`;
-                    const url = `https://router.project-osrm.org/route/v1/driving/${coordString}?overview=full&geometries=geojson`;
-
-                    try {
-                        const res = await fetch(url);
-                        const data = await res.json();
-                        if (data.routes && data.routes.length > 0) {
-                            const coords = data.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
-                            routeSegments.push({
-                                coords,
-                                type: "Land"
-                            });
+                        try {
+                            const res = await fetch(url);
+                            const data = await res.json();
+                            if (data.routes && data.routes.length > 0) {
+                                const coords = data.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+                                routeSegments.push({
+                                    coords,
+                                    type: "Land"
+                                });
+                            }
+                        } catch (err) {
+                            console.error("Error fetching route:", err);
                         }
-                    } catch (err) {
-                        console.error("Error fetching route:", err);
                     }
                 }
+                setRoutes(routeSegments);
+            }
+            catch (err) {
+                console.error("Unexpected error in fetchRoutes:", err);
+            }
+            finally {
+                setIsFetchingRoutes(false)
             }
 
-            setRoutes(routeSegments);
+
+
         }
 
         fetchRoutes();
@@ -174,7 +168,18 @@ export default function MapDemo({ expandCards, itineraryData }) {
 
 
     return (
-        <div style={{ height: "100%", width: "100%" }}>
+        <div className="  relative" style={{ height: "100%", width: "100%" }}>
+            {isFetchingRoutes && (
+                <div className="absolute inset-0 z-[999] flex items-center justify-center pointer-events-none bg-black/30">
+                    {/* <div className=" size-8 border-4 border-sky-blue-1 border-t-transparent rounded-full animate-spin"></div> */}
+
+                    <div className="flex flex-col items-center space-y-2">
+                        <div className="size-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <p className="text-white">Fetching best routes...</p>
+                    </div>
+                </div>
+            )}
+
 
             {/* <div style='w-full h-full'>  */}
 
@@ -193,10 +198,10 @@ export default function MapDemo({ expandCards, itineraryData }) {
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
                     // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                       url="https://cartodb-basemaps-a.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+                    url="https://cartodb-basemaps-a.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png"
                 />
 
-                
+
 
                 {/* Draw routes */}
                 {routes.map((r, idx) => (

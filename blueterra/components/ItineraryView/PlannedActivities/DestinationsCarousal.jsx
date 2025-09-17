@@ -227,9 +227,9 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
                                 ))}
                             </div>
 
-                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-5 left-3 text-lg xl:text-xl 2xl:text-2xl font-normal">
-                                <p>Day {currentCollection + 1}:</p>
-                                <p className="capitalize ">{itineraryData?.days?.[currentCollection].image_title}</p>
+                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-5 left-3 max-sm:text-[15px] text-lg xl:text-xl 2xl:text-2xl font-normal">
+                                <p className="text-nowrap">Day {currentCollection + 1}:</p>
+                                <p className="capitalize lg:mr-4 ">{itineraryData?.days?.[currentCollection].image_title}</p>
                             </div>
                         </div>
                     </div>
@@ -261,7 +261,7 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
             ) : (
                 <div className="w-full  text-dark-28 pl-2 mt-2 ">
                     {daysData?.[currentCollection]?.temperature && <div className=" flex ">
-                        <p className="xl:text-2xl text-xl ">
+                        <p className="xl:text-2xl lg:text-xl ">
                             {daysData?.[currentCollection]?.temperature ? daysData?.[currentCollection]?.temperature : '0'}
 
                             <span className="relative -top-1 text-lg lg:text-2xl">°</span>C
@@ -273,8 +273,8 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
 
                     {daysData?.[currentCollection]?.temperature  && <div className=" flex space-x-6 text-sm items-center font-normal">
                         <p className="">Feels like {daysData?.[currentCollection]?.weatherStatus}</p>
-                        <p className="">Low: <span className=" text-base">{daysData?.[currentCollection]?.min_temp}°C</span></p>
-                        <p className="">High: <span className=" text-base">{daysData?.[currentCollection]?.max_temp}°C</span></p>
+                        <p className="">Low: <span className=" max-sm:text-sm text-base">{daysData?.[currentCollection]?.min_temp}°C</span></p>
+                        <p className="">High: <span className=" max-sm:text-sm text-base">{daysData?.[currentCollection]?.max_temp}°C</span></p>
 
                     </div>}
                 </div>

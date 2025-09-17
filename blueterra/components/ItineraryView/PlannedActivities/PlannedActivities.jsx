@@ -14,6 +14,7 @@ import ReactTooltip from "@/components/generalComponents/ReactTooltip"
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
 import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
 import { useLenis } from "@/components/SmoothScroll"
+import useGsapFadeIn from "@/app/hooks/Gsap/useGsapFadeIn"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +27,10 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
     const carousalRef = useRef(null)
     const detailsRef = useRef(null)
     const [isLoading, setIsLoading] = useState(false)
+
+    const titleGsapRef = useGsapFadeIn()
+    const tabsGsapRef = useGsapFadeIn()
+
 
     const mapCardOriginalStyles = useRef({});
     const activitiesCardOriginalStyles = useRef({});
@@ -334,52 +339,52 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
     ]
 
 
-    useGSAP(() => {
-        const elements = gsap.utils.toArray(".vertically-animated-element");
+    // useGSAP(() => {
+    //     const elements = gsap.utils.toArray(".vertically-animated-element");
 
-        elements.forEach((box) => {
-            gsap.fromTo(
-                box,
-                { opacity: 0, y: 60 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.7,
-                    ease: "sine.out",
-                    scrollTrigger: {
-                        trigger: box,
-                        start: "top 80%",
-                        toggleActions: "play none play reverse ",
-                        // markers: true
-                    },
-                }
-            );
-        });
-    }, { scope: plannerRef });
+    //     elements.forEach((box) => {
+    //         gsap.fromTo(
+    //             box,
+    //             { opacity: 0, y: 60 },
+    //             {
+    //                 opacity: 1,
+    //                 y: 0,
+    //                 duration: 0.7,
+    //                 ease: "sine.out",
+    //                 scrollTrigger: {
+    //                     trigger: box,
+    //                     start: "top 80%",
+    //                     toggleActions: "play none play reverse ",
+    //                     // markers: true
+    //                 },
+    //             }
+    //         );
+    //     });
+    // }, { scope: plannerRef });
 
 
 
-    useGSAP(() => {
-        const elements = gsap.utils.toArray(".scale-opacity-animate");
+    // useGSAP(() => {
+    //     const elements = gsap.utils.toArray(".scale-opacity-animate");
 
-        elements.forEach((box) => {
-            gsap.fromTo(
-                box,
-                { opacity: 0, scale: 0.9 },
-                {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.7,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: box,
-                        start: "top 90%",
-                        toggleActions: "play none play reverse ",
-                    },
-                }
-            );
-        });
-    }, { scope: plannerCardsRef });
+    //     elements.forEach((box) => {
+    //         gsap.fromTo(
+    //             box,
+    //             { opacity: 0, scale: 0.9 },
+    //             {
+    //                 opacity: 1,
+    //                 scale: 1,
+    //                 duration: 0.7,
+    //                 ease: "power3.out",
+    //                 scrollTrigger: {
+    //                     trigger: box,
+    //                     start: "top 90%",
+    //                     toggleActions: "play none play reverse ",
+    //                 },
+    //             }
+    //         );
+    //     });
+    // }, { scope: plannerCardsRef });
 
 
     useEffect(() => {
@@ -405,8 +410,8 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
             {/* <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[105vh]  xl:w-11/12 my-16  z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12   flex flex-col items-center `}> */}
             <div ref={plannerRef} id="plans" className={` ${rubik.className}   planned-activities text-dark-28   xl:w-11/12 mt-16    z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12    flex flex-col items-center overflow-hidden `}>
 
-                <div className=" flex  flex-col vertically-animated-element z-[999] items-center transform-gpu ">
-                    <h3 className={`text-5xl font-medium ${playfair.className}`}>Planned Activities</h3>
+                <div ref={titleGsapRef} className=" flex  flex-col z-[999] items-center transform-gpu ">
+                    <h3 className={`text-5xl font-medium ${playfair.className}`}>Travel Guide</h3>
                 </div>
 
                 {/* <div className=" flex text-xl vertically-animated-element space-x-8 mt-10  font-normal max-lg:hidden">
@@ -414,7 +419,7 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
                         <p onClick={() => handleTabSelection(tab)} key={index} className={` cursor-pointer transform transition-all duration-300  ${selectedTab === tab ? ' text-sky-blue-dark' : 'text-black'} `}>{tab}</p>
                     ))}
                 </div> */}
-                <div className="flex text-xl vertically-animated-element space-x-8 mt-10 font-normal max-lg:hidden">
+                <div ref={tabsGsapRef} className="flex text-xl space-x-8 mt-10 font-normal max-lg:hidden">
                     {["Map", "Overview", "Daily Schedule"].map((tab, index) => (
                         <p
                             key={index}
@@ -435,7 +440,7 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
 
 
 
-                <div ref={plannerCardsRef} className={`relative  h-[70vh] overflow-y-auto vertically-animated-element w-full flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  `}>
+                <div ref={plannerCardsRef} className={`relative  h-[70vh] overflow-y-auto  w-full flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  `}>
                     {Components?.map((item, index) => {
                         const DynamicComponent = item.component;
 

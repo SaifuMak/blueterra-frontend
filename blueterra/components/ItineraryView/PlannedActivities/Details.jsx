@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react"
 import uaePlaces from "@/components/datas/Places"
 import { useHasScrollbar } from "@/app/hooks/useHasScrollbar"
+import { playfair, rubik } from "@/app/fonts"
 
 
 export default function Details({ selectedTab, itineraryData }) {
@@ -24,7 +25,7 @@ export default function Details({ selectedTab, itineraryData }) {
         <div className="w-full xl:px-2 xl:pb-2 h-full max-xl:text-sm  text-dark-28 text-base flex flex-col overflow-y-auto sm:flex-row sm:space-x-3 max-sm:space-y-8 " style={{ display: visible ? 'visible' : 'flex' }} >
             {/* First column */}
             <div className="w-full flex flex-col ">
-                <p className="xl:text-[22px] text-lg font-normal text-dark-28">Destination Highlights</p>
+                <p className={`xl:text-[22px] text-lg font-normal text-dark-28 ${playfair.className}`}>Destination Highlights</p>
                 <div ref={containerRef} className="flex flex-wrap mt-2 pb-3 gap-x-5 gap-y-2 font-light overflow-y-auto max-sm:h-48 "  {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
                     {itineraryData?.destination_highlights?.map((data, index) => (
                         <div key={index} className="flex   w-full ">
@@ -40,7 +41,7 @@ export default function Details({ selectedTab, itineraryData }) {
 
             {/* Second column */}
             <div className="w-full flex flex-col mt-0 lg:mt-0 ">
-                <p className="xl:text-[22px] text-lg font-normal text-dark-28">Signature Experiences</p>
+                <p className={`xl:text-[22px] text-lg font-normal text-dark-28 ${playfair.className}`}>Signature Experiences</p>
                 <div ref={containerRef} className="flex flex-wrap mt-2 pb-3 gap-x-2 gap-y-2 font-light overflow-y-auto max-sm:h-48 "  {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
                     {itineraryData?.signature_highlights?.map((data, index) => (
                         <div key={index} className="flex w-full">
