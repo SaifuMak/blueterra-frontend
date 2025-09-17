@@ -34,7 +34,6 @@ body {
 }
 
 
-
 .no-scroll-bar::-webkit-scrollbar {
   width: 0 !important;
   height: 0 !important;
@@ -218,15 +217,22 @@ body {
 
 
 #zsiq_float {
-  /* min-width:55px !important;
-  min-height: 55px !important; */
-
   width: 75px !important;
   height: auto !important;
-  max-height: 75px !important;
+  height: 75px !important;
 }
 
 
+#zs_fl_close::before,
+#zs_fl_close::after {
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+
+#siq-embed-wrapper #scroll-container {
+  padding-top: 0 !important;
+}
 
 /* styles/editor-content.css */
 .blog-content {

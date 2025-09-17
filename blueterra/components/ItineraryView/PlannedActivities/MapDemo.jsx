@@ -181,7 +181,6 @@ export default function MapDemo({ expandCards, itineraryData }) {
             )}
 
 
-            {/* <div style='w-full h-full'>  */}
 
             <MapContainer
                 center={[0, 0]}
