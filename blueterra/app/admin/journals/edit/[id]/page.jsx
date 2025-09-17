@@ -219,7 +219,7 @@ export default function EditJournal() {
                 ...(journalCoverImage && { preview_image: journalCoverImage }),
             };
 
-            // console.log(updatedFormData);
+            console.log(updatedFormData.blog_content);
             setIsLoading(true)
             setFormDataState(updatedFormData)
             publish ? setIsLoading(true) : setIsDraftSaving(true)
@@ -360,6 +360,19 @@ export default function EditJournal() {
                                             plugins: [
                                                 'image', 'link', 'lists', 'table', 'code'
                                             ],
+                                            paste_as_text: false,
+                                            paste_remove_styles: true,
+                                            paste_remove_spans: true,
+                                            paste_strip_class_attributes: 'all',
+//                                             valid_elements: `
+//     p,strong,em,b,i,u,sub,sup,a[href|target|rel|title],
+//     ul,ol,li,br,
+//     table,tr,td,th,thead,tbody,
+//     'img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name]'
+//     h1,h2,h3,h4,h5,h6,
+//     blockquote,pre,code
+// `,
+
                                             toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | image link | removeImage',
 
                                             /* Handle file upload */
@@ -373,6 +386,7 @@ export default function EditJournal() {
                                                 });
 
                                                 const data = await res.json();
+                                                console.log(data)
                                                 return data.url; // TinyMCE will insert this into the editor
                                             },
 

@@ -68,7 +68,7 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
 
                         {Data?.map((item, index) => (
                             <CarouselItem key={index} className="md:basis-1/2   2xl:p-3 pb-2 lg:basis-1/3  mx-0  flex-center  ">
-                                <div onClick={navigateToCollections} className=" relative group  cursor-pointer w-[370px]  xl:w-[470px] 2xl:h-[700px] xl:h-[600px] md:h-[480px] h-[410px] rounded-2xl overflow-hidden">
+                                <div onClick={navigateToCollections} className=" relative group  cursor-pointer w-[370px]  xl:w-[470px] 2xl:h-[600px] xl:h-[500px] md:h-[480px] h-[410px] rounded-2xl overflow-hidden">
 
                                     <Image
                                         src={item.banner_image_public_url}
@@ -83,7 +83,7 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
 
                                         {/* Text content always visible, moves up on hover */}
                                         <div className="flex items-end absolute inset-0   z-10">
-                                            <div className="py-6 bg-gradient-to-t from-black to-transparent  px-6 transform transition-transform duration-1000 group-hover:translate-y-0  md:min-h-64 2xl:translate-y-[160px] xl:translate-y-[150px] lg:translate-y-[170px] md:translate-y-[170px]   text-white">
+                                            <div className="py-6 bg-gradient-to-t from-black to-transparent  px-6 transform transition-transform duration-1000 group-hover:translate-y-0  md:min-h-64 2xl:translate-y-[160px] xl:translate-y-[170px] lg:translate-y-[170px] md:translate-y-[170px]   text-white">
                                                 <h6 className={` ${playfair.className} text-[22px] xl:text-2xl 2xl:text-3xl`}>{item.title}</h6>
                                                 <p className={` ${rubik.className}  font-extralight mt-3 xl:mt-5 group-hover:opacity-100 xl:leading-7 duration-700 md:text-base 2xl:text-lg md:opacity-0`}>{item.description}</p>
                                                 <p className={` md:text-lg my-3 font-extralight group-hover:opacity-100 duration-700 md:opacity-0 ${rubik.className} `}>Read More</p>

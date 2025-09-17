@@ -98,6 +98,9 @@ export default function Home() {
     let animationFrameId;
 
     const checkCards = () => {
+      if (isMobile) {
+        return
+      }
       const triggerRect = scaleTrackerContainer.current.getBoundingClientRect();
 
       cardRefs.current.forEach((card) => {
@@ -236,7 +239,7 @@ export default function Home() {
             height={200}
           />
 
-          <div className={` w-full py-16 md:py-16 xl:py-36  2xl:py-44 flex justify-center bg-white  text-center`}>
+          <div className={` w-full py-16 md:py-16 xl:py-24  bg-white  2xl:py-44 flex justify-center  text-center`}>
             <div ref={messageContainerRef} className={`${rubik.className}  md:px-10 px-10 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
               <h2 className={`${playfair.className} text-3xl     lg:text-4xl xl:text-[48px] text-dark-4B`}>Discover BlueTerra</h2>
               <p className=" 2xl:text-[23px]   max-sm:text-base text-xl font-light leading-8 xl:leading-10 ">BlueTerra is more than a boutique travel company. It is a dream nurtured for years and brought to life with love</p>

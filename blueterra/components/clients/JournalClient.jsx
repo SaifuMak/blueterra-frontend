@@ -197,7 +197,7 @@ function JournalClient() {
                     />
                     <div className=" w-full h-full absolute  inset-0 flex-center flex-col text-white ">
                         <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
-                            <h1 ref={bannerText} className={` ${playfair.className}  translate-all opacity-0 duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-medium `}>Voyage Journal</h1>
+                            <h1 ref={bannerText} className={` ${playfair.className}  translate-all opacity-0  ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-medium `}>Voyage Journal</h1>
                         </div>
                     </div>
                 </div>

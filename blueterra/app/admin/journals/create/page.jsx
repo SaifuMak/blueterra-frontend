@@ -326,6 +326,10 @@ export default function CreateJournal() {
                                             plugins: [
                                                 'image', 'link', 'lists', 'table', 'code'
                                             ],
+                                            paste_as_text: false,  
+                                            paste_remove_styles: true,
+                                            paste_remove_spans: true,
+                                            paste_strip_class_attributes: 'all',
                                             toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | image link | removeImage',
                                             resize: true, // enables resizing
                                             statusbar: true,

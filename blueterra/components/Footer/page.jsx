@@ -11,7 +11,7 @@ export default function Footer() {
     const RatingStarStyle = 'md:w-6 md:h-6 w-4 h-4 '
 
     const footerLinks = {
-        "Useful Information": {
+        "Information": {
             "About us": "#",
             "Privacy Policy": "/privacy-policy",
             "Terms & conditions": "/terms-and-condition",
@@ -25,7 +25,7 @@ export default function Footer() {
             "Cruise": "#",
             "MICE": "/corporate-mice"
         },
-        "Popular Destinations": {
+        "Destinations": {
             "United Arab Emirates": "#",
             "Kenya": "#",
             "South Africa": "#",
