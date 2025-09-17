@@ -50,7 +50,7 @@ export default function CorporateClient() {
             "img": '/images/corporate/corporate-events/incentive-travel.jpg'
         },
         {
-            "title": "Executive leisure Travel",
+            "title": "Executive Leisure Travel",
             "description": "Tailored journeys that combine business and leisure, allowing executives and teams to balance productivity with relaxation while strengthening relationships in premium destinations",
             "img": '/images/corporate/corporate-events/executive-travel.jpg'
         },

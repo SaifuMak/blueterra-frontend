@@ -9,8 +9,8 @@ const ContactSection = forwardRef((props, ref) => {
     const CONTACT_DETAILS = [
         { "title": "Call:", "details": "+971 58 541 2123", "icon": "/Icons/phone-blue.svg" },
         { "title": "Email:", "details": "connect@myblueterra.com", "icon": "/Icons/email-blue.svg" },
-        { "title": "Business Hours:", "details": "Mon - Sat: 9AM - 6PM", "icon": "/Icons/clock-blue.svg" },
-        { "title": "Address:", "details": "Meydan Freezone,", "subDetails": "Dubai - U.A.E", "icon": "/Icons/location-blue.svg" },
+        // { "title": "Business Hours:", "details": "Mon - Sat: 9AM - 6PM", "icon": "/Icons/clock-blue.svg" },
+        // { "title": "Address:", "details": "Meydan Freezone,", "subDetails": "Dubai - U.A.E", "icon": "/Icons/location-blue.svg" },
     ]
 
 
@@ -22,7 +22,7 @@ const ContactSection = forwardRef((props, ref) => {
                 ImagePath='/images/corporate/patterns/contact-bottom.png'
                 width={600}
             />
-            <div className="2xl:w-11/12 lg:w-full w-11/12 max-sm:mt-10  max-lg:space-y-10  lg:space-x-10 flex max-lg:flex-col items-center  justify-center">
+            <div className="2xl:w-11/12 lg:w-full w-11/12 max-sm:mt-10  max-lg:space-y-10  lg:space-x-10 flex max-lg:flex-col  justify-center">
 
                 <div className="lg:w-4/12   w-full flex flex-col max-sm:pl-3  xl:space-y-6 2xl:space-y-8 ">
                     <h4 className={`${playfair.className} vertically-animated-element font-medium max-md:text-2xl text-[42px] xl:text-[50px]`} >Get in Touch</h4>
@@ -42,7 +42,7 @@ const ContactSection = forwardRef((props, ref) => {
                         ))}
                     </div> */}
 
-                    <div className="vertically-animated-element lg:space-y-4 max-sm:space-y-3 space-y-5 xl:space-y-6 max-sm:mt-7 mt-2">
+                    <div className="vertically-animated-element  lg:ml-4 lg:space-y-4 max-sm:space-y-3 space-y-5 xl:space-y-6 max-sm:mt-7 mt-2">
                         {CONTACT_DETAILS?.map((data, index) => {
                             const isPhone = data.title.toLowerCase().includes("call");
                             const isEmail = data.title.toLowerCase().includes("email");
@@ -76,10 +76,10 @@ const ContactSection = forwardRef((props, ref) => {
                                         >
                                             {data.details}
                                         </Wrapper>
-
-                                        {data.subDetails && (
-                                            <p className="opacity-90">{data.subDetails}</p>
-                                        )}
+                                        {/* 
+                                        {data?.subDetails && (
+                                            <p className="opacity-90">{data?.subDetails}</p>
+                                        )} */}
                                     </div>
                                 </div>
                             );
