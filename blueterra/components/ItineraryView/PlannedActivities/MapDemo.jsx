@@ -170,7 +170,7 @@ export default function MapDemo({ expandCards, itineraryData }) {
     return (
         <div className="  relative" style={{ height: "100%", width: "100%" }}>
             {isFetchingRoutes && (
-                <div className="absolute inset-0 z-[999] flex items-center justify-center pointer-events-none bg-black/30">
+                <div className="absolute inset-0 z-[999] flex items-center justify-center pointer-events-none  rounded-2xl bg-black/30">
                     {/* <div className=" size-8 border-4 border-sky-blue-1 border-t-transparent rounded-full animate-spin"></div> */}
 
                     <div className="flex flex-col items-center space-y-2">
@@ -192,7 +192,7 @@ export default function MapDemo({ expandCards, itineraryData }) {
                 dragging={true}
                 touchZoom={true}
                 tap={false}
-                className="h-full w-full rounded-xl"
+                className="h-full w-full rounded-2xl"
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'

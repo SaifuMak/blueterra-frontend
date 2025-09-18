@@ -22,7 +22,7 @@ export default function Map({ expandCards, index, itineraryData }) {
 
     return (
         // <div onClick={()=>expandCards(index)} className=" relative rounded-sm  overflow-hidden cursor-pointer w-full h-full">
-        <div  className=" relative   rounded-xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " {...(isMobile ? { 'data-lenis-prevent': true } : {})}>
+        <div  className=" relative   rounded-2xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " {...(isMobile ? { 'data-lenis-prevent': true } : {})}>
             <MapClient expandCards={expandCards} itineraryData={itineraryData} />
         </div>
 

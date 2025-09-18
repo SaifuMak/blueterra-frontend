@@ -74,9 +74,9 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
                                         : "md:basis-1/2 xl:basis-1/3 flex over 2xl:p-3 pb-2"
                             }>
 
-                                <div className="  mx-4 lg:mx-2 group  w-full h-full flex flex-col ">
+                                <div className="  mx-4 lg:mx-2   w-full h-full flex flex-col ">
 
-                                    <div className=" relative  rounded-sm overflow-hidden  transition-all duration-700 ease-in-out h-[180px] md:h-[250px] 2xl:h-[300px] w-full">
+                                    <div className=" relative group  rounded-sm overflow-hidden  transition-all duration-700 ease-in-out h-[180px] md:h-[250px] 2xl:h-[300px] w-full">
                                         <Image
                                             src={item?.image_public_url}
                                             alt={item?.title}
