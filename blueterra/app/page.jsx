@@ -198,7 +198,7 @@ export default function Home() {
           {/* src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4" */}
           {/* <video ref={videoRef} src="https://pub-2f61254cf9024766800653136dfffd58.r2.dev/freecompress-5186163_Aerial_Lovatnet_1920x1080.mp4" */}
 
-          <video ref={videoRef} src="https://cdn.myblueterra.com/Home_page_video.mp4"
+          <video ref={videoRef} src="https://cdn.myblueterra.com/Opening%20video_Home%20page_2.mp4"
             className=" w-full h-full object-cover"
             autoPlay
             muted

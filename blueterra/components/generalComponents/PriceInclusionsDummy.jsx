@@ -43,7 +43,7 @@ export default function PriceInclusionsDummy({ itineraryData }) {
 
                 <div className=''>
                     <h3 className="font-medium  mb-4">Excludes</h3>
-                    <ul ref={containerRef} className="space-y-3 lg:max-h-44 pb-10 lg:overflow-y-auto " {...(hasScrollbar && !isSmallerScreen  ? { 'data-lenis-prevent': true } : {})}>
+                    <ul ref={containerRef} className="space-y-3 lg:max-h-44 pb-10 lg:overflow-y-auto " {...(hasScrollbar && !isSmallerScreen ? { 'data-lenis-prevent': true } : {})}>
                         {itineraryData?.package_exclusions?.map((item, idx) => (
                             <li key={idx} className="flex items-start  gap-2">
                                 <FaTimes className="text-red-600 mt-1 shrink-0" />
