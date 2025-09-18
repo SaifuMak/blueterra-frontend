@@ -19,7 +19,7 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
           />
 
 
-          <div className={`absolute ${selectedVerticalTileMobile === index ? "opacity-0" : " opacity-100"} text-white transition-all duration-500 ease-in-out inset-0   bg-[#104F82D9]/70`}>
+          <div className={`absolute ${selectedVerticalTileMobile === index ? "opacity-0" : " opacity-100"} text-white transition-all duration-500 ease-in-out inset-0   bg-[#00284626]`}>
             <div className="flex   w-full h-full px-3 mt-2 space-x-2 ">
               <img src={card?.icon_public_url} alt={card?.title} className=" object-cover size-[27px]" />
               <div className="bg-white/40 h-0.5 flex-1 my-3"></div>

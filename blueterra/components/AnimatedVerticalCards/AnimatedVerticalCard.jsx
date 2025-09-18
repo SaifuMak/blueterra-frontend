@@ -150,8 +150,10 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
 
                 {/* if not  expanded horizontally */}
                 {!isExpanded ? (
-                    <div className='absolute inset-0  bg-[#00284680]/80'>
-                        {/* vertical full card */}
+                    // <div className='absolute inset-0  bg-[#00284680]/80'>
+                    <div className='absolute inset-0 bg-[#00284626]'>
+
+                        {/* vertical full card */} 
                         {isFullCardVisible ? (
 
                             // <div className={`flex mt-3 w-8 ml-6 h-[85vh] text-white flex-col items-center `}>
