@@ -23,6 +23,8 @@ import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPat
 import gsap from "gsap"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useMediaQuery } from 'react-responsive'
+import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
+import ItineraryPagination from "../generalComponents/ItineraryPagination";
 
 
 gsap.registerPlugin(ScrollToPlugin);
@@ -46,6 +48,12 @@ export default function DestinationsClient() {
     const [destinationsData, setDestinationsData] = useState(null)
     const [destinationLoading, setDestinationLoading] = useState(true)
     const [filtersList, setFiltersList] = useState(null)
+
+    const [nextPage, setNextPage] = useState(null); // Next page URL
+    const [prevPage, setPrevPage] = useState(null); // Previous page URL
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(null)
+
 
     // zoho form 
     const [formOpen, setFormOpen] = useState(false);
@@ -202,6 +210,15 @@ export default function DestinationsClient() {
 
             })
             setItineraryData(response?.data?.results)
+            setCurrentPage(page)
+            const nextpage = getPageNumber(response.data.next)
+            const previous = getPageNumber(response.data.previous)
+            setNextPage(nextpage)
+            setPrevPage(previous)
+
+            const totalPages = getTotalPagesCount(response.data.count, 6)
+            setTotalPages(totalPages)
+
 
         }
 
@@ -326,7 +343,7 @@ export default function DestinationsClient() {
                             handleScrollToItineraryResults={handleScrollToItineraryResults}
                         />}
 
-                        <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
+                        {/* <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
                             {isLoading ? (
                                 <div className="flex items-center justify-center w-full min-h-[60vh] col-span-2">
                                     <LoaderIcon />
@@ -338,7 +355,36 @@ export default function DestinationsClient() {
                                     <p className="text-lg font-medium">No results found</p>
                                 </div>
                             )}
+                        </div> */}
+                        
+                        <div className="grid 2xl:gap-28 relative  z-0 xl:gap-16 lg:mt-28 xl:mt-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
+
+                            {isLoading && <div className="flex items-center justify-center w-full z-50  h-full  col-span-2 absolute inset-0">
+                                <LoaderIcon />
+                            </div>
+                            }
+
+                            {
+                                itineraryData && itineraryData.length > 0 ? (
+                                    <DestinationCards itineraryData={itineraryData} />
+                                ) : (
+                                    <div className="flex items-center justify-center min-h-[60vh]  w-full col-span-2">
+                                        <p className="text-lg font-medium">No results found</p>
+                                    </div>
+                                )}
                         </div>
+
+                        {itineraryData && itineraryData.length > 0 && <div className="  w-full lg:w-10/12 xl:w-9/12 h-full lg:my-12">
+                            <ItineraryPagination
+                                prevPage={prevPage}
+                                nextPage={nextPage}
+                                function_to_call={fetchItinerary}
+                                currentPage={currentPage}
+                                TotalPages={totalPages}
+                                buttonColor='bg-[#58c2df]'
+                                innerClass='flex max-lg:flex-col max-lg:items-center max-lg:space-y-4 lg:justify-between w-full lg:w-7/12  lg:pl-5'
+                            />
+                        </div>}
 
                     </div>
 

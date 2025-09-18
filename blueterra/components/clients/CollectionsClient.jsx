@@ -22,8 +22,7 @@ import { useMediaQuery } from 'react-responsive'
 import gsap from "gsap"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
-import Pagination from "../generalComponents/Pagination";
-
+import ItineraryPagination from "../generalComponents/ItineraryPagination";
 gsap.registerPlugin(ScrollToPlugin);
 
 
@@ -43,13 +42,10 @@ export default function CollectionsClient() {
 
   const [filtersList, setFiltersList] = useState(null)
 
-
   const [nextPage, setNextPage] = useState(null); // Next page URL
   const [prevPage, setPrevPage] = useState(null); // Previous page URL
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(null)
-
-
 
   // zoho form 
   const [formOpen, setFormOpen] = useState(false);
@@ -358,7 +354,7 @@ export default function CollectionsClient() {
             </div>
 
             {itineraryData && itineraryData.length > 0 && <div className="  w-full lg:w-10/12 xl:w-9/12 h-full lg:my-12">
-              <Pagination
+              <ItineraryPagination
                 prevPage={prevPage}
                 nextPage={nextPage}
                 function_to_call={fetchItinerary}
