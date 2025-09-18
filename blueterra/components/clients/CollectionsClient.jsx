@@ -21,7 +21,8 @@ import { useMediaQuery } from 'react-responsive'
 
 import gsap from "gsap"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
+import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
+import Pagination from "../generalComponents/Pagination";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -41,6 +42,13 @@ export default function CollectionsClient() {
   const [collectionsLoading, setCollectionsLoading] = useState(true)
 
   const [filtersList, setFiltersList] = useState(null)
+
+
+  const [nextPage, setNextPage] = useState(null); // Next page URL
+  const [prevPage, setPrevPage] = useState(null); // Previous page URL
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(null)
+
 
 
   // zoho form 
@@ -131,7 +139,7 @@ export default function CollectionsClient() {
 
 
   const handleScrollToItineraryResults = () => {
-  
+
 
     if (isTileSelectedForFirstTimeRef.current) {
       gsap.to(window, {
@@ -144,7 +152,7 @@ export default function CollectionsClient() {
 
 
   const handleSetCollectionRequestedToShowInMobile = (index) => {
-   
+
 
     console.log('iti si callled ----');
 
@@ -236,6 +244,15 @@ export default function CollectionsClient() {
 
       })
       setItineraryData(response?.data?.results)
+      setCurrentPage(page)
+      const nextpage = getPageNumber(response.data.next)
+      const previous = getPageNumber(response.data.previous)
+      setNextPage(nextpage)
+      setPrevPage(previous)
+
+      const totalPages = getTotalPagesCount(response.data.count, 6)
+      setTotalPages(totalPages)
+
 
     }
 
@@ -323,19 +340,34 @@ export default function CollectionsClient() {
             />}
 
 
-            <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
-              {isLoading ? (
-                <div className="flex items-center justify-center w-full min-h-[60vh] col-span-2">
-                  <LoaderIcon />
-                </div>
-              ) : itineraryData && itineraryData.length > 0 ? (
-                <DestinationCards itineraryData={itineraryData} />
-              ) : (
-                <div className="flex items-center justify-center min-h-[60vh]  w-full col-span-2">
-                  <p className="text-lg font-medium">No results found</p>
-                </div>
-              )}
+            <div className="grid 2xl:gap-28 relative  z-0 xl:gap-16 lg:mt-28 xl:mt-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
+
+              {isLoading && <div className="flex items-center justify-center w-full z-50  h-full  col-span-2 absolute inset-0">
+                <LoaderIcon />
+              </div>
+              }
+            
+              {
+                itineraryData && itineraryData.length > 0 ? (
+                  <DestinationCards itineraryData={itineraryData} />
+                ) : (
+                  <div className="flex items-center justify-center min-h-[60vh]  w-full col-span-2">
+                    <p className="text-lg font-medium">No results found</p>
+                  </div>
+                )}
             </div>
+
+            {itineraryData && itineraryData.length > 0 && <div className="  w-full lg:w-10/12 xl:w-9/12 h-full lg:my-12">
+              <Pagination
+                prevPage={prevPage}
+                nextPage={nextPage}
+                function_to_call={fetchItinerary}
+                currentPage={currentPage}
+                TotalPages={totalPages}
+                buttonColor='bg-[#58c2df]'
+                innerClass='flex max-lg:flex-col max-lg:items-center max-lg:space-y-4 lg:justify-between w-full lg:w-7/12  lg:pl-5'
+              />
+            </div>}
 
           </div>
 

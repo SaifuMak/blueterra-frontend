@@ -49,11 +49,17 @@ export default function DestinationCardCarousal({ Data }) {
     }, [api])
 
     const handleMouseEnter = () => {
+        if(Data?.length === 1){
+            return
+        }
         autoplayRef.current.reset();
         autoplayRef.current.play();
     };
 
     const handleMouseLeave = () => {
+          if(Data?.length === 1){
+            return
+        }
         autoplayRef.current.stop();
     };
 
