@@ -14,6 +14,9 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
     const accordiansRef = useRef([])
 
+    const lastRef = useRef(null);
+    const [lastHeight, setLastHeight] = useState(30);
+
     // const { containerRef, hasScrollbar } = useHasScrollbar([OpenedAccordian])
 
     const containerRef = useRef(null);
@@ -56,6 +59,8 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
         }
 
         else {
+
+
             setOpenedAccordian((prev) => (
                 prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
             ))
@@ -79,23 +84,40 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
     }, [selectedTab])
 
 
+    // this caluculates the  length of opened last div this lenght we use to cover the timeline line from last element
+    useEffect(() => {
+        if (OpenedAccordian.includes(itineraryData?.days?.length - 1)) {
+
+            if (lastRef.current) {
+                setLastHeight(lastRef.current.scrollHeight + 30);
+            }
+        }
+        else {
+            setTimeout(() => {
+                setLastHeight(30);
+            }, 400);
+        }
+    }, [OpenedAccordian]);
+
+
     return (
 
         <>
 
-            <div ref={containerRef} className={`${selectedTab === 'Daily Schedule' ? ' h-fit' : ' h-full'} w-full overflow-y-auto  flex flex-col px-1 pl-12 lg:pl-[44px]   max-xl:text-sm  xl:pl-[44px]   space-y-2 content-between text-base   max-sm:max-h-[300px] `}    {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
+            <div ref={containerRef} className={`${selectedTab === 'Daily Schedule' ? ' h-fit' : ' h-full overflow-y-auto'} w-full   flex flex-col px-1 pl-12 lg:pl-[44px]   max-xl:text-sm  xl:pl-[44px]   space-y-2 content-between text-base   max-sm:max-h-[300px] `}    {...(hasScrollbar && selectedTab !== 'Daily Schedule' ? { 'data-lenis-prevent': true } : {})}>
 
                 <div className="  w-full flex flex-col">
 
+
                     {itineraryData?.days?.map((data, index) => (
                         <div key={index} ref={(el) => (accordiansRef.current[index] = el)} className=" flex  border-l relative  ">
-                            <div className={`shrink-0 absolute flex  transition-all duration-700  -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}  ${index === itineraryData?.days.length - 1 ? ` ${OpenedAccordian.includes(index) ? 'lg:pb-0' : 'lg:pb-6'}  ` : ''} bg-white  `}>
+                            <div className={`shrink-0 absolute flex  transition-all duration-500  ease-in-out -ml-[44px]  ${index === 0 ? 'pt-1' : 'mt-2'}   bg-white   `} style={{ paddingBottom: index === itineraryData?.days.length - 1 ? `${Number(lastHeight)}px` : '' }}>
                                 <p className=" font-normal text-sm  ">Day</p>
                                 <span className="size-5 ml-2   text-white text-xs  bg-[#026E9E] flex-center  rounded-full">{index + 1}</span>
                             </div>
 
                             <div className=" flex w-full flex-col pl-5 mb-4  ">
-                                <div className=" border border-[#DCDCE3] rounded-sm">
+                                <div className=" border border-[#DCDCE3] rounded-sm ">
                                     <div onClick={() => handleAccordion(index)} className={`  flex font-normal  justify-between rounded-t-sm text-sm items-center py-1.5   pl-4 pr-2 cursor-pointer`}
                                         style={{
                                             backgroundColor: OpenedAccordian.includes(index)
@@ -106,7 +128,11 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
                                         {data.title}
                                         <span className={`transition-all duration-300  ${OpenedAccordian.includes(index) ? 'rotate-90' : 'rotate-0'}`}><MdOutlineKeyboardArrowRight className=" text-xl" /></span>
                                     </div>
-                                    <div ref={containerRef} className={` overflow-y-auto    transition-all duration-700 text-dark-28 ease-in-out px-4  ${OpenedAccordian.includes(index) ? 'max-h-[500px]  max-sm:max-h-[1000px]   opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`} {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}>
+                                    {/* <div ref={containerRef} className={` overflow-y-auto    transition-all duration-700 text-dark-28 ease-in-out px-4  ${OpenedAccordian.includes(index) ? 'max-h-[500px]  max-sm:max-h-[1000px]   opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`} {...(hasScrollbar ? { 'data-lenis-prevent': true } : {})}> */}
+                                    <div
+                                        ref={index === itineraryData?.days?.length - 1 ? lastRef : null}
+                                        className={` overflow-y-auto    transition-all duration-700 text-dark-28 ease-in-out px-4  ${OpenedAccordian.includes(index) ? 'max-h-[2500px]  max-sm:max-h-[2000px]   opacity-100 z-20' : 'max-h-0  opacity-0 z-0'}  bg-[#F6F6F6]`} >
+
                                         <div className=" ml-1 pt-3  pb-5  relative  ">
 
                                             {/* <p className=" mt-2   font-light">{data.description}</p> */}

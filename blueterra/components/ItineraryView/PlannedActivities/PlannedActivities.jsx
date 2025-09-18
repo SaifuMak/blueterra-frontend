@@ -438,9 +438,7 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
                 </div>
 
 
-
-
-                <div ref={plannerCardsRef} className={`relative  h-[70vh] overflow-y-auto  w-full flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  `}>
+                <div ref={plannerCardsRef} className={`relative  h-[70vh]  overflow-hidden  w-full flex flex-wrap justify-center gap-3 mt-16  2xl:gap-6  z-50  `}>
                     {Components?.map((item, index) => {
                         const DynamicComponent = item.component;
 
