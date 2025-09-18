@@ -18,7 +18,7 @@ export default function PriceInclusionsDummy({ itineraryData }) {
     return (
         <div className={`w-full  mx-auto px-4 py-8  ${rubik.className} `}>
             <p className="mb-4 text-gray-800">As detailed in the itinerary:</p>
-            <div className="grid text-sm font-light grid-cols-1 lg:grid-cols-2 gap-10  max-lg:max-h-[400px] max-lg:overflow-y-auto " {...(isSmallerScreen ? { 'data-lenis-prevent': true } : {})}>
+            <div className="grid text-sm font-light grid-cols-1 lg:grid-cols-2 lg:gap-10  max-lg:max-h-[400px] max-lg:overflow-y-auto " {...(isSmallerScreen ? { 'data-lenis-prevent': true } : {})}>
 
                 <div className='  '>
                     <h3 className=" font-medium capitalize mb-4 ">Includes</h3>
