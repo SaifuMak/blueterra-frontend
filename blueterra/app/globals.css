@@ -229,6 +229,11 @@ body {
   vertical-align: middle !important;
 }
 
+#zsiq_chat_wrap {
+  height: 500px !important;
+  min-height: 500px !important;
+}
+
 
 #siq-embed-wrapper #scroll-container {
   padding-top: 0 !important;

@@ -28,10 +28,11 @@ function PlanningCardSection({ setFormOpen }) {
                 /> */}
             </div>
 
+
             <div className={`   flex max-lg:flex-col w-10/12 lg:w-11/12  lg:h-screen  max-lg:space-y-10 lg:space-x-10  xl:space-x-16 ${rubik.className}`}>
                 <div className=" w-full lg:w-1/2 max-lg:h-[40vh]  relative group overflow-hidden rounded-4xl ">
                     <Image
-                        src='/images/home/three-friends.jpg'
+                        src='/images/home/patterns/where-will-you-go.png'
                         alt="three-friends"
                         fill
                         priority

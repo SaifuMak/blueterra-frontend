@@ -82,7 +82,6 @@ export default function Footer() {
                     <ReviewWidget />
 
 
-
                     {/* <div className="flex   items-center space-x-3">
                         <p className=" text-white text-2xl font-normal 2xl:text-3xl">Excellent</p>
 
@@ -191,7 +190,8 @@ export default function Footer() {
 
                     <p className=" group"><a href="https://maktalseo.com/" target="_blank" rel="noopener noreferrer" className=" hover:cursor-pointer">Website designed by <span className=" transition-all duration-700">MakTal</span></a></p>
                 </div>
-                <ChatWidget/>
+
+                <ChatWidget />
 
             </div>
 
