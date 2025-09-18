@@ -215,7 +215,7 @@ export default function ItineraryViewClient({ id }) {
                         </div>
 
 
-                        <div className=" w-full   min-h-[100vh] pb-20 overflow-hidden bg-white flex justify-center px-4  lg:px-7">
+                        <div className=" w-full   min-h-[100vh] max-sm:pb-12 pb-20 overflow-hidden bg-white flex justify-center px-4  lg:px-7">
                             {/* <div className=" lg:w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige"> */}
                             <div className="  lg:w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-sky-blue-light">
 
@@ -239,7 +239,7 @@ export default function ItineraryViewClient({ id }) {
                                 </div>
                             </div>}
 
-                            {isTablet && <div className=" pb-10 space-y-10">
+                            {isTablet && <div className=" pb-10 max-lg:pb-16  space-y-10">
                                 <h6 className={`${playfair.className}   text-center text-3xl text-dark-4B font-medium`} >Gallery</h6>
                                 <GalleryCarousal data={itineraryData?.gallery} setCurrent={setCurrentGallery} setCount={setGalleryCount} />
                                 <div className="flex-center space-x-2 overflow-hidden">

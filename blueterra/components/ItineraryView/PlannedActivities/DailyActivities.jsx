@@ -7,10 +7,17 @@ import ReactTooltip from "@/components/generalComponents/ReactTooltip"
 import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusionsDummy"
 import { useIsTablet } from "@/app/hooks/useIsTablet"
 import { useHasScrollbar } from "@/app/hooks/useHasScrollbar"
+import { useMediaQuery } from 'react-responsive'
+
 
 export default function DailyActivities({ expandCards, index, selectedTab, itineraryData, lockScreen, unLockScreen, setDailyActivitiesScrollHeight }) {
 
     const [OpenedAccordian, setOpenedAccordian] = useState([])
+
+      const isSmallerScreen = useMediaQuery({
+        query: '(max-width: 1024px)'
+    })
+
 
     const accordiansRef = useRef([])
 
@@ -104,7 +111,7 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
         <>
 
-            <div ref={containerRef} className={`${selectedTab === 'Daily Schedule' ? ' h-fit' : ' h-full overflow-y-auto'} w-full   flex flex-col px-1 pl-12 lg:pl-[44px]   max-xl:text-sm  xl:pl-[44px]   space-y-2 content-between text-base   max-sm:max-h-[300px] `}    {...(hasScrollbar && selectedTab !== 'Daily Schedule' ? { 'data-lenis-prevent': true } : {})}>
+            <div ref={containerRef} className={`${selectedTab === 'Daily Schedule' ? ' h-fit' : ' h-full lg:overflow-y-auto'} w-full   flex flex-col px-1 pl-12 lg:pl-[44px]   max-xl:text-sm  xl:pl-[44px]   space-y-2 content-between text-base   `}    {...(hasScrollbar && selectedTab !== 'Daily Schedule' && !isSmallerScreen ? { 'data-lenis-prevent': true } : {})}>
 
                 <div className="  w-full flex flex-col">
 

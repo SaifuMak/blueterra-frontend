@@ -16,6 +16,7 @@ export default function HotelsView({ data }) {
     const [hotelsCount, setHotelsCount] = useState(0)
     const hotelGsapRef = useGsapFadeIn(0, { start: "top 95%" })
 
+     
 
     
     return (

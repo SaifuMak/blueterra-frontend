@@ -52,9 +52,11 @@ function PlannedActivitiesMobile({ itineraryData }) {
                 <Details itineraryData={itineraryData} />
             </div>
 
+
             <div className="flex items-center peer cursor-pointer mt-8">
                 <p className=' text-dark-28'>Inclusions and Exclusions</p>
-                <button onClick={() => setIsPriceInclusionPopupOpened(true)} className="  ml-2  p-1 flex-center  bg-sky-blue-dark font-light rounded-full text-sm text-white"><BsQuestionLg /> </button>
+                {/* <button onClick={() => setIsPriceInclusionPopupOpened(true)} className="  ml-2  p-1 flex-center  bg-sky-blue-dark font-light rounded-full text-sm text-white"><BsQuestionLg /> </button> */}
+                <button onClick={() => setIsPriceInclusionPopupOpened(true)} className=" ml-2"><MdInfoOutline className=' text-dark-28 shrink-0 text-lg' /> </button>
             </div>
 
             {isPriceInclusionPopupOpened && (<div className="fixed inset-0 flex items-center justify-center bg-black/10 bg-opacity-50 z-50">

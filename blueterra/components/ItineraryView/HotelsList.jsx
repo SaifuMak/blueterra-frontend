@@ -2,6 +2,8 @@
 'use client'
 import { CarouselApi } from "@/components/ui/carousel"
 import { trimWords } from "@/app/utils/textHelpers";
+import { useMediaQuery } from 'react-responsive'
+
 
 import { useState, useEffect } from "react";
 import {
@@ -21,6 +23,14 @@ import Button from "../generalComponents/Button";
 export default function HotelsList({ HotelsData, setCurrent, setCount }) {
 
     const [api, setApi] = useState()
+
+    const [showOverlay, setShowOverlay] = useState(false);
+
+    const isSmallerScreen = useMediaQuery({
+        query: '(max-width: 1024px)'
+    })
+
+
 
 
     useEffect(() => {
@@ -76,19 +86,26 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
 
                                 <div className="  mx-4 lg:mx-2   w-full h-full flex flex-col ">
 
-                                    <div className=" relative group  rounded-sm overflow-hidden  transition-all duration-700 ease-in-out h-[180px] md:h-[250px] 2xl:h-[300px] w-full">
+                                    <div onClick={() => setShowOverlay(!showOverlay)} className=" relative group  rounded-sm overflow-hidden  transition-all duration-700 ease-in-out h-[180px] md:h-[250px] 2xl:h-[300px] w-full">
                                         <Image
                                             src={item?.image_public_url}
                                             alt={item?.title}
                                             fill
                                             className="object-cover delay-300 transition-all duration-700 ease-in-out group-hover:scale-110"
                                         />
-                                        <div className=" absolute flex-center inset-0 w-full h-full delay-200 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100 group-hover:bg-black/40 ">
+                                        {/* this is hover visible for larger devices  */}
+                                        {!isSmallerScreen && <div className=" absolute flex-center inset-0 w-full h-full delay-200 transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100 group-hover:bg-black/40 ">
                                             <a href={item.map_link} target="_blank" rel="noopener noreferrer">
                                                 <FaMapMarkerAlt className="text-3xl text-white" />
                                             </a>
+                                        </div>}
 
-                                        </div>
+                                        {/* this is hover visible for smaller devices  */}
+                                        {showOverlay && isSmallerScreen && <div className="absolute flex-center inset-0 w-full h-full  transition-all duration-700 ease-in-out bg-black/40 ">
+                                            <a href={item.map_link} target="_blank" rel="noopener noreferrer">
+                                                <FaMapMarkerAlt className="text-3xl text-white" />
+                                            </a>
+                                        </div>}
                                     </div>
 
 

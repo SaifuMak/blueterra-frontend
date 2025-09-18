@@ -261,14 +261,15 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
             ) : (
                 <div className="w-full  text-dark-28 pl-2 mt-2 ">
                     {daysData?.[currentCollection]?.temperature && <div className=" flex ">
+                                                <div className=" lg:mt-0.5 mr-1 lg:mr-2 mt-1">
+                            <img src="/Icons/weather.png" alt="cloud" className=" object-cover size-5 lg:size-7" />
+                        </div>
                         <p className="xl:text-2xl lg:text-xl ">
                             {daysData?.[currentCollection]?.temperature ? daysData?.[currentCollection]?.temperature : '0'}
 
                             <span className="relative -top-1 text-lg lg:text-2xl">°</span>C
                         </p>
-                        <div className="ml-2 lg:mt-0.5  mt-1">
-                            <img src="/Icons/weather.png" alt="cloud" className=" object-cover size-5 lg:size-7" />
-                        </div>
+
                     </div>}
 
                     {daysData?.[currentCollection]?.temperature && <div className=" flex space-x-6 text-sm items-center font-normal">

@@ -9,7 +9,6 @@ import useClickOutside from '@/app/hooks/useClickOutside';
 import { BsQuestionLg } from "react-icons/bs";
 
 
-
 export default function TravelInfo({ icon, title, subtitle, additionalInformation }) {
 
     const [isMobileInfoOpen, setIsMobileInfoOpen] = useState(false);
@@ -61,7 +60,9 @@ export default function TravelInfo({ icon, title, subtitle, additionalInformatio
                         </div>
 
                         <div className="flex peer cursor-pointer lg:hidden" >
-                            <button onClick={() => setIsMobileInfoOpen(true)} className="  ml-2  mt-1 shrink-0  size-5 flex-center  bg-sky-blue-dark font-light rounded-full text-sm text-white"><BsQuestionLg /> </button>
+                            {/* <button onClick={() => setIsMobileInfoOpen(true)} className="  ml-2  mt-1 shrink-0  size-5 flex-center  bg-sky-blue-dark font-light rounded-full text-sm text-white"><MdInfoOutline /> </button> */}
+                            <button onClick={() => setIsMobileInfoOpen(true)} className=" ml-2"><MdInfoOutline className=' text-dark-28 shrink-0 text-lg' /> </button>
+
                         </div>
 
 
