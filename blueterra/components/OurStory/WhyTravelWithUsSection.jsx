@@ -24,8 +24,8 @@ export default function WhyTravelWithUsSection() {
 
 
     return (
-        <div className=" w-full h-full px-3 md:px-10  flex-center bg-white  overflow-hidden  relative" >
-            <div ref={backgroundImageContainer} className=" w-full rounded-4xl flex-center my-12 md:my-20 md:py-16 py-10 xl:py-28 relative  overflow-hidden bg-cover bg-center bg-no-repeat  border " style={{
+        <div className=" w-full h-full px-3 md:px-10 pb-10 lg:pb-16   flex-center bg-white  overflow-hidden  relative" >
+            <div ref={backgroundImageContainer} className=" w-full rounded-4xl flex-center  md:py-16 py-10 xl:py-28 relative  overflow-hidden bg-cover bg-center bg-no-repeat  border " style={{
                 backgroundImage: "url('/images/our-story/why-travel.jpg')",
             }}>
                 <div className="absolute inset-0 rounded-4xl bg-[#0E518199]" />

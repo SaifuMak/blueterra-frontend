@@ -10,7 +10,7 @@ export default function PlanWithblueterra({setFormOpen}) {
     const buttonRef = useGsapFadeIn()
 
     return (
-        <div className="  relative min-h-[45vh] z-10 2xl:min-h-[50vh]">
+        <div className="  relative min-h-[45vh]  z-10 2xl:min-h-[50vh]">
             <div
                 className=" absolute inset-0   bg-cover bg-center z-0"
                 style={{ backgroundImage: "url('/images/our-story/yellow-banner.png')" }}

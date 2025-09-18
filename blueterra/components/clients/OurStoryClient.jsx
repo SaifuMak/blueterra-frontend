@@ -29,7 +29,7 @@ export default function OurStoryClient() {
             <SmoothScroll>
                 <Navbar />
 
-                <div className={`${rubik.className}  w-full h-full `}>
+                <div className={`${rubik.className}   w-full h-full `}>
 
                     {/* Section containing  3 cards  height for 3 cards*/}
                     <ThreeCardSection />
