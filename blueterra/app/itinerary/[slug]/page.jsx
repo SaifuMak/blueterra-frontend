@@ -4,10 +4,10 @@ import ItineraryViewClient from "@/components/clients/ItineraryViewClient";
 
 
 export async function generateMetadata({ params }) {
-    const { id } = await params;
+    const { slug } = await params;
 
     try {
-        const response = await AXIOS_INSTANCE.get(`itinerary-meta-details/${id}`, {
+        const response = await AXIOS_INSTANCE.get(`itinerary-meta-details/${slug}`, {
             cache: "no-store", // prevent stale SEO
         });
 
@@ -46,9 +46,9 @@ export async function generateMetadata({ params }) {
 
 export default async function ItineraryView({ params }) {
 
-    const { id } = await params;
+    const { slug } = await params;
 
-    if (!id) {
+    if (!slug) {
         return (
             <div className="  h-screen w-full">Loading</div>
         )
@@ -56,7 +56,7 @@ export default async function ItineraryView({ params }) {
 
     return (
 
-        <ItineraryViewClient id={id} />
+        <ItineraryViewClient slug={slug} />
     )
 }
 

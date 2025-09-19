@@ -38,6 +38,8 @@ export default function EditItinerary() {
     const [isLoading, setIsLoading] = useState(true)
 
     const [title, setTitle] = useState('');
+    const [slug, setSlug] = useState('')
+
     const [locationTitle, setLocationTitle] = useState('');
     const [description, setDescription] = useState('');
     const [color, setColor] = useState("#3FD896");
@@ -85,6 +87,8 @@ export default function EditItinerary() {
                 const data = response?.data
                 console.log(data)
                 setTitle(data.title || '');
+                setSlug(data.slug || '');
+
                 setLocationTitle(data.location_title || '');
                 setDescription(data.description || '');
                 setColor(data.color || "#3FD896");
@@ -186,7 +190,7 @@ export default function EditItinerary() {
 
         }
         catch (e) {
-            toast.error('something went wrong')
+            e?.response?.data?.error ? toast.error(e?.response?.data?.error) : toast.error('something went wrong')
         }
         finally {
             setTimeout(() => {
@@ -206,7 +210,7 @@ export default function EditItinerary() {
 
         const isPublish = e.nativeEvent.submitter.value === "publish";
 
-         // if the status is draft  make the min requirement for title 
+        // if the status is draft  make the min requirement for title 
         if (!isPublish && title.trim() === '') {
             toast.error("Title is mandatory. Please fill it.");
             return
@@ -265,6 +269,7 @@ export default function EditItinerary() {
         formData.delete("is_published");
 
         formData.append("title", title);
+        formData.append("slug", slug);
         formData.append("location_title", locationTitle);
         formData.append("description", description);
         formData.append("color", color);
@@ -291,7 +296,7 @@ export default function EditItinerary() {
             formData.append(`days[${index}][id]`, day.id);
             formData.append(`days[${index}][title]`, day.title);
             formData.append(`days[${index}][description]`, day.description);
-             formData.append(`days[${index}][coordinates]`, day.coordinates);
+            formData.append(`days[${index}][coordinates]`, day.coordinates);
 
             if (day.image) {
                 formData.append(`days[${index}][image]`, day.image); // file stays intact
@@ -405,6 +410,8 @@ export default function EditItinerary() {
                                     textAreaStyle={textAreaStyle}
                                     title={title}
                                     setTitle={setTitle}
+                                    slug={slug}
+                                    setSlug={setSlug}
                                     locationTitle={locationTitle}
                                     setLocationTitle={setLocationTitle}
                                     description={description}

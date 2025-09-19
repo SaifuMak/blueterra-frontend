@@ -15,7 +15,7 @@ export default function DestinationCards({ itineraryData }) {
 
             {itineraryData.map((destination, index) => (
                 // <div key={index} className=" xl:w-[600px] lg:w-[400px] lg:h-[320px] w-[300px] h-auto shadow-xl shadow-stone-400  xl:h-[500px] rounded-lg bg-white  text-black">
-                <Link key={index} href={`/itinerary-view/${destination.id}`}>
+                <Link key={index} href={`/itinerary/${destination.slug}`}>
                     <div className=" cursor-pointer group shadow-[0_4px_20px_rgba(0,0,0,0.09)] w-full xl:min-h-[480px]   lg:min-h-[480px] h-full   rounded-lg bg-white text-dark-28">
 
                         <div className="relative lg:h-7/12 overflow-hidden rounded-t-lg "> {/* Set your dimensions here */}

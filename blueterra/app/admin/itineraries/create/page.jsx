@@ -31,6 +31,7 @@ export default function CreateItinerary() {
     const [isLoading, setIsLoading] = useState(false)
 
     const [title, setTitle] = useState('')
+    const [slug, setSlug] = useState('')
     const [locationTitle, setLocationTitle] = useState('')
     const [generalRating, setGeneralRating] = useState(5)
 
@@ -63,6 +64,7 @@ export default function CreateItinerary() {
 
     const handleReset = () => {
         setTitle('');
+        setSlug('')
         setLocationTitle('');
         setDescription('');
         setColor('#3FD896');
@@ -117,8 +119,8 @@ export default function CreateItinerary() {
 
         }
         catch (e) {
-            console.log(e)
-            toast.error('something went wrong')
+            e?.response?.data?.error ? toast.error(e?.response?.data?.error) : toast.error('something went wrong')
+
         }
         finally {
             setIsLoading(false)
@@ -188,12 +190,12 @@ export default function CreateItinerary() {
         }
 
 
-
         setIsLoading(true)
         const formData = new FormData();
         formData.delete("is_published");
 
         formData.append("title", title);
+        formData.append("slug", slug);
         formData.append("location_title", locationTitle);
         formData.append("description", description);
         formData.append("generalRating", generalRating);
@@ -336,6 +338,8 @@ export default function CreateItinerary() {
                             <BannerSection
                                 textAreaStyle={textAreaStyle}
                                 title={title}
+                                slug={slug}
+                                setSlug={setSlug}
                                 setTitle={setTitle}
                                 locationTitle={locationTitle}
                                 setLocationTitle={setLocationTitle}
@@ -347,7 +351,6 @@ export default function CreateItinerary() {
                                 setSelectedImageFile={setSelectedBannerImageFile}
                                 generalRating={generalRating}
                                 setGeneralRating={setGeneralRating}
-
                             />
 
                             <DaysSection

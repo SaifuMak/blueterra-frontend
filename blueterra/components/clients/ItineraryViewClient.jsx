@@ -33,11 +33,11 @@ import PlanWithUsSection from "../ItineraryView/PlanWithUsSection";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-export default function ItineraryViewClient({ id }) {
+export default function ItineraryViewClient({ slug }) {
 
     const isLargeDevice = useMediaQuery({ query: "(max-width: 2000px)" });
 
-    // const { id } = useParams();
+
     const [isLoading, setIsLoading] = useState(true)
     const [itineraryData, setItineraryData] = useState(null)
 
@@ -80,11 +80,11 @@ export default function ItineraryViewClient({ id }) {
 
 
     useEffect(() => {
-        if (!id) return;
+        if (!slug) return;
 
         const fetchItinerary = async () => {
             try {
-                const response = await AXIOS_INSTANCE.get(`itinerary-details/${id}`);
+                const response = await AXIOS_INSTANCE.get(`itinerary-details/${slug}`);
                 setItineraryData(response.data)
 
             } catch (error) {
@@ -95,8 +95,7 @@ export default function ItineraryViewClient({ id }) {
         };
 
         fetchItinerary();
-    }, [id]);
-
+    }, [slug]);
 
 
     return (
