@@ -44,6 +44,8 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
 
         api.on("select", () => {
             setCurrent(api.selectedScrollSnap() + 1)
+        setShowOverlay(false)
+
         })
 
     }, [api])
