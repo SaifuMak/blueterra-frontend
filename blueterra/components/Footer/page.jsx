@@ -65,7 +65,7 @@ export default function Footer() {
                             </a>
 
                             <a href="https://www.linkedin.com/company/myblueterra/" target="_blank" rel="noopener noreferrer">
-                                <img src="/Icons/linkedin.svg" alt="LinkedIn" className={IconsStyle} />
+                                <img src="/Icons/link.png" alt="LinkedIn" className={IconsStyle} />
                             </a>
 
                             <a href="https://www.tiktok.com/@blueterra_travel?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer">
