@@ -430,8 +430,6 @@ body {
 }
 
 
-
-
 .perspective {
   perspective: 1000px;
 }
@@ -447,8 +445,6 @@ body {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
-
-
 
 
 /* Adjust the tooltip arrow color */
