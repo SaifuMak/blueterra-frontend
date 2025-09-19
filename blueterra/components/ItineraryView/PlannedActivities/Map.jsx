@@ -27,12 +27,8 @@ export default function Map({ expandCards, index, itineraryData }) {
         const updateInteraction = (e) => {
             if (e.touches.length === 2) {
                 // alert('entered-')
-                // ✅ enable map interaction
-                el.removeAttribute("data-lenis-prevent");
 
             } else {
-                // 🚫 disable map interaction, let Lenis scroll
-                el.setAttribute("data-lenis-prevent", "true");
             }
         };
 

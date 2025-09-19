@@ -192,7 +192,7 @@ export default function MapDemo({ expandCards, itineraryData }) {
                 dragging={true}
                 touchZoom={true}
                 tap={false}
-                 gestureHandling={true}  
+                //  gestureHandling={true}  
                 className="h-full w-full rounded-2xl"
             >
                 <TileLayer
