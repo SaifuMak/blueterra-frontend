@@ -50,7 +50,7 @@ const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, i
                     <p className=" font-light mt-3 text-lg">{description}</p>
                 </div>
 
-                <div className=" vertically-animated-element space-y-2 text-sm font-light px-2 mt-5">
+                <div className=" vertically-animated-element leading-6 space-y-2 text-sm font-light px-2 mt-5">
                     <p className="">{firstPara}</p>
                     <p className="">{secondPara}</p>
                 </div>
