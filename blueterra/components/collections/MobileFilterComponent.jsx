@@ -28,7 +28,6 @@ export default function MobileFilterComponent({
             <AccordionItem value={name}>
                 <AccordionTrigger className={`capitalize  border  flex justify-between items-center px-4 py-2  `}>
                     {name}
-
                 </AccordionTrigger>
 
                 <AccordionContent className="bg-white flex flex-wrap gap-4 mt-3 px-4 py-2">

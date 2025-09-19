@@ -4,11 +4,70 @@ import Link from "next/link"
 import { rubik } from "@/app/fonts"
 import ReviewWidget from "./ReviewWidget"
 import ChatWidget from "./ChatWidget"
+import Accordian from "./Accordian"
 
 export default function Footer() {
 
     const IconsStyle = 'w-6 h-6 cursor-pointer shrink-0 '
     const RatingStarStyle = 'md:w-6 md:h-6 w-4 h-4 '
+
+    const footerLinksForMobile = [
+        {
+            name: "Information",
+            options: [
+                { label: "About us", link: null },
+                { label: "Privacy Policy", link: "/privacy-policy" },
+                { label: "Terms & conditions", link: "/terms-and-condition" },
+                { label: "Careers", link: "mailto:connect@myblueterra.com" }
+            ]
+        },
+        {
+            name: "Quick Links",
+            options: [
+                { label: "Home", link: "/" },
+                { label: "Our Story", link: "/our-story" },
+                { label: "The Blueterra Collection", link: "/collections" },
+                { label: "Destinations", link: "/destinations" },
+                { label: "Cruise", link: "#" },
+                { label: "MICE", link: "/corporate-mice" }
+            ]
+        },
+        {
+            name: "Destinations",
+            options: [
+                { label: "United Arab Emirates", link: null },
+                { label: "Kenya", link: null },
+                { label: "South Africa", link: null },
+                { label: "Norway", link: null },
+                { label: "Iceland", link: null }
+            ]
+        },
+        {
+            name: "Featured",
+            options: [
+                { label: "Cruise Deals", link: null },
+                { label: "Signature Journey", link: null },
+                { label: "Explore by Landscape", link: null },
+                { label: "Adventures in Motions", link: null },
+                { label: "Mindfull Escapes", link: null }
+            ]
+        },
+        {
+            name: "Contact",
+            options: [
+                { label: "+971 58 541 2123", link: "tel:+971585412123", icon: "/Icons/phone.svg" },
+                { label: "connect@myblueterra.com", link: "mailto:connect@myblueterra.com", icon: "/Icons/email.svg" },
+                {
+                    label: "Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E.",
+                    link: "https://www.google.com/maps/search/?api=1&query=Meydan+Grandstand,+6th+floor,+Meydan+Road,+Nad+Al+Sheba,+Dubai,+UAE",
+                    icon: "/Icons/map.svg"
+                },
+                { label: "Monday to Friday: 9:00 AM – 5:30 PM GST (UAE)", link: null, icon: "/Icons/clock.svg" }
+            ]
+        }
+    ];
+
+
 
     const footerLinks = {
         "Information": {
@@ -34,7 +93,6 @@ export default function Footer() {
         },
         "Featured": {
             "Cruise Deals": "#",
-
             "Signature Journey": "#",
             "Explore by Landscape": "#",
             "Adventures in Motions": "#",
@@ -118,7 +176,7 @@ export default function Footer() {
                             Trusted partners, seamless planning, and stories you’ll carry long after the journey ends.</p>
                     </div>
 
-                    <div className=" flex max-md:flex-col  2xl:space-x-10 xl:space-x-10 space-x-5 lg:ml-5 xl:ml-10  ">
+                    <div className=" flex max-md:flex-col  2xl:space-x-10 xl:space-x-10 space-x-5 lg:ml-5 xl:ml-10 max-md:hidden  ">
                         {Object.entries(footerLinks).map(([section, links]) => (
                             <div key={section} className=" flex flex-col ">
                                 <h6 className=" text-lg  font-normal md:mb-5  max-md:mt-5 max-md:mb-2">{section}</h6>
@@ -180,6 +238,16 @@ export default function Footer() {
 
                         </div>
 
+                    </div>
+
+                    <div className=" w-full md:hidden  ">
+                        {footerLinksForMobile.map((section, index) => (
+                            <Accordian
+                                key={index}
+                                name={section.name}
+                                options={section.options}
+                            />
+                        ))}
                     </div>
 
                 </div>

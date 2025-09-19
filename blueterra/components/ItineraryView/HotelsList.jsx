@@ -31,8 +31,6 @@ export default function HotelsList({ HotelsData, setCurrent, setCount }) {
     })
 
 
-
-
     useEffect(() => {
 
         if (!api) {

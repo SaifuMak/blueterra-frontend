@@ -342,7 +342,7 @@ export default function CollectionsClient() {
                 <LoaderIcon />
               </div>
               }
-            
+
               {
                 itineraryData && itineraryData.length > 0 ? (
                   <DestinationCards itineraryData={itineraryData} />
