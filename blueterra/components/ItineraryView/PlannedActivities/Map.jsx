@@ -24,7 +24,7 @@ export default function Map({ expandCards, index, itineraryData }) {
 
         const el = mapRef.current;
 
-        const handleTouchStart = (e) => {
+        const updateInteraction = (e) => {
             if (e.touches.length === 2) {
                 // ✅ enable map interaction
                 el.classList.remove("pointer-events-none");
@@ -36,12 +36,15 @@ export default function Map({ expandCards, index, itineraryData }) {
             }
         };
 
-        el.addEventListener("touchstart", handleTouchStart);
+        el.addEventListener("touchstart", updateInteraction);
+        el.addEventListener("touchend", updateInteraction);
 
         return () => {
-            el.removeEventListener("touchstart", handleTouchStart);
+            el.removeEventListener("touchstart", updateInteraction);
+            el.removeEventListener("touchend", updateInteraction);
         };
     }, [isMobile]);
+
 
 
     return (
