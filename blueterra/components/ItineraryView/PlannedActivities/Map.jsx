@@ -26,12 +26,13 @@ export default function Map({ expandCards, index, itineraryData }) {
 
         const updateInteraction = (e) => {
             if (e.touches.length === 2) {
-                alert('entered-')
+                // alert('entered-')
                 // ✅ enable map interaction
-                el.setAttribute("data-lenis-prevent", "true");
+                el.removeAttribute("data-lenis-prevent");
+
             } else {
                 // 🚫 disable map interaction, let Lenis scroll
-                el.removeAttribute("data-lenis-prevent");
+                el.setAttribute("data-lenis-prevent", "true");
             }
         };
 
@@ -49,7 +50,7 @@ export default function Map({ expandCards, index, itineraryData }) {
     return (
         // <div onClick={()=>expandCards(index)} className=" relative rounded-sm  overflow-hidden cursor-pointer w-full h-full">
         // <div    ref={mapRef} className=" relative   rounded-2xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " {...(isMobile ? { 'data-lenis-prevent': true } : {})}>
-        <div ref={mapRef} className=" relative   rounded-2xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  ">
+        <div ref={mapRef} className=" relative   rounded-2xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " {...(isMobile ? { 'data-lenis-prevent': true } : {})}>
 
             <MapClient expandCards={expandCards} itineraryData={itineraryData} />
         </div>
