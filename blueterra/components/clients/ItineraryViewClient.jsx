@@ -31,6 +31,8 @@ import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
 import { useMediaQuery } from 'react-responsive'
 import PlanWithUsSection from "../ItineraryView/PlanWithUsSection";
 import useClickOutside from "@/app/hooks/useClickOutside";
+import useGsapFadeIn from "@/app/hooks/Gsap/useGsapFadeIn";
+
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -46,9 +48,10 @@ export default function ItineraryViewClient({ slug }) {
 
     const [isToolTipVisibleOnClick, setIsToolTipVisibleOnClick] = useState(false)
 
-    const ToolTipOnLargerScreenRef = useClickOutside(()=>setIsToolTipVisibleOnClick(false))
+    const ToolTipOnLargerScreenRef = useClickOutside(() => setIsToolTipVisibleOnClick(false))
 
 
+    const hotelGsapRef = useGsapFadeIn(0, { start: "top 95%" })
 
     // zoho form 
     const [formOpen, setFormOpen] = useState(false);
@@ -160,13 +163,13 @@ export default function ItineraryViewClient({ slug }) {
 
                             <div className=" xl:w-10/12 w-11/12 mb-24 ">
                                 <div ref={ToolTipOnLargerScreenRef} className="relative flex items-center w-full  group ">
-                                    <div onClick={()=>setIsToolTipVisibleOnClick(!isToolTipVisibleOnClick)} className="flex items-center peer cursor-pointer">
+                                    <div onClick={() => setIsToolTipVisibleOnClick(!isToolTipVisibleOnClick)} className="flex items-center peer cursor-pointer">
                                         <p>Inclusions and Exclusions</p>
                                         <MdInfoOutline className="ml-2" />
                                     </div>
 
                                     <div className={`absolute   max-w-6/12  top-5 min-h-[300px] lg:min-w-[600px] xl:min-w-[700px] 2xl:min-w-[800px] z-[999] ${isToolTipVisibleOnClick ? 'opacity-100 visible' : 'opacity-0 invisible'}  peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300`}>
-                                     {/* <div className="absolute   max-w-6/12  top-5 min-h-[300px] lg:min-w-[600px] xl:min-w-[700px] 2xl:min-w-[800px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300"> */}
+                                        {/* <div className="absolute   max-w-6/12  top-5 min-h-[300px] lg:min-w-[600px] xl:min-w-[700px] 2xl:min-w-[800px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300"> */}
 
                                         <div className=" relative mt-4 bg-white w-full  px-6 !z-[1999] rounded-xl  shadow-[0_0_20px_rgba(0,0,0,0.15)]   ">
                                             <IoMdArrowDropup className=" text-4xl  text-white absolute left-1/4 -translate-x-1/4 -top-5 " />
@@ -216,14 +219,12 @@ export default function ItineraryViewClient({ slug }) {
 
                                 />
                             </div>
-
                         </div>
 
 
-                        <div className=" w-full   min-h-[100vh] max-sm:pb-12 pb-20 overflow-hidden bg-white flex justify-center px-4  lg:px-7">
+                        <div className=" w-full  bg-white    max-sm:pb-12 pb-20 overflow-hidden flex justify-center px-4  lg:px-7">
                             {/* <div className=" lg:w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige"> */}
                             <div className="  lg:w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-sky-blue-light">
-
                                 <HotelsView data={itineraryData?.hotels} />
                             </div>
                         </div>
