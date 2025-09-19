@@ -129,11 +129,11 @@ export default function ItineraryViewClient({ slug }) {
                                 <div className=" text-white z-30  flex flex-col mt-24  md:mt-32 mb-10 justify-between   text-center w-full h-full   ">
 
                                     <div className={`${playfair.className}`}>
-                                        <p className=" text-[45px] md:text-[80px] 2xl:text-[100px] opacity-0 vertically-animate-element-banner font-medium">{itineraryData.title}</p>
-                                        <p className=" text-white/30 opacity-0 vertically-animate-element-banner font-medium h-fit -mt-6  md:-mt-16 lg:-mt-20  2xl:-mt-28 text-[70px] md:text-[150px] lg:text-[200px] 2xl:text-[250px]">{itineraryData.location_title}</p>
+                                        <p className=" text-[45px] md:text-[80px] max-md:leading-14 2xl:text-[100px] opacity-0 vertically-animate-element-banner font-medium">{itineraryData.title}</p>
+                                        <p className=" text-white/30 opacity-0 vertically-animate-element-banner leading-none font-medium h-fit lg:-mt-7  2xl:-mt-8 text-[70px] md:text-[150px] lg:text-[200px] 2xl:text-[250px]">{itineraryData.location_title}</p>
                                     </div>
 
-                                    <div className=" space-y-5  text-center flex font-light flex-col items-center">
+                                    <div className=" space-y-5  text-center flex max-2xl:mt-5 font-light flex-col items-center">
                                         {/* <p className=" text-[25px] opacity-0 vertically-animate-element leading-9 w-5/12">An extensively crafted schedule that outlines every aspect of your journey, including day-by-day activities, carefully selected destinations, accommodations, transportation details, and unique experiences.</p>
                                     <p className=" w-4/12 text-xl opacity-0 vertically-animate-element leading-9">A comprehensive and meticulously curated document that presents a day-by-day breakdown of your travel journey, featuring thoughtfully.</p> */}
                                         <p className=" 2xl:w-8/12 xl:w-9/12 md:w-9/12 w-11/12 text-sm md:text-lg xl:text-xl 2xl:text-[22px] opacity-0 vertically-animate-element-banner 2xl:my-10 font-light leading-6 md:leading-7 xl:leading-9">{itineraryData.description}</p>

@@ -175,7 +175,7 @@ export default function MapDemo({ expandCards, itineraryData }) {
 
                     <div className="flex flex-col items-center space-y-2">
                         <div className="size-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <p className="text-white">Fetching best routes...</p>
+                        <p className="text-white">Fetching routes...</p>
                     </div>
                 </div>
             )}
