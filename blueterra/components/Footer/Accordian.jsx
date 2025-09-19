@@ -21,7 +21,7 @@ export default function Accordian({
             className="w-full"
         >
             <AccordionItem value={name}>
-                <AccordionTrigger className={`capitalize  font-normal    flex justify-between items-center py-3  `}>
+                <AccordionTrigger className={`capitalize  font-normal text-base    flex justify-between items-center py-3  `}>
                     {name}
                 </AccordionTrigger>
 
