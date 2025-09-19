@@ -30,6 +30,7 @@ import PriceInclusionsDummy from "@/components/generalComponents/PriceInclusions
 import { MdInfoOutline, IoMdArrowDropup } from "@/components/reactIcons"
 import { useMediaQuery } from 'react-responsive'
 import PlanWithUsSection from "../ItineraryView/PlanWithUsSection";
+import useClickOutside from "@/app/hooks/useClickOutside";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -42,6 +43,10 @@ export default function ItineraryViewClient({ slug }) {
     const [itineraryData, setItineraryData] = useState(null)
 
     const isTablet = useIsTablet()
+
+    const [isToolTipVisibleOnClick, setIsToolTipVisibleOnClick] = useState(false)
+
+    const ToolTipOnLargerScreenRef = useClickOutside(()=>setIsToolTipVisibleOnClick(false))
 
 
 
@@ -154,13 +159,14 @@ export default function ItineraryViewClient({ slug }) {
                             <PlannedActivities itineraryData={itineraryData} setIsLenisAvailable={setIsLenisAvailable} />
 
                             <div className=" xl:w-10/12 w-11/12 mb-24 ">
-                                <div className="relative flex  items-center w-full  group ">
-                                    <div className="flex items-center peer cursor-pointer">
+                                <div ref={ToolTipOnLargerScreenRef} className="relative flex items-center w-full  group ">
+                                    <div onClick={()=>setIsToolTipVisibleOnClick(!isToolTipVisibleOnClick)} className="flex items-center peer cursor-pointer">
                                         <p>Inclusions and Exclusions</p>
                                         <MdInfoOutline className="ml-2" />
                                     </div>
 
-                                    <div className="absolute   max-w-6/12  top-5 min-h-[300px] lg:min-w-[600px] xl:min-w-[700px] 2xl:min-w-[800px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300">
+                                    <div className={`absolute   max-w-6/12  top-5 min-h-[300px] lg:min-w-[600px] xl:min-w-[700px] 2xl:min-w-[800px] z-[999] ${isToolTipVisibleOnClick ? 'opacity-100 visible' : 'opacity-0 invisible'}  peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300`}>
+                                     {/* <div className="absolute   max-w-6/12  top-5 min-h-[300px] lg:min-w-[600px] xl:min-w-[700px] 2xl:min-w-[800px] z-[999] opacity-0 invisible peer-hover:opacity-100 peer-hover:visible hover:opacity-100 hover:visible transition-all duration-300"> */}
 
                                         <div className=" relative mt-4 bg-white w-full  px-6 !z-[1999] rounded-xl  shadow-[0_0_20px_rgba(0,0,0,0.15)]   ">
                                             <IoMdArrowDropup className=" text-4xl  text-white absolute left-1/4 -translate-x-1/4 -top-5 " />

@@ -8,13 +8,14 @@ import { useLenis } from '../SmoothScroll';
 import useClickOutside from '@/app/hooks/useClickOutside';
 import { BsQuestionLg } from "react-icons/bs";
 
-
 export default function TravelInfo({ icon, title, subtitle, additionalInformation }) {
 
     const [isMobileInfoOpen, setIsMobileInfoOpen] = useState(false);
     const lenis = useLenis();
     const InfoRef = useClickOutside(() => setIsMobileInfoOpen(false))
+    const [isToolTipVisibleOnClick, setIsToolTipVisibleOnClick] = useState(false)
 
+    const ToolTipOnLargerScreenRef = useClickOutside(() => setIsToolTipVisibleOnClick(false))
 
 
     useEffect(() => {
@@ -55,7 +56,7 @@ export default function TravelInfo({ icon, title, subtitle, additionalInformatio
 
                     {additionalInformation && <div className="relative  flex w-full ">
 
-                        <div className="flex peer cursor-pointer max-lg:hidden ">
+                        <div ref={ToolTipOnLargerScreenRef} onClick={() => setIsToolTipVisibleOnClick(!isToolTipVisibleOnClick)} className="flex peer cursor-pointer max-lg:hidden ">
                             <MdInfoOutline className="mt-3 ml-2  text-dark-28" />
                         </div>
 
@@ -66,9 +67,8 @@ export default function TravelInfo({ icon, title, subtitle, additionalInformatio
                         </div>
 
 
-                        <div className="absolute max-sm:hidden top-8 left-4/4  -translate-x-3/4 rounded-2xl  min-h-[200px] max-w-[600px] min-w-[450px] z-[999] hidden 
-                                        peer-hover:block group-hover:block hover:block
-                                        transition-all duration-300">
+                        <div className={`absolute max-sm:hidden top-8 left-4/4  -translate-x-3/4 rounded-2xl  min-h-[200px] max-w-[600px] min-w-[450px] z-[999]
+                         ${isToolTipVisibleOnClick ? "visible" : "invisible"} invisible peer-hover:visible group-hover:visible hover:visible transition-all duration-300`}>
 
                             <div className="relative mt-6  bg-white  !z-[1999] rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.15)]  ">
                                 <IoMdArrowDropup className="text-4xl text-white absolute  left-1/2 -translate-x-1/2 -top-5" />

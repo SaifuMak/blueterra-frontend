@@ -11,18 +11,24 @@ export default function PriceInclusionsDummy({ itineraryData }) {
         query: '(max-width: 1024px)'
     })
 
-    const { containerRef, hasScrollbar } = useHasScrollbar([])
+    // const { containerRef, hasScrollbar } = useHasScrollbar([])
+
+    const { containerRef: includesRef, hasScrollbar: includesHasScrollbar } = useHasScrollbar([]);
+    const { containerRef: excludesRef, hasScrollbar: excludesHasScrollbar } = useHasScrollbar([]);
+
 
 
 
     return (
         <div className={`w-full  mx-auto px-4 py-8  ${rubik.className} `}>
             <p className="mb-4 text-gray-800">As detailed in the itinerary:</p>
-            <div className="grid text-sm font-light grid-cols-1 lg:grid-cols-2 lg:gap-10  max-lg:max-h-[400px] max-lg:overflow-y-auto " {...(isSmallerScreen ? { 'data-lenis-prevent': true } : {})}>
+            {/* <div className="grid text-sm font-light grid-cols-1 md:grid-cols-2 gap-10 "> */}
+                {/* <div className="grid text-sm font-light grid-cols-1 lg:grid-cols-2 lg:gap-10  max-lg:max-h-[400px] max-lg:overflow-y-auto " > */}
+                <div className="grid text-sm font-light grid-cols-1 lg:grid-cols-2 gap-10  max-lg:max-h-[400px] max-lg:overflow-y-auto " {...(isSmallerScreen ? { 'data-lenis-prevent': true } : {})}>
 
                 <div className='  '>
-                    <h3 className=" font-medium capitalize mb-4 ">Includes</h3>
-                    <ul ref={containerRef} className="space-y-3 lg:max-h-44 pb-10 lg:overflow-y-auto " {...(hasScrollbar && !isSmallerScreen ? { 'data-lenis-prevent': true } : {})}>
+                    {includesRef && <h3 className=" font-medium capitalize mb-4 ">Includes</h3>}
+                    <ul ref={includesRef} className="space-y-3 lg:max-h-44 pb-10 lg:overflow-y-auto " {...(includesHasScrollbar && !isSmallerScreen ? { 'data-lenis-prevent': true } : {})}>
                         {itineraryData?.package_inclusions?.map((item, idx) => (
                             <li
                                 key={idx}
@@ -43,7 +49,7 @@ export default function PriceInclusionsDummy({ itineraryData }) {
 
                 <div className=''>
                     <h3 className="font-medium  mb-4">Excludes</h3>
-                    <ul ref={containerRef} className="space-y-3 lg:max-h-44 pb-10 lg:overflow-y-auto " {...(hasScrollbar && !isSmallerScreen ? { 'data-lenis-prevent': true } : {})}>
+                    <ul ref={excludesRef} className="space-y-3 lg:max-h-44 pb-10 lg:overflow-y-auto " {...(excludesHasScrollbar && !isSmallerScreen ? { 'data-lenis-prevent': true } : {})}>
                         {itineraryData?.package_exclusions?.map((item, idx) => (
                             <li key={idx} className="flex items-start  gap-2">
                                 <FaTimes className="text-red-600 mt-1 shrink-0" />
