@@ -23,6 +23,7 @@ export default function Accordian({
             <AccordionItem value={name}>
                 <AccordionTrigger className={`capitalize  font-normal text-base    flex justify-between items-center py-3  `}>
                     {name}
+                    
                 </AccordionTrigger>
 
                 <AccordionContent className=" flex flex-col   ">
