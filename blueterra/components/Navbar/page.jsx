@@ -43,7 +43,7 @@ export default function Navbar({ isfixed = false, onNavClick }) {
       const currentScrollY = window.scrollY;
       const diff = lastScrollY.current - currentScrollY; // positive if scrolling up
 
-      if (window.scrollY > lastScrollY.current) {
+      if (window.scrollY > lastScrollY.current + 15) {
         // scrolling down → hide navbar
         gsap.to(navRef.current, {
           y: isMenuOpened ? "0%" : "-100%",
