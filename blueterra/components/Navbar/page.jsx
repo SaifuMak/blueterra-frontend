@@ -16,8 +16,10 @@ export default function Navbar({ isfixed = false, onNavClick }) {
 
   const pathname = usePathname()
   const navRef = useRef(null);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  // const [lastScrollY, setLastScrollY] = useState(0);
   const [formOpen, setFormOpen] = useState(false);
+
+   const lastScrollY = useRef(0);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false)
 
@@ -38,7 +40,10 @@ export default function Navbar({ isfixed = false, onNavClick }) {
       return
     }
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
+      const currentScrollY = window.scrollY;
+      const diff = lastScrollY.current - currentScrollY; // positive if scrolling up
+
+      if (window.scrollY > lastScrollY.current) {
         // scrolling down → hide navbar
         gsap.to(navRef.current, {
           y: isMenuOpened ? "0%" : "-100%",
@@ -46,7 +51,7 @@ export default function Navbar({ isfixed = false, onNavClick }) {
           duration: 0.8,
           ease: "power3.out",
         });
-      } else {
+      } else if (diff > 15) {
         // scrolling up → show navbar
         gsap.to(navRef.current, {
           y: "0%",
@@ -54,12 +59,13 @@ export default function Navbar({ isfixed = false, onNavClick }) {
           ease: "power3.out",
         });
       }
-      setLastScrollY(window.scrollY);
+      // setLastScrollY(window.scrollY);
+      lastScrollY.current = window.scrollY
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
 
 

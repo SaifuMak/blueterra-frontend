@@ -222,7 +222,7 @@ export default function ItineraryViewClient({ slug }) {
                         </div>
 
 
-                        <div className=" w-full  bg-white    max-sm:pb-12 pb-20 overflow-hidden flex justify-center px-4  lg:px-7">
+                        <div className=" w-full  bg-white    max-sm:pb-12 pb-20 2xl:pb-32 overflow-hidden flex justify-center px-4  lg:px-7">
                             {/* <div className=" lg:w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-light-beige"> */}
                             <div className="  lg:w-11/12 flex-center rounded-4xl relative h-full overflow-hidden bg-sky-blue-light">
                                 <HotelsView data={itineraryData?.hotels} />
