@@ -19,31 +19,30 @@ export default function Map({ expandCards, index, itineraryData }) {
         query: '(max-width: 844px)'
     })
 
-    // useEffect(() => {
-    //     if (!isMobile || !mapRef.current) return;
+    useEffect(() => {
+        if (!isMobile || !mapRef.current) return;
 
-    //     const el = mapRef.current;
+        const el = mapRef.current;
 
-    //     const updateInteraction = (e) => {
-    //         if (e.touches.length === 2) {
-    //             // ✅ enable map interaction
-    //             el.classList.remove("pointer-events-none");
-    //             el.setAttribute("data-lenis-prevent", "true");
-    //         } else {
-    //             // 🚫 disable map interaction, let Lenis scroll
-    //             el.classList.add("pointer-events-none");
-    //             el.removeAttribute("data-lenis-prevent");
-    //         }
-    //     };
+        const updateInteraction = (e) => {
+            if (e.touches.length === 2) {
+                alert('entered-')
+                // ✅ enable map interaction
+                el.setAttribute("data-lenis-prevent", "true");
+            } else {
+                // 🚫 disable map interaction, let Lenis scroll
+                el.removeAttribute("data-lenis-prevent");
+            }
+        };
 
-    //     el.addEventListener("touchstart", updateInteraction);
-    //     el.addEventListener("touchend", updateInteraction);
+        el.addEventListener("touchstart", updateInteraction);
+        el.addEventListener("touchend", updateInteraction);
 
-    //     return () => {
-    //         el.removeEventListener("touchstart", updateInteraction);
-    //         el.removeEventListener("touchend", updateInteraction);
-    //     };
-    // }, [isMobile]);
+        return () => {
+            el.removeEventListener("touchstart", updateInteraction);
+            el.removeEventListener("touchend", updateInteraction);
+        };
+    }, [isMobile]);
 
 
 
