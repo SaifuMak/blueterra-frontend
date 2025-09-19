@@ -31,6 +31,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function Home() {
 
   const lenis = useLenis();
+  const [hasMounted, setHasMounted] = useState(false);
 
   const isMobile = useMediaQuery({ query: "(max-width: 644px)" });
   const isMediumDevice = useMediaQuery({
@@ -185,6 +186,14 @@ export default function Home() {
   //   }, 500);
   // }, [])
 
+  // useEffect(() => {
+  //   setHasMounted(true);
+  // }, []);
+
+  // if (!hasMounted) {
+  //   return null; // or a skeleton/loader to avoid hydration mismatch
+  // }
+
   return (
 
     <SmoothScroll>
@@ -298,7 +307,7 @@ export default function Home() {
 
         </div>}
 
-        {isMobile && <div className=" md:hidden">
+        {isMobile && <div className="">
           <TestimonialsForMobile />
         </div>}
 

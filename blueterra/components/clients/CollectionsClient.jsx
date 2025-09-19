@@ -336,7 +336,7 @@ export default function CollectionsClient() {
             />}
 
 
-            <div className="grid 2xl:gap-28 relative  z-0 xl:gap-16 lg:mt-28 xl:mt-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
+            <div className="grid 2xl:gap-28 relative  z-0 xl:gap-16 lg:mt-28 xl:mt-36 md:gap-12 gap-8 md:grid-cols-2 w-10/12 xl:w-9/12 ">
 
               {isLoading && <div className="flex items-center justify-center w-full z-50  h-full  col-span-2 absolute inset-0">
                 <LoaderIcon />

@@ -72,7 +72,7 @@ function JournalSection() {
                     data={journals[0]}
                 />}
 
-                <div className=" flex flex-col h-full lg:w-1/3 w-full space-y-7  2xl:space-y-10 ">
+                <div className=" flex flex-col h-full lg:w-1/3 w-full space-y-10 md:space-y-7  2xl:space-y-10 ">
 
                     {journals?.length > 1 && <BlogCard
                         outerClass='w-full group overflow-hidden cursor-pointer lg:h-[50%] max-lg:h-[400px]  rounded-xl relative '
