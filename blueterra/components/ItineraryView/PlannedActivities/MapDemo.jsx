@@ -186,7 +186,7 @@ export default function MapDemo({ expandCards, itineraryData }) {
                 style={{ height: "100%", width: "100%" }}
                 scrollWheelZoom={false}   // avoid scroll hijacking
                 doubleClickZoom={false}
-                dragging={true}
+                // dragging={true}
                 touchZoom={true}
                 tap={false}
                 //  gestureHandling={true}  
