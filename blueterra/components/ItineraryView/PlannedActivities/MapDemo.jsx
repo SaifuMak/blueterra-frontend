@@ -187,8 +187,8 @@ export default function MapDemo({ expandCards, itineraryData }) {
                 scrollWheelZoom={false}   // avoid scroll hijacking
                 doubleClickZoom={false}
                 // dragging={true}
-                touchZoom={true}
-                tap={false}
+                // touchZoom={true}
+                // tap={false}
                 //  gestureHandling={true}  
                 className="h-full w-full rounded-2xl"
             >
