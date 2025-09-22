@@ -26,7 +26,7 @@ export default function Map({ expandCards, index, itineraryData }) {
 
         const updateInteraction = (e) => {
             if (e.touches.length === 2) {
-                // alert('entered-')
+                alert('entered-')
                 el.classList.remove("pointer-events-none");
             } 
         };
