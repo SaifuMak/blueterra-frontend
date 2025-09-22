@@ -178,7 +178,6 @@ export default function MapDemo({ expandCards, itineraryData }) {
             )}
 
 
-
             <MapContainer
                 center={[0, 0]}
                 zoom={8}
@@ -190,6 +189,7 @@ export default function MapDemo({ expandCards, itineraryData }) {
                 // touchZoom={true}
                 // tap={false}
                 //  gestureHandling={true}  
+                dragging={false}
                 className="h-full w-full rounded-2xl"
             >
                 <TileLayer
