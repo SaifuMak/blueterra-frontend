@@ -26,7 +26,6 @@ export default function Map({ expandCards, index, itineraryData }) {
 
         const updateInteraction = (e) => {
             if (e.touches.length === 2) {
-                alert('entered-')
                 el.classList.remove("pointer-events-none");
             } 
         };
@@ -45,7 +44,7 @@ export default function Map({ expandCards, index, itineraryData }) {
     return (
         // <div onClick={()=>expandCards(index)} className=" relative rounded-sm  overflow-hidden cursor-pointer w-full h-full">
         // <div    ref={mapRef} className=" relative   rounded-2xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " {...(isMobile ? { 'data-lenis-prevent': true } : {})}>
-        <div ref={mapRef} className=" relative pointer-events-none  rounded-2xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " {...(isMobile ? { 'data-lenis-prevent': true } : {})}>
+        <div ref={mapRef} className=" relative   rounded-2xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " {...(isMobile ? { 'data-lenis-prevent': true } : {})}>
 
             <MapClient expandCards={expandCards} itineraryData={itineraryData} />
         </div>
