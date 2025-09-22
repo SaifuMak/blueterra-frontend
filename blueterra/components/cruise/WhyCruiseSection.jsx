@@ -6,62 +6,37 @@ import useGsapStaggerDesktop from "@/app/hooks/Gsap/useGsapStaggerDesktop";
 import useGsapOpacity from "@/app/hooks/Gsap/useGsapOpacity";
 import WhyTravelWithUsCard from "../OurStory/WhyTravelWithUsCard";
 import WhyCruiseData from "../datas/WhyCruiseData";
+import WhyCruiseDataCard from "./WhyCruiseDataCard";
 
 export default function WhyCruiseSection() {
-    const isMobile = useIsMobile()
 
-    const containerRef = useRef(null);
-    const gridContainerRef = useRef(null)
-
-    useGsapStaggerDesktop({
-        scopeRef: gridContainerRef,
-        selector: '.grid-card'
-    });
-
-    const backgroundImageContainer = useGsapOpacity()
     const titleRef = useGsapFadeIn()
     const descriptionRef = useGsapFadeIn()
 
+    const textContainer = useGsapFadeIn()
+
 
     return (
-        <div className=" w-full h-full px-3 md:px-10 pb-10 lg:pb-16   flex-center bg-white  overflow-hidden  relative" >
-            <div ref={backgroundImageContainer} className=" w-full rounded-4xl flex-center  md:py-16 py-10 xl:py-28 relative  overflow-hidden bg-cover bg-center bg-no-repeat  border " style={{
+        <div className=" w-full h-full px-3 md:px-10 pb-12 lg:pb-24   flex-center bg-white  overflow-hidden  relative" >
+            <div className=" w-full rounded-4xl flex-center  md:py-16 py-10 xl:py-28 relative  overflow-hidden bg-cover bg-center bg-no-repeat  border " style={{
                 backgroundImage: "url('/images/our-story/why-travel.jpg')",
             }}>
                 <div className="absolute inset-0 rounded-4xl bg-[#0E518199]" />
 
-
-                <div className=" flex flex-col space-y-12 w-11/12 lg:w-10/12 xl:w-10/12 relative  ">
-                    <div className=" flex flex-col space-y-5 text-white max-sm:text-center ">
-                        <div ref={titleRef} className="">
+                <div className=" flex flex-col overflow-hidden space-y-12 w-11/12 lg:w-10/12 xl:w-10/12 relative  ">
+                    <div ref={textContainer} className=" flex flex-col space-y-5 text-white max-sm:text-center ">
+                        <div  className="">
                             <TitleText text='Why Blueterra Cruises' className='text-white' />
                         </div>
-                        <p ref={descriptionRef} className=" max-sm:px-2 md:text-xl 2xl:text-2xl font-light md:max-w-2xl">Your perfect blend of relaxation, adventure, and discovery at sea.</p>
+                        <p className=" max-sm:px-2 md:text-xl 2xl:text-2xl font-light md:max-w-2xl">Your perfect blend of relaxation, adventure, and discovery at sea.</p>
                     </div>
 
 
-                    {isMobile ? (
-                        <div className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-3 gap-6 2xl:gap-10  mx-auto">
-                            {WhyCruiseData?.map((card, index) => (
-                                <WhyTravelWithUsCard key={index} card={card} index={index} />
-                            ))}
-                        </div>
-                    ) : (
-                        <div ref={gridContainerRef} className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-3 gap-6 2xl:gap-10  mx-auto">
-                            {WhyCruiseData?.map((card, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-[#F4FBFFE5]/75 grid-card hover:scale-95 hover:bg-[#F4FBFFE5] cursor-default transition-all duration-700 
-                                    ease-in-out grid-card z-50 travel-card 
-                                     text-dark-28 font-light lg:p-6 p-5 xl:p-7  2xl:p-10  space-y-2 xl:space-y-3 rounded-2xl shadow-md hover:shadow-lg "
-                                >
-                                    <img src={card.icon} alt="" className=" size-9 object-cover" />
-                                    <h3 className="2xl:text-[22px] text-lg lg:text-xl font-medium ">{card.title}</h3>
-                                    <p className=" xl:pr-3 2xl:pr-10   xl:text-lg 2xl:text-xl  md:leading-7 lg:leading-8 2xl:leading-9  ">{card.description}</p>
-                                </div>
-                            ))}
-                        </div>
-                    )}
+                    <div className="grid grid-cols-1   md:grid-cols-3 gap-6 2xl:gap-10  mx-auto">
+                        {WhyCruiseData?.map((card, index) => (
+                            <WhyCruiseDataCard key={index} card={card} index={index} />
+                        ))}
+                    </div>
 
                 </div>
 

@@ -50,6 +50,10 @@ body {
   @apply flex justify-center items-center
 }
 
+.flex-col-center {
+  @apply flex  flex-col justify-center items-center
+}
+
 .bor {
   @apply border border-white
 }

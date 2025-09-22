@@ -146,7 +146,6 @@ export default function CorporateClient() {
     }, { scope: bannerRef });
 
 
-
     // navigate to contact section
     const handleNavigateToContactForm = () => {
         contactSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
