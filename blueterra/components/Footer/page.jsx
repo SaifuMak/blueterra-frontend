@@ -28,7 +28,7 @@ export default function Footer() {
                 { label: "Our Story", link: "/our-story" },
                 { label: "The Blueterra Collection", link: "/collections" },
                 { label: "Destinations", link: "/destinations" },
-                { label: "Cruise", link: "#" },
+                { label: "Cruise", link: "/cruise" },
                 { label: "MICE", link: "/corporate-mice" }
             ]
         },
