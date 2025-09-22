@@ -19,26 +19,7 @@ export default function Map({ expandCards, index, itineraryData }) {
         query: '(max-width: 844px)'
     })
 
-    useEffect(() => {
-        if (!isMobile || !mapRef.current) return;
-
-        const el = mapRef.current;
-
-        const updateInteraction = (e) => {
-            if (e.touches.length === 2) {
-                el.classList.remove("pointer-events-none");
-            } 
-        };
-
-        el.addEventListener("touchstart", updateInteraction);
-        el.addEventListener("touchend", updateInteraction);
-
-        return () => {
-            el.removeEventListener("touchstart", updateInteraction);
-            el.removeEventListener("touchend", updateInteraction);
-        };
-    }, [isMobile]);
-
+   
 
 
     return (
@@ -46,7 +27,7 @@ export default function Map({ expandCards, index, itineraryData }) {
         // <div    ref={mapRef} className=" relative   rounded-2xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " {...(isMobile ? { 'data-lenis-prevent': true } : {})}>
         <div ref={mapRef} className=" relative   rounded-2xl lg:rounded-sm  overflow-hidden cursor-pointer w-full h-[50vh] lg:h-full  " {...(isMobile ? { 'data-lenis-prevent': true } : {})}>
 
-            <MapClient expandCards={expandCards} itineraryData={itineraryData} />
+            <MapClient expandCards={expandCards} itineraryData={itineraryData} isMobile={isMobile} />
         </div>
 
     )

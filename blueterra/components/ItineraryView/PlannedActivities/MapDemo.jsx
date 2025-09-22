@@ -82,7 +82,7 @@ function ResizeHandler({ expandCards = null, locations }) {
 
 
 
-export default function MapDemo({ expandCards, itineraryData }) {
+export default function MapDemo({ expandCards, itineraryData, isMobile }) {
     const [routes, setRoutes] = useState([]);
 
     const [isFetchingRoutes, setIsFetchingRoutes] = useState(true)
@@ -189,7 +189,7 @@ export default function MapDemo({ expandCards, itineraryData }) {
                 // touchZoom={true}
                 // tap={false}
                 //  gestureHandling={true}  
-                dragging={false}
+                dragging={isMobile ? false : true}
                 className="h-full w-full rounded-2xl"
             >
                 <TileLayer
