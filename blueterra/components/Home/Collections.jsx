@@ -2,7 +2,6 @@
 'use client'
 import { CarouselApi } from "@/components/ui/carousel"
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 import { useState, useEffect } from "react";
 import {
@@ -19,11 +18,10 @@ import Autoplay from "embla-carousel-autoplay"
 import { IoIosStar } from '../../components/reactIcons'
 import { playfair, rubik, mrsSaint } from '@/app/fonts'
 
-export default function CollectionsList({ Data, setCurrent, setCount }) {
+export default function CollectionsList({ Data, setCurrent, setCount, onclickEvent= ()=>{} }) {
 
     const [api, setApi] = useState()
 
-    const router = useRouter()
 
     useEffect(() => {
 
@@ -40,9 +38,6 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
 
     }, [api])
 
-    const navigateToCollections = () => {
-        router.push('/collections')
-    }
 
 
     return (
@@ -68,7 +63,7 @@ export default function CollectionsList({ Data, setCurrent, setCount }) {
 
                         {Data?.map((item, index) => (
                             <CarouselItem key={index} className="md:basis-1/2   2xl:p-3 pb-2 lg:basis-1/3  mx-0  flex-center  ">
-                                <div onClick={navigateToCollections} className=" relative group  cursor-pointer w-[370px]  xl:w-[470px] 2xl:h-[600px] xl:h-[500px] md:h-[480px] h-[410px] rounded-2xl overflow-hidden">
+                                <div onClick={onclickEvent} className=" relative group  cursor-pointer w-[370px]  xl:w-[470px] 2xl:h-[600px] xl:h-[500px] md:h-[480px] h-[410px] rounded-2xl overflow-hidden">
 
                                     <Image
                                         src={item.banner_image_public_url}
