@@ -16,7 +16,7 @@ function DestinationsSection() {
 
 
     return (
-        <div className="py-16 ">
+        <div className="xl:py-16 py-12 ">
             <div className="w-full h-full px-4 md:px-10 bg-white">
                 <div className="   bg-sky-blue-light flex flex-col items-center rounded-4xl space-y-6 2xl:space-y-10 xl:space-y-6  px-4 xl:py-16 py-10  2xl:px-10 2xl:py-28 ">
                     <div ref={textContainer} className=" overflow-hidden flex-col-center w-full space-y-4 md:space-y-6">
