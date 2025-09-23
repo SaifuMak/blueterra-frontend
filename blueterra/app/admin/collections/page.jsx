@@ -270,7 +270,6 @@ export default function Collections() {
                                 </div>
 
 
-
                                 <div className=" w-full flex  space-x-6 items-center ">
                                     <div className=" space-x-6 flex flex-col">
                                         <label htmlFor="text" className=" font-medium">Banner image</label>
