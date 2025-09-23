@@ -68,7 +68,6 @@ const ContactSection = () => {
                         })}
                     </div>
 
-
                 </div>
 
                 <div className="lg:w-6/12   w-full  h-full overflow-hidden  ">
