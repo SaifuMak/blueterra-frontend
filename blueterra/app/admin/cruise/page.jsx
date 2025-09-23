@@ -191,6 +191,7 @@ export default function Cruise() {
             fetchDeals()
             clearFields()
             setIsCreateDealsOpened(false)
+            toast.success("Item created successfully")
 
         }
         catch (err) {
@@ -219,6 +220,7 @@ export default function Cruise() {
             const response = await AXIOS_INSTANCE.patch(`cruise-deal/${selectedDealForEditing}/`, newFormData)
             fetchDeals()
             handleCloseEditModal()
+              toast.success("Item updated successfully")
 
         }
         catch (err) {
