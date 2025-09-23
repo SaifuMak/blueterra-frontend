@@ -322,7 +322,9 @@ export default function Cruise() {
                                         <tr key={index} className=" rounded-3xl">
 
                                             <td className={rowStyle}>{item.title}</td>
-                                            <td className={rowStyle}>{trimWords(item.description, 15)}</td>
+                                            {/* <td className={rowStyle}>{trimWords(item.description, 15)}</td> */}
+                                            <td className={rowStyle} dangerouslySetInnerHTML={{ __html: trimWords(item.description, 12) }}></td>
+
 
                                             <td className={rowStyle}>
                                                 <div className=" flex  ">
@@ -330,7 +332,7 @@ export default function Cruise() {
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         className="">
-                                                        <img src={item.image_public_url} alt="icon" className=" cursor-pointer border w-16 h-10 rounded-sm shrink-0 " />
+                                                        <img src={item.image_public_url} alt="icon" className=" cursor-pointer border w-32 h-16 object-cover rounded-sm shrink-0 " />
                                                     </a>
                                                 </div>
                                             </td>

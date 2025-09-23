@@ -460,3 +460,22 @@ body {
   /* match your tooltip background */
 }
 
+
+
+
+.cruise-deals-description ul {
+   list-style-type: disc; /* normal bullet */
+  padding-left: 1.3rem;  
+
+}
+
+.cruise-deals-description li {
+  margin-bottom: 0.1rem;
+  list-style-position: outside;
+  
+  /* bullet/number outside the text */
+}
+
+.cruise-deals-description li::marker {
+    color: #58C2DF; /* blue bullets */
+}
