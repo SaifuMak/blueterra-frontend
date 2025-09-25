@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { playfair } from '@/app/fonts'
 import { useRef } from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import gsap from 'gsap';
 
 
@@ -11,54 +11,63 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
   const [touchedCard, setTouchedCard] = useState(null)
 
   const handleTouchStart = (index, e) => {
+    if (selectedVerticalTileMobile === index) return;
     // setTouchedCard(index)
-    // gsap.to(mobileVerticalTilesRef[index], {
-    //   flex: 2,
-    //   duration: 0.7,
-    //   ease: 'Power3.out'
-    // })
+    gsap.to(mobileVerticalTilesRef[index], {
+
+      flex: 2,
+      duration: 0.7,
+      ease: 'Power3.out'
+    })
 
   };
 
   const handleTouchEnd = (index, e) => {
-    // gsap.to(mobileVerticalTilesRef[index], {
-    //   flex: 1,
-    //   duration: 0.7,
-    //   ease: 'Power3.out'
-    // })
+    if (selectedVerticalTileMobile === index) return;
+    gsap.to(mobileVerticalTilesRef[index], {
+      flex: 1,
+      duration: 0.7,
+      ease: 'Power3.out'
+    })
 
   };
 
+  const handleCardClick = (index) => {
+    setSelectedVerticalTileMobile(index)
+    // gsap.to(mobileVerticalTilesRef[index], {
+    //   flex: 9,
+    //   duration: 1,
+    //   ease: 'Power3.out'
+    // });
+  }
 
-  // useEffect(() => {
+  useEffect(() => {
+    if (!mobileVerticalTilesRef[selectedVerticalTileMobile]) {
+      return
+    }
 
-  //         // ease: 'elastic.out(1, 0.5)'
-  //         gsap.to(cardRef.current, {
-  //             flex: isExpanded ? 6 : 1,
-  //             height: isFullCardVisible ? '100vh' : '60px',
-  //             duration: 0.7,
-  //             // ease: 'elastic.out(0.1, 0.1)'
-  //             ease: 'Power3.out'
-  //             // ease: 'circ.out'
-  //             // ease: 'elastic.out(0.01  , 0.01)'
-  //         })
+    gsap.to(mobileVerticalTilesRef[selectedVerticalTileMobile], {
+      flex: 9,
+      duration: 0.7,
+      ease: 'Power3.out'
+    });
 
+  }, [selectedVerticalTileMobile])
 
-  // }, [selectedVerticalTileMobile])
 
 
 
   return (
     <div className="w-full min-h-[92vh] mt-[50px] overflow-hidden  flex flex-col ">
       {CardData?.map((card, index) => (
-        // <div key={index}
-        //   ref={(e) => (mobileVerticalTilesRef[index] = e)}
-        //   onClick={() => setSelectedVerticalTileMobile(index)}
-        //   onTouchStart={(e) => handleTouchStart(index, e)}
-        //   onTouchEnd={(e) => handleTouchEnd(index, e)}
-        //   className={`  transition-all duration-700 ease-in-out  relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
+        <div key={index}
+          ref={(e) => (mobileVerticalTilesRef[index] = e)}
+          onClick={() => handleCardClick(index)}
+          onTouchStart={(e) => handleTouchStart(index, e)}
+          onTouchEnd={(e) => handleTouchEnd(index, e)}
+          className={` flex-1 relative `}>
 
-         <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
+          {/* <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}> */}
 
           <Image
             src={card?.banner_image_public_url}
