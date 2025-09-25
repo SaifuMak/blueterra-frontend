@@ -6,7 +6,7 @@ import { GoDot } from '../reactIcons'
 import Button from '../generalComponents/Button';
 import { playfair } from "@/app/fonts"
 import Lottie from "lottie-react";
-
+import { useMediaQuery } from "react-responsive";
 
 
 export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, isFullCardVisible, handleHideFullCard, setIsLoading, isLoading, setIsFilterVisible, isFilterVisible }) {
@@ -15,6 +15,8 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
     const [canTrackMouse, setCanTrackMouse] = useState(false);
 
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+    const isTouchDevice = useMediaQuery({ query: "(pointer: coarse)" });
 
 
     useEffect(() => {
@@ -77,7 +79,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
 
 
     const handleMouseEnter = () => {
-        if (!isExpanded) {
+        if (!isExpanded && !isTouchDevice) {
             gsap.to(cardRef.current, {
                 flex: 1.8, // Grow slightly on hover
                 duration: 0.8,
@@ -92,7 +94,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
 
 
     const handleMouseLeave = () => {
-        if (!isExpanded) {
+        if (!isExpanded  && !isTouchDevice) {
             gsap.to(cardRef.current, {
                 flex: 1, // Shrink back
                 duration: 0.8,
@@ -108,8 +110,10 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
             onClick={onClick}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            // onTouchStart={handleMouseEnter}
+            // onTouchEnd={handleMouseLeave}
             onMouseMove={handleMouseMove}
-            className={`flex-1 h-[100vh] ${!isExpanded ? 'cursor-pointer' : 'cursor-default'}  relative group   overflow-hidden bg-stone-50  text-white text-3xl   `} >
+            className={` h-[100vh] flex-1 ${!isExpanded ? 'cursor-pointer' : 'cursor-default'}  relative group   overflow-hidden bg-stone-50  text-white text-3xl   `} >
             {/* {card.title} */}
 
             <div className='overflow-hidden relative w-full h-full  '>
@@ -125,7 +129,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
                     onLoad={() => setIsLoading(false)}
                 />
 
-                <div className={`absolute inset-0 ${!isExpanded && 'group-hover:bg-[#104F82D9]/60' }  pointer-events-none  ease-in-out  transition-colors duration-1000  z-0`}></div>
+                <div className={`absolute inset-0 ${!isExpanded && 'group-hover:bg-[#104F82D9]/60'}  pointer-events-none  ease-in-out  transition-colors duration-1000  z-0`}></div>
 
                 {!isExpanded && (
                     <div className="absolute group-hover:opacity-100  transition-opacity  opacity-0 inset-0 pointer-events-none z-20">
@@ -153,7 +157,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
                     // <div className='absolute inset-0  bg-[#00284680]/80'>
                     <div className='absolute inset-0 bg-[#00284626]'>
 
-                        {/* vertical full card */} 
+                        {/* vertical full card */}
                         {isFullCardVisible ? (
 
                             // <div className={`flex mt-3 w-8 ml-6 h-[85vh] text-white flex-col items-center `}>
