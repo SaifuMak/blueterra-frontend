@@ -12,20 +12,20 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
 
   const handleTouchStart = (index, e) => {
     // setTouchedCard(index)
-    gsap.to(mobileVerticalTilesRef[index], {
-      flex: 2,
-      duration: 0.7,
-      ease: 'Power3.out'
-    })
+    // gsap.to(mobileVerticalTilesRef[index], {
+    //   flex: 2,
+    //   duration: 0.7,
+    //   ease: 'Power3.out'
+    // })
 
   };
 
   const handleTouchEnd = (index, e) => {
-    gsap.to(mobileVerticalTilesRef[index], {
-      flex: 1,
-      duration: 0.7,
-      ease: 'Power3.out'
-    })
+    // gsap.to(mobileVerticalTilesRef[index], {
+    //   flex: 1,
+    //   duration: 0.7,
+    //   ease: 'Power3.out'
+    // })
 
   };
 
@@ -51,13 +51,14 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
   return (
     <div className="w-full min-h-[92vh] mt-[50px] overflow-hidden  flex flex-col ">
       {CardData?.map((card, index) => (
-        <div key={index}
-          ref={(e) => (mobileVerticalTilesRef[index] = e)}
-          onClick={() => setSelectedVerticalTileMobile(index)}
-          onTouchStart={(e) => handleTouchStart(index, e)}
-          onTouchEnd={(e) => handleTouchEnd(index, e)}
-          // className={`  transition-all duration-700 ease-in-out  relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
-          className={`  relative flex-1  `}>
+        // <div key={index}
+        //   ref={(e) => (mobileVerticalTilesRef[index] = e)}
+        //   onClick={() => setSelectedVerticalTileMobile(index)}
+        //   onTouchStart={(e) => handleTouchStart(index, e)}
+        //   onTouchEnd={(e) => handleTouchEnd(index, e)}
+        //   className={`  transition-all duration-700 ease-in-out  relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
+
+         <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
 
           <Image
             src={card?.banner_image_public_url}
