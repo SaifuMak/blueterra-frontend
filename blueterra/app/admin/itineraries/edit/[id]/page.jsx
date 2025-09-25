@@ -399,7 +399,7 @@ export default function EditItinerary() {
 
                             <div className=" flex space-x-3 max-xl:text-sm text-white  absolute   right-5 top-5">
                                 <button type="submit" formNoValidate name="action"
-                                    value="draft" className=" bg-[#524D4D] cursor-pointer  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
+                                    value="draft" className=" bg-[#524D4D] cursor-pointer  w-32 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save to Draft'}</button>
                                 <button type="submit" name="action"
                                     value="publish" className=" bg-[#129366] min-w-28 h-fit cursor-pointer  py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
                             </div>
@@ -562,7 +562,7 @@ export default function EditItinerary() {
                                 <div className=" py-10">
                                     <div className=" flex space-x-3 max-xl:text-sm text-white">
                                         <button type="submit" formNoValidate name="action"
-                                            value="draft" className=" bg-[#524D4D] cursor-pointer  w-28 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save Draft'}</button>
+                                            value="draft" className=" bg-[#524D4D] cursor-pointer  w-32 h-fit  py-2 flex-center  rounded-sm">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Save to Draft'}</button>
                                         <button type="submit" name="action"
                                             value="publish" className=" bg-[#129366] min-w-28 h-fit cursor-pointer py-2 flex-center rounded-sm  ">{isLoading ? <LoaderIcon className='animate-spin text-2xl ' /> : 'Publish'}</button>
                                     </div>
