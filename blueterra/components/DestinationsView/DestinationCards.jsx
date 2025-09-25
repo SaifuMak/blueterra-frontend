@@ -30,7 +30,7 @@ export default function DestinationCards({ itineraryData }) {
 
                                     <div className=" absolute flex m-1 items-center  ml-3 inset-0">
                                         <CiClock1 className="text-sm" />
-                                        <span className="text-sm max-sm:text-xs ml-1 ">{destination?.days?.length} nights</span>
+                                        <span className="text-sm max-sm:text-xs ml-1 ">{destination?.days?.length -1} nights</span>
                                     </div>
 
                                 </div>
