@@ -21,8 +21,32 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
   };
 
   const handleTouchEnd = (index, e) => {
-    // setTouchedCard(nul)
+    gsap.to(mobileVerticalTilesRef[index], {
+      flex: 1,
+      duration: 0.7,
+      ease: 'Power3.out'
+    })
+
   };
+
+
+  // useEffect(() => {
+
+  //         // ease: 'elastic.out(1, 0.5)'
+  //         gsap.to(cardRef.current, {
+  //             flex: isExpanded ? 6 : 1,
+  //             height: isFullCardVisible ? '100vh' : '60px',
+  //             duration: 0.7,
+  //             // ease: 'elastic.out(0.1, 0.1)'
+  //             ease: 'Power3.out'
+  //             // ease: 'circ.out'
+  //             // ease: 'elastic.out(0.01  , 0.01)'
+  //         })
+
+
+  // }, [selectedVerticalTileMobile])
+
+
 
   return (
     <div className="w-full min-h-[92vh] mt-[50px] overflow-hidden  flex flex-col ">
@@ -32,7 +56,9 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
           onClick={() => setSelectedVerticalTileMobile(index)}
           onTouchStart={(e) => handleTouchStart(index, e)}
           onTouchEnd={(e) => handleTouchEnd(index, e)}
-          className={`  transition-all duration-700 ease-in-out  relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
+          // className={`  transition-all duration-700 ease-in-out  relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
+          className={`  relative  `}>
+
           <Image
             src={card?.banner_image_public_url}
             alt={card?.title}
