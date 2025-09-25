@@ -57,7 +57,7 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
           onTouchStart={(e) => handleTouchStart(index, e)}
           onTouchEnd={(e) => handleTouchEnd(index, e)}
           // className={`  transition-all duration-700 ease-in-out  relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
-          className={`  relative  `}>
+          className={`  relative flex-1  `}>
 
           <Image
             src={card?.banner_image_public_url}
