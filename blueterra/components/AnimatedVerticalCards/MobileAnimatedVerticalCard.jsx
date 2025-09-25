@@ -1,15 +1,32 @@
 import Image from "next/image"
 import { playfair } from '@/app/fonts'
 import { useRef } from "react"
+import { useState } from "react"
 
 export default function MobileAnimatedVerticalCard({ page, CardData, selectedVerticalTileMobile, setSelectedVerticalTileMobile, handleSetCollectionRequestedToShowInMobile }) {
 
   const mobileVerticalTilesRef = useRef([])
+  const [touchedCard, setTouchedCard] = useState(null)
+
+  const handleTouchStart = (index, e) => {
+    // mobileVerticalTilesRef.current[index].classList.add('touch-hover');
+    setTouchedCard(index)
+  };
+
+  const handleTouchEnd = (index, e) => {
+    // mobileVerticalTilesRef.current[index].classList.remove('touch-hover');
+    // setTouchedCard(nul)
+  };
 
   return (
     <div className="w-full min-h-[92vh] mt-[50px] overflow-hidden  flex flex-col ">
       {CardData?.map((card, index) => (
-        <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
+        <div key={index}
+          ref={(e) => (mobileVerticalTilesRef[index] = e)}
+          onClick={() => setSelectedVerticalTileMobile(index)}
+          onTouchStart={(e) => handleTouchStart(index, e)}
+          onTouchEnd={(e) => handleTouchEnd(index, e)}
+          className={`  transition-all duration-700 ease-in-out ${touchedCard === index ? 'flex-3' : 'flex-1'} relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}>
           <Image
             src={card?.banner_image_public_url}
             alt={card?.title}

@@ -93,12 +93,12 @@ export default function Cruise() {
     }
 
     const handleCloseDeletePopup = () => {
-       setSelectedItemForDelete(null)
+        setSelectedItemForDelete(null)
         setIsDeleteDealOpened(false)
     }
 
 
-    
+
 
     const handlechange = (e) => {
         const { name, value } = e.target;
@@ -220,7 +220,7 @@ export default function Cruise() {
             const response = await AXIOS_INSTANCE.patch(`cruise-deal/${selectedDealForEditing}/`, newFormData)
             fetchDeals()
             handleCloseEditModal()
-              toast.success("Item updated successfully")
+            toast.success("Item updated successfully")
 
         }
         catch (err) {
@@ -255,10 +255,10 @@ export default function Cruise() {
     }
 
 
-     const confirmDeleteDeal = async (e) => {
+    const confirmDeleteDeal = async (e) => {
 
         e.preventDefault()
-        
+
 
         setIsSubmitting(true)
 

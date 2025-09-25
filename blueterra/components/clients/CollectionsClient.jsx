@@ -28,7 +28,6 @@ gsap.registerPlugin(ScrollToPlugin);
 
 export default function CollectionsClient() {
 
-
   const isMobile = useMediaQuery({
     query: '(max-width: 844px)'
   })
@@ -186,8 +185,6 @@ export default function CollectionsClient() {
     }
     handleScrollTop()
   }, [isMobile])
-
-
 
 
 
@@ -352,6 +349,7 @@ export default function CollectionsClient() {
                   </div>
                 )}
             </div>
+
 
             {itineraryData && itineraryData.length > 0 && <div className="  w-full lg:w-10/12 xl:w-9/12 h-full lg:my-12">
               <ItineraryPagination
