@@ -12,11 +12,11 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
 
   const handleTouchStart = (index, e) => {
     // setTouchedCard(index)
-    // gsap.to(mobileVerticalTilesRef.current[index], {
-    //   flex: 2,
-    //   duration: 0.7,
-    //   ease: 'Power3.out'
-    // })
+    gsap.to(mobileVerticalTilesRef[index], {
+      flex: 2,
+      duration: 0.7,
+      ease: 'Power3.out'
+    })
 
   };
 
