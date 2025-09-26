@@ -373,7 +373,7 @@ export default function EditJournal() {
 //     blockquote,pre,code
 // `,
 
-                                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | image link | removeImage',
+                                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | image link | removeImage | code',
 
                                             /* Handle file upload */
                                             images_upload_handler: async (blobInfo) => {

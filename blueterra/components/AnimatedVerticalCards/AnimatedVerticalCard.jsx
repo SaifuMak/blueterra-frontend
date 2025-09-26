@@ -94,7 +94,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
 
 
     const handleMouseLeave = () => {
-        if (!isExpanded  && !isTouchDevice) {
+        if (!isExpanded && !isTouchDevice) {
             gsap.to(cardRef.current, {
                 flex: 1, // Shrink back
                 duration: 0.8,

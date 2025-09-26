@@ -330,7 +330,7 @@ export default function CreateJournal() {
                                             paste_remove_styles: true,
                                             paste_remove_spans: true,
                                             paste_strip_class_attributes: 'all',
-                                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | image link | removeImage',
+                                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | image link | removeImage | code',
                                             resize: true, // enables resizing
                                             statusbar: true,
                                             /* Handle file upload */
