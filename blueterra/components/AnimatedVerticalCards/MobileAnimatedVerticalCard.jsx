@@ -23,7 +23,7 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
 
   return (
     // <div className="w-full min-h-[95vh] mt-[5vh] overflow-hidden  flex flex-col ">
-    <div className="w-full h-[calc(100vh-10vh)] overflow-hidden  flex flex-col ">
+    <div className="w-full h-[calc(100vh-5vh)] mt-[5vh] overflow-hidden  flex flex-col ">
 
       {CardData?.map((card, index) => (
         <MobileAnimatedVerticalIndividualCard key={index}
