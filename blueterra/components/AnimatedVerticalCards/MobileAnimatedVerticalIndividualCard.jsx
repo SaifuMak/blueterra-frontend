@@ -19,6 +19,8 @@ function MobileAnimatedVerticalIndividualCard({ index,
         if (selectedVerticalTileMobile === indexToAnimate) return;
         gsap.to(cardRef.current, {
             flex: 2,
+            // scaleY: 1.3,
+            // transformOrigin: "top center",
             duration: 0.7,
             ease: 'Power3.out',
             lazy: false
@@ -30,6 +32,8 @@ function MobileAnimatedVerticalIndividualCard({ index,
         if (selectedVerticalTileMobile === indexToAnimate) return;
         gsap.to(cardRef.current, {
             flex: 1,
+            // scaleY: 1,
+            // transformOrigin: "top center",
             duration: 0.7,
             ease: 'Power3.out',
             lazy: false
@@ -58,13 +62,14 @@ function MobileAnimatedVerticalIndividualCard({ index,
 
             {/* <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}> */}
 
-            <Image
+            {/* <Image
                 src={card?.banner_image_public_url}
                 alt={card?.title}
                 fill
                 priority
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
-            />
+            /> */}
+            <img src={card?.banner_image_public_url} alt={card?.title} loading="eager" className=" absolute inset-0 w-full h-full object-cover will-change-transform [transform:translateZ(0)] " />
 
 
             <div className={`absolute ${selectedVerticalTileMobile === index ? "opacity-0" : " opacity-100"} text-white transition-all duration-500 ease-in-out inset-0   bg-[#00284626]`}>
