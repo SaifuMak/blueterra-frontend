@@ -17,23 +17,23 @@ function MobileAnimatedVerticalIndividualCard({ index,
 
     const handleTouchStart = (indexToAnimate, e) => {
         if (selectedVerticalTileMobile === indexToAnimate) return;
-        // gsap.to(cardRef.current, {
-        //     flex: 2,
-        //     duration: 0.7,
-        //     ease: 'Power3.out',
-        //     lazy: false
-        // })
+        gsap.to(cardRef.current, {
+            flex: 2,
+            duration: 0.7,
+            ease: 'Power3.out',
+            lazy: false
+        })
 
     };
 
     const handleTouchEnd = (indexToAnimate, e) => {
         if (selectedVerticalTileMobile === indexToAnimate) return;
-        // gsap.to(cardRef.current, {
-        //     flex: 1,
-        //     duration: 0.7,
-        //     ease: 'Power3.out',
-        //     lazy: false
-        // })
+        gsap.to(cardRef.current, {
+            flex: 1,
+            duration: 0.7,
+            ease: 'Power3.out',
+            lazy: false
+        })
     };
 
     useEffect(() => {
@@ -52,9 +52,9 @@ function MobileAnimatedVerticalIndividualCard({ index,
         <div
             ref={cardRef}
             onClick={() => handleCardClick(index)}
-            // onTouchStart={(e) => handleTouchStart(index, e)}
-            // onTouchEnd={(e) => handleTouchEnd(index, e)}
-            className={` flex-1 relative `}>
+            onTouchStart={(e) => handleTouchStart(index, e)}
+            onTouchEnd={(e) => handleTouchEnd(index, e)}
+            className={` flex-1 relative`}>
 
             {/* <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}> */}
 
