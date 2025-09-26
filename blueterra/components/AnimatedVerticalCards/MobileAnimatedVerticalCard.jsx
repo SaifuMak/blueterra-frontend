@@ -12,17 +12,14 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
 
   const handleCardClick = (index) => {
     setSelectedVerticalTileMobile(index)
-    // gsap.to(mobileVerticalTilesRef[index], {
-    //   flex: 9,
-    //   duration: 1,
-    //   ease: 'Power3.out'
-    // });
+
   }
 
 
 
   return (
-    <div className="w-full min-h-[94vh] mt-[6vh] overflow-hidden  flex flex-col ">
+    // <div className="w-full min-h-[94vh] mt-[6vh] overflow-hidden  flex flex-col ">
+    <div className="w-full  min-h-[100dvh] overflow-hidden  flex flex-col ">
 
     {/* <div className="w-full h-[calc(100vh-6vh)] mt-[6vh] overflow-hidden  flex flex-col "> */}
 

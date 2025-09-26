@@ -275,7 +275,7 @@ export default function CollectionsClient() {
 
       {collectionsLoading ? (
         <div className="  w-full h-screen flex-center  ">
-          <Navbar isfixed={true} onNavClick={handleNavClick} />
+          {/* <Navbar isfixed={true} onNavClick={handleNavClick} /> */}
           <LoaderIcon />
         </div>
       ) : (
