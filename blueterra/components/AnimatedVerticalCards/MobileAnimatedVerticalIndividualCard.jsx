@@ -17,21 +17,23 @@ function MobileAnimatedVerticalIndividualCard({ index,
 
     const handleTouchStart = (indexToAnimate, e) => {
         if (selectedVerticalTileMobile === indexToAnimate) return;
-        gsap.to(cardRef.current, {
-            flex: 2,
-            duration: 0.7,
-            ease: 'Power3.out'
-        })
+        // gsap.to(cardRef.current, {
+        //     flex: 2,
+        //     duration: 0.7,
+        //     ease: 'Power3.out',
+        //     lazy: false
+        // })
 
     };
 
     const handleTouchEnd = (indexToAnimate, e) => {
         if (selectedVerticalTileMobile === indexToAnimate) return;
-        gsap.to(cardRef.current, {
-            flex: 1,
-            duration: 0.7,
-            ease: 'Power3.out'
-        })
+        // gsap.to(cardRef.current, {
+        //     flex: 1,
+        //     duration: 0.7,
+        //     ease: 'Power3.out',
+        //     lazy: false
+        // })
     };
 
     useEffect(() => {
@@ -50,8 +52,8 @@ function MobileAnimatedVerticalIndividualCard({ index,
         <div
             ref={cardRef}
             onClick={() => handleCardClick(index)}
-            onTouchStart={(e) => handleTouchStart(index, e)}
-            onTouchEnd={(e) => handleTouchEnd(index, e)}
+            // onTouchStart={(e) => handleTouchStart(index, e)}
+            // onTouchEnd={(e) => handleTouchEnd(index, e)}
             className={` flex-1 relative `}>
 
             {/* <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}> */}
@@ -67,7 +69,7 @@ function MobileAnimatedVerticalIndividualCard({ index,
 
             <div className={`absolute ${selectedVerticalTileMobile === index ? "opacity-0" : " opacity-100"} text-white transition-all duration-500 ease-in-out inset-0   bg-[#00284626]`}>
                 <div className="flex   w-full h-full px-3 mt-2 space-x-2 ">
-                    <img src={card?.icon_public_url} alt={card?.title} className=" object-contain size-[27px]" />
+                    <img src={card?.icon_public_url} alt={card?.title} loading="eager" className=" object-contain size-[27px]" />
                     <div className="bg-white/40 h-0.5 flex-1 my-3"></div>
                     <p className=''> {card?.title}</p>
 
@@ -78,7 +80,7 @@ function MobileAnimatedVerticalIndividualCard({ index,
                 <div className=" w-full h-full p-6 ">
 
                     <p className='  flex  text-white text-lg  '>
-                        <img src={card?.icon_public_url} alt={card.title} className=" object-cover size-[25px]" />
+                        <img src={card?.icon_public_url} alt={card.title} loading="eager" className=" object-cover size-[25px]" />
                         <span className={`font-normal text-xl ml-3 ${playfair.className}`}>{card.title}</span></p>
 
                     <hr className=' opacity-40 mt-1'></hr>
