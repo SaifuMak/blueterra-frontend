@@ -165,7 +165,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
 
 
                                 {/* <span className="text-4xl font-normal">{card.number}</span> */}
-                                <img src={card.icon_public_url} alt={card.title} className=" object-cover size-[52px]" />
+                                <img src={card.icon_public_url} alt={card.title} className=" object-contain size-[52px]" />
 
                                 <div className="bg-white/40 w-0.5 flex-1 my-3"></div>
 
