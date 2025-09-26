@@ -282,7 +282,7 @@ export default function CollectionsClient() {
 
         <div className={`${rubik.className} text-dark-28`}>
 
-          <Navbar isfixed={true} onNavClick={handleNavClick} />
+          {/* <Navbar isfixed={true} onNavClick={handleNavClick} /> */}
 
           {isMobile ? (
             <MobileAnimatedVerticalCard
