@@ -19,7 +19,6 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
     // });
   }
 
-  
 
 
   return (
