@@ -351,7 +351,7 @@ export default function CollectionsClient() {
             </div>
 
 
-            {itineraryData && itineraryData.length > 0 && <div className="  w-full lg:w-10/12 xl:w-9/12 h-full lg:my-12">
+            {itineraryData && itineraryData.length > 0 && <div className="   w-full lg:w-10/12 xl:w-9/12 h-full lg:my-12">
               <ItineraryPagination
                 prevPage={prevPage}
                 nextPage={nextPage}
@@ -359,7 +359,7 @@ export default function CollectionsClient() {
                 currentPage={currentPage}
                 TotalPages={totalPages}
                 buttonColor='bg-[#58c2df]'
-                innerClass='flex max-lg:flex-col max-lg:items-center max-lg:space-y-4 lg:justify-between w-full lg:w-7/12  lg:pl-5'
+                innerClass='flex max-lg:flex-col max-lg:items-center max-lg:space-y-4 lg:justify-between w-full lg:w-7/12 lg:pl-8  2xl:pl-16'
               />
             </div>}
 

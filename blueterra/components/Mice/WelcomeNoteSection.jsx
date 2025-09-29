@@ -23,7 +23,7 @@ function WelcomeNoteSection() {
                 <p className="  xl:w-9/12 w-10/12 text-center leading-6 md:leading-8 xl:leading-10">Whether you are bringing together a global team to shape strategy, celebrating a milestone that deserves the extraordinary, or hosting a leadership retreat in a distinctive setting, every detail is delivered with precision and purpose.</p>
                 <p className=" xl:w-9/12  w-10/12  text-center leading-6 md:leading-8 xl:leading-10">Flawless execution requires more than coordination. It demands complete ownership. With BlueTerra, every moment and every milestone is managed seamlessly by a team of experts committed to excellence</p>
 
-                <p className=" xl:w-9/12 w-10/12 xl:text-2xl text-center font-normal md:leading-10">We don’t just execute. We own it. Every moment. Every milestone.</p>
+                <p className=" xl:w-9/12 w-10/12 xl:text-2xl text-center italic  md:leading-10">We don’t just execute. We own it. Every moment. Every milestone.</p>
 
             </div>
 

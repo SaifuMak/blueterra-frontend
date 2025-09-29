@@ -187,11 +187,22 @@ export default function Footer() {
                                                 <a href="mailto:connect@myblueterra.com" className=" hover:opacity-80 transition">
                                                     {LinkText}
                                                 </a>
-                                            ) : (
-                                                <Link href={link} className=" hover:opacity-80 transition">
-                                                    {LinkText}
-                                                </Link>
-                                            )}
+                                            ) :
+                                                LinkText === "Privacy Policy" || LinkText === "Terms & conditions" ? (
+                                                    <Link
+                                                        href={link}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="hover:opacity-80 transition"
+                                                    >
+                                                        {LinkText}
+                                                    </Link>
+                                                ) : (
+                                                    <Link href={link} className="hover:opacity-80 transition">
+                                                        {LinkText}
+                                                    </Link>
+                                                )}
+
                                         </li>
                                     ))}
                                 </ul>
@@ -256,7 +267,7 @@ export default function Footer() {
                     <p className=""> <span className=" text-[#45A5FF] mr-0.5">©</span>
                         BlueTerra L.L.C-FZ | License No. 2533928.01 | All Rights Reserved  </p>
 
-                    <p className=" group"><a href="https://maktalseo.com/" target="_blank" rel="noopener noreferrer" className=" hover:cursor-pointer">Website designed by <span className=" transition-all duration-700">MakTal</span></a></p>
+                    <p className=" group"><a href="https://maktalseo.com/" target="_blank" rel="noopener noreferrer" className=" hover:cursor-pointer">Website developed by <span className=" transition-all duration-700">MakTal</span></a></p>
                 </div>
 
                 <ChatWidget />

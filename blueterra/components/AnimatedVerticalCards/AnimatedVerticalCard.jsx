@@ -37,45 +37,46 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
 
     }, [isExpanded, isFullCardVisible])
 
-    const triggerMouseMoveAtCurrentPosition = () => {
-        if (!cardRef.current) return;
+    // const triggerMouseMoveAtCurrentPosition = () => {
+    //     if (!cardRef.current) return;
 
-        // Get the real current cursor position
-        const { clientX, clientY } = window._lastKnownMouse || {};
+    //     // Get the real current cursor position
+    //     const { clientX, clientY } = window._lastKnownMouse || {};
 
-        if (clientX == null || clientY == null) return; // no mouse position tracked yet
+    //     if (clientX == null || clientY == null) return; // no mouse position tracked yet
 
-        // Dispatch a synthetic mousemove with the real coords
-        const evt = new MouseEvent("mousemove", {
-            bubbles: true,
-            clientX,
-            clientY
-        });
+    //     // Dispatch a synthetic mousemove with the real coords
+    //     const evt = new MouseEvent("mousemove", {
+    //         bubbles: true,
+    //         clientX,
+    //         clientY
+    //     });
 
-        cardRef.current.dispatchEvent(evt);
-    };
+    //     cardRef.current.dispatchEvent(evt);
+    // };
 
     // Track mouse globally so we always have the last known position
-    useEffect(() => {
-        const updateLastMouse = (e) => {
-            window._lastKnownMouse = { clientX: e.clientX, clientY: e.clientY };
-        };
-        window.addEventListener("mousemove", updateLastMouse);
-        return () => window.removeEventListener("mousemove", updateLastMouse);
-    }, []);
+
+    // useEffect(() => {
+    //     const updateLastMouse = (e) => {
+    //         window._lastKnownMouse = { clientX: e.clientX, clientY: e.clientY };
+    //     };
+    //     window.addEventListener("mousemove", updateLastMouse);
+    //     return () => window.removeEventListener("mousemove", updateLastMouse);
+    // }, []);
 
 
 
-    const handleMouseMove = (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        // console.log(rect);
+    // const handleMouseMove = (e) => {
+    //     const rect = e.currentTarget.getBoundingClientRect();
+    //     // console.log(rect);
 
-        setMousePos({
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-        });
+    //     setMousePos({
+    //         x: e.clientX - rect.left,
+    //         y: e.clientY - rect.top,
+    //     });
 
-    };
+    // };
 
 
     const handleMouseEnter = () => {
@@ -84,9 +85,9 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
                 flex: 1.8, // Grow slightly on hover
                 duration: 0.8,
                 ease: 'sine.out',
-                onComplete: () => {
-                    triggerMouseMoveAtCurrentPosition()
-                }
+                // onComplete: () => {
+                //     triggerMouseMoveAtCurrentPosition()
+                // }
 
             });
         }
@@ -112,7 +113,6 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
             onMouseLeave={handleMouseLeave}
             // onTouchStart={handleMouseEnter}
             // onTouchEnd={handleMouseLeave}
-            onMouseMove={handleMouseMove}
             className={` h-[100vh] flex-1 ${!isExpanded ? 'cursor-pointer' : 'cursor-default'}  relative group   overflow-hidden bg-stone-50  text-white text-3xl   `} >
             {/* {card.title} */}
 
@@ -131,7 +131,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
 
                 <div className={`absolute inset-0 ${!isExpanded && 'group-hover:bg-[#104F82D9]/60'}  pointer-events-none  ease-in-out  transition-colors duration-1000  z-0`}></div>
 
-                {!isExpanded && (
+                {/* {!isExpanded && (
                     <div className="absolute group-hover:opacity-100  transition-opacity  opacity-0 inset-0 pointer-events-none z-20">
                         <div
                             style={{
@@ -149,7 +149,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
                             />
                         </div>
                     </div>
-                )}
+                )} */}
 
 
                 {/* if not  expanded horizontally */}

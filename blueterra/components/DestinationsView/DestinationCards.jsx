@@ -40,9 +40,9 @@ export default function DestinationCards({ itineraryData }) {
 
 
                         <div className="px-7 py-4 lg:h-5/12   space-y-3 2xl:space-y-5">
-                            <div className=" flex max-md:flex-col justify-between md:items-center">
-                                <p className="text-base font-normal max-sm:text-dark-4B">{trimWords(destination?.title, 5)}</p>
-                                <div className=" flex max-md:flex-col   md:items-center ">
+                            <div className=" flex max-xl:flex-col justify-between xl:items-center  space-x-3">
+                                <p className="text-base font-semibold max-sm:text-dark-4B">{trimWords(destination?.title, 35)}</p>
+                                <div className=" flex max-md:flex-col   md:items-center max-xl:mt-2 ">
                                     {/* <div className=" flex space-x-0.5 ">
 
                                         {[...Array(5)].map((_, index) => {
@@ -85,7 +85,7 @@ export default function DestinationCards({ itineraryData }) {
 
                             <div className=" flex justify-between text-sm">
                                 <div className=" lg:text-base">
-                                    From <span className="md:font-medium text-dark-28  ">{destination?.featured_points?.[0]?.price}/person</span>
+                                    From <span className=" text-dark-28  ">{destination?.featured_points?.[0]?.price}/person</span>
                                 </div>
                                 <div className="flex items-center  cursor-pointer">
                                     <p className=" md:font-medium lg:text-base text-dark-28">Explore</p>
