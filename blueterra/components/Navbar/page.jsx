@@ -19,7 +19,7 @@ export default function Navbar({ isfixed = false, onNavClick }) {
   // const [lastScrollY, setLastScrollY] = useState(0);
   const [formOpen, setFormOpen] = useState(false);
 
-   const lastScrollY = useRef(0);
+  const lastScrollY = useRef(0);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false)
 

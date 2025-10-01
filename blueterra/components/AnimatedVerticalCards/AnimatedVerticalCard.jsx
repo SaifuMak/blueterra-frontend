@@ -202,7 +202,7 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
 
 
                             {isFullCardVisible && <div className="w-full 2xl:mt-10 mt-5 space-y-6 xl:space-y-10 ">
-                                <h3 className={`${playfair.className} text-2xl 2xl:text-3xl font-medium`} >Popular Journeys</h3>
+                                <h3 className={`${playfair.className} text-2xl 2xl:text-3xl font-medium`} >{page === 'collections' ? 'Explore our Collection' : 'Handpicked Destinations'}</h3>
 
                                 {/* {page === 'destinations' && <div className="flex  space-x-6">
                                     {card?.countries?.map((country, index) => (

@@ -90,7 +90,7 @@ function MobileAnimatedVerticalIndividualCard({ index,
                         <span className={`font-normal text-xl ml-3 ${playfair.className}`}>{card.title}</span></p>
 
                     <hr className=' opacity-40 mt-1'></hr>
-                    <h3 className={`font-normal mt-5 ${playfair.className}`}>Popular Journeys</h3>
+                    <h3 className={`font-normal mt-5 ${playfair.className}`}>{page === 'collections' ? 'Explore our Collection' : 'Handpicked Destinations'}</h3>
                     {page === 'collections' && (
                         <div className="flex   w-11/12 flex-wrap  gap-y-1  gap-x-4 pr-3 font-light text-[12px] mt-2">
                             {card?.popular_journeys

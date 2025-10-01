@@ -24,13 +24,13 @@ export default function JourneryIntro() {
                 <div ref={titleRef} className=" lg:w-5/12   md:w-6/12 w-full flex flex-col   max-sm:pl-0 max-lg:pl-5  ">
                     {isMobile ?
                         (
-                            <TitleText text='The BlueTerra Approach' className=' font-medium text-center  ' />
+                            <TitleText text='Curated by BlueTerra' className=' font-medium text-center  ' />
 
                         ) :
                         (
                             <>
-                                <TitleText text='The' className=' font-medium  ' />
-                                <TitleText text='BlueTerra Approach' className=' font-medium  lg:mt-2  ' />
+                                <TitleText text='Curated by BlueTerra' className=' font-medium  ' />
+                                {/* <TitleText text='Curated by BlueTerra' className=' font-medium  lg:mt-2  ' /> */}
                             </>
                         )
                     }
