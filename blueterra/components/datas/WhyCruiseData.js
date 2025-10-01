@@ -2,19 +2,18 @@
 
 const WhyCruiseData = [
     {
-        "title": "Authentic Partnerships",
-        "description": "From the moment you book to your return home, our dedicated team is here to provide tailored assistance every step of the way.",
+        "title": "Exclusive Access & Added Value",
+        "description": "Through our global partnerships with leading cruise lines, we secure preferred fares, insider perks and privileged access.",
         "icon": "Icons/our-story/handshake.svg"
-
     },
     {
-        "title": "Curated Experiences",
-        "description": "Every journey is thoughtfully designed to match your interests, ensuring meaningful, immersive, and unforgettable moments wherever you go.",
+        "title": "Personalized Service",
+        "description": "Whether planning online or through one-on-one consultation, our team makes booking effortless. Every cruise is matched to your style and preferences, creating a journey that feels truly yours.",
         "icon": "Icons/our-story/experience.svg"
     },
     {
-        "title": "Seamless Planning",
-        "description": "We handle every detail from start to finish, ensuring a smooth, stress-free journey. All you need to do is relax and enjoy the experience.",
+        "title": "Trust You Can Count On",
+         "description": "Our strength lies in trusted collaborations with world-class cruise lines and operators. We take pride in being dependable, responsive and detail-oriented",
         "icon": "Icons/our-story/map.svg"
     },
    
