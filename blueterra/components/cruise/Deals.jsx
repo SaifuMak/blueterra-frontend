@@ -227,14 +227,6 @@ function Deals() {
                                 </div>
                             </div>
 
-                            {/* <div className="min-h-[200px]">
-                                <div
-                                    className=" flex items-center text-lg  font-light leading-8 text-white"
-                                    dangerouslySetInnerHTML={{ __html: destinationsData[currentIndex % destinationsData.length]?.description }}
-                                >
-                                </div>
-                            </div> */}
-
                             <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2 `} onClickFunction={handleNavigateToDestinations} />
                         </div>
 

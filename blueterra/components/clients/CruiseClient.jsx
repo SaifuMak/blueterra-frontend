@@ -9,14 +9,16 @@ import CruiseLineSection from "../cruise/CruiseLineSection"
 import ContactSection from "../cruise/ContactSection"
 import Footer from "../Footer/page"
 import Deals from "../cruise/Deals"
+import DealsMediumDevices from "../cruise/DealsMediumDevices"
+import DealsMobileDevices from "../cruise/DealsMobileDevices"
 import { useMediaQuery } from 'react-responsive'
 
 
 export default function CruiseClient() {
 
-    const isMobile = useMediaQuery({ query: "(max-width: 644px)" });
+    const isMobile = useMediaQuery({ query: "(max-width: 1000px)" });
     const isMediumDevice = useMediaQuery({
-        query: "(min-width: 645px) and (max-width: 1279px)",
+        query: "(min-width: 1000px) and (max-width: 1279px)",
     });
     const isLargeDevice = useMediaQuery({ query: "(min-width: 1280px)" });
 
@@ -26,6 +28,8 @@ export default function CruiseClient() {
             <Navbar />
             <BannerSection />
             {isLargeDevice && <Deals />}
+            {isMediumDevice && <DealsMediumDevices/>}
+            {isMobile && <DealsMobileDevices/>}
             {/* <FeaturedDeals /> */}
             <DestinationsSection />
             <WhyCruise />
