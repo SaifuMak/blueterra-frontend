@@ -1,44 +1,61 @@
 export const CRUISE_DESTINATIONS = [
   {
-    title: 'MEDITERRANEAN CRUISES',
-    banner_image_public_url: 'https://images.pexels.com/photos/365668/pexels-photo-365668.jpeg',
-    alt: 'mediterranean-cruise',
+    title: 'Arabian Gulf',
+    banner_image_public_url: 'https://cdn.myblueterra.com/Arabian%20Gulf.jpg',
+    alt: 'Arabian Gulf',
     description:
-      'Sail through timeless coastlines and historic cities — from the Greek Isles and Italian Riviera to the sun-kissed beaches of Spain and France.'
+      'Glide past most beautiful skylines, golden deserts, and vibrant souks where modern luxury meets timeless tradition.'
   },
   {
-    title: 'ALASKA CRUISES',
-    banner_image_public_url: 'https://images.pexels.com/photos/2276811/pexels-photo-2276811.jpeg',
-    alt: 'alaska-cruise',
+    title: 'Antarctica & Arctic',
+    banner_image_public_url: 'https://cdn.myblueterra.com/Antarctica%20%26%20Arctic.jpg',
+    alt: 'Antarctica & Arctic',
     description:
-      'Discover glaciers, wildlife, and breathtaking natural landscapes while experiencing the raw beauty of Alaska’s wilderness.'
+      'Cruise into remote frontiers of ice and wonder, spotting glaciers, penguins and polar bears in nature’s raw extremes.'
   },
-  {
-    title: 'CARIBBEAN CRUISES',
-    banner_image_public_url: 'https://images.pexels.com/photos/372738/pexels-photo-372738.jpeg',
-    alt: 'caribbean-cruise',
+   {
+    title: 'Mediterranean',
+    banner_image_public_url: 'https://cdn.myblueterra.com/Mediterranean.jpg',
+    alt: 'Mediterranean',
     description:
-      'Tropical escapes with turquoise waters, pristine beaches, and vibrant island cultures across the Eastern, Western, and Southern Caribbean.'
+      'Sail sunlit coasts lined with ruins, vineyards and chic harbors where history, cuisine, and culture blend seamlessly.'
+  }, {
+    title: 'Asia',
+    banner_image_public_url: 'https://cdn.myblueterra.com/Asia.jpg',
+    alt: 'Asia',
+    description:
+      'From neon cities to ancient temples and tropical islands, every port reveals contrasts alive with color and energy.'
+  }, {
+    title: 'Australia & New Zealand',
+    banner_image_public_url: 'https://cdn.myblueterra.com/Australia%20%26%20NZ.jpg',
+    alt: 'Australia & New Zealand',
+    description:
+      'Explore Sydney’s harbor, Tasmania’s wilderness and New Zealand’s fjords landscapes of adventure and refined coastal charm.'
+  }, {
+    title: 'Caribbean',
+    banner_image_public_url: 'https://cdn.myblueterra.com/Caribbean.jpg',
+    alt: 'Caribbean',
+    description:
+      'White-sand beaches, turquoise seas and island rhythms create paradise with a unique flavor at every port.'
+  }, {
+    title: 'Iceland',
+    banner_image_public_url: 'https://cdn.myblueterra.com/Iceland.jpg',
+    alt: 'Iceland',
+    description:
+      'Circle a land of fire and ice: volcanic peaks, geothermal springs, fjords and northern lights over Arctic waters.'
+  }, {
+    title: 'Japan',
+    banner_image_public_url: 'https://cdn.myblueterra.com/Japan.jpg',
+    alt: 'Japan',
+    description:
+      'Discover a coastline where modern energy meets ancient culture, from glowing festivals to moments of quiet beauty.'
   },
-  {
-    title: 'NORTHERN EUROPE CRUISES',
-    banner_image_public_url: 'https://images.pexels.com/photos/2803288/pexels-photo-2803288.jpeg',
-    alt: 'northern-europe-cruise',
+   {
+    title: 'Europe',
+    banner_image_public_url: 'https://cdn.myblueterra.com/Europe.jpg',
+    alt: 'Europe',
     description:
-      'Journey through the Baltic capitals, Norwegian fjords, and enchanting northern coastlines rich with culture and stunning vistas.'
-  },
-  {
-    title: 'ASIA CRUISES',
-    banner_image_public_url: 'https://images.pexels.com/photos/2438779/pexels-photo-2438779.jpeg',
-    alt: 'asia-cruise',
-    description:
-      'A blend of tradition and modernity, explore bustling cities, serene temples, and exotic landscapes across Southeast Asia, Japan, and beyond.'
-  },
-  {
-    title: 'SOUTH PACIFIC CRUISES',
-    banner_image_public_url: 'https://images.pexels.com/photos/33992896/pexels-photo-33992896.jpeg',
-    alt: 'south-pacific-cruise',
-    description:
-      'Escape to paradise with island-hopping journeys through Fiji, Tahiti, and other South Pacific gems known for their turquoise lagoons.'
-  }
+      'Sail along legendary rivers and seas, discovering castles, art, and cultures shaped by time.'
+  }, 
+  
 ];
