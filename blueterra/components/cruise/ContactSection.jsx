@@ -15,12 +15,12 @@ const ContactSection = () => {
 
 
     return (
-        <div className=" w-full h-full py-4 md:py-12    text-dark-28  flex-center relative">
+        <div className=" w-full h-full max-md:pb-4 pt-2 md:pt-12    text-dark-28  flex-center relative">
 
           
             <div className="2xl:w-11/12 lg:w-full w-11/12 max-sm:mt-10  max-lg:space-y-10  lg:space-x-10 flex max-lg:flex-col  justify-center">
 
-                <div className="lg:w-4/12   w-full flex flex-col max-sm:pl-3  xl:space-y-6 2xl:space-y-8 ">
+                <div className="xl:w-4/12  lg:w-3/12   w-full flex flex-col max-sm:pl-3  xl:space-y-6 2xl:space-y-8 ">
                     <h4 className={`${playfair.className} vertically-animated-element font-medium max-md:text-2xl text-[42px] xl:text-[50px]`} >Send Enquiry</h4>
                     {/* <p className=" text-xl xl:text-2xl vertically-animated-element max-sm:mt-2 font-light">Have questions or need assistance?</p> */}
 
@@ -70,11 +70,12 @@ const ContactSection = () => {
 
                 </div>
 
-                <div className="lg:w-6/12   w-full  h-full overflow-hidden  ">
-                    <div className="w-full max-sm:h-[600px]    md:h-[500px] lg:h-[400px] xl:h-[420px] 2xl:h-[420px] ">
+                <div className="xl:w-6/12 lg:w-7/12   w-full  h-full overflow-hidden  ">
+                    <div className="w-full   h-[800px]    md:h-[500px] lg:h-[500px] xl:h-[500px] 2xl:h-[540px] ">
+
                         <iframe
                             title="Zoho Form"
-                            src="https://forms.zohopublic.com/blueterra/form/Sendusadirectmessage/formperma/LH1SC9iQKsMbkmNpCxnvw8TsFKPf79BaLG-GgDCVlFw"
+                            src="https://forms.zohopublic.com/blueterra/form/SendusanEnquiryCruise/formperma/dwn1DHQ4chbuTZF4BBdl2h3Tv6ophUTf9GV-_6iAjrg"
                             frameBorder="0"
                             style={{ width: '100%', height: '100%', border: 'none' }}
                             allowFullScreen

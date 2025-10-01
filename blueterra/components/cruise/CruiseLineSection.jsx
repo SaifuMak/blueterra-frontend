@@ -25,9 +25,6 @@ function CruiseLineSection() {
         ["https://cdn.myblueterra.com/silversea_exped.f0efdb27c9a3732a1fba.png", "https://cdn.myblueterra.com/swan.c47789e36f97d2ca6aa7.png"],
         ["https://cdn.myblueterra.com/windstar.965cb4674ed933aac294.png", "https://cdn.myblueterra.com/disney.d3ab123a1d237ae76432.png"],
         ["https://cdn.myblueterra.com/disney.d3ab123a1d237ae76432.png", "https://cdn.myblueterra.com/ncl.17a0a5f5222f3554ba84.png"],
-
-
-        
     ]
 
 
