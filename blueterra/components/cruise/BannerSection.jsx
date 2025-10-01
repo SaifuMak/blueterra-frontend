@@ -9,14 +9,14 @@ function BannerSection() {
 
     const [isBannerVideoLoaded, setIsBannerVideoLoaded] = useState(false)
 
-    
-      const videoRef = useRef(null);
 
-      useEffect(() => {
-        if (videoRef.current?.readyState >= 3) { 
-          setIsBannerVideoLoaded(true);
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+        if (videoRef.current?.readyState >= 3) {
+            setIsBannerVideoLoaded(true);
         }
-      }, []);
+    }, []);
 
     return (
         // <div className=" w-full relative h-screen bg-center bg-cover bg-no-repeat"
@@ -43,10 +43,11 @@ function BannerSection() {
                 loop
                 playsInline
                 preload="auto"
-                // onCanPlay={() => {
-                //     console.log("Can play");
-                //     setIsBannerVideoLoaded(true);
-                // }}
+            onCanPlay={() => {
+              console.log("Can play");
+              setIsBannerVideoLoaded(true);
+            }}
+            onError={(e) => console.error("Video error", e)}
             ></video>
 
 
