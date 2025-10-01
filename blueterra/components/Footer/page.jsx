@@ -79,7 +79,7 @@ export default function Footer() {
         "Quick Links": {
             "Home": "/",
             "Our Story": "/our-story",
-            "The Blueterra Collection": "/collections",
+            "The BlueTerra Collection": "/collections",
             "Destinations": "/destinations",
             "Cruise": "#",
             "MICE": "/corporate-mice"

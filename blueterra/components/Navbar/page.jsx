@@ -27,7 +27,7 @@ export default function Navbar({ isfixed = false, onNavClick }) {
   const MenuItems = [
 
     { nav: 'Our Story', link: '/our-story', url: '/our-story' },
-    { nav: 'The Blueterra Collection', link: '/collections', url: '/collections' },
+    { nav: 'The BlueTerra Collection', link: '/collections', url: '/collections' },
     { nav: 'Destinations', link: '/destinations', url: '/destinations' },
     { nav: 'Cruise', link: '/cruise', url: '/cruise' },
     { nav: 'MICE', link: '/corporate-mice', url: '/corporate-mice' },
