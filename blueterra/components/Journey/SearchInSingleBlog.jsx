@@ -44,10 +44,10 @@ const SearchInSingleBlog = () => {
 
     return (
         <div className=" w-full flex flex-col ">
-            <p className={` text-2xl font-normal ${rubik.className}`}>
+            {/* <p className={` text-2xl font-normal ${rubik.className}`}>
                 Search
-            </p>
-            <div className=" w-full  h-9 md:h-10 xl:h-12 xl:mt-4 mt-3 rounded-full border border-[#2A282880]/80 px-5 flex justify-between items-center">
+            </p> */}
+            <div className=" w-full  h-9 md:h-10 xl:h-12 xl:mt-1 mt-3 rounded-full border border-[#2A282880]/80 px-5 flex justify-between items-center">
                 <input
                     type="text"
                     className="w-11/12 outline-none placeholder:text-sm md:placeholder:text-lg"

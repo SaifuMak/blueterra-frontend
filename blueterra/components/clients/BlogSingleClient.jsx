@@ -196,10 +196,10 @@ export default function BlogSingleClient({ slug }) {
                             </div>
                         </div> */}
 
-                        <div className="bg-light-beige rounded-2xl px-5 pb-4 pt-7">
-                            <h3 className=" text-[24px] mb-5 ">More Blogs</h3>
+                        <div className="bg-light-beige rounded-2xl xl:px-5 px-3 pb-4 pt-7">
+                            <h3 className={` text-2xl mb-5  ${playfair.className} `}>More Blogs</h3>
 
-                            <div className=" max-lg:flex max-lg:flex-wrap">
+                            <div className=" max-lg:flex space-x-10 max-lg:flex-wrap">
                                 {moreBlogs?.filter(blog => blog.slug !== slug).slice(0, 3).map((blog, index) => (
                                     <div key={index} onClick={() => router.push(`/blog/${blog.slug}`)} className=" cursor-pointer flex my-3 lg:my-6 space-x-3">
                                         <div className=" w-[130px] shrink-0 rounded-lg overflow-hidden h-[120px] 2xl:h-[130px] relative">
@@ -211,8 +211,8 @@ export default function BlogSingleClient({ slug }) {
                                                 className=" object-cover "
                                             />
                                         </div>
-                                        <div className="font-light mt-1 max-xl:text-sm ">
-                                            <p className=" flex items-center text-sm "><img src="/Icons/calender-dark.svg" alt="" className=" size-3 mr-2" />{blog.created_at}</p>
+                                        <div className="font-light flex flex-col  mt-1 max-xl:text-sm ">
+                                            <p className=" flex  text-sm "><img src="/Icons/calender-dark.svg" alt="" className="mt-1 size-3 mr-2" />{blog.created_at}</p>
                                             <p className=" xl:leading-7 mt-1">{blog.title}</p>
                                         </div>
                                     </div>

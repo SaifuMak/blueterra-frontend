@@ -8,7 +8,7 @@ const ContactSection = () => {
 
     const CONTACT_DETAILS = [
         { "title": "Call:", "details": "+971 58 541 2123", "icon": "/Icons/phone-blue.svg" },
-        { "title": "Email:", "details": "connect@myblueterra.com", "icon": "/Icons/email-blue.svg" },
+        { "title": "Email:", "details": "cruise@myblueterra.com", "icon": "/Icons/email-blue.svg" },
         // { "title": "Business Hours:", "details": "Mon - Sat: 9AM - 6PM", "icon": "/Icons/clock-blue.svg" },
         // { "title": "Address:", "details": "Meydan Freezone,", "subDetails": "Dubai - U.A.E", "icon": "/Icons/location-blue.svg" },
     ]

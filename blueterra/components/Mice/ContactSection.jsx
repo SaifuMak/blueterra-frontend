@@ -8,7 +8,7 @@ const ContactSection = forwardRef((props, ref) => {
 
     const CONTACT_DETAILS = [
         { "title": "Call:", "details": "+971 58 541 2123", "icon": "/Icons/phone-blue.svg" },
-        { "title": "Email:", "details": "connect@myblueterra.com", "icon": "/Icons/email-blue.svg" },
+        { "title": "Email:", "details": "events@myblueterra.com", "icon": "/Icons/email-blue.svg" },
         // { "title": "Business Hours:", "details": "Mon - Sat: 9AM - 6PM", "icon": "/Icons/clock-blue.svg" },
         // { "title": "Address:", "details": "Meydan Freezone,", "subDetails": "Dubai - U.A.E", "icon": "/Icons/location-blue.svg" },
     ]
@@ -25,7 +25,7 @@ const ContactSection = forwardRef((props, ref) => {
             <div className="2xl:w-11/12  lg:w-full  w-11/12 max-sm:mt-10  max-lg:space-y-10  lg:space-x-10 flex flex-col items-center  ">
 
                 <div className="lg:w-10/12 w-11/12  lg:px-4 mb-1 lg:mb-5">
-                    <h4 className={`${playfair.className}  vertically-animated-element font-medium max-md:text-2xl text-[42px] xl:text-[50px]`} >Get in Touch</h4>
+                    <h4 className={`${playfair.className}  vertically-animated-element font-medium  max-sm:text-2xl text-3xl  lg:text-[36px]  xl:text-[45px]  2xl:text-[50px]`} >Get in Touch</h4>
                 </div>
                 <div className=" flex  max-lg:flex-col w-full lg:justify-center max-sm:space-y-8 ">
 

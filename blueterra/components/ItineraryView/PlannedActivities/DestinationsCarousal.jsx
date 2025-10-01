@@ -227,7 +227,7 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
                                 ))}
                             </div>
 
-                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-5 left-3 max-sm:text-[15px] text-lg xl:text-xl 2xl:text-2xl font-normal">
+                            <div className="text-white flex px-2   pointer-events-auto  space-x-1 absolute bottom-5 left-3 max-sm:text-[15px] text-base  font-normal">
                                 <p className="text-nowrap">Day {currentCollection + 1}:</p>
                                 <p className="capitalize lg:mr-4 ">{itineraryData?.days?.[currentCollection].image_title}</p>
                             </div>
@@ -259,23 +259,23 @@ export default function DestinationsCarousal({ selectedTab, itineraryData }) {
                     <LoaderIcon />
                 </div>
             ) : (
-                <div className="w-full  text-dark-28 pl-2 mt-2 ">
-                    {daysData?.[currentCollection]?.temperature && <div className=" flex ">
+                <div className="w-full  text-dark-28 pl-2 mt-2  ">
+                    {daysData?.[currentCollection]?.temperature && <div className=" flex items-center ">
                                                 <div className=" lg:mt-0.5 mr-1 lg:mr-2 mt-1">
-                            <img src="/Icons/weather.png" alt="cloud" className=" object-cover size-5 lg:size-7" />
+                            <img src="/Icons/weather.png" alt="cloud" className=" object-cover size-5 lg:size-6" />
                         </div>
-                        <p className="xl:text-2xl lg:text-xl ">
+                        <p className=" text-base">
                             {daysData?.[currentCollection]?.temperature ? daysData?.[currentCollection]?.temperature : '0'}
 
-                            <span className="relative -top-1 text-lg lg:text-2xl">°</span>C
+                            <span className="relative -top-1 ">°</span>C
                         </p>
 
                     </div>}
 
                     {daysData?.[currentCollection]?.temperature && <div className=" flex space-x-6 text-sm items-center font-normal">
-                        <p className="">Feels like {daysData?.[currentCollection]?.weatherStatus}</p>
-                        <p className="">Low: <span className=" max-sm:text-sm text-base">{daysData?.[currentCollection]?.min_temp}°C</span></p>
-                        <p className="">High: <span className=" max-sm:text-sm text-base">{daysData?.[currentCollection]?.max_temp}°C</span></p>
+                        <p className="text-base">Feels like {daysData?.[currentCollection]?.weatherStatus}</p>
+                        <p className=" text-base">Low: <span className=" max-sm:text-sm text-base">{daysData?.[currentCollection]?.min_temp}°C</span></p>
+                        <p className="text-base">High: <span className=" max-sm:text-sm text-base">{daysData?.[currentCollection]?.max_temp}°C</span></p>
 
                     </div>}
                 </div>
