@@ -62,15 +62,15 @@ export default function CruiseCarousal({ logos, setCurrent, setCount }) {
                     <CarouselContent className=' '>
                         {logos.map((pair, index) => (
                             <CarouselItem key={index} className=" md:basis-1/2 gap-0 pl-0 lg:basis-1/4  flex-center">
-                                <div className="   overflow-hidden flex flex-col w-full h-full">
+                                <div className="   overflow-hidden flex flex-col w-full 2xl:h-[430px] xl:h-[410px] md:h-[320px]">
                                     {/* Top Section */}
-                                    <div className={`h-1/2 ${index % 2 === 1 ? 'bg-sky-blue-light' : 'bg-white'}  flex py-3 lg:py-6 xl:py-12 items-center justify-center `}>
+                                    <div className={`h-1/2 ${index % 2 === 1 ? 'bg-sky-blue-light' : 'bg-white'}  flex py-3 lg:py-6 xl:py-8 items-center justify-center `}>
 
-                                        <img src={pair[0]} alt="" className=" max-sm:size-32 max-xl:size-32 object-cover max-xl:object-contain" />
+                                        <img src={pair[0]} alt="" className=" object-contain md:size-44 size-32 lg:size-32 xl:size-36 2xl:size-48" />
                                     </div>
                                     {/* Bottom Section */}
-                                    <div className={`h-1/2 ${index % 2 === 0 ? 'bg-sky-blue-light' : 'bg-white'}  flex py-3 lg:py-6 xl:py-12 items-center justify-center`}>
-                                        <img src={pair[1]} alt="" className="max-sm:size-32 max-xl:size-32 object-cover max-xl:object-contain" />
+                                    <div className={`h-1/2 ${index % 2 === 0 ? 'bg-sky-blue-light' : 'bg-white'}  flex py-3 lg:py-6 xl:py-8 items-center justify-center`}>
+                                        <img src={pair[1]} alt="" className="object-contain 2xl:size-48 xl:size-36 lg:size-32 md:size-44 size-32" />
                                     </div>
                                 </div>
                             </CarouselItem>
