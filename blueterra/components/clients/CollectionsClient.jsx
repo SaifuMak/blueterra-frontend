@@ -18,7 +18,7 @@ import AXIOS_INSTANCE from "@/lib/axios";
 import LoaderIcon from "@/components/generalComponents/LoaderIcon";
 import ResponsiveClipPath from "@/components/generalComponents/ResponsiveClipPath";
 import { useMediaQuery } from 'react-responsive'
-
+import { useRouter, useSearchParams } from 'next/navigation'
 import gsap from "gsap"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
@@ -31,6 +31,9 @@ export default function CollectionsClient() {
   const isMobile = useMediaQuery({
     query: '(max-width: 844px)'
   })
+
+   const router = useRouter()
+  const searchParams = useSearchParams()
 
 
   const [isLoading, setIsLoading] = useState(true)
@@ -218,6 +221,23 @@ export default function CollectionsClient() {
       }, 500);
     }
   }
+
+  useEffect(() => {
+    const params = new URLSearchParams()
+
+    // if (page) params.set('page', page.toString())
+    if (selectedFilters.categories.length)
+      params.set('categories', selectedFilters.categories.join(','))
+    if (selectedFilters.destinations.length)
+      params.set('destinations', selectedFilters.destinations.join(','))
+    if (selectedFilters.countries.length)
+      params.set('countries', selectedFilters.countries.join(','))
+    if (selectedFilters.collections.length)
+      params.set('collections', selectedFilters.collections.join(','))
+
+    // Push new URL
+    router.replace(`?${params.toString()}`)
+  }, [selectedFilters, router])
 
 
   const fetchItinerary = async (page = 1, loading = false) => {
