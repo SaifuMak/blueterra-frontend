@@ -79,9 +79,9 @@ export default function Footer() {
         "Quick Links": {
             "Home": "/",
             "Our Story": "/our-story",
-            "The BlueTerra Collection": "/collections",
+            "BlueTerra Collection": "/collections",
             "Destinations": "/destinations",
-            "Cruise": "#",
+            "Cruise": "/cruise",
             "MICE": "/corporate-mice"
         },
         "Destinations": {
@@ -92,7 +92,7 @@ export default function Footer() {
             "Iceland": "#"
         },
         "Featured": {
-            "Cruise Deals": "#",
+            "Cruise Deals": "/cruise",
             "Signature Journey": "#",
             "Explore by Landscape": "#",
             "Adventures in Motions": "#",
@@ -208,6 +208,8 @@ export default function Footer() {
                                 </ul>
                             </div>
                         ))}
+
+
 
                         <div className=" max-md:mt-6">
 

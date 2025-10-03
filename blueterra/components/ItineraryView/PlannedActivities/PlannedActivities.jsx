@@ -408,10 +408,10 @@ export default function PlannedActivities({ itineraryData, setIsLenisAvailable }
             {/* <div className="relative flex flex-wrap bg-red-50 border   w-[800px] min-h-[400px] overflow-hidden"> */}
 
             {/* <div ref={plannerRef} id="plans" className={` ${rubik.className}  planned-activities text-dark-28 h-[105vh]  xl:w-11/12 my-16  z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12   flex flex-col items-center `}> */}
-            <div ref={plannerRef} id="plans" className={` ${rubik.className}   planned-activities text-dark-28   xl:w-11/12 mt-16    z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12    flex flex-col items-center overflow-hidden `}>
+            <div ref={plannerRef} id="plans" className={` ${rubik.className}   planned-activities text-dark-28   xl:w-11/12 2xl:mt-16 mt-8    z-20 2xl:py-6 px-6 py-6 max-xl:text-sm rounded-md   2xl:px-12    flex flex-col items-center overflow-hidden `}>
 
                 <div ref={titleGsapRef} className=" flex  flex-col z-[999] items-center transform-gpu ">
-                    <h3 className={`text-5xl font-medium ${playfair.className}`}>Travel Guide</h3>
+                    <h3 className={`text-4xl 2xl:text-5xl font-medium ${playfair.className}`}>Travel Guide</h3>
                 </div>
 
                 {/* <div className=" flex text-xl vertically-animated-element space-x-8 mt-10  font-normal max-lg:hidden">

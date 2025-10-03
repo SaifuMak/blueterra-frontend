@@ -158,6 +158,8 @@ function DealsMobileDevices() {
 
                         </div>
 
+
+
                         {/* Carousel (1 card per view) */}
                         <div className="relative w-full mt-10">
                             <div ref={containerRef} className="flex w-full">

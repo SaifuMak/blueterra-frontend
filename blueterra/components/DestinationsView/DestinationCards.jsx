@@ -30,7 +30,7 @@ export default function DestinationCards({ itineraryData }) {
 
                                     <div className=" absolute flex m-1 items-center  ml-3 inset-0">
                                         <CiClock1 className="text-sm" />
-                                        <span className="text-sm max-sm:text-xs ml-1 ">{destination?.days?.length -1} nights</span>
+                                        <span className="text-sm max-sm:text-xs ml-1 ">{destination?.days?.length - 1} nights</span>
                                     </div>
 
                                 </div>
@@ -85,7 +85,12 @@ export default function DestinationCards({ itineraryData }) {
 
                             <div className=" flex justify-between text-sm">
                                 <div className=" lg:text-base">
-                                    From <span className=" text-dark-28  ">{destination?.featured_points?.[0]?.price}/person</span>
+                                    {destination?.featured_points?.[0]?.price ? (
+                                        <p className="">From <span className=" text-dark-28  ">{destination?.featured_points?.[0]?.price}/person</span></p>
+
+                                    ) : (
+                                        <p className=" hover:underline  "> Price available on request </p>
+                                    )}
                                 </div>
                                 <div className="flex items-center  cursor-pointer">
                                     <p className=" md:font-medium lg:text-base text-dark-28">Explore</p>

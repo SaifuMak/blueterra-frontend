@@ -79,7 +79,6 @@ function FeaturedPoints({ featuredPoints, setFeaturedPoints, textAreaStyle, inpu
                                 onChange={(e) => handleFeaturedPointsChange(index, 'price', e.target.value)}
                                 placeholder="Enter Price In Dollars (eg : $8,000)"
                                 className={inputStyle}
-                                required
                             />
                         </div>
 

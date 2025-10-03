@@ -105,10 +105,11 @@ export default function BlogSingleClient({ slug }) {
     };
 
 
-
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, [blog]);
+
+
 
     return (
 
@@ -197,7 +198,7 @@ export default function BlogSingleClient({ slug }) {
                         </div> */}
 
                         <div className="bg-light-beige rounded-2xl xl:px-5 px-3 pb-4 pt-7">
-                            <h3 className={` text-2xl mb-5  ${playfair.className} `}>More Blogs</h3>
+                            <h3 className={`2xl:text-5xl text-3xl lg:text-4xl font-medium xl:mb-7 text-dark-4B mb-2  ${playfair.className} `}>More Blogs</h3>
 
                             <div className=" max-lg:flex space-x-10 max-lg:flex-wrap">
                                 {moreBlogs?.filter(blog => blog.slug !== slug).slice(0, 3).map((blog, index) => (
@@ -284,7 +285,7 @@ export default function BlogSingleClient({ slug }) {
 
 
                     <div className=" xl:w-10/12  w-11/12  max-sm:w-10/12 h-full">
-                        <h2 className={`${playfair.className}  text-2xl md:text-2xl  font-semibold text-dark-4B`}>More from our Journal</h2>
+                        <h2 className={`${playfair.className} 2xl:text-5xl text-3xl lg:text-4xl 2xl:pb-3 font-semibold text-dark-4B`}>More from our Journal</h2>
 
                         <div className=" w-full flex max-md:flex-col   mt-5 lg:mt-8 space-y-6 md:space-x-10 h-[400px] md:h-[300px] lg:h-[400px] xl:h-[400px] 2xl:h-[480px]">
 
