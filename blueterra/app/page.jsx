@@ -24,6 +24,7 @@ import useGsapFadeIn from "./hooks/Gsap/useGsapFadeIn";
 import { useLenis } from "@/components/SmoothScroll";
 import { useGSAP } from "@gsap/react";
 import TestimonialsForMobile from "@/components/Home/TestimonialsForMobile";
+import BlogsForMobile from "@/components/Home/BlogsForMobile";
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -227,7 +228,6 @@ export default function Home() {
               <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Travel Beyond Ordinary</h1>
               <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all font-light duration-700 ease-in-out px-5  text-center lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Soulful journeys and bespoke celebrations,  curated with passion and care.</p>
               <Button text='PLAN YOUR JOURNEY' buttonStyle={`  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'}  translate-all duration-1000 ease-in-out max-md:text-sm px-4 lg:px-8 xl:px-10 py-1.5 lg:py-2.5 `} onClickFunction={() => setFormOpen(true)} />
-
             </div>
           </div>
         </div>
@@ -275,7 +275,7 @@ export default function Home() {
 
         {!isMobile && <div className=" w-full  flex-center max-sm:py-16 relative min-h-[100vh] bg-sky-blue-light ">
 
-          <div className={` h-fit    flex flex-col   items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
+          <div className={` h-fit  flex flex-col   items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
 
             <div ref={testimonialsContainerRef} className="flex flex-col  mt-10 lg:mt-16 2xl:mt-20">
               <h2 className={`${playfair.className}   text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
@@ -310,7 +310,9 @@ export default function Home() {
           <TestimonialsForMobile />
         </div>}
 
-        <JournalSection />
+        {!isMobile && <JournalSection />}
+        {isMobile && <BlogsForMobile />}
+
         <PartnerCompaniesSection />
 
         <PlanningCardSection setFormOpen={setFormOpen} />

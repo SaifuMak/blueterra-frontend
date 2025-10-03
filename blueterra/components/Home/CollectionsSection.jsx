@@ -21,8 +21,6 @@ function CollectionsSection() {
 
 
 
-
-
     const fetchCollections = async () => {
 
         try {
