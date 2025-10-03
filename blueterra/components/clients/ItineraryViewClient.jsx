@@ -136,7 +136,7 @@ export default function ItineraryViewClient({ slug }) {
 
                                 <div className=" text-white z-30  flex flex-col mt-24  md:mt-32 mb-10 justify-between   text-center w-full h-full   ">
 
-                                    <div className={`${playfair.className}  px-5` }>
+                                    <div className={`${playfair.className} px-5  2xl:px-10 `}>
                                         <p className=" text-[45px] md:text-[70px] max-md:leading-14 2xl:text-[100px]  opacity-0 vertically-animate-element-banner font-medium">{itineraryData.title}</p>
                                         <p className=" text-white/30 opacity-0 vertically-animate-element-banner leading-none font-medium h-fit lg:-mt-7  2xl:-mt-8 text-[70px] md:text-[150px] lg:text-[180px] 2xl:text-[250px]">{itineraryData.location_title}</p>
                                     </div>
