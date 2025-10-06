@@ -8,7 +8,6 @@ import { useState } from 'react';
 
 function TestimonialsForMobile() {
     const testimonialTitleRef = useGsapFadeIn()
-    const [isHovered, setIsHovered] = useState(false)
 
     return (
         <div className=" flex   bg-sky-blue-light py-10 ">
@@ -20,8 +19,7 @@ function TestimonialsForMobile() {
                 <Marquee pauseOnClick={true} speed={60}>
                     {testimonials?.map((testimonial, index) => (
                         <div key={index} className=" z-20  mx-5  my-4  py-10 px-5 bg-white  h-fit w-[300px]     rounded-2xl " style={{ boxShadow: '0 0 25px 1px rgba(153, 189, 188, 0.3)', }}
-                            onTouchStart={() => setIsHovered(true)}   // finger touches
-                            onTouchEnd={() => setIsHovered(false)}   >
+                        >
                             <p className=" font-light md:leading-8 leading-7  ">{testimonial.message}</p>
                             <p className=" text-sky-blue-dark mt-5">{testimonial.name}</p>
                             <p className=" font-light mt-2">{testimonial.country}</p>
