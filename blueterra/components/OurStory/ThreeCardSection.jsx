@@ -76,7 +76,7 @@ export default function ThreeCardSection() {
                     start: isMobile ? 'bottom -60%' : 'bottom -70%',
                     end: isMobile ? 'bottom -150%' : 'bottom -130%',
                     scrub: true,
-                    markers: true
+                    // markers: true
                 },
             });
         }
@@ -195,7 +195,7 @@ export default function ThreeCardSection() {
                     <section
                         key={i}
                         ref={(el) => (sectionsRef.current[i] = el)}
-                        className="md:min-h-[85vh]    min-h-[90vh]  bor  flex  items-center justify-center"
+                        className="md:min-h-[85vh]    min-h-[90vh]    flex  items-center justify-center"
                     >
                         <div
                             ref={(el) => (cardsRef.current[i] = el)}
