@@ -15,8 +15,9 @@ export default function SmoothScroll({ children, enabled = true }) {
   const lenisRef = useRef(null);
   const isMobile = useMediaQuery({ query: "(max-width: 644px)" });
 
+
   useEffect(() => {
-    if (isMobile) return
+    // if (isMobile) return
 
     const lenis = new Lenis({
       smooth: true,

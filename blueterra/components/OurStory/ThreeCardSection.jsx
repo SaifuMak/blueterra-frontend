@@ -32,6 +32,7 @@ export default function ThreeCardSection() {
 
     const cardComponents = [IntroCard, WhereItAllBegan, MissionVisionValues];
 
+
     //  Animate IntroCard on initial load
     useGSAP(() => {
         if (cardsRef.current[0]) {
@@ -72,10 +73,10 @@ export default function ThreeCardSection() {
                 ease: 'none',
                 scrollTrigger: {
                     trigger: threeCardsContainerRef.current, // outer scrollable container
-                    start: isMobile ? 'bottom -30%' : 'bottom -70%',
-                    end: isMobile ? 'bottom -80%' : 'bottom -130%',
+                    start: isMobile ? 'bottom -60%' : 'bottom -70%',
+                    end: isMobile ? 'bottom -150%' : 'bottom -130%',
                     scrub: true,
-                    // markers: true
+                    markers: true
                 },
             });
         }
@@ -117,6 +118,8 @@ export default function ThreeCardSection() {
                 }
             });
 
+
+            
             tl.fromTo(card,
                 {
                     opacity: 0,
@@ -134,17 +137,17 @@ export default function ThreeCardSection() {
                 }
             )
 
+
             if (index === 2) {
                 ScrollTrigger.create({
                     trigger: section,
                     pin: true,
                     pinSpacing: true,
                     start: isMobile ? "top 10%" : "top 10%",
-                    end: "bottom -95%",
+                    end: "bottom -40%",
                     // markers: true,
                 });
             }
-
 
             if (index === 2 && missionRef.current) {
                 tl.to({}, {
@@ -157,7 +160,6 @@ export default function ThreeCardSection() {
                     }
                 });
             }
-
 
             tl.to(card,
                 {
@@ -193,7 +195,7 @@ export default function ThreeCardSection() {
                     <section
                         key={i}
                         ref={(el) => (sectionsRef.current[i] = el)}
-                        className="md:min-h-[85vh]    min-h-[90vh]    flex  items-center justify-center"
+                        className="md:min-h-[85vh]    min-h-[90vh]  bor  flex  items-center justify-center"
                     >
                         <div
                             ref={(el) => (cardsRef.current[i] = el)}
