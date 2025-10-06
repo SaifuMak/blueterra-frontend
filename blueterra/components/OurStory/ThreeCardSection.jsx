@@ -144,7 +144,7 @@ export default function ThreeCardSection() {
                     pin: true,
                     pinSpacing: true,
                     start: isMobile ? "top 10%" : "top 10%",
-                    end: "bottom -40%",
+                    end: "bottom -30%",
                     // markers: true,
                 });
             }
