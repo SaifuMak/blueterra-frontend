@@ -181,25 +181,6 @@ export default function Home() {
     }, 50);
   }, [])
 
-  // Ensure Lenis is controlling scroll position
-  // useEffect(() => {
-  //   if (!lenis) return;
-  //      window.scrollTo(0, 0);
-
-  //   const handleRouteChange = () => {
-  //     // Reset scroll using Lenis, not window.scrollTo
-  //     lenis.scrollTo(0, { immediate: true });
-  //      window.scrollTo(0, 0);
-  //   };
-
-  //   // For Next.js: listen to route change
-  //   window.addEventListener("popstate", handleRouteChange);
-  //   handleRouteChange(); // also on mount
-
-  //   return () => {
-  //     window.removeEventListener("popstate", handleRouteChange);
-  //   };
-  // }, [lenis]);
 
 
 

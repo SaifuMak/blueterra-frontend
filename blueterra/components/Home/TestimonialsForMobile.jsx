@@ -4,7 +4,7 @@ import Marquee from "react-fast-marquee";
 import { testimonials } from '@/constants/testimonials';
 import { playfair } from '@/app/fonts'
 import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn';
-import { useState } from 'react';
+
 
 function TestimonialsForMobile() {
     const testimonialTitleRef = useGsapFadeIn()

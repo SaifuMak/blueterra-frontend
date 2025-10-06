@@ -214,7 +214,7 @@ export default function ItineraryViewClient({ slug }) {
                                 />
                                 <TravelInfo
                                     icon='/Icons/Itinerary/ballon.svg'
-                                    title='Adventures in Motion'
+                                    title={itineraryData?.collection?.title}
                                     subtitle={itineraryData?.category?.title}
 
                                 />

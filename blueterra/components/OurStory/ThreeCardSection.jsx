@@ -12,6 +12,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMediaQuery } from 'react-responsive'
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ThreeCardSection() {
