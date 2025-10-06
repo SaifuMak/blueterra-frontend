@@ -2,6 +2,8 @@
 "use client";
 import { createContext, useContext, useEffect, useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
+import { useMediaQuery } from 'react-responsive'
+
 
 const LenisContext = createContext(null);
 
@@ -11,8 +13,10 @@ export function useLenis() {
 
 export default function SmoothScroll({ children, enabled = true }) {
   const lenisRef = useRef(null);
+  const isMobile = useMediaQuery({ query: "(max-width: 644px)" });
 
   useEffect(() => {
+    if (isMobile) return
 
     const lenis = new Lenis({
       smooth: true,

@@ -174,26 +174,34 @@ export default function Home() {
 
 
 
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 50);
   }, [])
 
-
+  // Ensure Lenis is controlling scroll position
   // useEffect(() => {
-  //   setTimeout(() => {
-  //         window.scrollTo(0, 0);
-  //     // window.scrollTo({ top: 0, behavior: "smooth" });
+  //   if (!lenis) return;
+  //      window.scrollTo(0, 0);
 
-  //   }, 500);
-  // }, [])
+  //   const handleRouteChange = () => {
+  //     // Reset scroll using Lenis, not window.scrollTo
+  //     lenis.scrollTo(0, { immediate: true });
+  //      window.scrollTo(0, 0);
+  //   };
 
-  // useEffect(() => {
-  //   setHasMounted(true);
-  // }, []);
+  //   // For Next.js: listen to route change
+  //   window.addEventListener("popstate", handleRouteChange);
+  //   handleRouteChange(); // also on mount
 
-  // if (!hasMounted) {
-  //   return null; // or a skeleton/loader to avoid hydration mismatch
-  // }
+  //   return () => {
+  //     window.removeEventListener("popstate", handleRouteChange);
+  //   };
+  // }, [lenis]);
+
+
 
   return (
 
@@ -226,7 +234,7 @@ export default function Home() {
           <div className=" w-full h-full absolute bg-black/10  inset-0 flex-center flex-col text-white ">
             <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
               <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>Travel Beyond Ordinary</h1>
-              <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all font-light duration-700 ease-in-out px-5  text-center lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Soulful journeys and bespoke celebrations,  curated with passion and care.</p>
+              <p className={` ${rubik.className} ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all font-light duration-700 ease-in-out px-5  text-center lg:text-xl xl:text-2xl 2xl:text-[30px] `}>Soulful journeys and bespoke celebrations,  curated with passion and care</p>
               <Button text='PLAN YOUR JOURNEY' buttonStyle={`  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'}  translate-all duration-1000 ease-in-out max-md:text-sm px-4 lg:px-8 xl:px-10 py-1.5 lg:py-2.5 `} onClickFunction={() => setFormOpen(true)} />
             </div>
           </div>
