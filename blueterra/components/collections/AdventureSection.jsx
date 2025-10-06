@@ -19,7 +19,7 @@ export default function AdventureSection({setFormOpen}) {
                     />
 
                     <div className=" absolute w-full h-full flex items-center max-lg:justify-center xl:pl-20 lg:pl-10 inset-0 ">
-                        <h2 className={`xl:text-[80px] text-4xl lg:text-[73px]  max-lg:px-5 max-lg:text-center lg:max-w-sm  text-white ${playfair.className}`}>Wander the World With Us</h2>
+                        <h2 className={`2xl:text-[50px] xl:text-[45px] text-3xl lg:text-4xl leading-16  max-lg:px-5 max-lg:text-center lg:max-w-xs  text-white ${playfair.className}`}>Explore the World With Us</h2>
                     </div>
                 </div>
 
