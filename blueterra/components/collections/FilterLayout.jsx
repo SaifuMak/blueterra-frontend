@@ -6,7 +6,20 @@ import { RxCross2 } from '@/components/reactIcons'
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { destinations, countries, collections, categories } from '@/components/datas/FilterOptions'
 
-export default function FilterLayout({ page, filtersList, selectedFilters, setSelectedFilters, setIsAnyFilterOpened, isFilterVisible, expandedBannerCollectionIndex, handleChangeCollection, setExpandedTileIndex, setIsFilterVisible }) {
+
+
+export default function FilterLayout({ page,
+    filtersList,
+    selectedFilters,
+    setSelectedFilters,
+    setIsAnyFilterOpened,
+    isFilterVisible,
+    expandedBannerCollectionIndex,
+    handleChangeCollection,
+    setExpandedTileIndex,
+    setIsFilterVisible,
+    updateUrlParamsFromFilters,
+    searchParams }) {
 
     // const [openedFilters, setOpenedFilters] = useState([])
 
@@ -14,6 +27,8 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
 
     const [openedFilter, setOpenedFilter] = useState(null)
     const [flatSelectedFilters, setFlatSelectedFilters] = useState([])
+
+    const [isManualySelectedNodeFilters, setIsManualySelectedNodeFilters] = useState(false)
 
     const filterContaineRef = useClickOutside(() => setOpenedFilter(null))
 
@@ -35,12 +50,16 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
 
     }
 
+
     const handleItemSelection = (filter, value) => {
-        console.log(filter, value);
+        // console.log(filter, value);
 
         if (filter === 'collections' && page === 'collections') {
 
             handleClearAllSelectedFilters()
+
+            setIsManualySelectedNodeFilters(true)
+
             const index = filtersList?.collections.findIndex(item => item.title === value);
             // handleChangeCollection(filtersList?.collections.indexOf(value))
             handleChangeCollection(index)
@@ -48,6 +67,9 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
         }
         else if (filter === 'destinations' && page === 'destinations') {
             handleClearAllSelectedFilters()
+
+            setIsManualySelectedNodeFilters(true)
+
             const index = filtersList?.destinations.findIndex(item => item.title === value);
 
             handleChangeCollection(index)
@@ -57,12 +79,18 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
         // deals with actual data 
         setSelectedFilters(prev => {
             const selectedFilter = prev[filter];
-            return {
+
+            const nextFilters = {
                 ...prev,
                 [filter]: selectedFilter.includes(value)
                     ? selectedFilter.filter(item => item !== value)
-                    : [...selectedFilter, value]
+                    : [...selectedFilter, value],
             };
+
+            // update URL with the *new* filters state
+            // updateUrlParamsFromFilters(nextFilters);
+
+            return nextFilters;
         });
 
         // deals with flat list data 
@@ -76,7 +104,7 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
 
 
     const handleRemoveFilter = (valueToRemove) => {
-        console.log(valueToRemove)
+        // console.log(valueToRemove)
 
         // clear the flat list of selected filters
         setFlatSelectedFilters(prev => prev.filter(item => item !== valueToRemove)
@@ -89,18 +117,33 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
             for (const key in prev) {
                 updated[key] = prev[key].filter((item) => item !== valueToRemove);
             }
+            //  updateUrlParamsFromFilters(updated);
+
 
             return updated;
         });
     };
 
+    useEffect(() => {
+        if (selectedFilters) {
+            updateUrlParamsFromFilters(selectedFilters);
+        }
+    }, [selectedFilters]);
+
 
     useEffect(() => {
+        setIsManualySelectedNodeFilters(true)
 
         if (expandedBannerCollectionIndex === null) {
+            // console.log('yes the expanded collection is null ');
+
             // this condition helps in  preventing in clearing all filters when the node filter is removed, 
             return
         }
+
+        if (!isManualySelectedNodeFilters && searchParams.toString()) return
+        // if (!isManualySelectedNodeFilters) return
+
 
         handleClearAllSelectedFilters()
         if (page === 'destinations') {
@@ -142,16 +185,14 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
     }, [selectedFilters])
 
 
-
     const [filteredCategories, setFilteredCategories] = useState(filtersList?.categories || []);
     const [filteredCountries, setFilteredCountries] = useState(filtersList?.countries || []);
-
 
     // this is the custom logic for the filter collection and destination
     useEffect(() => {
 
         if (selectedFilters.collections.length > 0) {
-           
+
             const filtered = filtersList?.categories?.filter(
                 (cat) => selectedFilters.collections.includes(cat.collection.title)
             );
@@ -177,6 +218,16 @@ export default function FilterLayout({ page, filtersList, selectedFilters, setSe
     }, [selectedFilters])
 
 
+    useEffect(() => {
+        // flatten all values into a single array
+        const flat = [
+            ...selectedFilters.categories,
+            ...selectedFilters.destinations,
+            ...selectedFilters.countries,
+            ...selectedFilters.collections,
+        ];
+        setFlatSelectedFilters(flat);
+    }, [selectedFilters]);
 
 
     return (

@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function BannerAnimation({page,CardData, expandedIndex, setExpandedIndex, isFullCardVisible, setIsFullCardVisible, handleShowFullCard, setIsFilterVisible, isFilterVisible }) {
+export default function BannerAnimation({page,CardData, expandedIndex, setExpandedIndex, isFullCardVisible, setIsFullCardVisible, handleShowFullCard, setIsFilterVisible, isFilterVisible,updateUrlParamsFromFilters }) {
 
     const [isLoading, setIsLoading] = useState(true)
 

@@ -32,9 +32,8 @@ export default function CollectionsClient() {
     query: '(max-width: 844px)'
   })
 
-   const router = useRouter()
+  const router = useRouter()
   const searchParams = useSearchParams()
-
 
   const [isLoading, setIsLoading] = useState(true)
   const [itineraryData, setItineraryData] = useState(null)
@@ -59,7 +58,6 @@ export default function CollectionsClient() {
   const [isfullCardEnabledForFirstTime, setIsfullCardEnabledForFirstTime] = useState(false)
   const isTileSelectedForFirstTimeRef = useRef(false);
 
-
   const [expandedIndex, setExpandedIndex] = useState(null)
   const [isFullCardVisible, setIsFullCardVisible] = useState(true)
   const [isFilterVisible, setIsFilterVisible] = useState(false)
@@ -70,17 +68,19 @@ export default function CollectionsClient() {
 
   const [showMobileFilter, setShowMobileFilter] = useState(false)
 
-
   // for mobile devices
-  const [selectedFilters, setSelectedFilters] = useState({
-    categories: [],
-    destinations: [],
-    countries: [],
-    collections: []
-  })
+
+  // const [selectedFilters, setSelectedFilters] = useState({
+  //   categories: [],
+  //   destinations: [],
+  //   countries: [],
+  //   collections: []
+  // })
+
+  const [selectedFilters, setSelectedFilters] = useState(null);
+
 
   const [flatSelectedFilters, setFlatSelectedFilters] = useState([]);
-
 
   // handle clear filter control needed  in home page
   const handleChangeCollection = (indexOfCollection) => {
@@ -88,12 +88,13 @@ export default function CollectionsClient() {
   }
 
   const handleChangeCollectionForMobile = (indexOfCollection) => {
+    // alert('called handleChangeCollectionForMobile')
+    // console.log('called handleChangeCollectionForMobile');
+
     setSelectedVerticalTileMobile(indexOfCollection)
   }
 
-
   const homeRef = useRef()
-
 
   const handleNavClick = (link) => {
 
@@ -106,10 +107,12 @@ export default function CollectionsClient() {
       }, 500);
 
     }
-
   };
 
   const handleScrollTop = () => {
+    if (isMobile) return
+    // alert('called handleScrollTop')
+
     setTimeout(() => {
 
       window.scrollTo({
@@ -122,6 +125,9 @@ export default function CollectionsClient() {
 
 
   const handleShowFullCard = (index) => {
+
+    // alert('called handleShowFullCard')
+    // console.log('called handleShowFullCard')
 
     // when a card is clicked for its full size intially record it 
     setIsfullCardEnabledForFirstTime(true)
@@ -138,6 +144,8 @@ export default function CollectionsClient() {
 
   const handleScrollToItineraryResults = () => {
 
+    // alert('called handleScrollToItineraryResults')
+    // console.log('called handleScrollToItineraryResults')
 
     if (isTileSelectedForFirstTimeRef.current) {
       gsap.to(window, {
@@ -151,8 +159,9 @@ export default function CollectionsClient() {
 
   const handleSetCollectionRequestedToShowInMobile = (index) => {
 
+    // alert('called handleSetCollectionRequestedToShowInMobile')
+    // console.log('called handleSetCollectionRequestedToShowInMobile');
 
-    console.log('iti si callled ----');
 
     document.body.style.overflow = 'auto'
     document.documentElement.style.overflow = 'auto'
@@ -222,28 +231,97 @@ export default function CollectionsClient() {
     }
   }
 
+
   useEffect(() => {
-    const params = new URLSearchParams()
 
-    // if (page) params.set('page', page.toString())
-    if (selectedFilters.categories.length)
-      params.set('categories', selectedFilters.categories.join(','))
-    if (selectedFilters.destinations.length)
-      params.set('destinations', selectedFilters.destinations.join(','))
-    if (selectedFilters.countries.length)
-      params.set('countries', selectedFilters.countries.join(','))
-    if (selectedFilters.collections.length)
-      params.set('collections', selectedFilters.collections.join(','))
+    if (collectionsData?.length === 0) return
 
-    // Push new URL
-    router.replace(`?${params.toString()}`)
-  }, [selectedFilters, router])
+    if (!searchParams.toString()) {
+      // no query params
+      return;
+    }
+
+    const collectionParms = searchParams.get("collections") || ""
+
+    if (collectionParms) {
+      const indexOfCollection = collectionsData?.findIndex(
+        (item) => item.title === collectionParms
+      );
+
+      handleShowFullCard(indexOfCollection)
+
+      if (isMobile) {
+        handleChangeCollectionForMobile(indexOfCollection)
+      }
+
+    }
+    else {
+      handleShowFullCard(null)
+      if (isMobile) {
+        handleChangeCollectionForMobile(null)
+      }
+    }
+
+    setIsFullCardVisible(false)
+
+    // this is for mobile, if there is params scroll to results 
+    if (isMobile) {
+      setTimeout(() => {
+        handleSetCollectionRequestedToShowInMobile(null);
+      }, 500);
+    }
+
+  }, [collectionsData])
+
+
+
+  const updateUrlParamsFromFilters = (filters) => {
+
+    const params = new URLSearchParams(searchParams.toString())
+
+    filters.categories.length
+      ? params.set("categories", filters.categories.join(","))
+      : params.delete("categories")
+
+    filters.destinations.length
+      ? params.set("destinations", filters.destinations.join(","))
+      : params.delete("destinations")
+
+    filters.countries.length
+      ? params.set("countries", filters.countries.join(","))
+      : params.delete("countries")
+
+    filters.collections.length
+      ? params.set("collections", filters.collections.join(","))
+      : params.delete("collections")
+
+    // router.replace(`?${params.toString()}`)
+
+    router.replace(`?${params.toString()}`, { scroll: false })
+
+  }
+
+
+  // this initialize the filters from the params if no params filters a empty initially
+  useEffect(() => {
+    const filtersFromParams = {
+      categories: (searchParams.get("categories") || "").split(",").filter(Boolean),
+      destinations: (searchParams.get("destinations") || "").split(",").filter(Boolean),
+      countries: (searchParams.get("countries") || "").split(",").filter(Boolean),
+      collections: (searchParams.get("collections") || "").split(",").filter(Boolean),
+    }
+    setSelectedFilters(filtersFromParams);
+  }, [searchParams])
+
 
 
   const fetchItinerary = async (page = 1, loading = false) => {
 
     setIsLoading(true)
     // loading === true ? setIsLoading(true) : ''
+
+    setItineraryData([])
+    setTotalPages(null)
 
     try {
       const response = await AXIOS_INSTANCE.get('itinerary-list/', {
@@ -265,8 +343,6 @@ export default function CollectionsClient() {
 
       const totalPages = getTotalPagesCount(response.data.count, 6)
       setTotalPages(totalPages)
-
-
     }
 
     catch (e) {
@@ -278,9 +354,9 @@ export default function CollectionsClient() {
   }
 
   useEffect(() => {
-
-    fetchItinerary()
-
+    if (selectedFilters) {
+      fetchItinerary()
+    }
   }, [selectedFilters])
 
   useEffect(() => {
@@ -323,10 +399,23 @@ export default function CollectionsClient() {
               handleShowFullCard={handleShowFullCard}
               setIsFilterVisible={setIsFilterVisible}
               isFilterVisible={isFilterVisible}
+
             />
           )}
 
-          {!isMobile && <FilterLayout page='collections' filtersList={filtersList} selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} setExpandedTileIndex={setExpandedIndex} setIsFilterVisible={setIsFilterVisible} />}
+          {!isMobile && <FilterLayout page='collections'
+            filtersList={filtersList}
+            selectedFilters={selectedFilters}
+            setSelectedFilters={setSelectedFilters}
+            setIsAnyFilterOpened={setIsAnyFilterOpened}
+            isFilterVisible={isFilterVisible}
+            expandedBannerCollectionIndex={expandedIndex}
+            handleChangeCollection={handleChangeCollection}
+            setExpandedTileIndex={setExpandedIndex}
+            setIsFilterVisible={setIsFilterVisible}
+            updateUrlParamsFromFilters={updateUrlParamsFromFilters}
+            searchParams={searchParams}
+          />}
 
           <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
 
@@ -350,6 +439,8 @@ export default function CollectionsClient() {
               handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
               setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
               handleScrollToItineraryResults={handleScrollToItineraryResults}
+              updateUrlParamsFromFilters={updateUrlParamsFromFilters}
+              searchParams={searchParams}
             />}
 
 
@@ -371,7 +462,7 @@ export default function CollectionsClient() {
             </div>
 
 
-            {itineraryData && itineraryData.length > 0 && <div className="   w-full lg:w-10/12 xl:w-9/12 h-full lg:my-12">
+            {itineraryData && itineraryData.length > 0 && <div className=" w-full lg:w-10/12 xl:w-9/12 h-full lg:my-12">
               <ItineraryPagination
                 prevPage={prevPage}
                 nextPage={nextPage}
@@ -398,6 +489,9 @@ export default function CollectionsClient() {
             setFlatSelectedFilters={setFlatSelectedFilters}
             expandedBannerCollectionIndex={selectedVerticalTileMobile}
             handleChangeCollection={handleChangeCollectionForMobile}
+            updateUrlParamsFromFilters={updateUrlParamsFromFilters}
+            searchParams={searchParams}
+            handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
           />
 
           <Footer />

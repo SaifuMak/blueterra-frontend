@@ -25,6 +25,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useMediaQuery } from 'react-responsive'
 import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
 import ItineraryPagination from "../generalComponents/ItineraryPagination";
+import { useRouter, useSearchParams } from 'next/navigation'
 
 
 gsap.registerPlugin(ScrollToPlugin);
@@ -38,6 +39,10 @@ export default function DestinationsClient() {
     const isMobile = useMediaQuery({
         query: '(max-width: 844px)'
     })
+
+
+    const router = useRouter()
+    const searchParams = useSearchParams()
 
     // const [isTileSelectedForFirstTime, setIsTileSelectedForFirstTime] = useState(false)
     const isTileSelectedForFirstTimeRef = useRef(false);
@@ -76,12 +81,14 @@ export default function DestinationsClient() {
 
 
     // for mobile devices
-    const [selectedFilters, setSelectedFilters] = useState({
-        categories: [],
-        destinations: [],
-        countries: [],
-        collections: []
-    })
+    // const [selectedFilters, setSelectedFilters] = useState({
+    //     categories: [],
+    //     destinations: [],
+    //     countries: [],
+    //     collections: []
+    // })
+
+    const [selectedFilters, setSelectedFilters] = useState(null);
 
     const [flatSelectedFilters, setFlatSelectedFilters] = useState([]);
 
@@ -118,6 +125,7 @@ export default function DestinationsClient() {
 
 
     const handleScrollTop = () => {
+        if (isMobile) return
         setTimeout(() => {
 
             window.scrollTo({
@@ -164,6 +172,7 @@ export default function DestinationsClient() {
         // homeRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
 
+
     useEffect(() => {
 
         if (isMobile) {
@@ -191,12 +200,12 @@ export default function DestinationsClient() {
 
 
 
-
-
     const fetchItinerary = async (page = 1, loading = false) => {
 
         setIsLoading(true)
         // loading === true ? setIsLoading(true) : ''
+        setItineraryData([])
+        setTotalPages(null)
 
         try {
             const response = await AXIOS_INSTANCE.get('itinerary-list/', {
@@ -263,10 +272,93 @@ export default function DestinationsClient() {
     }
 
 
+    useEffect(() => {
+
+        if (destinationsData?.length === 0) return
+
+        if (!searchParams.toString()) {
+            // no query params
+            return;
+        }
+
+        const destinationParms = searchParams.get("destinations") || ""
+
+        if (destinationParms) {
+            const indexOfDestination = destinationsData?.findIndex(
+                (item) => item.title === destinationParms
+            );
+
+            handleShowFullCard(indexOfDestination)
+
+            if (isMobile) {
+                handleChangeCollectionForMobile(indexOfDestination)
+            }
+
+        }
+        else {
+            handleShowFullCard(null)
+            if (isMobile) {
+                handleChangeCollectionForMobile(null)
+            }
+        }
+
+        setIsFullCardVisible(false)
+
+        // this is for mobile, if there is params scroll to results 
+        if (isMobile) {
+            setTimeout(() => {
+                handleSetCollectionRequestedToShowInMobile(null);
+            }, 500);
+        }
+
+    }, [destinationsData])
+
+
+    const updateUrlParamsFromFilters = (filters) => {
+
+        const params = new URLSearchParams(searchParams.toString())
+
+        filters.categories.length
+            ? params.set("categories", filters.categories.join(","))
+            : params.delete("categories")
+
+        filters.destinations.length
+            ? params.set("destinations", filters.destinations.join(","))
+            : params.delete("destinations")
+
+        filters.countries.length
+            ? params.set("countries", filters.countries.join(","))
+            : params.delete("countries")
+
+        filters.collections.length
+            ? params.set("collections", filters.collections.join(","))
+            : params.delete("collections")
+
+        // router.replace(`?${params.toString()}`)
+
+        router.replace(`?${params.toString()}`, { scroll: false })
+
+    }
+
+
+    // this initialize the filters from the params if no params filters a empty initially
+    useEffect(() => {
+        const filtersFromParams = {
+            categories: (searchParams.get("categories") || "").split(",").filter(Boolean),
+            destinations: (searchParams.get("destinations") || "").split(",").filter(Boolean),
+            countries: (searchParams.get("countries") || "").split(",").filter(Boolean),
+            collections: (searchParams.get("collections") || "").split(",").filter(Boolean),
+        }
+        setSelectedFilters(filtersFromParams);
+        
+    }, [searchParams])
+
 
     useEffect(() => {
 
-        fetchItinerary()
+        if (selectedFilters) {
+            fetchItinerary()
+        }
 
     }, [selectedFilters])
 
@@ -315,7 +407,19 @@ export default function DestinationsClient() {
                         />
                     )}
 
-                    {!isMobile && <FilterLayout page='destinations' filtersList={filtersList} selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} setIsAnyFilterOpened={setIsAnyFilterOpened} isFilterVisible={isFilterVisible} expandedBannerCollectionIndex={expandedIndex} handleChangeCollection={handleChangeCollection} setExpandedTileIndex={setExpandedIndex} setIsFilterVisible={setIsFilterVisible} />}
+                    {!isMobile && <FilterLayout
+                        page='destinations'
+                        filtersList={filtersList}
+                        selectedFilters={selectedFilters}
+                        setSelectedFilters={setSelectedFilters}
+                        setIsAnyFilterOpened={setIsAnyFilterOpened}
+                        isFilterVisible={isFilterVisible}
+                        expandedBannerCollectionIndex={expandedIndex}
+                        handleChangeCollection={handleChangeCollection}
+                        setExpandedTileIndex={setExpandedIndex}
+                        setIsFilterVisible={setIsFilterVisible}
+                        updateUrlParamsFromFilters={updateUrlParamsFromFilters}
+                        searchParams={searchParams} />}
 
                     <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
 
@@ -341,6 +445,8 @@ export default function DestinationsClient() {
                             setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
                             handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
                             handleScrollToItineraryResults={handleScrollToItineraryResults}
+                            updateUrlParamsFromFilters={updateUrlParamsFromFilters}
+                            searchParams={searchParams}
                         />}
 
                         {/* <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
@@ -401,6 +507,9 @@ export default function DestinationsClient() {
                         setFlatSelectedFilters={setFlatSelectedFilters}
                         expandedBannerCollectionIndex={selectedVerticalTileMobile}
                         handleChangeCollection={handleChangeCollectionForMobile}
+                        updateUrlParamsFromFilters={updateUrlParamsFromFilters}
+                        searchParams={searchParams}
+                        handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
                     />
 
                     <Footer />

@@ -7,15 +7,29 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { playfair } from '@/app/fonts'
 
 
-export default function MobileFilter({ page, setIsAnyFilterOpened, isFilterVisible, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters, setSelectedFilters, dataCount, selectedFilters, setSelectedVerticalTileMobile, handleSetCollectionRequestedToShowInMobile, handleScrollToItineraryResults }) {
+export default function MobileFilter({ page,
+    setIsAnyFilterOpened,
+    isFilterVisible,
+    showMobileFilter,
+    setShowMobileFilter,
+    flatSelectedFilters,
+    setFlatSelectedFilters,
+    setSelectedFilters,
+    dataCount,
+    selectedFilters,
+    setSelectedVerticalTileMobile,
+    handleSetCollectionRequestedToShowInMobile,
+    handleScrollToItineraryResults,
+    updateUrlParamsFromFilters,
+    searchParams }) {
 
     const filterScrollRef = useRef();
 
     const handleRemoveFilter = (valueToRemove) => {
 
         // clear the flat list of selected filters
-        setFlatSelectedFilters(prev => prev.filter(item => item !== valueToRemove)
-        );
+        // setFlatSelectedFilters(prev => prev.filter(item => item !== valueToRemove)
+        // );
 
         // clear the actuall filter data
         setSelectedFilters((prev) => {
@@ -24,6 +38,8 @@ export default function MobileFilter({ page, setIsAnyFilterOpened, isFilterVisib
             for (const key in prev) {
                 updated[key] = prev[key].filter((item) => item !== valueToRemove);
             }
+            console.log(updated);
+            // updateUrlParamsFromFilters(updated)
 
             return updated;
         });
@@ -53,17 +69,34 @@ export default function MobileFilter({ page, setIsAnyFilterOpened, isFilterVisib
     }, [flatSelectedFilters])
 
 
+
+    useEffect(() => {
+        if (selectedFilters) {
+            updateUrlParamsFromFilters(selectedFilters);
+        }
+    }, [selectedFilters]);
+
+    useEffect(() => {
+        // flatten all values into a single array
+        const flat = [
+            ...selectedFilters.categories,
+            ...selectedFilters.destinations,
+            ...selectedFilters.countries,
+            ...selectedFilters.collections,
+        ];
+        setFlatSelectedFilters(flat);
+    }, [selectedFilters]);
+
+
     // close the tile when the node filter is removed 
     useEffect(() => {
         if (page == 'collections' && selectedFilters['collections'].length === 0) {
             setSelectedVerticalTileMobile(null)
-            // handleSetCollectionRequestedToShowInMobile(null)
-            handleScrollToItineraryResults()
+            // handleScrollToItineraryResults()
         }
         else if (page == 'destinations' && selectedFilters['destinations'].length === 0) {
             setSelectedVerticalTileMobile(null)
-            handleScrollToItineraryResults()
-            //   handleSetCollectionRequestedToShowInMobile(null)
+            // handleScrollToItineraryResults()
         }
     }, [selectedFilters])
 
@@ -86,6 +119,8 @@ export default function MobileFilter({ page, setIsAnyFilterOpened, isFilterVisib
                         </div>
                     ))}
                 </div> */}
+
+
 
                 {flatSelectedFilters?.length > 0 && <div className=" flex  w-full   ">
 

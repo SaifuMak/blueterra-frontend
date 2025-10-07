@@ -59,7 +59,7 @@ function MobileAnimatedVerticalIndividualCard({ index,
             onTouchStart={(e) => handleTouchStart(index, e)}
             onTouchEnd={(e) => handleTouchEnd(index, e)}
             className={` flex-1 relative gpu-animate `}>
-                
+
 
             {/* <div key={index} ref={(e) => (mobileVerticalTilesRef[index] = e)} onClick={() => setSelectedVerticalTileMobile(index)} className={`  transition-all duration-500 ease-in-out relative ${selectedVerticalTileMobile === index ? 'flex-9' : 'flex-1'} `}> */}
 

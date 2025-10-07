@@ -103,8 +103,8 @@ export default function GalleryList({ data }) {
                             onMouseLeave={handleMouseLeave}
                         >
                             <Image
-                                src={item.image_public_url}
-                                alt={item.title}
+                                src={item?.image_public_url}
+                                alt={item?.title}
                                 fill
                                 className="object-cover rounded-3xl"
                             />

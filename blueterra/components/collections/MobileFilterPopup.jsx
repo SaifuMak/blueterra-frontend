@@ -7,9 +7,23 @@ import { playfair } from '@/app/fonts';
 import { destinations, countries, collections, categories } from '@/components/datas/FilterOptions'
 
 
-export default function MobileFilterPopup({ page, filtersList, selectedFilters, setSelectedFilters, showMobileFilter, setShowMobileFilter, flatSelectedFilters, setFlatSelectedFilters, expandedBannerCollectionIndex, handleChangeCollection }) {
+export default function MobileFilterPopup({ page,
+    filtersList,
+    selectedFilters,
+    setSelectedFilters,
+    showMobileFilter,
+    setShowMobileFilter,
+    flatSelectedFilters,
+    setFlatSelectedFilters,
+    expandedBannerCollectionIndex,
+    handleChangeCollection,
+    updateUrlParamsFromFilters,
+    searchParams,
+    handleSetCollectionRequestedToShowInMobile }) {
 
     const [openedFilter, setOpenedFilter] = useState(null);
+
+    const [isManualySelectedNodeFilters, setIsManualySelectedNodeFilters] = useState(false)
 
     const handleFilters = (filter) => {
         setOpenedFilter(openedFilter === filter ? null : filter);
@@ -29,11 +43,15 @@ export default function MobileFilterPopup({ page, filtersList, selectedFilters, 
     const handleItemSelection = (filter, value) => {
 
         if (filter === 'collections' && page === 'collections') {
+
+            setIsManualySelectedNodeFilters(true)
+
             handleClearAllSelectedFilters()
             const index = filtersList?.collections.findIndex(item => item.title === value);
             handleChangeCollection(index)
         }
         else if (filter === 'destinations' && page === 'destinations') {
+            setIsManualySelectedNodeFilters(true)
             handleClearAllSelectedFilters()
             const index = filtersList?.destinations.findIndex(item => item.title === value);
             handleChangeCollection(index)
@@ -54,7 +72,13 @@ export default function MobileFilterPopup({ page, filtersList, selectedFilters, 
 
 
     useEffect(() => {
+
+        setIsManualySelectedNodeFilters(true)
         if (expandedBannerCollectionIndex == null) return
+
+        setIsManualySelectedNodeFilters(true)
+
+        if (!isManualySelectedNodeFilters && searchParams.toString()) return
 
         handleClearAllSelectedFilters()
         if (page === 'destinations') {
@@ -66,10 +90,20 @@ export default function MobileFilterPopup({ page, filtersList, selectedFilters, 
 
     }, [expandedBannerCollectionIndex])
 
-
+    useEffect(() => {
+        if (selectedFilters) {
+            updateUrlParamsFromFilters(selectedFilters);
+        }
+    }, [selectedFilters]);
 
     const [filteredCategories, setFilteredCategories] = useState(filtersList?.categories || []);
     const [filteredCountries, setFilteredCountries] = useState(filtersList?.countries || []);
+
+
+    const handleSearch = () => {
+        handleSetCollectionRequestedToShowInMobile(null)
+        setShowMobileFilter(false)
+    }
 
 
     // this is the custom logic for the filter collection and destination
@@ -102,16 +136,25 @@ export default function MobileFilterPopup({ page, filtersList, selectedFilters, 
     }, [selectedFilters])
 
 
+    useEffect(() => {
+        if (selectedFilters) {
+            updateUrlParamsFromFilters(selectedFilters);
+        }
+    }, [selectedFilters]);
+
+
     if (!showMobileFilter) return null;
 
+
+    
     return (
         <>
             {showMobileFilter && (
                 <div className="fixed inset-0 z-50 bg-black/40 flex md:hidden">
-                    <div className="relative z-10  flex flex-col border  max-w-sm  h-full bg-white">
+                    <div className="relative z-10  flex flex-col border pt-10  max-w-lg  h-full bg-white">
 
                         {/* Header */}
-                        <div className="absolute top-7 right-7 z-20">
+                        <div className="absolute top-16 right-7 z-20">
                             <RxCross2
                                 onClick={() => setShowMobileFilter(false)}
                                 className="text-slate-500 text-2xl cursor-pointer"
@@ -217,7 +260,7 @@ export default function MobileFilterPopup({ page, filtersList, selectedFilters, 
                                 )}
                             </div>
                             <button
-                                onClick={() => setShowMobileFilter(false)}
+                                onClick={handleSearch}
                                 className="bg-sky-blue-dark py-2.5 text-sm font-medium rounded-sm text-white"
                             >
                                 Explore Journeys

@@ -12,9 +12,7 @@ export default function MobileAnimatedVerticalCard({ page, CardData, selectedVer
 
   const handleCardClick = (index) => {
     setSelectedVerticalTileMobile(index)
-
   }
-
 
 
   return (
