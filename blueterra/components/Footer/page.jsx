@@ -35,21 +35,21 @@ export default function Footer() {
         {
             name: "Destinations",
             options: [
-                { label: "United Arab Emirates", link: null },
-                { label: "Kenya", link: null },
-                { label: "South Africa", link: null },
-                { label: "Norway", link: null },
-                { label: "Iceland", link: null }
+                { label: "United Arab Emirates", link: "/destinations?countries=United+Arab+Emirates", },
+                { label: "Kenya", link: "/destinations?countries=Kenya", },
+                { label: "South Africa", link: "/destinations?countries=South+Africa", },
+                { label: "Norway", link: "/destinations?countries=Norway", },
+                { label: "Iceland", link: "/destinations?countries=Iceland" }
             ]
         },
         {
             name: "Featured",
             options: [
-                { label: "Cruise Deals", link: null },
-                { label: "Signature Journey", link: null },
-                { label: "Explore by Landscape", link: null },
-                { label: "Adventures in Motions", link: null },
-                { label: "Mindfull Escapes", link: null }
+                { label: "Cruise Deals", link: "/cruise" },
+                { label: "Signature Journey", link: "/collections?collections=Signature+Journeys" },
+                { label: "Explore by Landscape", link: "/collections?collections=Explore+by+Landscape" },
+                { label: "Adventures in Motions", link: "/collections?collections=Adventures+in+Motion" },
+                { label: "Mindfull Escapes", link: "/collections?collections=Mindful+Escapes" }
             ]
         },
         {
@@ -85,18 +85,18 @@ export default function Footer() {
             "MICE": "/corporate-mice"
         },
         "Destinations": {
-            "United Arab Emirates": "#",
-            "Kenya": "#",
-            "South Africa": "#",
-            "Norway": "#",
-            "Iceland": "#"
+            "United Arab Emirates": "/destinations?countries=United+Arab+Emirates",
+            "Kenya": "/destinations?countries=Kenya",
+            "South Africa": "/destinations?countries=South+Africa",
+            "Norway": "/destinations?countries=Norway",
+            "Iceland": "/destinations?countries=Iceland"
         },
         "Featured": {
             "Cruise Deals": "/cruise",
-            "Signature Journey": "#",
-            "Explore by Landscape": "#",
-            "Adventures in Motions": "#",
-            "Mindfull Escapes": "#",
+            "Signature Journey": "/collections?collections=Signature+Journeys",
+            "Explore by Landscape": "/collections?collections=Explore+by+Landscape",
+            "Adventures in Motions": "/collections?collections=Adventures+in+Motion",
+            "Mindfull Escapes": "/collections?collections=Mindful+Escapes",
         }
     }
 
@@ -188,7 +188,18 @@ export default function Footer() {
                                                     {LinkText}
                                                 </a>
                                             ) :
-                                                LinkText === "Privacy Policy" || LinkText === "Terms & conditions" ? (
+                                                LinkText === "Privacy Policy"
+                                                    || LinkText === "Terms & conditions"
+                                                    || LinkText === "Signature Journey"
+                                                    || LinkText === "Explore by Landscape"
+                                                    || LinkText === "Adventures in Motions"
+                                                    || LinkText === "Explore by Landscape"
+                                                    || LinkText === "Mindfull Escapes"
+                                                    || LinkText === "United Arab Emirates"
+                                                    || LinkText === "Kenya"
+                                                    || LinkText === "South Africa"
+                                                    || LinkText === "Norway"
+                                                    || LinkText === "Iceland" ? (
                                                     <Link
                                                         href={link}
                                                         target="_blank"
