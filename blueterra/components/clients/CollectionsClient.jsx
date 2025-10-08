@@ -343,6 +343,8 @@ export default function CollectionsClient() {
 
       const totalPages = getTotalPagesCount(response.data.count, 6)
       setTotalPages(totalPages)
+      
+      handleScrollTop()
     }
 
     catch (e) {

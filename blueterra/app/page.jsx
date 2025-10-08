@@ -264,7 +264,7 @@ export default function Home() {
 
         {!isMobile && <div className=" w-full  flex-center max-sm:py-16 relative min-h-[100vh] bg-sky-blue-light ">
 
-          <div className={` h-fit  flex flex-col   items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
+          <div className={` h-fit  flex flex-col items-center bg-white justify-between z-10 w-11/12 xl:w-9/12 text-dark-28 rounded-3xl  ${rubik.className}`}>
 
             <div ref={testimonialsContainerRef} className="flex flex-col  mt-10 lg:mt-16 2xl:mt-20">
               <h2 className={`${playfair.className}   text-center heading-text max-sm:px-2`}>Trusted By Customers</h2>
