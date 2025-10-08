@@ -43,7 +43,7 @@ function MobileAnimatedVerticalIndividualCard({ index,
     useEffect(() => {
         if (cardRef.current) {
             gsap.to(cardRef.current, {
-                flex: selectedVerticalTileMobile === index ? 8 : 1,
+                flex: selectedVerticalTileMobile === index ? 9 : 1,
                 duration: 0.7,
                 ease: 'Power3.out'
             });
