@@ -387,7 +387,7 @@ export default function CollectionsClient() {
   return (
     <>
 
-      {isQueryParams && <div className=" h-[110svh]  fixed w-full z-[999]  flex-center bg-red-100   ">
+      {isQueryParams && <div className=" h-[110lvh]  fixed inset-0 w-full z-[999]  flex-center  bg-white   ">
         <LoaderIcon /></div>}
 
       {collectionsLoading ? (
