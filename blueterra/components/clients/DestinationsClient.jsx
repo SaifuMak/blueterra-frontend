@@ -54,6 +54,9 @@ export default function DestinationsClient() {
     const [destinationLoading, setDestinationLoading] = useState(true)
     const [filtersList, setFiltersList] = useState(null)
 
+    const [isQueryParams, setIsQueryParams] = useState(true)
+
+
     const [nextPage, setNextPage] = useState(null); // Next page URL
     const [prevPage, setPrevPage] = useState(null); // Previous page URL
     const [currentPage, setCurrentPage] = useState(1)
@@ -172,6 +175,18 @@ export default function DestinationsClient() {
         // homeRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
 
+    useEffect(() => {
+        if (!searchParams.toString()) {
+            // no query params
+            setIsQueryParams(false)
+        }
+        else {
+            setTimeout(() => {
+                setIsQueryParams(false)
+            }, 2000);
+        }
+    }, [])
+
 
     useEffect(() => {
 
@@ -227,7 +242,7 @@ export default function DestinationsClient() {
 
             const totalPages = getTotalPagesCount(response.data.count, 6)
             setTotalPages(totalPages)
-
+            handleScrollTop()
 
         }
 
@@ -350,7 +365,7 @@ export default function DestinationsClient() {
             collections: (searchParams.get("collections") || "").split(",").filter(Boolean),
         }
         setSelectedFilters(filtersFromParams);
-        
+
     }, [searchParams])
 
 
@@ -371,6 +386,10 @@ export default function DestinationsClient() {
 
     return (
         <>
+
+            {isQueryParams && <div className=" h-[110vh]  fixed inset-0 w-full z-[999]  flex-center bg-white   ">
+                <LoaderIcon /></div>}
+
 
             {destinationLoading ? (
                 <div className="  w-full h-screen flex-center  ">

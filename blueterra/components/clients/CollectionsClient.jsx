@@ -1,7 +1,7 @@
 'use client'
 import BannerAnimation from "@/components/Home/BannerAnimation";
 import DestinationCards from "@/components/DestinationsView/DestinationCards";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Navbar from "@/components/Navbar/page";
 import Footer from "@/components/Footer/page";
 
@@ -42,6 +42,8 @@ export default function CollectionsClient() {
   const [collectionsLoading, setCollectionsLoading] = useState(true)
 
   const [filtersList, setFiltersList] = useState(null)
+
+  const [isQueryParams, setIsQueryParams] = useState(true)
 
   const [nextPage, setNextPage] = useState(null); // Next page URL
   const [prevPage, setPrevPage] = useState(null); // Previous page URL
@@ -169,6 +171,19 @@ export default function CollectionsClient() {
     handleScrollToItineraryResults()
   }
 
+  useEffect(() => {
+    if (!searchParams.toString()) {
+      // no query params
+      setIsQueryParams(false)
+    }
+    else {
+      setTimeout(() => {
+        setIsQueryParams(false)
+      }, 2000);
+    }
+  }, [])
+
+
 
   useEffect(() => {
 
@@ -241,6 +256,7 @@ export default function CollectionsClient() {
       return;
     }
 
+
     const collectionParms = searchParams.get("collections") || ""
 
     if (collectionParms) {
@@ -263,6 +279,7 @@ export default function CollectionsClient() {
     }
 
     setIsFullCardVisible(false)
+
 
     // this is for mobile, if there is params scroll to results 
     if (isMobile) {
@@ -301,7 +318,6 @@ export default function CollectionsClient() {
 
   }
 
-
   // this initialize the filters from the params if no params filters a empty initially
   useEffect(() => {
     const filtersFromParams = {
@@ -312,7 +328,6 @@ export default function CollectionsClient() {
     }
     setSelectedFilters(filtersFromParams);
   }, [searchParams])
-
 
 
   const fetchItinerary = async (page = 1, loading = false) => {
@@ -343,7 +358,7 @@ export default function CollectionsClient() {
 
       const totalPages = getTotalPagesCount(response.data.count, 6)
       setTotalPages(totalPages)
-      
+
       handleScrollTop()
     }
 
@@ -372,6 +387,9 @@ export default function CollectionsClient() {
   return (
     <>
 
+      {isQueryParams && <div className=" h-[110vh]  fixed inset-0 w-full z-[999]  flex-center bg-white   ">
+        <LoaderIcon /></div>}
+
       {collectionsLoading ? (
         <div className="  w-full h-screen flex-center  ">
           <Navbar isfixed={true} onNavClick={handleNavClick} />
@@ -379,7 +397,7 @@ export default function CollectionsClient() {
         </div>
       ) : (
 
-        <div className={`${rubik.className} text-dark-28`}>
+        <div className={`${rubik.className} bg-white text-dark-28`}>
 
           <Navbar isfixed={true} onNavClick={handleNavClick} />
 
@@ -420,7 +438,7 @@ export default function CollectionsClient() {
             searchParams={searchParams}
           />}
 
-          <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
+          <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center   ">
 
             <ResponsiveClipPath
               outerClass='absolute md:w-[24%]  max-sm:hidden w-[78%]  top-10 left-0 h-fit'
@@ -447,7 +465,7 @@ export default function CollectionsClient() {
             />}
 
 
-            <div className="grid 2xl:gap-28 relative  z-0 xl:gap-16 lg:mt-28 xl:mt-36 md:gap-12 gap-8 md:grid-cols-2 w-10/12 xl:w-9/12 ">
+            <div className="grid 2xl:gap-28 relative xl:gap-16 lg:mt-28 xl:mt-36 md:gap-12 gap-8 md:grid-cols-2 w-10/12 xl:w-9/12 z-0 ">
 
               {isLoading && <div className="flex items-center justify-center w-full z-50  h-full  col-span-2 absolute inset-0">
                 <LoaderIcon />
