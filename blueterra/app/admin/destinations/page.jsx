@@ -177,7 +177,7 @@ export default function Destinations() {
                         <h2 className=" text-4xl font-medium text-dark-4B  ">Destinations </h2>
                     </div>
 
-                    {destinations?.length > 0 ? (<div className={`${destinations?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg   mt-10  h-fit`}>
+                    {destinations?.length > 0 ? (<div className={`${destinations?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg flex-1 flex flex-col  mt-10  h-fit`}>
                         <div className="max-h-[600px] overflow-y-auto">
                             <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
                                 <thead className="bg-[#394C5D] sticky top-0 rounded-3xl text-white  ">

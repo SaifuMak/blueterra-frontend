@@ -45,7 +45,7 @@ export default function Itinerary() {
     }
 
 
-    const getItineraries = async (page = 1, status = 'Published',  query = '',loading = false) => {
+    const getItineraries = async (page = 1, status = 'Published', query = '', loading = false) => {
         loading === true ? setIsLoading(true) : ''
 
         try {
@@ -153,7 +153,7 @@ export default function Itinerary() {
 
 
     const onSearch = (query) => {
-        getItineraries(1, 'Published',  query ,false )
+        getItineraries(1, 'Published', query, false)
     }
 
 
@@ -194,62 +194,63 @@ export default function Itinerary() {
                     <div className="mt-5 w-2/4 ">
                         <SearchComponent onSearch={onSearch} query={query} setQuery={setQuery} />
                     </div>
-                    {Itineraries?.length > 0 ? (<div className={`${Itineraries?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg   mt-10  h-fit`}>
-
-                        <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
-                            <thead className="bg-[#394C5D] rounded-3xl text-white  ">
-                                <tr>
-                                    <th className="px-4 py-5 font-normal ">Itinerary name</th>
-                                    <th className="px-4 py-5 font-normal ">Country</th>
-                                    <th className="px-4 py-5 font-normal ">Days</th>
-                                    <th className="px-4 py-5 font-normal">Collections name</th>
-                                    <th className="px-4 py-5 text-center font-normal">Actions</th>
-                                    <th onClick={handleAddItineraray} className="px-4 py-5 text-center font-normal"><button className=" bg-custom-sky-blue cursor-pointer text-white rounded-sm px-6 py-1">Add</button></th>
-                                </tr>
-                            </thead>
-
-
-                            <tbody className=" bg-white ">
-                                {Itineraries?.map((item, index) => (
-                                    <tr key={index} className=" rounded-3xl">
-
-                                        <td className={rowStyle}>{item.title}</td>
-                                           <td className={rowStyle}>{item.country?.title ? item.country?.title : 'N/A'}</td>
-                                        <td className={rowStyle}>{item.days.length}</td>
-                                        <td className={rowStyle}>{item.collection?.title ? item.collection?.title : 'N/A'}</td>
-
-
-                                        <td className={rowStyle}>
-                                            <div className=" flex justify-center space-x-10">
-                                                <TooltipWrapper message="Edit">
-                                                    <img onClick={() => handleEditClick(item.id)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
-                                                </TooltipWrapper>
-
-                                                <TooltipWrapper message="Delete">
-                                                    <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
-                                                </TooltipWrapper>
-
-                                                {selectedItineraryStatus == 'Published' && <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
-                                                    <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
-                                                        {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
-                                                    </div>
-                                                </TooltipWrapper>}
-                                            </div>
-                                        </td>
-
-                                        <td className={rowStyle}>
-                                            <div onClick={handleAddItineraray} className=" flex justify-center ">
-                                                <img src="/Icons/add.svg" alt="edit" className=" cursor-pointer size-5 " />
-                                            </div>
-
-                                        </td>
-
+                    {Itineraries?.length > 0 ? (<div className={`${Itineraries?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg  flex-1 flex flex-col  mt-10 `}>
+                        <div  className="  max-h-[600px] overflow-y-auto ">
+                            <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
+                                <thead className="bg-[#394C5D] rounded-3xl text-white  sticky top-0 ">
+                                    <tr>
+                                        <th className="px-4 py-5 font-normal ">Itinerary name</th>
+                                        <th className="px-4 py-5 font-normal ">Country</th>
+                                        <th className="px-4 py-5 font-normal ">Days</th>
+                                        <th className="px-4 py-5 font-normal">Collections name</th>
+                                        <th className="px-4 py-5 text-center font-normal">Actions</th>
+                                        <th onClick={handleAddItineraray} className="px-4 py-5 text-center font-normal"><button className=" bg-custom-sky-blue cursor-pointer text-white rounded-sm px-6 py-1">Add</button></th>
                                     </tr>
-                                ))}
+                                </thead>
 
-                            </tbody>
 
-                        </table>
+                                <tbody className=" bg-white ">
+                                    {Itineraries?.map((item, index) => (
+                                        <tr key={index} className=" rounded-3xl">
+
+                                            <td className={rowStyle}>{item.title}</td>
+                                            <td className={rowStyle}>{item.country?.title ? item.country?.title : 'N/A'}</td>
+                                            <td className={rowStyle}>{item.days.length}</td>
+                                            <td className={rowStyle}>{item.collection?.title ? item.collection?.title : 'N/A'}</td>
+
+
+                                            <td className={rowStyle}>
+                                                <div className=" flex justify-center space-x-10">
+                                                    <TooltipWrapper message="Edit">
+                                                        <img onClick={() => handleEditClick(item.id)} src="/Icons/edit-black.svg" alt="edit" className=" size-4  cursor-pointer " />
+                                                    </TooltipWrapper>
+
+                                                    <TooltipWrapper message="Delete">
+                                                        <img onClick={() => handleDeleteJournal(item.id)} src="/Icons/delete.svg" alt="edit" className=" size-4 cursor-pointer " />
+                                                    </TooltipWrapper>
+
+                                                    {selectedItineraryStatus == 'Published' && <TooltipWrapper message={item.is_published ? "Unpublish" : "Publish"}>
+                                                        <div onClick={() => handleChangeStatus(item.is_published, item.id)} className="cursor-pointer">
+                                                            {item.is_published ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                                                        </div>
+                                                    </TooltipWrapper>}
+                                                </div>
+                                            </td>
+
+                                            <td className={rowStyle}>
+                                                <div onClick={handleAddItineraray} className=" flex justify-center ">
+                                                    <img src="/Icons/add.svg" alt="edit" className=" cursor-pointer size-5 " />
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+                                    ))}
+
+                                </tbody>
+
+                            </table>
+                        </div>
                     </div>
                     ) : (
                         <div className=" w-full mt-10 text-xl text-dark-4B  font-medium text-center">
