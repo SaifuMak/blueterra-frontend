@@ -11,6 +11,7 @@ import Loader from "@/components/generalComponents/Loader";
 import TooltipWrapper from "@/components/generalComponents/TooltipWrapper";
 import { IoEyeOutline, IoEyeOffOutline, RxCross2, AiOutlineCheck } from '@/components/reactIcons'
 import { toast } from "sonner";
+import SearchComponent from "../SearchComponent";
 
 
 
@@ -24,6 +25,8 @@ export default function Itinerary() {
     const [totalPages, setTotalPages] = useState(null)
 
     const [isLoading, setIsLoading] = useState(true)
+
+    const [query, setQuery] = useState("");
 
     const [requestedStatusChange, setRequestedStatusChange] = useState('draft')
     const [requestedItineraryForStatusChange, setRequestedItineraryForStatusChange] = useState(null)
@@ -42,11 +45,11 @@ export default function Itinerary() {
     }
 
 
-    const getItineraries = async (page = 1, status = 'Published', loading = false) => {
+    const getItineraries = async (page = 1, status = 'Published',  query = '',loading = false) => {
         loading === true ? setIsLoading(true) : ''
 
         try {
-            const response = await AXIOS_INSTANCE.get(`itineraries/?page=${page}&status=${status}`)
+            const response = await AXIOS_INSTANCE.get(`itineraries/?page=${page}&status=${status}&query=${query}`)
             setItineraries(response?.data?.results)
             setCurrentPage(page)
             const nextpage = getPageNumber(response.data.next)
@@ -54,7 +57,7 @@ export default function Itinerary() {
             setNextPage(nextpage)
             setPrevPage(previous)
 
-            const totalPages = getTotalPagesCount(response.data.count, 5)
+            const totalPages = getTotalPagesCount(response.data.count, 10)
             setTotalPages(totalPages)
 
         }
@@ -68,7 +71,7 @@ export default function Itinerary() {
 
     const toggleStatus = (status) => {
         setSelectedItineraryStatus(status)
-        getItineraries(1, status, true)
+        getItineraries(1, status, query, true)
     }
 
 
@@ -149,6 +152,11 @@ export default function Itinerary() {
     }
 
 
+    const onSearch = (query) => {
+        getItineraries(1, 'Published',  query ,false )
+    }
+
+
     useEffect(() => {
         getItineraries()
     }, [])
@@ -183,12 +191,16 @@ export default function Itinerary() {
                         </div>
                     </div>
 
+                    <div className="mt-5 w-2/4 ">
+                        <SearchComponent onSearch={onSearch} query={query} setQuery={setQuery} />
+                    </div>
                     {Itineraries?.length > 0 ? (<div className={`${Itineraries?.length > 0 ? 'border' : ''}  w-full overflow-hidden rounded-lg   mt-10  h-fit`}>
 
                         <table className="w-full text-lg  rounded-3xl text-left text-gray-700">
                             <thead className="bg-[#394C5D] rounded-3xl text-white  ">
                                 <tr>
                                     <th className="px-4 py-5 font-normal ">Itinerary name</th>
+                                    <th className="px-4 py-5 font-normal ">Country</th>
                                     <th className="px-4 py-5 font-normal ">Days</th>
                                     <th className="px-4 py-5 font-normal">Collections name</th>
                                     <th className="px-4 py-5 text-center font-normal">Actions</th>
@@ -202,8 +214,9 @@ export default function Itinerary() {
                                     <tr key={index} className=" rounded-3xl">
 
                                         <td className={rowStyle}>{item.title}</td>
+                                           <td className={rowStyle}>{item.country?.title ? item.country?.title : 'N/A'}</td>
                                         <td className={rowStyle}>{item.days.length}</td>
-                                        <td className={rowStyle}>{item.collection?.title ? item.collection?.title : 'N/A' }</td>
+                                        <td className={rowStyle}>{item.collection?.title ? item.collection?.title : 'N/A'}</td>
 
 
                                         <td className={rowStyle}>
@@ -255,6 +268,7 @@ export default function Itinerary() {
                         TotalPages={totalPages}
                         queryParameter={selectedItineraryStatus}
                         buttonColor='bg-[#394C5D]'
+                        searchParmas={query}
                     />)}
 
                 </div>

@@ -26,11 +26,10 @@ import { useMediaQuery } from 'react-responsive'
 import { getPageNumber, getTotalPagesCount } from "@/app/utils/paginationHelpers";
 import ItineraryPagination from "../generalComponents/ItineraryPagination";
 import { useRouter, useSearchParams } from 'next/navigation'
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-
-gsap.registerPlugin(ScrollToPlugin);
-
-
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 export default function DestinationsClient() {
 
@@ -61,7 +60,6 @@ export default function DestinationsClient() {
     const [prevPage, setPrevPage] = useState(null); // Previous page URL
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(null)
-
 
     // zoho form 
     const [formOpen, setFormOpen] = useState(false);
@@ -111,6 +109,7 @@ export default function DestinationsClient() {
 
 
     const homeRef = useRef()
+
 
 
     const handleNavClick = (link) => {
@@ -356,6 +355,7 @@ export default function DestinationsClient() {
     }
 
 
+
     // this initialize the filters from the params if no params filters a empty initially
     useEffect(() => {
         const filtersFromParams = {
@@ -440,7 +440,7 @@ export default function DestinationsClient() {
                         updateUrlParamsFromFilters={updateUrlParamsFromFilters}
                         searchParams={searchParams} />}
 
-                    <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center  ">
+                    <div ref={homeRef} className=" w-full relative flex flex-col   justify-center max-sm:mt-0   xl:mt-36 lg:mt-48  items-center  ">
 
                         <ResponsiveClipPath
                             outerClass='absolute  max-sm:hidden md:w-[24%] w-[78%]  top-10 left-0 h-fit'
@@ -448,25 +448,29 @@ export default function DestinationsClient() {
                             width={800}
                         />
 
-                        {isMobile && <MobileFilter
-                            page='destinations'
-                            filtersList={filtersList}
-                            setIsAnyFilterOpened={setIsAnyFilterOpened}
-                            isFilterVisible={isFilterVisible}
-                            showMobileFilter={showMobileFilter}
-                            setShowMobileFilter={setShowMobileFilter}
-                            flatSelectedFilters={flatSelectedFilters}
-                            setFlatSelectedFilters={setFlatSelectedFilters}
-                            setSelectedFilters={setSelectedFilters}
-                            dataCount={itineraryData?.length}
-                            selectedFilters={selectedFilters}
-                            setCollectionRequestedToShowInMobile={setCollectionRequestedToShowInMobile}
-                            setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
-                            handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
-                            handleScrollToItineraryResults={handleScrollToItineraryResults}
-                            updateUrlParamsFromFilters={updateUrlParamsFromFilters}
-                            searchParams={searchParams}
-                        />}
+
+                            {isMobile && <MobileFilter
+
+                                page='destinations'
+                                filtersList={filtersList}
+                                setIsAnyFilterOpened={setIsAnyFilterOpened}
+                                isFilterVisible={isFilterVisible}
+                                showMobileFilter={showMobileFilter}
+                                setShowMobileFilter={setShowMobileFilter}
+                                flatSelectedFilters={flatSelectedFilters}
+                                setFlatSelectedFilters={setFlatSelectedFilters}
+                                setSelectedFilters={setSelectedFilters}
+                                dataCount={itineraryData?.length}
+                                selectedFilters={selectedFilters}
+                                setCollectionRequestedToShowInMobile={setCollectionRequestedToShowInMobile}
+                                setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
+                                handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
+                                handleScrollToItineraryResults={handleScrollToItineraryResults}
+                                updateUrlParamsFromFilters={updateUrlParamsFromFilters}
+                                searchParams={searchParams}
+                            />}
+
+
 
                         {/* <div className="grid 2xl:gap-28 z-0 xl:gap-16 lg:my-28 xl:my-36 md:gap-12 gap-10 md:grid-cols-2 w-10/12 xl:w-9/12 ">
                             {isLoading ? (
@@ -539,7 +543,5 @@ export default function DestinationsClient() {
             )}
         </>
         // </SmoothScroll>
-
-
     );
 }
