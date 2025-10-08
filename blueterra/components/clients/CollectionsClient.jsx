@@ -353,6 +353,7 @@ export default function CollectionsClient() {
     }
   }
 
+
   useEffect(() => {
     if (selectedFilters) {
       fetchItinerary()

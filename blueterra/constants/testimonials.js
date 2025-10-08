@@ -1,91 +1,25 @@
 export const testimonials = [
   {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Carlos T",
-    country: "Brazil"
+    message: "Blue Terra team made exploring Dubai an unforgettable experience. Their customized tours showcase the city’s vibrant culture and rich heritage, creating memories we’ll cherish forever. We can’t wait to discover more places with them.",
+    name: "Antony",
+    country: "India"
   },
   {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Emma R",
-    country: "Canada"
+    message: "BT Team provided an unforgettable Dubai experience, from exploring Old Dubai to witnessing the most beautiful sunset. Their thoughtful care for us as senior travelers made the tour truly special.",
+    name: "Tresa",
+    country: "India"
   },
   {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Liam S",
-    country: "Australia"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Aisha M",
+    message: "We explored beautiful souqs, theme parks and other Emirates. The astrophotography session was unlike anything we’ve ever experienced, making our UAE trip truly magical",
+    name: "Divya F",
+    country: "USA"
+  }, {
+    message: "They organized a wonderful trip to the Nordic countries, providing detailed road trip guides and booked the best activities. Every part of our journey was seamless and comfortable. ",
+    name: "Rose",
+    country: "UAE"
+  }, {
+    message: "We booked trips via BlueTerra for my sister and her family during their visit to Dubai, and they arranged one of the most memorable trips ever. Every detail was perfectly managed, and my sister still talks about how well everything was organized.",
+    name: "Cyriac",
     country: "UAE"
   },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Daniel K",
-    country: "Germany"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Sofia L",
-    country: "Argentina"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Carlos T",
-    country: "Brazil"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Emma R",
-    country: "Canada"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Liam S",
-    country: "Australia"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Aisha M",
-    country: "UAE"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Daniel K",
-    country: "Germany"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Sofia L",
-    country: "Argentina"
-  },{
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Carlos T",
-    country: "Brazil"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Emma R",
-    country: "Canada"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Liam S",
-    country: "Australia"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Aisha M",
-    country: "UAE"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Daniel K",
-    country: "Germany"
-  },
-  {
-    message: "Everything was perfectly planned! The hotels, transfers, and excursions were seamless. Thanks to this amazing team, we had the trip of a lifetime! From the moment we landed to the day we left, we felt taken care of.",
-    name: "Sofia L",
-    country: "Argentina"
-  }
 ];
