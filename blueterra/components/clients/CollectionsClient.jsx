@@ -70,6 +70,8 @@ export default function CollectionsClient() {
 
   const [showMobileFilter, setShowMobileFilter] = useState(false)
 
+  const [CollectionRequestedToShowInMobileForFirstTime, setCollectionRequestedToShowInMobileForFirstTime] = useState(false)
+
   // for mobile devices
 
   // const [selectedFilters, setSelectedFilters] = useState({
@@ -97,6 +99,8 @@ export default function CollectionsClient() {
   }
 
   const homeRef = useRef()
+  const MobileFilterRef = useRef()
+
 
   const handleNavClick = (link) => {
 
@@ -113,16 +117,17 @@ export default function CollectionsClient() {
 
   const handleScrollTop = () => {
     if (isMobile) return
-    // alert('called handleScrollTop')
+    console.log('called handleScrollTop')
 
     setTimeout(() => {
 
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        // behavior: "smooth",
       });
 
     }, 300);
+
   }
 
 
@@ -144,47 +149,6 @@ export default function CollectionsClient() {
   }
 
 
-  const handleScrollToItineraryResults = () => {
-
-    // alert('called handleScrollToItineraryResults')
-    // console.log('called handleScrollToItineraryResults')
-
-    if (isTileSelectedForFirstTimeRef.current) {
-      gsap.to(window, {
-        duration: 0.8, // scroll duration (in seconds)
-        scrollTo: { y: homeRef.current, offsetY: 30 },
-        ease: "sine.inOut" // easing for smoothness
-      });
-    }
-  }
-
-
-  const handleSetCollectionRequestedToShowInMobile = (index) => {
-
-    // alert('called handleSetCollectionRequestedToShowInMobile')
-    // console.log('called handleSetCollectionRequestedToShowInMobile');
-
-
-    document.body.style.overflow = 'auto'
-    document.documentElement.style.overflow = 'auto'
-    isTileSelectedForFirstTimeRef.current = true
-    handleScrollToItineraryResults()
-  }
-
-  useEffect(() => {
-    if (!searchParams.toString()) {
-      // no query params
-      setIsQueryParams(false)
-    }
-    else {
-      setTimeout(() => {
-        setIsQueryParams(false)
-      }, 2000);
-    }
-  }, [])
-
-
-
   useEffect(() => {
 
     if (isMobile) {
@@ -203,6 +167,71 @@ export default function CollectionsClient() {
       document.documentElement.style.overflow = 'auto';
     };
   }, [isMobile, showMobileFilter, isFullCardVisible, isAnyFilterOpened]);
+
+
+  const handleScrollToItineraryResults = () => {
+
+    if (isTileSelectedForFirstTimeRef.current && homeRef.current) {
+
+      gsap.to(window, {
+        duration: 0.8, // scroll duration (in seconds)
+        scrollTo: { y: homeRef.current, offsetY: 30 },
+
+        ease: "sine.inOut" // easing for smoothness
+      });
+    }
+
+  }
+
+
+  const handleSetCollectionRequestedToShowInMobile = (index) => {
+
+    console.log('clicked the view button of the card----------------------');
+
+    if (!CollectionRequestedToShowInMobileForFirstTime) {
+      console.log('unlocked the screen -------------');
+      document.body.style.overflow = 'auto'
+      document.documentElement.style.overflow = 'auto'
+    }
+
+    document.body.style.overflow = 'auto'
+    document.documentElement.style.overflow = 'auto'
+    setCollectionRequestedToShowInMobileForFirstTime(true)
+
+    isTileSelectedForFirstTimeRef.current = true
+
+    handleScrollToItineraryResults()
+
+    // if ( !CollectionRequestedToShowInMobileForFirstTime) {
+    //   setTimeout(() => {
+    //     console.log('calling scroll to itinerary from settime out if there is parmas ');
+    //     handleScrollToItineraryResults()
+    //   }, 2500);
+    // }
+    // else if (CollectionRequestedToShowInMobileForFirstTime) {
+    //     console.log('calling scroll to itinerary  without settime  if there is parmas ');
+
+    //   handleScrollToItineraryResults()
+
+    // }
+
+  }
+
+
+
+  useEffect(() => {
+
+    if (!searchParams.toString()) {
+      // no query params
+      setIsQueryParams(false)
+    }
+    else {
+      setTimeout(() => {
+        setIsQueryParams(false)
+      }, 2500);
+    }
+  }, [])
+
 
 
   //  this is made to prevent scrolling 
@@ -289,7 +318,6 @@ export default function CollectionsClient() {
     }
 
   }, [collectionsData])
-
 
 
   const updateUrlParamsFromFilters = (filters) => {
@@ -383,11 +411,16 @@ export default function CollectionsClient() {
   }, [])
 
 
+  if (collectionsLoading) {
+    return <div className=" h-[110lvh]  max-md:hidden fixed inset-0 w-full z-[999]  flex-center  bg-white   ">
+      <LoaderIcon /></div>
+  }
+
 
   return (
     <>
 
-      {isQueryParams && <div className=" h-[110lvh]  fixed inset-0 w-full z-[999]  flex-center  bg-white   ">
+      {(isQueryParams && !isMobile) && <div className=" h-[110lvh]  max-md:hidden fixed inset-0 w-full z-[999]  flex-center  bg-white   ">
         <LoaderIcon /></div>}
 
       {collectionsLoading ? (
@@ -396,10 +429,10 @@ export default function CollectionsClient() {
           <LoaderIcon />
         </div>
       ) : (
-
         <div className={`${rubik.className} bg-white text-dark-28`}>
 
           <Navbar isfixed={true} onNavClick={handleNavClick} />
+
 
           {isMobile ? (
             <MobileAnimatedVerticalCard
@@ -438,7 +471,7 @@ export default function CollectionsClient() {
             searchParams={searchParams}
           />}
 
-          <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0  xl:mt-36 lg:mt-48  items-center   ">
+          <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0   xl:mt-36 lg:mt-48  items-center   ">
 
             <ResponsiveClipPath
               outerClass='absolute md:w-[24%]  max-sm:hidden w-[78%]  top-10 left-0 h-fit'
@@ -446,23 +479,25 @@ export default function CollectionsClient() {
               width={800}
             />
 
-            {isMobile && <MobileFilter
-              page='collections'
-              setIsAnyFilterOpened={setIsAnyFilterOpened}
-              isFilterVisible={isFilterVisible}
-              showMobileFilter={showMobileFilter}
-              setShowMobileFilter={setShowMobileFilter}
-              flatSelectedFilters={flatSelectedFilters}
-              setFlatSelectedFilters={setFlatSelectedFilters}
-              setSelectedFilters={setSelectedFilters}
-              dataCount={itineraryData?.length}
-              selectedFilters={selectedFilters}
-              handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
-              setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
-              handleScrollToItineraryResults={handleScrollToItineraryResults}
-              updateUrlParamsFromFilters={updateUrlParamsFromFilters}
-              searchParams={searchParams}
-            />}
+            {isMobile && <div ref={MobileFilterRef} className=" w-full sticky top-10 sticky-container  z-10">
+              <MobileFilter
+                page='collections'
+                setIsAnyFilterOpened={setIsAnyFilterOpened}
+                isFilterVisible={isFilterVisible}
+                showMobileFilter={showMobileFilter}
+                setShowMobileFilter={setShowMobileFilter}
+                flatSelectedFilters={flatSelectedFilters}
+                setFlatSelectedFilters={setFlatSelectedFilters}
+                setSelectedFilters={setSelectedFilters}
+                dataCount={itineraryData?.length}
+                selectedFilters={selectedFilters}
+                handleSetCollectionRequestedToShowInMobile={handleSetCollectionRequestedToShowInMobile}
+                setSelectedVerticalTileMobile={setSelectedVerticalTileMobile}
+                handleScrollToItineraryResults={handleScrollToItineraryResults}
+                updateUrlParamsFromFilters={updateUrlParamsFromFilters}
+                searchParams={searchParams}
+              />
+            </div>}
 
 
             <div className="grid 2xl:gap-28 relative xl:gap-16 lg:mt-28 xl:mt-36 md:gap-12 gap-8 md:grid-cols-2 w-10/12 xl:w-9/12 z-0 ">

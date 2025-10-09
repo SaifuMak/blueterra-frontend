@@ -103,6 +103,7 @@ function MobileAnimatedVerticalIndividualCard({ index,
                         </div>
                     )}
 
+
                     {page === 'destinations' && <div className="flex   w-11/12 flex-wrap  gap-y-1  gap-x-4 pr-3 font-light text-[12px] mt-2">
                         {card?.countries?.map((country, index) => (
                             <div key={index} className="  flex   ">
