@@ -27,16 +27,16 @@ export default function CruiseClient() {
         <SmoothScroll>
             <Navbar />
             <BannerSection />
-            {/* {isLargeDevice && <Deals />}
+            {isLargeDevice && <Deals />}
             {isMediumDevice && <DealsMediumDevices/>}
-            {isMobile && <DealsMobileDevices/>} */}
+            {isMobile && <DealsMobileDevices/>}
             {/* <FeaturedDeals /> */}
-            {/* <DestinationsSection />
+            <DestinationsSection />
             <WhyCruise />
             <PackageSection />
             <CruiseLineSection />
             <ContactSection />
-            <Footer /> */}
+            <Footer />
         </SmoothScroll>
     )
 }
