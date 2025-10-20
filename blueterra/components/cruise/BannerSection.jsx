@@ -3,7 +3,7 @@ import { playfair, rubik } from '@/app/fonts'
 import React from 'react'
 import LoaderIcon from '../generalComponents/LoaderIcon';
 import { useState, useEffect, useRef } from 'react';
-
+import CruiseWidget from './CruiseWidget';
 
 function BannerSection() {
 
@@ -19,41 +19,36 @@ function BannerSection() {
     }, []);
 
     return (
-        // <div className=" w-full relative h-screen bg-center bg-cover bg-no-repeat"
-        //     style={{ backgroundImage: "url('/images/cruise/banner.jpg')" }}
-        // >
-        //     <div className=" absolute inset-0 bg-black/20 flex flex-col  space-y-10 items-center lg:justify-center ">
-        //         <h1 className={`${playfair.className} max-lg:mt-48 text-4xl md:text-6xl lg:text-7xl xl:text-[80px] text-white font-semibold`}>BlueTerra Cruise</h1>
 
 
-        //     </div>
 
-
-        // </div>
-
-        <div className="w-full relative  h-screen">
+        <div className="w-full relative min-h-screen  ">
             {!isBannerVideoLoaded && (
-                <div className="absolute inset-0 w-full h-full flex-center bg-white"><LoaderIcon /></div>
+                <div className="absolute inset-0 w-full min-h-screen flex-center bg-white"><LoaderIcon /></div>
             )}
 
             <video ref={videoRef} src="https://cdn.myblueterra.com/cruise-banner.mov"
-                className=" w-full h-full object-cover"
+                className=" w-full min-h-screen object-cover"
                 autoPlay
                 muted
                 loop
                 playsInline
                 preload="auto"
-            onCanPlay={() => {
-              console.log("Can play");
-              setIsBannerVideoLoaded(true);
-            }}
-            onError={(e) => console.error("Video error", e)}
+                onCanPlay={() => {
+                    console.log("Can play");
+                    setIsBannerVideoLoaded(true);
+                }}
+                onError={(e) => console.error("Video error", e)}
             ></video>
 
 
             <div className=" w-full h-full absolute bg-black/10  inset-0 flex-center flex-col text-white ">
-                <div className="flex-center flex-col space-y-5 lg:space-y-8 ">
+                <div className="flex-center flex-col space-y-5 lg:space-y-8 mt-10 overflow-x-hidden ">
                     <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>BlueTerra Cruise</h1>
+                    <div className=" bg-white max-w-11/12  lg:max-w-10/12 sm:p-2 rounded-2xl ">
+                        <CruiseWidget />
+
+                    </div>
                 </div>
             </div>
         </div>

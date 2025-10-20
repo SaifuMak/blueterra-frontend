@@ -180,8 +180,8 @@ export default function CollectionsClient() {
         ease: "sine.inOut" // easing for smoothness
       });
     }
-
   }
+
 
 
   const handleSetCollectionRequestedToShowInMobile = (index) => {
@@ -210,9 +210,7 @@ export default function CollectionsClient() {
     // }
     // else if (CollectionRequestedToShowInMobileForFirstTime) {
     //     console.log('calling scroll to itinerary  without settime  if there is parmas ');
-
     //   handleScrollToItineraryResults()
-
     // }
 
   }

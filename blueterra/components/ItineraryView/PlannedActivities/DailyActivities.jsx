@@ -14,7 +14,7 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
 
     const [OpenedAccordian, setOpenedAccordian] = useState([])
 
-      const isSmallerScreen = useMediaQuery({
+    const isSmallerScreen = useMediaQuery({
         query: '(max-width: 1024px)'
     })
 
@@ -74,6 +74,8 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
         }
     }
 
+
+
     useEffect(() => {
         if (selectedTab === "Daily Schedule") {
             // open all
@@ -107,6 +109,8 @@ export default function DailyActivities({ expandCards, index, selectedTab, itine
     }, [OpenedAccordian]);
 
 
+
+    
     return (
 
         <>

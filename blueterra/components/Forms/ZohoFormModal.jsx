@@ -14,11 +14,13 @@ export default function ZohoFormModal({ isOpen, onClose }) {
         setLoading(true)
 
         if (isOpen) {
+            
 
             lenis?.stop();
             document.body.style.overflow = 'hidden';
 
         } else {
+          
 
             lenis?.start();
             document.body.style.overflow = '';

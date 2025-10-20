@@ -68,7 +68,6 @@ export default function Footer() {
     ];
 
 
-
     const footerLinks = {
         "Information": {
             "About us": "#",
@@ -263,6 +262,7 @@ export default function Footer() {
                         </div>
 
                     </div>
+
 
                     <div className=" w-full md:hidden  ">
                         {footerLinksForMobile.map((section, index) => (
