@@ -29,53 +29,55 @@ function CruiseLineSection() {
 
     const logos = [
         [
-            { name: "Expeditions", imageLink: "https://cdn.myblueterra.com/66exp.eb41bcc76c0286981387.png", link: "" },
+            // { name: "Expeditions", imageLink: "https://cdn.myblueterra.com/66exp.eb41bcc76c0286981387.png", link: "" },
+            { name: "msc", imageLink: "https://cdn.myblueterra.com/cruise-partners/msc.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=982&sortcolumn=cruiselinePriority&sortorder=asc" },
             { name: "Explora", imageLink: "https://cdn.myblueterra.com/Explora-Journeys.6ab2611633325a453c17.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=9204&sortColumn=cruiselinePriority&sortOrder=asc  " }
         ],
-        [
-            { name: "Azamara", imageLink: "https://cdn.myblueterra.com/azamara.b045622d19e85d557ea7.png", link: "" },
-            { name: "Albatros", imageLink: "https://cdn.myblueterra.com/albatros.38f600acc335e9dd8070.jpg", link: "" }
-        ],
+        // [
+        //     { name: "Azamara", imageLink: "https://cdn.myblueterra.com/azamara.b045622d19e85d557ea7.png", link: "" },
+        //     { name: "Albatros", imageLink: "https://cdn.myblueterra.com/albatros.38f600acc335e9dd8070.jpg", link: "" }
+        // ],
         [
             { name: "Celebrity", imageLink: "https://cdn.myblueterra.com/celebrity.b2a55061d289539684ed.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=2&sortColumn=cruiselinePriority&sortOrder=asc  " },
             { name: "Celestyal", imageLink: "https://cdn.myblueterra.com/celestyal.10c5c3bc83fb809a3280.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=8224&sortColumn=cruiselinePriority&sortOrder=asc  " }
         ],
         [
-            { name: "Costa", imageLink: "https://cdn.myblueterra.com/costa.28a764c7ddd718f6c255.png", link: "" },
+            { name: "Costa", imageLink: "https://cdn.myblueterra.com/costa.28a764c7ddd718f6c255.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=10&sortcolumn=cruiselinePriority&sortorder=asc" },
             { name: "Cunard", imageLink: "https://cdn.myblueterra.com/cunard.9e54e6b300cedf3ea11d.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=12&sortColumn=cruiselinePriority&sortOrder=asc" }
         ],
         [
-            { name: "Disney", imageLink: "https://cdn.myblueterra.com/disney.d3ab123a1d237ae76432.png", link: "" },
+            // { name: "Disney", imageLink: "https://cdn.myblueterra.com/disney.d3ab123a1d237ae76432.png", link: "" },
+            { name: "carnival", imageLink: "https://cdn.myblueterra.com/cruise-partners/carnival.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=1&sortcolumn=cruiselinePriority&sortorder=asc" },
             { name: "Norwegian", imageLink: "https://cdn.myblueterra.com/ncl.17a0a5f5222f3554ba84.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=6&sortColumn=cruiselinePriority&sortOrder=asc  " }
         ],
         [
+            { name: "Regent", imageLink: "https://cdn.myblueterra.com/cruise-partners/regent.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=8116&sortcolumn=cruiselinePriority&sortorder=asc" },
             { name: "P&O", imageLink: "https://cdn.myblueterra.com/p%26ouk.809df92b694a1ac3974b.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=16&sortColumn=cruiselinePriority&sortOrder=asc " },
-            { name: "Oceanwide", imageLink: "https://cdn.myblueterra.com/oceanwide.3680e5ddbcc3b385a12b.png", link: "" }
+            // { name: "Oceanwide", imageLink: "https://cdn.myblueterra.com/oceanwide.3680e5ddbcc3b385a12b.png", link: "" }
         ],
         [
             { name: "Princess", imageLink: "https://cdn.myblueterra.com/pcl.dec201aa303c0a16d533.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=7&sortColumn=cruiselinePriority&sortOrder=asc" },
-            { name: "Ponant", imageLink: "https://cdn.myblueterra.com/ponant-logo.778dc9bc54dca97565fc.png", link: "" }
-        ],
-        [
-            { name: "Royal Caribbean", imageLink: "https://cdn.myblueterra.com/rc.bf64fdc25fa555f76e7f.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=8&sortcolumn=cruiselinePriority&sortorder=asc  " },
-            { name: "Ritz-carltron", imageLink: "https://cdn.myblueterra.com/ritz.f322931f31be582c0f0d.jpg", link: "" }
+            { name: "uniworld", imageLink: "https://cdn.myblueterra.com/cruise-partners/uniworld.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=8149&sortcolumn=cruiselinePriority&sortorder=asc" },
+            // { name: "Ponant", imageLink: "https://cdn.myblueterra.com/ponant-logo.778dc9bc54dca97565fc.png", link: "" }
         ],
         [
             { name: "Seabourn", imageLink: "https://cdn.myblueterra.com/seabourn.e01786de8a298e11c949.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=11&sortcolumn=cruiselinePriority&sortorder=asc" },
-            { name: "Silversea", imageLink: "https://cdn.myblueterra.com/silversea.00b0d29e897754b3683f.png", link: "" }
+            { name: "Royal Caribbean", imageLink: "https://cdn.myblueterra.com/rc.bf64fdc25fa555f76e7f.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=8&sortcolumn=cruiselinePriority&sortorder=asc  " },
+            // { name: "Ritz-carltron", imageLink: "https://cdn.myblueterra.com/ritz.f322931f31be582c0f0d.jpg", link: "" }
         ],
+        // [
+        //     { name: "Silversea", imageLink: "https://cdn.myblueterra.com/silversea.00b0d29e897754b3683f.png", link: "" }
+        // ],
+        // [
+        //     { name: "Silversea-expeditions", imageLink: "https://cdn.myblueterra.com/silversea_exped.f0efdb27c9a3732a1fba.png", link: "" },
+        //     { name: "Swan", imageLink: "https://cdn.myblueterra.com/swan.c47789e36f97d2ca6aa7.png", link: "" }
+        // ],
         [
-            { name: "Silversea-expeditions", imageLink: "https://cdn.myblueterra.com/silversea_exped.f0efdb27c9a3732a1fba.png", link: "" },
-            { name: "Swan", imageLink: "https://cdn.myblueterra.com/swan.c47789e36f97d2ca6aa7.png", link: "" }
-        ],
-        [
+            { name: "Norwegian", imageLink: "https://cdn.myblueterra.com/ncl.17a0a5f5222f3554ba84.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=6&sortColumn=cruiselinePriority&sortOrder=asc  " },
             { name: "Windstar", imageLink: "https://cdn.myblueterra.com/windstar.965cb4674ed933aac294.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=9&sortColumn=cruiselinePriority&sortOrder=asc  " },
-            { name: "Disney", imageLink: "https://cdn.myblueterra.com/disney.d3ab123a1d237ae76432.png", link: "" }
+            // { name: "Disney", imageLink: "https://cdn.myblueterra.com/disney.d3ab123a1d237ae76432.png", link: "" }
         ],
-        [
-            { name: "Disney", imageLink: "https://cdn.myblueterra.com/disney.d3ab123a1d237ae76432.png", link: "" },
-            { name: "Norwegian", imageLink: "https://cdn.myblueterra.com/ncl.17a0a5f5222f3554ba84.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=6&sortColumn=cruiselinePriority&sortOrder=asc  " }
-        ]
+
     ];
 
 
@@ -87,7 +89,7 @@ function CruiseLineSection() {
                     Compare and choose from leading cruise lines to match your style of travel, from luxury escapes to family-friendly adventures.
                 </p>
             </div>
-            <div className=" w-full lg:border border-black/5 mt-12 lg:mt-16 mb-10 ">
+            <div className=" w-full  border-black/5 mt-12 lg:mt-16 mb-10 ">
                 <CruiseCarousal logos={logos} setCurrent={setCurrent} setCount={setCount} />
             </div>
             <div className=" flex-center pt-0 lg:pt-8 w-full h-full">

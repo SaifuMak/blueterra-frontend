@@ -13,8 +13,7 @@ export default function PartnerCompanies() {
 
     const partnerCompaniesimageRef = useGsapFadeIn()
 
-  const isMobile = useMediaQuery({ query: "(max-width: 644px)" });
-
+    const isMobile = useMediaQuery({ query: "(max-width: 644px)" });
 
 
     return (
@@ -26,7 +25,7 @@ export default function PartnerCompanies() {
             </div>
 
             <div ref={partnerCompaniesimageRef} className=" 2xl:w-11/12 w-11/12 flex  lg:mt-12 mt-5 md:mt-7  2xl:mt-16 lg:py-3    ">
-              <Marquee gradient={isMobile ? false : true} speed={70} >
+                <Marquee gradient={isMobile ? false : true} speed={70} >
                     {PartnerCompaniesData?.map((data, index) => (
                         <div key={index} className=" group ">
                             <img
