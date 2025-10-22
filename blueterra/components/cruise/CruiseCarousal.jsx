@@ -59,19 +59,27 @@ export default function CruiseCarousal({ logos, setCurrent, setCount }) {
                     ]}
                     className="w-full"
                 >
-                    <CarouselContent className=' '>
+                    <CarouselContent className=''>
                         {logos.map((pair, index) => (
                             <CarouselItem key={index} className=" md:basis-1/2 gap-0 pl-0 lg:basis-1/4  flex-center">
                                 <div className="   overflow-hidden flex flex-col w-full 2xl:h-[430px] xl:h-[410px] md:h-[320px]">
                                     {/* Top Section */}
                                     <div className={`h-1/2 ${index % 2 === 1 ? 'bg-sky-blue-light' : 'bg-white'}  flex py-3 lg:py-6 xl:py-8 items-center justify-center `}>
+                                        <a href={pair[0]?.link ? pair[0]?.link : null} target={pair[0]?.link ? "_blank" : undefined} rel="noopener noreferrer" className={` ${pair[0]?.link} ? 'cursor-pointer' : ''`}>
 
-                                        <img src={pair[0]?.imageLink} alt={pair[0]?.name} className=" object-contain md:size-44 size-32 lg:size-32 xl:size-36 2xl:size-48" />
+                                            <img src={pair[0]?.imageLink} alt={pair[0]?.name} className=" object-contain md:size-44 size-32 lg:size-32 xl:size-36 2xl:size-48" />
+                                        </a>
+
                                     </div>
                                     {/* Bottom Section */}
                                     <div className={`h-1/2 ${index % 2 === 0 ? 'bg-sky-blue-light' : 'bg-white'}  flex py-3 lg:py-6 xl:py-8 items-center justify-center`}>
-                                        <img src={pair[1]?.imageLink} alt={pair[1]?.name} className="object-contain 2xl:size-48 xl:size-36 lg:size-32 md:size-44 size-32" />
+                                      
+                                        <a href={pair[1]?.link ? pair[1]?.link : null} target={pair[1]?.link ? "_blank" : undefined} rel="noopener noreferrer" className={` ${pair[1]?.link} ? 'cursor-pointer' : ''`}>
+                                            <img src={pair[1]?.imageLink} alt={pair[1]?.name} className="object-contain 2xl:size-48 xl:size-36 lg:size-32 md:size-44 size-32" />
+                                        </a>
+
                                     </div>
+
                                 </div>
                             </CarouselItem>
                         ))}

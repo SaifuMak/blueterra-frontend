@@ -57,11 +57,11 @@ function CruiseLineSection() {
             { name: "Ponant", imageLink: "https://cdn.myblueterra.com/ponant-logo.778dc9bc54dca97565fc.png", link: "" }
         ],
         [
-            { name: "Royal Caribbean", imageLink: "https://cdn.myblueterra.com/rc.bf64fdc25fa555f76e7f.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=11&sortColumn=cruiselinePriority&sortOrder=asc  " },
+            { name: "Royal Caribbean", imageLink: "https://cdn.myblueterra.com/rc.bf64fdc25fa555f76e7f.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=8&sortcolumn=cruiselinePriority&sortorder=asc  " },
             { name: "Ritz-carltron", imageLink: "https://cdn.myblueterra.com/ritz.f322931f31be582c0f0d.jpg", link: "" }
         ],
         [
-            { name: "Seabourn", imageLink: "https://cdn.myblueterra.com/seabourn.e01786de8a298e11c949.png", link: "" },
+            { name: "Seabourn", imageLink: "https://cdn.myblueterra.com/seabourn.e01786de8a298e11c949.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&cruiseline=11&sortcolumn=cruiselinePriority&sortorder=asc" },
             { name: "Silversea", imageLink: "https://cdn.myblueterra.com/silversea.00b0d29e897754b3683f.png", link: "" }
         ],
         [
@@ -77,8 +77,6 @@ function CruiseLineSection() {
             { name: "Norwegian", imageLink: "https://cdn.myblueterra.com/ncl.17a0a5f5222f3554ba84.png", link: "https://cruise.myblueterra.com/swift/cruise?siid=1352712&lang=1&destinationtype=All&CruiseLine=6&sortColumn=cruiselinePriority&sortOrder=asc  " }
         ]
     ];
-
-
 
 
     return (
