@@ -63,7 +63,7 @@ export default function CollectionsList({ Data, setCurrent, setCount, onclickEve
 
                         {Data?.map((item, index) => (
                             <CarouselItem key={index} className="md:basis-1/2   2xl:p-3 pb-2 lg:basis-1/3  mx-0  flex-center  ">
-                                <div onClick={onclickEvent} className=" relative group aspect-[47/50]  cursor-pointer w-[370px]  xl:w-[470px] 2xl:h-[600px] xl:h-[500px] md:h-[480px] h-[410px] rounded-2xl overflow-hidden">
+                                <div onClick={()=>onclickEvent(item?.link)} className=" relative group aspect-[47/50]  cursor-pointer w-[370px]  xl:w-[470px] 2xl:h-[600px] xl:h-[500px] md:h-[480px] h-[410px] rounded-2xl overflow-hidden">
 
                                     {/* <Image
                                         src={item.banner_image_public_url}

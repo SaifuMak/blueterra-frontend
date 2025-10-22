@@ -28,8 +28,8 @@ export default function CruiseClient() {
             <Navbar />
             <BannerSection />
             {isLargeDevice && <Deals />}
-            {isMediumDevice && <DealsMediumDevices/>}
-            {isMobile && <DealsMobileDevices/>}
+            {isMediumDevice && <DealsMediumDevices />}
+            {isMobile && <DealsMobileDevices />}
             {/* <FeaturedDeals /> */}
             <DestinationsSection />
             <WhyCruise />
