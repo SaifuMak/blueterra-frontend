@@ -9,6 +9,7 @@ import Button from '../generalComponents/Button';
 
 import { useRouter } from 'next/navigation';
 import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn';
+import Link from 'next/link';
 
 function Deals() {
 
@@ -41,15 +42,17 @@ function Deals() {
         fetchDestinations()
     }, [])
 
-    const handleNavigateToDestinations = () => {
-        router.push('/destinations')
-    }
 
 
     const slides = [
         ...destinationsData,
         ...destinationsData,
         ...destinationsData,
+        ...destinationsData, ...destinationsData,
+        ...destinationsData, ...destinationsData,
+        ...destinationsData, ...destinationsData,
+        ...destinationsData, ...destinationsData,
+        ...destinationsData, ...destinationsData,
         ...destinationsData, ...destinationsData,
         ...destinationsData, ...destinationsData,
         ...destinationsData, ...destinationsData,
@@ -191,6 +194,8 @@ function Deals() {
                         <p className={`${rubik.className} mt-4 vertically-animated-element leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>
                             Exclusive travel offers designed to make your dream journeys affordable and unforgettable.</p>
 
+
+
                     </div>
 
                     <div className=" w-full  mx-auto items-center  py-5 grid grid-cols-12 ">
@@ -226,8 +231,11 @@ function Deals() {
                                     ))}
                                 </div>
                             </div>
-
-                            <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2 `} onClickFunction={handleNavigateToDestinations} />
+                            <a href={slides[currentIndex]?.link}
+                                target="_blank"
+                                rel="noopener noreferrer" className="">
+                                <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider  ${rubik.className} py-2 `} />
+                            </a>
                         </div>
 
                         {/* RIGHT SECTION: Carousel */}

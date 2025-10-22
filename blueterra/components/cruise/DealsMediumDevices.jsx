@@ -13,7 +13,7 @@ function DealsMediumDevices() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const intervalRef = useRef(null);
     const cardsRef = useRef([]);
-    const bannerRefs = useRef([]); 
+    const bannerRefs = useRef([]);
     const [destinationsData, setDestinationsData] = useState([])
     const titleContainer = useGsapFadeIn()
 
@@ -188,11 +188,12 @@ function DealsMediumDevices() {
                                     </div>
                                 </div>
 
-                                <Button
-                                    text='EXPLORE'
-                                    buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2`}
-                                    onClickFunction={handleNavigateToDestinations}
-                                />
+
+                                <a href={slides[currentIndex]?.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer" className="">
+                                    <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider  ${rubik.className} py-2 `} />
+                                </a>
                             </div>
 
                             {/* RIGHT SECTION: Carousel */}

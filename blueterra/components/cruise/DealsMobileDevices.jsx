@@ -188,11 +188,11 @@ function DealsMobileDevices() {
                             <button onClick={handleNext} className="   p-1.5 rounded-sm  border-white border  text-white"><MdOutlineArrowForwardIos className=" text-lg " /></button>
                         </div>
                         <div className=" px-4 flex-center mt-5">
-                            <Button
-                                text="EXPLORE"
-                                buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2`}
-                                onClickFunction={() => router.push('/cruise')}
-                            />
+                            <a href={slides[currentIndex]?.link}
+                                target="_blank"
+                                rel="noopener noreferrer" className="">
+                                <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider  ${rubik.className} py-2 `} />
+                            </a>
                         </div>
 
                     </div>
