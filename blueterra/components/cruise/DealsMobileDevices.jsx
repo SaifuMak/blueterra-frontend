@@ -111,6 +111,7 @@ function DealsMobileDevices() {
         setCurrentIndex((prev) => (prev + 1) % slides.length);
     };
 
+    
     return (
         <>
             {slides.length > 0 && (

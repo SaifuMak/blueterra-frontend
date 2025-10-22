@@ -184,7 +184,7 @@ export default function ThreeCardSection() {
             <div
                 ref={backgroundImageRef}
                 className="fixed inset-0 h-[120vh] bg-cover bg-center z-0"
-                style={{ backgroundImage: "url('/images/our-story/banner-img.jpg')" }}
+                style={{ backgroundImage: "url('/images/our-story/our-story-banner.png')" }}
             />
 
             <div className=" fixed inset-0 h-[120vh] bg-[#0E518199]/60 z-0"></div>
