@@ -50,6 +50,7 @@ export default function Cruise() {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
+        link: "",
         banner_image: null,
         image_url: null
     });
@@ -58,6 +59,7 @@ export default function Cruise() {
         setFormData({
             title: "",
             description: "",
+            link: "",
             banner_image: null,
             image_url: null
         });
@@ -98,8 +100,6 @@ export default function Cruise() {
     }
 
 
-
-
     const handlechange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -128,6 +128,7 @@ export default function Cruise() {
             setFormData({
                 title: response?.data?.title || '',
                 description: response?.data?.description || '',
+                link: response?.data?.link || '',
                 image_url: response?.data?.image_public_url || null
             });
             setIsEditDealOpened(true)
@@ -184,6 +185,8 @@ export default function Cruise() {
         const newFormData = new FormData();
         newFormData.append("title", formData.title);
         newFormData.append("description", formData.description);
+        newFormData.append("link", formData.link);
+
         newFormData.append("image", formData.banner_image);
 
         try {
@@ -212,6 +215,8 @@ export default function Cruise() {
         const newFormData = new FormData();
         newFormData.append("title", formData.title);
         newFormData.append("description", formData.description);
+        newFormData.append("link", formData.link);
+
         if (formData.banner_image) {
             newFormData.append("image", formData.banner_image);
         }
@@ -282,8 +287,6 @@ export default function Cruise() {
     useEffect(() => {
         fetchDeals()
     }, [])
-
-
 
 
     return (
@@ -398,8 +401,8 @@ export default function Cruise() {
             {(isCreateDealsOpened || isEditDealOpened) && <div className="fixed z-50 bg-white/70 text-dark-28 inset-0 flex items-center justify-center">
                 <form onSubmit={isCreateDealsOpened ? confirmCreateDeal : confirmEditDeal} >
 
-                    <div className="bg-white relative rounded-lg flex flex-col  justify-center  shadow-xl p-10 min-w-4xl ">
-                        <div className=" flex  flex-col justify-center mt-4 space-y-8">
+                    <div className="bg-white relative rounded-lg flex flex-col  justify-center  shadow-xl p-10 max-h-[95vh] overflow-y-auto min-w-4xl ">
+                        <div className=" flex  flex-col justify-center mt-4 space-y-4">
 
                             <div className=" w-full">
                                 <label htmlFor="text" className=" font-medium ">Title</label>
@@ -409,6 +412,11 @@ export default function Cruise() {
                             <div className=" w-full">
                                 <label htmlFor="text" className=" font-medium">Description</label>
                                 <textarea name="description" onChange={handlechange} value={formData?.description} id="description" rows={5} className="border rounded-sm  mt-2  p-2 w-full outline-none" required></textarea>
+                            </div>
+
+                            <div className=" w-full">
+                                <label htmlFor="text" className=" font-medium">Deal Link</label>
+                                <input type="text" name='link' onChange={handlechange} value={formData?.link} className="border mt-2 rounded-sm p-2 w-full outline-none "  />
                             </div>
 
                             <div className=" w-full flex  space-x-6 items-center ">
