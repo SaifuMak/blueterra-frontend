@@ -302,7 +302,7 @@ export default function Home() {
         {!isMobile && <JournalSection />}
         {isMobile && <BlogsForMobile />}
 
-        <PartnerCompaniesSection />
+        <PartnerCompaniesSection isMobile={isMobile} />
 
         <PlanningCardSection setFormOpen={setFormOpen} />
 

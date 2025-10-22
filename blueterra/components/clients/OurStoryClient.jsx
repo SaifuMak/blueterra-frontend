@@ -14,6 +14,7 @@ import PartnerCompanies from '@/components/OurStory/PartnerCompanies';
 import Footer from "@/components/Footer/page";
 import Navbar from "@/components/Navbar/page";
 import ZohoFormModal from "@/components/Forms/ZohoFormModal";
+import { useMediaQuery } from 'react-responsive'
 
 
 gsap.registerPlugin(ScrollTrigger)

@@ -3,7 +3,8 @@ import Marquee from "react-fast-marquee";
 import Image from 'next/image';
 import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn';
 
-function PartnerCompaniesSection() {
+
+function PartnerCompaniesSection({isMobile}) {
 
     // const containerRef = useGsapFadeIn(0, {})
 
@@ -21,18 +22,21 @@ function PartnerCompaniesSection() {
     ];
 
 
-    
+
     return (
-        <div className=" w-full flex-center pb-10 mt-10  ">
-            <div  className=" 2xl:w-10/12 w-full lg:w-11/12 flex lg:px-10   py-3  lg:space-x-20   ">
-                <Marquee pauseOnHover>
+        <div className=" w-full flex-center pb-4 lg:pb-10 lg:mt-10  ">
+            <div className=" 2xl:w-11/12 w-11/12 flex lg:px-10   py-3  lg:space-x-20  ">
+                {/* <Marquee pauseOnHover> */}
+                <Marquee gradient={isMobile ? false : true} speed={70} >
+
                     {boxData?.map((data, index) => (
-                        <div key={index} className="   group cursor-pointer h-[40px] w-[150px] relative mx-5 lg:mx-10">
-                            <Image
-                                src='/images/partner-company/logo-1.png'
+                        <div key={index} className=" group ">
+                            <img
+                                src='/images/general/marque-sample.png'
                                 alt="pattern"
-                                fill
-                                className=" object-cover grayscale group-hover:grayscale-0 transition duration-500"
+                                // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
+                                className="  object-contain  h-[100px] w-[650px] lg:w-[650px]"
+
                             />
                         </div>
                     ))}

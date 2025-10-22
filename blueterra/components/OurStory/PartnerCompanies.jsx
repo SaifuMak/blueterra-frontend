@@ -5,6 +5,7 @@ import Marquee from "react-fast-marquee"
 import Image from "next/image"
 import useGsapFadeIn from "@/app/hooks/Gsap/useGsapFadeIn";
 import ResponsiveClipPath from "../generalComponents/ResponsiveClipPath";
+import { useMediaQuery } from "react-responsive";
 
 export default function PartnerCompanies() {
 
@@ -12,24 +13,28 @@ export default function PartnerCompanies() {
 
     const partnerCompaniesimageRef = useGsapFadeIn()
 
+  const isMobile = useMediaQuery({ query: "(max-width: 644px)" });
+
+
 
     return (
 
-        <div className=" lg:my-28 my-12  w-full flex-center flex-col   relative ">
+        <div className=" lg:my-20 my-12  w-full flex-center flex-col   relative ">
 
             <div ref={partnerCompaniesTitleRef} className="">
                 <TitleText text='Trusted Partners' />
             </div>
 
-            <div ref={partnerCompaniesimageRef} className=" 2xl:w-10/12 w-full lg:w-11/12 flex lg:px-10 lg:mt-12 mt-5 md:mt-7  2xl:mt-16 py-3   lg:space-x-20   ">
-                <Marquee pauseOnHover>
+            <div ref={partnerCompaniesimageRef} className=" 2xl:w-11/12 w-11/12 flex  lg:mt-12 mt-5 md:mt-7  2xl:mt-16 lg:py-3    ">
+              <Marquee gradient={isMobile ? false : true} speed={70} >
                     {PartnerCompaniesData?.map((data, index) => (
-                        <div key={index} className="   group cursor-pointer h-[40px] w-[150px] relative mx-5 lg:mx-10">
-                            <Image
-                                src='/images/partner-company/logo-1.png'
+                        <div key={index} className=" group ">
+                            <img
+                                src='/images/general/marque-sample.png'
                                 alt="pattern"
-                                fill
-                                className=" object-cover grayscale group-hover:grayscale-0 transition duration-500"
+                                // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
+                                className="  object-contain h-[80px]  lg:h-[100px] w-[510px] lg:w-[650px]"
+
                             />
                         </div>
                     ))}
