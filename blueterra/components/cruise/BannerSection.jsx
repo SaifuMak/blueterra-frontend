@@ -5,10 +5,9 @@ import LoaderIcon from '../generalComponents/LoaderIcon';
 import { useState, useEffect, useRef } from 'react';
 import CruiseWidget from './CruiseWidget';
 
-function BannerSection() {
+function BannerSection({isMobile}) {
 
     const [isBannerVideoLoaded, setIsBannerVideoLoaded] = useState(false)
-
 
     const videoRef = useRef(null);
 
@@ -18,9 +17,8 @@ function BannerSection() {
         }
     }, []);
 
+
     return (
-
-
 
         <div className="w-full relative min-h-screen  ">
             {!isBannerVideoLoaded && (
@@ -45,9 +43,8 @@ function BannerSection() {
             <div className=" w-full h-full absolute bg-black/10  inset-0 flex-center flex-col text-white ">
                 <div className="flex-center flex-col space-y-5 lg:space-y-8 mt-10 overflow-x-hidden ">
                     <h1 className={` ${playfair.className}  ${isBannerVideoLoaded ? 'opacity-100 translate-y-0' : ' translate-y-5 opacity-0'} translate-all duration-700 ease-in-out text-3xl  max-md:px-5 text-center md:text-4xl lg:text-[60px] xl:text-[70px] 2xl:text-[80px] font-semibold `}>BlueTerra Cruise</h1>
-                    <div className=" bg-white max-w-11/12  lg:max-w-10/12 sm:p-2 rounded-2xl ">
+                    <div className=" bg-white max-w-11/12  max-lg:max-h-[80vh] overflow-y-auto lg:max-w-10/12 sm:p-2 rounded-2xl "  {...( isMobile ? { 'data-lenis-prevent': true } : {})}>
                         <CruiseWidget />
-
                     </div>
                 </div>
             </div>

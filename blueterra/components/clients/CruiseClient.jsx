@@ -13,7 +13,6 @@ import DealsMediumDevices from "../cruise/DealsMediumDevices"
 import DealsMobileDevices from "../cruise/DealsMobileDevices"
 import { useMediaQuery } from 'react-responsive'
 
-
 export default function CruiseClient() {
 
     const isMobile = useMediaQuery({ query: "(max-width: 1000px)" });
@@ -26,7 +25,7 @@ export default function CruiseClient() {
     return (
         <SmoothScroll>
             <Navbar />
-            <BannerSection />
+            <BannerSection isMobile={isMobile} />
             {isLargeDevice && <Deals />}
             {isMediumDevice && <DealsMediumDevices />}
             {isMobile && <DealsMobileDevices />}
