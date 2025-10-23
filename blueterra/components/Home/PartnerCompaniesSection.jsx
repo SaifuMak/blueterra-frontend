@@ -22,21 +22,19 @@ function PartnerCompaniesSection({isMobile}) {
     ];
 
 
-
     return (
-        <div className=" w-full flex-center pb-4 lg:pb-10 lg:mt-10  ">
-            <div className=" 2xl:w-11/12 w-11/12 flex lg:px-10   py-3  lg:space-x-20  ">
+        <div className=" w-full flex-center  ">
+            <div className=" 2xl:w-11/12 w-11/12 flex  max-md:pb-5   ">
                 {/* <Marquee pauseOnHover> */}
                 <Marquee gradient={isMobile ? false : true} speed={70} >
 
                     {boxData?.map((data, index) => (
-                        <div key={index} className=" group ">
+                            <div key={index} className=" group lg:mx-10 mx-5 ">
                             <img
-                                src='/images/general/marque-sample.png'
+                                src='/images/partner-company/marque.png'
                                 alt="pattern"
                                 // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
-                                className="  object-contain  h-[100px] w-[650px] lg:w-[650px]"
-
+                                className="  object-contain h-[80px]  lg:h-[100px] w-[510px] lg:w-[680px]"
                             />
                         </div>
                     ))}

@@ -18,18 +18,18 @@ export default function PartnerCompanies() {
 
     return (
 
-        <div className=" lg:my-20 my-12  w-full flex-center flex-col   relative ">
+        <div className=" lg:my-16 my-8  w-full flex-center flex-col   relative ">
 
-            <div ref={partnerCompaniesTitleRef} className="">
+            {/* <div ref={partnerCompaniesTitleRef} className="">
                 <TitleText text='Trusted Partners' />
-            </div>
+            </div> */}
 
-            <div ref={partnerCompaniesimageRef} className=" 2xl:w-11/12 w-11/12 flex  lg:mt-12 mt-5 md:mt-7  2xl:mt-16 lg:py-3    ">
+            <div ref={partnerCompaniesimageRef} className=" 2xl:w-11/12 w-11/12 flex     ">
                 <Marquee gradient={isMobile ? false : true} speed={70} >
                     {PartnerCompaniesData?.map((data, index) => (
-                        <div key={index} className=" group ">
+                        <div key={index} className=" group lg:mx-10 mx-5 ">
                             <img
-                                src='/images/general/marque-sample.png'
+                                src='/images/partner-company/marque.png'
                                 alt="pattern"
                                 // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
                                 className="  object-contain h-[80px]  lg:h-[100px] w-[510px] lg:w-[650px]"
