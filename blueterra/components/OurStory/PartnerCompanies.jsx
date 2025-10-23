@@ -6,6 +6,7 @@ import Image from "next/image"
 import useGsapFadeIn from "@/app/hooks/Gsap/useGsapFadeIn";
 import ResponsiveClipPath from "../generalComponents/ResponsiveClipPath";
 import { useMediaQuery } from "react-responsive";
+import { playfair } from "@/app/fonts";
 
 export default function PartnerCompanies() {
 
@@ -25,7 +26,7 @@ export default function PartnerCompanies() {
             </div> */}
 
             <div ref={partnerCompaniesimageRef} className=" 2xl:w-11/12 w-11/12 flex">
-                <Marquee gradient={isMobile ? false : true} speed={70} >
+                {/* <Marquee gradient={isMobile ? false : true} speed={70} >
                     {PartnerCompaniesData?.map((data, index) => (
                         <div key={index} className=" group lg:mx-10 mx-5 ">
                             <img
@@ -34,6 +35,25 @@ export default function PartnerCompanies() {
                                 // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
                                 className="  object-contain h-[80px] lg:h-[100px] w-[530px] lg:w-[900px]"
                             />
+                        </div>
+                    ))}
+                </Marquee> */}
+
+                 <Marquee  gradient={isMobile ? false : true} speed={70} className="overflow-y-hidden" >
+
+                       {PartnerCompaniesData?.map((data, index) => (
+                        <div key={index} className="    ">
+                            {/* <img
+                                src='/images/partner-company/marque.png'
+                                alt="pattern"
+                                // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
+                                className="  object-contain h-[80px]   lg:h-[100px] w-[530px] lg:w-[900px]"
+
+                            /> */}
+                            <div className=" flex  items-center text-[#0e5181]  ">
+                                <p className={`${playfair.className} leading-none   font-light text-xl lg:text-3xl`}><span className=" font-bold">TRUE</span> JOURNEYS-<span className="font-bold">REAL </span>EXPERIENCES-CRAFTED WITH <span className="font-bold">LOCALS</span>  </p>
+                            <span className=" text-lg lg:text-2xl mx-3 lg:mx-6">|</span>
+                            </div>
                         </div>
                     ))}
                 </Marquee>

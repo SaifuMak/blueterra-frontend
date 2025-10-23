@@ -2,7 +2,7 @@ import React from 'react'
 import Marquee from "react-fast-marquee";
 import Image from 'next/image';
 import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn';
-
+import { playfair } from '@/app/fonts';
 
 function PartnerCompaniesSection({ isMobile }) {
 
@@ -24,19 +24,23 @@ function PartnerCompaniesSection({ isMobile }) {
 
     return (
         <div className=" w-full flex-center  ">
-            <div className=" 2xl:w-11/12 w-11/12 flex  max-md:pb-5   ">
+            <div className=" 2xl:w-11/12 w-11/12 flex  max-md:pb-5     ">
                 {/* <Marquee pauseOnHover> */}
-                <Marquee gradient={isMobile ? false : true} speed={70} >
+                <Marquee  gradient={isMobile ? false : true} speed={70} className="overflow-y-hidden" >
 
                     {boxData?.map((data, index) => (
-                        <div key={index} className=" group lg:mx-10 mx-5 ">
-                            <img
+                        <div key={index} className="    ">
+                            {/* <img
                                 src='/images/partner-company/marque.png'
                                 alt="pattern"
                                 // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
                                 className="  object-contain h-[80px]   lg:h-[100px] w-[530px] lg:w-[900px]"
 
-                            />
+                            /> */}
+                            <div className=" flex  items-center text-[#0e5181]  ">
+                                <p className={`${playfair.className} leading-none   font-light text-xl lg:text-3xl`}><span className=" font-bold">TRUE</span> JOURNEYS-<span className="font-bold">REAL </span>EXPERIENCES-CRAFTED WITH <span className="font-bold">LOCALS</span>  </p>
+                            <span className=" text-lg lg:text-3xl mx-3 lg:mx-6">|</span>
+                            </div>
                         </div>
                     ))}
                 </Marquee>
