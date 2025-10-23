@@ -176,14 +176,14 @@ export default function MobileFilterPopup({ page,
                                             handleItemSelection={handleItemSelection}
                                             selectedFilters={selectedFilters}
                                         />
-                                        <MobileFilterComponent
+                                        {/* <MobileFilterComponent
                                             name="categories"
                                             options={filteredCategories}
                                             handleFilters={handleFilters}
                                             isOpened={openedFilter === "categories"}
                                             handleItemSelection={handleItemSelection}
                                             selectedFilters={selectedFilters}
-                                        />
+                                        /> */}
                                         <MobileFilterComponent
                                             name="destinations"
                                             options={filtersList?.destinations}
@@ -231,14 +231,14 @@ export default function MobileFilterPopup({ page,
                                             handleItemSelection={handleItemSelection}
                                             selectedFilters={selectedFilters}
                                         />
-                                        <MobileFilterComponent
+                                        {/* <MobileFilterComponent
                                             name="categories"
                                             options={filteredCategories}
                                             handleFilters={handleFilters}
                                             isOpened={openedFilter === "categories"}
                                             handleItemSelection={handleItemSelection}
                                             selectedFilters={selectedFilters}
-                                        />
+                                        /> */}
 
                                     </>
                                 )}

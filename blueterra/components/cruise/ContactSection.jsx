@@ -15,7 +15,7 @@ const ContactSection = () => {
 
 
     return (
-        <div className=" w-full h-full max-md:pb-4 pt-2 md:pt-12    text-dark-28  flex-center relative">
+        <div id='contact-section' className=" w-full h-full max-md:pb-4 pt-2 md:pt-12    text-dark-28  flex-center relative">
 
           
             <div className="2xl:w-11/12 lg:w-full w-11/12 max-sm:mt-10  max-lg:space-y-10  lg:space-x-10 flex max-lg:flex-col  justify-center">

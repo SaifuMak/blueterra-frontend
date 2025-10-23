@@ -190,11 +190,9 @@ function Deals() {
                 <div className="max-w-11/12 mx-auto  ">
 
                     <div className=" w-full   text-white relative  py-20   ">
-                        <h2 className={` ${playfair.className} vertically-animated-element text-[45px] xl:text-[50px]`}>Featured Deals</h2>
+                        <h2 className={` ${playfair.className} vertically-animated-element text-[45px] xl:text-[50px]`}>Cruise by Destination</h2>
                         <p className={`${rubik.className} mt-4 vertically-animated-element leading-8 font-light w-7/12 xl:w-6/12 2xl:w-5/12  text-xl  xl:text-2xl`}>
-                            Exclusive travel offers designed to make your dream journeys affordable and unforgettable.</p>
-
-
+                           Choose your perfect getaway by exploring cruises categorized by destination, making it easy to find the voyage that matches your travel dreams.</p>
 
                     </div>
 

@@ -232,7 +232,7 @@ export default function FilterLayout({ page,
 
     return (
         <div className={` ${isFilterVisible && flatSelectedFilters.length > 0 ? 'min-h-[30px]' : 'min-h-[0px]'}  w-full   pt-3 bg-white  fixed top-0 z-10 shadow-[0_4px_20px_rgba(0,0,0,0.05)] mt-32  flex flex-col items-center justify-center`} >
-            <div ref={filterContaineRef} className={`${isFilterVisible ? 'visible' : 'hidden'} xl:w-9/12  w-10/12 h-auto grid grid-cols-4 py-2   gap-7`} >
+            <div ref={filterContaineRef} className={`${isFilterVisible ? 'visible' : 'hidden'}  xl:w-9/12  w-10/12 h-auto flex  justify-between  py-2   gap-7`} >
 
 
                 {page === 'collections' && (
@@ -246,7 +246,7 @@ export default function FilterLayout({ page,
                             handleItemSelection={handleItemSelection}
                             selectedFilters={selectedFilters}
                         />
-                        <FilterComponent
+                        {/* <FilterComponent
                             name='categories'
                             options={filteredCategories}
                             handleFilters={handleFilters}
@@ -254,7 +254,7 @@ export default function FilterLayout({ page,
                             isOpened={openedFilter === "categories"}
                             handleItemSelection={handleItemSelection}
                             selectedFilters={selectedFilters}
-                        />
+                        /> */}
                         <FilterComponent
                             name='destinations'
                             options={filtersList?.destinations}
@@ -304,7 +304,7 @@ export default function FilterLayout({ page,
                             handleItemSelection={handleItemSelection}
                             selectedFilters={selectedFilters}
                         />
-                        <FilterComponent
+                        {/* <FilterComponent
                             name='categories'
                             options={filteredCategories}
                             handleFilters={handleFilters}
@@ -312,7 +312,7 @@ export default function FilterLayout({ page,
                             isOpened={openedFilter === "categories"}
                             handleItemSelection={handleItemSelection}
                             selectedFilters={selectedFilters}
-                        />
+                        /> */}
 
                     </>
                 )}
