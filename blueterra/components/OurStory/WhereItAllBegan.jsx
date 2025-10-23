@@ -13,7 +13,7 @@ export default function WhereItAllBegan() {
                     <p className=" xl:leading-9 leading-6 md:leading-8 2xl:leading-10  text-white/90">We realized, travel is not just about ticking places off a list or following a set plan. It is about the feelings that stay with you, the sense of wonder, connection and discovery that shape who you are long after the trip ends. At BlueTerra, we do not create ordinary holidays. We craft journeys designed to inspire stories worth telling, stories filled with authentic experiences and memories that stay with you forever.</p>
                     <p className=" xl:leading-9 leading-6 md:leading-8 2xl:leading-10 lg:px-10 text-white/90">To us travel is not just about where you go. It is about how it moves you, changes you, and the way you carry it with you when you return home.Welcome to BlueTerra Travel and Experiences. </p>
                     <p className=" xl:leading-9 leading-6 md:leading-8 2xl:leading-10 lg:px-10 text-white/90">Let us create your next story together.</p>
-            
+
                 </div>
             </div>
         </div>

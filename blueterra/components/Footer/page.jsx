@@ -15,7 +15,6 @@ export default function Footer() {
         {
             name: "Information",
             options: [
-                { label: "About us", link: null },
                 { label: "Privacy Policy", link: "/privacy-policy" },
                 { label: "Terms & conditions", link: "/terms-and-condition" },
                 { label: "Careers", link: "mailto:connect@myblueterra.com" }
@@ -49,7 +48,7 @@ export default function Footer() {
                 { label: "Signature Journey", link: "/collections?collections=Signature+Journeys" },
                 { label: "Explore by Landscape", link: "/collections?collections=Explore+by+Landscape" },
                 { label: "Adventures in Motions", link: "/collections?collections=Adventures+in+Motion" },
-                { label: "Mindfull Escapes", link: "/collections?collections=Mindful+Escapes" }
+                { label: "Mindful Escapes", link: "/collections?collections=Mindful+Escapes" }
             ]
         },
         {
@@ -70,7 +69,6 @@ export default function Footer() {
 
     const footerLinks = {
         "Information": {
-            "About us": "#",
             "Privacy Policy": "/privacy-policy",
             "Terms & conditions": "/terms-and-condition",
             "Careers": "#"
@@ -95,7 +93,7 @@ export default function Footer() {
             "Signature Journey": "/collections?collections=Signature+Journeys",
             "Explore by Landscape": "/collections?collections=Explore+by+Landscape",
             "Adventures in Motions": "/collections?collections=Adventures+in+Motion",
-            "Mindfull Escapes": "/collections?collections=Mindful+Escapes",
+            "Mindful Escapes": "/collections?collections=Mindful+Escapes",
         }
     }
 

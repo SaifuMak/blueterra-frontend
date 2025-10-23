@@ -30,7 +30,6 @@ export default function WhyTravelWithUsSection() {
             }}>
                 <div className="absolute inset-0 rounded-4xl bg-[#0E518199]" />
 
-
                 <div className=" flex flex-col space-y-12 w-11/12 lg:w-10/12 xl:w-10/12 relative  ">
                     <div className=" flex flex-col space-y-5 text-white max-sm:text-center ">
                         <div ref={titleRef} className="">

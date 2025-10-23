@@ -24,7 +24,7 @@ export default function PartnerCompanies() {
                 <TitleText text='Trusted Partners' />
             </div> */}
 
-            <div ref={partnerCompaniesimageRef} className=" 2xl:w-11/12 w-11/12 flex     ">
+            <div ref={partnerCompaniesimageRef} className=" 2xl:w-11/12 w-11/12 flex">
                 <Marquee gradient={isMobile ? false : true} speed={70} >
                     {PartnerCompaniesData?.map((data, index) => (
                         <div key={index} className=" group lg:mx-10 mx-5 ">
@@ -32,8 +32,7 @@ export default function PartnerCompanies() {
                                 src='/images/partner-company/marque.png'
                                 alt="pattern"
                                 // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
-                                className="  object-contain h-[80px]   lg:h-[100px] w-[530px] lg:w-[900px]"
-
+                                className="  object-contain h-[80px] lg:h-[100px] w-[530px] lg:w-[900px]"
                             />
                         </div>
                     ))}
