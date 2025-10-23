@@ -32,7 +32,7 @@ export default function PartnerCompanies() {
                                 src='/images/partner-company/marque.png'
                                 alt="pattern"
                                 // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
-                                className="  object-contain h-[80px]  lg:h-[100px] w-[510px] lg:w-[650px]"
+                                className="  object-contain h-[80px]   lg:h-[100px] w-[530px] lg:w-[900px]"
 
                             />
                         </div>

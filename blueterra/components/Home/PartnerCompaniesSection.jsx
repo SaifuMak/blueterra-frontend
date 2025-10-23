@@ -4,7 +4,7 @@ import Image from 'next/image';
 import useGsapFadeIn from '@/app/hooks/Gsap/useGsapFadeIn';
 
 
-function PartnerCompaniesSection({isMobile}) {
+function PartnerCompaniesSection({ isMobile }) {
 
     // const containerRef = useGsapFadeIn(0, {})
 
@@ -29,12 +29,12 @@ function PartnerCompaniesSection({isMobile}) {
                 <Marquee gradient={isMobile ? false : true} speed={70} >
 
                     {boxData?.map((data, index) => (
-                            <div key={index} className=" group lg:mx-10 mx-5 ">
+                        <div key={index} className=" group lg:mx-10 mx-5 ">
                             <img
                                 src='/images/partner-company/marque.png'
                                 alt="pattern"
                                 // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
-                                className="  object-contain h-[80px]  lg:h-[110px] w-[510px] lg:w-[700px]"
+                                className="  object-contain h-[80px]   lg:h-[100px] w-[530px] lg:w-[900px]"
 
                             />
                         </div>
