@@ -34,7 +34,8 @@ function PartnerCompaniesSection({isMobile}) {
                                 src='/images/partner-company/marque.png'
                                 alt="pattern"
                                 // className="  object-contain grayscale group-hover:grayscale-0 transition duration-500"
-                                className="  object-contain h-[80px]  lg:h-[100px] w-[510px] lg:w-[680px]"
+                                className="  object-contain h-[80px]  lg:h-[110px] w-[510px] lg:w-[700px]"
+
                             />
                         </div>
                     ))}
