@@ -6,7 +6,7 @@ export default function FilterComponent({ name, options, handleFilters, isOpened
     
 
     return (
-        <div className={`${isOpened ? ' bg-sky-blue-dark text-white border ' : ' text-dark-28 border border-[#BEBEBE]/80'} z-20  transition-all duration-500 ease-in-out  xl:min-w-[280px]   rounded-sm  cursor-pointer relative inline-block`}  >
+        <div className={`${isOpened ? ' bg-sky-blue-dark text-white border ' : ' text-dark-28 border border-[#BEBEBE]/80'} z-20  transition-all duration-500 ease-in-out lg:min-w-[250px]  xl:min-w-[300px]   rounded-sm  cursor-pointer relative inline-block`}  >
 
             <div onClick={() => handleFilters(name)} className=" flex  items-center py-2 px-2 space-x-10   justify-between ">
                 <p className=" capitalize">{name}</p>

@@ -78,6 +78,11 @@ export default function DestinationCards({ itineraryData }) {
                                 </div>
                             </div>
 
+                            {/* <div className=" flex space-x-3 ">
+                                <div className=" max-md:mt-2 rounded-full border flex justify-center  px-2 py-1.5 lg:px-3 xl:py-2 w-fit text-nowrap border-[#E4E4E4] text-xs text-[#828282]">{trimWords(destination?.category?.title, 3)}</div>
+                                <div className=" max-md:mt-2 rounded-full border flex justify-center  px-2 py-1.5 lg:px-3 xl:py-2 w-fit text-nowrap border-[#E4E4E4] text-xs text-[#828282]">{trimWords(destination?.country?.title, 3)}</div>
+                            </div> */}
+
                             {/* <h3 className=" lg:text-lg  text-sm  md:font-normal text-dark-2B ">{trimWords(destination?.description, 16)}</h3> */}
                             <div className=" text-[15px]  md:font-normal text-dark-2B" dangerouslySetInnerHTML={{
                                 __html: trimWords(destination?.description, 16),
