@@ -30,7 +30,7 @@
 
 .custom-tab-content .alert.alert-info {
     color: #343a40;
-    background-color: #bed6fa;
+    /* background-color: #bed6fa; */
 }
 
 .destination-type-radio {
@@ -44,13 +44,15 @@
 }
 
 #option-six #odysseus #OVExploreContainer .cruiseform .od-form-wrapper {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
 }
+
+
 
 #option-six #odysseus #OVExploreContainer .od-wrapper {
     padding: 12px;
     width: 100%;
-    background: linear-gradient(var(--primary-color), var(--bg-color));
+    /* background: linear-gradient(var(--primary-color), var(--bg-color)); */
     border-radius: 4px;
     margin-bottom: 25px;
 }
@@ -132,7 +134,7 @@
     box-sizing: border-box;
     position: relative;
     min-width: 200px;
-    background-color: white;
+    /* background-color: white; */
     margin: 0;
     flex-basis: auto;
     padding: 10px 10px;
@@ -217,7 +219,7 @@
     position: relative;
     line-height: normal;
     fill: var(--primary-color);
-    background: white;
+    /* background: white; */
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
     cursor: pointer;
@@ -296,34 +298,40 @@
     top: 0px;
     padding: 12px 8px;
 }
-
+/* 
 #option-six #odysseus #OVExploreContainer .od-form-wrapper .multiselect__select:before {
     top: calc(70% + 0px);
     border-color: var(--primary-color) transparent transparent;
-}
+} */
 
+/* these are the dropdowns */
 #option-six #odysseus #OVExploreContainer .vue_multiselect .multiselect_input_wrapper {
-    background-color: white;
+    /* background-color: white; */
     border-radius: 4px;
     min-width: 225px;
 }
 
 #option-six #odysseus #OVExploreContainer .od-checkbox-main-wrapper .od-checkbox-wrapper .od-checkbox label.od-checkbox-label:before {
-    border: 1px solid var(--primary-color);
+    /* border: 1px solid var(--primary-color); */
+    border: 1px solid white;
 }
 
 #option-six #odysseus #OVExploreContainer .od-form-wrapper .multiselect__tags .multiselect__placeholder {
     color: var(--text-color);
     margin-bottom: 2px;
+    background: white;
 }
-
+/* 
 #option-six #odysseus #OVExploreContainer .od-checkbox-main-wrapper .od-checkbox-wrapper .od-checkbox label.od-checkbox-label:hover {
     color: var(--primary-color);
-}
+} */
 
+/* text color for checkbox labels */
+
+/* 
 #option-six #odysseus #OVExploreContainer .od-checkbox-main-wrapper .od-checkbox-wrapper .od-checkbox label.od-checkbox-label {
     color: var(--primary-color);
-}
+} */
 
 #option-six #odysseus #OVExploreContainer .od-form-wrapper .multiselect__element {
     color: var(--secondary-color);
@@ -443,4 +451,36 @@
 
 #option-six #odysseus #OVExploreContainer .cruiseform .od-form-wrapper .od-input-wrapper .search-form-loading .label-wrapper {
     font-size: 0;
+}
+
+#odysseus #OVExploreContainer .od-tab-form-wrapper
+{
+    background:rgba(255, 255, 255, 0) !important;
+}
+.od-input-wrapper od-one-third-width destinationId vue_multiselect{
+    background: transparent !important;
+}
+
+#option-six #odysseus #OVExploreContainer .od-wrapper .label-wrapper{
+   background: transparent !important;
+ color: #fff !important;
+ margin-bottom: 5px;
+ font-size: medium;
+}
+
+.multiselect.od-multiselect {
+    background-color: #ffffff !important;
+    border-radius: 5%;
+    border-color: #fff;
+    border: none;
+}
+
+.od-checkbox-main-wrapper{
+    /* background: white; */
+    color: #ffffff !important;
+
+}
+
+.od-checkbox-input:checked + .od-checkbox-label::after {
+  border-color: white !important; /* If tick uses border */
 }
