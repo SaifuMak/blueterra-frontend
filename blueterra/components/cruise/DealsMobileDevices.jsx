@@ -159,7 +159,7 @@ function DealsMobileDevices() {
 
                         </div>
 
-                        <div className=" px-4 flex-center">
+                        <div className=" px-3">
                             <a href={slides[currentIndex]?.link}
                                 target="_blank"
                                 rel="noopener noreferrer" className="">
