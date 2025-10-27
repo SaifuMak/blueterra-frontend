@@ -124,7 +124,7 @@ function DealsMobileDevices() {
                     <div className="max-w-11/12 mx-auto relative  z-10">
                         {/* Header */}
                         <div className="w-full vertically-animated-element text-white px-2 ">
-                            <h2 className={`${playfair.className}   text-[30px]`}>Cruise by Destination</h2>
+                            <h2 className={`${playfair.className}   text-[30px]`}>Cruise Deals</h2>
                             <p className={`${rubik.className} mt-2  font-light text-base`}>Choose your perfect getaway by exploring cruises categorized by destination, making it easy to find the voyage that matches your travel dreams.</p>
                         </div>
 
