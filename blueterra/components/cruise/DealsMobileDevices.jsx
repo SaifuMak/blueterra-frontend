@@ -115,7 +115,7 @@ function DealsMobileDevices() {
     return (
         <>
             {slides.length > 0 && (
-                <div className="min-h-[100vh] py-16 w-full relative overflow-hidden">
+                <div className="min-h-[100vh] py-10 w-full relative overflow-hidden">
                     {/* Two banners for crossfade */}
                     <div ref={(el) => (bannerRefs.current[0] = el)} className="banner absolute inset-0 bg-cover bg-center" style={{ opacity: 1 }} />
                     <div ref={(el) => (bannerRefs.current[1] = el)} className="banner absolute inset-0 bg-cover bg-center" style={{ opacity: 0 }} />
@@ -124,12 +124,12 @@ function DealsMobileDevices() {
                     <div className="max-w-11/12 mx-auto relative  z-10">
                         {/* Header */}
                         <div className="w-full vertically-animated-element text-white px-2 ">
-                            <h2 className={`${playfair.className}  text-[30px]`}>Cruise by Destination</h2>
-                            <p className={`${rubik.className} mt-2  font-light text-lg`}>Choose your perfect getaway by exploring cruises categorized by destination, making it easy to find the voyage that matches your travel dreams.</p>
+                            <h2 className={`${playfair.className}   text-[30px]`}>Cruise by Destination</h2>
+                            <p className={`${rubik.className} mt-2  font-light text-base`}>Choose your perfect getaway by exploring cruises categorized by destination, making it easy to find the voyage that matches your travel dreams.</p>
                         </div>
 
                         {/* Titles & Descriptions */}
-                        <div className="grid grid-cols-1  mt-10">
+                        <div className="grid grid-cols-1   mt-10 ">
                             <div className="h-[70px]  overflow-hidden">
                                 <div className="title-slider">
                                     {slides.map((slide, idx) => (
@@ -142,7 +142,7 @@ function DealsMobileDevices() {
                                 </div>
                             </div>
 
-                            <div className="h-[200px]    overflow-hidden">
+                            <div className="h-[200px]  px-2   overflow-hidden">
                                 <div className="desc-slider">
                                     {slides.map((slide, idx) => (
                                         // <div key={slide.id + "-desc-" + idx} className="h-[140px]  px-2  flex items-center">
@@ -160,7 +160,6 @@ function DealsMobileDevices() {
                         </div>
 
 
-
                         {/* Carousel (1 card per view) */}
                         <div className="relative w-full mt-10">
                             <div ref={containerRef} className="flex w-full">
@@ -169,11 +168,11 @@ function DealsMobileDevices() {
                                         key={slide.id + "-" + index}
                                         className="w-full flex-shrink-0 px-10"
                                     >
-                                        <div ref={(el) => (cardsRef.current[index] = el)} className="carousel-card h-[380px] rounded-2xl shadow-xl overflow-hidden relative">
+                                        <div ref={(el) => (cardsRef.current[index] = el)} className="carousel-card h-[300px] rounded-2xl shadow-xl overflow-hidden relative">
                                             <img src={slide.image_public_url} alt={slide.title} className="w-full h-full object-cover rounded-2xl" />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent text-white p-2 text-center">
                                                 <div className="w-full h-full flex flex-col justify-end">
-                                                    <p className="mb-2 text-base ">{slide.title}</p>
+                                                    <p className="mb-2 text-sm ">{slide.title}</p>
                                                 </div>
                                             </div>
                                         </div>
