@@ -3,7 +3,7 @@ import "./globals.css";
 import { Toaster } from 'sonner';
 
 export const metadata = {
-  title: "Blueterra | Curated Travel Experiences & Adventure Packages",
+  title: "BlueTerra | Curated Travel and Experiences",
   description: "Discover Blueterra — your gateway to curated travel itineraries, unforgettable adventures, and handpicked travel packages across the globe.",
 };
 

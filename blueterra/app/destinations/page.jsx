@@ -2,7 +2,7 @@
 import DestinationsClient from "@/components/clients/DestinationsClient";
 
 export const metadata = {
-  title: "Destinations | Blueterra Travel Packages & Experiences",
+  title: "BlueTerra Destinations |  BlueTerra Private Holidays and Experiences",
   description:
     "Discover Blueterra’s travel destinations — explore curated itineraries and packages designed to make every journey unforgettable. Find the perfect destination for your next adventure.",
 };
