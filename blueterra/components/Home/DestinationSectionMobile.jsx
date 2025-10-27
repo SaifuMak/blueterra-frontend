@@ -99,6 +99,11 @@ function DestinationSectionMobile() {
         setCurrentIndex((prev) => (prev + 1) % slides.length);
     };
 
+     const handleNavigateToDestinations = (title) => {
+        router.push(`/destinations?destinations=${encodeURIComponent(title)}`)
+
+    }
+
     return (
         <>
             {slides.length > 0 && (
@@ -173,7 +178,7 @@ function DestinationSectionMobile() {
                             <Button
                                 text="EXPLORE"
                                 buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2`}
-                                onClickFunction={() => router.push('/destinations')}
+                                 onClickFunction={()=>handleNavigateToDestinations(slides[currentIndex]?.title)}
                             />
                         </div>
 

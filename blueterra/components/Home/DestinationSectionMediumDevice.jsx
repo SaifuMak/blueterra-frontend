@@ -18,6 +18,8 @@ function DestinationSectionMediumDevice() {
     const bannerRefs = useRef([]); // store 2 banners for crossfade
     const [destinationsData, setDestinationsData] = useState([])
 
+    const router = useRouter()
+
     const fetchDestinations = async () => {
 
         try {
@@ -36,10 +38,10 @@ function DestinationSectionMediumDevice() {
         fetchDestinations()
     }, [])
 
-    const handleNavigateToDestinations = () => {
-        router.push('/destinations')
-    }
+    const handleNavigateToDestinations = (title) => {
+        router.push(`/destinations?destinations=${encodeURIComponent(title)}`)
 
+    }
 
 
     const slides = [
@@ -221,7 +223,7 @@ function DestinationSectionMediumDevice() {
                                 </div>
                             </div>
 
-                             <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2 ` } onClickFunction={handleNavigateToDestinations} />
+                             <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider ${rubik.className} py-2 ` }  onClickFunction={()=>handleNavigateToDestinations(slides[currentIndex]?.title)} />
 
                         </div>
 
