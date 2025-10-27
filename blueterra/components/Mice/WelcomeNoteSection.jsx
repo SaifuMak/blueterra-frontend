@@ -16,7 +16,8 @@ function WelcomeNoteSection() {
             />
 
             <div ref={contentRef} className="  space-y-5 xl:space-y-4 2xl:space-y-8 max-sm:text-sm text-xl font-light text-dark-28  h-full flex-col 2xl:w-8/12 xl:w-11/12  flex justify-center items-center ">
-                <h2 className={`${playfair.className}  text-3xl  md:text-5xl xl:text-6xl 2xl:text-7xl font-semibold text-dark-4B`}> <span className=" text-xl font-light  mr-1">At</span>
+                <h2 className={`${playfair.className}  text-3xl  md:text-5xl xl:text-6xl 2xl:text-7xl font-semibold text-dark-4B`}>
+                     {/* <span className=" text-xl font-light  mr-1">At</span> */}
                     BlueTerra</h2>
                 <p className="xl:w-7/12  w-10/12 text-center leading-6 md:leading-8 xl:leading-9">we craft experiences that inspire, connect, and endure.</p>
 
