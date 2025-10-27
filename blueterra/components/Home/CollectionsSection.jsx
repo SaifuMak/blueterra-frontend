@@ -38,8 +38,8 @@ function CollectionsSection() {
         }
     }
 
-    const navigateToCollections = () => {
-        router.push('/collections')
+    const navigateToCollections = (title,link) => {
+        router.push(`/collections?collections=${encodeURIComponent(title)}`)
     }
 
 

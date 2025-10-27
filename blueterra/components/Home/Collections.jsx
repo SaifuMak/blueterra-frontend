@@ -75,7 +75,7 @@ export default function CollectionsList({ Data, setCurrent, setCount, onclickEve
 
                                     <img src={item.banner_image_public_url} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000 ease-in-out" />
 
-                                    <a href={item?.link} target="_blank" rel="noopener noreferrer"  className="">
+                                    <a href={item?.link} onClick={()=>onclickEvent(item.title,item?.link)} target="_blank" rel="noopener noreferrer"  className="">
                                         <div className="absolute inset-0 group">
                                             {/* Gradient overlay shown only on hover */}
                                             <div className="transition-all delay-75 duration-700 ease-in-out opacity-30 group-hover:opacity-100 bg-gradient-to-t from-black/70 to-transparent absolute inset-0 z-0" />

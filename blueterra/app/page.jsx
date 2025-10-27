@@ -182,8 +182,6 @@ export default function Home() {
   }, [])
 
 
-
-
   return (
 
     <SmoothScroll>
@@ -240,7 +238,7 @@ export default function Home() {
           <div className={` w-full py-16 md:py-16 xl:py-24  bg-white  2xl:py-44 flex justify-center  text-center`}>
             <div ref={messageContainerRef} className={`${rubik.className}  md:px-10 px-10 text-dark-28  w-full lg:w-10/12  xl:w-8/12 space-y-6 2xl:space-y-8`}>
               <h2 className={`${playfair.className} text-3xl     lg:text-4xl xl:text-[48px] text-dark-4B`}>Discover BlueTerra</h2>
-              <p className=" 2xl:text-[23px]   max-sm:text-base text-xl font-light leading-8 xl:leading-10 ">BlueTerra is more than a boutique travel company. It is a dream nurtured for years and brought to life with love</p>
+              <p className=" 2xl:text-xl lg:text-lg  text-sm  font-light leading-8 xl:leading-10 ">BlueTerra is more than a boutique travel company. It is a dream nurtured for years and brought to life with love</p>
               <p className="2xl:text-xl lg:text-lg  text-sm  font-light leading-8 2xl:leading-10 lg:px-6  ">What began as a simple thought has grown into something far more meaningful.
                 Each time we see someone set out on a journey and return with a smile, renewed and inspired,
                 it reminds us why BlueTerra exists. Travel is not about taking a holiday simply to go somewhere—it is about what you wish to feel, experience, and become. That is why every retreat, celebration,

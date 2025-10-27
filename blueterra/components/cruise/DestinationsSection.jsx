@@ -11,7 +11,7 @@ function DestinationsSection() {
 
     const textContainer = useGsapFadeIn()
 
-    const handleCruise = (link) => {
+    const handleCruise = (title,link) => {
         if(!link) return
         window.open(link, "_blank");
     }
