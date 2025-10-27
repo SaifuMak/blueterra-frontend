@@ -50,14 +50,14 @@ export default function PartnerCompanies() {
                                 className="  object-contain h-[80px]   lg:h-[100px] w-[530px] lg:w-[900px]"
 
                             /> */}
-                            <div className=" flex  items-center text-[#0e5181]  ">
+                            {/* <div className=" flex  items-center text-[#0e5181]  ">
                                 <p className={`${playfair.className} leading-none   font-light text-xl lg:text-3xl`}><span className=" font-bold">TRUE</span> JOURNEYS-<span className="font-bold">REAL </span>EXPERIENCES-CRAFTED WITH <span className="font-bold">LOCALS</span>  </p>
                             <span className=" text-lg lg:text-2xl mx-3 lg:mx-6">|</span>
-                            </div>
-
-                              {/* <div className=" flex  items-center text-[#0e5181]  ">
-                                <p className={`${playfair.className} leading-none  mx-9  font-light text-xl lg:text-3xl`}> TRUE JOURNEYS | REAL EXPERIENCES | CRAFTED WITH LOCALS </p>
                             </div> */}
+
+                              <div className=" flex  items-center text-[#0e5181]  ">
+                                <p className={`${playfair.className} leading-none  mx-4 lg:mx-9  font-light text-xl lg:text-3xl`}> TRUE JOURNEYS | REAL EXPERIENCES | CRAFTED WITH LOCALS </p>
+                            </div>
                         </div>
                     ))}
                 </Marquee>
