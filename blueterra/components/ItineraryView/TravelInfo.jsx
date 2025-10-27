@@ -79,9 +79,14 @@ export default function TravelInfo({ icon, title, subtitle, additionalInformatio
 
                 </div>
 
-                {subtitle && (
+                {subtitle ? (
                     <p className={`${rubik.className}  mt-1  max-sm:text-sm lg:mt-3 font-light`}  >
                         {title === 'Price start from' ? `From ${subtitle}pp excl. flights` : `${subtitle}`}
+
+                    </p>
+                ): (
+                     <p className={`${rubik.className}  mt-1  max-sm:text-sm lg:mt-3 font-light`}  >
+                         {/* Price available on request */}
 
                     </p>
                 )}

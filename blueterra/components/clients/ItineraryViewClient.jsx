@@ -208,7 +208,7 @@ export default function ItineraryViewClient({ slug }) {
                                 />
                                 <TravelInfo
                                     icon='/Icons/Itinerary/dollar.svg'
-                                    title='Price start from'
+                                    title={itineraryData?.featured_points[0]?.price ? 'Price start from' : 'Price available on request'}
                                     subtitle={itineraryData?.featured_points[0]?.price}
                                     additionalInformation={itineraryData?.featured_points[0]?.additional_information}
                                 />
