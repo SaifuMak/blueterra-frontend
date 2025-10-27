@@ -125,7 +125,7 @@ function DealsMobileDevices() {
                         {/* Header */}
                         <div className="w-full vertically-animated-element text-white px-2 ">
                             <h2 className={`${playfair.className}   text-[30px]`}>Cruise Deals</h2>
-                            <p className={`${rubik.className} mt-2  font-light text-base`}>Choose your perfect getaway by exploring cruises categorized by destination, making it easy to find the voyage that matches your travel dreams.</p>
+                            <p className={`${rubik.className} mt-2  font-light text-base`}>Unlock Limited-time premium cruise savings with early-bird rates, exclusive fares or cabin upgrades. </p>
                         </div>
 
                         {/* Titles & Descriptions */}
