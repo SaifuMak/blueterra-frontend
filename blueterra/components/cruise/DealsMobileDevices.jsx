@@ -85,7 +85,7 @@ function DealsMobileDevices() {
 
         // Title + description sliders
         tl.to(".title-slider", { y: -currentIndex * 70, duration: 0.8, ease: "power3.inOut" }, "<0.2");
-        tl.to(".desc-slider", { y: -currentIndex * 200, duration: 0.8, ease: "power3.inOut" }, "<");
+        tl.to(".desc-slider", { y: -currentIndex * 160, duration: 0.8, ease: "power3.inOut" }, "<");
 
         // Crossfade background
         const targetLayer = bannerRefs.current[currentIndex % 2];
@@ -129,8 +129,8 @@ function DealsMobileDevices() {
                         </div>
 
                         {/* Titles & Descriptions */}
-                        <div className="grid grid-cols-1   mt-10 ">
-                            <div className="h-[70px]  overflow-hidden">
+                        <div className="grid grid-cols-1   mt-5 ">
+                            <div className="h-[70px]   overflow-hidden">
                                 <div className="title-slider">
                                     {slides.map((slide, idx) => (
                                         <div key={slide.id + "-title-" + idx} className="h-[70px] px-2  flex items-center">
@@ -142,7 +142,7 @@ function DealsMobileDevices() {
                                 </div>
                             </div>
 
-                            <div className="h-[200px]  px-2   overflow-hidden">
+                            <div className="h-[160px]  px-2   overflow-hidden">
                                 <div className="desc-slider">
                                     {slides.map((slide, idx) => (
                                         // <div key={slide.id + "-desc-" + idx} className="h-[140px]  px-2  flex items-center">
@@ -150,7 +150,7 @@ function DealsMobileDevices() {
                                         // </div>
                                         <div
                                             key={slide?.id + "-desc-" + idx}
-                                            className="h-[200px] text-sm cruise-deals-description flex flex-col justify-center font-light leading-7 text-white"
+                                            className="h-[160px] text-sm cruise-deals-description flex flex-col justify-center font-light leading-7 text-white"
                                             dangerouslySetInnerHTML={{ __html: slide?.description }}
                                         />
                                     ))}
@@ -159,9 +159,17 @@ function DealsMobileDevices() {
 
                         </div>
 
+                        <div className=" px-4 flex-center">
+                            <a href={slides[currentIndex]?.link}
+                                target="_blank"
+                                rel="noopener noreferrer" className="">
+                                <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider  ${rubik.className} py-2 `} />
+                            </a>
+                        </div>
 
                         {/* Carousel (1 card per view) */}
                         <div className="relative w-full mt-10">
+
                             <div ref={containerRef} className="flex w-full">
                                 {slides.map((slide, index) => (
                                     <div
@@ -187,13 +195,7 @@ function DealsMobileDevices() {
                             <button onClick={handlePrev} className=" p-1.5 rounded-sm border-white border  text-white "><MdOutlineArrowForwardIos className=" text-lg rotate-180  " /></button>
                             <button onClick={handleNext} className="   p-1.5 rounded-sm  border-white border  text-white"><MdOutlineArrowForwardIos className=" text-lg " /></button>
                         </div>
-                        <div className=" px-4 flex-center mt-5">
-                            <a href={slides[currentIndex]?.link}
-                                target="_blank"
-                                rel="noopener noreferrer" className="">
-                                <Button text='EXPLORE' buttonStyle={`px-12 mt-4 text-sm tracking-wider  ${rubik.className} py-2 `} />
-                            </a>
-                        </div>
+
 
                     </div>
                 </div>
