@@ -134,9 +134,9 @@ function DealsMobileDevices() {
                                 <div className="title-slider">
                                     {slides.map((slide, idx) => (
                                         <div key={slide.id + "-title-" + idx} className="h-[70px] px-2  flex items-center">
-                                            <h2 className={`text-3xl font-medium text-white ${playfair.className}`}>
+                                            <h3 className={`text-3xl font-medium text-white ${playfair.className}`}>
                                                 {trimWords(slide.title, 5, '')}
-                                            </h2>
+                                            </h3>
                                         </div>
                                     ))}
                                 </div>

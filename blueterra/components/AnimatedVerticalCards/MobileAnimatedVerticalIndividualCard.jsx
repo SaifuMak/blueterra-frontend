@@ -77,7 +77,7 @@ function MobileAnimatedVerticalIndividualCard({ index,
                 <div className="flex   w-full h-full px-3 mt-2 space-x-2 ">
                     <img src={card?.icon_public_url} alt={card?.title} loading="eager" className=" object-contain size-[27px]" />
                     <div className="bg-white/40 h-0.5 flex-1 my-3"></div>
-                    <p className=''> {card?.title}</p>
+                    <h2 className=''> {card?.title}</h2>
 
                 </div>
             </div>

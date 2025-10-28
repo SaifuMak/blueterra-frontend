@@ -17,8 +17,8 @@ const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, i
             <div className={`  xl:w-10/12 w-11/12 justify-between space-x-10 h-full items-center flex  max-sm:hidden`}   >
 
                 <div className=" vertically-animated-element flex flex-col  h-fit   xl:space-y-4 ">
-                    <h3 className={`${playfair.className} text-4xl xl:text-5xl font-medium`}>{firstTitle}</h3>
-                    <h3 className={`${playfair.className} text-4xl xl:text-5xl font-medium`}>{secondTitle}</h3>
+                    <h2 className={`${playfair.className} text-4xl xl:text-5xl font-medium`}>{firstTitle}</h2>
+                    <h2 className={`${playfair.className} text-4xl xl:text-5xl font-medium`}>{secondTitle}</h2>
                     <p className={`2xl:w-8/12 xl:w-10/12 ${isDescriptionBold ? 'font-normal' : 'font-normal'} italic   xl:leading-10  tracking-wide text-lg xl:text-xl mt-5`}>{description}</p>
                 </div>
 
@@ -46,7 +46,7 @@ const Events = ({ firstTitle, secondTitle, description, firstPara, secondPara, i
             <div className={`${outerClass} md:hidden text-center w-11/12 flex flex-col`}   >
 
                 <div className=" vertically-animated-element  flex flex-col px-2  text-2xl font-medium  ">
-                    <h3 className={`${playfair.className} `}>{firstTitle} {secondTitle}</h3>
+                    <h2 className={`${playfair.className} `}>{firstTitle} {secondTitle}</h2>
                     <p className=" font-light mt-3 text-lg">{description}</p>
                 </div>
 

@@ -25,7 +25,7 @@ const ContactSection = forwardRef((props, ref) => {
             <div className="2xl:w-11/12  lg:w-full  w-11/12 max-sm:mt-10  max-lg:space-y-10  lg:space-x-10 flex flex-col items-center  ">
 
                 <div className="lg:w-10/12 w-11/12  lg:px-4 mb-1 lg:mb-5">
-                    <h4 className={`${playfair.className}  vertically-animated-element font-medium   text-3xl lg:text-4xl xl:text-5xl`} >Get in Touch</h4>
+                    <h2 className={`${playfair.className}  vertically-animated-element font-medium   text-3xl lg:text-4xl xl:text-5xl`} >Get in Touch</h2>
                 </div>
                 <div className=" flex  max-lg:flex-col w-full lg:justify-center max-sm:space-y-8 ">
 

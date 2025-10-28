@@ -263,7 +263,7 @@ export default function BlogSingleClient({ slug }) {
 
 
                         <div className="  space-y-6 w-full h-full pb-6 pt-10 px-5 text-center rounded-2xl bg-dark-beige">
-                            <h5 className={`${playfair.className} font-medium text-2xl`}>Join Our Community Today!</h5>
+                            <h3 className={`${playfair.className} font-medium text-2xl`}>Join Our Community Today!</h3>
                             <p className=" px-4 lg:px-7 font-light">Get started for free and receive instant notifications about updates.</p>
                             <iframe
                                 title="Zoho Form"
@@ -285,7 +285,7 @@ export default function BlogSingleClient({ slug }) {
 
 
                     <div className=" xl:w-10/12  w-11/12  max-sm:w-10/12 h-full">
-                        <h2 className={`${playfair.className} 2xl:text-5xl text-3xl lg:text-4xl 2xl:pb-3 font-semibold text-dark-4B`}>More from our Journal</h2>
+                        <h3 className={`${playfair.className} 2xl:text-5xl text-3xl lg:text-4xl 2xl:pb-3 font-semibold text-dark-4B`}>More from our Journal</h3>
 
                         <div className=" w-full flex max-md:flex-col   mt-5 lg:mt-8 space-y-6 md:space-x-10 h-[400px] md:h-[300px] lg:h-[400px] xl:h-[400px] 2xl:h-[480px]">
 

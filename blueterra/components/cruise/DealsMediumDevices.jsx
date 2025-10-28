@@ -168,9 +168,9 @@ function DealsMediumDevices() {
                                                 key={slide?.id + "-title-" + idx}
                                                 className="h-[160px] flex items-center"
                                             >
-                                                <h2 className={`xl:text-7xl text-6xl font-medium text-white ${playfair.className}`}>
+                                                <h3 className={`xl:text-7xl text-6xl font-medium text-white ${playfair.className}`}>
                                                     {trimWords(slide.title, 2, '')}
-                                                </h2>
+                                                </h3>
                                             </div>
                                         ))}
                                     </div>

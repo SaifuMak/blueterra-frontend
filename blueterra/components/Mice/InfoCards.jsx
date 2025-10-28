@@ -29,7 +29,7 @@ function InfoCards({ data }) {
 
             {/* Text Layer (stays clearly visible) */}
             <div className={`relative z-20 h-full w-full flex flex-col items-center  rounded-2xl justify-center ${touched && 'bg-black/40'}  transition-color duration-1000 ease-in-out group-hover:bg-black/40 text-center xl:text-lg 2xl:text-xl font-light px-4 2xl:px-8`}>
-                <h5 className={`font-medium ${touched && 'text-white'} group-hover:text-white transition-color duration-1000 ease-in-out `}>{data.title}</h5>
+                <h3 className={`font-medium ${touched && 'text-white'} group-hover:text-white transition-color duration-1000 ease-in-out `}>{data.title}</h3>
                 <p className={`mt-3 ${touched ? 'opacity-0' : 'opacity-100'} group-hover:opacity-0 transition-all  duration-700 ease-in-out 2xl:leading-8`}>{data.description}</p>
             </div>
         </div>

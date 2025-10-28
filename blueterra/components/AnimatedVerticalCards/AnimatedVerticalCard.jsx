@@ -191,12 +191,11 @@ export default function AnimatedVerticalCard({ page, card, onClick, isExpanded, 
 
                             {isFullCardVisible && <div className='2xl:mt-12 mt-4'>
 
-                                <p className='  flex  text-white text-4xl 2xl:text-5xl '>
-                                    {/* {card.number} */}
+                                <h2 className='  flex  text-white text-4xl 2xl:text-5xl '>
                                     <img src={card.icon_public_url} alt={card.title} className=" object-cover size-[52px]" />
 
                                     <span className={`font-medium ml-7 ${playfair.className} `}>{card.title}</span>
-                                </p>
+                                </h2>
                                 <hr className=' opacity-40 mt-5'></hr>
                             </div>}
 

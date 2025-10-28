@@ -51,7 +51,7 @@ function WhyChooseUsSection() {
                 {WHY_CHOOSE_US?.map((data, index) => (
                     <div key={index} className=" z-30 transition-all duration-500 ease-in-out  cursor-pointer hover:bg-light-beige bg-light-beige/80 max-sm:p-4  md:py-5 xl:py-10 text-lg xl:text-xl  2xl:text-[22px] font-light md:px-5  xl:px-10 rounded-2xl w-full   flex flex-col " style={{ boxShadow: '0 0 25px 1px rgba(50, 70, 70, 0.1)' }}
                     >
-                        <h5 className="   text-dark-28 lg:text-lg 2xl:text-xl font-medium ">{data.title}</h5>
+                        <h3 className="   text-dark-28 lg:text-lg 2xl:text-xl font-medium ">{data.title}</h3>
                         <p className=" mt-3  text-base xl:text-lg 2xl:text-xl leading-8">{data.description}</p>
                     </div>
                 ))}

@@ -285,7 +285,7 @@ function JournalClient() {
                                             {/* Text content always visible, moves up on hover */}
                                             <div className="flex items-end absolute inset-0  z-10">
                                                 <div className="xl:py-6 py-4 px-5 xl:px-8 transform transition-transform duration-1000 group-hover:translate-y-0 2xl:translate-y-[80px] xl:translate-y-[90px] lg:translate-y-[90px] md:translate-y-[80px] translate-y-[80px] text-white">
-                                                    <h6 className={` text-lg lg:text-xl  xl:leading-9 2xl:leading-10 font-normal 2xl:text-2xl`}>{journal.title}</h6>
+                                                    <p className={` text-lg lg:text-xl  xl:leading-9 2xl:leading-10 font-normal 2xl:text-2xl`}>{journal.title}</p>
                                                     <Button text='LEARN MORE' buttonStyle={`opacity-0 group-hover:opacity-100 transition-all duration-500 mb-10 mt-5 ease-in-out  max-md:text-sm px-4 lg:px-6 xl:px-8 py-1.5 xl:py-2 `} onClickFunction={() => handleGetBlog(journal.slug)} />
 
                                                 </div>

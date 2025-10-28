@@ -22,7 +22,7 @@ const ContactSection = () => {
 
                 <div className="xl:w-4/12  lg:w-3/12   w-full flex flex-col max-sm:pl-3  xl:space-y-6 2xl:space-y-8 ">
                     {/* <h4 className={`${playfair.className} vertically-animated-element font-medium max-md:text-2xl text-[42px] xl:text-[50px]`} >Send Enquiry</h4> */}
-                     <h4 className={`${playfair.className}  vertically-animated-element font-medium   text-3xl lg:text-4xl xl:text-5xl`} >Get in Touch</h4>
+                     <h2 className={`${playfair.className}  vertically-animated-element font-medium   text-3xl lg:text-4xl xl:text-5xl`} >Get in Touch</h2>
                     {/* <p className=" text-xl xl:text-2xl vertically-animated-element max-sm:mt-2 font-light">Have questions or need assistance?</p> */}
 
                     <div className="vertically-animated-element  lg:ml-4 lg:space-y-4 max-sm:space-y-3 space-y-5 xl:space-y-6 max-sm:mt-7 mt-2">

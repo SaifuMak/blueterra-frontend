@@ -12,9 +12,6 @@ function PackageSection() {
         element?.scrollIntoView({ behavior: 'smooth' });
     };
 
-
-
-
     const container = useGsapOpacity(0, { start: 'top 70%' })
     return (
         <div className=" w-full  relative  mb-10 min-h-[80vh] bg-center bg-cover bg-no-repeat flex justify-center items-center "

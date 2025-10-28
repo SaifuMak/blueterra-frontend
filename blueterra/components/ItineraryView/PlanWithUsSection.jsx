@@ -16,7 +16,7 @@ function PlanWithUsSection({setFormOpen}) {
         >
 
             <div ref={planWithUsContainer} className="lg:w-8/12 md:w-10/12 space-y-5  lg:space-y-10   text-center h-auto flex-col text-dark-28  flex-center">
-                <h3 className={`xl:text-[50px] lg:text-4xl text-2xl  font-medium  antialiased  text-dark-4B text-center  ${playfair.className}`}>Let’s Design Your Journey Together</h3>
+                <h2 className={`xl:text-[50px] lg:text-4xl text-2xl  font-medium  antialiased  text-dark-4B text-center  ${playfair.className}`}>Let’s Design Your Journey Together</h2>
                 <p className=" xl:text-2xl lg:text-xl font-light leading-7 lg:leading-9   w-11/12 lg:w-5/6 ">
                     Every journey is unique. Speak with your BlueTerra advisor to customize this experience
                 </p>

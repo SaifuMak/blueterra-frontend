@@ -69,7 +69,7 @@ function CruiseLineSection() {
     return (
         <div className=" lg:my-12 my-7 xl:my-24 ">
             <div ref={textContainer} className="  mx-auto overflow-hidden flex-col-center space-y-4 md:space-y-6 ">
-                <h3 className={`${playfair.className}  text-dark-4B heading-text`} >Shop by Cruise Line</h3>
+                <h2 className={`${playfair.className}  text-dark-4B heading-text`} >Shop by Cruise Line</h2>
                 <p className={`2xl:text-2xl xl:text-xl lg:text-xl max-sm:px-6 font-light ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>
                     Compare and choose from leading cruise lines to match your style of travel, from luxury escapes to family-friendly adventures.
                 </p>

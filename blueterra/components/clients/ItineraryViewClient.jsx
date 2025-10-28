@@ -137,8 +137,8 @@ export default function ItineraryViewClient({ slug }) {
                                 <div className=" text-white z-30  flex flex-col mt-24  md:mt-32 mb-10 justify-between   text-center w-full h-full   ">
 
                                     <div className={`${playfair.className} px-5  2xl:px-10 `}>
-                                        <p className=" text-[45px] md:text-[70px] max-md:leading-14 2xl:text-[100px]  opacity-0 vertically-animate-element-banner font-medium">{itineraryData.title}</p>
-                                        <p className=" text-white/30 opacity-0 vertically-animate-element-banner leading-none font-medium h-fit lg:-mt-7  2xl:-mt-8 text-[70px] md:text-[150px] lg:text-[180px] 2xl:text-[250px]">{itineraryData.location_title}</p>
+                                        <h1 className=" text-[45px] md:text-[70px] max-md:leading-14 2xl:text-[100px]  opacity-0 vertically-animate-element-banner font-medium">{itineraryData.title}</h1>
+                                        <h2 className=" text-white/30 opacity-0 vertically-animate-element-banner leading-none font-medium h-fit lg:-mt-7  2xl:-mt-8 text-[70px] md:text-[150px] lg:text-[180px] 2xl:text-[250px]">{itineraryData.location_title}</h2>
                                     </div>
 
                                     <div className=" space-y-5  text-center flex max-2xl:mt-5 font-light flex-col items-center">
@@ -246,7 +246,7 @@ export default function ItineraryViewClient({ slug }) {
                             </div>}
 
                             {isTablet && <div className=" pb-10 max-lg:pb-16  space-y-10">
-                                <h6 className={`${playfair.className}   text-center text-3xl text-dark-4B font-medium`} >Gallery</h6>
+                                <h2 className={`${playfair.className}   text-center text-3xl text-dark-4B font-medium`} >Gallery</h2>
                                 <GalleryCarousal data={itineraryData?.gallery} setCurrent={setCurrentGallery} setCount={setGalleryCount} />
                                 <div className="flex-center space-x-2 overflow-hidden">
                                     {[...Array(itineraryData?.gallery?.length)].map((_, index) => (
