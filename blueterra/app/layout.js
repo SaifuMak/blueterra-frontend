@@ -5,6 +5,7 @@ import { Toaster } from 'sonner';
 export const metadata = {
   title: "BlueTerra | Curated Travel and Experiences",
   description: "Discover Blueterra — your gateway to curated travel itineraries, unforgettable adventures, and handpicked travel packages across the globe.",
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
 };
 
 export default function RootLayout({ children }) {
