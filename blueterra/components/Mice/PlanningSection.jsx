@@ -8,7 +8,7 @@ function PlanningSection({ handleNavigateToContactForm }) {
     return (
 
         <div
-            className=" w-full h-full py-12 2xl:py-16  bg-cover bg-center bg-no-repeat "
+            className=" w-full h-full py-8 lg:py-12 2xl:py-16  bg-cover bg-center bg-no-repeat "
             style={{ backgroundImage: "url('/images/corporate/paper-background.png')" }}
         >
 

@@ -258,9 +258,7 @@ function JournalClient() {
                     </div>
                 </div>
 
-
                 <div ref={JournalListRef} className=" w-full  h-full   flex-center ">
-
 
                     {journals.length > 0 ? (
 
