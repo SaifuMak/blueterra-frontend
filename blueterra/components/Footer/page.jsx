@@ -178,7 +178,7 @@ export default function Footer() {
                     <div className=" flex max-md:flex-col  2xl:space-x-10 xl:space-x-10 space-x-5 lg:ml-5 xl:ml-10 max-md:hidden  ">
                         {Object.entries(footerLinks).map(([section, links]) => (
                             <div key={section} className=" flex flex-col ">
-                                <h6 className=" text-lg  font-normal md:mb-5  max-md:mt-5 max-md:mb-2">{section}</h6>
+                                <h2 className=" text-lg  font-normal md:mb-5  max-md:mt-5 max-md:mb-2">{section}</h2>
                                 <ul className=" md:space-y-2 space-y-3">
                                     {Object.entries(links).map(([LinkText, link]) => (
                                         <li key={LinkText}>
@@ -224,7 +224,7 @@ export default function Footer() {
                         <div className=" max-md:mt-6">
 
                             <ul className="space-y-2">
-                                <h6 className=" text-lg  font-normal mb-3">Contact</h6>
+                                <h2 className=" text-lg  font-normal mb-3">Contact</h2>
 
                                 <div className="flex max-w-sm items-center">
                                     <img src="/Icons/phone.svg" alt="Phone" className="shrink-0" />

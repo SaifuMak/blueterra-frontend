@@ -116,7 +116,7 @@ function DestinationSectionMobile() {
                     <div className="max-w-11/12 mx-auto relative  z-10">
                         {/* Header */}
                         <div className="w-full vertically-animated-element text-white px-2 ">
-                            <h2 className={`${playfair.className}  text-[30px]`}>Our Destination Highlights</h2>
+                            <h3 className={`${playfair.className}  text-[30px]`}>Our Destination Highlights</h3>
                             <p className={`${rubik.className} mt-2  font-light text-lg`}>Discover destinations that reflect the essence of BlueTerra</p>
                         </div>
 

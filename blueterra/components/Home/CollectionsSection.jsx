@@ -52,7 +52,7 @@ function CollectionsSection() {
         <div className="2xl:pb-20 pb-12 ">
             <div className="w-full h-full px-4 md:px-10 bg-white">
                 <div className=" bg-light-yellow flex flex-col items-center rounded-4xl space-y-6 2xl:space-y-10 xl:space-y-6  px-4 xl:py-16 py-10  2xl:px-10 2xl:py-28 ">
-                    <h3 ref={titleRef} className={`${playfair.className}  text-dark-4B heading-text`} >The BlueTerra Collection</h3>
+                    <h2 ref={titleRef} className={`${playfair.className}  text-dark-4B heading-text`} >The BlueTerra Collection</h2>
                     <p ref={descriptionRef} className={`xl:text-xl lg:text-lg font-light ${rubik.className} text-dark-28 w-full md:w-8/12  xl:w-6/12 text-center`}>Explore our handpicked collection of journeys, each created with intention and shaped to deliver timeless experiences you can trust.</p>
 
                     <div className=" 2xl:w-11/12 w-full   max-2xl:px-5  rounded-2xl overflow-hidden  mt-8 2xl:mt-4 ">

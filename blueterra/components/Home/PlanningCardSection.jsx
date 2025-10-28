@@ -39,7 +39,7 @@ function PlanningCardSection({ setFormOpen }) {
                         className="object-cover scalling-group-110 rounded-4xl "
                     />
                     <div className=" absolute inset-0 w-full h-full flex flex-col justify-center items-center bg-black/20 cursor-pointer rounded-4xl">
-                        <h3 className={`2xl:text-[50px] text-3xl xl:text-[45px]  lg:text-4xl ${playfair.className}  text-center max-sm:px-4  font-normal text-white`}>Where Will You Go Next ?</h3>
+                        <h2 className={`2xl:text-[50px] text-3xl xl:text-[45px]  lg:text-4xl ${playfair.className}  text-center max-sm:px-4  font-normal text-white`}>Where Will You Go Next ?</h2>
                         <Button text='PLAN YOUR JOURNEY' buttonStyle='xl:px-12 px-6 py-2 xl:py-2.5 mt-8 max-md:text-xs  ' onClickFunction={() => setFormOpen(true)} />
                     </div>
                 </div>
@@ -55,7 +55,7 @@ function PlanningCardSection({ setFormOpen }) {
                     <div className=" absolute overflow-hidden inset-0 w-full h-full flex flex-col justify-center text-center items-center bg-black/20 cursor-pointer rounded-4xl">
 
                         <div className="">
-                            <h3 className={`2xl:text-[50px] xl:text-[45px] text-3xl lg:text-4xl ${playfair.className}   font-normal text-white`}>Join Our Community</h3>
+                            <h2 className={`2xl:text-[50px] xl:text-[45px] text-3xl lg:text-4xl ${playfair.className}   font-normal text-white`}>Join Our Community</h2>
                             <p className=" xl:text-[23px] lg:text-xl max-md:px-4  xl:w-10/12 mb-3  mx-auto 2xl:text-[23px] text-white font-light md:mt-7 mt-3  tracking-wide ">Exclusive travel ideas, tips, and stories to inspire your next journey</p>
                             {/* <div className="w-11/12 mt-3 flex-center h-[90px]  lg:h-[200px] overflow-hidden" >
                             <iframe
