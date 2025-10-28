@@ -353,7 +353,8 @@ export default function EditJournal() {
                                 <div className=" min-h-[400px]   xl:min-h-[300px] outline-none">
                                     <Editor
                                         onInit={(evt, editor) => editorRef.current = editor}
-                                        apiKey="5x0d43so5yodigr6a7p6b1a09jh9n0ugfks5wljq1r0lm2wm"
+                                        // apiKey="5x0d43so5yodigr6a7p6b1a09jh9n0ugfks5wljq1r0lm2wm"
+                                          apiKey="wzat78wpmelwe9qtrtoycg23sw9oa4ifydj3ccz3p5aakbxc"
                                         value={blogContent}
                                         onEditorChange={(newValue) => setBlogContent(newValue)}
                                         init={{
