@@ -22,7 +22,7 @@ export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened 
     return (
         <>
 
-            <div className={` ${rubik.className} w-full flex flex-col relative   z-50 justify-center`}>
+            <div className={` ${rubik.className} w-full flex flex-col relative z-50 justify-center`}>
 
                 <div className="flex justify-between w-full  h-[50px] items-center pr-5 ">
                     <Link href='/'>

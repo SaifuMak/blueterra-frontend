@@ -14,6 +14,8 @@ export default function ZohoFormModal({ isOpen, onClose }) {
         setLoading(true)
 
         if (isOpen) {
+            console.log('yes form is opened and scroll is loacked----------');
+            
             
 
             lenis?.stop();

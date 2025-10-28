@@ -10,6 +10,7 @@ import Button from "../generalComponents/Button";
 import { rubik } from "@/app/fonts"
 import ZohoFormModal from "../Forms/ZohoFormModal";
 import { gsap } from "gsap";
+import { useLenis } from "../SmoothScroll";
 
 
 export default function Navbar({ isfixed = false, onNavClick }) {
@@ -23,6 +24,7 @@ export default function Navbar({ isfixed = false, onNavClick }) {
 
   const [isMenuOpened, setIsMenuOpened] = useState(false)
 
+  const lenis = useLenis();
 
   const MenuItems = [
 
@@ -35,7 +37,7 @@ export default function Navbar({ isfixed = false, onNavClick }) {
 
   ]
 
-  
+
   useEffect(() => {
     if (isfixed) {
       return
@@ -68,6 +70,25 @@ export default function Navbar({ isfixed = false, onNavClick }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
+  useEffect(() => {
+
+    if (isMenuOpened) {
+      // console.log('yes form is opened and scroll is loacked----------');
+
+      lenis?.stop();
+      document.body.style.overflow = 'hidden';
+
+    } else {
+      lenis?.start();
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      lenis?.start();
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpened, lenis]);
 
 
   return (
