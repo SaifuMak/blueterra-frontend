@@ -5,6 +5,8 @@ import { rubik } from "@/app/fonts"
 import ReviewWidget from "./ReviewWidget"
 import ChatWidget from "./ChatWidget"
 import Accordian from "./Accordian"
+import PageSense from "./PageSense"
+import GoogleAnalytics from "./GoogleAnalytics"
 
 export default function Footer() {
 
@@ -282,6 +284,8 @@ export default function Footer() {
                 </div>
 
                 <ChatWidget />
+                <PageSense/>
+                <GoogleAnalytics/>
 
             </div>
 
