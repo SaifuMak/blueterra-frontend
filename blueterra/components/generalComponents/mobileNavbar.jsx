@@ -17,6 +17,11 @@ export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened 
 
     const [formOpen, setFormOpen] = useState(false);
 
+    const handleZohoForms =()=>{
+        setIsMenuOpened(false)
+         setFormOpen(true)
+    }
+
 
 
     return (
@@ -72,7 +77,7 @@ export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened 
                             {MenuItems.map((items, index) => (
                                 <Link key={index} href={items.link} className={`${items.url === pathname ? ' text-brand-blue' : ' text-dark-28'} text-base`}>{items.nav}</Link>
                             ))}
-                            <Button text='PLAN YOUR EXPERIENCE' buttonStyle='text-nowrap max-md:text-[12px] px-4 lg:px-2 xl:px-6 py-2 lg:py-2 ' isHoverWhiteApplied={false} onClickFunction={() => setFormOpen(true)} />
+                            <Button text='PLAN YOUR EXPERIENCE' buttonStyle='text-nowrap max-md:text-[12px] px-4 lg:px-2 xl:px-6 py-2 lg:py-2 ' isHoverWhiteApplied={false} onClickFunction={() => handleZohoForms()} />
 
                             {/* <Link href="/" className="   px-4 rounded-sm   bg-sky-blue-1  text-white w-fit py-1">Contact us</Link> */}
 
