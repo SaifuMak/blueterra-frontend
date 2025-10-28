@@ -143,7 +143,7 @@ export default function Navbar({ isfixed = false, onNavClick }) {
         </div>
 
         <div className="w-full  lg:hidden bg-white">
-          <MobileNavbar MenuItems={MenuItems} isMenuOpened={isMenuOpened} setIsMenuOpened={setIsMenuOpened} />
+          <MobileNavbar MenuItems={MenuItems} isMenuOpened={isMenuOpened} setIsMenuOpened={setIsMenuOpened} setFormOpen={setFormOpen} />
         </div>
 
       </div>

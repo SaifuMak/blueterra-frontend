@@ -11,15 +11,18 @@ import { usePathname } from "next/navigation";
 import ZohoFormModal from "../Forms/ZohoFormModal";
 
 
-export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened }) {
+export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened, setFormOpen }) {
 
     const pathname = usePathname()
 
-    const [formOpen, setFormOpen] = useState(false);
+    // const [formOpen, setFormOpen] = useState(false);
 
     const handleZohoForms =()=>{
         setIsMenuOpened(false)
+        setTimeout(() => {
          setFormOpen(true)
+            
+        }, 500);
     }
 
 
@@ -86,7 +89,7 @@ export default function mobileNavbar({ MenuItems, isMenuOpened, setIsMenuOpened 
                 </div>
 
             </div>
-            <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} />
+            {/* <ZohoFormModal isOpen={formOpen} onClose={() => setFormOpen(false)} /> */}
 
         </>
     )
