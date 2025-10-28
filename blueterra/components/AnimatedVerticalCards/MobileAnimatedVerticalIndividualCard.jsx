@@ -91,7 +91,6 @@ function MobileAnimatedVerticalIndividualCard({ index,
 
                     <hr className=' opacity-40 mt-1'></hr>
                     <h3 className={`font-normal mt-5 ${playfair.className}`}>{page === 'collections' ? 'Explore our Collection' : 'Handpicked Destinations'}</h3>
-                    {page === 'collections' && (
                         <div className="flex   w-11/12 flex-wrap  gap-y-1  gap-x-4 pr-3 font-light text-[12px] mt-2">
                             {card?.popular_journeys
                                 ?.split(",")                // split by comma
@@ -101,15 +100,14 @@ function MobileAnimatedVerticalIndividualCard({ index,
                                     </div>
                                 ))}
                         </div>
-                    )}
 
 
-                    {page === 'destinations' && <div className="flex   w-11/12 flex-wrap  gap-y-1  gap-x-4 pr-3 font-light text-[12px] mt-2">
+                    {/* {page === 'destinations' && <div className="flex   w-11/12 flex-wrap  gap-y-1  gap-x-4 pr-3 font-light text-[12px] mt-2">
                         {card?.countries?.map((country, index) => (
                             <div key={index} className="  flex   ">
                                 <span className="text-nowrap">{country?.title}</span></div>
                         ))}
-                    </div>}
+                    </div>} */}
 
                     <p className=" text-sm font-light mt-2 ">{card?.description}</p>
 
