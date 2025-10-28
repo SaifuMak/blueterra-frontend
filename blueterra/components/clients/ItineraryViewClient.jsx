@@ -239,7 +239,7 @@ export default function ItineraryViewClient({ slug }) {
 
                             {!isTablet && <div className="w-full h-full bg-white/30   flex-center relative">
                                 <div className=" w-11/12 overflow-hidden   space-y-10 mb-24   h-full flex flex-col  items-center rounded-3xl  ">
-                                    <h6 className={`${playfair.className} gallery-title   text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h6>
+                                    <h2 className={`${playfair.className} gallery-title   text-center text-4xl xl:text-5xl  text-dark-4B font-medium`} >Gallery</h2>
                                     <GalleryList data={itineraryData?.gallery} />
 
                                 </div>

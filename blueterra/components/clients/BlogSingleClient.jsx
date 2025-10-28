@@ -198,7 +198,7 @@ export default function BlogSingleClient({ slug }) {
                         </div> */}
 
                         <div className="bg-light-beige rounded-2xl xl:px-5 px-3 pb-4 pt-7">
-                            <h3 className={`2xl:text-5xl text-3xl lg:text-4xl font-medium xl:mb-7 text-dark-4B mb-2  ${playfair.className} `}>More Blogs</h3>
+                            <h2 className={`2xl:text-5xl text-3xl lg:text-4xl font-medium xl:mb-7 text-dark-4B mb-2  ${playfair.className} `}>More Blogs</h2>
 
                             <div className=" max-lg:flex space-x-10 max-lg:flex-wrap">
                                 {moreBlogs?.filter(blog => blog.slug !== slug).slice(0, 3).map((blog, index) => (
@@ -253,7 +253,7 @@ export default function BlogSingleClient({ slug }) {
 
                             <div className=" w-full h-full flex items-end  bg-gradient-to-t from-black via-black/30 to-transparent  absolute inset-0">
                                 <div className=" flex flex-col p-5 flex-center  w-full space-y-3">
-                                    <h3 className={` xl:pr-7 text-2xl max-sm:text-center   text-white ${playfair.className}`}>Turning your travel dreams into real Adventures.</h3>
+                                    <h2 className={` xl:pr-7 text-2xl max-sm:text-center   text-white ${playfair.className}`}>Turning your travel dreams into real Adventures.</h2>
                                     <Button text='PLAN YOUR TRIP' buttonStyle={` transition-all mb-3 vertically-animated-element  max-sm:text-sm duration-500 lg:w-full max-md:px-10 py-2.5 ease-in-out font-medium`} onClickFunction={() => setFormOpen(true)} />
 
                                 </div>
@@ -263,7 +263,7 @@ export default function BlogSingleClient({ slug }) {
 
 
                         <div className="  space-y-6 w-full h-full pb-6 pt-10 px-5 text-center rounded-2xl bg-dark-beige">
-                            <h3 className={`${playfair.className} font-medium text-2xl`}>Join Our Community Today!</h3>
+                            <h2 className={`${playfair.className} font-medium text-2xl`}>Join Our Community Today!</h2>
                             <p className=" px-4 lg:px-7 font-light">Get started for free and receive instant notifications about updates.</p>
                             <iframe
                                 title="Zoho Form"
@@ -285,7 +285,7 @@ export default function BlogSingleClient({ slug }) {
 
 
                     <div className=" xl:w-10/12  w-11/12  max-sm:w-10/12 h-full">
-                        <h3 className={`${playfair.className} 2xl:text-5xl text-3xl lg:text-4xl 2xl:pb-3 font-semibold text-dark-4B`}>More from our Journal</h3>
+                        <h2 className={`${playfair.className} 2xl:text-5xl text-3xl lg:text-4xl 2xl:pb-3 font-semibold text-dark-4B`}>More from our Journal</h2>
 
                         <div className=" w-full flex max-md:flex-col   mt-5 lg:mt-8 space-y-6 md:space-x-10 h-[400px] md:h-[300px] lg:h-[400px] xl:h-[400px] 2xl:h-[480px]">
 

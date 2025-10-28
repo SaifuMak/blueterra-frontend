@@ -20,7 +20,7 @@ const BlogCards = ({ outerConatainerClass, blog }) => {
             <div className={`${rubik.className} text-white absolute rounded-2xl pointer-events-none justify-end flex flex-col  inset-0 bg-gradient-to-t  from-black/80 via-transparent to-transparent`} >
                 <div className="  px-4 xl:px-10 max-sm:py-3 md:py-5 xl:space-y-5 md:space-y-3 space-y-1.5  ">
                     <div className="  overflow-hidden ">
-                        <h2 className=" text-lg lg:text-xl 2xl:text-2xl  font-normal">{blog?.title}</h2>
+                        <h3 className=" text-lg lg:text-xl 2xl:text-2xl  font-normal">{blog?.title}</h3>
                     </div>
                     <div className=" flex items-center  max-2xl:text-sm  justify-between  ">
                         <div className="">
