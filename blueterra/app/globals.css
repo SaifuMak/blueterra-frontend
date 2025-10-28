@@ -26,6 +26,15 @@ body {
   display: none;
 } */
 
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+
 
 .vertically-animated-element::-webkit-scrollbar {
   width: 0 !important;
