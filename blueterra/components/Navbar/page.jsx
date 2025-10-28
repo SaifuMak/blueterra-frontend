@@ -71,24 +71,24 @@ export default function Navbar({ isfixed = false, onNavClick }) {
   }, []);
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (isMenuOpened) {
-      // console.log('yes form is opened and scroll is loacked----------');
+  //   if (isMenuOpened) {
+  //     // console.log('yes form is opened and scroll is loacked----------');
 
-      lenis?.stop();
-      document.body.style.overflow = 'hidden';
+  //     lenis?.stop();
+  //     document.body.style.overflow = 'hidden';
 
-    } else {
-      lenis?.start();
-      document.body.style.overflow = '';
-    }
+  //   } else {
+  //     lenis?.start();
+  //     document.body.style.overflow = '';
+  //   }
 
-    return () => {
-      lenis?.start();
-      document.body.style.overflow = 'auto';
-    };
-  }, [isMenuOpened, lenis]);
+  //   return () => {
+  //     lenis?.start();
+  //     document.body.style.overflow = 'auto';
+  //   };
+  // }, [isMenuOpened, lenis]);
 
 
   return (
