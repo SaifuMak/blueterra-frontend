@@ -7,6 +7,7 @@ import ChatWidget from "./ChatWidget"
 import Accordian from "./Accordian"
 import PageSense from "./PageSense"
 import GoogleAnalytics from "./GoogleAnalytics"
+import GoogleTagManager from "./GoogleTagManager"
 
 export default function Footer() {
 
@@ -286,6 +287,7 @@ export default function Footer() {
                 <ChatWidget />
                 <PageSense/>
                 <GoogleAnalytics/>
+                <GoogleTagManager/>
 
             </div>
 
