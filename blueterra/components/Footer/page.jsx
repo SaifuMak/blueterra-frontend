@@ -8,6 +8,7 @@ import Accordian from "./Accordian"
 import PageSense from "./PageSense"
 import GoogleAnalytics from "./GoogleAnalytics"
 import GoogleTagManager from "./GoogleTagManager"
+import GoogleAdsTracker from "./GoogleAdsTracker"
 
 export default function Footer() {
 
@@ -288,6 +289,7 @@ export default function Footer() {
                 <PageSense/>
                 <GoogleAnalytics/>
                 <GoogleTagManager/>
+                <GoogleAdsTracker/>
 
             </div>
 

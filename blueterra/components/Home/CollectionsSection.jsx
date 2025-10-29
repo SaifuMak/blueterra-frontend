@@ -19,8 +19,6 @@ function CollectionsSection() {
 
     const router = useRouter()
 
-
-
     const fetchCollections = async () => {
 
         try {

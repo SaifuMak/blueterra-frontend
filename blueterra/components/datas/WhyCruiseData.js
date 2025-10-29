@@ -13,7 +13,7 @@ const WhyCruiseData = [
     },
     {
         "title": "Trust You Can Count On",
-         "description": "Our strength lies in trusted collaborations with world-class cruise lines and operators. We take pride in being dependable, responsive and detail-oriented",
+         "description": "Our strength lies in trusted collaborations with world-class cruise lines and operators. We take pride in being dependable, responsive and detail-oriented.",
         "icon": "Icons/our-story/map.svg"
     },
    
