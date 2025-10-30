@@ -103,9 +103,9 @@ export default function DestinationCardCarousal({ Data }) {
 
                     <div className="   text-white absolute rounded-2xl pointer-events-none   inset-0 bg-gradient-to-b  from-black/80 via-transparent to-transparent">
 
-                    <div className=" flex group-hover:opacity-100 opacity-0 transition-all duration-300 ease-in-out space-x-3 p-4  md:p-10 justify-end">
+                    <div className=" flex group-hover:opacity-100  lg:opacity-0 transition-all duration-300 ease-in-out space-x-3 p-4 max-lg:mt-5  md:p-10 justify-end">
                             {Data?.filter((gallery) => gallery.is_checked).map((_, index) => (
-                                <div key={index} className={`${currentCollection === index ? 'bg-white' : ' bg-white/30'} translate-all duration-700 ease-in-out h-[3px] rounded-3xl w-16 bg-white`}></div>
+                                <div key={index} className={`${currentCollection === index ? 'bg-white' : ' bg-white/30'} translate-all duration-700 ease-in-out h-[3px] rounded-3xl w-5 lg:w-16 bg-white`}></div>
                             ))}
                         </div>
                     </div>
