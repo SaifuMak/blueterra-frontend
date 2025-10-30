@@ -59,6 +59,7 @@ export default function DestinationCardCarousal({ Data }) {
     }, [api])
 
     const handleMouseEnter = () => {
+        if (isMobile) return
         if (Data?.length === 1) {
             return
         }
@@ -67,6 +68,8 @@ export default function DestinationCardCarousal({ Data }) {
     };
 
     const handleMouseLeave = () => {
+        if (isMobile) return
+
         if (Data?.length === 1) {
             return
         }
