@@ -21,6 +21,8 @@ import SmoothScroll from "../SmoothScroll";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { trimWords } from "@/app/utils/textHelpers";
+import { useMediaQuery } from 'react-responsive'
+
 
 gsap.registerPlugin(useGSAP)
 
@@ -29,16 +31,20 @@ export default function DestinationCardCarousal({ Data }) {
     const [currentCollection, setCurrent] = useState(0)
     const [CollectionCount, setCount] = useState(0)
 
+    const isMobile = useMediaQuery({
+        query: '(max-width: 844px)'
+    })
+
     const [api, setApi] = useState()
-    const autoplayRef = useRef(Autoplay({ delay: 2000, playOnInit: false }));
+    const autoplayRef = useRef(Autoplay({ delay: 3000, playOnInit: false }));
 
     useEffect(() => {
 
         if (!api) {
             return
         }
-        autoplayRef.current.stop();
-
+        if(!isMobile){autoplayRef.current.stop();}
+        
         // setCount(api.scrollSnapList().length)
         setCurrent(api.selectedScrollSnap())
 
@@ -49,7 +55,7 @@ export default function DestinationCardCarousal({ Data }) {
     }, [api])
 
     const handleMouseEnter = () => {
-        if(Data?.length === 1){
+        if (Data?.length === 1) {
             return
         }
         autoplayRef.current.reset();
@@ -57,7 +63,7 @@ export default function DestinationCardCarousal({ Data }) {
     };
 
     const handleMouseLeave = () => {
-          if(Data?.length === 1){
+        if (Data?.length === 1) {
             return
         }
         autoplayRef.current.stop();
@@ -103,7 +109,7 @@ export default function DestinationCardCarousal({ Data }) {
 
                     <div className="   text-white absolute rounded-2xl pointer-events-none   inset-0 bg-gradient-to-b  from-black/80 via-transparent to-transparent">
 
-                    <div className=" flex group-hover:opacity-100  lg:opacity-0 transition-all duration-300 ease-in-out space-x-3 p-4 max-lg:mt-5  md:p-10 justify-end">
+                        <div className=" flex group-hover:opacity-100  lg:opacity-0 transition-all duration-300 ease-in-out space-x-3 p-4 max-lg:mt-5  md:p-10 justify-end">
                             {Data?.filter((gallery) => gallery.is_checked).map((_, index) => (
                                 <div key={index} className={`${currentCollection === index ? 'bg-white' : ' bg-white/30'} translate-all duration-700 ease-in-out h-[3px] rounded-3xl w-5 lg:w-16 bg-white`}></div>
                             ))}
