@@ -469,7 +469,7 @@ export default function CollectionsClient() {
             searchParams={searchParams}
           />}
 
-          <div ref={homeRef} className=" w-full relative flex flex-col  justify-center max-sm:mt-0   xl:mt-36 lg:mt-48  items-center   ">
+          <div ref={homeRef} className=" w-full relative flex flex-col   justify-center max-sm:mt-0   xl:mt-36 lg:mt-48  items-center   ">
 
             <ResponsiveClipPath
               outerClass='absolute md:w-[24%]  max-sm:hidden w-[78%]  top-10 left-0 h-fit'
@@ -477,7 +477,7 @@ export default function CollectionsClient() {
               width={800}
             />
 
-            {isMobile && <div ref={MobileFilterRef} className=" w-full sticky top-10 sticky-container  z-10">
+            {isMobile && <div ref={MobileFilterRef} className=" bg-white w-full  sticky top-10 sticky-container  z-10">
               <MobileFilter
                 page='collections'
                 setIsAnyFilterOpened={setIsAnyFilterOpened}

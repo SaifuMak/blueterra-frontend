@@ -43,8 +43,12 @@ export default function DestinationCardCarousal({ Data }) {
         if (!api) {
             return
         }
-        if(!isMobile){autoplayRef.current.stop();}
-        
+        if (isMobile) {
+            autoplayRef.current.play();
+        } else {
+            autoplayRef.current.stop();
+        }
+
         // setCount(api.scrollSnapList().length)
         setCurrent(api.selectedScrollSnap())
 
