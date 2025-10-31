@@ -36,7 +36,13 @@ export default function DestinationCardCarousal({ Data }) {
     })
 
     const [api, setApi] = useState()
-    const autoplayRef = useRef(Autoplay({ delay: 3000, playOnInit: false }));
+    // const autoplayRef = useRef(Autoplay({ delay: 3000, playOnInit: false }));
+    const autoplayRef = useRef(null);
+
+    useEffect(() => {
+        autoplayRef.current = Autoplay({ delay: 3000, playOnInit: false });
+    }, []);
+
 
     useEffect(() => {
 
@@ -59,21 +65,26 @@ export default function DestinationCardCarousal({ Data }) {
     }, [api])
 
     const handleMouseEnter = () => {
-        if (isMobile) return
+        if (isMobile || !autoplayRef.current) return
         if (Data?.length === 1) {
             return
         }
         autoplayRef.current.reset();
         autoplayRef.current.play();
+        // api?.plugins()?.autoplay?.play();
+        // api?.plugins()?.autoplay?.stop();
+
     };
 
     const handleMouseLeave = () => {
-        if (isMobile) return
+        if (isMobile || !autoplayRef.current) return
 
         if (Data?.length === 1) {
             return
         }
         autoplayRef.current.stop();
+        // api?.plugins()?.autoplay?.stop();
+
     };
 
 
@@ -92,7 +103,8 @@ export default function DestinationCardCarousal({ Data }) {
                         align: "start",
                         loop: true,
                     }}
-                    plugins={[autoplayRef.current]}
+                    // plugins={[autoplayRef.current]}
+                      plugins={autoplayRef.current ? [autoplayRef.current] : []}
                     className="w-full  relative"
                 >
 
